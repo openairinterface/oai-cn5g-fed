@@ -1,6 +1,5 @@
 version: '3.8'
 
-
 #### Commands for Test Setup
 #
 #    # setup subnet IP address
@@ -29,7 +28,7 @@ services:
             - TAC=0xa000
             - LINK_IP=192.168.70.149
             - NGAP_IP=192.168.70.149
-            - GTP_IP=192.168.70.149
+            - GTP_IP=192.168.71.149
             - NGAP_PEER_IP=192.168.70.132
             - SST=222
             - SD=123
@@ -55,13 +54,25 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.70.149
+            n3_net:
+                ipv4_address: 192.168.71.149
         healthcheck:
             test: /bin/bash -c "ifconfig uesimtun0"
             interval: 10s
             timeout: 5s
             retries: 5
-
 networks:
     public_net:
         external:
             name: demo-oai-public-net
+    n3_net:
+        external:
+            name: demo-oai-n3-net
+    framed_route_net:
+        driver: bridge
+        name: demo-oai-framed-route-net
+        ipam:
+            config:
+                - subnet: 192.168.128.0/24
+        driver_opts:
+            com.docker.network.bridge.name: "framed-route"
