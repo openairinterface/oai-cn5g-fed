@@ -38,6 +38,7 @@ def ue_ctl_resource = params.ue_ctl_resource
 oc_registry_url = 'https://default-route-openshift-image-registry.apps.oai.cs.eurecom.fr'
 oc_image_project_name = 'oaicicd-core'
 oc_test_project_name = 'oaicicd-core-testing'
+ran_Image_Registry = params.ran_Image_Registry
 
 // Variables that can used in main pipeline and in functions
 NRF=0
@@ -211,9 +212,9 @@ pipeline {
           echo '\u2705 \u001B[32mDeploy gNB\u001B[0m'
           // As mentioned in the job configuration
           // FULL_RAN_TAG shall be of "pullable" image format
-          // either porcepix.sboai.cs.eurecom.fr/oai-gnb:ci-tag
+          // either ran_Image_Registry/oai-gnb:ci-tag
           // or     oaisoftwarealliance/oai-gnb:week-tag
-          // It may temporarly be of porcepix.sboai.cs.eurecom.fr/oai-gnb:raphael/ci-fix-ubuntu-build-log-scheme-24efc76d format
+          // It may temporarly be of ran_Image_Registry/oai-gnb:raphael/ci-fix-ubuntu-build-log-scheme-24efc76d format
           //   the raphael/ part shall be fixed to raphael-
           ranFullImage = fixFullRanImageTag(params.FULL_RAN_TAG)
           checkAndPullRanImage(ranFullImage)
@@ -277,7 +278,7 @@ pipeline {
             testStart1   = false
             testStop0    = false
             testStop1    = false
-            if (ranFullImage.contains('porcepix')) {
+            if (ranFullImage.contains(ran_Image_Registry)) {
               sh "docker rmi ${ranFullImage} || true"
             }
           }
@@ -353,7 +354,7 @@ pipeline {
               sh "docker-compose down -t 3 || true"
             }
             deployedGNB = false
-            if (ranFullImage.contains('porcepix')) {
+            if (ranFullImage.contains(ran_Image_Registry)) {
               sh "docker rmi ${ranFullImage} || true"
             }
           }
@@ -563,8 +564,8 @@ def retrieveLogsFromPods() {
 }
 
 def fixFullRanImageTag (ranFullImage) {
-  // if format is porcepix.sboai.cs.eurecom.fr/oai-gnb:raphael/ci-fix-ubuntu-build-log-scheme-24efc76d
-  if (ranFullImage.contains('porcepix')) {
+  // if format is ran_Image_Registry/oai-gnb:raphael/ci-fix-ubuntu-build-log-scheme-24efc76d
+  if (ranFullImage.contains(ran_Image_Registry)) {
     def arr = ranFullImage.split(':')
     arr[1] = arr[1].replaceAll('/', '-')
     ranFullImage = arr[0] + ':' + arr[1]
@@ -583,12 +584,12 @@ def checkAndPullRanImage (ranFullImage) {
     imageToPull = true
   }
   if (imageToPull) {
-    if (ranFullImage.contains('porcepix')) {
-      sh 'docker login -u oaicicd -p oaicicd porcepix.sboai.cs.eurecom.fr'
+    if (ranFullImage.contains(ran_Image_Registry)) {
+      sh "docker login -u oaicicd -p oaicicd ${ran_Image_Registry}"
     }
     sh "docker pull ${ranFullImage}"
-    if (ranFullImage.contains('porcepix')) {
-      sh 'docker logout porcepix.sboai.cs.eurecom.fr'
+    if (ranFullImage.contains(ran_Image_Registry)) {
+      sh "docker logout ${ran_Image_Registry}"
     }
   }
 }
