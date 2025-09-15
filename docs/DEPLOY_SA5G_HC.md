@@ -346,7 +346,7 @@ For this tutorial we are not using multus here for simplicity, generally there s
 ## oai-gNB configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --rfsim --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
   gnbName: "oai-gnb-rfsim"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF
@@ -423,7 +423,7 @@ config:
   sst: "1"                     # configure according to gnb and amf, smf and upf 
   sd: "16777215"
   usrp: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
-  useAdditionalOptions: "--sa --rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
 ```
 
 ### 5.5 Deploy OAI-NR-UE RFSimulator
@@ -518,7 +518,7 @@ For this tutorial we are not using multus here for simplicity, generally there s
 ## oai-cu configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
   # If mounting the configuration file then below parameters are not used
   cuName: "oai-cu"
   mcc: "001"   # check the information with AMF, SMF, UPF
@@ -537,7 +537,7 @@ config:
 ## oai-du configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --rfsim --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
   duName: "oai-du-rfsim"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF
@@ -668,7 +668,7 @@ For this tutorial we are not using multus here for simplicity, generally there s
 ```
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
   cucpName: "oai-cu-cp"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF
@@ -686,7 +686,7 @@ config:
 ## oai-cu-up configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa"
+  useAdditionalOptions: ""
   cuupName: "oai-cuup"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF
@@ -704,7 +704,7 @@ config:
 ## oai-du configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --rfsim --log_config.global_log_options level,nocolor,time"
+  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
   duName: "oai-du-rfsim"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF
