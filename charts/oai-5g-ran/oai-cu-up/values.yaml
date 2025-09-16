@@ -62,7 +62,7 @@ multus:
 ## It is taken from https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/ci-scripts/conf_files/gnb-cuup.sa.f1.conf
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa"
+  useAdditionalOptions: ""
   cuupName: "oai-cuup"
   mcc: "001"   # check the information with AMF, SMF, UPF
   mnc: "01"    # check the information with AMF, SMF, UPF

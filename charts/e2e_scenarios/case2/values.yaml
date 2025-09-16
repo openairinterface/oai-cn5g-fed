@@ -296,7 +296,7 @@ oai-cu:
       hostInterface: "bond0"  # Interface of the host machine on which this pod will be scheduled
   config:
     timeZone: "Europe/Paris"
-    useAdditionalOptions: "--sa --log_config.global_log_options level,nocolor,time"
+    useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
     # If mounting the configuration file then below parameters are not used
     cuName: "oai-cu"
     mcc: "001"   # check the information with AMF, SMF, UPF
@@ -353,7 +353,7 @@ oai-du:
       hostInterface: "bond0"      # Interface of the host machine on which this pod will be scheduled
   config:
     timeZone: "Europe/Paris"
-    useAdditionalOptions: "--sa --rfsim --log_config.global_log_options level,nocolor,time"
+    useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
     duName: "oai-du-rfsim"
     usrp: rfsim   #allowed values rfsim, b2xx, n3xx or x3xx
     f1IfName: "eth0"   #if multus.f1Interface.create is true then use f1
@@ -388,7 +388,7 @@ oai-nr-ue:
     sst: "1"                     # configure according to gnb and amf, smf and upf
     sd: "16777215"
     usrp: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
-    useAdditionalOptions: "--sa --rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
+    useAdditionalOptions: "--rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
   resources:
     define: false
     limits:
