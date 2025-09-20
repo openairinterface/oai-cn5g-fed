@@ -35,6 +35,8 @@ def gnb_resource = params.gnb_resource
 def ue_ctl_server = params.ue_ctl_server
 def ue_ctl_resource = params.ue_ctl_resource
 
+def adb_ue_id = params.adb_ue_id
+
 oc_registry_url = 'https://default-route-openshift-image-registry.apps.oai.cs.eurecom.fr'
 oc_image_project_name = 'oaicicd-core'
 oc_test_project_name = 'oaicicd-core-testing'
@@ -73,6 +75,11 @@ boolean testStart0   = true
 boolean testStart1   = true
 boolean testStop0    = true
 boolean testStop1    = true
+boolean testSP_Attach0   = true
+boolean testSP_Attach1   = true
+boolean testSP_Detach0   = true
+boolean testSP_Detach1   = true
+boolean fullTestToBeDone = true
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -138,6 +145,9 @@ pipeline {
               destTags[ii] = getLastCommitFromBranch(ii, repoNames[ii], branchNames[ii])
             } else {
               destTags[ii] = baseTags[ii]
+            }
+            if ((adb_ue_id == '') || (adb_ue_id == 'none')) {
+              fullTestToBeDone = false
             }
           }
         }
@@ -223,13 +233,6 @@ pipeline {
           sh "docker image inspect --format='Size = {{.Size}} bytes' ${ranFullImage} >> archives/oai-gnb-image-info.log"
           sh "echo 'OC Pushed Tag is N/A' >> archives/oai-gnb-image-info.log"
           stash allowEmpty: true, includes: 'archives/oai-gnb-image-info.log', name: 'gNB_image'
-          // Check for entrypoint content (until 2023.w22)
-          sh "docker create --name test-entrypoint ${ranFullImage}"
-          sh "docker cp test-entrypoint:/opt/oai-gnb/bin/entrypoint.sh gnb-entrypoint.sh"
-          sh "docker rm -f test-entrypoint"
-          entryContent = sh returnStdout: true, script: "cat gnb-entrypoint.sh"
-          mountedFileAsMountedDotConf = entryContent.contains('create sed expressions for substituting each occurrence')
-          sh "rm -f gnb-entrypoint.sh"
           // Adding capture on SCTP and L2 port 9999
           sh "sudo rm -f /tmp/oai-gnb-l2-trace.pcap /tmp/oai-gnb-l2-trace.logs"
           sh 'nohup sudo tshark -i any -f "sctp or udp port 9999" -w /tmp/oai-gnb-l2-trace.pcap > /tmp/oai-gnb-l2-trace.logs 2>&1 &'
@@ -240,9 +243,6 @@ pipeline {
             sh "sudo uhd_find_devices > /dev/null 2>&1 || true"
             sleep 5
             sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
-            if (mountedFileAsMountedDotConf) {
-              sh "sed -i -e 's@/opt/oai-gnb/etc/gnb.conf@/opt/oai-gnb/etc/mounted.conf@' docker-compose.yml"
-            }
             sh "docker-compose up -d"
             deployedGNB = true
             gNBStatus = checkStatusOnGNB()
@@ -294,34 +294,33 @@ pipeline {
             dir ('ci-scripts/cots-ue-mbim-scripts') {
               // I don't want that stage to fail.
               // It's easier then to un-deploy gNB.
-              try {
-                sh 'sudo bash -c "set -o pipefail && ./start.sh 2>&1 | tee /tmp/test-start0.log"'
-              } catch (Exception e) {
-                echo "Test-Start #0 seems to have failed!"
-                testStart0 = false
+              testStart0 = attachTrafficTestOnQuectel(0)
+              if (fullTestToBeDone) {
+                testSP_Attach0 = attachSmartPhone(0, adb_ue_id)
               }
               if (testStart0) {
                 sh 'sudo traceroute -4 -T -i wwan0 openairinterface.org | tee /tmp/test-traffic0.log'
                 sh 'curl --interface wwan0 https://openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png -o /tmp/test-oai_final_logo.png'
               }
-              try {
-                sh 'sudo bash -c "set -o pipefail && ./stop.sh 2>&1 | tee /tmp/test-stop0.log"'
-              } catch (Exception e) {
-                echo "Test-Stop #0 seems to have failed!"
-                testStop0 = false
+              if (fullTestToBeDone && testSP_Attach0) {
+                sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp0.log"
               }
+              testStop0 = detachTestOnQuectel(0)
+              if (fullTestToBeDone) {
+                testSP_Detach0 = detachSmartPhone(0, adb_ue_id)
+              }
+              // Waiting a bit before doing a 2nd attach
               sleep 5
-              try {
-                sh 'sudo bash -c "set -o pipefail && ./start.sh 2>&1 | tee /tmp/test-start1.log"'
-              } catch (Exception e) {
-                echo "Test-Start #1 seems to have failed!"
-                testStart1 = false
+              testStart1 = attachTrafficTestOnQuectel(1)
+              if (fullTestToBeDone) {
+                testSP_Attach1 = attachSmartPhone(1, adb_ue_id)
               }
-              try {
-                sh 'sudo bash -c "set -o pipefail && ./stop.sh 2>&1 | tee /tmp/test-stop1.log"'
-              } catch (Exception e) {
-                echo "Test-Stop #1 seems to have failed!"
-                testStop1 = false
+              if (fullTestToBeDone && testSP_Attach1) {
+                sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp1.log"
+              }
+              testStop1 = detachTestOnQuectel(1)
+              if (fullTestToBeDone) {
+                testSP_Detach1 = detachSmartPhone(1, adb_ue_id)
               }
             }
             sh 'sudo chmod 666 /tmp/test-st*.log'
@@ -353,6 +352,135 @@ pipeline {
               sh "docker-compose down -t 3 || true"
             }
             deployedGNB = false
+            if (fullTestToBeDone == false && ranFullImage.contains('porcepix')) {
+              sh "docker rmi ${ranFullImage} || true"
+            }
+          }
+        }
+      }
+    }
+    stage ('Deploy gNB #2') {
+      agent { label gnb_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        script {
+          echo '\u2705 \u001B[32mDeploy gNB #2 \u001B[0m'
+          dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
+            ranFullImage = fixFullRanImageTag(params.FULL_RAN_TAG)
+            sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
+            sh "docker-compose up -d"
+            gNBStatus = checkStatusOnGNB()
+            if (gNBStatus > 0) {
+              echo ("gNB did NOT deploy properly")
+            }
+          }
+        }
+      }
+    }
+    stage ('Test COTS-UE #2') {
+      agent { label ue_ctl_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        lock(ue_ctl_resource) {
+          script {
+            sh "mkdir -p archives"
+            attachSmartPhone(2, adb_ue_id)
+            sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp2.log"
+            // Leaving the smartphone radio on!
+
+            sh "cp /tmp/test-traffic-sp2.log archives || true"
+            stash allowEmpty: true, includes: 'archives/test-traffic-sp2.log', name: 'ue_logs_2'
+          }
+        }
+      }
+    }
+    stage ('Undeploy gNB #2') {
+      agent { label gnb_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        script {
+          echo '\u2705 \u001B[32mUndeploy gNB #2 while COTS-UE is still on \u001B[0m'
+          dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
+            ranFullImage = fixFullRanImageTag(params.FULL_RAN_TAG)
+            sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
+            sh "docker-compose stop -t 3 || true"
+            sleep 2
+            sh "docker logs sa-b210-gnb > oai-gnb-2.logs 2>&1 || true"
+            stash allowEmpty: true, includes: 'oai-gnb-2.logs', name: 'gNB_logs_2'
+            sh "docker-compose down -t 3 || true"
+            sleep 10
+          }
+        }
+      }
+    }
+    stage ('Deploy gNB #3') {
+      agent { label gnb_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        script {
+          echo '\u2705 \u001B[32mDeploy gNB #3 while COTS-UE is still on \u001B[0m'
+          dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
+            ranFullImage = fixFullRanImageTag(params.FULL_RAN_TAG)
+            sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
+            sh "docker-compose up -d"
+            gNBStatus = checkStatusOnGNB()
+            if (gNBStatus > 0) {
+              echo ("gNB did NOT deploy properly")
+            }
+          }
+        }
+      }
+    }
+    stage ('Test COTS-UE #3') {
+      agent { label ue_ctl_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        lock(ue_ctl_resource) {
+          script {
+            // The COTS-UE shall be already on
+            checkSmartPhoneConnectionStatus(adb_ue_id)
+            sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp3.log"
+            detachSmartPhone(3, adb_ue_id)
+            sleep 10
+            attachSmartPhone(4, adb_ue_id)
+            sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp4.log"
+
+            // display the interface connection
+            sh "adb -s ${adb_ue_id} shell ip a s rmnet_data0"
+            // disable Mobile Data Connectivity
+            sh "adb -s ${adb_ue_id} shell svc data disable"
+            sleep 2
+            sh "adb -s ${adb_ue_id} shell ip a s rmnet_data0"
+            // enable back Mobile Data Connectivity
+            sh "adb -s ${adb_ue_id} shell svc data enable"
+            checkSmartPhoneConnectionStatus(adb_ue_id)
+            sh "adb -s ${adb_ue_id} shell ip a s rmnet_data0"
+            sh "adb -s ${adb_ue_id} shell ping -c 20 -i 0.2 8.8.8.8 | tee /tmp/test-traffic-sp5.log"
+
+            detachSmartPhone(4, adb_ue_id)
+
+            sh "mkdir -p archives"
+            sh "cp /tmp/test-traffic-sp3.log /tmp/test-traffic-sp4.log /tmp/test-traffic-sp5.log archives || true"
+            stash allowEmpty: true, includes: 'archives/test-traffic-sp3.log, archives/test-traffic-sp4.log, archives/test-traffic-sp5.log', name: 'ue_logs_3'
+          }
+        }
+      }
+    }
+    stage ('Undeploy gNB #3') {
+      agent { label gnb_server }
+      when { expression { fullTestToBeDone} }
+      steps {
+        script {
+          echo '\u2705 \u001B[32mUndeploy gNB #3 \u001B[0m'
+          dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
+            ranFullImage = fixFullRanImageTag(params.FULL_RAN_TAG)
+            sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
+            sh "docker-compose stop -t 3 || true"
+            sleep 2
+            sh "docker logs sa-b210-gnb > oai-gnb-3.logs 2>&1 || true"
+            stash allowEmpty: true, includes: 'oai-gnb-3.logs', name: 'gNB_logs_3'
+            sh "docker-compose down -t 3 || true"
+            sleep 10
             if (ranFullImage.contains('porcepix')) {
               sh "docker rmi ${ranFullImage} || true"
             }
@@ -368,8 +496,14 @@ pipeline {
           unstash 'ue_logs'
           unstash 'gNB_image'
           unstash 'gNB_logs'
+          if (fullTestToBeDone) {
+            unstash 'gNB_logs_2'
+            unstash 'gNB_logs_3'
+            unstash 'ue_logs_2'
+            unstash 'ue_logs_3'
+          }
           if (fileExists('oai-gnb.logs')) {
-            sh 'mv oai-gnb.logs archives'
+            sh 'mv oai-gnb*.logs archives'
           }
           if (fileExists('oai-gnb-l2-trace.pcap')) {
             sh 'mv oai-gnb-l2-trace.* archives'
@@ -427,11 +561,20 @@ pipeline {
             unstash 'gNB_image'
             unstash 'gNB_logs'
             unstash 'ue_logs'
+            if (fullTestToBeDone) {
+              unstash 'gNB_logs_2'
+              unstash 'gNB_logs_3'
+              unstash 'ue_logs_2'
+              unstash 'ue_logs_3'
+            }
           } catch (Exception e) {
             echo "could not retrieve stashes from gNB or UE server"
           }
           if (fileExists('oai-gnb.logs')) {
-            sh 'mv oai-gnb.logs archives'
+            sh 'mv oai-gnb*.logs archives'
+          }
+          if (fileExists('oai-gnb-l2-trace.pcap')) {
+            sh 'mv oai-gnb-l2-trace.* archives'
           }
           dir ('ci-scripts/charts/oai-5g-basic') {
             // helm default timeout is 5mins
@@ -631,4 +774,68 @@ def checkStatusOnGNB() {
     status += 2
   }
   return status
+}
+
+def attachTrafficTestOnQuectel(runId) {
+  status = true
+  try {
+    sh "sudo bash -c 'set -o pipefail && ./start.sh 2>&1 | tee /tmp/test-start${runId}.log'"
+  } catch (Exception e) {
+    echo "Test-Start #${runId} seems to have failed!"
+    status = false
+  }
+  return status
+}
+
+def detachTestOnQuectel(runId) {
+  status = true
+  try {
+    sh "sudo bash -c 'set -o pipefail && ./stop.sh 2>&1 | tee /tmp/test-stop${runId}.log'"
+  } catch (Exception e) {
+    echo "Test-Stop #${runId} seems to have failed!"
+    status = false
+  }
+  return status
+}
+
+def checkSmartPhoneConnectionStatus(adb_id) {
+  status = true
+  cnt = 0
+  while (cnt < 10) {
+     conStatus = sh returnStdout: true, script: "adb -s ${adb_id} shell ip a s rmnet_data0 || true"
+     if (conStatus.contains('12.1.1')) {
+       echo "Smartphone is connected to core network OAI - DNN"
+       cnt = 30
+     } else {
+      cnt += 1
+      sleep 2
+     }
+  }
+  if (cnt != 30) {
+    status = false
+  }
+  return status
+}
+
+def attachSmartPhone(runId, adb_id) {
+  aStatus = true
+  try {
+    sh "adb -s ${adb_id} shell cmd connectivity airplane-mode disable"
+    aStatus = checkSmartPhoneConnectionStatus(adb_id)
+  } catch (Exception e) {
+    echo "Test Smartphone attach #${adb_id} may have failed"
+    aStatus = false
+  }
+  return aStatus
+}
+
+def detachSmartPhone(runId, adb_id) {
+  dStatus = true
+  try {
+    sh "adb -s ${adb_id} shell cmd connectivity airplane-mode enable"
+  } catch (Exception e) {
+    echo "Test Smartphone detach #${runId} may have failed"
+    dStatus = false
+  }
+  return dStatus
 }
