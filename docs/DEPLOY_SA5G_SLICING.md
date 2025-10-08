@@ -386,7 +386,7 @@ OAI 5G CN also supports UE with multiple slices. Apparently the ran simulators t
 
 Use docker-compose down to undeploy network <br/>
 
-### 11.1. Undeploy RAN
+### 11.1 Undeploy RAN
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-slicing-ransim.yaml down -t 0
@@ -401,7 +401,7 @@ Network demo-oai-public-net is external, skipping
 Network oai-public-access is external, skipping
 ```
 
-### 11.2. Undeploy 5GCN
+### 11.2 Undeploy 5GCN
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-slicing-basic-nrf.yaml down -t 0

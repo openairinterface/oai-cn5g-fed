@@ -29,11 +29,11 @@ Before reading this tutorial it will be good if you can go through [deployment p
 2.  [Deploying core network](#2-deploying-core-network)
 3.  [How to report an issue?](#3-how-to-report-an-issue)
 
-# 1. Building core network images or pulling from docker hub #
+## 1. Building core network images or pulling from docker hub
 
 The users can either pull the docker images from official docker-hub repository or build by themselves if they make any changes in the code or would like to enable debug logging.
 
-## 1.1 Pulling docker images ##
+### 1.1 Pulling docker images
 
 OAI [official docker-hub repository](https://hub.docker.com/u/oaisoftwarealliance) has three type of image tags develop, latest or version, 
 
@@ -56,7 +56,7 @@ docker pull oaisoftwarealliance/oai-spgwu-tiny:develop
 
 In the docker-compose file we are using the image names as above. If you wish to re-tag with some other name then please change the name in the docker-compose file.
 
-## 1.2 Building docker images ##
+### 1.2 Building docker images
 
 Read the tutorial [build image](./BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
 
@@ -77,11 +77,11 @@ $ vi/vim/nano/subl Dockerfile.amf.ubuntu
 ```
 
 
-# 2. Deploying core network #
+## 2. Deploying core network
 
 Before running the docker containers it is important to configure PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql). The config files are present in [conf folder](../docker-compose/conf). 
 
-## 2.1 Configure the network functions according to your PLMN, Slice and DNN ##
+### 2.1 Configure the network functions according to your PLMN, Slice and DNN
 
 The IP address or fully qualified domain name (FQDN) for each service is configured properly in their config files. You just need to change PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql), 
 
@@ -120,7 +120,7 @@ The IP address or fully qualified domain name (FQDN) for each service is configu
 **NOTE**: By default the SBI interface is configured with HTTP/1.1. It can be changed to HTTP/2 by changing the configuration in all network functions.
 
 
-## 2.2 Instantiating the Docker Containers ##
+### 2.2 Instantiating the Docker Containers
 
 To start the core network function containers do,
 
@@ -140,7 +140,7 @@ watch docker compose -f  docker-compose-mount-conf.yaml ps -a
 **Note**: If you are stuck with `watch` command, exit using `ctrl + c`
 
 
-## 2.3 When to start testing? ##
+### 2.3 When to start testing?
 
 SMF and SPGWU/UPF needs to have a PFCP session between them before starting any test. When SMF and UPF(spgwu-tiny or vpp-upf) starts they send a NF registration request to NRF and SMF subscribe to UPF registration events. When a UPF registers with NRF, SMF gets the notification and it initiates a PFCP session for which there are regular heartbeats. 
 
@@ -160,13 +160,13 @@ If both the values are more than 1 then it is good.
 
 Now you can start testing with this core network 
 
-## 2.4 Understanding Core Network Logs ##
+### 2.4 Understanding Core Network Logs
 
 Most of the times the registration issue can occur because of slicing or PLMN mismatch for that check the logs of AMF. If there is a PDU session related issue that can also occur because of slice or DNN mismatch which is configured in SMF and UPF. 
 
 AMF asks the NRF to provide list of SMF and from there it finds the common slice or DNN. In case of PDU session rejections check the logs of AMF --> SMF --> UPF. 
 
-## 2.5 Collecting logs and pcap ##
+### 2.5 Collecting logs and pcap
 
 To collect the logs of all the network function you can follow the below commands or copy them to make a script
 
@@ -185,7 +185,7 @@ Start the packet capture always before connecting the UE or even before connecti
 sudo tshark -i oaicore -f "(not host 192.168.70.135 and not arp and not port 53 and not port 2152) or (host 192.168.70.135 and icmp)" -w {filename} > /dev/null 2>&1 &
 ```
 
-## 2.6 Redeploy or undeploy core network functions ##
+### 2.6 Redeploy or undeploy core network functions
 
 To re-deploy
 
@@ -202,7 +202,7 @@ docker compose -f docker-compose-mount-conf.yaml stop -t2
 docker compose -f docker-compose-mount-conf.yaml down -t2
 ```
 
-# 3. How to report an issue? #
+## 3. How to report an issue?
 
 To report an issue regarding any component of CN5G follow the below procedure:
 

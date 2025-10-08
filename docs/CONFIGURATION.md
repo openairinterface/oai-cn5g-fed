@@ -16,12 +16,12 @@
 
 [[_TOC_]]
 
-# 1. Basics
+## 1. Basics
 
 All the OAI NFs are configured using a `YAML` configuration file. This document describes the structure, the allowed
 values and the default values.
 
-## Location of the configuration file
+### Location of the configuration file
 
 When you are using the [docker-compose deployment](DEPLOY_SA5G_BASIC_DEPLOYMENT.md), the configuration file is located
 inside the container:
@@ -50,7 +50,7 @@ When you are using a bare-metal deployment, you have to tell the NF which file t
 ./smf -c /your/path/to/config.yaml -o
 ```
 
-## Example configurations
+### Example configurations
 
 The [docker-compose](../docker-compose) folder contains example configurations, which are used by the tutorials
 described in [docs](../docs).
@@ -58,13 +58,13 @@ described in [docs](../docs).
 You can have a look at the [docker-compose/conf](../docker-compose/conf) folder to see real-world examples of how the
 OAI 5GC NFs can be configured.
 
-## Validation
+### Validation
 
 Each configuration is validated during startup of the NF. In case of a wrong configuration, an error is printed and the
 NF does not start.
 Therefore, please make sure that all the Docker containers started successfully.
 
-# 2. Description of Configuration
+## 2. Description of Configuration
 
 The configuration is designed in a way so that you can have one `config.yaml` file to configure all your NFs.
 The file has different sections and some of these sections are not relevant for all NFs. Each section is described in
@@ -91,7 +91,7 @@ configuration file. If there is no default value here, you need to configure it.
 When a default value is provided, but the value is indicated as "mandatory", it means that it is essential for the NF to
 function, but we provide default values to make the configuration easier.
 
-## Log Level
+### Log Level
 
 The `log_level` key configures the log level of the NF.
 It is a dictionary that can contain the following keys:
@@ -125,7 +125,7 @@ log_level:
   smf: debug
 ```
 
-## Register NF
+### Register NF
 
 The `register_nf` key follows the same principles as the [Log Level](#log-level), it also allows you to configure
 a `general` configuration and an NF-specific configuration.
@@ -138,7 +138,7 @@ towards NRF. This means that a registered NF will use the NRF discovery or event
 |:------------|:-----|:----------------------------------------------------------|:--------------------------------------------|:--------------|-----------|
 | Register NF | Bool | Set yes to register to NRF and use NF discovery mechanism | `yes`, `no` (and other YAML boolean values) | `no`          | Yes       |
 
-## HTTP Version
+### HTTP Version
 
 With the `http_version` key, you can configure which HTTP version should be used for the client and the server. The NF
 will only launch one
@@ -149,7 +149,7 @@ Currently, there is no difference between `1` and `1.1`, as all our servers use 
 |:-------------|:-----|:------------------------------------------|:----------------|:--------------|-----------|
 | HTTP Version | Int  | Set the HTTP version of client and server | `1`, `1.1`, `2` | `1`           | Yes       |
 
-## NFs
+### NFs
 
 The `nfs` section allows you to configure SBI and other interfaces for each NF.
 
@@ -208,7 +208,7 @@ configuration. The local interface configuration is always taken from `nfs`. Hen
 discovery, you need to configure the values here to be read for the local interfaces (e.g., `smf` from SMF or `nrf` from
 NRF).
 
-### AMF specific NF configuration
+#### AMF specific NF configuration
 
 AMF has an SBI interface and also a N2 interface. The `amf` key can be configured as follows:
 
@@ -230,7 +230,7 @@ The description of the N2 interface is as follows:
 | Port           | Int    | Port of the N2 interface          | Any integer between `1` and `65535` | `38412`       | Yes       |
 | Interface name | String | Host interface to serve N2 server | Any string                          | `eth0`        | Yes       |
 
-### SMF specific NF configuration
+#### SMF specific NF configuration
 
 Similar to the AMF, the SMF configures an N4 interface. The `smf` key can be configured as follows:
 
@@ -252,7 +252,7 @@ The description of the N4 interface is as follows:
 | Port           | Int    | Port of the N4 interface          | Any integer between `1` and `65535` | `8805`        | Yes       |
 | Interface name | String | Host interface to serve N4 server | Any string                          | `eth0`        | Yes       |
 
-### UPF specific NF configuration
+#### UPF specific NF configuration
 
 The UPF serves more interfaces. The `upf` key can be configured as follows:
 
@@ -284,7 +284,7 @@ The description of the N3, N4 and N6 interfaces of UPF is as follows:
 
 Please note that the N6 interface does not require a port configuration.
 
-## Database
+### Database
 
 The `database` section allows you to configure how to connect to the database.
 
@@ -316,7 +316,7 @@ The allowed values are described in the following table:
 The values you provide for the database connection will be used to connect to the database. In case of a
 misconfiguration, you will be informed (e.g., when the DB host is not reachable or you provided a wrong password).
 
-## DNNs
+### DNNs
 
 In the `dnns` section you can configure DNNs, which are used by SMF and UPF.
 It is a list of DNN configurations. Each DNN configuration can configure the following values:
@@ -356,7 +356,7 @@ ipv4_subnet: 12.1.1.0/24
 
 Otherwise, your configuration takes precedence and the default DNN is removed.
 
-## AMF
+### AMF
 
 The `amf` section is used to configure the behavior of AMF.
 
@@ -397,7 +397,7 @@ amf:
     - <enc_algorithm>
 ```
 
-### Basic configuration
+#### Basic configuration
 
 The allowed values of the AMF basic configuration are described in the following table:
 
@@ -412,7 +412,7 @@ The allowed values of the AMF basic configuration are described in the following
 | Statistics Timer Interval | Int    | Interval for logging AMF statistics                                                                                                                                  | Any integer between `5` and `600`           | `20`          | Yes       |
 | Emergency Support         | Bool   | Indicate towards UE if emergency registration is supported                                                                                                           | `yes`, `no` (and other YAML boolean values) | `no`          | Yes       |
 
-### GUAMI configuration
+#### GUAMI configuration
 
 In the `served_guami_list` section, you can configure a list of Globally Unique AMF IDs (GUAMI) that are supported by
 this AMF.
@@ -425,7 +425,7 @@ this AMF.
 | AMF Set ID    | String | AMF Set ID of GUAMI    | 3-digit hex string (10 bits length), where first digit is limited to values 0 to 3 (see 3GPP TS 23.003/29.571) | `001`         | Yes       | 
 | AMF Pointer   | String | AMF Pointer of GUAMI   | 2-digit hex string (6 bits length), where first digit is limited to values 0 to 3 (see 3GPP TS 23.003)         | `01`          | Yes       |
 
-### PLMN configuration
+#### PLMN configuration
 
 In the `plmn` section, you can configure the list of PLMNs that this AMF supports, together with the served TAC and
 slicing information (SST and SD).
@@ -447,7 +447,7 @@ the requested PLMN and NSSAI is verified. In case it is not configured by AMF, A
 registration reject message or reject the NG setup request.
 Thus, you have to properly configure these values according to gNB and UE. The same is true for the TAC.
 
-### Integrity protection and encryption algorithms
+#### Integrity protection and encryption algorithms
 
 The sections `supported_integrity_algorithms` and `supported_encryption_algorithms` let you configure the integrity
 protection and confidentiality protection.
@@ -477,7 +477,7 @@ supported_encryption_algorithms:
 
 *Please note that the order of supported integrity/encryption algorithms matters*.
 
-## SMF
+### SMF
 
 The `smf` section is used to configure the behavior of the SMF.
 
@@ -521,7 +521,7 @@ local_subscription_infos:
       session_ambr_dl: <session_ambr_dl>
 ```
 
-### Basic configuration
+#### Basic configuration
 
 The allowed values and the description of the basic configuration of SMF are described in the following table:
 
@@ -531,7 +531,7 @@ The allowed values and the description of the basic configuration of SMF are des
 | Use Local Subscription Info | Bool | If set to yes, SMF will use the information from `local_subscription_infos`, otherwise the subscriber profile is requested from UDM. In this case, you have to provide `udm` in [NFs](#nfs) | `yes`, `no` (and other YAML boolean values) | `no`          | Yes       |
 | Use Local PCC rules         | Bool | If set to no, SMF will get PCC rules from PCF. *Local PCC Rules on SMF are not supported yet*. In this case, you have to provide `pcf` in [NFs](#nfs)                                       | `yes`, `no` (and other YAML boolean values) | `yes`         | Yes       |
 
-### UPF configuration
+#### UPF configuration
 
 The `upfs` section allows you to configure a list of different UPFs. Please note that most values are only read if you
 disable NF registration. Only the values from the `config` section are used by SMF in case you enable NRF. SMF aligns
@@ -574,7 +574,7 @@ upf_info:
       networkInstance: core.oai.org
 ```
 
-### UE DNS configuration
+#### UE DNS configuration
 
 The `ue_dns` section allows you to configure the DNS which is signaled to the UE via PCO. Please note that this is the
 global DNS configuration. If you provide a DNS for a specific DNN, the DNN-specific DNS configuration takes precedence.
@@ -586,7 +586,7 @@ global DNS configuration. If you provide a DNS for a specific DNN, the DNN-speci
 | Secondary DNS IPv4 | String | Secondary DNS IPv4, signaled to the UE via PCO | IPv4 address in dotted decimal representation | `1.1.1.1`     | No        |
 | Secondary DNS IPv6 | String | Secondary DNS IPv6, signaled to the UE via PCO | Any string                                    |               | No        |
 
-### IMS configuration
+#### IMS configuration
 
 The `ims` section allows you to configure P-CSCF IP addresses which are signaled to the UE via PCO.
 
@@ -595,7 +595,7 @@ The `ims` section allows you to configure P-CSCF IP addresses which are signaled
 | P-CSCF IPv4 | String | IPv4 address of P-CSCF for IMS, signaled to the UE via PCO | IPv4 address in dotted decimal representation | `127.0.0.1`   | No        |
 | P-CSCF IPv6 | String | IPv6 address of P-CSCF for IMS, signaled to the UE via PCO | Any string                                    |               | No        |
 
-### SMF info configuration
+#### SMF info configuration
 
 The `smf_info` section is used to configure the SMF Info, which is sent as part of the NF profile upon NRF registration.
 Please note that the values follow the `SmfInfo` datatype from 3GPP TS 29.510. Therefore, you also have to use
@@ -611,7 +611,7 @@ smf_info:
         - dnn: "default"
 ```
 
-### Local subscription infos
+#### Local subscription infos
 
 The `local_subscription_infos` is only used if you enable `use_local_subscription_infos`. It is meant as an easy way to
 configure a default subscriber profile for a specific slice and DNN. You are not able to configure different profiles
@@ -653,7 +653,7 @@ qos_profile:
 *Note: In case you use a COTS UE, it is highly recommended to configure an `ims` DNN. Please see
 the [examples](../docker-compose) on how to do that.*
 
-## PCF
+### PCF
 
 You can configure the directory where PCF policy configuration is stored:
 
@@ -678,7 +678,7 @@ The allowed values of the PCF configuration are as follows:
 The paths you configure here are not validated upon reading the configuration, but PCF will try to open these
 directories on start and inform you if there was an issue and terminate the NF.
 
-## NSSF
+### NSSF
 
 You can configure the directory where NSSF slicing configuration is stored:
 
@@ -698,7 +698,7 @@ The allowed values of the NSSF configuration are as follows:
 The path you configure here is not validated upon reading the configuration, but NSSF will try to open this file on
 start and inform you when there is an issue and terminate the NF.
 
-## UPF
+### UPF
 
 The `upf` section is used to configure the behavior of OAI-UPF.
 
@@ -736,7 +736,7 @@ upf_info:
       - dnn: "default"
 ```
 
-# 3. MySQL database configuration
+## 3. MySQL database configuration
 
 A user subscription should be present in the mysql database before trying to connect the UE. This can
 be done by adding the UE information in the [oai_db2.sql](../docker-compose/database/oai_db2.sql) file

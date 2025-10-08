@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-# 1. Install the proper version of Docker #
+## 1. Install the proper version of Docker
 
 
 ```bash
@@ -46,11 +46,11 @@ $ sudo systemctl start docker
 $ docker info
 ```
 
-# 2. Create an account on Docker Hub #
+## 2. Create an account on Docker Hub
 
 Go to [docker-hub](https://hub.docker.com/) and create an account.
 
-# 3. Pull base images #
+## 3. Pull base images
 
 * Ubuntu  version: We need 2 base images: `ubuntu:bionic` and `mysql/mysql:8.0`
 
@@ -80,7 +80,7 @@ Finally you may logoff --> your token is stored in plain text..
 $ docker logout
 ```
 
-# 4. Network Configuration #
+## 4. Network Configuration
 
 **CAUTION: THIS FIRST STEP IS MANDATORY.**
 

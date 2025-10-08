@@ -316,7 +316,7 @@ docker-compose-host $: docker exec vpp-upf bin/vppctl show upf session > /tmp/oa
 
 We will see in the [analysis](#8-trace-analysis) that the IP packets to `1.1.1.1` are steered to destination over EXT-DN-Internet with corresponding N6 interface .
 
-## 6 Trace Analysis
+## 6. Trace Analysis
 
 Now that we have captured control plane and user plane traces, we can stop `tshark`:
 ``` shell
@@ -356,7 +356,7 @@ FAR: 1
 ```
 This can be also confirmed in the pcap trace [user_plane_steering.pcapng](results/steering/user_plane_steering.pcapng). We see that the packet #4 is the UE1 packet, that is sent to DN over UPF's primary interface (192.168.73.0/24). Similary for UE2, the request packet #373 is sent to DN over UPF's secondary interface (192.168.74.0/24). Hence, we confirm here that the UE packets are steered in uplink direction, based on policies configured at PCF.
 
-## 7 Undeploy Network Functions
+## 7. Undeploy Network Functions
 
 When you are done, you can undeploy the gnbsim instances and stop the NFs. 
 
@@ -394,6 +394,6 @@ docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp-additional.ya
 docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-steering.yaml down -t 2
 ```
 
-## 8 Conclusion
+## 8. Conclusion
 
 We shown in this tutorial how the traffic steering can be configured in the OAI CN with the help of policy configuration at PCF. We have used VPP-UPF for validation of this feature. We used two N6 interfaces in this tutorial for steering user traffic in uplink direction. We have defined policies at PCF for two users and we have verified that the uplink traffic is steered to corresponding N6 interface based pre-configured policies at PCF.

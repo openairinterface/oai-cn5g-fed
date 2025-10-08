@@ -12,13 +12,13 @@
   </tr>
 </table>
 
-# This page is only valid for a `Ubuntu` host.
+## This page is only valid for a `Ubuntu` host.
 
 If you are using any other distributions, please refer to [Build your own images](./BUILD_IMAGES.md).
 
 If you want to use a specific branch or commit, please refer to [Build your own images](./BUILD_IMAGES.md).
 
-# Pulling the images from Docker Hub #
+## Pulling the images from Docker Hub
 
 The images are hosted under the oai account `oaisoftwarealliance`.
 
@@ -67,7 +67,7 @@ $ docker logout
 
 We will push new versions when new features are validated.
 
-# Synchronizing the tutorials #
+## Synchronizing the tutorials
 
 **CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
 
@@ -118,7 +118,7 @@ git submodule init
 git submodule update
 ```
 
-## If you are using the `develop` images ##
+### If you are using the `develop` images
 
 If you want to pull the `develop` tags of the published images:
 

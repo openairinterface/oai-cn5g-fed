@@ -471,7 +471,7 @@ docker-compose-host $: grep 192.168.75.160 /tmp/oai/ulcl-scenario/ue2-test1.log
 ```
 -->
 
-## 8 Trace Analysis
+## 8. Trace Analysis
 
 Now that we have captured control plane and user plane traces, we can stop `tshark`:
 ``` shell
@@ -524,7 +524,7 @@ This scenario is the opposite of the edge-only scenario. We can see that all the
 EXT-DN-Internet. You can check the packets #1, #4, #3# and #6 to see that the A-UPF1's IP address `192.168.73.202` is used for the GTP tunnel in packet #4.
 It is also used for the ping to `1.1.1.1` in packet #33. 
 
-## 10 Undeploy Network Functions
+## 9. Undeploy Network Functions
 
 When you are done, you can undeploy the gnbsim instances and stop the NFs. 
 
@@ -569,7 +569,7 @@ docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml down -t 
 docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-ulcl.yaml down -t 2
 ```
 
-## 11 Conclusion
+## 10. Conclusion
 We show in this tutorial how the UL CL can be configured in the OAI. The UL CL UPF is acting as an UL CL for the first scenario,
 but is acting as an I-UPF for the edge-only and internet-only scenario.
 

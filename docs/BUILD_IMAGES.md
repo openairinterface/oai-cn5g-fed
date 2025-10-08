@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-# 1.  Retrieve the correct network function branches #
+## 1.  Retrieve the correct network function branches
 
 **CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
 
@@ -41,7 +41,7 @@ The 2 most important commands to know are :
 
 You can execute them at this federation level or at the nf component level.
 
-## 1.1. You are interested in a stable version. ##
+### 1.1. You are interested in a stable version.
 
 We recommend to synchronize with the master branches on all git sub-modules.
 
@@ -94,7 +94,7 @@ git submodule init
 git submodule update --init --recursive
 ```
 
-## 1.2. You are interested in the latest features. ##
+### 1.2. You are interested in the latest features.
 
 All the latest features are pushed to the `develop` branches of each NF repository.
 
@@ -142,14 +142,14 @@ git submodule init
 git submodule update --init --recursive
 ```
 
-# 2. Generic Parameters #
+## 2. Generic Parameters
 
 If you are re-building CN5G images, be careful that `docker` or `podman` may re-use `cached` blobs
 to construct the intermediate layers.
 
 We recommend to add the `--no-cache` option in that case.
 
-## 2.1. On a Ubuntu Host ##
+### 2.1. On a Ubuntu Host
 
 We are supporting the following releases:
 
@@ -162,9 +162,9 @@ You just add the `--build-arg BASE_IMAGE=ubuntu:xxxx` option.
 
 **CAUTION: Since `v1.5.1` we are no longer supporting Ubuntu `18.04` or `bionic`.**
 
-# 3. Build AMF Image #
+## 3. Build AMF Image
 
-## 3.1 On a Ubuntu Host ##
+### 3.1 On a Ubuntu Host
 
 For example, I am building using `ubuntu:focal` as base image:
 
@@ -179,7 +179,7 @@ oai-amf                 v1.5.1             f478bafd7a06        1 minute ago     
 ...
 ```
 
-## 3.2 On a RHEL8 Host ##
+### 3.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -199,9 +199,9 @@ $ sudo podman build --target oai-amf --tag oai-amf:v1.5.1 \
 The above command is with podman, in case you use docker, it can be changed with its docker equivalent.
 
 
-# 4. Build SMF Image #
+## 4. Build SMF Image
 
-## 4.1 On a Ubuntu Host ##
+### 4.1 On a Ubuntu Host
 
 For example, I am building using `ubuntu:22.04` as base image:
 
@@ -216,7 +216,7 @@ oai-smf                 v1.5.1             f478bafd7a06        1 minute ago     
 ...
 ```
 
-## 4.2 On a RHEL8 Host ##
+### 4.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -235,9 +235,9 @@ $ sudo podman build --target oai-smf --tag oai-smf:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 5. Build NRF Image #
+## 5. Build NRF Image
 
-## 5.1 On a Ubuntu Host ##
+### 5.1 On a Ubuntu Host
 
 For example, I am building using `ubuntu:jammy` as base image:
 
@@ -252,7 +252,7 @@ oai-nrf                 v1.5.1             04334b29e103        1 minute ago     
 ...
 ```
 
-## 5.2 On a RHEL8 Host ##
+### 5.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -271,9 +271,9 @@ $ sudo podman build --target oai-nrf --tag oai-nrf:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 6. Build UPF Image #
+## 6. Build UPF Image
 
-## 6.1 On a Ubuntu Host ##
+### 6.1 On a Ubuntu Host
 
 For example, I am building using `ubuntu:20.04` as base image:
 
@@ -288,7 +288,7 @@ oai-upf                 develop            dec6311cef3b        1 minute ago     
 ...
 ```
 
-## 6.2 On a RHEL8 Host ##
+### 6.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -307,9 +307,9 @@ $ sudo podman build --target oai-upf --tag oai-upf:develop \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 7. Build AUSF Image #
+## 7. Build AUSF Image
 
-## 7.1 On a Ubuntu Host ##
+### 7.1 On a Ubuntu Host
 
 ```bash
 $ docker build --target oai-ausf --tag oai-ausf:v1.5.1 \
@@ -321,7 +321,7 @@ oai-ausf          v1.5.1              77a96de94c23        1 minute ago        23
 ...
 ```
 
-## 7.2 On a RHEL8 Host ##
+### 7.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -340,9 +340,9 @@ $ sudo podman build --target oai-ausf --tag oai-ausf:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 8. Build UDM Image #
+## 8. Build UDM Image
 
-## 8.1 On a Ubuntu Host ##
+### 8.1 On a Ubuntu Host
 
 ```bash
 $ docker build --target oai-udm --tag oai-udm:v1.5.1 \
@@ -354,7 +354,7 @@ oai-udm                 v1.5.1             10a4334e31be        1 minute ago     
 ...
 ```
 
-## 8.2 On a RHEL8 Host ##
+### 8.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -373,9 +373,9 @@ $ sudo podman build --target oai-udm --tag oai-udm:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 9. Build UDR Image #
+## 9. Build UDR Image
 
-## 9.1 On a Ubuntu Host ##
+### 9.1 On a Ubuntu Host
 
 ```bash
 $ docker build --target oai-udr --tag oai-udr:v1.5.1 \
@@ -387,7 +387,7 @@ oai-udr                 v1.5.1             581e07d59ec3        1 minute ago     
 ...
 ```
 
-## 9.2 On a RHEL8 Host ##
+### 9.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -407,9 +407,9 @@ $ sudo podman build --target oai-udr --tag oai-udr:v1.5.1 \
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
 
-# 10. Build UPF-VPP Image #
+## 10. Build UPF-VPP Image
 
-## 10.1 On a Ubuntu Host ##
+### 10.1 On a Ubuntu Host
 
 ```bash
 $ docker build --target oai-upf-vpp --tag oai-upf-vpp:v1.5.1 \
@@ -421,7 +421,7 @@ oai-upf-vpp             v1.5.1             581e07d59ec3        1 minute ago     
 ...
 ```
 
-## 10.2 On a RHEL8 Host ##
+### 10.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -440,9 +440,9 @@ $ sudo podman build --target oai-upf-vpp --tag oai-upf-vpp:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 11. Build NSSF Image #
+## 11. Build NSSF Image
 
-## 11.1 On a Ubuntu Host ##
+### 11.1 On a Ubuntu Host
 
 ```bash
 $ docker build --target oai-nssf --tag oai-nssf:v1.5.1 \
@@ -454,7 +454,7 @@ oai-nssf          v1.5.1              77a96de94c23        1 minute ago        23
 ...
 ```
 
-## 11.2 On a RHEL8 Host ##
+### 11.2 On a RHEL8 Host
 
 RHEL base images generally need a subscription to access the package repository.
 For that the base image needs ca and entitlement .pem files.
@@ -473,7 +473,7 @@ $ sudo podman build --target oai-nssf --tag oai-nssf:v1.5.1 \
 
 The above command is with podman, in case you use docker it can be changed with its docker equivalent.
 
-# 12. Build Traffic-Generator Image #
+## 12. Build Traffic-Generator Image
 
 This is just a utility image.
 

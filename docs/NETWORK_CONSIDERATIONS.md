@@ -24,7 +24,7 @@ This tutorial will help in understanding how to deploy an OAI Core Network and t
 1.  [Pre-requisites](#1-pre-requisites)
 2.  [Network Considerations](#2-network-considerations)
 
-## 1. Pre-requisites ##
+## 1. Pre-requisites
 
 The container images are built using the command `docker build` on a Ubuntu 18.04 host machine. The base image for all the containers is Ubuntu 18.04.
 
@@ -40,7 +40,7 @@ The required software and their respective versions are listed below. To replica
 | tshark                     | 3.4.4 (Git commit c33f6306cbb2) |
 | wireshark                  | 3.4.4 (Git commit c33f6306cbb2) |
 
-### 1.1. Wireshark ###
+### 1.1. Wireshark
 
 The new version of `wireshark` may not be available in the ubuntu repository.
 
@@ -57,9 +57,9 @@ wireshark --version
 Wireshark 3.4.7 (Git v3.4.7 packaged as 3.4.7-1~ubuntu18.04.0+wiresharkdevstable1)
 ```
 
-## 2. Network Considerations ##
+## 2. Network Considerations
 
-### 2.1. on the Core Network side ###
+### 2.1. on the Core Network side
 
 Most of the times the `docker-compose-host` machine is not configured with packet forwarding. It can be done using the command below (if you have already done it in any other section then don't repeat).
 
@@ -70,7 +70,7 @@ Most of the times the `docker-compose-host` machine is not configured with packe
 (docker-compose-host)$ sudo iptables -P FORWARD ACCEPT
 ```
 
-### 2.2. on the RAN side ###
+### 2.2. on the RAN side
 
 We need to make the CN-5G containers visible from this host
 

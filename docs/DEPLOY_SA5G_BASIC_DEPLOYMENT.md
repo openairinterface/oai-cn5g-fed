@@ -41,14 +41,14 @@ Please follow the tutorial step by step to create a stable working testbed. You 
 
 [[_TOC_]]
 
-## 1. Basic Deployment Flavours ##
+## 1. Basic Deployment Flavours
 
 The Basic functional 5g core network can be deployed into 2 scenarios:
 
     - Scenario I:  AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL
     - Scenario II:  AMF, SMF, UPF (SPGWU), UDM, UDR, AUSF, MYSQL
 
-## 2. Pre-requisites ##
+## 2. Pre-requisites
 
 The container images are built using `docker build` command on Ubuntu 18.04 host machine. The base image for all the containers is Ubuntu 18.04.
 
@@ -63,7 +63,7 @@ The required software and their respected versions are listed below. To replicat
 | tshark                     | Minimum 3.4.4 (Git commit c33f6306cbb2) |
 | wireshark                  | Minimum 3.4.4 (Git commit c33f6306cbb2) |
 
-### 2.1. Wireshark ###
+### 2.1. Wireshark
 
 The new version of `wireshark` may not be available in ubuntu 18.04 repository:
 
@@ -78,7 +78,7 @@ docker-compose-host $: wireshark --version
 Wireshark 3.4.7 (Git v3.4.7 packaged as 3.4.7-1~ubuntu18.04.0+wiresharkdevstable1)
 ```
 
-### 2.2. Networking considerations ###
+### 2.2. Networking considerations
 
 Most of the times the `docker-compose-host` machine is not configured with packet forwarding. It can be enabled using the command below (if you have already done it in any other section then don't repeat).
 
@@ -89,7 +89,7 @@ docker-compose-host $: sudo sysctl net.ipv4.conf.all.forwarding=1
 docker-compose-host $: sudo iptables -P FORWARD ACCEPT
 ```
 
-## 3. Network Function Container Images ##
+## 3. Network Function Container Images
 
 - In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](./BUILD_IMAGES.md) to build images with the tags below.
 
@@ -105,7 +105,7 @@ docker-compose-host $: sudo iptables -P FORWARD ACCEPT
 
 - In case readers are interested in making images using different branches than master or develop then, **they have to build images from scratch they can't use the docker-hub images**.
 
-## 4. Configuring Host Machines ##
+## 4. Configuring Host Machines
 
 All the network functions are connected using `demo-oai` bridge.
 
@@ -114,7 +114,7 @@ There are two ways to create this bridge, either manually or automatically using
 * The manual version will allow packet capturing while network functions are getting deployed. So the initial tested setup packets can be captured for debugging purposes or checking if network functions registered properly to NRF.
 * The second option of automatic deployment is good when initial packet capture is not important.
 
-### 4.1 Creating bridge manually ###
+### 4.1 Creating bridge manually
 
 Since this is not the `default` behavior, you **have to** edit the docker-compose file.
 
@@ -157,7 +157,7 @@ Since this is not the `default` behavior, you **have to** edit the docker-compos
     455631b3749c        demo-oai-public-net   bridge              local
     ```
 
-### 4.2 Create bridge automatically ###
+### 4.2 Create bridge automatically
 
 - Though the bridge can be automatically created using docker-compose file if there is no need to capture initial packets.
 
@@ -180,7 +180,7 @@ The bottom section SHALL look like this:
                   com.docker.network.bridge.name: "demo-oai"
     ```
 
-### 4.3 In case you forgot, the section below is for both manual and automatic network creation. ###
+### 4.3 In case you forgot, the section below is for both manual and automatic network creation.
 
 - If the `docker-compose-host` machine is not configured with packet forwarding then it can be done using the command below (**important step**),
 
@@ -213,7 +213,7 @@ The bottom section SHALL look like this:
     rtt min/avg/max/mdev = 0.147/0.192/0.260/0.038 ms
     ```
 
-## 5. Configuring the OAI-5G Core Network Functions ##
+## 5. Configuring the OAI-5G Core Network Functions
 
 5G core network has two architectures service based or reference point which makes the NRF component optional, similarly you can choose to deploy the OAI core network components with or without NRF. Additionally in cloud native world it is preferred to provide a Fully Qualified Domain Name (FQDN) to a service rather than static ip-address. Each of our network functions can communicate with other core network function's using ip-address or FQDN. For example, AMF can register to NRF either with NRFs ip-address or FQDN.
 
@@ -221,7 +221,7 @@ Configuring network functions with static ip-addresses is preferred for bare-met
 
 In docker-compose the [service-name](https://docs.docker.com/compose/compose-file/#services-top-level-element) is actually the FQDN of the service.
 
-### 5.1. Core Network Configuration ###
+### 5.1. Core Network Configuration
 
 The docker-compose file has configuration parameters of each core network component. The file is pre-configured with parameters related to this scenario. The table contains the location of the configuration files. These files contain allowed configurable parameters. **Keep checking this file as it is possible that we will add new parameters for new features.**
 
@@ -238,7 +238,7 @@ You can also check configuration on our [wiki](https://gitlab.eurecom.fr/oai/cn5
 | udm.conf    | (Gitlab) cn5g/oai-cn5g-udm                   | [etc/udm.conf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/blob/master/etc/udm.conf)            |
 | ausf.conf   | (Gitlab) cn5g/oai-cn5g-ausf                  | [etc/ausf.conf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/blob/master/etc/ausf.conf)         |
 
-### 5.2. User Subscription Profile ###
+### 5.2. User Subscription Profile
 
 There are two ways to configure the User Subscription Profile,
 
@@ -266,7 +266,7 @@ mysql-container$: INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticat
 
 Make sure you edit the IMSI, opc and key according to the settings of your user device.
 
-## 6. Deploying OAI 5g Core Network ##
+## 6. Deploying OAI 5g Core Network
 
 - The core network is deployed using a [python script](../docker-compose/core-network.py) which is a wrapper around `docker-compose` and `docker` command. The script purpose is to make the deployment easy.
 - The script informs the user when the core-network is correctly configured by checking the health status of containers and connectivity between different core network components.
@@ -385,7 +385,7 @@ docker-compose-host $: ping <ue-ip-address>
 ```
 
 
-## 7. Notes ##
+## 7. Notes
 
 - The `oai-ext-dn` container is optional and is only required if the user wants to ping from the UE. In general this container is not required except for testing purposes.
 - Using the python script from above you can perform minimum `AMF, SMF, UPF (SPGWU), NRF, MYSQL` and basic `AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL` 5g core funtional testing with `FQDN/IP` based feature along with `NRF/noNRF`. Check the configuration before using the docker compose [files](../docker-compose/).
@@ -403,7 +403,7 @@ docker-compose-host $: ping <ue-ip-address>
   docker-compose-host $: docker-compose -f <file-name> down -t 0
   ```
 
-## 8. Report an Issue ##
+## 8. Report an Issue
 
 To report an issue regarding any-component of CN5G,
 

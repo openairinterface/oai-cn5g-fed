@@ -16,7 +16,7 @@
 
 [[_TOC_]]
 
-# 1. Basics
+## 1. Basics
 
 The Provisioning API is a way to provision new PCC Rules, QoS data, TrafficControl data as well as, SUPI, DNN and slice based policy decisions, during the runtime of the PCF.
 It replaces the yaml based configuration of the policy rules and is following the same concepts.
@@ -28,7 +28,7 @@ This API supports creating, retrieving, and deleting policy configurations, whic
 
 At the moment we are only supporting MySQL.
 
-# 2. Activate the Feature
+## 2. Activate the Feature
 
 To activate this feature you need to configure the PCF accordingly:
 
@@ -46,7 +46,7 @@ pcf:
   enable_policy_provisioning_api: yes # Use db instead of yaml, enables dynamic pcc rule creation via API
 ```
 
-# 3. Location of the OpenAPI Specification File
+## 3. Location of the OpenAPI Specification File
 
 You can find the API specification here:
 
@@ -54,9 +54,9 @@ You can find the API specification here:
 /docker-compose/policies/policy_decision_api_spec.yaml
 ```
 
-# 4. API Endpoints
+## 4. API Endpoints
 
-## 4.1 QoS Data
+### 4.1 QoS Data
 
 **Create QoS Data**
 
@@ -137,7 +137,7 @@ DELETE /npcf-provisioning/v1/qosData/non-gbr-qos-5qi-9
 Host: oai-pcf:8080
 ```
 
-## 4.2 Traffic Control Data
+### 4.2 Traffic Control Data
 
 **Create Traffic Control Data**
 
@@ -227,7 +227,7 @@ DELETE /npcf-provisioning/v1/trafficControlData/redirection-scenario
 Host: oai-pcf:8080
 ```
 
-## 4.3 PCC Rules
+### 4.3 PCC Rules
 
 **Create PCC Rule**
 
@@ -313,7 +313,7 @@ DELETE /npcf-provisioning/v1/pccRule/non-gbr-rule-5qi-9
 Host: oai-pcf:8080
 ```
 
-## 4.4 Policy Decisions
+### 4.4 Policy Decisions
 
 **Create SUPI Decision**
 
@@ -384,11 +384,11 @@ Host: oai-pcf:8080
 
 **DNN and Slice Decisions work in the same manner. Check out the OpenAPI specification for more details.**
 
-# 5. Example Provisions
+## 5. Example Provisions
 
 Here are step-by-step examples of how to use the API to provision data:
 
-## 5.1. **Provisioning QoS Data**
+### 5.1. **Provisioning QoS Data**
 
   Send a `POST` request to create GBR QoS data.
 
@@ -417,7 +417,7 @@ Here are step-by-step examples of how to use the API to provision data:
   POST oai-pcf:8080/npcf-provisioning/v1/pccRule
   ```
 
-## 5.2. **Creating a PCC Rule**
+### 5.2. **Creating a PCC Rule**
 
  Send a `POST` request to create a PCC rule that references the QoS data created in the previous step.
 
@@ -444,7 +444,7 @@ Here are step-by-step examples of how to use the API to provision data:
   POST oai-pcf:8080/npcf-provisioning/v1/pccRule
   ```
 
-## 5.3. **Setting SUPI Policy Decisions**
+### 5.3. **Setting SUPI Policy Decisions**
 
   Use the `POST` request to create a policy decision for a specific SUPI that references the PCC rule created in the previous step.
 
@@ -463,7 +463,7 @@ Here are step-by-step examples of how to use the API to provision data:
   POST oai-pcf:8080/npcf-provisioning/v1/supiPolicyDecision
   ```
 
-## 5.4. **Create/Update a Default Policy Decision**
+### 5.4. **Create/Update a Default Policy Decision**
 **Step 1**: Create a non-gbr PCC rule with the ID `non-gbr-rule-5qi-9`, in the same way as described in steps 1-3.
 
 **Step 2**: Send a `POST` request to create or update the default policy decision.
@@ -479,7 +479,7 @@ Here are step-by-step examples of how to use the API to provision data:
   ```
   POST oai-pcf:8080/npcf-provisioning/v1/defaultDecision
   ```
-# 6. Error Handling and Status Codes
+## 6. Error Handling and Status Codes
 
 The API provides standard HTTP status codes to indicate success or failure. For example:
 - `200 OK` for successful GET requests.

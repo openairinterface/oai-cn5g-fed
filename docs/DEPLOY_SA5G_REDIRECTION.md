@@ -265,7 +265,7 @@ docker-compose-host $: docker exec vpp-upf bin/vppctl show upf session > /tmp/oa
 We will see in the [analysis](#8-trace-analysis) that the IP packets to `google.com` are redirected to destination `facebook.com` over EXT-DN-Internet.
 
 
-## 6 Trace Analysis
+## 6. Trace Analysis
 
 Now that we have captured control plane and user plane traces, we can stop `tshark`:
 ``` shell
@@ -298,7 +298,7 @@ FAR: 1
 
 In the [UE traffic trace](results/redirect/ue-test.log) at gnbsim-vpp, we can see that the HTTP GET request generated using curl for destination `google.com` is redirected to new HTTP address `facebook.com`. This can be also confirmed in the pcap trace [user_plane_redirect.pcapng](results/redirect/user_plane_redirect.pcapng), where request packet #4 is destinated for URI `google.com` & the response packet #6 is with HTTP code (302-redirection) from destination `facebook.com`
 
-## 7 Undeploy Network Functions
+## 7. Undeploy Network Functions
 
 When you are done, you can undeploy the gnbsim instances and stop the NFs. 
 
@@ -335,6 +335,6 @@ docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml down -t 
 docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-redirection.yaml down -t 2
 ```
 
-## 8 Conclusion
+## 8. Conclusion
 
 We shown in this tutorial how the traffic redirection can be configured in the OAI CN with the help of policy configuration at PCF. We have used VPP-UPF for validation of this feature. We have verified the URL based redirection in this tutorial. Other types of redirection, e.g. server address type `ipv4/ipv6/SIP URI` are not currently supported in VPP-UPF.

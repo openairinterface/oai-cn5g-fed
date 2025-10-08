@@ -23,7 +23,7 @@ This page content expects you to read [deployment pre-requisites](./DEPLOY_PRE_R
 3.  [Basic debugging](#3-basic-debugging)
 4.  [How to report an issue?](#4-how-to-report-an-issue)
 
-# 1. Building images in debug mode
+## 1. Building images in debug mode
 
 By default all the dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
 
@@ -41,11 +41,11 @@ $ vi/vim/nano/subl Dockerfile.amf.ubuntu
 
 The same can be done for bare-metal deployment of any core network function, just build with `Debug` tag in `./build_amf`. There will be no change in running the core network function. Everything will be the same, now when the network function is started there will be extra logs with `[debug]` tag apart from the normal `[info ]`
 
-## 1.1 Building the image with code inside (Only for development purpose)
+### 1.1 Building the image with code inside (Only for development purpose)
 
 If you are interested in doing development you can leave the code inside the container. This is good for developers, they can code in docker-environment. They can even mount the code as a volume so that they can use their preferred editor (though vim/nano/vi are the best).
 
-### 1.1.1 Building a Developer Image
+#### 1.1.1 Building a Developer Image
 
 The example below is only for AMF, you need to repeat it for all network functions.
 
@@ -64,7 +64,7 @@ $: docker exec -it oai-amf-development bash
 
 But in this approach you have to code inside the container using vi/vim/nano no graphical interface, but if you want a graphical interface then you can mount the code
 
-### 1.1.2 Mounting Code As Volume
+#### 1.1.2 Mounting Code As Volume
 
 The example below is only for AMF you need to repeat it for all network functions.
 
@@ -82,11 +82,11 @@ $: /build_amf --clean --Verbose --build-type Debug --jobs
 
 Now you are ready, start developing and testing.
 
-# 2. Debugger deployment of core network functions
+## 2. Debugger deployment of core network functions
 
 It is really important to safely keep the logs and configuration of core network components in case of an error. If they are deployed in bare-metal the logs and the configuration can be easily retrieved based on how the core network is started. Here are some tips related to running/deploying core network in different environments,
 
-# 2.1 Deploying as a process (bare-metal deployment preferred by developers)
+### 2.1 Deploying as a process (bare-metal deployment preferred by developers)
 
 1. In case of all-in-one deployment process, there can be conflicting dependencies between different components of core network. These conflicts have to be resolved on a case by case basis by the user. You can follow the wiki of each network function for bare-metal installation. For amf follow [this](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/wikis/Installation).
 2. Once all the core-network components are build in debug mode with their dependencies, store the logs in a file rather than printing on the terminal.
@@ -99,11 +99,11 @@ nohup /usr/local/bin/amf -c /tmp/oai-cn-5g/config/amf.conf -o >> /tmp/oai-cn-5g/
 
 The command above will launch the network function in the background, and all the logs can be seen using `tail -100f /tmp/oai-cn-5g/logs/amf.log`. In case you want to stop the component, kill its process process using `pkill <component-name>` or `ps -eaf`
 
-# 2.2 Docker environment (Recommended)
+### 2.2 Docker environment (Recommended)
 
 Using docker environment for deployment and development is the preferred way because there, it is easy to have dedicated working environment for each network component. It is lightweight and easy to manage. The docker-compose provided in [tutorials](./DEPLOY_HOME.md) is good for learning how the OAI core network works and how to use it. But if the user wants to change some parameters which are not variable or not allowed using docker-compose then it is hard to use the docker-compose approach. If the user wants to provide their own configuration file then it is better to change the docker-compose. Follow the steps below to create a new developer/debugger specific docker-compose,
 
-## 2.2.1 Prerequisites
+#### 2.2.1 Prerequisites
 
 1. Build the docker-images in debug mode following the [previous section](#1-building-images-in-debug-mode)
 2. Create a new folder `oai-docker-compose`
@@ -142,7 +142,7 @@ $ cp ~/oai-cn5g-nrf/etc/nrf.conf ~/oai-docker-compose/confs/
 $ cp ~/openair-spgwu-tiny/etc/spgwu.conf ~/oai-docker-compose/confs/
 ```
 
-### 2.2.2 Create entrypoint files
+#### 2.2.2 Create entrypoint files
 
 The example of amf entrypoint.sh is below, for other network functions it is analogous.
 
@@ -163,11 +163,11 @@ exec nohup /usr/local/bin/spgwu -c /openair-spgwu-tiny/etc/spgw_u.conf -o >> /op
 
 Create entrypoints for all the network functions which are required.
 
-# 2.2.3 Healthchecks
+#### 2.2.3 Healthchecks
 
 The healthchecks can be directly used from [here](../docker-compose/healthscripts), copy them in the `healthchecks` folder.
 
-# 2.2.4 Creating docker-compose
+#### 2.2.4 Creating docker-compose
 
 To run this docker-compose the network `demo-oai-public-net` should be created.
 
@@ -265,7 +265,7 @@ networks:
 ```
 
 
-## 2.2.5 Playing with docker-compose
+#### 2.2.5 Playing with docker-compose
 
 ```
 # start docker-compose
@@ -284,14 +284,14 @@ $: docker-compose -p <project-name> -f <file-name> down -t 0
 
 Network components configuration is present in `~/oai-docker-compose/confs/` the logs are present in `~/oai-docker-compose/logs/`. There will be only one log file and it will contain huge amount of logs. If needed this can also be rotated to avoid having one bulky file. To make it rotate, make changes in the entrypoint.sh script.
 
-# 3. Basic debugging
+## 3. Basic debugging
 
 1. Building the images in debug mode will provide more information about UE attach-detach process.
 2. Capture packets to understand message flow between the components and encapsulation-decapsulation.
 3. Check the UE subscription information is available in the Mysql database and the OPC is correctly configured in AMF.
 
 
-# 4. How to report an issue?
+## 4. How to report an issue?
 
 To report an issue regarding any-component of CN5G or attach-detach procedure follow the procedure below,
 

@@ -51,7 +51,7 @@ This tutorial is an extension of a previous tutorial: [testing a `basic` deploym
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `UERANSIM`. With the help of `UERANSIM` tool, we can perform very basic SA5G test by simulating one gnb and multiple ues.
 
-##### About UERANSIM - #####
+##### About UERANSIM
 
 [UERANSIM](https://github.com/aligungr/UERANSIM) is the open-source state-of-the-art 5G UE and RAN (gNodeB) implementation. It can be considered as a 5G mobile phone and a base station in basic terms. The project can be used for testing 5G Core Network and studying 5G System. UERANSIM can simulate multiple UEs and it also aims to simulate radio. Moreover for the detailed feature set, please refer its [official page.](https://github.com/aligungr/UERANSIM/wiki/Feature-Set)
 
@@ -62,10 +62,10 @@ Let's begin !!
 we did for gnb-host.
 * Before we proceed further for end-to-end SA5G test, make sure you have healthy docker services for OAI cn5g
 
-#### NOTE: ####
+#### NOTE:
 UERANSIM currently does not support integraty and ciphering algorithm NIA0, NEA0 repectively. Hence we have to update AMF config in the docker-compose as below -
 
-##### IMPORTANT: Add following parameters in oai-amf service of docker-compose, before deploying core network. #####
+##### IMPORTANT: Add following parameters in oai-amf service of docker-compose, before deploying core network.
 
 ```bash
             - INT_ALGO_LIST=["NIA1" , "NIA2"]
@@ -103,7 +103,7 @@ c0838aff8796   oai-udr:latest       "/bin/bash /openair-…"   51 seconds ago   
 ab06bd3104ef   oai-nrf:latest       "/bin/bash /openair-…"   52 seconds ago   Up 51 seconds (healthy)   80/tcp, 9090/tcp               oai-nrf
 ```
 
-## 6. Getting a `UERANSIM` docker image ##
+## 6. Getting a `UERANSIM` docker image
 
 You have the choice:
 
@@ -124,7 +124,7 @@ docker pull rohankharade/ueransim
 docker image tag rohankharade/ueransim:latest ueransim:latest
 ```
 
-## 7. Executing the `UERANSIM` Scenario ##
+## 7. Executing the `UERANSIM` Scenario
 
 * The configuration parameters are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose.yaml OF UERANSIM](../docker-compose/docker-compose-ueransim-vpp.yaml) and one can modify it for testing purposes.
 * Launch ueransim docker service
@@ -278,14 +278,14 @@ iperf Done.
 ```
 * Note:- The iperf test is just for illustration purposes and results of the test may vary based on resources available for the docker services
 
-## 8. Analysing the Scenario Results ##
+## 8. Analysing the Scenario Results
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
 | [5gcn-deployment-ueransim.pcap](./results/UERANSIM/pcap/5gcn-deployment-ueransim.pcap)                  |
 
 
-## 9. Trying Some Advanced Stuff ##
+## 9. Trying Some Advanced Stuff
 
 Here we try some scaling test with ueransim. There are additional IMSIs added into database (208950000000031-208950000000131).
 Now we register 100 UEs using ueransim.
@@ -372,7 +372,7 @@ ps-release-all | Trigger PDU session release procedures for all active sessions
 deregister     | Perform a de-registration by the UE
 --------------------------------------------------------------------------------------------
 ```
-## 10. Undeploy ##
+## 10. Undeploy
 
 Last thing is to remove all services - <br/>
 
