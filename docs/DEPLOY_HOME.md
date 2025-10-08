@@ -2,7 +2,7 @@
 
 Welcome to the tutorial home page of the OAI 5g Core project. Here you can find lots of tutorials and help manuals. We regularly update these documents depending on the new feature set.
 
-## Table of contents
+## Quick Start & Tutorials
 
 - [List of COTS UEs tested with OAI](./LIST_OF_TESTED_COTSUE.md)
 - [Pre-requisites](./DEPLOY_PRE_REQUISITES.md)
