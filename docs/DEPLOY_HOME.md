@@ -1,7 +1,3 @@
-<a href="https://openairinterface.org/">
-    <img src="./images/oai_final_logo.png" alt="Openairinterface logo" title="Openairinterface" align="right" height="60" />
-</a>
-
 # OpenAirInterface 5G Core Network Deployment
 
 Welcome to the tutorial home page of the OAI 5g Core project. Here you can find lots of tutorials and help manuals. We regularly update these documents depending on the new feature set.

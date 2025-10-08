@@ -1,16 +1,4 @@
-<table style="border-collapse: collapse; border: none;">
-  <tr style="border-collapse: collapse; border: none;">
-    <td style="border-collapse: collapse; border: none;">
-      <a href="http://www.openairinterface.org/">
-         <img src="./images/oai_final_logo.png" alt="" border=3 height=50 width=150>
-         </img>
-      </a>
-    </td>
-    <td style="border-collapse: collapse; border: none; vertical-align: center;">
-      <b><font size = "5">OpenAirInterface 5G Core and RAN Network Function Deployment using Helm Charts</font></b>
-    </td>
-  </tr>
-</table>
+# OpenAirInterface 5G Core and RAN Network Function Deployment using Helm Charts
 
 OAI 5G core network have different network functions which can be used invidiually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster. 
 
