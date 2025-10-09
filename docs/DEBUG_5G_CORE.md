@@ -2,7 +2,7 @@
 
 Currently there is no special tool for debugging the problems of core network components. Though there are certain methods which we use in our team to diagnose an issue.
 
-This page content expects you to read [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md) normal deployment.
+This page content expects you to read [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) normal deployment.
 
 **TABLE OF CONTENTS**
 
@@ -89,7 +89,7 @@ The command above will launch the network function in the background, and all th
 
 ### 2.2 Docker environment (Recommended)
 
-Using docker environment for deployment and development is the preferred way because there, it is easy to have dedicated working environment for each network component. It is lightweight and easy to manage. The docker-compose provided in [tutorials](./DEPLOY_HOME.md) is good for learning how the OAI core network works and how to use it. But if the user wants to change some parameters which are not variable or not allowed using docker-compose then it is hard to use the docker-compose approach. If the user wants to provide their own configuration file then it is better to change the docker-compose. Follow the steps below to create a new developer/debugger specific docker-compose,
+Using docker environment for deployment and development is the preferred way because there, it is easy to have dedicated working environment for each network component. It is lightweight and easy to manage. The docker-compose provided in [tutorials](DEPLOY_HOME.md) is good for learning how the OAI core network works and how to use it. But if the user wants to change some parameters which are not variable or not allowed using docker-compose then it is hard to use the docker-compose approach. If the user wants to provide their own configuration file then it is better to change the docker-compose. Follow the steps below to create a new developer/debugger specific docker-compose,
 
 #### 2.2.1 Prerequisites
 

@@ -1,6 +1,6 @@
 # OpenAirInterface 5G Core Traffic Steering/steering Network Deployment and Testing With Gnbsim
 
-![SA Traffic Steering Scenario](./images/steering_tutorial.png)
+![SA Traffic Steering Scenario](images/steering_tutorial.png)
 
 **Reading time: ~ 20 minutes**
 
@@ -8,12 +8,12 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 8CPU**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
+Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
 1. [Pre-requisites](#1-pre-requisites)
-2. [Building Container Images](./BUILD_IMAGES.md) or [Retrieving Container Images](./RETRIEVE_OFFICIAL_IMAGES.md)
+2. [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
 3. [Deploying OAI 5G Core Network](#3-deploying-oai-5g-core-network)
 4. [Simulate with gnbsim](#4-simulate-with-gnbsim)
 5. [Traffic test for Steering](#5-traffic-test-for-steering)
@@ -22,7 +22,7 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 8. [Conclusion](#8-conclusion)
 
 For this demo, all the images which use the `develop` branch have been retrieved from the official `docker-hub` (see also
-[Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
+[Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md)).
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
@@ -59,7 +59,7 @@ docker-compose-host $: rm -rf /tmp/oai/steering-scenario
 docker-compose-host $: mkdir -p /tmp/oai/steering-scenario
 docker-compose-host $: chmod 777 /tmp/oai/steering-scenario
 ```
-## [2. Building Container Images](./BUILD_IMAGES.md) or [Retrieving Container Images](./RETRIEVE_OFFICIAL_IMAGES.md)
+## [2. Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
 
 ## 3. Deploying OAI 5g Core Network
 
@@ -154,7 +154,7 @@ Please wait until all NFs are healthy.
 ## 4. Simulate with gnbsim
 
 When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
-Please see the [gnbsim tutorial](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
+Please see the [gnbsim tutorial](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
 
 * Instantiate first Gnbsim instance (IMSI - 208950000000032)
 

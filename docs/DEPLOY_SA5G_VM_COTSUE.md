@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Network Deployment in Virtual Machines and Testing with COTSUE
 
 
-![SA COTSUE Demo](./images/virtual-machine/cots-ue/bupt/overall-architecture.png)
+![SA COTSUE Demo](images/virtual-machine/cots-ue/bupt/overall-architecture.png)
 
 
 **Caution**: This is a very old tutorial and it is not maintained anymore.
@@ -577,10 +577,10 @@ Load AMF system configuration file(/etc/openxg/amf.conf)
 
 | file_name                                                 |
 | :-------------------------------------------------------- |
-| [amf.log](./results/cotsue/logs/amf.log)     |
-| [smf.log](./results/cotsue/logs/smf.log)     |
-| [spgwu.log](./results/cotsue/logs/spgwu.log) |
-| [core.pcap](./results/cotsue/pcap/core.pcap) |
+| [amf.log](results/cotsue/logs/amf.log)     |
+| [smf.log](results/cotsue/logs/smf.log)     |
+| [spgwu.log](results/cotsue/logs/spgwu.log) |
+| [core.pcap](results/cotsue/pcap/core.pcap) |
 
 ### 7.1 Analyzing initial message exchange
 
@@ -601,7 +601,7 @@ Using wireshark open core.pcap  use the filter `ngap || http || pfcp || gtp`
 7. Allocated UE IP-address can be seen in Packet 1164, 1274, 1359
 
 8. Echo request response between UE and Dn：Packet 2076, 2080
-  ![](./images/virtual-machine/cots-ue/bupt/process.png)
+  ![](images/virtual-machine/cots-ue/bupt/process.png)
 
 ## 8. Demo Video
 

@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Network Basic Deployment using Docker-Compose
 
 
-![SA Demo](./images/docker-compose/5gCN-basic.jpg)
+![SA Demo](images/docker-compose/5gCN-basic.jpg)
 
 **OVERVIEW**
 
@@ -21,7 +21,7 @@ Please follow the tutorial step by step to create a stable working testbed. You 
 
 **Note**
 
-- In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md).
+- In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md).
 - In this tutorial we have considered two different host machines, `docker-compose-host` as the host machine to deploy core network functions and `gNB-host` as the gNB host machine.
 
 
@@ -79,7 +79,7 @@ docker-compose-host $: sudo iptables -P FORWARD ACCEPT
 
 ## 3. Network Function Container Images
 
-- In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](./BUILD_IMAGES.md) to build images with the tags below.
+- In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](BUILD_IMAGES.md) to build images with the tags below.
 
 | CNF Name    | Branch Name | Tag      | Ubuntu 18.04 | RHEL8 (UBI8)    |
 | ----------- | ----------- | -------- | ------------ | ----------------|
@@ -380,7 +380,7 @@ docker-compose-host $: ping <ue-ip-address>
 - This tutorial can be taken as reference to test the OAI 5G core with a COTS UE. The configuration file has to be changed according to the gNB, and COTS UE information should be present in the mysql database.
 - In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use [docker-compose-basic-nrf-http2.yaml](../docker-compose/docker-compose-basic-nrf-http2.yaml)
 - Generally, in a COTS UE, two PDN sessions are created by default so configure the IMS in SMF properly.
-- In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+- In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
 - It is not necessary to use [core-network.py](../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
   ``` console
   #To start the containers

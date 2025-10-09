@@ -208,7 +208,7 @@ We will use `docker-compose-basic-nrf-qos.yaml` which already has the volume mou
 
 ## 6. Network Function Deployment
 
-In the previous tutorial we explain how to deploy the core network using our [python deployer](../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md).
+In the previous tutorial we explain how to deploy the core network using our [python deployer](../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](DEPLOY_SA5G_MINI_WITH_GNBSIM.md).
 
 - Start the core network components with QoS enabled
 

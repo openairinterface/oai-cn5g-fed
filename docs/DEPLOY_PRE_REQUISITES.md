@@ -128,5 +128,5 @@ $ docker network inspect bridge
 
 Here you have 2 choices:
 
-*  You can pull official images from Docker Hub like [this](./RETRIEVE_OFFICIAL_IMAGES.md).
-*  Or you are ready to [build your-self the network function images](./BUILD_IMAGES.md).
+*  You can pull official images from Docker Hub like [this](RETRIEVE_OFFICIAL_IMAGES.md).
+*  Or you are ready to [build your-self the network function images](BUILD_IMAGES.md).

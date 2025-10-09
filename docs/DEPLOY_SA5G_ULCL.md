@@ -1,6 +1,6 @@
 # OpenAirInterface 5G Core UL CL Network Deployment and Testing With Gnbsim
 
-![SA UL CL Scenario](./images/5gcn_ulcl.png)
+![SA UL CL Scenario](images/5gcn_ulcl.png)
 
 **Reading time: ~ 20 minutes**
 
@@ -15,14 +15,14 @@ Each instance of VPP-UPF runs on a different (logical) CPU core to distribute th
 
 You need at least 6 logical CPU cores for this tutorial. 
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
+Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
 
 For this demo, all the images which use the `v1.5.0` tag have been retrieved from the official `docker-hub` (see also
-[Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
+[Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md)).
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 18.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
@@ -66,8 +66,8 @@ docker-compose-host $: chmod 777 /tmp/oai/ulcl-scenario
 
 You can either:
 
-* [Building Container Images](./BUILD_IMAGES.md) or
-* [Retrieving Container Images](./RETRIEVE_OFFICIAL_IMAGES.md)
+* [Building Container Images](BUILD_IMAGES.md) or
+* [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
 
 ## 3. Deploying OAI 5g Core Network
 
@@ -198,7 +198,7 @@ When the graph is fully built, it should look like this (again, the order does n
 ## 4. Simulate with gnbsim
 
 When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
-Please see the [gnbsim tutorial](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
+Please see the [gnbsim tutorial](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml up -d 

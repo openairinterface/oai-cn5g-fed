@@ -5,7 +5,7 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -65,7 +65,7 @@ OAI-UPF-eBPF as a part of the OAI 5G mobile Core Network implements a data netwo
 
 <figure>
   <img
-    src="./images/5gcn_eBPF_upf.png"
+    src="images/5gcn_eBPF_upf.png"
     alt="This is the UPF architecture using the eBPF technology. The architecture is designed in two layers: user and kernel space layers"
     width="900"
     height="600" />
@@ -108,7 +108,7 @@ If such PDR is found, the packet passes to the Forwarder (i.e., FAR Program). Th
 ### i.  UPF Standalone Deployment
 <figure>
   <img
-    src="./images/5gcn_eBPF_testbed.png"
+    src="images/5gcn_eBPF_testbed.png"
     alt="This is the OAI 5GC architecture testbed. The architecture is designed in two layers: user and kernel space layers"
     width="900"
     height="400" />
@@ -117,9 +117,9 @@ If such PDR is found, the packet passes to the Forwarder (i.e., FAR Program). Th
 
 
 
-* In this demo the image tags and commits which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below.
+* In this demo the image tags and commits which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below.
 
-You can also retrieve the images from `docker-hub`. See [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md).
+You can also retrieve the images from `docker-hub`. See [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md).
 
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 20.04 | Ubuntu 22.04  | RHEL8        |
@@ -893,7 +893,7 @@ $ docker logs oai-smf
 
 ### 7.1. Test with Gnbsim
 
-In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md#6-getting-a-gnbsim-docker-image)<br/>
+In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](DEPLOY_SA5G_MINI_WITH_GNBSIM.md#6-getting-a-gnbsim-docker-image)<br/>
 Launch gnbsim instance:
 
 ``` shell
@@ -1186,7 +1186,7 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 
 <figure>
   <img
-    src="./images/setup_networking.png"
+    src="images/setup_networking.png"
     alt="This is the OAI 5GC testbed."
     width="900"
     height="400" />

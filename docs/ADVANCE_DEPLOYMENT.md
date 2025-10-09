@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Advance Deployment Using Docker-Compose
 
 
-![SA Demo](./images/docker-compose/5gCN-basic.jpg)
+![SA Demo](images/docker-compose/5gCN-basic.jpg)
 
 This tutorial is strictly for the advanced users of OAI who have an understanding about how the core network functions work and are comfortable in changing the configuration directly in the config file of each network function rather than in docker-compose using environment variables. 
 
@@ -9,7 +9,7 @@ The current method which we provide to the community to change the network funct
 
 If you would like to contribute then we will be glad to have your contributions. 
 
-Before reading this tutorial it will be good if you can go through [deployment pre-requisites](./DEPLOY_PRE_REQUESITES.md) and try to deploy a [mini](./DEPLOY_SA5G_MINI_DS_TESTER_DEPLOYMENT.md) or [basic](./DEPLOY_SA5G_BASIC_DS_TESTER_DEPLOYMENT.md) deployment.
+Before reading this tutorial it will be good if you can go through [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_DS_TESTER_DEPLOYMENT.md) or [basic](DEPLOY_SA5G_BASIC_DS_TESTER_DEPLOYMENT.md) deployment.
 
 **TABLE OF CONTENTS**
 
@@ -46,7 +46,7 @@ In the docker-compose file we are using the image names as above. If you wish to
 
 ### 1.2 Building docker images
 
-Read the tutorial [build image](./BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
+Read the tutorial [build image](BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
 
 By default all the dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
 

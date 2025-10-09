@@ -2,7 +2,7 @@
 
 OAI 5G core network have different network functions which can be used invidiually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster. 
 
-![Helm Chart Deployment](./images/helm-chart.png)
+![Helm Chart Deployment](images/helm-chart.png)
 
 
 **Reading time**: ~30 mins
@@ -78,8 +78,8 @@ And later add the labels to allow creating `privileged` pods.
 
 Ubuntu base images can be pulled from [docker-hub](https://hub.docker.com/u/oaisoftwarealliance). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. In case of RHEL based worker node you can build your own UBI images, to download packages from RHEL repository you need a developer or enterprise account. 
 
-1. To learn how to build UBI 9.X images follow this [tutorial](./openshift/README.md)
-2. To learn how to build Ubuntu images follow this [tutorial](./BUILD_IMAGES.md)
+1. To learn how to build UBI 9.X images follow this [tutorial](../openshift/README.md)
+2. To learn how to build Ubuntu images follow this [tutorial](BUILD_IMAGES.md)
 
 
 ## 3. Configuring Helm Charts

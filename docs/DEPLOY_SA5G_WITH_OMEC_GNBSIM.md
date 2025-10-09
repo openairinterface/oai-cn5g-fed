@@ -1,13 +1,13 @@
 # OpenAirInterface 5G Core Network Deployment and Testing with omec-gnbsim
 
 
-![SA Demo](./images/5gcn_vpp_upf_omec_gnbsim.png)
+![SA Demo](images/5gcn_vpp_upf_omec_gnbsim.png)
 
 **Reading time: ~ 30mins**
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
+Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -21,7 +21,7 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
 9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 
-* In this demo the image tags which were used are listed below, follow the [Building images](./BUILD_IMAGES.md) to build images with below tags. When pulling images of network functions from dockerhub pull images for `develop` tag
+* In this demo the image tags which were used are listed below, follow the [Building images](BUILD_IMAGES.md) to build images with below tags. When pulling images of network functions from dockerhub pull images for `develop` tag
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8         |
 | ----------- |:-------------- | ----------------------------- | ------------ | --------------|
@@ -37,7 +37,7 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 <br/>
 
-This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
+This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `omec-gnbsim`. With the help of `omec-gnbsim` tool, we can perform basic SA5G test by simulating multiple gnb & ue.
 
@@ -219,8 +219,8 @@ docker-compose-host $: python3 ./core-network.py --type stop-basic-vpp --scenari
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
-| [omec-gnbsim-logs.txt](./results/omec-gnbsim/omec-gnbsim-logs.txt) |
-| [5gcn-deployment-omec-gnbsim.pcapng](./results/omec-gnbsim/pcap/5gcn-deployment-omec-gnbsim.pcapng) |
+| [omec-gnbsim-logs.txt](results/omec-gnbsim/omec-gnbsim-logs.txt) |
+| [5gcn-deployment-omec-gnbsim.pcapng](results/omec-gnbsim/pcap/5gcn-deployment-omec-gnbsim.pcapng) |
 
 
 <!---

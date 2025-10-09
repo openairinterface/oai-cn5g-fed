@@ -1,20 +1,20 @@
 # OpenAirInterface 5G Core Network Deployment with UPF-VPP using docker-compose
 
-![SA Demo](./images/5gcn_vpp_upf.jpg)
+![SA Demo](images/5gcn_vpp_upf.jpg)
 
 **Reading time: ~ 30mins**
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
 
-* In this demo the image tags and commits which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below.
+* In this demo the image tags and commits which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below.
 
-You can also retrieve the images from `docker-hub`. See [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md).
+You can also retrieve the images from `docker-hub`. See [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md).
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8          |
 | ----------- |:-------------- | ----------------------------- | ------------ | ---------------|
@@ -44,7 +44,7 @@ Project is available on github as VPP-UPG which follows release `16` of 3GPP spe
 
 Let's begin !!
 
-* Steps 1 to 4 are similar to previous tutorials such as [minimalist](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md) deployments. Please follow these steps to deploy OAI 5G core network components.
+* Steps 1 to 4 are similar to previous tutorials such as [minimalist](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) deployments. Please follow these steps to deploy OAI 5G core network components.
 
 ## 1. Pre-requisites
 
@@ -253,7 +253,7 @@ $ docker logs oai-smf
 
 ### 6.1. Test with Gnbsim
 
-In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md#6-getting-a-gnbsim-docker-image)<br/>
+In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](DEPLOY_SA5G_MINI_WITH_GNBSIM.md#6-getting-a-gnbsim-docker-image)<br/>
 Launch gnbsim instance:
 
 ``` shell
@@ -480,7 +480,7 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 ## 9. Notes
 
 - Generally, in a COTS UE two PDN sessions are created by default so configure the IMS in SMF properly.
-- In case you want to deploy debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
+- In case you want to deploy debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 - It is not necessary to use [core-network.py](../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
 - In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use docker-compose [docker-compose-basic-vpp-nrf-http2.yaml](../docker-compose/docker-compose-basic-vpp-nrf-http2.yaml).
 ``` console
