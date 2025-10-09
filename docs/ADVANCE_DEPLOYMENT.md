@@ -9,7 +9,7 @@ The current method which we provide to the community to change the network funct
 
 If you would like to contribute then we will be glad to have your contributions. 
 
-Before reading this tutorial it will be good if you can go through [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_DS_TESTER_DEPLOYMENT.md) or [basic](DEPLOY_SA5G_BASIC_DS_TESTER_DEPLOYMENT.md) deployment.
+Before reading this tutorial it will be good if you can go through [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) deployment.
 
 **TABLE OF CONTENTS**
 

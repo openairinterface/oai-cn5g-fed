@@ -323,7 +323,7 @@ column.
 
 The results of this tutorial are located in [results/steering](results/steering). 
 
-We can verify the PDU session details as per [UPF session logs](docs/results/steering/vpp-upf-steering-session.log). We should note that the forwarding rule set for UE 1 (12.1.1.2), is with network instance `internet.oai.org.pri`. Which means all the UE 1 (12.1.1.2) traffic will be sent to DN over primary interface of the UPF.
+We can verify the PDU session details as per [UPF session logs](results/steering/vpp-upf-steering-session.log). We should note that the forwarding rule set for UE 1 (12.1.1.2), is with network instance `internet.oai.org.pri`. Which means all the UE 1 (12.1.1.2) traffic will be sent to DN over primary interface of the UPF.
 
 ```yaml
 FAR: 1
@@ -342,7 +342,7 @@ FAR: 1
     Network Instance: internet.oai.org.sec
     Destination Interface: 1
 ```
-This can be also confirmed in the pcap trace [user_plane_steering.pcapng](results/steering/user_plane_steering.pcapng). We see that the packet #4 is the UE1 packet, that is sent to DN over UPF's primary interface (192.168.73.0/24). Similary for UE2, the request packet #373 is sent to DN over UPF's secondary interface (192.168.74.0/24). Hence, we confirm here that the UE packets are steered in uplink direction, based on policies configured at PCF.
+This can be also confirmed in the pcap trace [user_plane_steering.pcap](results/steering/user_plane_steering.pcap). We see that the packet #4 is the UE1 packet, that is sent to DN over UPF's primary interface (192.168.73.0/24). Similary for UE2, the request packet #373 is sent to DN over UPF's secondary interface (192.168.74.0/24). Hence, we confirm here that the UE packets are steered in uplink direction, based on policies configured at PCF.
 
 ## 7. Undeploy Network Functions
 
