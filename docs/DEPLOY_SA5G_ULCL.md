@@ -479,7 +479,12 @@ column.
 
 ### UL CL Scenario
 
-The results of this tutorial are located in [results/ulcl](results/ulcl). 
+The results of this tutorial are located in `results/ulcl`. Click on the files below to view them:
+
+| Logs/PCAPs | Files |
+|----------|-------|
+| Logs | [amf.log](results/ulcl/amf.log), [ausf.log](results/ulcl/ausf.log), [gnbsim-vpp.log](results/ulcl/gnbsim-vpp.log), [gnbsim-vpp2.log](results/ulcl/gnbsim-vpp2.log), [gnbsim-vpp3.log](results/ulcl/gnbsim-vpp3.log), [nrf.log](results/ulcl/nrf.log), [smf.log](results/ulcl/smf.log), [udm.log](results/ulcl/udm.log), [udr.log](results/ulcl/udr.log), [vpp-upf-aupf1.log](results/ulcl/vpp-upf-aupf1.log), [vpp-upf-aupf2.log](results/ulcl/vpp-upf-aupf2.log), [vpp-upf-ulcl.log](results/ulcl/vpp-upf-ulcl.log) |
+| PCAPs | [control_plane.pcapng](results/ulcl/control_plane.pcapng), [user_plane_edge_only.pcapng](results/ulcl/user_plane_edge_only.pcapng), [user_plane_internet_only.pcapng](results/ulcl/user_plane_internet_only.pcapng), [user_plane_ulcl.pcapng](results/ulcl/user_plane_ulcl.pcapng) |
 
 First, we open the [user_plane_ulcl.pcapng](results/ulcl/user_plane_ulcl.pcapng) file and sort based on time. 
 

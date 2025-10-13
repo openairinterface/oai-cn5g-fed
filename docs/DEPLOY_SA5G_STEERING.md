@@ -321,7 +321,12 @@ column.
 
 ### Steering Scenario
 
-The results of this tutorial are located in [results/steering](results/steering). 
+The results of this tutorial are located in `results/steering`. Click on the files below to view them:
+
+| Logs/PCAPs | Files |
+|----------|-------|
+| Logs | [amf.log](results//steering/amf.log), [ausf.log](results//steering/ausf.log), [control_plane.log](results//steering/control_plane.log), [gnbsim-vpp2.log](results//steering/gnbsim-vpp2.log), [gnbsim-vpp3.log](results//steering/gnbsim-vpp3.log), [nrf.log](results//steering/nrf.log), [pcf.log](results//steering/pcf.log), [smf.log](results//steering/smf.log), [udm.log](results//steering/udm.log), [udr.log](results//steering/udr.log), [ue1-test.log](results//steering/ue1-test.log), [ue2-test.log](results//steering/ue2-test.log), [user_plane_steering.log](results//steering/user_plane_steering.log), [vpp-upf-steering-session.log](results//steering/vpp-upf-steering-session.log), [vpp-upf.log](results//steering/vpp-upf.log) |
+| PCAPs | [control_plane.pcap](results//steering/control_plane.pcap), [user_plane_steering.pcap](results//steering/user_plane_steering.pcap) |
 
 We can verify the PDU session details as per [UPF session logs](results/steering/vpp-upf-steering-session.log). We should note that the forwarding rule set for UE 1 (12.1.1.2), is with network instance `internet.oai.org.pri`. Which means all the UE 1 (12.1.1.2) traffic will be sent to DN over primary interface of the UPF.
 

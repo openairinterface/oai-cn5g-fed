@@ -271,7 +271,12 @@ column.
 
 ### Redirection Scenario
 
-The results of this tutorial are located in [results/redirect](results/redirect). 
+The results of this tutorial are located in `results/redirect`. Click on the files below to view them:
+
+| Logs/PCAPs | Files |
+|----------|-------|
+| Logs | [amf.log](results/redirect/amf.log), [ausf.log](results/redirect/ausf.log), [control_plane.log](results/redirect/control_plane.log), [gnbsim-vpp.log](results/redirect/gnbsim-vpp.log), [nrf.log](results/redirect/nrf.log), [pcf.log](results/redirect/pcf.log), [smf.log](results/redirect/smf.log), [udm.log](results/redirect/udm.log), [udr.log](results/redirect/udr.log), [ue-test.log](results/redirect/ue-test.log), [user_plane_redirect.log](results/redirect/user_plane_redirect.log), [vpp-upf-redirect-session.log](results/redirect/vpp-upf-redirect-session.log), [vpp-upf.log](results/redirect/vpp-upf.log) |
+| PCAPs | [control_plane.pcap](results/redirect/control_plane.pcap), [user_plane_redirect.pcap](results/redirect/user_plane_redirect.pcap) |
 
 We can verify the PDU session details as per [UPF session logs](results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
 
