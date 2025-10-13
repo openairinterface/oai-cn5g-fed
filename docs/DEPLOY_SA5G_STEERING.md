@@ -302,7 +302,7 @@ docker-compose-host $: grep 192.168.74.135 /tmp/oai/steering-scenario/ue2-test.l
 docker-compose-host $: docker exec vpp-upf bin/vppctl show upf session > /tmp/oai/steering-scenario/vpp-upf-steering-session.log 2>&1
 ```
 
-We will see in the [analysis](#8-trace-analysis) that the IP packets to `1.1.1.1` are steered to destination over EXT-DN-Internet with corresponding N6 interface .
+We will see in the [analysis](#6-trace-analysis) that the IP packets to `1.1.1.1` are steered to destination over EXT-DN-Internet with corresponding N6 interface .
 
 ## 6. Trace Analysis
 

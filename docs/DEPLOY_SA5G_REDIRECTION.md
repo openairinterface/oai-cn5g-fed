@@ -250,7 +250,7 @@ We capture here UPF session details & traffic trace
 docker-compose-host $: docker exec vpp-upf bin/vppctl show upf session > /tmp/oai/redirect-scenario/vpp-upf-redirect-session.log 2>&1
 ```
 
-We will see in the [analysis](#8-trace-analysis) that the IP packets to `google.com` are redirected to destination `facebook.com` over EXT-DN-Internet.
+We will see in the [analysis](#6-trace-analysis) that the IP packets to `google.com` are redirected to destination `facebook.com` over EXT-DN-Internet.
 
 
 ## 6. Trace Analysis

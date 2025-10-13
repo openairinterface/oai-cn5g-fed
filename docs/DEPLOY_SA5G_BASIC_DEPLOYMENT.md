@@ -263,7 +263,7 @@ Make sure you edit the IMSI, opc and key according to the settings of your user 
   - `--type` mandatory option to start/stop the 5g core components with minimum/basic functional architecture.
   - `--scenario` is optional and if not provided by default it is considered to use nrf component.
   - `--capture` will start capturing packets with the filters defined above on `demo-oai` bridge
-- In case there is a problem or you don't want to use this python script, it is better to use docker-compose manually, read the [notes section](#10-notes)
+- In case there is a problem or you don't want to use this python script, it is better to use docker-compose manually, read the [notes section](#7-notes)
 
     ```console
     docker-compose-host $: pwd

@@ -90,7 +90,7 @@ Network configuration for both the VMs
 | ens10 | NAT               |  192.168.122.55 | N6/SGi |
 | ens12 | Bridge to Phy NIC | 192.168.199.126 |     N3 |
 
-## 4. Building Network functions
+## 4. Building Network Functions
 
 The branch commits used at the time of the demo are listed below:
 

@@ -16,10 +16,9 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
 5.  Deploying OAI 5G Core Network
-6.  [Getting a `omec-gnbsim` docker image](#6-getting-a-omec-gnbsim-docker-image)
+6.  [Building a `omec-gnbsim` docker image](#6-building-a-omec-gnbsim-docker-image)
 7.  [Executing `omec-gnbsim` Scenario](#7-executing-the-omec-gnbsim-scenario)
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
-9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 
 * In this demo the image tags which were used are listed below, follow the [Building images](BUILD_IMAGES.md) to build images with below tags. When pulling images of network functions from dockerhub pull images for `develop` tag
 
