@@ -2,7 +2,7 @@
 
 ## 1.  Retrieve the correct network function branches
 
-**CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
+> **CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
 
 This repository only has tutorials and Continuous Integration scripts.
 
@@ -12,7 +12,7 @@ They are named as `git sub-modules` in the `component` folder.
 
 Before doing anything, you SHALL retrieve the code for each git sub-module.
 
-**CAUTION: Starting from v1.5.1, we did a refactoring effort on source files, build scripts and CI scripts. So now there are a lot of nested git submodules.**
+> **CAUTION: Starting from v1.5.1, we did a refactoring effort on source files, build scripts and CI scripts. So now there are a lot of nested git submodules.**
 
 Normally the `./scripts/syncComponents.sh` should help synchronize all of them.
 
@@ -148,7 +148,7 @@ When building, you can specify which base image to work on (by default it will b
 
 You just add the `--build-arg BASE_IMAGE=ubuntu:xxxx` option.
 
-**CAUTION: Since `v1.5.1` we are no longer supporting Ubuntu `18.04` or `bionic`.**
+> **CAUTION: Since `v1.5.1` we are no longer supporting Ubuntu `18.04` or `bionic`.**
 
 ## 3. Build AMF Image
 

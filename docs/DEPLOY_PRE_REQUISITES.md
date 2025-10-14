@@ -16,7 +16,7 @@ $ python3 --version
 Python 3.6.9
 ```
 
-**CAUTION: do not forget to add your username to the `docker` group**
+> **CAUTION: do not forget to add your username to the `docker` group**
 
 Otherwise you will have to run in `sudo` mode.
 
@@ -70,7 +70,7 @@ $ docker logout
 
 ## 4. Network Configuration
 
-**CAUTION: THIS FIRST STEP IS MANDATORY.**
+> **CAUTION: THIS FIRST STEP IS MANDATORY.**
 
 Based on this [recommendation](https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world):
 
@@ -79,7 +79,7 @@ $ sudo sysctl net.ipv4.conf.all.forwarding=1
 $ sudo iptables -P FORWARD ACCEPT
 ```
 
-**CAUTION: THIS SECOND STEP MAY NOT BE NEEDED IN YOUR ENVIRONMENT.**
+> **CAUTION: THIS SECOND STEP MAY NOT BE NEEDED IN YOUR ENVIRONMENT.**
 
 * The default docker network (ie "bridge") is on "172.17.0.0/16" range.
 * In our Eurecom private network, this IP address range is already in use.

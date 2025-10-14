@@ -5,14 +5,14 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
 
 -----------------------------------------------------------------------------------------
-__Note:__ If you are familiar with eBPF and XDP you can skip Section 1
+> __Note:__ If you are familiar with eBPF and XDP you can skip Section 1
 
 ## 1. Understanding the (e)BPF-XDP
 
@@ -310,7 +310,7 @@ amf:
 
 
 ### iii. UPF
-__Note:__ in case you are deploying the UPF as Docker container, please update the reference points `N3` and `N6` accordingly.
+> __Note:__ in case you are deploying the UPF as Docker container, please update the reference points `N3` and `N6` accordingly.
 
 In this tutorial, the UPF is deployed as a standalone application on a bare-metal machine dedicated for this usage. But you can also deploy it in a docker container (but in host-mode).
 

@@ -8,9 +8,9 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 4CPU (Based on docker stats)**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
-**CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
+> **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
 **TABLE OF CONTENTS**
 
@@ -52,7 +52,10 @@ Currently 3GPP allows up to eight (8) S-NSSAIs in the NSSAI sent in signaling me
 * Role od SMF  -> SMF can associate with multiple UPFs at the same time as in slice 2 and 3 from the figure above. UPF is selected here based on S-NSSAI and DNN.
 
 As shown in the figure above, there are 3 S-NSSAIs configured (Can be differentiated with colors) viz. <br/>
-Note: Here we have used standardised SST values (2,3,4), because rf-simulator only supports SST values 1,2,3,4. Moreover, it is only for numerical reference and does not reflect standard SST behaviour e.g. URLCC, MIoT, V2X etc.<br/>
+
+> Note: Here we have used standardised SST values (2,3,4), because rf-simulator only supports SST values 1,2,3,4. Moreover, it is only for numerical reference and does not reflect standard SST behaviour e.g. URLCC, MIoT, V2X etc.
+
+<br/>
 
 * Slice1: [SST=128,SD=128] =>   NRF1, SMF1, UPF1, GNB1, UE1
 * Slice2: [SST=1]          =>   NRF1, SMF2, UPF2, GNB2, UE2

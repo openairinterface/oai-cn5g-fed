@@ -22,7 +22,7 @@ Please follow the tutorial step by step to create a stable working testbed.
 - Best practice open this markdown file with your favourite editor or online on gitlab and open a terminal separately
 - Before reading this tutorial read this [one](DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
 
-**CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
+> **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
 **TABLE OF CONTENTS**
 

@@ -105,7 +105,7 @@ The IP address or fully qualified domain name (FQDN) for each service is configu
   Make sure you perform this for all the UEs. For every user information in the `AuthenticationSubscription` table there should be a corresponding entry in `SessionManagementSubscriptionData` table. This information is only used if `USE_LOCAL_SUBSCRIPTION_INFO` parameter is set to `no` in the SMF config file. In that case, SMF retrieves this information from the UDM. In case the paramater is `yes`, SMF will use the DNN, IP address and slice mapping which is defined in the SMF configuration file in `LOCAL_CONFIGURATION` field.
 
 
-**NOTE**: By default the SBI interface is configured with HTTP/1.1. It can be changed to HTTP/2 by changing the configuration in all network functions.
+> **NOTE**: By default the SBI interface is configured with HTTP/1.1. It can be changed to HTTP/2 by changing the configuration in all network functions.
 
 
 ### 2.2 Instantiating the Docker Containers

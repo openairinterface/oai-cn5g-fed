@@ -8,7 +8,7 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 8CPU**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -119,7 +119,7 @@ Creating oai-amf             ... done
 Creating oai-smf             ... done
 ```
 
-* Note: Here we use two docker subnets for N6, that is `oai-public-core-pri` and `oai-public-core-sec`, which terminates to DN over two different ipv4 subnets. Operator can have different termination endpoints for these multiple N6 interfaces, e.g. one could terminate to regular internet DN and another could be local edge server etc.
+> *Note:* Here we use two docker subnets for N6, that is `oai-public-core-pri` and `oai-public-core-sec`, which terminates to DN over two different ipv4 subnets. Operator can have different termination endpoints for these multiple N6 interfaces, e.g. one could terminate to regular internet DN and another could be local edge server etc.
 
 <!--
 For CI purposes please ignore this line
@@ -201,7 +201,7 @@ It can take some time until the PDU session establishment is complete, so you ma
 
 ## 5. Traffic Test for Steering
 
-*Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*  
+> *Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*  
 ``` shell
 docker-compose-host $: sudo pkill tshark 
 docker-compose-host $: sleep 5

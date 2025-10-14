@@ -7,7 +7,7 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 

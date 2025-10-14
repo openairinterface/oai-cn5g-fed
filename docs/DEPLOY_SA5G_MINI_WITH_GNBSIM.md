@@ -6,9 +6,9 @@
 
 **Tutorial replication time: ~ 40mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
-**CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
+> **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
 **TABLE OF CONTENTS**
 
@@ -62,7 +62,7 @@ docker-compose-host $: mkdir -p /tmp/oai/mini-gnbsim
 docker-compose-host $: chmod 777 /tmp/oai/mini-gnbsim
 ```
 
-**CAUTION: all the commands are to be executed from the `docker-compose` folder on the `CN5G host` server.**
+> **CAUTION: all the commands are to be executed from the `docker-compose` folder on the `CN5G host` server.**
 
 ## 5. Deploying OAI 5G Core Network
 
@@ -250,7 +250,7 @@ Connecting to host 192.168.70.135, port 5201
 iperf Done.
 ```
 
-**Note:- The iperf test is just for illustration purposes and results of the test may vary based on resources available for the docker services.**
+> **Note:- The iperf test is just for illustration purposes and results of the test may vary based on resources available for the docker services.**
 
 ## 8. Analysing the Scenario Results
 

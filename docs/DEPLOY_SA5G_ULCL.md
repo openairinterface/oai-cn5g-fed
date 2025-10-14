@@ -15,7 +15,7 @@ Each instance of VPP-UPF runs on a different (logical) CPU core to distribute th
 
 You need at least 6 logical CPU cores for this tutorial. 
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -222,13 +222,11 @@ docker-compose-host $: docker logs gnbsim-vpp 2>&1 | grep "UE address:"
 It can take some time until the PDU session establishment is complete, so you may have to repeat this command until
 you see the IP address.
 
-Please note, that the UL CL is transparent for the UE and this only shows that there is a PDU session, not that
-the traffic is routed correctly. Currently, the SMF tries to create a session on any UPF if the selection based on PCC rules 
-fails. 
+> Please note, that the UL CL is transparent for the UE and this only shows that there is a PDU session, not that the traffic is routed correctly. Currently, the SMF tries to create a session on any UPF if the selection based on PCC rules fails. 
 
 ## 5. Traffic Test for UL CL Scenario
 
-*Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*  
+> *Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*  
 ``` shell
 docker-compose-host $: sudo pkill tshark 
 docker-compose-host $: sleep 5
@@ -500,7 +498,7 @@ When we analyze the ICMP request to `1.1.1.1` (starting at packet #39), we can s
 however, the packets are routed via the A-UPF1 (`192.168.73.202`). Therefore, the EXT-DN-Internet is used and NAT is done 
 with the IP address `192.168.75.160` in packet #35.
 
-Please note that the packets are out of order in these examples and you have to sort based on time to follow the flow correctly.
+> Please note that the packets are out of order in these examples and you have to sort based on time to follow the flow correctly.
 
 ### Edge Only Scenario
 

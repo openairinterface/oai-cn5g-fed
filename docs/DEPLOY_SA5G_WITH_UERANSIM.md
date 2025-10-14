@@ -7,7 +7,7 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -264,7 +264,7 @@ Connecting to host 192.168.73.135, port 5201
 
 iperf Done.
 ```
-* Note:- The iperf test is just for illustration purposes and results of the test may vary based on resources available for the docker services
+> **Note:-** The iperf test is just for illustration purposes and results of the test may vary based on resources available for the docker services
 
 ## 8. Analysing the Scenario Results
 
@@ -277,7 +277,8 @@ iperf Done.
 
 Here we try some scaling test with ueransim. There are additional IMSIs added into database (208950000000031-208950000000131).
 Now we register 100 UEs using ueransim.
-#### Note: We have to update `NUMBER_OF_UE` parameter in docker-compose of ueransim. ####
+
+> **Note:** We have to update `NUMBER_OF_UE` parameter in docker-compose of ueransim.
 ```bash
 NUMBER_OF_UE=100
 ```

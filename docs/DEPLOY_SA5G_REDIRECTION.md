@@ -9,7 +9,7 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 8CPU**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
@@ -213,7 +213,7 @@ redirection-scenario:
     redirectAddressType: URL
     redirectServerAddress: facebook.com
 ```
-* Note: Currently only URL type of redirection supported 
+> *Note: Currently only URL type of redirection supported*
 
 Now, we generate HTTP traffic to destination as `google.com`, which will be redirected to destination server `facebook.com`.
 

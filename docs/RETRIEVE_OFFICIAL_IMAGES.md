@@ -57,7 +57,7 @@ We will push new versions when new features are validated.
 
 ## Synchronizing the tutorials
 
-**CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
+> **CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
 
 This repository only has tutorials and Continuous Integration scripts.
 

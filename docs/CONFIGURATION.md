@@ -270,7 +270,7 @@ The description of the N3, N4 and N6 interfaces of UPF is as follows:
 | N4 Interface Name | String | Host interface to serve N4 server            | Any string                          | `eth0`        | Yes       |
 | N6 Interface Name | String | Host interface to receive IP traffic from DN | Any string                          | `eth0`        | Yes       |
 
-Please note that the N6 interface does not require a port configuration.
+> Please note that the N6 interface does not require a port configuration.
 
 ### Database
 
@@ -463,7 +463,7 @@ supported_encryption_algorithms:
   - "NEA2"
 ```
 
-*Please note that the order of supported integrity/encryption algorithms matters*.
+> *Please note that the order of supported integrity/encryption algorithms matters*.
 
 ### SMF
 
@@ -586,8 +586,8 @@ The `ims` section allows you to configure P-CSCF IP addresses which are signaled
 #### SMF info configuration
 
 The `smf_info` section is used to configure the SMF Info, which is sent as part of the NF profile upon NRF registration.
-Please note that the values follow the `SmfInfo` datatype from 3GPP TS 29.510. Therefore, you also have to use
-the `camelCase` notation. If you do not configure any SMF profile, the following default profile is set:
+
+> Please note that the values follow the `SmfInfo` datatype from 3GPP TS 29.510. Therefore, you also have to use the `camelCase` notation. If you do not configure any SMF profile, the following default profile is set:
 
 ```yaml
 smf_info:
@@ -638,8 +638,7 @@ qos_profile:
   session_ambr_dl: "1000Mbps"
 ```
 
-*Note: In case you use a COTS UE, it is highly recommended to configure an `ims` DNN. Please see
-the [examples](../docker-compose) on how to do that.*
+> *Note: In case you use a COTS UE, it is highly recommended to configure an `ims` DNN. Please see the [examples](../docker-compose) on how to do that.*
 
 ### PCF
 

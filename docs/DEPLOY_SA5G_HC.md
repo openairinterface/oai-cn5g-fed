@@ -9,7 +9,7 @@ OAI 5G core network have different network functions which can be used invidiual
 
 **Tutorial replication time**: ~40mins
 
-**NOTE**: This tutorial will move in Orchestration repository starting next release. 
+> **NOTE**: This tutorial will move in Orchestration repository starting next release. 
 
 **TABLE OF CONTENTS**
 
@@ -150,9 +150,9 @@ Network_function/
 
 All the configurable parameters for a particular commit/release are mentioned in the `config.yaml` file. These parameters will keep on changing in the future depending on the nature of development and features. 
 
-**NOTE**: If there is a need to edit a specific configuration parameter that is not configurable via the helm-chart `config.yaml` file then it has to be changed at the time of building images.
+> **NOTE**: If there is a need to edit a specific configuration parameter that is not configurable via the helm-chart `config.yaml` file then it has to be changed at the time of building images.
 
-**NOTE**: Any changes done in the parent chart (Mini, basic, advance, case1, case2 or case3 scenario helm charts) will overwrite the sub charts. 
+> **NOTE**: Any changes done in the parent chart (Mini, basic, advance, case1, case2 or case3 scenario helm charts) will overwrite the sub charts. 
 
 ### 3.1 Networking related information
 
@@ -271,7 +271,7 @@ cd charts/oai-5g-core
 helm dependency update oai-5g-basic
 ```
 
-**NOTE**: Whenever you will make any change in the network function helm-chart or mysql helm chart you need to perform a dependency update to inform parent chart about the sub-charts update. 
+> **NOTE**: Whenever you will make any change in the network function helm-chart or mysql helm chart you need to perform a dependency update to inform parent chart about the sub-charts update. 
 
 ## 4. Deploying Helm Charts
 
@@ -483,7 +483,7 @@ rtt min/avg/max/mdev = 22.375/24.072/27.031/1.833 ms
 ## incase above doesn't work try with 8.8.8.8 instead of dns. If that works then probably you have't configure dns properly in SMF. 
 ```
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case1) 
+> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case1) 
 
 ```bash
 helm dependency update charts/e2e_scenarios/case1
@@ -843,7 +843,7 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected. 
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case3) 
+> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case3) 
 
 ```bash
 helm dependency update charts/e2e_scenarios/case3
