@@ -63,14 +63,11 @@ XDP is widely used in high-performance networking applications, such as NFV, SDN
 
 OAI-UPF-eBPF as a part of the OAI 5G mobile Core Network implements a data network gateway function. It communicates with the SMF via the Packet Forwarding Control Plane (PFCP) protocol (N4 interface) and forwards packets between Access and Data Networks using N3 and N6 interfaces respectively. These two main UPF parts are implemented in two separate components: the Management layer and the Datapath layer.
 
-<figure>
-  <img
-    src="images/5gcn_eBPF_upf.png"
-    alt="This is the UPF architecture using the eBPF technology. The architecture is designed in two layers: user and kernel space layers"
-    width="900"
-    height="600" />
 
-  <figcaption><b><font size = "5">Figure 1: UPF Architecture: eBPF XDP based</font></b></figcaption>
+![This is the UPF architecture using the eBPF technology. The architecture is designed in two layers: user and kernel space layers](images/5gcn_eBPF_upf.png)
+
+**Figure 1: UPF Architecture: eBPF XDP based**
+
 
 ### i. Management layer
 The Management layer is a user space library, which is responsible about PFCP sessions management. It receives packet processing rules from SMF via the reference point N4, and configures the Datapath for proper forwarding. It implements functions such as:
@@ -106,15 +103,10 @@ If such PDR is found, the packet passes to the Forwarder (i.e., FAR Program). Th
 ---------------------------------------------------------------------------------------------------------------------
 ## 3. OAI 5G Testbed
 ### i.  UPF Standalone Deployment
-<figure>
-  <img
-    src="images/5gcn_eBPF_testbed.png"
-    alt="This is the OAI 5GC architecture testbed. The architecture is designed in two layers: user and kernel space layers"
-    width="900"
-    height="400" />
 
-  <figcaption><b><font size = "5">Figure 2: UPF Architecture: eBPF XDP based</font></b></figcaption>
+![This is the OAI 5GC architecture testbed. The architecture is designed in two layers: user and kernel space layers](images/5gcn_eBPF_testbed.png)
 
+**Figure 2: UPF Architecture: eBPF XDP based**
 
 
 * In this demo the image tags and commits which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below.
@@ -1184,14 +1176,10 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 ## 9. Performance Evaluation
 ### i. UPF as Standalone
 
-<figure>
-  <img
-    src="images/setup_networking.png"
-    alt="This is the OAI 5GC testbed."
-    width="900"
-    height="400" />
+![This is the OAI 5GC testbed.](images/setup_networking.png)
 
-  <figcaption><b><font size = "5">Figure 3: Testbed Networking Setup</font></b></figcaption>
+**Figure 3: Testbed Networking Setup**
+
 
 
 #### a. Setup Configuration
