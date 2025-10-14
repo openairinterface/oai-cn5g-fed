@@ -41,7 +41,7 @@ The host machine hosting the virtual machines has the configuration below:
 
 The virtual machines are configured using KVM, though any other virtual machine manager can be used. To install KVM and virt-manager follow the below commands:
 
-```bash=
+```bash
 ~$ sudo apt-get install qemu-kvm
 ~$ sudo apt-get install qemu
 ~$ sudo apt-get install virt-manager
@@ -52,22 +52,22 @@ The virtual machines are configured using KVM, though any other virtual machine 
 
 Verify the installation:
 
-```bash=shell
+```bash
 ~$ sudo kvm-ok
 ```
 
 If everything is ok, you would see
 
-```bash=shell
+```console
 INFO: /dev/kvm exists
 KVM acceleration can be used
 ```
 
 Create virtual machines by using virt-manager GUI:
 
- ```bash=shell
+```bash
 ~$ sudo virt-manager
- ```
+```
 
 ## 3. Creating Virtual Machines
 
@@ -107,7 +107,7 @@ The branch commits used at the time of the demo are listed below:
 - The build can be made in two modes Debug and Release. Debug mode will provide more logs for debuging but may affect performance.
 - To read more about amf build [checkout](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/wikis/home)
 
-``` bash=
+```bash
 ~$ git clone -b bupt_amf https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
 ~$ cd ./oai-cn5g-amf/
 ~$ cd ./build/scripts/
@@ -121,7 +121,7 @@ The branch commits used at the time of the demo are listed below:
 - The build can be made in two modes Debug and Release. Debug mode will provide more logs for debuging but may affect performance.
 - To read more about smf build [checkout](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf/-/wikis/home)
 
-``` bash=
+```bash
 ~$ git clone -b develop https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf.git
 ~$ cd ./oai-cn5g-smf/
 ~$ cd ./build/scripts/
@@ -134,7 +134,7 @@ The branch commits used at the time of the demo are listed below:
 - Login to 5G-UP VM and open a terminal to fetch, build and install SPGWU
 - The build can be made in two modes Debug and Release. Debug mode will provide more logs for debuging but may affect performance.
 
-``` bash=
+```bash
 ~$ git clone -b gtp_extension_header https://github.com/OPENAIRINTERFACE/openair-spgwu-tiny.git
 ~$ cd ./openair-spgwu-tiny/
 ~$ sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes && DEBIAN_FRONTEND=noninteractive apt-get install --yes \
@@ -454,7 +454,7 @@ IPV4_POOL/IPV6_POOL : Above this location in the configuration file, select the 
 
 ### 6.1 Start AMF
 
-```bash=
+```bash
 ~$ sudo amf -c /etc/openxg/amf.conf -o --no-ausf
 [2021-04-20T11:56:06.526139] [AMF] [amf_app] [start] Options parsed!
 [2021-04-20T11:56:06.526232] [AMF] [amf_app] [debug]
@@ -487,7 +487,7 @@ Load AMF system configuration file(/etc/openxg/amf.conf)
 
 ### 6.2 Start SMF
 
-```bash=
+```bash
 ~$ sudo smf -c /etc/openxg/smf.conf -o
 [2021-04-20T11:56:08.499979] [smf] [smf_app] [start] Options parsed
 [2021-04-20T11:56:08.500451] [smf] [smf_app] [info ] SettingNotFoundException : SMF.ITTI_TASKS, using defaults
@@ -523,7 +523,7 @@ Load AMF system configuration file(/etc/openxg/amf.conf)
 
 ### 6.3 Start SPGWU
 
-```bash=
+```bash
 ~$ spgwu -c /etc/openxg/spgw_u.conf -o
 [2021-04-20T11:56:10.587369] [spgwu] [spgwu_app] [start] Options parsed
 [2021-04-20T11:56:10.588010] [spgwu] [spgwu_app] [info ] SettingNotFoundException : SPGW-U.ITTI_TASKS, using defaults

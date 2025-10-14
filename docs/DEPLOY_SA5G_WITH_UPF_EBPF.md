@@ -188,7 +188,7 @@ If you want to run OAI-UPF-eBPF from sources you can first install these depende
  oai-cn5g-upf$sudo apt install -y git gcc-multilib clang make cmake binutils-dev \
       libbpf-dev libelf-dev libpcap-dev zlib1g-dev \
       llvm libcap-dev python3-docutils tar
- ```
+```
 
 ### iii. UPF System Requirements
 
