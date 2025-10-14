@@ -276,8 +276,8 @@ docker-compose-host $: docker logs gnbsim > /tmp/oai/mini-gnbsim/gnbsim.log 2>&1
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
 | [5gcn-deployment-gnbsim.pcap](results/gnbSIM/pcap/5gcn-deployment-gnbsim.pcap)                  |
-| [amf.log](results/dsTest/logs/amf.log), [initialmessage.log](results/dsTest/logs/initialmessage.log) |
-| [smf.log](results/dsTest/logs/smf.log)                                                          |
+| [amf.log](results/dsTest/mini-with-gnbsim/amf.log), [upf.log](results/dsTest/mini-with-gnbsim/upf.log) |
+| [smf.log](results/dsTest/mini-with-gnbsim/smf.log)                                                          |
 
 ## 9. Trying Some Advanced Stuff
 
