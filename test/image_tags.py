@@ -36,7 +36,7 @@ image_tags = {
     "vpp-upf": "oaisoftwarealliance/oai-upf-vpp:develop",
     "ngap-tester": "ngap-tester:develop",
     "gnbsim": "gnbsim:latest",
-    "oai-gnb": "oaisoftwarealliance/oai-gnb:2024.w45",
-    "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:2024.w45",
+    "oai-gnb": "oaisoftwarealliance/oai-gnb:develop",
+    "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:develop",
     "mobsim": "carot0/mobsim:latest"
 }
