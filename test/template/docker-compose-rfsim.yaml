@@ -1,6 +1,6 @@
 services:
     oai-gnb:
-        image: oaisoftwarealliance/oai-gnb:2024.w44
+        image: oaisoftwarealliance/oai-gnb:2025.w42
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
@@ -12,9 +12,8 @@ services:
                 ipv4_address: REPLACE_IP
             n3_test_net:
                 ipv4_address: REPLACE_IP
-
         volumes:
-            - ./gnb.conf:/opt/oai-gnb/etc/gnb.conf
+            - ../../docker-compose/ran-conf/gnb.yaml:/opt/oai-gnb/etc/gnb.yaml
         healthcheck:
             test: /bin/bash -c "pgrep nr-softmodem"
             interval: 10s
@@ -22,7 +21,7 @@ services:
             retries: 5
 
     oai-nr-ue:
-        image: oaisoftwarealliance/oai-nr-ue:2024.w44
+        image: oaisoftwarealliance/oai-nr-ue:2025.w42
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
@@ -30,16 +29,12 @@ services:
             - NET_ADMIN  # for interface bringup
             - NET_RAW    # for ping
         environment:
-            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 --uicc0.imsi REPLACE_IMSI -C 3619200000 --rfsimulator.serveraddr REPLACE_IP --log_config.global_log_options level,nocolor,time
-        
+            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 --uicc0.imsi REPLACE_IMSI -C 3319680000 --rfsimulator.serveraddr REPLACE_IP --log_config.global_log_options level,nocolor,time
         networks:
             public_test_net:
                 ipv4_address: REPLACE_IP
         devices:
              - /dev/net/tun:/dev/net/tun
-        volumes:
-            - ./nr-ue.conf:/opt/oai-nr-ue/etc/nr-ue.conf
-
         healthcheck:
             test: /bin/bash -c "pgrep nr-uesoftmodem"
             interval: 10s

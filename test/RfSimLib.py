@@ -32,8 +32,7 @@ RAN_TEMPLATE = "template/docker-compose-rfsim.yaml"
 GNB_FIRST_IP = "192.168.79.140"
 GNB_N3_FIRST_IP = "192.168.80.140"
 NR_UE_FIRST_IP = "192.168.79.150"
-NR_UE_CONFIG_TEMPLATE = "../docker-compose/ran-conf/nr-ue.conf"
-GNB_CONFIG_TEMPLATE = "../docker-compose/ran-conf/gnb.conf"
+GNB_CONFIG_TEMPLATE = "../docker-compose/ran-conf/gnb.yaml"
 
 
 class RfSimLib:
@@ -92,10 +91,8 @@ class RfSimLib:
         """
         gnb_output_path = self.__get_docker_compose_path("ran_gnb")
         ue_output_path = self.__get_docker_compose_path("ran-ue")
-        shutil.copy(os.path.join(DIR_PATH, NR_UE_CONFIG_TEMPLATE), get_out_dir())
         shutil.copy(os.path.join(DIR_PATH, GNB_CONFIG_TEMPLATE), get_out_dir())
-        self.nr_ue_config_path = os.path.join(get_out_dir(), 'nr-ue.conf')
-        self.gnb_config_path = os.path.join(get_out_dir(), 'gnb.conf')
+        self.gnb_config_path = os.path.join(get_out_dir(), 'gnb.yaml')
         with open(os.path.join(DIR_PATH, RAN_TEMPLATE)) as f:
             parsed = yaml.safe_load(f)
 
