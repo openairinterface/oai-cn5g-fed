@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+    cn5g-tester:
+        container_name: "cn5g-tester"
+        image: phinetech/cn5g-tester:latest
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.143
+            n3_net:
+                ipv4_address: 192.168.71.143
+
+networks:
+    public_net:
+        driver: bridge
+        name: demo-oai-public-net
+        ipam:
+            config:
+                - subnet: 192.168.70.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-oai"
+    n3_net:
+        driver: bridge
+        name: demo-oai-n3-net
+        ipam:
+            config:
+                - subnet: 192.168.71.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-n3"
