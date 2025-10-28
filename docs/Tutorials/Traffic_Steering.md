@@ -1,6 +1,6 @@
 # OpenAirInterface 5G Core Traffic Steering/steering Network Deployment and Testing With Gnbsim
 
-![SA Traffic Steering Scenario](images/steering_tutorial.png)
+![SA Traffic Steering Scenario](../images/steering_tutorial.png)
 
 **Reading time: ~ 20 minutes**
 
@@ -8,12 +8,12 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 8CPU**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
 1. [Pre-requisites](#1-pre-requisites)
-2. [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+2. [Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 3. [Deploying OAI 5G Core Network](#3-deploying-oai-5g-core-network)
 4. [Simulate with gnbsim](#4-simulate-with-gnbsim)
 5. [Traffic test for Steering](#5-traffic-test-for-steering)
@@ -22,7 +22,7 @@
 8. [Conclusion](#8-conclusion)
 
 For this demo, all the images which use the `develop` branch have been retrieved from the official `docker-hub` (see also
-[Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md)).
+[Retrieving images](Retrieve-Official-Images.md)).
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
@@ -59,11 +59,11 @@ docker-compose-host $: rm -rf /tmp/oai/steering-scenario
 docker-compose-host $: mkdir -p /tmp/oai/steering-scenario
 docker-compose-host $: chmod 777 /tmp/oai/steering-scenario
 ```
-## [2. Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+## [2. Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 
 ## 3. Deploying OAI 5g Core Network
 
-We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-steering.yaml](../docker-compose/docker-compose-basic-vpp-pcf-steering.yaml)
+We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-steering.yaml](../../docker-compose/docker-compose-basic-vpp-pcf-steering.yaml)
 for details.
 
 
@@ -154,7 +154,7 @@ Please wait until all NFs are healthy.
 ## 4. Simulate with gnbsim
 
 When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
-Please see the [gnbsim tutorial](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
+Please see the [gnbsim tutorial](Mini_Deployment.md) on how to retrieve or build the image.
 
 * Instantiate first Gnbsim instance (IMSI - 208950000000032)
 
@@ -325,10 +325,10 @@ The results of this tutorial are located in `results/steering`. Click on the fil
 
 | Logs/PCAPs | Files |
 |----------|-------|
-| Logs | [amf.log](results//steering/amf.log), [ausf.log](results//steering/ausf.log), [control_plane.log](results//steering/control_plane.log), [gnbsim-vpp2.log](results//steering/gnbsim-vpp2.log), [gnbsim-vpp3.log](results//steering/gnbsim-vpp3.log), [nrf.log](results//steering/nrf.log), [pcf.log](results//steering/pcf.log), [smf.log](results//steering/smf.log), [udm.log](results//steering/udm.log), [udr.log](results//steering/udr.log), [ue1-test.log](results//steering/ue1-test.log), [ue2-test.log](results//steering/ue2-test.log), [user_plane_steering.log](results//steering/user_plane_steering.log), [vpp-upf-steering-session.log](results//steering/vpp-upf-steering-session.log), [vpp-upf.log](results//steering/vpp-upf.log) |
-| PCAPs | [control_plane.pcap](results//steering/control_plane.pcap), [user_plane_steering.pcap](results//steering/user_plane_steering.pcap) |
+| Logs | [amf.log](../results//steering/amf.log), [ausf.log](../results//steering/ausf.log), [control_plane.log](../results//steering/control_plane.log), [gnbsim-vpp2.log](../results//steering/gnbsim-vpp2.log), [gnbsim-vpp3.log](../results//steering/gnbsim-vpp3.log), [nrf.log](../results//steering/nrf.log), [pcf.log](../results//steering/pcf.log), [smf.log](../results//steering/smf.log), [udm.log](../results//steering/udm.log), [udr.log](../results//steering/udr.log), [ue1-test.log](../results//steering/ue1-test.log), [ue2-test.log](../results//steering/ue2-test.log), [user_plane_steering.log](../results//steering/user_plane_steering.log), [vpp-upf-steering-session.log](../results//steering/vpp-upf-steering-session.log), [vpp-upf.log](../results//steering/vpp-upf.log) |
+| PCAPs | [control_plane.pcap](../results//steering/control_plane.pcap), [user_plane_steering.pcap](../results//steering/user_plane_steering.pcap) |
 
-We can verify the PDU session details as per [UPF session logs](results/steering/vpp-upf-steering-session.log). We should note that the forwarding rule set for UE 1 (12.1.1.2), is with network instance `internet.oai.org.pri`. Which means all the UE 1 (12.1.1.2) traffic will be sent to DN over primary interface of the UPF.
+We can verify the PDU session details as per [UPF session logs](../results/steering/vpp-upf-steering-session.log). We should note that the forwarding rule set for UE 1 (12.1.1.2), is with network instance `internet.oai.org.pri`. Which means all the UE 1 (12.1.1.2) traffic will be sent to DN over primary interface of the UPF.
 
 ```yaml
 FAR: 1
@@ -347,7 +347,7 @@ FAR: 1
     Network Instance: internet.oai.org.sec
     Destination Interface: 1
 ```
-This can be also confirmed in the pcap trace [user_plane_steering.pcap](results/steering/user_plane_steering.pcap). We see that the packet #4 is the UE1 packet, that is sent to DN over UPF's primary interface (192.168.73.0/24). Similary for UE2, the request packet #373 is sent to DN over UPF's secondary interface (192.168.74.0/24). Hence, we confirm here that the UE packets are steered in uplink direction, based on policies configured at PCF.
+This can be also confirmed in the pcap trace [user_plane_steering.pcap](../results/steering/user_plane_steering.pcap). We see that the packet #4 is the UE1 packet, that is sent to DN over UPF's primary interface (192.168.73.0/24). Similary for UE2, the request packet #373 is sent to DN over UPF's secondary interface (192.168.74.0/24). Hence, we confirm here that the UE packets are steered in uplink direction, based on policies configured at PCF.
 
 ## 7. Undeploy Network Functions
 

@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Network Static UE IP Address Allocation
 
 
-![SA Basic Demo](images/docker-compose/5gCN-basic-withue.jpg)
+![SA Basic Demo](../images/docker-compose/5gCN-basic-withue.jpg)
 
 This tutorial shows how to configure OAI 5G core for providing static UE ip-addresses based on UE subscription data. In SMF configuration there is a parameter `USE_LOCAL_SUBSCRIPTION_INFO` which forces SMF to use local subscription information. For example using the DNN parameters (name,type and ip-address range) as defined in the configuration file. But all this information can be moved to mysql database and SMF can fetch it via communicating with UDM <--> UDR <--> MySql.
 
@@ -20,7 +20,7 @@ Please follow the tutorial step by step to create a stable working testbed.
 **Note**:
 - The commands mentioned in the document assume that your present working directory is `./docker-compose`. Make sure in the terminal in which you copy and paste the commands or write the tutorial commands as `pwd` as `./docker-compose`.
 - Best practice open this markdown file with your favourite editor or online on gitlab and open a terminal separately
-- Before reading this tutorial read this [one](DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
+- Before reading this tutorial read this [one](Basic_Deployment.md)
 
 > **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
@@ -30,7 +30,7 @@ Please follow the tutorial step by step to create a stable working testbed.
 
 ## 1. Pre-requisites
 
-Read the tutorial on [how to deploy a Basic OAI-5G core network](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) you can choose to deploy with or without NRF. In this tutorial we are choosing with nrf scenarion.
+Read the tutorial on [how to deploy a Basic OAI-5G core network](Basic_Deployment.md) you can choose to deploy with or without NRF. In this tutorial we are choosing with nrf scenarion.
 
 Create a folder where you can store all the result files of the tutorial and later compare them with our provided result files, we recommend creating exactly the same folder to not break the flow of commands afterwards
 
@@ -50,13 +50,13 @@ docker-compose-host $: chmod 777 /tmp/oai/static-ue-ip
 
 Edit the correct docker-compose file of Basic OAI 5G core network, set the parameter `USE_LOCAL_SUBSCRIPTION_INFO` to `no` in the smf service configuration of the docker-compose file.
 
-- When using nrf [docker-compose file with nrf](../docker-compose/docker-compose-basic-nrf.yaml)
+- When using nrf [docker-compose file with nrf](../../docker-compose/docker-compose-basic-nrf.yaml)
 
 ``` shell
 docker-compose-host $: sed -i 's/use_local_subscription_info: yes/use_local_subscription_info: no/g' conf/basic_nrf_config.yaml
 ```
 
-Then configure the [user subscription database sql file](../docker-compose/database/oai_db2.sql) with IMSI and DNN information mapping. In the table `SessionManagementSubscriptionData` add below entries
+Then configure the [user subscription database sql file](../../docker-compose/database/oai_db2.sql) with IMSI and DNN information mapping. In the table `SessionManagementSubscriptionData` add below entries
 
 - Static UE ip-address allocation
 
@@ -77,7 +77,7 @@ For now these two entries are present in the database file
 
 ## 3. Deploying OAI 5g Core Network
 
-In the previous tutorial we explain how to deploy the core network using our [python deployer](../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](DEPLOY_SA5G_MINI_WITH_GNBSIM.md).
+In the previous tutorial we explain how to deploy the core network using our [python deployer](../../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](Mini_Deployment.md).
 
 - Start the core network components, check which scenario you are using with nrf or without nrf
 
@@ -315,24 +315,24 @@ docker-compose-host $: sed -i 's/use_local_subscription_info: no/use_local_subsc
 
 | PCAP and Logs      |
 |:-------------------|
-| [capture.pcap](results/static-ue-ip/capture.pcap) |
-| [amf.log](results/static-ue-ip/amf.log)      |
-| [smf.log](results/static-ue-ip/smf.log)      |
-| [nrf.log](results/static-ue-ip/nrf.log)      |
-| [udm.log](results/static-ue-ip/udm.log)      |
-| [udr.log](results/static-ue-ip/udr.log)      |
-| [ausf.log](results/static-ue-ip/ausf.log)     |
+| [capture.pcap](../results/static-ue-ip/capture.pcap) |
+| [amf.log](../results/static-ue-ip/amf.log)      |
+| [smf.log](../results/static-ue-ip/smf.log)      |
+| [nrf.log](../results/static-ue-ip/nrf.log)      |
+| [udm.log](../results/static-ue-ip/udm.log)      |
+| [udr.log](../results/static-ue-ip/udr.log)      |
+| [ausf.log](../results/static-ue-ip/ausf.log)     |
 
 
 ## 9. Notes
 
 - The `oai-ext-dn` container is optional and is only required if the user wants to ping from the UE. In general this container is not required except for testing purposes.
-- Using the python script from above you can perform minimum `AMF, SMF, UPF, NRF, MYSQL` and basic `AMF, SMF, UPF, NRF, UDM, UDR, AUSF, MYSQL` 5g core funtional testing with `FQDN/IP` based feature along with `NRF/noNRF`. Check the configuration before using the docker compose [files](../docker-compose/).
+- Using the python script from above you can perform minimum `AMF, SMF, UPF, NRF, MYSQL` and basic `AMF, SMF, UPF, NRF, UDM, UDR, AUSF, MYSQL` 5g core funtional testing with `FQDN/IP` based feature along with `NRF/noNRF`. Check the configuration before using the docker compose [files](../../docker-compose/).
 - This tutorial can be taken as reference to test the OAI 5G core with a COTS UE. The configuration files has to be changed according to the gNB and COTS UE information should be present in the mysql database.
-- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use [docker-compose-basic-nrf-http2.yaml](../docker-compose/docker-compose-basic-nrf-http2.yaml)
-- Generally, in a COTS UE two PDN sessions are created by default so configure the IMS in SMF properly. Currently some parameters can not be configured via [docker-compose-basic-nrf.yaml](../docker-compose/docker-compose-basic-nrf.yaml). We recommend you configure them directly in the conf file and mount the file in the docker during runtime.
-- It is not necessary to use [core-network.py](../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
-- In case you want to deploy debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use [docker-compose-basic-nrf-http2.yaml](../../docker-compose/docker-compose-basic-nrf-http2.yaml)
+- Generally, in a COTS UE two PDN sessions are created by default so configure the IMS in SMF properly. Currently some parameters can not be configured via [docker-compose-basic-nrf.yaml](../../docker-compose/docker-compose-basic-nrf.yaml). We recommend you configure them directly in the conf file and mount the file in the docker during runtime.
+- It is not necessary to use [core-network.py](../../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
+- In case you want to deploy debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 ``` bash
 #To start the containers

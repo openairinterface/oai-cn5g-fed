@@ -11,7 +11,7 @@ values and the default values.
 
 ### Location of the configuration file
 
-When you are using the [docker-compose deployment](DEPLOY_SA5G_BASIC_DEPLOYMENT.md), the configuration file is located
+When you are using the [docker-compose deployment](Basic_Deployment.md), the configuration file is located
 inside the container:
 
 ```
@@ -40,10 +40,10 @@ When you are using a bare-metal deployment, you have to tell the NF which file t
 
 ### Example configurations
 
-The [docker-compose](../docker-compose) folder contains example configurations, which are used by the tutorials
-described in [docs](../docs).
+The [docker-compose](../../docker-compose) folder contains example configurations, which are used by the tutorials
+described in [docs](../).
 
-You can have a look at the [docker-compose/conf](../docker-compose/conf) folder to see real-world examples of how the
+You can have a look at the [docker-compose/conf](../../docker-compose/conf) folder to see real-world examples of how the
 OAI 5GC NFs can be configured.
 
 ### Validation
@@ -638,7 +638,7 @@ qos_profile:
   session_ambr_dl: "1000Mbps"
 ```
 
-> *Note: In case you use a COTS UE, it is highly recommended to configure an `ims` DNN. Please see the [examples](../docker-compose) on how to do that.*
+> *Note: In case you use a COTS UE, it is highly recommended to configure an `ims` DNN. Please see the [examples](../../docker-compose) on how to do that.*
 
 ### PCF
 
@@ -652,7 +652,7 @@ local_policy:
 ```
 
 How to configure the policies for PCF itself is not covered in this document. You can see
-the [policies](../docker-compose/policies) folder for examples.
+the [policies](../../docker-compose/policies) folder for examples.
 
 The allowed values of the PCF configuration are as follows:
 
@@ -674,7 +674,7 @@ slice_config_path: <slice_config_path>
 ```
 
 How to configure the slice configuration for NSSF itself is not covered in this document. You can see
-the [nssf_slice_config.yaml](../docker-compose/conf/nssf_slice_config.yaml) file for an example.
+the [nssf_slice_config.yaml](../../docker-compose/conf/nssf_slice_config.yaml) file for an example.
 
 The allowed values of the NSSF configuration are as follows:
 
@@ -726,7 +726,7 @@ upf_info:
 ## 3. MySQL database configuration
 
 A user subscription should be present in the mysql database before trying to connect the UE. This can
-be done by adding the UE information in the [oai_db2.sql](../docker-compose/database/oai_db2.sql) file
+be done by adding the UE information in the [oai_db2.sql](../../docker-compose/database/oai_db2.sql) file
 
 First, you have to configure the authentication subscription:
 

@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Network Basic Deployment using Docker-Compose
 
 
-![SA Demo](images/docker-compose/5gCN-basic.jpg)
+![SA Demo](../images/docker-compose/5gCN-basic.jpg)
 
 **OVERVIEW**
 
@@ -21,7 +21,7 @@ Please follow the tutorial step by step to create a stable working testbed. You 
 
 **Note**
 
-- In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md).
+- In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md).
 - In this tutorial we have considered two different host machines, `docker-compose-host` as the host machine to deploy core network functions and `gNB-host` as the gNB host machine.
 
 
@@ -79,7 +79,7 @@ docker-compose-host $: sudo iptables -P FORWARD ACCEPT
 
 ## 3. Network Function Container Images
 
-- In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](BUILD_IMAGES.md) to build images with the tags below.
+- In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](Retrieve-Official-Images.md) or the [Building images](Build-Images.md) to build images with the tags below.
 
 | CNF Name    | Branch Name | Tag      | Ubuntu 18.04 | RHEL8 (UBI8)    |
 | ----------- | ----------- | -------- | ------------ | ----------------|
@@ -106,7 +106,7 @@ There are two ways to create this bridge, either manually or automatically using
 
 Since this is not the `default` behavior, you **have to** edit the docker-compose file.
 
-- The bottom section of [docker-compose file](../docker-compose/docker-compose-mini-nrf.yaml) SHALL look like this:
+- The bottom section of [docker-compose file](../../docker-compose/docker-compose-mini-nrf.yaml) SHALL look like this:
 
 ```
     networks:
@@ -149,7 +149,7 @@ Since this is not the `default` behavior, you **have to** edit the docker-compos
 
 - Though the bridge can be automatically created using docker-compose file if there is no need to capture initial packets.
 
-This is the `default` version in the [docker-compose-basic-nrf.yaml](../docker-compose/docker-compose-basic-nrf.yaml).
+This is the `default` version in the [docker-compose-basic-nrf.yaml](../../docker-compose/docker-compose-basic-nrf.yaml).
 
 The bottom section SHALL look like this:
 
@@ -230,10 +230,10 @@ You can also check configuration on our [wiki](https://gitlab.eurecom.fr/oai/cn5
 
 There are two ways to configure the User Subscription Profile,
 
-1. Pre-configure all the users in the [database file](../docker-compose/database/oai_db2.sql). This way when the core network starts it will have all the users.
+1. Pre-configure all the users in the [database file](../../docker-compose/database/oai_db2.sql). This way when the core network starts it will have all the users.
 2. Add a new user when the core-network is already running.
 
-For the first method, you have to edit the [database file](../docker-compose/database/oai_db2.sql) and add or change the entries in table `AuthenticationSubscription`, either remove the already present entries or add a new one like below:
+For the first method, you have to edit the [database file](../../docker-compose/database/oai_db2.sql) and add or change the entries in table `AuthenticationSubscription`, either remove the already present entries or add a new one like below:
 
 ```sql
 INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPermanentKey`, `protectionParameterId`, `sequenceNumber`, `authenticationManagementField`, `algorithmId`, `encOpcKey`, `encTopcKey`, `vectorGenerationInHss`, `n5gcAuthMethod`, `rgAuthenticationInd`, `supi`) VALUES
@@ -256,7 +256,7 @@ Make sure you edit the IMSI, opc and key according to the settings of your user 
 
 ## 6. Deploying OAI 5g Core Network
 
-- The core network is deployed using a [python script](../docker-compose/core-network.py) which is a wrapper around `docker-compose` and `docker` command. The script purpose is to make the deployment easy.
+- The core network is deployed using a [python script](../../docker-compose/core-network.py) which is a wrapper around `docker-compose` and `docker` command. The script purpose is to make the deployment easy.
 - The script informs the user when the core-network is correctly configured by checking the health status of containers and connectivity between different core network components.
 - To know how to use the script look, for the help menu as shown below.
 - There are three parameters which can be provided
@@ -376,12 +376,12 @@ docker-compose-host $: ping <ue-ip-address>
 ## 7. Notes
 
 - The `oai-ext-dn` container is optional and is only required if the user wants to ping from the UE. In general this container is not required except for testing purposes.
-- Using the python script from above you can perform minimum `AMF, SMF, UPF (SPGWU), NRF, MYSQL` and basic `AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL` 5g core funtional testing with `FQDN/IP` based feature along with `NRF/noNRF`. Check the configuration before using the docker compose [files](../docker-compose/).
+- Using the python script from above you can perform minimum `AMF, SMF, UPF (SPGWU), NRF, MYSQL` and basic `AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL` 5g core funtional testing with `FQDN/IP` based feature along with `NRF/noNRF`. Check the configuration before using the docker compose [files](../../docker-compose/).
 - This tutorial can be taken as reference to test the OAI 5G core with a COTS UE. The configuration file has to be changed according to the gNB, and COTS UE information should be present in the mysql database.
-- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use [docker-compose-basic-nrf-http2.yaml](../docker-compose/docker-compose-basic-nrf-http2.yaml)
+- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use [docker-compose-basic-nrf-http2.yaml](../../docker-compose/docker-compose-basic-nrf-http2.yaml)
 - Generally, in a COTS UE, two PDN sessions are created by default so configure the IMS in SMF properly.
-- In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
-- It is not necessary to use [core-network.py](../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
+- In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](Debug-5G-Core.md)
+- It is not necessary to use [core-network.py](../../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
   ``` console
   #To start the containers
   docker-compose-host $: docker-compose -f <file-name> up -d
@@ -397,6 +397,6 @@ To report an issue regarding any-component of CN5G,
 
 1. Share the testing scenario, what the test is trying to achieve.
 2. Share logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured take care of interface on which the packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`. So that the size of `.pcap` file is not huge.
-3. You can send an email at openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters. Choose an appropriate subject.
+3. You can send an email at [openair5g-cn@lists.eurecom.fr](mailto:openair5g-cn@lists.eurecom.fr) with the configuration files, log files in debug mode and pcaps with appropriate filters. Choose an appropriate subject.
 4. You can also report an issue or create a bug directly on gitlab. You don't need to sign `Contributor License Agreement` to open issues, it is only needed when you want to contribute and push your changes. You have to send us an email to whitelist your domain/email-address to create a gitlab account, please contact us at contact@openairinterface.org.
-5. If you are interested to contribute then please follow [contribution guidelines](../CONTRIBUTING.md).
+5. If you are interested to contribute then please follow [contribution guidelines](../../CONTRIBUTING.md).

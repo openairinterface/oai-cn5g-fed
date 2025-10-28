@@ -2,7 +2,7 @@
 
 Currently there is no special tool for debugging the problems of core network components. Though there are certain methods which we use in our team to diagnose an issue.
 
-This page content expects you to read [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) normal deployment.
+This page content expects you to read [deployment pre-requisites](Prerequisites.md) and try to deploy a [mini](Mini_Deployment.md) or [basic](Basic_Deployment.md) normal deployment.
 
 **TABLE OF CONTENTS**
 
@@ -89,7 +89,7 @@ The command above will launch the network function in the background, and all th
 
 ### 2.2 Docker environment (Recommended)
 
-Using docker environment for deployment and development is the preferred way because there, it is easy to have dedicated working environment for each network component. It is lightweight and easy to manage. The docker-compose provided in [tutorials](DEPLOY_HOME.md) is good for learning how the OAI core network works and how to use it. But if the user wants to change some parameters which are not variable or not allowed using docker-compose then it is hard to use the docker-compose approach. If the user wants to provide their own configuration file then it is better to change the docker-compose. Follow the steps below to create a new developer/debugger specific docker-compose,
+Using docker environment for deployment and development is the preferred way because there, it is easy to have dedicated working environment for each network component. It is lightweight and easy to manage. The docker-compose provided in [tutorials](Overview.md) is good for learning how the OAI core network works and how to use it. But if the user wants to change some parameters which are not variable or not allowed using docker-compose then it is hard to use the docker-compose approach. If the user wants to provide their own configuration file then it is better to change the docker-compose. Follow the steps below to create a new developer/debugger specific docker-compose,
 
 #### 2.2.1 Prerequisites
 
@@ -107,7 +107,7 @@ Using docker environment for deployment and development is the preferred way bec
     | spgw_u.conf | (Github) OPENAIRINTERFACE/openair-spgwu-tiny | [etc/spgw_u.conf](https://github.com/OPENAIRINTERFACE/openair-spgwu-tiny/blob/nrf_fqdn/etc/spgw_u.conf) |
 
 5. Create empty log files for the component you want to use in the `logs` folder using the `touch` command
-6. Copy [oai_db1.sql](../docker-compose/database/oai_db1.sql), make a user database depending on the IMSI, LTKEY and Opc. New user entry can be added after this [line](../docker-compose/database/oai_db1.sql#L193)
+6. Copy [oai_db1.sql](../../docker-compose/database/oai_db1.sql), make a user database depending on the IMSI, LTKEY and Opc. New user entry can be added after this [line](../../docker-compose/database/oai_db1.sql#L193)
 
 ```
 # Create the directory structure
@@ -153,7 +153,7 @@ Create entrypoints for all the network functions which are required.
 
 #### 2.2.3 Healthchecks
 
-The healthchecks can be directly used from [here](../docker-compose/healthscripts), copy them in the `healthchecks` folder.
+The healthchecks can be directly used from [here](../../docker-compose/healthscripts), copy them in the `healthchecks` folder.
 
 #### 2.2.4 Creating docker-compose
 
@@ -285,5 +285,5 @@ To report an issue regarding any-component of CN5G or attach-detach procedure fo
 
 1. Share the testing scenario, what the test is trying to achieve.
 2. Share Debug logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured, take care of the interface on which packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`
-3. If you have an issue with testing then you can send an email at openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters.
-4. You can also report an issue or create a bug directly on GitLab, to create an account on our GitLab please follow [this procedure].(../CONTRIBUTING.md)
+3. If you have an issue with testing then you can send an email at [openair5g-cn@lists.eurecom.fr](mailto:openair5g-cn@lists.eurecom.fr) with the configuration files, log files in debug mode and pcaps with appropriate filters.
+4. You can also report an issue or create a bug directly on GitLab, to create an account on our GitLab please follow [this procedure](../../CONTRIBUTING.md)

@@ -1,6 +1,6 @@
 # OpenAirInterface 5G Core Network Deployment and Testing with gnbsim
 
-![SA Slicing Demo](images/5gcn_slicing.png)
+![SA Slicing Demo](../images/5gcn_slicing.png)
 
 **Reading time: ~ 30mins**
 
@@ -8,7 +8,7 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 4CPU (Based on docker stats)**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 > **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
@@ -16,9 +16,9 @@
 
 [[_TOC_]]
 
-* In this demo the image tags and commits which were used are listed below, follow the [Building images](BUILD_IMAGES.md) to build images with the tags below.
+* In this demo the image tags and commits which were used are listed below, follow the [Building images](Build-Images.md) to build images with the tags below.
 
-You can also retrieve the images from `docker-hub`. See [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md).
+You can also retrieve the images from `docker-hub`. See [Retrieving images](Retrieve-Official-Images.md).
 
 | CNF Name    | Branch Name   | Tag used at time of writing   | Ubuntu 22.04 | RHEL8         |
 | ----------- |:------------- | ----------------------------- | ------------ | --------------|
@@ -66,7 +66,7 @@ Here AMF, NSSF, UDM, UDR, AUSF are common to all slices. SMF and UPF in slice 1 
 
 **Let's begin !!**
 
-* Steps 1 to 4 are similar to previous tutorials such as [minimalist](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) deployments. Please follow these steps to deploy OAI 5G core network components.
+* Steps 1 to 4 are similar to previous tutorials such as [minimalist](Mini_Deployment.md) or [basic](Basic_Deployment.md) deployments. Please follow these steps to deploy OAI 5G core network components.
 
 ## 1. Pre-requisites
 
@@ -366,12 +366,12 @@ docker-compose-host $: docker logs ueransim > /tmp/oai/slicing-with-nssf/ueransi
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
-| [5gcn-deployment-slicing.pcap](results/slicing/pcap/5gcn-deployment-slicing.pcap)        |
+| [5gcn-deployment-slicing.pcap](../results/slicing/pcap/5gcn-deployment-slicing.pcap)        |
 
 ## 10. UE with multiple S-NSSAIs
 OAI 5G CN also supports UE with multiple slices. Apparently the ran simulators that we have validated do not support UE with multiple slices at once.
 
-![Multislice](images/5gcn_slicing_ue_multislice.png)
+![Multislice](../images/5gcn_slicing_ue_multislice.png)
 
 ## 11. Undeploy network functions
 

@@ -2,9 +2,9 @@
 
 ## This page is only valid for a `Ubuntu` host.
 
-If you are using any other distributions, please refer to [Build your own images](BUILD_IMAGES.md).
+If you are using any other distributions, please refer to [Build your own images](Build-Images.md).
 
-If you want to use a specific branch or commit, please refer to [Build your own images](BUILD_IMAGES.md).
+If you want to use a specific branch or commit, please refer to [Build your own images](Build-Images.md).
 
 ## Pulling the images from Docker Hub
 
@@ -139,6 +139,6 @@ $ git checkout -f develop
 $ git rebase origin/develop
 ```
 
-You are ready to [Configure the Containers](CONFIGURATION.md).
+You are ready to [Configure the Containers](Configuration.md).
 
-You can also go [back](DEPLOY_HOME.md) to the list of tutorials.
+You can also go [back](Overview.md) to the list of tutorials.

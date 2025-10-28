@@ -1,18 +1,18 @@
 # OpenAirInterface 5G Core Network Deployment and Testing with UERANSIM
 
 
-![SA Demo](images/5gcn_vpp_upf_ueransim.png)
+![SA Demo](../images/5gcn_vpp_upf_ueransim.png)
 
 **Reading time: ~ 30mins**
 
 **Tutorial replication time: ~ 1h30mins**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
 1.  Pre-requisites
-2.  [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+2.  [Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
 5.  Deploying OAI 5G Core Network
@@ -21,7 +21,7 @@
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
 9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 
-* In this demo the image tags and commits which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below.
+* In this demo the image tags and commits which were used are listed below, follow [Building images](Build-Images.md) to build images with the tags below.
 
 | CNF Name    | Branch Name | Tag      | Ubuntu 18.04 | RHEL8 (UBI8)    |
 | ----------- | ----------- | -------- | ------------ | ----------------|
@@ -35,7 +35,7 @@
 
 <br/>
 
-This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
+This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](Basic_Deployment.md).
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `UERANSIM`. With the help of `UERANSIM` tool, we can perform very basic SA5G test by simulating one gnb and multiple ues.
 
@@ -114,7 +114,7 @@ docker image tag rohankharade/ueransim:latest ueransim:latest
 
 ## 7. Executing the `UERANSIM` Scenario
 
-* The configuration parameters are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose.yaml OF UERANSIM](../docker-compose/docker-compose-ueransim-vpp.yaml) and one can modify it for testing purposes.
+* The configuration parameters are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose.yaml OF UERANSIM](../../docker-compose/docker-compose-ueransim-vpp.yaml) and one can modify it for testing purposes.
 * Launch ueransim docker service
 ```bash
 oai-cn5g-fed/docker-compose$ docker-compose -f docker-compose-ueransim-vpp.yaml up -d
@@ -270,7 +270,7 @@ iperf Done.
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
-| [5gcn-deployment-ueransim.pcap](results/UERANSIM/pcap/5gcn-deployment-ueransim.pcap)                  |
+| [5gcn-deployment-ueransim.pcap](../results/UERANSIM/pcap/5gcn-deployment-ueransim.pcap)                  |
 
 
 ## 9. Trying Some Advanced Stuff

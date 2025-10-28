@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Advance Deployment Using Docker-Compose
 
 
-![SA Demo](images/docker-compose/5gCN-basic.jpg)
+![SA Demo](../images/docker-compose/5gCN-basic.jpg)
 
 This tutorial is strictly for the advanced users of OAI who have an understanding about how the core network functions work and are comfortable in changing the configuration directly in the config file of each network function rather than in docker-compose using environment variables. 
 
@@ -9,7 +9,7 @@ The current method which we provide to the community to change the network funct
 
 If you would like to contribute then we will be glad to have your contributions. 
 
-Before reading this tutorial it will be good if you can go through [deployment pre-requisites](DEPLOY_PRE_REQUISITES.md) and try to deploy a [mini](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) or [basic](DEPLOY_SA5G_BASIC_DEPLOYMENT.md) deployment.
+Before reading this tutorial it will be good if you can go through [deployment pre-requisites](Prerequisites.md) and try to deploy a [mini](Mini_Deployment.md) or [basic](Basic_Deployment.md) deployment.
 
 **TABLE OF CONTENTS**
 
@@ -46,7 +46,7 @@ In the docker-compose file we are using the image names as above. If you wish to
 
 ### 1.2 Building docker images
 
-Read the tutorial [build image](BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
+Read the tutorial [build image](Build-Images.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
 
 By default all the dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
 
@@ -67,7 +67,7 @@ $ vi/vim/nano/subl Dockerfile.amf.ubuntu
 
 ## 2. Deploying core network
 
-Before running the docker containers it is important to configure PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql). The config files are present in [conf folder](../docker-compose/conf). 
+Before running the docker containers it is important to configure PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql). The config files are present in [conf folder](../../docker-compose/conf). 
 
 ### 2.1 Configure the network functions according to your PLMN, Slice and DNN
 
@@ -78,7 +78,7 @@ The IP address or fully qualified domain name (FQDN) for each service is configu
 3. Configure `dnn` in SMF
 4. Add users in the database according to your sim card
 
-  Configure the [user subscription database sql file](../docker-compose/database/oai_db2.sql) for authentication information and pdu session.
+  Configure the [user subscription database sql file](../../docker-compose/database/oai_db2.sql) for authentication information and pdu session.
 
   Authentication information is provisioned in table `AuthenticationSubscription`
   ```sql
@@ -197,4 +197,4 @@ To report an issue regarding any component of CN5G follow the below procedure:
 1. Share the testing scenario, what the test is trying to achieve
 2. Debug logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured take care of interface on which the packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`
 3. If you have an issue with testing then you can send an email to openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters. 
-4. You can report an issue directly on network function repository on gitlab. To create an account on our gitlab server please follow account creation part from [here](../CONTRIBUTING.md)
+4. You can report an issue directly on network function repository on gitlab. To create an account on our gitlab server please follow account creation part from [here](../../CONTRIBUTING.md)

@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Network when using any docker-compose-based deployment
 
 
-![SA Demo](images/docker-compose/5gCN-mini.jpg)
+![SA Demo](../images/docker-compose/5gCN-mini.jpg)
 
 **OVERVIEW**
 

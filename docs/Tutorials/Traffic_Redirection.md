@@ -1,7 +1,7 @@
 # OpenAirInterface 5G Core Traffic redirect/Redirection Network Deployment and Testing With Gnbsim
 
 
-![SA Traffic Redirection Scenario](images/redirection_tutorial.png)
+![SA Traffic Redirection Scenario](../images/redirection_tutorial.png)
 
 **Reading time: ~ 20 minutes**
 
@@ -9,12 +9,12 @@
 
 **Compute resource recommendation: ~ 6GB RAM, 8CPU**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
 1. [Pre-requisites](#1-pre-requisites)
-2. [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+2. [Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 3. [Deploying OAI 5G Core Network](#3-deploying-oai-5g-core-network)
 4. [Simulate with gnbsim](#4-simulate-with-gnbsim)
 5. [Traffic test for Redirection](#5-traffic-test-for-redirection)
@@ -23,7 +23,7 @@
 8. [Conclusion](#8-conclusion)
 
 For this demo, all the images which use the `develop` branch have been retrieved from the official `docker-hub` (see also
-[Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md)).
+[Retrieving images](Retrieve-Official-Images.md)).
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
@@ -60,11 +60,11 @@ docker-compose-host $: rm -rf /tmp/oai/redirect-scenario
 docker-compose-host $: mkdir -p /tmp/oai/redirect-scenario
 docker-compose-host $: chmod 777 /tmp/oai/redirect-scenario
 ```
-## [2. Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+## [2. Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 
 ## 3. Deploying OAI 5g Core Network
 
-We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-redirection.yaml](../docker-compose/docker-compose-basic-vpp-pcf-redirection.yaml)
+We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-redirection.yaml](../../docker-compose/docker-compose-basic-vpp-pcf-redirection.yaml)
 for details.
 
 
@@ -153,7 +153,7 @@ Please wait until all NFs are healthy.
 ## 4. Simulate with gnbsim
 
 When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
-Please see the [gnbsim tutorial](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
+Please see the [gnbsim tutorial](Mini_Deployment.md) on how to retrieve or build the image.
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml up -d 
@@ -275,10 +275,10 @@ The results of this tutorial are located in `results/redirect`. Click on the fil
 
 | Logs/PCAPs | Files |
 |----------|-------|
-| Logs | [amf.log](results/redirect/amf.log), [ausf.log](results/redirect/ausf.log), [control_plane.log](results/redirect/control_plane.log), [gnbsim-vpp.log](results/redirect/gnbsim-vpp.log), [nrf.log](results/redirect/nrf.log), [pcf.log](results/redirect/pcf.log), [smf.log](results/redirect/smf.log), [udm.log](results/redirect/udm.log), [udr.log](results/redirect/udr.log), [ue-test.log](results/redirect/ue-test.log), [user_plane_redirect.log](results/redirect/user_plane_redirect.log), [vpp-upf-redirect-session.log](results/redirect/vpp-upf-redirect-session.log), [vpp-upf.log](results/redirect/vpp-upf.log) |
-| PCAPs | [control_plane.pcap](results/redirect/control_plane.pcap), [user_plane_redirect.pcap](results/redirect/user_plane_redirect.pcap) |
+| Logs | [amf.log](../results/redirect/amf.log), [ausf.log](../results/redirect/ausf.log), [control_plane.log](../results/redirect/control_plane.log), [gnbsim-vpp.log](../results/redirect/gnbsim-vpp.log), [nrf.log](../results/redirect/nrf.log), [pcf.log](../results/redirect/pcf.log), [smf.log](../results/redirect/smf.log), [udm.log](../results/redirect/udm.log), [udr.log](../results/redirect/udr.log), [ue-test.log](../results/redirect/ue-test.log), [user_plane_redirect.log](../results/redirect/user_plane_redirect.log), [vpp-upf-redirect-session.log](../results/redirect/vpp-upf-redirect-session.log), [vpp-upf.log](../results/redirect/vpp-upf.log) |
+| PCAPs | [control_plane.pcap](../results/redirect/control_plane.pcap), [user_plane_redirect.pcap](../results/redirect/user_plane_redirect.pcap) |
 
-We can verify the PDU session details as per [UPF session logs](results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
+We can verify the PDU session details as per [UPF session logs](../results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
 
 ```yaml
 FAR: 1
@@ -289,7 +289,7 @@ FAR: 1
     Redirect Information: HTTP to facebook.com
 ```
 
-In the [UE traffic trace](results/redirect/ue-test.log) at gnbsim-vpp, we can see that the HTTP GET request generated using curl for destination `google.com` is redirected to new HTTP address `facebook.com`. This can be also confirmed in the pcap trace [user_plane_redirect.pcap](results/redirect/user_plane_redirect.pcap), where request packet #4 is destinated for URI `google.com` & the response packet #6 is with HTTP code (302-redirection) from destination `facebook.com`
+In the [UE traffic trace](../results/redirect/ue-test.log) at gnbsim-vpp, we can see that the HTTP GET request generated using curl for destination `google.com` is redirected to new HTTP address `facebook.com`. This can be also confirmed in the pcap trace [user_plane_redirect.pcap](../results/redirect/user_plane_redirect.pcap), where request packet #4 is destinated for URI `google.com` & the response packet #6 is with HTTP code (302-redirection) from destination `facebook.com`
 
 ## 7. Undeploy Network Functions
 

@@ -1,18 +1,18 @@
 # OpenAirInterface 5G Core Network Deployment and Testing with My5g-RANTester
 
 
-![SA Demo](images/5gcn_vpp_upf_my5grantester.png)
+![SA Demo](../images/5gcn_vpp_upf_my5grantester.png)
 
 **Reading time: ~ 30mins**
 
 **Tutorial replication time: ~ 1h30mins**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
 1.  Pre-requisites
-2.  [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+2.  [Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
 5.  Deploying OAI 5G Core Network
@@ -20,7 +20,7 @@
 7.  [Executing the `My5g-RANTester` Scenario](#7-executing-the-my5g-rantester-scenario)
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
 
-* In this demo the image tags which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below. When pulling images of network functions from dockerhub pull images for `develop` tag
+* In this demo the image tags which were used are listed below, follow [Building images](Build-Images.md) to build images with the tags below. When pulling images of network functions from dockerhub pull images for `develop` tag
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8         |
 | ----------- |:-------------- | ----------------------------- | ------------ | --------------|
@@ -36,7 +36,7 @@
 
 <br/>
 
-This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
+This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](Basic_Deployment.md).
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `My5g-RANTester`. With the help of `My5g-RANTester` tool, we can perform very basic SA5G test by simulating one gnb and multiple ues.
 
@@ -126,7 +126,7 @@ vpp-upf      /openair-upf/bin/entrypoin ...   Up (healthy)   2152/udp, 8085/udp
 [2022-02-08 16:20:11,928] root:DEBUG:  OAI 5G Core network is configured and healthy....
 ```
 
-More details in [section 5 of the `basic` vpp tutorial](DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
+More details in [section 5 of the `basic` vpp tutorial](UPF_VPP.md#5-deploying-oai-5g-core-network).
 
 ## 6. Building a `My5g-RANTester` docker image
 * Pull pre-built docker image
@@ -146,7 +146,7 @@ docker-compose-host $: docker build -f docker/Dockerfile --target my5grantester 
 
 ## 7. Executing the `My5g-RANTester` Scenario
 
-* The configuration parameters, are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose-my5grantester-vpp.yaml](../docker-compose/docker-compose-my5grantester-vpp.yaml) and one can modify it for test.
+* The configuration parameters, are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose-my5grantester-vpp.yaml](../../docker-compose/docker-compose-my5grantester-vpp.yaml) and one can modify it for test.
 * Launch my5G-RANTester docker service
 
 <!---
@@ -283,7 +283,7 @@ rtt min/avg/max/mdev = 0.467/0.670/1.013/0.244 ms
 ```
 ## Multiple UEs registration test
 Load-test with UEs in queue*:
-* Update value in the [docker-compose-my5grantester-vpp.yaml](../docker-compose/docker-compose-my5grantester-vpp.yaml)
+* Update value in the [docker-compose-my5grantester-vpp.yaml](../../docker-compose/docker-compose-my5grantester-vpp.yaml)
 ``` console
      NUM_UE: 10
 ```
@@ -340,5 +340,5 @@ docker-compose-host $: python3 ./core-network.py --type stop-basic-vpp --scenari
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
-| [5gcn-deployment-my5G-RANTester.pcap](results/My5g-RANTester/5gcn-deployment-my5grantester.pcap)                  |
+| [5gcn-deployment-my5G-RANTester.pcap](../results/My5g-RANTester/5gcn-deployment-my5grantester.pcap)                  |
 

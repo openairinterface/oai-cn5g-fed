@@ -2,7 +2,7 @@
 
 OAI 5G core network have different network functions which can be used invidiually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster. 
 
-![Helm Chart Deployment](images/helm-chart.png)
+![Helm Chart Deployment](../images/helm-chart.png)
 
 
 **Reading time**: ~30 mins
@@ -78,8 +78,8 @@ And later add the labels to allow creating `privileged` pods.
 
 Ubuntu base images can be pulled from [docker-hub](https://hub.docker.com/u/oaisoftwarealliance). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. In case of RHEL based worker node you can build your own UBI images, to download packages from RHEL repository you need a developer or enterprise account. 
 
-1. To learn how to build UBI 9.X images follow this [tutorial](../openshift/README.md)
-2. To learn how to build Ubuntu images follow this [tutorial](BUILD_IMAGES.md)
+1. To learn how to build UBI 9.X images follow this [tutorial](../../openshift/README.md)
+2. To learn how to build Ubuntu images follow this [tutorial](Build-Images.md)
 
 
 ## 3. Configuring Helm Charts
@@ -96,9 +96,9 @@ oai-cu  oai-cu-cp  oai-cu-up  oai-du  oai-gnb  oai-nr-ue
 
 All the OAI core network charts are present in `oai-5g-core` folder, there you can find charts of individual network functions and for the above described three different deployment settings. 
 
-1. Folder `oai-5g-mini` is for [minimalist deployment](../charts/oai-5g-core/oai-5g-mini/README.md)
-2. Folder `oai-5g-basic` is for [basic deployment](../charts/oai-5g-core/oai-5g-basic/README.md)
-3. Folder `oai-5g-advance` is for [advance deployment](../charts/oai-5g-core/oai-5g-advance/README.md)
+1. Folder `oai-5g-mini` is for [minimalist deployment](../../charts/oai-5g-core/oai-5g-mini/README.md)
+2. Folder `oai-5g-basic` is for [basic deployment](../../charts/oai-5g-core/oai-5g-basic/README.md)
+3. Folder `oai-5g-advance` is for [advance deployment](../../charts/oai-5g-core/oai-5g-advance/README.md)
 
 These charts are configured keeping in mind 5G service based architecture, if you want to deploy using reference based architecture then you need to make certain changes. 
 
@@ -241,9 +241,9 @@ When pulling images from docker hub you have several choices either to use image
 
 ### 3.3 Configuring Helm Chart Parameters
 
-In the [config.yaml](../charts/oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
+In the [config.yaml](../../charts/oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
 
-For basic and advance deployment check the database [oai_db-basic.sql](../charts/oai-5g-core/mysql/initialization/oai_db-basic.sql)
+For basic and advance deployment check the database [oai_db-basic.sql](../../charts/oai-5g-core/mysql/initialization/oai_db-basic.sql)
 
 A new subscriber entry can be added directly in the sql file or it can be added once the core network is already deployed. 
 
@@ -320,7 +320,7 @@ The images which are used in the tutorial are already present in docker-hub like
 
 ### 5.1 Images OAI-gNB and OAI-NR-UE
 
-For Ubuntu based worker nodes the images can be pulled directly from docker-hub. To build images manually follow this [link](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/docker). In case you have an Openshift cluster then follow this [link](../openshift/README.md)
+For Ubuntu based worker nodes the images can be pulled directly from docker-hub. To build images manually follow this [link](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/docker). In case you have an Openshift cluster then follow this [link](../../openshift/README.md)
 
 ### 5.2 Configuring OAI-gNB RFSimulator and OAI-NR-UE
 
@@ -483,7 +483,7 @@ rtt min/avg/max/mdev = 22.375/24.072/27.031/1.833 ms
 ## incase above doesn't work try with 8.8.8.8 instead of dns. If that works then probably you have't configure dns properly in SMF. 
 ```
 
-> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case1) 
+> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../../charts/e2e_scenarios/case1) 
 
 ```bash
 helm dependency update charts/e2e_scenarios/case1
@@ -634,7 +634,7 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected. 
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case2) 
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../../charts/e2e_scenarios/case2) 
 
 ```bash
 helm dependency update charts/e2e_scenarios/case2
@@ -843,7 +843,7 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected. 
 
-> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case3) 
+> **NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../../charts/e2e_scenarios/case3) 
 
 ```bash
 helm dependency update charts/e2e_scenarios/case3

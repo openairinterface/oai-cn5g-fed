@@ -1,6 +1,6 @@
 # OpenAirInterface 5G Core UL CL Network Deployment and Testing With Gnbsim
 
-![SA UL CL Scenario](images/5gcn_ulcl.png)
+![SA UL CL Scenario](../images/5gcn_ulcl.png)
 
 **Reading time: ~ 20 minutes**
 
@@ -15,14 +15,14 @@ Each instance of VPP-UPF runs on a different (logical) CPU core to distribute th
 
 You need at least 6 logical CPU cores for this tutorial. 
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
 
 For this demo, all the images which use the `v1.5.0` tag have been retrieved from the official `docker-hub` (see also
-[Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md)).
+[Retrieving images](Retrieve-Official-Images.md)).
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 18.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
@@ -66,14 +66,14 @@ docker-compose-host $: chmod 777 /tmp/oai/ulcl-scenario
 
 You can either:
 
-* [Building Container Images](BUILD_IMAGES.md) or
-* [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+* [Building Container Images](Build-Images.md) or
+* [Retrieving Container Images](Retrieve-Official-Images.md)
 
 ## 3. Deploying OAI 5g Core Network
 
-We deploy an adapted version of [docker-commpose-basic-vpp-nrf.yaml](../docker-compose/docker-compose-basic-vpp-nrf.yaml) of the 5G core with the PCF as additional NF and 3 UPFs instead of 1.
+We deploy an adapted version of [docker-commpose-basic-vpp-nrf.yaml](../../docker-compose/docker-compose-basic-vpp-nrf.yaml) of the 5G core with the PCF as additional NF and 3 UPFs instead of 1.
 
-We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-ulcl.yaml](../docker-compose/docker-compose-basic-vpp-pcf-ulcl.yaml)
+We use `docker-compose` to deploy the core network. Please refer to the file [docker-compose-basic-vpp-pcf-ulcl.yaml](../../docker-compose/docker-compose-basic-vpp-pcf-ulcl.yaml)
 for details.
 
 ### Docker Networks
@@ -198,7 +198,7 @@ When the graph is fully built, it should look like this (again, the order does n
 ## 4. Simulate with gnbsim
 
 When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
-Please see the [gnbsim tutorial](DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
+Please see the [gnbsim tutorial](Mini_Deployment.md) on how to retrieve or build the image.
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml up -d 
@@ -481,10 +481,10 @@ The results of this tutorial are located in `results/ulcl`. Click on the files b
 
 | Logs/PCAPs | Files |
 |----------|-------|
-| Logs | [amf.log](results/ulcl/amf.log), [ausf.log](results/ulcl/ausf.log), [gnbsim-vpp.log](results/ulcl/gnbsim-vpp.log), [gnbsim-vpp2.log](results/ulcl/gnbsim-vpp2.log), [gnbsim-vpp3.log](results/ulcl/gnbsim-vpp3.log), [nrf.log](results/ulcl/nrf.log), [smf.log](results/ulcl/smf.log), [udm.log](results/ulcl/udm.log), [udr.log](results/ulcl/udr.log), [vpp-upf-aupf1.log](results/ulcl/vpp-upf-aupf1.log), [vpp-upf-aupf2.log](results/ulcl/vpp-upf-aupf2.log), [vpp-upf-ulcl.log](results/ulcl/vpp-upf-ulcl.log) |
-| PCAPs | [control_plane.pcapng](results/ulcl/control_plane.pcapng), [user_plane_edge_only.pcapng](results/ulcl/user_plane_edge_only.pcapng), [user_plane_internet_only.pcapng](results/ulcl/user_plane_internet_only.pcapng), [user_plane_ulcl.pcapng](results/ulcl/user_plane_ulcl.pcapng) |
+| Logs | [amf.log](../results/ulcl/amf.log), [ausf.log](../results/ulcl/ausf.log), [gnbsim-vpp.log](../results/ulcl/gnbsim-vpp.log), [gnbsim-vpp2.log](../results/ulcl/gnbsim-vpp2.log), [gnbsim-vpp3.log](../results/ulcl/gnbsim-vpp3.log), [nrf.log](../results/ulcl/nrf.log), [smf.log](../results/ulcl/smf.log), [udm.log](../results/ulcl/udm.log), [udr.log](../results/ulcl/udr.log), [vpp-upf-aupf1.log](../results/ulcl/vpp-upf-aupf1.log), [vpp-upf-aupf2.log](../results/ulcl/vpp-upf-aupf2.log), [vpp-upf-ulcl.log](../results/ulcl/vpp-upf-ulcl.log) |
+| PCAPs | [control_plane.pcapng](../results/ulcl/control_plane.pcapng), [user_plane_edge_only.pcapng](../results/ulcl/user_plane_edge_only.pcapng), [user_plane_internet_only.pcapng](../results/ulcl/user_plane_internet_only.pcapng), [user_plane_ulcl.pcapng](../results/ulcl/user_plane_ulcl.pcapng) |
 
-First, we open the [user_plane_ulcl.pcapng](results/ulcl/user_plane_ulcl.pcapng) file and sort based on time. 
+First, we open the [user_plane_ulcl.pcapng](../results/ulcl/user_plane_ulcl.pcapng) file and sort based on time. 
 
 We see that each ICMP request to `1.1.1.2` has four packets. The first packet #7 is from the gNB to the UL CL, the second (#1) is from the
 ULCL to the A-UPF2, the third (#2) is from A-UPF2 to EXT-DN-Edge. The last packet (#4) is from the EXT-DN-Edge to the Internet.
@@ -502,7 +502,7 @@ with the IP address `192.168.75.160` in packet #35.
 
 ### Edge Only Scenario
 
-We open the [user_plane_edge_only.pcapng](results/ulcl/user_plane_edge_only.pcapng) file and sort again based on time.
+We open the [user_plane_edge_only.pcapng](../results/ulcl/user_plane_edge_only.pcapng) file and sort again based on time.
 
 We see that the ICMP traffic to `1.1.1.2` follows the edge route, as in the previous example (Packets #1, #7, #3, #4). The difference is that the ICMP traffic to `1.1.1.1` also follows the edge route.
 You can see this in packets #33, #35, #37 and #38. In fact, all traffic is routed there, as it is defined in the PCC rules.

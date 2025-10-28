@@ -5,7 +5,7 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](Debug-5G-Core.md)
 
 **TABLE OF CONTENTS**
 
@@ -64,7 +64,7 @@ XDP is widely used in high-performance networking applications, such as NFV, SDN
 OAI-UPF-eBPF as a part of the OAI 5G mobile Core Network implements a data network gateway function. It communicates with the SMF via the Packet Forwarding Control Plane (PFCP) protocol (N4 interface) and forwards packets between Access and Data Networks using N3 and N6 interfaces respectively. These two main UPF parts are implemented in two separate components: the Management layer and the Datapath layer.
 
 
-![This is the UPF architecture using the eBPF technology. The architecture is designed in two layers: user and kernel space layers](images/5gcn_eBPF_upf.png)
+![This is the UPF architecture using the eBPF technology. The architecture is designed in two layers: user and kernel space layers](../images/5gcn_eBPF_upf.png)
 
 **Figure 1: UPF Architecture: eBPF XDP based**
 
@@ -104,14 +104,14 @@ If such PDR is found, the packet passes to the Forwarder (i.e., FAR Program). Th
 ## 3. OAI 5G Testbed
 ### i.  UPF Standalone Deployment
 
-![This is the OAI 5GC architecture testbed. The architecture is designed in two layers: user and kernel space layers](images/5gcn_eBPF_testbed.png)
+![This is the OAI 5GC architecture testbed. The architecture is designed in two layers: user and kernel space layers](../images/5gcn_eBPF_testbed.png)
 
 **Figure 2: UPF Architecture: eBPF XDP based**
 
 
-* In this demo the image tags and commits which were used are listed below, follow [Building images](BUILD_IMAGES.md) to build images with the tags below.
+* In this demo the image tags and commits which were used are listed below, follow [Building images](Build-Images.md) to build images with the tags below.
 
-You can also retrieve the images from `docker-hub`. See [Retrieving images](RETRIEVE_OFFICIAL_IMAGES.md).
+You can also retrieve the images from `docker-hub`. See [Retrieving images](Retrieve-Official-Images.md).
 
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 20.04 | Ubuntu 22.04  | RHEL8        |
@@ -885,7 +885,7 @@ $ docker logs oai-smf
 
 ### 7.1. Test with Gnbsim
 
-In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](DEPLOY_SA5G_MINI_WITH_GNBSIM.md#6-getting-a-gnbsim-docker-image)<br/>
+In this Section we will use Gnbsim to test our deployemt. Make sure you already have built [Gnbsim docker image](Mini_Deployment.md#6-getting-a-gnbsim-docker-image)<br/>
 Launch gnbsim instance:
 
 ``` shell
@@ -1176,7 +1176,7 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 ## 9. Performance Evaluation
 ### i. UPF as Standalone
 
-![This is the OAI 5GC testbed.](images/setup_networking.png)
+![This is the OAI 5GC testbed.](../images/setup_networking.png)
 
 **Figure 3: Testbed Networking Setup**
 

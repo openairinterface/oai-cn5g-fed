@@ -1,19 +1,19 @@
 # OpenAirInterface 5G Core Network Deployment and Testing with gnbsim
 
-![SA Demo](images/5gCN_gnbsim.jpg)
+![SA Demo](../images/5gCN_gnbsim.jpg)
 
 **Reading time: ~ 20mins**
 
 **Tutorial replication time: ~ 40mins**
 
-> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](DEBUG_5G_CORE.md)
+> Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](Debug-5G-Core.md)
 
 > **CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
 
 **TABLE OF CONTENTS**
 
 1.  [Pre-requisites](#1-pre-requisites)
-2.  [Building Container Images](BUILD_IMAGES.md) or [Retrieving Container Images](RETRIEVE_OFFICIAL_IMAGES.md)
+2.  [Building Container Images](Build-Images.md) or [Retrieving Container Images](Retrieve-Official-Images.md)
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
 5.  [Deploying OAI 5G Core Network](#5-deploying-oai-5g-core-network)
@@ -23,7 +23,7 @@
 9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 10. [Undeploy the network functions](#10-undeploy-the-network-functions)
 
-* In this demo the image tags and commits which are used are listed below, follow [Building images](BUILD_IMAGES.md) instructions to build images with these tags.
+* In this demo the image tags and commits which are used are listed below, follow [Building images](Build-Images.md) instructions to build images with these tags.
 
 | CNF Name    | Branch Name             | tag      | Ubuntu 22.04 | RHEL8          |
 | ----------- |:----------------------- | ---------| ------------ | ---------------|
@@ -123,7 +123,7 @@ docker image tag rohankharade/gnbsim:latest gnbsim:latest
 
 ## 7. Executing the `gnbsim` Scenario
 
-* The configuration parameters are preconfigured in [docker-compose-gnbsim.yaml](../docker-compose/docker-compose-gnbsim.yaml) and one can modify it for testing purposes.
+* The configuration parameters are preconfigured in [docker-compose-gnbsim.yaml](../../docker-compose/docker-compose-gnbsim.yaml) and one can modify it for testing purposes.
 
 ### 7.1. Launch gnbsim docker service
 
@@ -275,9 +275,9 @@ docker-compose-host $: docker logs gnbsim > /tmp/oai/mini-gnbsim/gnbsim.log 2>&1
 
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
-| [5gcn-deployment-gnbsim.pcap](results/gnbSIM/pcap/5gcn-deployment-gnbsim.pcap)                  |
-| [amf.log](results/dsTest/mini-with-gnbsim/amf.log), [upf.log](results/dsTest/mini-with-gnbsim/upf.log) |
-| [smf.log](results/dsTest/mini-with-gnbsim/smf.log)                                                          |
+| [5gcn-deployment-gnbsim.pcap](../results/gnbSIM/pcap/5gcn-deployment-gnbsim.pcap)                  |
+| [amf.log](../results/dsTest/mini-with-gnbsim/amf.log), [upf.log](../results/dsTest/mini-with-gnbsim/upf.log) |
+| [smf.log](../results/dsTest/mini-with-gnbsim/smf.log)                                                          |
 
 ## 9. Trying Some Advanced Stuff
 

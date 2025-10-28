@@ -99,7 +99,7 @@ The QoS framework in OAI 5G Core enables:
 
 ## 3. Database Configuration
 
-First, we need to configure the subscriber database with UEs having different QoS profiles in [mysql database file](../docker-compose/database/oai_db2.sql). 
+First, we need to configure the subscriber database with UEs having different QoS profiles in [mysql database file](../../docker-compose/database/oai_db2.sql). 
 
 In the table `SessionManagementSubscriptionData` add the following entries with varying QoS settings. We put a static IP to make it easier to know the expected bitrate per IP addresss:
 
@@ -114,7 +114,7 @@ QoS in 5G is applied through policy configuration. We need to create several con
 
 ### 4.1. Configure QoS Profiles
 
-Create the [QoS data configuration file](../docker-compose/policies/qos/qos_data/qos_data.yaml):
+Create the [QoS data configuration file](../../docker-compose/policies/qos/qos_data/qos_data.yaml):
 
 ```yaml
 # QoS settings for non-GBR flows with different 5QI values
@@ -131,7 +131,7 @@ non-gbr-qos-5qi-9:
 
 ### 4.2. Configure PCC Rules
 
-Create the [PCC rules configuration file](../docker-compose/policies/qos/pcc_rules/pcc_rules.yaml):
+Create the [PCC rules configuration file](../../docker-compose/policies/qos/pcc_rules/pcc_rules.yaml):
 
 ```yaml
 # PCC rules associating traffic flows with QoS profiles
@@ -146,7 +146,7 @@ non-gbr-rule-5qi-9:
 
 ### 4.3. Configure Policy Decisions
 
-Create the [policy decisions configuration file](../docker-compose/policies/qos/policy_decisions/policy_decision.yaml):
+Create the [policy decisions configuration file](../../docker-compose/policies/qos/policy_decisions/policy_decision.yaml):
 
 ```yaml
 # Map UEs (by SUPI) to PCC rules
@@ -160,7 +160,7 @@ decision_supi1:
 
 ### 5.1. Configure PCF to Use Policy Files
 
-Update the PCF configuration in the [config file](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to point to our policy files:
+Update the PCF configuration in the [config file](../../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to point to our policy files:
 
 ```yaml
 pcf:
@@ -173,7 +173,7 @@ pcf:
 
 ### 5.2. Enable QoS in UPF
 
-Update the UPF configuration in the [config file](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to enable QoS enforcement:
+Update the UPF configuration in the [config file](../../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to enable QoS enforcement:
 
 ```yaml
 upf:
@@ -208,7 +208,7 @@ We will use `docker-compose-basic-nrf-qos.yaml` which already has the volume mou
 
 ## 6. Network Function Deployment
 
-In the previous tutorial we explain how to deploy the core network using our [python deployer](../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](DEPLOY_SA5G_MINI_WITH_GNBSIM.md).
+In the previous tutorial we explain how to deploy the core network using our [python deployer](../../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](Mini_Deployment.md).
 
 - Start the core network components with QoS enabled
 
