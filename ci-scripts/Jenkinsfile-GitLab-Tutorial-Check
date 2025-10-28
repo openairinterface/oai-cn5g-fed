@@ -34,16 +34,15 @@ AUSF=4
 UDM=5
 UDR=6
 NSSF=7
-UPF_VPP=8
-PCF=9
+PCF=8
 
 // Default tags / branches  --> could be passed on by upstream job
-imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-upf-vpp", "oai-pcf"]
-repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-upf-vpp", "oai-cn5g-pcf"]
-branchNames = ["", "", "", "", "", "", "", "", "", ""]
-imageTags = ["", "", "", "", "", "", "", "", "", ""]
-upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
-pulledImages = [false, false, false, false, false, false, false, false, false, false]
+imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-pcf"]
+repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-pcf"]
+branchNames = ["", "", "", "", "", "", "", "", ""]
+imageTags = ["", "", "", "", "", "", "", "", ""]
+upstreamJobs = [false, false, false, false, false, false, false, false, false]
+pulledImages = [false, false, false, false, false, false, false, false, false]
 
 // Which RAN TAG to use
 ranTag = params.ranTag
@@ -52,7 +51,6 @@ upstreamTagToUse = params.upstreamTagToUse
 // means to shorten the pipeline
 run_mini_gnbsim = true
 run_static_ue_ip = true
-run_vpp_upf = true
 run_slicing_w_nssf = true
 run_ulcl_pcf = true
 run_mongo_db = true
@@ -109,9 +107,6 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-NSSF')) {
               upstreamJobs[NSSF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF-VPP')) {
-              upstreamJobs[UPF_VPP] = true
-            }
             if (cause.toString().contains('OAI-CN5G-PCF')) {
               upstreamJobs[PCF] = true
             }
@@ -135,7 +130,6 @@ pipeline {
                 echo "Upstream Job passed NRF_BRANCH to use: ${branchNames[NRF]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
                 run_mongo_db = false
@@ -150,7 +144,6 @@ pipeline {
                 echo "Upstream Job passed AMF_BRANCH to use: ${branchNames[AMF]}"
                 run_mini_gnbsim = true
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = true
                 run_mongo_db = false
@@ -165,7 +158,6 @@ pipeline {
                 echo "Upstream Job passed SMF_BRANCH to use: ${branchNames[SMF]}"
                 run_mini_gnbsim = true
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = true
                 run_mongo_db = false
@@ -180,7 +172,6 @@ pipeline {
                 echo "Upstream Job passed UPF_BRANCH to use: ${branchNames[UPF]}"
                 run_mini_gnbsim = true
                 run_static_ue_ip = true
-                run_vpp_upf = false
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
                 run_mongo_db = false
@@ -195,7 +186,6 @@ pipeline {
                 echo "Upstream Job passed AUSF_BRANCH to use: ${branchNames[AUSF]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
                 run_mongo_db = false
@@ -210,7 +200,6 @@ pipeline {
                 echo "Upstream Job passed UDM_BRANCH to use: ${branchNames[UDM]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
                 run_mongo_db = false
@@ -225,7 +214,6 @@ pipeline {
                 echo "Upstream Job passed UDR_BRANCH to use: ${branchNames[UDR]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = true
-                run_vpp_upf = true
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
                 run_mongo_db = true
@@ -240,24 +228,8 @@ pipeline {
                 echo "Upstream Job passed NSSF_BRANCH to use: ${branchNames[NSSF]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = false
-                run_vpp_upf = false
                 run_slicing_w_nssf = true
                 run_ulcl_pcf = false
-                run_mongo_db = false
-                run_qos = false
-              }
-            }
-            if (ii == UPF_VPP) {
-              branchNames[UPF_VPP] = params.UPF_VPP_BRANCH
-              imageTags[UPF_VPP] = params.UPF_VPP_TAG
-              if (upstreamEvent && upstreamJobs[UPF_VPP]) {
-                echo "Upstream Job passed UPF_VPP_TAG to use: ${imageTags[UPF_VPP]}"
-                echo "Upstream Job passed UPF_VPP_BRANCH to use: ${branchNames[UPF_VPP]}"
-                run_mini_gnbsim = false
-                run_static_ue_ip = false
-                run_vpp_upf = true
-                run_slicing_w_nssf = true
-                run_ulcl_pcf = true
                 run_mongo_db = false
                 run_qos = false
               }
@@ -270,7 +242,6 @@ pipeline {
                 echo "Upstream Job passed PCF_BRANCH to use: ${branchNames[PCF]}"
                 run_mini_gnbsim = false
                 run_static_ue_ip = false
-                run_vpp_upf = false
                 run_slicing_w_nssf = false
                 run_ulcl_pcf = true
                 run_mongo_db = false
@@ -353,28 +324,6 @@ pipeline {
           }
           archivesArtifacts('docker-compose/docker-compose-basic-nrf.yaml', 'static-ue-ip')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf.yaml')
-        }
-      }
-    }
-    stage ('Check UPF-VPP Tutorial') {
-      when { expression {run_vpp_upf} }
-      steps {
-        script {
-          updateDockerCompose('docker-compose/docker-compose-basic-vpp-nrf.yaml', ranTag)
-          dir ('ci-scripts') {
-            // Tee will make the command always pass
-            // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_VPP_UPF.md | tee ../archives/vpp-upf-gnbsim.log'
-          }
-          try {
-            sh 'grep -l "is PASS" archives/vpp-upf-gnbsim.log > /dev/null'
-            echo "UPF-VPP Tutorial PASSED"
-          } catch (Exception e) {
-            currentBuild.result = 'FAILURE'
-            echo "UPF-VPP Tutorial FAILED"
-          }
-          archivesArtifacts('docker-compose/docker-compose-basic-vpp-nrf.yaml', 'vpp-upf-gnbsim')
-          cleanUpDockerCompose('docker-compose/docker-compose-basic-vpp-nrf.yaml')
         }
       }
     }

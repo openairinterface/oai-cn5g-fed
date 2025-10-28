@@ -52,7 +52,7 @@ class HtmlReport():
 		with open(os.path.join(cwd, REPORT_NAME), 'w') as wfile:
 			wfile.write(generate_header(args))
 
-			tutorials = ['mini-gnbsim', 'static-ue-ip', 'vpp-upf-gnbsim', 'slicing-with-nssf', 'ulcl-scenario', 'mongodb-test', 'upf-ebpf-gnbsim', 'qos-testing']
+			tutorials = ['mini-gnbsim', 'static-ue-ip', 'slicing-with-nssf', 'ulcl-scenario', 'mongodb-test', 'upf-ebpf-gnbsim', 'qos-testing']
 			for tutorial in tutorials:
 				if not os.path.isfile(cwd + '/archives/' + tutorial + '.log'):
 					continue

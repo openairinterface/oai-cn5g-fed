@@ -207,50 +207,6 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.70.143
-    vpp_upf_slice3:
-        container_name: "vpp-upf-slice3"
-        image: oaisoftwarealliance/oai-upf-vpp:develop
-        privileged: true
-        environment:
-            - IF_1_IP=192.168.70.201
-            - IF_1_TYPE=N4
-            - IF_2_IP=192.168.72.201
-            - IF_2_TYPE=N3
-            - IF_2_NWI=access.oai.org
-            - IF_3_IP=192.168.73.201
-            - IF_3_TYPE=N6
-            - IF_3_IP_REMOTE=192.168.73.145 # EXT-DN IP Address
-            - IF_3_NWI=internet.oai.org
-            - NAME=VPP-UPF
-            - MNC=95
-            - MCC=208
-            - REALM=3gppnetwork.org
-            - VPP_MAIN_CORE=0
-            - VPP_CORE_WORKER=1
-#           - VPP_PLUGIN_PATH=/usr/lib64/vpp_plugins/                # RHEL7
-            - VPP_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/vpp_plugins/
-            - SNSSAI_SD=000082
-            - SNSSAI_SST=130
-            - DNN=oai.ipv4
-            - REGISTER_NRF=yes
-            - NRF_IP_ADDR=192.168.70.137
-            - NRF_PORT=8080
-            - HTTP_VERSION=2
-        depends_on:
-            - oai_nrf_slice3
-            - oai_smf_slice3
-        healthcheck:
-            test: /bin/bash -c "pgrep vpp"
-            interval: 10s
-            timeout: 5s
-            retries: 5
-        networks:
-            public_net:
-                ipv4_address: 192.168.70.144
-            public_net_access:
-                ipv4_address: 192.168.72.144
-            public_net_core:
-                ipv4_address: 192.168.73.144
     oai_ext_dn:
         image: oaisoftwarealliance/trf-gen-cn5g:latest
         privileged: true
