@@ -320,7 +320,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_MINI_WITH_GNBSIM.md | tee ../archives/mini-gnbsim.log'
+            sh './checkTutorial.py --tutorial Mini_Deployment.md | tee ../archives/mini-gnbsim.log'
           }
           try {
             sh 'grep -l "is PASS" archives/mini-gnbsim.log > /dev/null'
@@ -342,7 +342,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_STATIC_UE_IP.md | tee ../archives/static-ue-ip.log'
+            sh './checkTutorial.py --tutorial Static_UE_IP.md | tee ../archives/static-ue-ip.log'
           }
           try {
             sh 'grep -l "is PASS" archives/static-ue-ip.log > /dev/null'
@@ -364,7 +364,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_VPP_UPF.md | tee ../archives/vpp-upf-gnbsim.log'
+            sh './checkTutorial.py --tutorial UPF_VPP.md | tee ../archives/vpp-upf-gnbsim.log'
           }
           try {
             sh 'grep -l "is PASS" archives/vpp-upf-gnbsim.log > /dev/null'
@@ -386,7 +386,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_SLICING.md | tee ../archives/slicing-with-nssf.log'
+            sh './checkTutorial.py --tutorial Advance_Slicing.md | tee ../archives/slicing-with-nssf.log'
           }
           try {
             sh 'grep -l "is PASS" archives/slicing-with-nssf.log > /dev/null'
@@ -408,7 +408,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_ULCL.md | tee ../archives/ulcl-scenario.log'
+            sh './checkTutorial.py --tutorial ULCL.md | tee ../archives/ulcl-scenario.log'
           }
           try {
             sh 'grep -l "is PASS" archives/ulcl-scenario.log > /dev/null'
@@ -430,7 +430,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_MONGODB.md | tee ../archives/mongodb-test.log'
+            sh './checkTutorial.py --tutorial Basic_Deployment_with_MongoDB.md | tee ../archives/mongodb-test.log'
           }
           try {
             sh 'grep -l "is PASS" archives/mongodb-test.log > /dev/null'
@@ -452,7 +452,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_QOS.md | tee ../archives/qos-testing.log'
+            sh './checkTutorial.py --tutorial QoS.md | tee ../archives/qos-testing.log'
           }
           try {
             sh 'grep -l "is PASS" archives/qos-testing.log > /dev/null'

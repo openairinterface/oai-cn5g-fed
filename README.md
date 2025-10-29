@@ -73,8 +73,8 @@ Its main purpose is for Continuous Integration scripting.
 
 It also hosts some tutorials.
 
-* [How to do a container-based simple deployment](docs/DEPLOY_HOME.md).
-* [How to create a container-based developer environment](docs/DEBUG_5G_CORE.md).
+* [How to do a container-based simple deployment](docs/Tutorials/Overview.md).
+* [How to create a container-based developer environment](docs/Tutorials/Debug-5G-Core.md).
 
 # Licence info
 

@@ -255,7 +255,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_UPF_EBPF.md | tee ../archives/upf-ebpf-gnbsim.log'
+            sh './checkTutorial.py --tutorial UPF_EBPF.md | tee ../archives/upf-ebpf-gnbsim.log'
           }
           try {
             sh 'grep -l "is PASS" archives/upf-ebpf-gnbsim.log > /dev/null'

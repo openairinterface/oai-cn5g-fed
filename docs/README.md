@@ -27,8 +27,8 @@ For more details, please refer to the [OAI Website](https://openairinterface.org
 * **Unified Data Management (UDM)** – [oai-cn5g-udm](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm)
 * **Unified Data Repository (UDR)** – [oai-cn5g-udr](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr)
 * **User Plane Function (UPF)** with two variants:
-  * Simple implementation (with eBPF option) – [oai-cn5g-upf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf)
-  * VPP-based implementation – [oai-cn5g-upf-vpp](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp)
+    * Simple implementation (with eBPF option) – [oai-cn5g-upf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf)
+    * VPP-based implementation – [oai-cn5g-upf-vpp](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp)
 * **Unstructured Data Storage Function (UDSF)** – [oai-cn5g-udsf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udsf)
 * **Network Data Analytics Function (NWDAF)** – [oai-cn5g-nwdaf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nwdaf)
 
@@ -48,6 +48,7 @@ When opening a **merge request** for documentation updates:
 
 * The **target branch** must be **`develop`**.
 * The **`documentation` label** must be added when creating the merge request.
+* If you are working on a feature branch, make sure to regularly **`rebase`** it with **`develop`** to stay up to date and avoid conflicts. 
 
 ### Folder Structure and File Organization
 

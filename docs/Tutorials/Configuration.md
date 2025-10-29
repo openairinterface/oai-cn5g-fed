@@ -41,7 +41,7 @@ When you are using a bare-metal deployment, you have to tell the NF which file t
 ### Example configurations
 
 The [docker-compose](../../docker-compose) folder contains example configurations, which are used by the tutorials
-described in [docs](../).
+described in `docs/`.
 
 You can have a look at the [docker-compose/conf](../../docker-compose/conf) folder to see real-world examples of how the
 OAI 5GC NFs can be configured.
