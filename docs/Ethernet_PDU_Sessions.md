@@ -22,6 +22,7 @@ docker-compose-host $: chmod 777 /tmp/oai/ethernet-pdu-sessions
 ## 2. Architecture Overview
 
 The Ethernet PDU session support in OAI 5G Core enables:
+
 * Ethernet frame forwarding between UE and Data Network
 * Proper handling of Ethernet PDU session establishment procedures
 * Support for multiple PDU session types simultaneously (IPv4, IPv6, Ethernet)
@@ -140,19 +141,19 @@ eba2988ac04d   mysql:8.0                                 "docker-entrypoint.s…
 We'll use the cn5g-tester docker image to verify the Ethernet PDU session functionality. The cn5g-tester will send control plane messages to establish an Ethernet PDU Session and it will send ping packets towards the data network (oai-ext-dn) and wait for responses. Users can replace the tester with an gNB and UE that supports Ethernet PDU sessions.
 
 
-1. Deploy the OAI gNB:
+Deploy the OAI gNB:
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml up -d oai-gnb
 ```
 
-2. Deploy the OAI UE with Ethernet PDU session configured
+Deploy the OAI UE with Ethernet PDU session configured
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml up -d oai-nr-ue3
 ```
 
-3. First, check that the UE is registered and has Ethernet tap interface:
+First, check that the UE is registered and has Ethernet tap interface:
 
 <!---
 For CI purposes please ignore this line
@@ -171,7 +172,7 @@ docker-compose-host $: docker exec -it oai-nr-ue3 apt update -y
 docker-compose-host $: docker exec -it oai-nr-ue3 apt install arping -y
 ```
 
-3. Send Ethernet traffic using arping
+Send Ethernet traffic using arping
 
 Assign IP address to tap device on OAI UE
 
@@ -233,19 +234,18 @@ docker-compose-host $: pkill tshark
 
 | PCAP and Logs      |
 |:-------------------|
-| [capture.pcap](./results/static-ue-ip/capture.pcap) |
-| [amf.log](./results/ethernet-pdu/amf.log) |
-| [smf.log](./results/ethernet-pdu/smf.log) |
-| [ausf.log](./results/ethernet-pdu/ausf.log) |
-| [nrf.log](./results/ethernet-pdu/nrf.log) |
-| [udm.log](./results/ethernet-pdu/udm.log) |
-| [udr.log](./results/ethernet-pdu/udr.log) |
-| [upf.log](./results/ethernet-pdu/upf.log) |
-| [ext-dn.log](./results/ethernet-pdu/ext-dn.log) |
-| [upf-ebpf-trace-pipe.log](./results/ethernet-pdu/upf-ebpf-trace-pipe.log) |
-| [oai-nr-ue3.log](./results/ethernet-pdu/oai-nr-ue3.log) |
-| [oai-nr-ue3-arping.log](./results/ethernet-pdu/oai-nr-ue3-arping.log) |
-| [oai-gnb.log](./results/ethernet-pdu/oai-gnb.log) |
+| [amf.log](results/ethernet-pdu/amf.log) |
+| [smf.log](results/ethernet-pdu/smf.log) |
+| [ausf.log](results/ethernet-pdu/ausf.log) |
+| [nrf.log](results/ethernet-pdu/nrf.log) |
+| [udm.log](results/ethernet-pdu/udm.log) |
+| [udr.log](results/ethernet-pdu/udr.log) |
+| [upf.log](results/ethernet-pdu/upf.log) |
+| [ext-dn.log](results/ethernet-pdu/ext-dn.log) |
+| [upf-ebpf-trace-pipe.log](results/ethernet-pdu/upf-ebpf-trace-pipe.log) |
+| [oai-nr-ue3.log](results/ethernet-pdu/oai-nr-ue3.log) |
+| [oai-nr-ue3-arping.log](results/ethernet-pdu/oai-nr-ue3-arping.log) |
+| [oai-gnb.log](results/ethernet-pdu/oai-gnb.log) |
 
 - **Collect the logs of all the components**:
 
@@ -315,7 +315,7 @@ Removing network demo-oai-public-net
 ```
 </details>
 
-- If you replicate then your log files and pcap file will be present in `/tmp/oai/ethernet-pdu-sessions/`. If you want to compare it with our provided logs and pcaps, then follow the next section
+- If you replicate then your log files and pcap file will be present in `/tmp/oai/ethernet-pdu-sessions/`. If you want to compare it with our provided logs and pcaps, then follow the previous section
 
 
 ## 9. Conclusion
