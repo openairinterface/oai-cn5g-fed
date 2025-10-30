@@ -32,7 +32,7 @@ The Ethernet PDU session support in OAI 5G Core enables:
 
 First, we need to configure the subscriber database to support Ethernet PDU sessions. Update your database with a UE subscription that includes PDU session type "ETHERNET".
 
- In the table `SessionManagementSubscriptionData` add below entries. Execute the following SQL statement to insert a UE with Ethernet PDU session support:
+ In the table `SessionManagementSubscriptionData` in [oai_db2.sql](../docker-compose/database/oai_db2.sql) add below entries. Execute the following SQL statement to insert a UE with Ethernet PDU session support:
 
 ```sql
 INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singl
 
 ## 4. UPF Configuration
 
-Update the UPF configuration to support Ethernet PDU sessions. Edit the `basic_nrf_config_ebpf.yaml` file:
+Update the UPF configuration to support Ethernet PDU sessions. Edit the [basic_nrf_config_ebpf.yaml](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file:
 
 ```yaml
 upf:
@@ -64,7 +64,7 @@ dnns:
     ipv4_subnet: "14.1.1.2/24"
 ```
 
-Note that for Ethernet PDU sessions, the `ipv4_subnet` field is not actually used but must be present in the configuration for compatibility.
+> **Note** that for Ethernet PDU sessions, the `ipv4_subnet` field is not actually used but must be present in the configuration for compatibility.
 
 ## 5. Network Function Deployment
 
@@ -80,7 +80,7 @@ docker-compose-host $: python3 core-network.py --type start-basic-ebpf --scenari
 
 For CI purposes, we are deploying with an automated PCAP capture on the docker network.
 
-**REMEMBER: if you are planning to run your CN5G deployment for a long time, the PCAP file can become huge!**
+> **REMEMBER: if you are planning to run your CN5G deployment for a long time, the PCAP file can become huge!**
 
 ``` shell
 docker-compose-host $: python3 core-network.py --type start-basic-ebpf --scenario 1 --capture /tmp/oai/ethernet-pdu-sessions/ethernet-pdu-sessions.pcap
@@ -88,6 +88,22 @@ docker-compose-host $: python3 core-network.py --type start-basic-ebpf --scenari
 <details>
 <summary>The output will look like this:</summary>
 
+```
+[2025-10-30 11:47:31,354] root:DEBUG:  OAI 5G Core network started, checking the health status of the containers... takes few secs....
+[2025-10-30 11:47:31,354] root:DEBUG: docker-compose -f docker-compose-basic-nrf-ebpf.yaml ps -a
+[2025-10-30 11:47:45,579] root:DEBUG:  All components are healthy, please see below for more details....
+Name                 Command                  State                                      Ports
+---------------------------------------------------------------------------------------------------------------------------------
+mysql        docker-entrypoint.sh mysqld      Up (healthy)   3306/tcp, 33060/tcp
+oai-amf      /openair-amf/bin/oai_amf - ...   Up (healthy)   38412/sctp, 5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 9090/tcp
+oai-ausf     /openair-ausf/bin/oai_ausf ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp
+oai-ext-dn   /bin/bash /tmp/trfgen_entr ...   Up (healthy)
+oai-nrf      /openair-nrf/bin/oai_nrf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp
+oai-smf      /openair-smf/bin/oai_smf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 8805/udp, 9090/tcp
+oai-udm      /openair-udm/bin/oai_udm - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp
+oai-udr      /openair-udr/bin/oai_udr - ...   Up (healthy)   80/tcp, 8080/tcp
+oai-upf      sh /openair-upf/bin/entryp ...   Up (healthy)
+```
 </details>
 
 If you want to use docker compose directly to deploy OAI 5G Core
@@ -99,8 +115,25 @@ docker-compose -f docker-compose-basic-nrf-ebpf.yaml up -d
 Verify that all containers are running correctly:
 
 ```console
-docker ps
+docker ps -a
 ```
+
+<details>
+<summary>The output will look like this:</summary>
+
+```
+CONTAINER ID   IMAGE                                     COMMAND                  CREATED          STATUS                      PORTS                                                   NAMES
+ff9cc6084486   oaisoftwarealliance/oai-udr:develop       "/openair-udr/bin/oa…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 8080/tcp                                        oai-udr
+0d178376d1a2   oaisoftwarealliance/oai-smf:develop       "/openair-smf/bin/oa…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 5342-5344/tcp, 8080/tcp, 9090/tcp, 8805/udp     oai-smf
+d56200914d5c   oaisoftwarealliance/oai-ausf:develop      "/openair-ausf/bin/o…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 5342-5344/tcp, 8080/tcp                         oai-ausf
+66dfde6435bf   oaisoftwarealliance/oai-amf:develop       "/openair-amf/bin/oa…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 5342-5344/tcp, 8080/tcp, 9090/tcp, 38412/sctp   oai-amf
+246bcdc8b850   oaisoftwarealliance/oai-udm:develop       "/openair-udm/bin/oa…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 5342-5344/tcp, 8080/tcp                         oai-udm
+3246aa724b36   oaisoftwarealliance/oai-upf:develop       "sh /openair-upf/bin…"   46 minutes ago   Up 46 minutes (healthy)                                                             oai-upf
+3548c8d1f452   oaisoftwarealliance/oai-nrf:develop       "/openair-nrf/bin/oa…"   46 minutes ago   Up 46 minutes (healthy)     80/tcp, 5342-5344/tcp, 8080/tcp                         oai-nrf
+22cf1d471627   oaisoftwarealliance/trf-gen-cn5g:latest   "/bin/bash /tmp/trfg…"   46 minutes ago   Up 46 minutes (healthy)                                                             oai-ext-dn
+eba2988ac04d   mysql:8.0                                 "docker-entrypoint.s…"   47 minutes ago   Up 47 minutes (healthy)     3306/tcp, 33060/tcp                                     mysql
+```
+</details>
 
 ## 6. Testing Ethernet PDU Sessions
 
@@ -167,7 +200,15 @@ If the test is successful, the script will exit with code 0 and display success 
 <details>
 <summary>The output will look like this:</summary>
 
+```
+ARPING 192.168.72.135
+42 bytes from ee:9f:d2:0d:69:aa (192.168.72.135): index=0 time=20.865 msec
+42 bytes from ee:9f:d2:0d:69:aa (192.168.72.135): index=1 time=14.583 msec
 
+--- 192.168.72.135 statistics ---
+2 packets transmitted, 2 packets received,   0% unanswered (0 extra)
+rtt min/avg/max/std-dev = 14.583/17.724/20.865/3.141 ms
+```
 </details>
 
 ## 7. Log Collection
@@ -186,6 +227,25 @@ docker-compose-host $: docker-compose -f docker-compose-basic-nrf-ebpf.yaml stop
 ``` console
 docker-compose-host $: pkill tshark
 ```
+
+**Reference logs**
+
+
+| PCAP and Logs      |
+|:-------------------|
+| [capture.pcap](./results/static-ue-ip/capture.pcap) |
+| [amf.log](./results/ethernet-pdu/amf.log) |
+| [smf.log](./results/ethernet-pdu/smf.log) |
+| [ausf.log](./results/ethernet-pdu/ausf.log) |
+| [nrf.log](./results/ethernet-pdu/nrf.log) |
+| [udm.log](./results/ethernet-pdu/udm.log) |
+| [udr.log](./results/ethernet-pdu/udr.log) |
+| [upf.log](./results/ethernet-pdu/upf.log) |
+| [ext-dn.log](./results/ethernet-pdu/ext-dn.log) |
+| [upf-ebpf-trace-pipe.log](./results/ethernet-pdu/upf-ebpf-trace-pipe.log) |
+| [oai-nr-ue3.log](./results/ethernet-pdu/oai-nr-ue3.log) |
+| [oai-nr-ue3-arping.log](./results/ethernet-pdu/oai-nr-ue3-arping.log) |
+| [oai-gnb.log](./results/ethernet-pdu/oai-gnb.log) |
 
 - **Collect the logs of all the components**:
 

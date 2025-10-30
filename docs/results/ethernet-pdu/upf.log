@@ -1,0 +1,481 @@
+Trying to read .yaml configuration file: /openair-upf/etc/config.yaml
+LTTNG Tracing disabled at build-time!
+[2025-10-28 16:35:06.172] [upf_app] [start] Options parsed
+[2025-10-28 16:35:06.174] [config ] [info] Reading NF configuration from /openair-upf/etc/config.yaml
+[2025-10-28 16:35:06.180] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2025-10-28 16:35:06.180] [config ] [debug] Unknown NF udm in configuration. Ignored
+[2025-10-28 16:35:06.180] [config ] [debug] Unknown NF udr in configuration. Ignored
+[2025-10-28 16:35:06.180] [config ] [debug] Unknown NF ausf in configuration. Ignored
+[2025-10-28 16:35:06.184] [config ] [debug] Validating configuration of log_level
+[2025-10-28 16:35:06.184] [config ] [debug] Validating configuration of register_nf
+[2025-10-28 16:35:06.184] [config ] [debug] Validating configuration of http_version
+[2025-10-28 16:35:06.184] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-28 16:35:06.184] [config ] [debug] Validating configuration of NRF
+[2025-10-28 16:35:06.185] [config ] [debug] Validating configuration of SMF
+[2025-10-28 16:35:06.185] [config ] [debug] Validating configuration of UPF Configuration
+[2025-10-28 16:35:06.186] [config ] [debug] Validating configuration of DNN
+[2025-10-28 16:35:06.187] [config ] [debug] Validating configuration of DNN
+[2025-10-28 16:35:06.187] [config ] [debug] Validating configuration of DNN
+[2025-10-28 16:35:06.187] [config ] [debug] Validating configuration of DNN
+[2025-10-28 16:35:06.188] [config ] [warning] The IPv6 prefix / length  is not valid
+[2025-10-28 16:35:06.188] [config ] [debug] Validating configuration of DNN
+[2025-10-28 16:35:06.188] [config ] [debug] Validating configuration of database
+[2025-10-28 16:35:06.188] [common] [debug] Resolving a DNS (name oai-ext-dn)
+[2025-10-28 16:35:06.188] [common] [debug] Resolving DNS Try #0
+[2025-10-28 16:35:06.190] [common] [debug] Resolved a DNS (name oai-ext-dn, protocol http): Ip Addr 192.168.72.135, port 80
+[2025-10-28 16:35:06.190] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.128 
+[2025-10-28 16:35:06.190] [config ] [debug] IP Pool :  12.1.1.129 - 12.1.1.254
+[2025-10-28 16:35:06.190] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.64 
+[2025-10-28 16:35:06.190] [config ] [debug] IP Pool :  12.1.1.65 - 12.1.1.126
+[2025-10-28 16:35:06.190] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.0 
+[2025-10-28 16:35:06.190] [config ] [debug] IP Pool :  12.1.1.1 - 12.1.1.62
+[2025-10-28 16:35:06.190] [config ] [debug] PDN Network validation for UE Subnet:  14.1.1.2 
+[2025-10-28 16:35:06.190] [config ] [debug] IP Pool :  14.1.1.1 - 14.1.1.254
+[2025-10-28 16:35:06.190] [config ] [debug] PDN Network validation for UE Subnet:  0.0.0.0 
+[2025-10-28 16:35:06.190] [config ] [debug] IP Pool :  0.0.0.0 - 0.0.0.0
+[2025-10-28 16:35:06.190] [config ] [info] ==== OPENAIRINTERFACE upf vBranch: eth_pdu_session_up Abrev. Hash: 5fb7b61 Date: Fri Oct 17 18:26:22 2025 +0200 ====
+[2025-10-28 16:35:06.190] [config ] [info] Basic Configuration:
+[2025-10-28 16:35:06.190] [config ] [info]   - log_level..................................: debug
+[2025-10-28 16:35:06.190] [config ] [info]   - register_nf................................: Yes
+[2025-10-28 16:35:06.190] [config ] [info]   - http_version...............................: 2
+[2025-10-28 16:35:06.190] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2025-10-28 16:35:06.190] [config ] [info] UPF Configuration:
+[2025-10-28 16:35:06.190] [config ] [info]   - host.......................................: oai-upf
+[2025-10-28 16:35:06.190] [config ] [info]   - SBI
+[2025-10-28 16:35:06.190] [config ] [info]     + URL......................................: http://oai-upf:8080
+[2025-10-28 16:35:06.190] [config ] [info]     + API Version..............................: v1
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 Address ............................: 192.168.70.129
+[2025-10-28 16:35:06.190] [config ] [info]   - N3:
+[2025-10-28 16:35:06.190] [config ] [info]     + Port.....................................: 2152
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 Address ............................: 192.168.71.129
+[2025-10-28 16:35:06.190] [config ] [info]     + MTU......................................: 1500
+[2025-10-28 16:35:06.190] [config ] [info]     + Interface name: .........................: demo-n3
+[2025-10-28 16:35:06.190] [config ] [info]     + Network Instance.........................: access.oai.org
+[2025-10-28 16:35:06.190] [config ] [info]   - N4:
+[2025-10-28 16:35:06.190] [config ] [info]     + Port.....................................: 8805
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 Address ............................: 192.168.70.129
+[2025-10-28 16:35:06.190] [config ] [info]     + MTU......................................: 1500
+[2025-10-28 16:35:06.190] [config ] [info]     + Interface name: .........................: demo-oai
+[2025-10-28 16:35:06.190] [config ] [info]   - N6:
+[2025-10-28 16:35:06.190] [config ] [info]     + Port.....................................: 2152
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 Address ............................: 192.168.72.129
+[2025-10-28 16:35:06.190] [config ] [info]     + MTU......................................: 1500
+[2025-10-28 16:35:06.190] [config ] [info]     + Interface name: .........................: demo-n6
+[2025-10-28 16:35:06.190] [config ] [info]     + Network Instance.........................: core.oai.org
+[2025-10-28 16:35:06.190] [config ] [info]   - Instance ID................................: 0
+[2025-10-28 16:35:06.190] [config ] [info]   - Remote N6 Gateway..........................: oai-ext-dn
+[2025-10-28 16:35:06.190] [config ] [info]   - Support Features:
+[2025-10-28 16:35:06.190] [config ] [info]     + Enable BPF Datapath......................: Yes
+[2025-10-28 16:35:06.190] [config ] [info]     + Enable QoS...............................: No
+[2025-10-28 16:35:06.190] [config ] [info]     + Enable SNAT..............................: No
+[2025-10-28 16:35:06.190] [config ] [info]     + enable_fr................................: No
+[2025-10-28 16:35:06.190] [config ] [info]     + Enable Ethernet PDU Session..............: Yes
+[2025-10-28 16:35:06.190] [config ] [info]   + upf_info:
+[2025-10-28 16:35:06.190] [config ] [info]     - snssai_upf_info_item:
+[2025-10-28 16:35:06.190] [config ] [info]       + snssai:
+[2025-10-28 16:35:06.190] [config ] [info]         - sst..................................: 1
+[2025-10-28 16:35:06.190] [config ] [info]         - sd...................................: FFFFFF
+[2025-10-28 16:35:06.190] [config ] [info]       + dnns:
+[2025-10-28 16:35:06.190] [config ] [info]         - dnn..................................: oai
+[2025-10-28 16:35:06.190] [config ] [info]     - snssai_upf_info_item:
+[2025-10-28 16:35:06.190] [config ] [info]       + snssai:
+[2025-10-28 16:35:06.190] [config ] [info]         - sst..................................: 1
+[2025-10-28 16:35:06.190] [config ] [info]         - sd...................................: 000001
+[2025-10-28 16:35:06.190] [config ] [info]       + dnns:
+[2025-10-28 16:35:06.190] [config ] [info]         - dnn..................................: oai.ipv4
+[2025-10-28 16:35:06.190] [config ] [info]     - snssai_upf_info_item:
+[2025-10-28 16:35:06.190] [config ] [info]       + snssai:
+[2025-10-28 16:35:06.190] [config ] [info]         - sst..................................: 222
+[2025-10-28 16:35:06.190] [config ] [info]         - sd...................................: 00007b
+[2025-10-28 16:35:06.190] [config ] [info]       + dnns:
+[2025-10-28 16:35:06.190] [config ] [info]         - dnn..................................: default
+[2025-10-28 16:35:06.190] [config ] [info]         - dnn..................................: ethernet
+[2025-10-28 16:35:06.190] [config ] [info]     - snssai_upf_info_item:
+[2025-10-28 16:35:06.190] [config ] [info]       + snssai:
+[2025-10-28 16:35:06.190] [config ] [info]         - sst..................................: 5
+[2025-10-28 16:35:06.190] [config ] [info]         - sd...................................: FFFFFF
+[2025-10-28 16:35:06.190] [config ] [info]       + dnns:
+[2025-10-28 16:35:06.190] [config ] [info]         - dnn..................................: ethernet
+[2025-10-28 16:35:06.190] [config ] [info] Peer NF Configuration:
+[2025-10-28 16:35:06.190] [config ] [info]   NRF:
+[2025-10-28 16:35:06.190] [config ] [info]     - host.....................................: oai-nrf
+[2025-10-28 16:35:06.190] [config ] [info]     - SBI
+[2025-10-28 16:35:06.190] [config ] [info]       + URL....................................: http://oai-nrf:8080
+[2025-10-28 16:35:06.190] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.190] [config ] [info]   SMF:
+[2025-10-28 16:35:06.190] [config ] [info]     - host.....................................: oai-smf
+[2025-10-28 16:35:06.190] [config ] [info]     - SBI
+[2025-10-28 16:35:06.190] [config ] [info]       + URL....................................: http://oai-smf:8080
+[2025-10-28 16:35:06.190] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.190] [config ] [info] DNNs:
+[2025-10-28 16:35:06.190] [config ] [info] - DNN:
+[2025-10-28 16:35:06.190] [config ] [info]     + DNN......................................: oai
+[2025-10-28 16:35:06.190] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 subnet..............................: 12.1.1.128/25
+[2025-10-28 16:35:06.190] [config ] [info]     + DNS Settings:
+[2025-10-28 16:35:06.190] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-28 16:35:06.190] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-28 16:35:06.190] [config ] [info] - DNN:
+[2025-10-28 16:35:06.190] [config ] [info]     + DNN......................................: oai.ipv4
+[2025-10-28 16:35:06.190] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 subnet..............................: 12.1.1.64/26
+[2025-10-28 16:35:06.190] [config ] [info]     + DNS Settings:
+[2025-10-28 16:35:06.190] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-28 16:35:06.190] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-28 16:35:06.190] [config ] [info] - DNN:
+[2025-10-28 16:35:06.190] [config ] [info]     + DNN......................................: default
+[2025-10-28 16:35:06.190] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-28 16:35:06.190] [config ] [info]     + IPv4 subnet..............................: 12.1.1.0/26
+[2025-10-28 16:35:06.190] [config ] [info]     + DNS Settings:
+[2025-10-28 16:35:06.190] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-28 16:35:06.190] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-28 16:35:06.190] [config ] [info] - DNN:
+[2025-10-28 16:35:06.190] [config ] [info]     + DNN......................................: ethernet
+[2025-10-28 16:35:06.190] [config ] [info]     + PDU session type.........................: ETHERNET
+[2025-10-28 16:35:06.190] [config ] [info]     + DNS Settings:
+[2025-10-28 16:35:06.190] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-28 16:35:06.190] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-28 16:35:06.190] [upf_app] [info] HTTP Client successfully initiated on interface demo-oai with timeout 3000 ms, HTTP version 2
+[2025-10-28 16:35:06.190] [common] [start] Starting...
+[2025-10-28 16:35:06.190] [common] [start] Started
+[2025-10-28 16:35:06.190] [asc_cmd] [start] Starting...
+[2025-10-28 16:35:06.190] [common] [info] Starting timer_manager_task
+[2025-10-28 16:35:06.191] [asc_cmd] [start] Started
+[2025-10-28 16:35:06.191] [upf_app] [start] Starting...
+[2025-10-28 16:35:06.192] [udp    ] [debug] Creating new listen socket on address 192.168.70.129 and port 8805
+
+[2025-10-28 16:35:06.192] [udp    ] [debug] udp_server::udp_server(192.168.70.129:8805)
+[2025-10-28 16:35:06.192] [udp    ] [debug] Creating new listen socket on address 192.168.70.129 and port 0
+
+[2025-10-28 16:35:06.192] [udp    ] [debug] udp_server::udp_server(192.168.70.129:0)
+[2025-10-28 16:35:06.192] [pfcp   ] [info] pfcp_l4_stack created listening to 192.168.70.129:8805
+[2025-10-28 16:35:06.192] [upf_n4 ] [start] Starting...
+[2025-10-28 16:35:06.194] [upf_n4 ] [start] Started
+[2025-10-28 16:35:06.194] [upf_app] [start] Starting...
+[2025-10-28 16:35:06.195] [upf_app] [debug] - NF instance info
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Instance ID: 3635f5c4-42b3-46e3-af6b-131664c45ed0
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Instance name: OAI-UPF
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Instance type: UPF
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Instance fqdn: 
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.195] [upf_app] [debug]     HeartBeat timer: 50
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.195] [upf_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.195] [upf_app] [debug]     SNSSAI:
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SST, SD: 1, FFFFFF
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SST, SD: 1, 000001
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SST, SD: 222, 00007b
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SST, SD: 5, FFFFFF
+[2025-10-28 16:35:06.195] [upf_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.195] [upf_app] [debug]         192.168.70.129
+[2025-10-28 16:35:06.195] [upf_app] [debug]     UPF Info:
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SNSSAI (SST 1, SD FFFFFF)
+[2025-10-28 16:35:06.195] [upf_app] [debug]             DNN oai
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SNSSAI (SST 1, SD 000001)
+[2025-10-28 16:35:06.195] [upf_app] [debug]             DNN oai.ipv4
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SNSSAI (SST 222, SD 00007b)
+[2025-10-28 16:35:06.195] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.195] [upf_app] [debug]             DNN default
+[2025-10-28 16:35:06.195] [upf_app] [debug]         SNSSAI (SST 5, SD FFFFFF)
+[2025-10-28 16:35:06.195] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.195] [upf_app] [info] Send NF Instance Registration to NRF
+[2025-10-28 16:35:06.195] [upf_app] [debug] UPF profile to JSON:
+ {"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.129"],"nfInstanceId":"3635f5c4-42b3-46e3-af6b-131664c45ed0","nfInstanceName":"OAI-UPF","nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222},{"sd":"FFFFFF","sst":5}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"FFFFFF","sst":1}},{"dnnUpfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnUpfInfoList":[{"dnn":"ethernet"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}},{"dnnUpfInfoList":[{"dnn":"ethernet"}],"sNssai":{"sd":"FFFFFF","sst":5}}]}}
+[2025-10-28 16:35:06.195] [upf_app] [debug] Send NF Instance Registration to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:06.195] [upf_app] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.129"],"nfInstanceId":"3635f5c4-42b3-46e3-af6b-131664c45ed0","nfInstanceName":"OAI-UPF","nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222},{"sd":"FFFFFF","sst":5}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"FFFFFF","sst":1}},{"dnnUpfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnUpfInfoList":[{"dnn":"ethernet"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}},{"dnnUpfInfoList":[{"dnn":"ethernet"}],"sNssai":{"sd":"FFFFFF","sst":5}}]}}
+[2025-10-28 16:35:06.195] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:06.201] [upf_app] [info] Response from NRF, JSON data: 
+ {"capacity":100,"heartBeatTimer":10,"ipv4Addresses":["192.168.70.129"],"json_data":null,"nfInstanceId":"3635f5c4-42b3-46e3-af6b-131664c45ed0","nfInstanceName":"OAI-UPF","nfServices":[],"nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222},{"sd":"FFFFFF","sst":5}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"FFFFFF","sst":1}},{"dnnUpfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnUpfInfoList":[{"dnn":"default"},{"dnn":"ethernet"}],"sNssai":{"sd":"00007b","sst":222}},{"dnnUpfInfoList":[{"dnn":"ethernet"}],"sNssai":{"sd":"FFFFFF","sst":5}}]}}
+[2025-10-28 16:35:06.201] [upf_app] [debug] - NF instance info
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance ID: 3635f5c4-42b3-46e3-af6b-131664c45ed0
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance name: OAI-UPF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance type: UPF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance fqdn: 
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.201] [upf_app] [debug]     HeartBeat timer: 10
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.201] [upf_app] [debug]     SNSSAI:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 1, FFFFFF
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 1, 000001
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 222, 00007b
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 5, FFFFFF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         192.168.70.129
+[2025-10-28 16:35:06.201] [upf_app] [debug]         192.168.70.129
+[2025-10-28 16:35:06.201] [upf_app] [debug]     UPF Info:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 1, SD FFFFFF)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN oai
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 1, SD 000001)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN oai.ipv4
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 222, SD 00007b)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN default
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 5, SD FFFFFF)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.201] [upf_app] [debug] Updated UPF profile
+[2025-10-28 16:35:06.201] [upf_app] [debug] - NF instance info
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance ID: 3635f5c4-42b3-46e3-af6b-131664c45ed0
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance name: OAI-UPF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance type: UPF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Instance fqdn: 
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.201] [upf_app] [debug]     HeartBeat timer: 10
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.201] [upf_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.201] [upf_app] [debug]     SNSSAI:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 1, FFFFFF
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 1, 000001
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 222, 00007b
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SST, SD: 5, FFFFFF
+[2025-10-28 16:35:06.201] [upf_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         192.168.70.129
+[2025-10-28 16:35:06.201] [upf_app] [debug]         192.168.70.129
+[2025-10-28 16:35:06.201] [upf_app] [debug]     UPF Info:
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 1, SD FFFFFF)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN oai
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 1, SD 000001)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN oai.ipv4
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 222, SD 00007b)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN default
+[2025-10-28 16:35:06.201] [upf_app] [debug]         SNSSAI (SST 5, SD FFFFFF)
+[2025-10-28 16:35:06.201] [upf_app] [debug]             DNN ethernet
+[2025-10-28 16:35:06.201] [upf_app] [start] Started
+[2025-10-28 16:35:06.201] [upf_app] [start] Started
+[2025-10-28 16:35:06.205] [upf_app] [info] GTP interface: demo-n3
+[2025-10-28 16:35:06.205] [upf_app] [info] Non-GTP interface: demo-n6
+[2025-10-28 16:35:06.205] [upf_app] [info] BPFProgram 1 is created!!!
+[2025-10-28 16:35:06.372] [upf_app] [debug] Configure redirect interface
+[2025-10-28 16:35:06.372] [upf_app] [debug] The key is updated in the map: m_redirect_interfaces
+[2025-10-28 16:35:06.372] [upf_app] [debug] The key is updated in the map: m_redirect_interfaces
+[2025-10-28 16:35:06.372] [upf_app] [debug] Adding Reference Points to m_upf_interface Map
+[2025-10-28 16:35:06.372] [upf_app] [debug] The key is updated in the map: m_upf_interfaces
+[2025-10-28 16:35:06.372] [upf_app] [info] Reference Point N3 Added to m_upf_interface Map
+[2025-10-28 16:35:06.372] [upf_app] [debug] The key is updated in the map: m_upf_interfaces
+[2025-10-28 16:35:06.372] [upf_app] [info] Reference Point N6 Added to m_upf_interface Map
+[2025-10-28 16:35:06.372] [upf_app] [debug] The key is updated in the map: m_upf_interfaces
+[2025-10-28 16:35:06.372] [upf_app] [info] Reference Point N4 Added to m_upf_interface Map
+[2025-10-28 16:35:06.372] [upf_app] [debug] Link GTP XDP Section to interface demo-n3
+[2025-10-28 16:35:06.386] [upf_app] [info] BPF program xdp_handle_uplink hooked in demo-n3 XDP interface
+[2025-10-28 16:35:06.386] [upf_app] [debug] Link Non-GTP XDP Section to interface demo-n6
+[2025-10-28 16:35:06.386] [upf_app] [debug] QoS enforcement is disabled in the configuration.
+[2025-10-28 16:35:06.397] [upf_app] [info] BPF program xdp_handle_downlink hooked in demo-n6 XDP interface
+[2025-10-28 16:35:06.416] [upf_app] [debug] The key is updated in the map: m_egress_ifindex
+[2025-10-28 16:35:06.416] [upf_app] [debug] The key is updated in the map: m_egress_ifindex
+[2025-10-28 16:35:06.422] [upf_app] [info] Attach Section far_tc_kernel to gtp interface
+[2025-10-28 16:35:06.423] [upf_app] [info] BPF program handle_broadcast successfully attached to demo-n3 interface
+[2025-10-28 16:35:06.423] [upf_app] [info] Attach Sesction far_tc_kernel to udp interface
+[2025-10-28 16:35:06.423] [upf_app] [info] BPF program handle_broadcast successfully attached to demo-n6 interface
+[2025-10-28 16:35:06.423] [upf_app] [debug] The key is updated in the map: framed_routing_flag
+[2025-10-28 16:35:07.325] [upf_n4 ] [info] handle_receive(34 bytes)
+[2025-10-28 16:35:07.326] [upf_n4 ] [info] Handle SX ASSOCIATION SETUP REQUEST
+[2025-10-28 16:35:16.201] [upf_app] [info] TIME-OUT event timer id 1
+[2025-10-28 16:35:16.201] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:35:16.201] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:35:16.201] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:35:16.201] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:16.201] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:16.252] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:35:16.252] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:17.327] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:35:17.327] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:35:26.252] [upf_app] [info] TIME-OUT event timer id 3
+[2025-10-28 16:35:26.252] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:35:26.252] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:35:26.252] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:35:26.252] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:26.252] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:26.253] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:35:26.253] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:27.327] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:35:27.327] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:35:35.719] [upf_n4 ] [info] handle_receive(165 bytes)
+[2025-10-28 16:35:35.719] [upf_app] [info] Received N4_SESSION_ESTABLISHMENT_REQUEST seid 0x1 
+[2025-10-28 16:35:35.719] [upf_n4 ] [info] pfcp_session::add(far) seid 0x1 
+[2025-10-28 16:35:35.719] [upf_n4 ] [info] pfcp_session::set(fteid) seid 0x1 
+[2025-10-28 16:35:35.719] [upf_n4 ] [info] pfcp_session::get(fteid) seid 0x1 
+[2025-10-28 16:35:35.719] [upf_n4 ] [info] pfcp_session::add(pdr) seid 0x1 
+[2025-10-28 16:35:35.719] [upf_app] [info] Establish datapath: create(pdr(s) & far(s))
+[2025-10-28 16:35:35.719] [upf_app] [debug] sessionManager::createBpfSession() seid 0x1 
+[2025-10-28 16:35:35.719] [upf_app] [debug] Processing PDR 1 on establishment
+[2025-10-28 16:35:35.719] [upf_app] [warning] UE IP Address is missing for PDR 1
+[2025-10-28 16:35:35.719] [upf_app] [debug] Missing qer for pdr 1
+[2025-10-28 16:35:35.719] [upf_app] [debug] The key is updated in the map: m_rules_match_pdr
+[2025-10-28 16:35:35.719] [upf_app] [debug] SDF Filter Lengh (34)
+[2025-10-28 16:35:35.719] [upf_app] [debug] The key is updated in the map: m_session_pdrs
+[2025-10-28 16:35:35.719] [upf_app] [debug] Session seid 0x1 successfully created
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PFCP switch Packet Detection Rule list ordered by established sessions:                                                                                                                          |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|  SEID          |pdr |  far   |predence|   action   |        create outer hdr         tun id| rmv outer hdr  tun id|    UE IPv4     |                                                             |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|0000000000000001|0001|00000001|00000000|ACC>---->COR|none                                   |GTPU_UDP_IPV4:00000001||
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[2025-10-28 16:35:35.719] [upf_app] [debug] (upf_n6_ip, dn_ip ) : (192.168.72.129, 192.168.72.135) For PDR 1
+[2025-10-28 16:35:35.719] [upf_app] [debug] The same subnet
+[2025-10-28 16:35:35.747] [upf_n4 ] [info] handle_receive(138 bytes)
+[2025-10-28 16:35:35.747] [upf_app] [info] Received N4_SESSION_MODIFICATION_REQUEST seid 0x1 
+[2025-10-28 16:35:35.747] [upf_n4 ] [info] pfcp_session::add(far) seid 0x1 
+[2025-10-28 16:35:35.747] [upf_n4 ] [info] ETH-PDU: Do not support IE ethernet_pdu_session_information yet!
+[2025-10-28 16:35:35.747] [upf_n4 ] [info] pfcp_session::add(pdr) seid 0x1 
+[2025-10-28 16:35:35.747] [upf_n4 ] [info] ETH-PDU: Senting PDN type to ETHERNET based on ethernet_pdu_session_information or ethernet_packet_filter
+[2025-10-28 16:35:35.747] [upf_app] [info] Modify datapath
+[2025-10-28 16:35:35.747] [upf_app] [debug] sessionManager::modifyBpfSession() seid 0x1 
+[2025-10-28 16:35:35.747] [upf_app] [debug] modifyBpfSession:: add(pdr)
+[2025-10-28 16:35:35.747] [upf_app] [debug] Retrieving teid from session seid 0x1 
+[2025-10-28 16:35:35.747] [upf_app] [debug] Session seid 0x1 has teid 0x95259aa5 
+[2025-10-28 16:35:35.747] [upf_app] [debug] Retrieving teid from session seid 0x1 
+[2025-10-28 16:35:35.747] [upf_app] [debug] Session seid 0x1 has outer header removal
+[2025-10-28 16:35:35.747] [upf_app] [debug] Session seid 0x1 has teid 0x1 
+[2025-10-28 16:35:35.747] [upf_app] [debug] ETH-PDU: modifying pipeline for ETH PDU session
+[2025-10-28 16:35:35.747] [upf_app] [debug] ETH-PDU: modifying pipeline for ETH PDU session 
+ |0000000000000001|0001|00000001|00000000|ACC>---->COR|none                                   |GTPU_UDP_IPV4:00000001||
+|0000000000000001|0002|00000002|00000000|COR>---->ACC|GTPU_UDP_IPV4:192.168.71.153  :95259aa5|none                  ||
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[2025-10-28 16:35:35.747] [upf_app] [debug] ETH-PDU: Storing ETH PDU session in map with TEID_UL: 1, TEID_DL: 2502269605, SEID: 1
+[2025-10-28 16:35:35.747] [upf_app] [debug] The key is updated in the map: m_eth__session_mapping
+[2025-10-28 16:35:35.747] [upf_app] [debug] Stored ETH PDU session in map with TEID_UL: 16777216, TEID_DL: 2778342805, SEID: 1, IP Address: 2168957120
+[2025-10-28 16:35:35.747] [upf_app] [debug] Processing PDR 1 on Modification
+[2025-10-28 16:35:35.747] [upf_app] [debug] The key is updated in the map: m_eth__rules_match_pdr
+[2025-10-28 16:35:35.747] [upf_app] [debug] SDF Filter Lengh (34)
+[2025-10-28 16:35:35.747] [upf_app] [debug] Processing PDR 2 on Modification
+[2025-10-28 16:35:35.747] [upf_app] [debug] The key is updated in the map: m_eth__rules_match_pdr
+[2025-10-28 16:35:35.747] [upf_app] [debug] SDF Filter Lengh (34)
+[2025-10-28 16:35:35.747] [upf_app] [debug] The key is updated in the map: m_eth__session_pdrs
+[2025-10-28 16:35:35.747] [upf_app] [debug] modifyBpfSession:: add(far)
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PFCP switch Packet Detection Rule list ordered by established sessions:                                                                                                                          |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|  SEID          |pdr |  far   |predence|   action   |        create outer hdr         tun id| rmv outer hdr  tun id|    UE IPv4     |                                                             |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|0000000000000001|0001|00000001|00000000|ACC>---->COR|none                                   |GTPU_UDP_IPV4:00000001||
+|0000000000000001|0002|00000002|00000000|COR>---->ACC|GTPU_UDP_IPV4:192.168.71.153  :95259aa5|none                  ||
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[2025-10-28 16:35:36.253] [upf_app] [info] TIME-OUT event timer id 5
+[2025-10-28 16:35:36.253] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:35:36.253] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:35:36.253] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:35:36.253] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:36.253] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:36.255] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:35:36.255] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:36.797] [upf_app] [debug] Next Hop <SRC IP, MAC Address> = <192.168.72.135, ee:9f:d2:0d:69:aa
+>
+[2025-10-28 16:35:36.797] [upf_app] [debug] The key is updated in the map: m_arp_table
+[2025-10-28 16:35:37.327] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:35:37.327] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:35:46.255] [upf_app] [info] TIME-OUT event timer id 9
+[2025-10-28 16:35:46.255] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:35:46.255] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:35:46.255] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:35:46.255] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:46.255] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:46.257] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:35:46.257] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:47.328] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:35:47.328] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:35:56.258] [upf_app] [info] TIME-OUT event timer id 11
+[2025-10-28 16:35:56.258] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:35:56.258] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:35:56.258] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:35:56.258] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:35:56.258] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:35:56.260] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:35:56.260] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:57.328] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:35:57.328] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:36:06.260] [upf_app] [info] TIME-OUT event timer id 13
+[2025-10-28 16:36:06.260] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:36:06.260] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:36:06.260] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:36:06.260] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:36:06.260] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:36:06.262] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:36:06.262] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:07.329] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:36:07.329] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:36:16.262] [upf_app] [info] TIME-OUT event timer id 15
+[2025-10-28 16:36:16.262] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:36:16.262] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:36:16.262] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:36:16.262] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:36:16.262] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:36:16.265] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:36:16.265] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:17.330] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:36:17.330] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:36:25.887] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:36:25.887] [upf_app] [info] Received N4_SESSION_DELETION_REQUEST seid 0x1 
+[2025-10-28 16:36:25.887] [upf_app] [info] Delete datapath
+[2025-10-28 16:36:25.887] [upf_app] [info] Session 1 will be deleted from Data-Path
+[2025-10-28 16:36:25.887] [upf_app] [debug] Clean the different eBPF maps
+[2025-10-28 16:36:25.887] [upf_app] [error] Session with SEID: 1 Does Not Exist
+[2025-10-28 16:36:25.887] [upf_app] [debug] Delete the SessionPrograms object. It will release the pipeline
+[2025-10-28 16:36:25.887] [upf_app] [debug] Clean PDU Session from the entry program's map
+[2025-10-28 16:36:25.887] [upf_app] [debug] Session 0x1 Has Been Removed Successfully
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PFCP switch Packet Detection Rule list ordered by established sessions:                                                                                                                          |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|  SEID          |pdr |  far   |predence|   action   |        create outer hdr         tun id| rmv outer hdr  tun id|    UE IPv4     |                                                             |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+[2025-10-28 16:36:26.265] [upf_app] [info] TIME-OUT event timer id 17
+[2025-10-28 16:36:26.265] [upf_app] [debug] Send Heartbeat to NRF
+[2025-10-28 16:36:26.265] [upf_app] [info] Send NF Update to NRF
+[2025-10-28 16:36:26.265] [upf_app] [debug] Send NF Update to NRF (Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}])
+[2025-10-28 16:36:26.265] [upf_app] [debug] Send NF Update to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:36:26.265] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:36:26.268] [upf_app] [info] Got successful response from NRF
+[2025-10-28 16:36:26.268] [upf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:27.330] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-28 16:36:27.331] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-28 16:36:35.820] [upf_app] [info] Signal 15 received. Shutting down...
+[2025-10-28 16:36:35.820] [upf_app] [debug] ================== Unpinning maps for object pfcp_session_lo
+
+[2025-10-28 16:36:35.820] [upf_app] [debug] There are some programs in LINKED state
+[2025-10-28 16:36:35.820] [upf_app] [debug] BPF program xdp_handle_uplink is in a HOOKED state
+[2025-10-28 16:36:35.829] [upf_app] [info] BPF program xdp_handle_uplink unlink to 4000 interface
+[2025-10-28 16:36:35.829] [upf_app] [debug] BPF program xdp_handle_shaping are not link to any interface
+[2025-10-28 16:36:35.829] [upf_app] [debug] BPF program xdp_handle_downlink is in a HOOKED state
+[2025-10-28 16:36:35.840] [upf_app] [info] BPF program xdp_handle_downlink unlink to 4001 interface
+[2025-10-28 16:36:35.841] [upf_app] [info] BPF program handle_broadcast unhooked from demo-n3 TC interface
+[2025-10-28 16:36:35.841] [upf_app] [info] BPF program handle_broadcast unhooked from demo-n6 TC interface
+[2025-10-28 16:36:35.841] [upf_app] [debug] ================== Unpinning maps for object far_tc_kernel_c
+
+[2025-10-28 16:36:35.841] [upf_app] [warning] Couldn't unpin maps for object far_tc_kernel_c (err:-2).
+
+[2025-10-28 16:36:35.841] [system ] [info] Caught signal 15
+[2025-10-28 16:36:35.841] [upf_app] [debug] Send NF De-registration to NRF
+[2025-10-28 16:36:35.841] [upf_app] [info] Send NF De-register to NRF
+[2025-10-28 16:36:35.841] [upf_app] [debug] Send NF De-register to NRF (NRF URL http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/3635f5c4-42b3-46e3-af6b-131664c45ed0)
+[2025-10-28 16:36:35.841] [upf_app] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.842] [upf_app] [info] Got successful response from NRF de-registration
+[2025-10-28 16:36:35.842] [common] [info] Waiting ITTI tasks closed
+[2025-10-28 16:36:35.842] [upf_app] [info] Received terminate message
+[2025-10-28 16:36:35.842] [asc_cmd] [info] Received terminate message
+[2025-10-28 16:36:35.842] [upf_app] [info] Received terminate message
+[2025-10-28 16:36:35.842] [upf_n4 ] [info] Received terminate message
+[2025-10-28 16:36:35.842] [common] [info] All ITTI tasks closed
+[2025-10-28 16:36:35.842] [system ] [info] Freeing Allocated memory...
+[2025-10-28 16:36:35.842] [system ] [debug] Async Shell CMD memory done.
+[2025-10-28 16:36:35.842] [udp    ] [info] Starting the udp_server destruction
+[2025-10-28 16:36:35.842] [udp    ] [error] Recvfrom failed Success
+[2025-10-28 16:36:35.852] [udp    ] [info] Finished the udp_server destruction
+[2025-10-28 16:36:35.852] [udp    ] [info] Starting the udp_server destruction
+[2025-10-28 16:36:35.852] [udp    ] [error] Recvfrom failed Success
+[2025-10-28 16:36:35.852] [udp    ] [info] Finished the udp_server destruction
+[2025-10-28 16:36:35.852] [system ] [debug] UPF APP memory done.
+[2025-10-28 16:36:35.852] [common] [info] ~itti()
+[2025-10-28 16:36:35.852] [common] [info] timer_manager_task is stopped!
+[2025-10-28 16:36:35.952] [common] [info] ~itti() Done!
+[2025-10-28 16:36:35.952] [system ] [debug] ITTI memory done.
+[2025-10-28 16:36:35.952] [system ] [info] Freeing Allocated memory done.
+[2025-10-28 16:36:35.952] [system ] [info] Bye. Shutdown Procedure took 111 ms
+[2025-10-28 16:36:35.952] [upf_app] [info] Signal 11 received. Shutting down...

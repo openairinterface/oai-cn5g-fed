@@ -1,0 +1,144 @@
+Trying to read .yaml configuration file: /openair-ausf/etc/config.yaml
+LTTNG Tracing disabled at build-time!
+[2025-10-28 16:35:06.250] [ausf_server] [start] Options parsed
+[2025-10-28 16:35:06.250] [ausf_server] [debug] Parsing the configuration file, file type YAML.
+[2025-10-28 16:35:06.250] [config ] [info] Reading NF configuration from /openair-ausf/etc/config.yaml
+[2025-10-28 16:35:06.259] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2025-10-28 16:35:06.259] [config ] [debug] Unknown NF smf in configuration. Ignored
+[2025-10-28 16:35:06.259] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2025-10-28 16:35:06.259] [config ] [debug] Unknown NF udr in configuration. Ignored
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of log_level
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of register_nf
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of http_version
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of NRF
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of UDM
+[2025-10-28 16:35:06.260] [config ] [debug] Validating configuration of AUSF
+[2025-10-28 16:35:06.261] [config ] [debug] Validating configuration of database
+[2025-10-28 16:35:06.261] [config ] [info] ==== OPENAIRINTERFACE ausf vBranch: HEAD Abrev. Hash: 577383d Date: Sat Sep 13 17:51:17 2025 +0200 ====
+[2025-10-28 16:35:06.261] [config ] [info] Basic Configuration:
+[2025-10-28 16:35:06.261] [config ] [info]   - log_level..................................: debug
+[2025-10-28 16:35:06.261] [config ] [info]   - register_nf................................: Yes
+[2025-10-28 16:35:06.261] [config ] [info]   - http_version...............................: 2
+[2025-10-28 16:35:06.261] [config ] [info]   TLS:
+[2025-10-28 16:35:06.261] [config ] [info]     - Enable TLS.................................: No
+[2025-10-28 16:35:06.261] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2025-10-28 16:35:06.261] [config ] [info]     AUSF:
+[2025-10-28 16:35:06.261] [config ] [info]     - host.....................................: oai-ausf
+[2025-10-28 16:35:06.261] [config ] [info]     - SBI
+[2025-10-28 16:35:06.261] [config ] [info]       + URL....................................: oai-ausf:8080
+[2025-10-28 16:35:06.261] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.261] [config ] [info]       + IPv4 Address ..........................: 192.168.70.138
+[2025-10-28 16:35:06.261] [config ] [info]     - Instance ID..............................: 0
+[2025-10-28 16:35:06.261] [config ] [info]     - PID Directory............................: 
+[2025-10-28 16:35:06.261] [config ] [info]     - AUSF Name................................: 
+[2025-10-28 16:35:06.261] [config ] [info] Peer NF Configuration:
+[2025-10-28 16:35:06.261] [config ] [info]   NRF:
+[2025-10-28 16:35:06.261] [config ] [info]     - host.....................................: oai-nrf
+[2025-10-28 16:35:06.261] [config ] [info]     - SBI
+[2025-10-28 16:35:06.261] [config ] [info]       + URL....................................: oai-nrf:8080
+[2025-10-28 16:35:06.261] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.261] [ausf_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+[2025-10-28 16:35:06.261] [ausf_app] [start] Starting...
+[2025-10-28 16:35:06.261] [ausf_nrf] [info] Create NRF TASK
+[2025-10-28 16:35:06.261] [ausf_app] [debug] - NF instance info
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Instance ID: 13679f04-ef4c-4654-ad3a-1f901a48235e
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Instance name: OAI-AUSF
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Instance type: AUSF
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Instance fqdn: 
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     HeartBeat timer: 50
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.261] [ausf_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.261] [ausf_app] [debug]         192.168.70.138
+[2025-10-28 16:35:06.261] [ausf_app] [debug] 	AUSF Info
+[2025-10-28 16:35:06.261] [ausf_app] [debug] 		GroupId: oai-ausf-testgroupid
+[2025-10-28 16:35:06.261] [ausf_app] [debug] 		 SupiRanges: Start - q0930j0c80283ncjf, End - , Pattern - 209238210938
+[2025-10-28 16:35:06.261] [ausf_app] [debug] 		 Routing Indicators: 0210
+[2025-10-28 16:35:06.261] [ausf_app] [debug] 		 Routing Indicators: 9876
+[2025-10-28 16:35:06.261] [ausf_nrf] [info] NRF TASK created
+[2025-10-28 16:35:06.261] [ausf_app] [debug] ausf profile to JSON:
+ {"ausfInfo":{"groupId":"oai-ausf-testgroupid","routingIndicators":["0210","9876"],"supiRanges":[{"end":"","pattern":"209238210938","start":"q0930j0c80283ncjf"}]},"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"13679f04-ef4c-4654-ad3a-1f901a48235e","nfInstanceName":"OAI-AUSF","nfStatus":"REGISTERED","nfType":"AUSF","priority":1,"sNssais":[]}
+[2025-10-28 16:35:06.261] [ausf_nrf] [info] Sending NF registration request
+[2025-10-28 16:35:06.261] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:06.268] [ausf_app] [start] Started
+[2025-10-28 16:35:06.271] [ausf_server] [info] HTTP2 server being started
+[2025-10-28 16:35:16.266] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:16.266] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:26.354] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:26.354] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.610] [ausf_server] [info] Received ue_authentications_post Request
+[2025-10-28 16:35:35.610] [ausf_app] [info] Handle UE Authentication Request
+[2025-10-28 16:35:35.610] [ausf_app] [info] ServingNetworkName 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.610] [ausf_app] [info] supiOrSuci imsi-208950000000038
+[2025-10-28 16:35:35.610] [ausf_app] [debug] UDM's URI http://oai-udm:8080/nudm-ueau/v1/imsi-208950000000038/security-information/generate-auth-data
+[2025-10-28 16:35:35.610] [ausf_app] [info] Received authInfo from AMF without ResynchronizationInfo IE
+[2025-10-28 16:35:35.610] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.627] [ausf_app] [info] Response from UDM: {"authType":"5G_AKA","authenticationVector":{"autn":"df4cb3465ff5800085f791b0a4da9ab3","avType":"5G_HE_AKA","kausf":"321835a6d0ee4f17af0339cd321a08ec2d9c17aa00a3a411338a059fa6e70eee","rand":"112855a739739ecbda1d642155a3f9dd","xresStar":"f0b45c09dda2308e9f061b8b549185fa"}}
+[2025-10-28 16:35:35.627] [ausf_app] [debug] authType 5G_AKA
+[2025-10-28 16:35:35.627] [ausf_app] [debug] autn_udm df4cb3465ff5800085f791b0a4da9ab3
+[2025-10-28 16:35:35.627] [ausf_app] [debug] av_type_udm 5G_HE_AKA
+[2025-10-28 16:35:35.627] [ausf_app] [debug] kausf_udm 321835a6d0ee4f17af0339cd321a08ec2d9c17aa00a3a411338a059fa6e70eee
+[2025-10-28 16:35:35.627] [ausf_app] [debug] rand_udm 112855a739739ecbda1d642155a3f9dd
+[2025-10-28 16:35:35.627] [ausf_app] [debug] xres*_udm f0b45c09dda2308e9f061b8b549185fa
+[2025-10-28 16:35:35.627] [ausf_app] [debug] Generating 5G AV
+[2025-10-28 16:35:35.627] [ausf_app] [debug] HXresStar calculated:
+ b1f97f6f9d3c34718a5cb58b0ea997ee
+[2025-10-28 16:35:35.627] [ausf_app] [debug] Derive_kseaf ...
+[2025-10-28 16:35:35.627] [ausf_app] [debug] SNN: 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.627] [common] [debug] [ausf_app]derive_kseaf Kausf
+32 18 35 a6 d0 ee 4f 17 af 03 39 cd 32 1a 08 ec 2d 9c 17 aa 00 a3 a4 11 33 8a 05 9f a6 e7 0e ee 
+[2025-10-28 16:35:35.627] [common] [debug] [ausf_app]derive_kseaf Kseaf
+fe 64 a6 17 1e f7 5a 68 b5 82 15 75 10 98 c9 89 dd f4 a8 c2 e4 82 b0 53 02 58 9c 6e 54 af ca 3c 
+[2025-10-28 16:35:35.627] [ausf_app] [debug] Kseaf calculated:
+ fe64a6171ef75a68b58215751098c989ddf4a8c2e482b05302589c6e54afca3c
+[2025-10-28 16:35:35.627] [ausf_app] [debug] Create a new security context with SUPI 
+[2025-10-28 16:35:35.627] [ausf_app] [debug] Auth Response:
+ {"5gAuthData":{"autn":"df4cb3465ff5800085f791b0a4da9ab3","hxresStar":"b1f97f6f9d3c34718a5cb58b0ea997ee","rand":"112855a739739ecbda1d642155a3f9dd"},"_links":{"5g-aka":{"href":"http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/df4cb3465ff5800085f791b0a4da9ab3/5g-aka-confirmation"}},"authType":"5G_AKA"}
+[2025-10-28 16:35:35.627] [ausf_server] [debug] Auth response:
+ {"5gAuthData":{"autn":"df4cb3465ff5800085f791b0a4da9ab3","hxresStar":"b1f97f6f9d3c34718a5cb58b0ea997ee","rand":"112855a739739ecbda1d642155a3f9dd"},"_links":{"5g-aka":{"href":"http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/df4cb3465ff5800085f791b0a4da9ab3/5g-aka-confirmation"}},"authType":"5G_AKA"}
+[2025-10-28 16:35:35.627] [ausf_server] [info] Send Auth response to SEAF (Code 201)
+[2025-10-28 16:35:35.640] [ausf_server] [info] Received 5g_aka_confirmation Request
+[2025-10-28 16:35:35.640] [ausf_server] [info] 5gaka confirmation received with authctxID df4cb3465ff5800085f791b0a4da9ab3
+[2025-10-28 16:35:35.640] [ausf_app] [debug] Handling 5g-aka-confirmation
+[2025-10-28 16:35:35.640] [ausf_app] [debug] Retrieve security context with authCtxId: 
+[2025-10-28 16:35:35.640] [ausf_app] [info] Received authCtxId df4cb3465ff5800085f791b0a4da9ab3
+[2025-10-28 16:35:35.640] [ausf_app] [info] Received res* F0B45C09DDA2308E9F061B8B549185FA
+[2025-10-28 16:35:35.640] [ausf_app] [debug] authCtxId in AUSF: df4cb3465ff5800085f791b0a4da9ab3
+[2025-10-28 16:35:35.640] [ausf_app] [info] AV is up to date, handling received res*...
+[2025-10-28 16:35:35.640] [ausf_app] [debug] xres* in AUSF: f0b45c09dda2308e9f061b8b549185fa
+[2025-10-28 16:35:35.640] [ausf_app] [debug] xres in AMF: f0b45c09dda2308e9f061b8b549185fa
+[2025-10-28 16:35:35.640] [ausf_app] [info] Authentication successful by home network!
+[2025-10-28 16:35:35.640] [ausf_app] [debug] UDM's URI: http://oai-udm:8080/nudm-ueau/v1/imsi-208950000000038/auth-events
+[2025-10-28 16:35:35.640] [ausf_app] [debug] confirmResultInfo: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2025-10-28T15:35:35Z"}
+[2025-10-28 16:35:35.640] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.651] [ausf_server] [debug] 5g-aka-confirmation response:
+ {"authResult":"AUTHENTICATION_SUCCESS","kseaf":"fe64a6171ef75a68b58215751098c989ddf4a8c2e482b05302589c6e54afca3c","supi":"imsi-208950000000038"}
+[2025-10-28 16:35:35.651] [ausf_server] [info] Send 5g-aka-confirmation response to SEAF (Code 200)
+[2025-10-28 16:35:36.354] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:36.354] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:46.356] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:46.356] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:56.362] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:56.362] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:06.366] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:06.366] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:16.368] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:16.368] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:26.374] [ausf_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:26.374] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.816] [system ] [info] Caught signal 15
+[2025-10-28 16:36:35.816] [system ] [debug] Freeing Allocated memory...
+[2025-10-28 16:36:35.816] [ausf_server] [info] HTTP2 server fully stopped
+[2025-10-28 16:36:35.916] [ausf_server] [info] HTTP2 server should be fully stopped
+[2025-10-28 16:36:35.967] [ausf_nrf] [info] Sending NF Deregistration request to NRF: http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/13679f04-ef4c-4654-ad3a-1f901a48235e
+[2025-10-28 16:36:35.967] [ausf_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.968] [system ] [debug] AUSF API Servers memory done
+[2025-10-28 16:36:35.968] [ausf_app] [debug] Exit loop in manage_tasks
+[2025-10-28 16:36:35.978] [system ] [debug] Stopped the AUSF Task Manager.
+[2025-10-28 16:36:35.978] [ausf_app] [debug] Delete AUSF_APP instance...
+[2025-10-28 16:36:35.978] [system ] [debug] AUSF APP memory done
+[2025-10-28 16:36:35.978] [system ] [debug] Freeing allocated memory done
+[2025-10-28 16:36:35.978] [system ] [info] Bye. Shutdown Procedure took 161 ms
+[2025-10-28 16:36:35.978] [ausf_client] [info] Delete HTTP client instance
