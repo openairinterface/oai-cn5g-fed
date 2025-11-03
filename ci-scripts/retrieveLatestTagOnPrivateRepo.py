@@ -42,6 +42,9 @@ def main() -> None:
     if args.repo_name == '5gc-gnbsim':
         tagRoot = 'main'
         nbChars = 11
+    if args.repo_name == 'oai-upf-vpp': # UPF-VPP is not maintained and we are not buidling multi-architecture image for it
+        print("develop-863d2bf7") # The last develop commit on UPF-VPP
+        sys.exit(0)
     else:
         tagRoot = 'develop'
         nbChars = 15
