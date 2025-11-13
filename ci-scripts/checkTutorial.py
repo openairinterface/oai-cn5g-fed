@@ -32,7 +32,7 @@ import time
 from subprocess import PIPE, STDOUT
 
 DOCKER_COMPOSE_FOLDER_NAME = "docker-compose"
-DOCUMENT_FOLDER_NAME = "docs"
+DOCUMENT_FOLDER_NAME = "docs/Tutorials"
 SLEEP_BETWEEN_COMMANDS = 1
 
 # from https://stackoverflow.com/questions/384076/how-can-i-color-python-logging-output

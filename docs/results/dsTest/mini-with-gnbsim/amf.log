@@ -1,0 +1,2221 @@
+Trying to read .yaml configuration file
+LTTNG Tracing disabled at build-time!
+[2025-10-14 09:45:19.297] [amf_app] [start] Options parsed!
+[2025-10-14 09:45:19.298] [system ] [debug] Parsing the configuration file, file type YAML.
+[2025-10-14 09:45:19.298] [config ] [info] Reading NF configuration from /openair-amf/etc/config.yaml
+[2025-10-14 09:45:19.309] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2025-10-14 09:45:19.310] [config ] [debug] Validating configuration of log_level
+[2025-10-14 09:45:19.310] [config ] [debug] Validating configuration of register_nf
+[2025-10-14 09:45:19.310] [config ] [debug] Validating configuration of http_version
+[2025-10-14 09:45:19.310] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-14 09:45:19.310] [config ] [debug] Validating configuration of NSSF
+[2025-10-14 09:45:19.311] [config ] [debug] Validating configuration of NRF
+[2025-10-14 09:45:19.311] [config ] [debug] Validating configuration of UDM
+[2025-10-14 09:45:19.312] [config ] [debug] Validating configuration of AUSF
+[2025-10-14 09:45:19.313] [config ] [debug] Validating configuration of SMF
+[2025-10-14 09:45:19.314] [config ] [debug] Validating configuration of AMF
+[2025-10-14 09:45:19.316] [config ] [debug] Validating configuration of database
+[2025-10-14 09:45:19.317] [config] [info] ==== OAI-CN5G AMF vBranch: HEAD Abrev. Hash: f4882809 Date: Wed Aug 13 09:52:05 2025 +0200 ====
+[2025-10-14 09:45:19.317] [config] [info] ======================    AMF   =====================
+[2025-10-14 09:45:19.317] [config] [info] Configuration AMF:
+[2025-10-14 09:45:19.317] [config] [info] - Instance ................: 1
+[2025-10-14 09:45:19.317] [config] [info] - PID dir .................: /var/run
+[2025-10-14 09:45:19.317] [config] [info] - AMF NAME.................: OAI-AMF
+[2025-10-14 09:45:19.317] [config] [info] - GUAMI (MCC, MNC, Region ID, AMF Set ID, AMF pointer): 
+[2025-10-14 09:45:19.317] [config] [info]     (001, 01, 1, 1, 1)
+[2025-10-14 09:45:19.317] [config] [info] - Served Guami List:
+[2025-10-14 09:45:19.317] [config] [info]     (208, 95, 1 , 1, 1)
+[2025-10-14 09:45:19.317] [config] [info]     (001, 01, 1 , 1, 1)
+[2025-10-14 09:45:19.317] [config] [info] - Relative Capacity .......: 30
+[2025-10-14 09:45:19.317] [config] [info] - PLMN Support: 
+[2025-10-14 09:45:19.317] [config] [info]     MCC, MNC ..............: 208, 95
+[2025-10-14 09:45:19.317] [config] [info]     TAC ...................: 40960
+[2025-10-14 09:45:19.317] [config] [info]     Slice Support .........:
+[2025-10-14 09:45:19.317] [config] [info]         SST ...............: 1
+[2025-10-14 09:45:19.317] [config] [info]         SST, SD ...........: 1, 000001
+[2025-10-14 09:45:19.317] [config] [info]         SST, SD ...........: 222, 00007B
+[2025-10-14 09:45:19.317] [config] [info] - Default DNN.................: default
+[2025-10-14 09:45:19.317] [config] [info] - Emergency Support .......: No
+[2025-10-14 09:45:19.317] [config] [info] - Database: 
+[2025-10-14 09:45:19.317] [config] [info]     MySQL Server Addr .....: mysql
+[2025-10-14 09:45:19.317] [config] [info]     MySQL user ............: test
+[2025-10-14 09:45:19.317] [config] [info]     MySQL pass ............: test
+[2025-10-14 09:45:19.317] [config] [info]     MySQL DB ..............: oai_db
+[2025-10-14 09:45:19.317] [config] [info] - N2 Networking:
+[2025-10-14 09:45:19.317] [config] [info]     Iface .................: eth0
+[2025-10-14 09:45:19.317] [config] [info]     IP Addr ...............: 192.168.70.132
+[2025-10-14 09:45:19.317] [config] [info]     Port ..................: 38412
+[2025-10-14 09:45:19.317] [config] [info] - SBI Networking:
+[2025-10-14 09:45:19.317] [config] [info]     Iface .................: eth0
+[2025-10-14 09:45:19.317] [config] [info]     IP Addr ...............: 192.168.70.132
+[2025-10-14 09:45:19.317] [config] [info]     Port ..................: 80
+[2025-10-14 09:45:19.317] [config] [info]     API version............: v1
+[2025-10-14 09:45:19.317] [config] [info] - SMF:
+[2025-10-14 09:45:19.317] [config] [info]     URI root ...............: http://oai-smf:80
+[2025-10-14 09:45:19.317] [config] [info]     API version ...........: v1
+[2025-10-14 09:45:19.317] [config] [info] - Supported Features:
+[2025-10-14 09:45:19.317] [config] [info]     NF Registration .......: No
+[2025-10-14 09:45:19.317] [config] [info]     SMF Selection .........: No
+[2025-10-14 09:45:19.317] [config] [info]     External AUSF .........: No
+[2025-10-14 09:45:19.317] [config] [info]     External UDM ..........: No
+[2025-10-14 09:45:19.317] [config] [info]     External NSSF .........: No
+[2025-10-14 09:45:19.317] [config] [info]     External LMF ..........: No
+[2025-10-14 09:45:19.317] [config] [info]     HTTP version...........: 1
+[2025-10-14 09:45:19.317] [config] [info] - Log Level ...............: debug
+[2025-10-14 09:45:19.317] [config] [info] - Supported NAS Algorithm: 
+[2025-10-14 09:45:19.317] [config] [info]     Ordered Integrity Algorithm: 5G_IA0 5G_IA1 5G_IA2 
+[2025-10-14 09:45:19.317] [config] [info]     Ordered Ciphering Algorithm: 5G_EA0 5G_EA1 5G_EA2 
+[2025-10-14 09:45:19.317] [itti] [start] Starting...
+[2025-10-14 09:45:19.317] [itti] [start] Started
+[2025-10-14 09:45:19.317] [amf_sbi] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 1
+[2025-10-14 09:45:19.317] [amf_app] [start] Creating AMF application functionality layer
+[2025-10-14 09:45:19.317] [itti] [info] Starting timer_manager_task
+[2025-10-14 09:45:19.317] [itti] [warning] Could not set schedparam to ITTI task 0, err=1
+[2025-10-14 09:45:19.319] [amf_n1] [start] amf_n1 started
+[2025-10-14 09:45:19.319] [sctp] [debug] Creating socket!
+[2025-10-14 09:45:19.320] [sctp] [debug] Getaddrinfo on 192.168.70.132 was OK
+[2025-10-14 09:45:19.357] [sctp] [info] Created socket (3)
+[2025-10-14 09:45:19.361] [ngap] [info] Set N2 AMF IPv4 Addr 192.168.70.132, port 38412
+[2025-10-14 09:45:19.361] [sctp] [info] Create pthread to receive SCTP message
+[2025-10-14 09:45:19.362] [amf_n2] [start] amf_n2 started
+[2025-10-14 09:45:19.363] [amf_sbi] [start] amf_sbi started
+[2025-10-14 09:45:19.363] [amf_app] [debug] NF instance info
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Instance ID: d8a3ae9d-e926-478e-b916-45e5f5739ab7
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Instance name: OAI-AMF
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Instance type: AMF
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Status: REGISTERED
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	HeartBeat timer: 50
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Priority: 1
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	Capacity: 100
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	SNSSAI:
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		 SST, SD: 1, FFFFFF
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		 SST, SD: 1, 000001
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		 SST, SD: 222, 00007B
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	IPv4 Addr:
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		 192.168.70.132
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	NF Service
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		Service Instance ID: namf_communication, Service name: namf_communication, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.70.132, TransportProtocol: TCP, Port: 80
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		Service Instance ID: namf-evts, Service name: namf-evts, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.70.132, TransportProtocol: TCP, Port: 80
+[2025-10-14 09:45:19.363] [amf_app] [debug] 	AMF Info
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		AMF Set ID: 001, AMF Region ID: 01
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 208, MNC: 95)
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-14 09:45:19.363] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 001, MNC: 01)
+[2025-10-14 09:45:19.363] [amf_app] [start] Started timer (1)
+[2025-10-14 09:45:19.363] [amf_app] [debug] Initiating AMF server endpoints
+[2025-10-14 09:45:19.364] [amf_server] [debug] Initiate AMF Server Endpoints done!
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for AMFConfigurationApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for IndividualSubscriptionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for IndividualSubscriptionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for IndividualUeContextDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for N1N2IndividualSubscriptionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for N1N2MessageCollectionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for N1N2SubscriptionsCollectionForIndividualUEContextsDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for NonUEN2MessageNotificationIndividualSubscriptionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for NonUEN2MessagesCollectionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for NonUEN2MessagesSubscriptionsCollectionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for SubscriptionsCollectionDocumentApiImpl
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for SubscriptionsCollectionDocumentApiImplEventExposure
+[2025-10-14 09:45:19.364] [amf_server] [debug] AMF handler for N1MessageNotifyApiImpl
+[2025-10-14 09:45:19.365] [amf_server] [debug] AMF handler for StatusNotifyApiImpl
+[2025-10-14 09:45:19.365] [amf_app] [debug] Initiation Done!
+[2025-10-14 09:45:39.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    -   |                  -                 |                  -                 |                  -                 |                  -                 |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    -   |          -         |          -         |          -         |          -         |          -         |          -         |          -         |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:45:53.710] [sctp] [debug] SCTP Association Change event received
+[2025-10-14 09:45:53.710] [sctp] [debug] Add new association with Id (4)
+[2025-10-14 09:45:53.710] [sctp] [info] ----------------------
+[2025-10-14 09:45:53.710] [sctp] [info] Local addresses: 
+[2025-10-14 09:45:53.710] [sctp] [info]     - IPv4 Addr: 192.168.70.132
+[2025-10-14 09:45:53.710] [sctp] [info] ----------------------
+[2025-10-14 09:45:53.710] [sctp] [info] Peer addresses: 
+[2025-10-14 09:45:53.710] [sctp] [info]     - IPv4 Addr: 192.168.70.130
+[2025-10-14 09:45:53.710] [sctp] [info] ----------------------
+[2025-10-14 09:45:53.710] [ngap] [debug] Ready to handle new NGAP SCTP association request (id 4)
+[2025-10-14 09:45:53.710] [ngap] [debug] Create a new gNB context with assoc_id (4)
+[2025-10-14 09:45:53.710] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 44) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.710] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.711] [ngap] [debug] Decoded NGAP message, procedure code 21, present 1
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 04 (2 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: DE
+                                            sD: 00 00 7B
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.711] [ngap] [debug] [gNB Assoc Id 4] Sending ITTI NG Setup Request message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 04 (2 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: DE
+                                            sD: 00 00 7B
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.711] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:53.711] [amf_n2] [info] Received NGSetupRequest message, handling
+[2025-10-14 09:45:53.711] [amf_n2] [debug] [gNB Assoc ID 4] Handle NG Setup Request...
+[2025-10-14 09:45:53.711] [amf_n2] [debug] Parameters: assoc_id 4, stream 0
+[2025-10-14 09:45:53.711] [amf_n2] [debug] Update gNB context with assoc id (4)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] RAN Node Info, Global RAN Node ID: 0x100, MCC 208, MNC 95
+[2025-10-14 09:45:53.711] [amf_n2] [warning] Missing IE RanNodeName
+[2025-10-14 09:45:53.711] [amf_n2] [debug] IE DefaultPagingDRX: 0
+[2025-10-14 09:45:53.711] [amf_n2] [debug] TAC configured 40960, TAC received 40960
+[2025-10-14 09:45:53.711] [amf_n2] [debug] Common PLMN MCC 208, MNC 95
+[2025-10-14 09:45:53.711] [amf_n2] [debug] S-NSSAI from gNB (SST 222, SD 00007B)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD FFFFFF)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 000001)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 00007B)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] Common S-NSSAI (SST 222, SD 00007B)
+[2025-10-14 09:45:53.711] [amf_n2] [debug] GNB PLMN (208, 95) is included in the common PLMNs
+[2025-10-14 09:45:53.711] [amf_n2] [debug] Encoding NG_SETUP_RESPONSE ...
+SuccessfulOutcome ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupResponseIEs ::= {
+                id: 1
+                criticality: 0 (reject)
+                value: OAI-AMF
+            }
+            NGSetupResponseIEs ::= {
+                id: 96
+                criticality: 0 (reject)
+                value: ServedGUAMIList ::= {
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 02 F8 59
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 00 F1 10
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                }
+            }
+            NGSetupResponseIEs ::= {
+                id: 86
+                criticality: 1 (ignore)
+                value: 30
+            }
+            NGSetupResponseIEs ::= {
+                id: 80
+                criticality: 0 (reject)
+                value: PLMNSupportList ::= {
+                    PLMNSupportItem ::= {
+                        pLMNIdentity: 02 F8 59
+                        sliceSupportList: SliceSupportList ::= {
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                    sD: 00 00 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: DE
+                                    sD: 00 00 7B
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.712] [ngap] [debug] Encoded size (66)
+[2025-10-14 09:45:53.712] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3f0001560 of 66 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:53.712] [sctp] [debug] Successfully sent 66 bytes on stream 0
+[2025-10-14 09:45:53.712] [amf_n2] [debug] Sending NG_SETUP_RESPONSE Ok
+[2025-10-14 09:45:53.712] [amf_n2] [debug] gNB with gNB_id 0x100, assoc_id 4 has been attached to AMF
+[2025-10-14 09:45:53.712] [amf_app] [debug] A new gNB has been successfully added!
+[2025-10-14 09:45:53.712] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.712] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.712] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 72) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.712] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.712] [ngap] [debug] Decoded NGAP message, procedure code 15, present 1
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 71 00 0D 01 02 F8 59 21 43 00 00 00 00 
+                    00 00 13 2E 04 80 20 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.712] [ngap] [debug] [gNB Assoc ID 4] Sending ITTI Initial UE Message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 71 00 0D 01 02 F8 59 21 43 00 00 00 00 
+                    00 00 13 2E 04 80 20 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.712] [ngap] [debug] Received RanUeNgapId 0 
+[2025-10-14 09:45:53.712] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:53.712] [amf_n2] [info] Received Initial UE Message, handling
+[2025-10-14 09:45:53.712] [amf_n2] [debug] Handle Initial UE Message...
+[2025-10-14 09:45:53.712] [amf_n2] [debug] User Location Info NR (MCC 208, MNC 95, TAC 40960) is included in the supported TA List
+[2025-10-14 09:45:53.712] [amf_n2] [warning] No UE NGAP context with ran_ue_ngap_id 0, gnb_id 256
+[2025-10-14 09:45:53.712] [amf_n2] [debug] Create a new UE NGAP context with ran_ue_ngap_id 0
+[2025-10-14 09:45:53.712] [amf_n2] [debug] 5g_s_tmsi not present
+[2025-10-14 09:45:53.712] [amf_n2] [debug] Store InitialUEMessage for Reroute NAS (if necessary)
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 71 00 0D 01 02 F8 59 21 43 00 00 00 00 
+                    00 00 13 2E 04 80 20 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.712] [ngap] [debug] Encoded size (0)
+[2025-10-14 09:45:53.712] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.712] [amf_app] [debug] Received NAS_SIG_ESTAB_REQ
+[2025-10-14 09:45:53.712] [amf_app] [warning] No existing UE context associated with key app_ue_ranid_0:amfid_1
+[2025-10-14 09:45:53.712] [amf_app] [debug] No existing UE Context, Create a new one with ran_amf_id app_ue_ranid_0:amfid_1
+[2025-10-14 09:45:53.712] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-14 09:45:53.712] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-14 09:45:53.712] [amf_n1] [warning] No existing nas_context with amf_ue_ngap_id 1
+[2025-10-14 09:45:53.712] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Received plain NAS message
+[2025-10-14 09:45:53.712] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Received NAS Signalling Establishment request...
+[2025-10-14 09:45:53.712] [amf_n1] [debug] No existing nas_context with amf_ue_ngap_id 1 --> Create a new one
+[2025-10-14 09:45:53.712] [amf_n1] [debug] NAS message type 0x41
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Received Registration Request message, handling...
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding RegistrationRequest message
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded 5GSMobilityIdentity IE length 13
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding 5GSMobilityIdentity SUCI
+[2025-10-14 09:45:53.712] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.712] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded Routing Indicator 1234
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded MSIN 0000000031
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded 5GSMobilityIdentity SUCI SUPI format IMSI (len 13)
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded SUCI (15 octets)
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded 5GS Mobile Identity, len (15)
+[2025-10-14 09:45:53.712] [nas] [debug] First option IEI 0x2e
+[2025-10-14 09:45:53.712] [nas] [debug] IEI 0x2e
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding IEI 0x2e
+[2025-10-14 09:45:53.712] [nas] [debug] Decoding UE Security Capability
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded UE Security Capability, len (6)
+[2025-10-14 09:45:53.712] [nas] [debug] 5G EA 0x80, 5G IA 0x20
+[2025-10-14 09:45:53.712] [nas] [debug] EEA 0x0
+[2025-10-14 09:45:53.712] [nas] [debug] EIA 0x0
+[2025-10-14 09:45:53.712] [nas] [debug] Next IEI 0x0
+[2025-10-14 09:45:53.712] [nas] [debug] Decoded RegistrationRequest message (len 25)
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Received IMSI 208950000000031
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Signal the UE Reachability Status Event notification for SUPI imsi-208950000000031
+[2025-10-14 09:45:53.712] [amf_n1] [debug] Send request to SBI to trigger UE Reachability Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.713] [amf_n1] [info] Associating SUPI (imsi-208950000000031) with NAS context
+[2025-10-14 09:45:53.713] [amf_app] [debug] A new UE (IMSI 208950000000031) has been successfully added!
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Set 5GMM state to COMM-PROC-INIT
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Existing nas_context --> Update
+[2025-10-14 09:45:53.713] [amf_app] [debug] The UE's Info (IMSI 208950000000031) has been successfully updated!
+[2025-10-14 09:45:53.713] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |                    |        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Send request to SBI to trigger UE Registration State Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.713] [amf_n1] [debug] NAS key set identifier: 0x7
+[2025-10-14 09:45:53.713] [amf_n1] [warning] No Optional IE 5GMMCapability available
+[2025-10-14 09:45:53.713] [amf_n1] [debug] No Optional IE RequestedNssai available
+[2025-10-14 09:45:53.713] [amf_n1] [debug] No Optional NAS Container inside Registration Request message
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Update UC context, SUPI imsi-208950000000031
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Start to run Registration Procedure
+[2025-10-14 09:45:53.713] [amf_n1] [debug] SUCI SUPI format IMSI is available
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Authentication vector in nas_context is not available
+[2025-10-14 09:45:53.713] [amf_n1] [debug] Start to generate Authentication Vectors
+[2025-10-14 09:45:53.713] [amf_authentication] [debug] Generate Authentication Vectors in UDM (locally in AMF)
+WARNING: MYSQL_OPT_RECONNECT is deprecated and will be removed in a future version.
+[2025-10-14 09:45:53.732] [amf_authentication] [debug] Connected to MySQL successfully
+[2025-10-14 09:45:53.733] [amf_authentication] [debug] No AUTS ...
+[2025-10-14 09:45:53.733] [amf_authentication] [debug] Receive information from MySQL with IMSI 208950000000031
+[2025-10-14 09:45:53.734] [amf_authentication] [error] Database config random -> false
+[2025-10-14 09:45:53.734] [amf_authentication] [debug] Generate 5g_he_av as in UDM
+[2025-10-14 09:45:53.734] [common] [debug] [authentication]Input string: 
+6b 35 47 3a 6d 6e 63 30 39 35 2e 6d 63 63 32 30 38 2e 33 67 70 70 6e 65 74 77 6f 72 6b 2e 6f 72 67 00 20 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 00 10 8a 89 e0 3d 86 3a a2 3b 00 08 
+[2025-10-14 09:45:53.734] [common] [debug] [authentication]XRES*(new)
+f7 5a 36 f8 4c 55 fa 53 02 b3 79 c3 11 86 c4 3e 2d c9 c8 40 5f 5c 90 7b b0 06 12 06 b9 91 67 64 
+[2025-10-14 09:45:53.734] [amf_n1] [debug] derive_kausf ...
+[2025-10-14 09:45:53.734] [amf_authentication] [debug] Generate_5g_he_av_in_udm finished!
+[2025-10-14 09:45:53.736] [amf_authentication] [debug] [MySQL] 1 rows affected
+[2025-10-14 09:45:53.736] [amf_authentication] [debug] [MySQL] 1 rows affected
+[2025-10-14 09:45:53.736] [amf_authentication] [debug] Generate Authentication Vectors in AUSF (locally in AMF)
+[2025-10-14 09:45:53.736] [amf_n1] [debug] derive_kseaf ...
+[2025-10-14 09:45:53.736] [amf_n1] [debug] Deriving kamf
+[2025-10-14 09:45:53.736] [amf_n1] [debug] derive_kamf ...
+[2025-10-14 09:45:53.736] [amf_n1] [debug] Received Security Vectors, try to setup security with the UE
+[2025-10-14 09:45:53.736] [amf_n1] [debug] Starting Authentication procedure
+[2025-10-14 09:45:53.736] [amf_n1] [debug] Sending Authentication Request with RAND
+[2025-10-14 09:45:53.736] [common] [debug] [amf_n1]RAND
+00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 
+[2025-10-14 09:45:53.736] [nas_mm] [debug] Size of Authentication Request message 42
+[2025-10-14 09:45:53.736] [nas] [debug] Encoding AuthenticationRequest message
+[2025-10-14 09:45:53.736] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-14 09:45:53.736] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-14 09:45:53.736] [nas] [debug] Encoding Abba
+[2025-10-14 09:45:53.736] [nas] [debug] Encoded Abba, len (3)
+[2025-10-14 09:45:53.736] [nas] [debug] Encoding Authentication Parameter RAND
+[2025-10-14 09:45:53.736] [nas] [debug] Encoded Authentication Parameter RAND, len (17)
+[2025-10-14 09:45:53.736] [nas] [debug] Encoding Authentication Parameter AUTN
+[2025-10-14 09:45:53.736] [nas] [debug] Encoded AuthenticationParameterAutn len (18)
+[2025-10-14 09:45:53.736] [nas] [debug] IE EAP Message is not available
+[2025-10-14 09:45:53.736] [nas] [debug] Encoded AuthenticationRequest message (len 42)
+[2025-10-14 09:45:53.736] [common] [debug] [amf_n1]Authentication-Request message buffer
+7e 00 56 02 02 00 00 21 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 20 10 f9 14 a0 42 89 de 80 00 fd 7e c7 e3 f9 f2 c9 40 
+[2025-10-14 09:45:53.736] [amf_n1] [debug] amf_ue_ngap_id 1
+[2025-10-14 09:45:53.736] [amf_n2] [info] Received Downlink NAS Transport message, handling
+[2025-10-14 09:45:53.737] [amf_n2] [debug] Handle DL NAS Transport ...
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 56 02 02 00 00 21 00 01 02 03 04 05 06 07 
+                    08 09 0A 0B 0C 0D 0E 0F 20 10 F9 14 A0 42 89 DE 
+                    80 00 FD 7E C7 E3 F9 F2 C9 40
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.737] [ngap] [debug] Encoded size (66)
+[2025-10-14 09:45:53.737] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3f0003010 of 66 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:53.737] [sctp] [debug] Successfully sent 66 bytes on stream 0
+[2025-10-14 09:45:53.737] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.737] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 64) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.737] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.737] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 57 2D 10 2D C9 C8 40 5F 5C 90 7B B0 06 12 
+                    06 B9 91 67 64
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.737] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 57 2D 10 2D C9 C8 40 5F 5C 90 7B B0 06 12 
+                    06 B9 91 67 64
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.737] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:53.737] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-14 09:45:53.737] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-14 09:45:53.737] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.737] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-14 09:45:53.737] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-14 09:45:53.737] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-14 09:45:53.737] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 00 57 2d 10 2d c9 c8 40 5f 5c 90 7b b0 06 12 06 b9 91 67 64 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received plain NAS message
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 57 2d 10 2d c9 c8 40 5f 5c 90 7b b0 06 12 06 b9 91 67 64 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received Authentication Response message, handling...
+[2025-10-14 09:45:53.738] [amf_n1] [info] Found nas_context (0x7bf3e4000e60) with amf_ue_ngap_id (1)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding AuthenticationResponse message
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-14 09:45:53.738] [nas] [debug] First option IEI (0x2d)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding IEI 0x2d
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding Authentication Response Parameter
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x2d
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0xc9
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0xc8
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x40
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x5f
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x5c
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x90
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x7b
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0xb0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x6
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x12
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x6
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0xb9
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x91
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x67
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded value 0x64
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded Authentication Response Parameter, len (18)
+[2025-10-14 09:45:53.738] [nas] [debug] Next IEI (0x0)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded AuthenticationResponse message len (21)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Start to calculate HRES* from received RES*
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Received RES* From Authentication-Response
+2d c9 c8 40 5f 5c 90 7b b0 06 12 06 b9 91 67 64 
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Stored XRES* in 5G HE AV
+2d c9 c8 40 5f 5c 90 7b b0 06 12 06 b9 91 67 64 
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Stored XRES in 5G HE AV
+8a 89 e0 3d 86 3a a2 3b 
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Computed HRES* from RES*
+10 3e 9f 62 4e 6d a6 07 9d 21 4f 41 e4 70 ce 5f 
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Computed HXRES* from XRES*
+10 3e 9f 62 4e 6d a6 07 9d 21 4f 41 e4 70 ce 5f 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Authentication successful by network!
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Start Security Mode Control procedure
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Using IntegrityProtectedWithNewSecurityContext for SecurityModeControl message
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Selected AMF NEA: 0x0
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Selected AMF NIA: 0x2
+[2025-10-14 09:45:53.738] [amf_n1] [debug] derive_knas ...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] derive_knas ...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Encoded ngKSI 0x2
+[2025-10-14 09:45:53.738] [nas_mm] [debug] Size of Security Mode Command message 14
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding SecurityModeCommand message
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding NAS Security Algorithms
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded NAS Security Algorithms, len (1)
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding UE Security Capability
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded UE Security Capability, len (5)
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded Type1NasIeFormatTv, len (1)
+[2025-10-14 09:45:53.738] [nas] [debug] IE EPS NAS Security Algorithms is not available
+[2025-10-14 09:45:53.738] [nas] [debug] Encoding Additional 5G Security Information
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded Additional 5G Security Information, len (3)
+[2025-10-14 09:45:53.738] [nas] [debug] IE EAP Message is not available
+[2025-10-14 09:45:53.738] [nas] [debug] IE Abba is not available
+[2025-10-14 09:45:53.738] [nas] [debug] IE S1 UE Security Capability is not available
+[2025-10-14 09:45:53.738] [nas] [debug] Encoded SecurityModeCommand message len (14)
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Security-Mode-Command message buffer
+7e 00 5d 02 02 04 80 20 00 00 e1 36 01 02 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Security Context status (is new:  true)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Parameters for NIA, message: 
+00 7e 00 5d 02 02 04 80 20 00 00 e1 36 01 02 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Result for NIA2, mac: 
+b0 d2 3c da 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Result for NIA2, mac32: 0xb0d23cda
+[2025-10-14 09:45:53.738] [amf_n1] [debug] mac32: 0xb0d23cda
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Encrypted Security-Mode-Command message buffer
+7e 03 b0 d2 3c da 00 7e 00 5d 02 02 04 80 20 00 00 e1 36 01 02 
+[2025-10-14 09:45:53.738] [amf_n2] [info] Received Downlink NAS Transport message, handling
+[2025-10-14 09:45:53.738] [amf_n2] [debug] Handle DL NAS Transport ...
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 03 B0 D2 3C DA 00 7E 00 5D 02 02 04 80 20 00 
+                    00 E1 36 01 02
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.738] [ngap] [debug] Encoded size (45)
+[2025-10-14 09:45:53.738] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3e40fd8b0 of 45 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:53.738] [sctp] [debug] Successfully sent 45 bytes on stream 0
+[2025-10-14 09:45:53.738] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.738] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 93) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.738] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.738] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 04 E0 98 45 65 00 7E 00 5E 77 00 09 35 65 90 
+                    02 04 97 15 F4 00 71 00 19 7E 00 41 71 00 0D 01 
+                    02 F8 59 21 43 00 00 00 00 00 00 13 2E 04 80 20 
+                    00 00
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.738] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 04 E0 98 45 65 00 7E 00 5E 77 00 09 35 65 90 
+                    02 04 97 15 F4 00 71 00 19 7E 00 41 71 00 0D 01 
+                    02 F8 59 21 43 00 00 00 00 00 00 13 2E 04 80 20 
+                    00 00
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.738] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:53.738] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-14 09:45:53.738] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-14 09:45:53.738] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.738] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 04 e0 98 45 65 00 7e 00 5e 77 00 09 35 65 90 02 04 97 15 f4 00 71 00 19 7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Uplink count in uplink: 0
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Parameters for NIA, message: 
+00 7e 00 5e 77 00 09 35 65 90 02 04 97 15 f4 00 71 00 19 7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Result for NIA2, mac: 
+e0 98 45 65 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Result for NIA2, mac32: 0xe0984565
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received mac32 (0xe0984565) from the message
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Integrity matched
+[2025-10-14 09:45:53.738] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Cipher protected with EA0_5G
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 5e 77 00 09 35 65 90 02 04 97 15 f4 00 71 00 19 7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Received Security Mode Complete message, handling...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Handling Security Mode Complete ...
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding SecurityModeComplete message
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded_size (3)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding IEI (0x77)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GSMobilityIdentity IE length 9
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding 5GSMobilityIdentity IMEISV
+[2025-10-14 09:45:53.738] [nas] [warning] IMEISV: Bits 5 to 8 of the last octet should filled with an end mark coded as 1111
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GSMobilityIdentity IMEISV: 35609204079514150
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GSMobilityIdentity IMEISV len (9)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GS Mobile Identity, len (12)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding IEI (0x71)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding NAS Message Container
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x7e
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x41
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x71
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0xd
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x1
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x2
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0xf8
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x59
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x21
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x43
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x13
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x2e
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x4
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x80
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x20
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NAS Message Container, len (28)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded SecurityModeComplete message len (43)
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]Security Mode Complete message buffer
+7e 00 5e 77 00 09 35 65 90 02 04 97 15 f4 00 71 00 19 7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.738] [nas_mm] [debug] Stored IMEISV in the NAS Context: 35609204079514150
+[2025-10-14 09:45:53.738] [common] [debug] [amf_n1]NAS Message Container
+7e 00 41 71 00 0d 01 02 f8 59 21 43 00 00 00 00 00 00 13 2e 04 80 20 00 00 
+[2025-10-14 09:45:53.738] [amf_n1] [debug] NAS Message Container, Message Type 0x41
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Registration Request in NAS Message Container
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding RegistrationRequest message
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GSMobilityIdentity IE length 13
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding 5GSMobilityIdentity SUCI
+[2025-10-14 09:45:53.738] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.738] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded Routing Indicator 1234
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded MSIN 0000000031
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GSMobilityIdentity SUCI SUPI format IMSI (len 13)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded SUCI (15 octets)
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded 5GS Mobile Identity, len (15)
+[2025-10-14 09:45:53.738] [nas] [debug] First option IEI 0x2e
+[2025-10-14 09:45:53.738] [nas] [debug] IEI 0x2e
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding IEI 0x2e
+[2025-10-14 09:45:53.738] [nas] [debug] Decoding UE Security Capability
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded UE Security Capability, len (6)
+[2025-10-14 09:45:53.738] [nas] [debug] 5G EA 0x80, 5G IA 0x20
+[2025-10-14 09:45:53.738] [nas] [debug] EEA 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] EIA 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Next IEI 0x0
+[2025-10-14 09:45:53.738] [nas] [debug] Decoded RegistrationRequest message (len 25)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Optional IE RequestedNssai is not present
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Optional IE UplinkDataStatus is not present
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Optional IE PDUSessionStatus is not present
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Verifying whether this AMF can handle the request...
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Get the Slice Selection Subscription Data from configuration file
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Added S-NSSAI (SST 222, SD 00007B)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Default Single NSSAIs: S-NSSAI (SST 222, SD 00007b)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Verifying whether this AMF can handle Requested/Subscribed S-NSSAIs
+[2025-10-14 09:45:53.738] [amf_n1] [debug] PLMN info: {"mcc":"208","mnc":"95","slice_list":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"00007B","sst":222}],"tac":40960}
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Find the common NSSAIs between Requested NSSAIs and Subscribed NSSAIs
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Found S-NSSAI (SST 222, SD 00007b)
+[2025-10-14 09:45:53.738] [amf_n1] [debug] Current AMF can handle the Requested/Subscribed NSSAIs, no need to perform AMF Re-allocation procedure
+[2025-10-14 09:45:53.738] [amf_app] [debug] AMF registers for 3GPP access with UDM
+[2025-10-14 09:45:53.739] [amf_app] [debug] Discovering PCF for the UE
+[2025-10-14 09:45:53.739] [amf_sbi] [warning] No NRF available
+[2025-10-14 09:45:53.739] [amf_app] [debug] Perform AM Policy Association with PCF for the UE
+[2025-10-14 09:45:53.739] [amf_sbi] [info] Receive AMF Registration for 3GPP Access message, handling ...
+[2025-10-14 09:45:53.739] [amf_n2] [debug] Getting common S-NSSAIs between gNB and AMF
+[2025-10-14 09:45:53.739] [amf_sbi] [debug] Send AMF Registration for 3GPP Access towards UDM
+[2025-10-14 09:45:53.739] [amf_n2] [debug] Getting common S-NSSAIs between gNB and AMF
+[2025-10-14 09:45:53.739] [amf_n2] [debug] Common S-NSSAI (SST 0xde, SD 00007B)
+[2025-10-14 09:45:53.739] [amf_n2] [debug] Common S-NSSAI (SST 222, SD 123)
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Allowed S-NSSAI (SST 0xde, SD 0x7b)
+[2025-10-14 09:45:53.739] [amf_app] [debug] Random number generated: 4179997934
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Allocated GUTI 208950100414179997934 (TMSI 4179997934)
+[2025-10-14 09:45:53.739] [nas_mm] [debug] Size of Registration Accept message 55
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding RegistrationAccept message
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding 5GS Registration Result
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded 5GS Registration Result, len (2)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding 5GS Mobile Identity
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding 5G-GUTI IEI 0x77
+[2025-10-14 09:45:53.739] [nas] [debug] MNC digit 1: 0
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding MNC 2 digits
+[2025-10-14 09:45:53.739] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded 5G-GUTI IE (len 14 octets)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding 5GS Tracking Area Identity List
+[2025-10-14 09:45:53.739] [nas] [debug] MNC digit 1: 0
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding MNC 2 digits
+[2025-10-14 09:45:53.739] [nas] [debug] MCC 208, MNC 95
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded 5GS Tracking Area Identity List, len (9)
+[2025-10-14 09:45:53.739] [nas] [debug] IE PLMN List is not available
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding NSSAI
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded Nssai SD (0x7b)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded Nssai len (7)
+[2025-10-14 09:45:53.739] [nas] [debug] IE Rejected NSSAI is not available
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding NSSAI
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded Nssai SD (0x7b)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded Nssai len (7)
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding 5GS Network Feature Support
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded 5GS Network Feature Support, len (4)
+[2025-10-14 09:45:53.739] [nas] [debug] IE PDU Session Status is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE PDU Session Reactivation Result is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE PDU Session Reactivation Result Error Cause is not available
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding LADN Information
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded LADN Information, len (0)
+[2025-10-14 09:45:53.739] [nas] [debug] IE MICO Indication is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE Network Slicing Indication is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE Service Area List is not available
+[2025-10-14 09:45:53.739] [amf_sbi] [info] Send HTTP message to http://oai-udm:80/nudm-uecm/v1/imsi-208950000000031/registrations/amf-3gpp-access
+[2025-10-14 09:45:53.739] [amf_sbi] [info] HTTP message Body: {"amfInstanceId":"d8a3ae9d-e926-478e-b916-45e5f5739ab7","deregCallbackUri":"192.168.70.132:80/namf-callback/v1v1/imsi-208950000000031/deregistration-notification","guami":{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},"initialRegistrationInd":true,"ratType":"NR"}
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding GPRS Timer 3
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded GPRS Timer 3, len (3)
+[2025-10-14 09:45:53.739] [nas] [debug] IE GPRS Timer 2 is not available
+[2025-10-14 09:45:53.739] [nas] [debug] Encoding GPRS Timer 2
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded GPRS Timer 2, len (3)
+[2025-10-14 09:45:53.739] [nas] [debug] IE SOR Transparent Container is not available
+[2025-10-14 09:45:53.739] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-14 09:45:53.739] [nas] [debug] IE EAP Message is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE NSSAI Inclusion Mode is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE 5GS DRX Parameters is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE Non-3GPP NW Provided Policies is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE EPS Bearer Context Status is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE Extended DRX Parameters is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE UE Radio Capability ID is not available
+[2025-10-14 09:45:53.739] [nas] [debug] IE NSSAI is not available
+[2025-10-14 09:45:53.739] [nas] [debug] Encoded RegistrationAccept message len (52)
+[2025-10-14 09:45:53.739] [common] [debug] [amf_n1]Registration-Accept message buffer
+7e 00 42 01 01 77 00 0b f2 02 f8 59 01 00 41 f9 25 b4 ee 54 07 00 02 f8 59 00 a0 00 15 05 04 de 00 00 7b 31 05 04 de 00 00 7b 21 02 01 00 5e 01 b6 16 01 0c 
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Cipher protected with EA0_5G
+[2025-10-14 09:45:53.739] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Parameters for NIA, count: 0x1
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-14 09:45:53.739] [common] [debug] [amf_n1]Parameters for NIA, message: 
+01 7e 00 42 01 01 77 00 0b f2 02 f8 59 01 00 41 f9 25 b4 ee 54 07 00 02 f8 59 00 a0 00 15 05 04 de 00 00 7b 31 05 04 de 00 00 7b 21 02 01 00 5e 01 b6 16 01 0c 
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:53.739] [common] [debug] [amf_n1]Result for NIA2, mac: 
+6f 35 78 4f 
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Result for NIA2, mac32: 0x6f35784f
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Derive Kgnb ...
+[2025-10-14 09:45:53.739] [common] [debug] [amf_n1]Kamf
+25 74 e0 7f 4f 29 99 12 d8 3c d9 39 71 ba 34 dd 85 6c 57 a1 46 d7 56 bb ae 8a 62 e3 c2 2e 3a 18 
+[2025-10-14 09:45:53.739] [amf_n1] [info] UE (IMSI 208950000000031, GUTI 208950100414179997934, current RAN ID 0, current AMF ID 1) has been registered to the network
+[2025-10-14 09:45:53.739] [amf_n2] [info] Received Initial Context Setup Request message, handling
+[2025-10-14 09:45:53.739] [amf_app] [debug] The UE's state (IMSI 208950000000031, State 5GMM-REGISTERED) has been successfully updated!
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Set 5GMM state to 5GMM-REGISTERED
+[2025-10-14 09:45:53.739] [amf_n2] [debug] Handle Initial Context Setup Request ...
+[2025-10-14 09:45:53.739] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:45:53.739] [nas_mm] [debug] Set IMEISV InitialContextSetupRequestMsg: 35609204079514150
+[2025-10-14 09:45:53.739] [ngap] [error] Encode MaskedIMEISV IE error!
+InitiatingMessage ::= {
+    procedureCode: 14
+    criticality: 0 (reject)
+    value: InitialContextSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialContextSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 28
+                criticality: 0 (reject)
+                value: GUAMI ::= {
+                    pLMNIdentity: 00 F1 10
+                    aMFRegionID: 01
+                    aMFSetID: 00 40 (6 bits unused)
+                    aMFPointer: 04 (2 bits unused)
+                }
+            [2025-10-14 09:45:53.739] [amf_n1] [debug] Signal the UE Location Report Event notification for SUPI imsi-208950000000031
+}
+            InitialContextSetupRequestIEs ::= {
+                id: 0
+                criticality: 0 (reject)
+                value: AllowedNSSAI ::= {
+                    AllowedNSSAI-Item ::= {
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: DE
+                            sD: 00 00 7B
+                        }
+                    }
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 119
+                criticality: 0 (reject)
+                value: UESecurityCapabilities ::= {
+                    nRencryptionAlgorithms: 00 00
+                    nRintegrityProtectionAlgorithms: 40 00
+                    eUTRAencryptionAlgorithms: 00 00
+                    eUTRAintegrityProtectionAlgorithms: 00 00
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 94
+                criticality: 0 (reject)
+                value: 
+                        BF 31 52 04 29 20 A9 D4 EE E7 0F 79 3F D9 27 DF 
+                        1F A0 96 00 FC 3C F7 A5 7B E7 1D FE 9E 98 E5 01
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 36
+                criticality: 1 (ignore)
+                value: MobilityRestrictionList ::= {
+                    servingPLMN: 00 F1 10
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 38
+                criticality: 1 (ignore)
+                value: 
+                    7E 02 6F 35 78 4F 01 7E 00 42 01 01 77 00 0B F2 
+                    02 F8 59 01 00 41 F9 25 B4 EE 54 07 00 02 F8 59 
+                    00 A0 00 15 05 04 DE 00 00 7B 31 05 04 DE 00 00 
+                    7B 21 02 01 00 5E 01 B6 16 01 0C
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Send request to SBI to trigger UE Location Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.739] [ngap] [debug] Encoded size (161)
+[2025-10-14 09:45:53.739] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3f0001790 of 161 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Signal the UE Registration State Event notification for SUPI imsi-208950000000031
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Send request to SBI to trigger UE Registration State Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Signal the UE Connectivity Status Event notification for SUPI imsi-208950000000031
+[2025-10-14 09:45:53.739] [amf_n1] [debug] Send request to SBI to trigger UE Connectivity State Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.739] [sctp] [debug] Successfully sent 161 bytes on stream 0
+[2025-10-14 09:45:53.739] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.739] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 19) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.739] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.739] [ngap] [debug] Decoded NGAP message, procedure code 14, present 2
+SuccessfulOutcome ::= {
+    procedureCode: 14
+    criticality: 1 (ignore)
+    value: InitialContextSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialContextSetupResponseIEs ::= {
+                id: 10
+                criticality: 1 (ignore)
+                value: 1
+            }
+            InitialContextSetupResponseIEs ::= {
+                id: 85
+                criticality: 1 (ignore)
+                value: 0
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.739] [ngap] [debug] Handling Initial Context Setup Response
+[2025-10-14 09:45:53.740] [ngap] [error] Check InitialContextSetupResponse message error
+[2025-10-14 09:45:53.740] [ngap] [error] Decoding InitialContextSetupResponse message error
+[2025-10-14 09:45:53.740] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.759] [amf_sbi] [warning] Cannot get response when calling http://oai-udm:80/nudm-uecm/v1/imsi-208950000000031/registrations/amf-3gpp-access
+[2025-10-14 09:45:53.759] [amf_sbi] [info] Get response with HTTP code: 0
+[2025-10-14 09:45:53.759] [amf_sbi] [debug] Get response with body
+,  
+[2025-10-14 09:45:53.762] [amf_sbi] [info] Receive AM Policy Association message, handling ...
+[2025-10-14 09:45:53.762] [amf_sbi] [debug] Send AM Policy Association to PCF
+[2025-10-14 09:45:53.762] [amf_sbi] [info] Send HTTP message to /npcf-am-policy-control//policies
+[2025-10-14 09:45:53.762] [amf_sbi] [info] HTTP message Body: {"notificationUri":"192.168.70.132:80/namf-callback/v1v1/imsi-208950000000031/PolicyUpdateNotification","supi":"imsi-208950000000031","suppFeat":""}
+[2025-10-14 09:45:53.762] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-14 09:45:53.763] [amf_sbi] [warning] Cannot get response when calling /npcf-am-policy-control//policies
+[2025-10-14 09:45:53.763] [amf_sbi] [info] Get response with HTTP code: 0
+[2025-10-14 09:45:53.763] [amf_sbi] [debug] Get response with body
+,  
+[2025-10-14 09:45:53.943] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 53) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:53.943] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:53.943] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 04 F9 80 04 43 01 7E 00 43
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.943] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 04 F9 80 04 43 01 7E 00 43
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.943] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:53.943] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-14 09:45:53.943] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-14 09:45:53.943] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:53.943] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-14 09:45:53.943] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 04 f9 80 04 43 01 7e 00 43 
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-14 09:45:53.943] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Uplink count in uplink: 1
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-14 09:45:53.943] [common] [debug] [amf_n1]Parameters for NIA, message: 
+01 7e 00 43 
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:53.943] [common] [debug] [amf_n1]Result for NIA2, mac: 
+f9 80 04 43 
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Result for NIA2, mac32: 0xf9800443
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Received mac32 (0xf9800443) from the message
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Integrity matched
+[2025-10-14 09:45:53.943] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Cipher protected with EA0_5G
+[2025-10-14 09:45:53.943] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 43 
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Received Registration Complete message, handling...
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Received Registration Complete message, processing
+[2025-10-14 09:45:53.943] [nas] [debug] Decoding RegistrationComplete message
+[2025-10-14 09:45:53.943] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-14 09:45:53.943] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-14 09:45:53.943] [nas] [debug] Decoded_size (3)
+[2025-10-14 09:45:53.943] [nas] [debug] First option IEI (0x0)
+[2025-10-14 09:45:53.943] [nas] [debug] Decoded RegistrationComplete message (len 3)
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Sending ITTI UE Context Release Command to TASK_AMF_N2
+[2025-10-14 09:45:53.943] [amf_n1] [debug] Do not sending Configuration Update Command in this version!
+[2025-10-14 09:45:53.943] [amf_n2] [info] Received UE Context Release Command message, handling
+[2025-10-14 09:45:53.943] [amf_n2] [debug] Handling UE Context Release Command ...
+InitiatingMessage ::= {
+    procedureCode: 41
+    criticality: 0 (reject)
+    value: UEContextReleaseCommand ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UEContextReleaseCommand-IEs ::= {
+                id: 114
+                criticality: 0 (reject)
+                value: UE-NGAP-ID-pair ::= {
+                    aMF-UE-NGAP-ID: 1
+                    rAN-UE-NGAP-ID: 0
+                }
+            }
+            UEContextReleaseCommand-IEs ::= {
+                id: 15
+                criticality: 1 (ignore)
+                value: 0 (normal-release)
+            }
+        }
+    }
+}
+[2025-10-14 09:45:53.943] [ngap] [debug] Encoded size (20)
+[2025-10-14 09:45:53.943] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3f0001a80 of 20 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:53.943] [sctp] [debug] Successfully sent 20 bytes on stream 0
+[2025-10-14 09:45:53.943] [amf_n2] [debug] Send request to SBI to trigger UE Communication Failure Report (SUPI imsi-208950000000031 )
+[2025-10-14 09:45:53.943] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:54.944] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 82) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:54.944] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:54.944] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 82 52 3C C0 02 7E 00 67 01 00 07 2E 01 01 
+                    C1 FF FF 91 12 01 81 22 04 DE 00 00 7B 25 08 07 
+                    64 65 66 61 75 6C 74
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:54.944] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 82 52 3C C0 02 7E 00 67 01 00 07 2E 01 01 
+                    C1 FF FF 91 12 01 81 22 04 DE 00 00 7B 25 08 07 
+                    64 65 66 61 75 6C 74
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 04 00 10 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:54.944] [ngap] [debug] Received TAC 0xa000
+[2025-10-14 09:45:54.944] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-14 09:45:54.944] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-14 09:45:54.944] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:54.944] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-14 09:45:54.944] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 02 82 52 3c c0 02 7e 00 67 01 00 07 2e 01 01 c1 ff ff 91 12 01 81 22 04 de 00 00 7b 25 08 07 64 65 66 61 75 6c 74 
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Received integrity protected and ciphered NAS message
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Received integrity protected with new security context NAS message
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-14 09:45:54.944] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Uplink count in uplink: 2
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Parameters for NIA, count: 0x1
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-14 09:45:54.944] [common] [debug] [amf_n1]Parameters for NIA, message: 
+02 7e 00 67 01 00 07 2e 01 01 c1 ff ff 91 12 01 81 22 04 de 00 00 7b 25 08 07 64 65 66 61 75 6c 74 
+[2025-10-14 09:45:54.944] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:54.944] [common] [debug] [amf_n1]Result for NIA2, mac: 
+82 52 3c c0 
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Result for NIA2, mac32: 0x82523cc0
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Received mac32 (0x82523cc0) from the message
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Integrity matched
+[2025-10-14 09:45:54.945] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Cipher protected with EA0_5G
+[2025-10-14 09:45:54.945] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 67 01 00 07 2e 01 01 c1 ff ff 91 12 01 81 22 04 de 00 00 7b 25 08 07 64 65 66 61 75 6c 74 
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Received UL NAS Transport message, handling...
+[2025-10-14 09:45:54.945] [amf_n1] [debug] Handling UL NAS Transport
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding UlNasTransport message
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding Payload Container
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded_size (13)
+[2025-10-14 09:45:54.945] [nas] [debug] First option IEI (0x12)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding IEI 0x12
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding PDU Session Identity 2
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x1
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded PDU Session Identity 2, len (2)
+[2025-10-14 09:45:54.945] [nas] [debug] Next IEI (0x81)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding IEI 0x8
+[2025-10-14 09:45:54.945] [nas] [debug] Next IEI (0x22)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding IEI (0x22)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding S-NSSAI
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded S-NSSAI SST 0xde SD 0x7b
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded S-NSSAI, len (6)
+[2025-10-14 09:45:54.945] [nas] [debug] Next IEI (0x25)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding IEI (0x25)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoding DNN
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x7
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x64
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x65
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x66
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x61
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x75
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x6c
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded value 0x74
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded DNN, len (10)
+[2025-10-14 09:45:54.945] [nas] [debug] Next IEI (0x0)
+[2025-10-14 09:45:54.945] [nas] [debug] Decoded UlNasTransport message len (32)
+[2025-10-14 09:45:54.945] [amf_n1] [debug] S_NSSAI for this PDU Session SST 0xde SD 0x7b
+[2025-10-14 09:45:54.945] [common] [debug] [amf_n1]Decoded DNN Bit String
+07 64 65 66 61 75 6c 74 
+[2025-10-14 09:45:54.945] [amf_sbi] [info] Running ITTI_SMF_PDU_SESSION_CREATE_SM_CTX
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Handle ITTI SMF_PDU_SESSION_CREATE_SM_CTX
+[2025-10-14 09:45:54.945] [amf_sbi] [info] Find ue_context in amf_app using UE Context Key: app_ue_ranid_0:amfid_1
+[2025-10-14 09:45:54.945] [amf_app] [warning] No PDU Session Context with PDU Session ID 1
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Create a PDU Session Context
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] PDU Session Context, NSSAI SST (0xde) SD 00007B
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Requested DNN: default
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Decoded PTI for PDUSessionEstablishmentRequest(0x1)
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Handle PDU Session Establishment Request (SUPI imsi-208950000000031, PDU Session ID 1)
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] SMF's URI: http://oai-smf:80/nsmf-pdusession/v1/sm-contexts
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Message body {"anType":"3GPP_ACCESS","dnn":"\u0007default","epsInterworkingInd":"NONE","gpsi":"msisdn-10000000000","guami":{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},"n1SmMsg":{"contentId":"n1SmMsg"},"pduSessionId":1,"pei":"imeisv-8670000000000001","ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"00007B","sst":222},"selMode":"VERIFIED","servingNetwork":{"mcc":"208","mnc":"95"},"servingNfId":"d8a3ae9d-e926-478e-b916-45e5f5739ab7","smContextStatusUri":"http://192.168.70.132:80/namf-status-notify/v1/pdu-session-release/callback/imsi-208950000000031/1","supi":"imsi-208950000000031","ueLocation":{"nrLocation":{"ncgi":{"nrCellId":"000004001","plmnId":{"mcc":"208","mnc":"95"}},"tai":{"plmnId":{"mcc":"208","mnc":"95"},"tac":"40960"}}}}
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Buffer: 2e0101c1ffff91
+[2025-10-14 09:45:54.945] [common] [debug] Input string (14 bytes): 2e0101c1ffff91 
+[2025-10-14 09:45:54.945] [common] [debug] Data (formatted):
+ 2e  01  01  c1  ff  ff  91 
+[2025-10-14 09:45:54.945] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-14 09:45:54.950] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-14 09:45:54.950] [amf_sbi] [info] JSON part 
+[2025-10-14 09:45:54.950] [amf_sbi] [info] Location of the created SMF context: http://oai-smf:80/nsmf-pdusession/v1/sm-contexts/1
+[2025-10-14 09:45:54.952] [amf_sbi] [warning] Could not get JSON content from the response
+[2025-10-14 09:45:54.956] [amf_server] [debug] Received a N1N2MessageTrasfer request with ue_ctx_id imsi-208950000000031
+[2025-10-14 09:45:54.956] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-14 09:45:54.956] [common] [debug] Boundary: ----Boundary
+[2025-10-14 09:45:54.956] [common] [debug] Content Type: application/json
+[2025-10-14 09:45:54.956] [common] [debug] Content Id: root
+[2025-10-14 09:45:54.956] [common] [debug] Body: {"n1MessageContainer":{"n1MessageClass":"SM","n1MessageContent":{"contentId":"n1SmMsg"}},"n1n2FailureTxfNotifURI":"http://oai-smf:80/nsmf-pdusession/v1/callback/N1N2MsgTxfrFailureNotification/imsi-208950000000031","n2InfoContainer":{"n2InformationClass":"SM","smInfo":{"n2InfoContent":{"ngapData":{"contentId":"n2msg"},"ngapIeType":"PDU_RES_SETUP_REQ"},"pduSessionId":1,"sNssai":{"sd":"00007b","sst":222}}},"pduSessionId":1}
+[2025-10-14 09:45:54.956] [common] [debug] Content Type: application/vnd.3gpp.5gnas
+[2025-10-14 09:45:54.956] [common] [debug] Content Id: n1SmMsg
+[2025-10-14 09:45:54.956] [common] [debug] Body: .�
+[2025-10-14 09:45:54.956] [common] [debug] Content Type: application/vnd.3gpp.ngap
+[2025-10-14 09:45:54.956] [common] [debug] Content Id: n2msg
+[2025-10-14 09:45:54.956] [common] [debug] Body: 
+[2025-10-14 09:45:54.956] [amf_server] [debug] Number of MIME parts 3
+[2025-10-14 09:45:54.956] [amf_server] [debug] MIME part: root (size 424 bytes)
+[2025-10-14 09:45:54.956] [amf_server] [debug] MIME part: n1SmMsg (size 90 bytes)
+[2025-10-14 09:45:54.956] [amf_server] [debug] MIME part: n2msg (size 47 bytes)
+[2025-10-14 09:45:54.956] [amf_server] [debug] Receive N1N2MessageTransfer Request, handling...
+[2025-10-14 09:45:54.956] [amf_server] [debug] SUPI imsi-208950000000031
+[2025-10-14 09:45:54.956] [amf_server] [debug] N2InfoContainer is present, handling...
+[2025-10-14 09:45:54.956] [amf_server] [debug] N2 Information Class: SM
+[2025-10-14 09:45:54.956] [amf_server] [debug] n2_content_id: n2msg
+[2025-10-14 09:45:54.956] [amf_server] [debug] NGAP IE Type: PDU_RES_SETUP_REQ
+[2025-10-14 09:45:54.956] [amf_server] [debug] Key for PDU Session Context: SUPI (imsi-208950000000031)
+[2025-10-14 09:45:54.956] [common] [debug] Data input
+00 00 04 00 82 00 0a 0c 06 40 00 00 30 03 20 00 00 00 8b 00 0a 01 f0 c0 a8 46 86 00 00 00 01 00 86 00 01 00 00 88 00 07 00 01 00 00 09 00 00 
+[2025-10-14 09:45:54.956] [amf_app] [debug] Msg hex 0000040082000a0c064000003003200000008b000a01f0c0a846860000000100860001000088000700010000090000
+[2025-10-14 09:45:54.956] [amf_server] [debug] N1MessageContainer is present, handling...
+[2025-10-14 09:45:54.956] [amf_server] [debug] Key for PDU Session Context: SUPI (imsi-208950000000031)
+[2025-10-14 09:45:54.956] [amf_server] [debug] N1 Content Id: n1SmMsg
+[2025-10-14 09:45:54.956] [common] [debug] Data input
+2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 64 06 00 32 29 05 01 0c 01 01 02 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 09 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1a 07 64 65 66 61 75 6c 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 
+[2025-10-14 09:45:54.956] [amf_app] [debug] Msg hex 2e0101c2110009010006312101010001060600640600322905010c0101022204de00007b817900060120410101097b000d80000d04ac15036400100205dc251a0764656661756c74056d6e633935066d63633230380467707273
+[2025-10-14 09:45:54.956] [common] [debug] [amf_server]Received N1 SM
+2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 64 06 00 32 29 05 01 0c 01 01 02 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 09 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1a 07 64 65 66 61 75 6c 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 
+[2025-10-14 09:45:54.956] [amf_app] [debug] Received N1N2_MESSAGE_TRANSFER_REQ
+[2025-10-14 09:45:54.956] [amf_app] [info] Handle ITTI N1N2 Message Transfer Request
+[2025-10-14 09:45:54.956] [nas_mm] [debug] Size of DL NAS Transport message 98
+[2025-10-14 09:45:54.956] [nas] [debug] Encoding DlNasTransport message
+[2025-10-14 09:45:54.956] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-14 09:45:54.956] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-14 09:45:54.956] [nas] [debug] Encoded Type1NasIeFormatTv len 0
+[2025-10-14 09:45:54.956] [nas] [debug] Encoding Payload Container
+[2025-10-14 09:45:54.956] [nas] [debug] Encoded Payload Container, len (92)
+[2025-10-14 09:45:54.956] [nas] [debug] Encoding PDU Session Identity 2
+[2025-10-14 09:45:54.956] [nas] [debug] Encoded PDU Session Identity 2, len (2)
+[2025-10-14 09:45:54.956] [nas] [debug] IE Additional Information is not available
+[2025-10-14 09:45:54.956] [nas] [debug] IE 5GMM Cause is not available
+[2025-10-14 09:45:54.956] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-14 09:45:54.956] [nas] [debug] Encoded DlNasTransport message len (98)
+[2025-10-14 09:45:54.956] [common] [debug] [amf_app]N1N2 message transfer
+7e 00 68 01 00 5a 2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 64 06 00 32 29 05 01 0c 01 01 02 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 09 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1a 07 64 65 66 61 75 6c 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 12 01 
+[2025-10-14 09:45:54.956] [amf_n1] [info] Received DOWNLINK_NAS_TRANSFER
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Cipher protected with EA0_5G
+[2025-10-14 09:45:54.956] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+f1 97 0b 71 da 91 f6 04 6f 5b bc 58 05 5c ac db 
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Parameters for NIA, count: 0x2
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-14 09:45:54.956] [common] [debug] [amf_n1]Parameters for NIA, message: 
+02 7e 00 68 01 00 5a 2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 64 06 00 32 29 05 01 0c 01 01 02 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 09 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1a 07 64 65 66 61 75 6c 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 12 01 
+[2025-10-14 09:45:54.956] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA2
+[2025-10-14 09:45:54.956] [common] [debug] [amf_n1]Result for NIA2, mac: 
+9f 24 e7 2e 
+[2025-10-14 09:45:54.957] [amf_n1] [debug] Result for NIA2, mac32: 0x9f24e72e
+[2025-10-14 09:45:54.957] [amf_n2] [info] Received PDU Session Resource Setup Request message, handling
+[2025-10-14 09:45:54.957] [amf_n2] [debug] Handle PDU Session Resource Setup Request ...
+[2025-10-14 09:45:54.957] [amf_n2] [debug] SUPI (imsi-208950000000031)
+[2025-10-14 09:45:54.957] [amf_n2] [debug] S_NSSAI (SST, SD) 222, 00007B
+InitiatingMessage ::= {
+    procedureCode: 29
+    criticality: 0 (reject)
+    value: PDUSessionResourceSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 0
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 74
+                criticality: 0 (reject)
+                value: PDUSessionResourceSetupListSUReq ::= {
+                    PDUSessionResourceSetupItemSUReq ::= {
+                        pDUSessionID: 1
+                        pDUSessionNAS-PDU: 
+                            7E 02 9F 24 E7 2E 02 7E 00 68 01 00 5A 2E 01 01 
+                            C2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 
+                            64 06 00 32 29 05 01 0C 01 01 02 22 04 DE 00 00 
+                            7B 81 79 00 06 01 20 41 01 01 09 7B 00 0D 80 00 
+                            0D 04 AC 15 03 64 00 10 02 05 DC 25 1A 07 64 65 
+                            66 61 75 6C 74 05 6D 6E 63 39 35 06 6D 63 63 32 
+                            30 38 04 67 70 72 73 12 01
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: DE
+                            sD: 00 00 7B
+                        }
+                        pDUSessionResourceSetupRequestTransfer: 
+                            00 00 04 00 82 00 0A 0C 06 40 00 00 30 03 20 00 
+                            00 00 8B 00 0A 01 F0 C0 A8 46 86 00 00 00 01 00 
+                            86 00 01 00 00 88 00 07 00 01 00 00 09 00 00
+                    }
+                }
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 110
+                criticality: 1 (ignore)
+                value: UEAggregateMaximumBitRate ::= {
+                    uEAggregateMaximumBitRateDL: 1000000000
+                    uEAggregateMaximumBitRateUL: 1000000000
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:54.957] [ngap] [debug] Encoded message size ( 201 )
+[2025-10-14 09:45:54.957] [common] [debug] [amf_n2]N2 SM buffer data:
+00 1d 00 80 c4 00 00 04 00 0a 00 02 00 01 00 55 00 02 00 00 00 4a 00 80 a2 00 40 01 69 7e 02 9f 24 e7 2e 02 7e 00 68 01 00 5a 2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 00 01 06 06 00 64 06 00 32 29 05 01 0c 01 01 02 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 09 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1a 07 64 65 66 61 75 6c 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 12 01 5b c0 00 00 7b 2f 00 00 04 00 82 00 0a 0c 06 40 00 00 30 03 20 00 00 00 8b 00 0a 01 f0 c0 a8 46 86 00 00 00 01 00 86 00 01 00 00 88 00 07 00 01 00 00 09 00 00 00 6e 40 0a 0c 3b 9a ca 00 30 3b 9a ca 00 
+[2025-10-14 09:45:54.957] [amf_n2] [debug]  (201 bytes) 
+
+[2025-10-14 09:45:54.957] [sctp] [debug] [Socket 19, Assoc ID 4] Sending buffer 0x7bf3f0001790 of 201 bytes on stream 0 with PPID 60
+[2025-10-14 09:45:54.957] [sctp] [debug] Successfully sent 201 bytes on stream 0
+[2025-10-14 09:45:54.957] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:54.957] [sctp] [info] [Assoc_id 4, Socket 19] Received a message (length 40) from port 40152, on stream 0, PPID 60
+[2025-10-14 09:45:54.957] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (4), stream_id (0), instreams (16), outstreams (16)
+[2025-10-14 09:45:54.957] [ngap] [debug] Decoded NGAP message, procedure code 29, present 2
+SuccessfulOutcome ::= {
+    procedureCode: 29
+    criticality: 0 (reject)
+    value: PDUSessionResourceSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 10
+                criticality: 1 (ignore)
+                value: 1
+            }
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 85
+                criticality: 1 (ignore)
+                value: 0
+            }
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 75
+                criticality: 1 (ignore)
+                value: PDUSessionResourceSetupListSURes ::= {
+                    PDUSessionResourceSetupItemSURes ::= {
+                        pDUSessionID: 1
+                        pDUSessionResourceSetupResponseTransfer: 00 03 E0 C0 A8 46 82 C0 BB 17 90 00 01
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-14 09:45:54.957] [ngap] [debug] Handle PDU Session Resource Setup Response
+[2025-10-14 09:45:54.957] [ngap] [debug] Free NGAP Message PDU
+[2025-10-14 09:45:54.957] [amf_sbi] [info] Receive Nsmf_PDUSessionUpdateSMContext, handling ...
+[2025-10-14 09:45:54.957] [amf_sbi] [debug] Send PDU Session Update SM Context Request to SMF (SUPI imsi-208950000000031, PDU Session ID 1)
+[2025-10-14 09:45:54.957] [amf_sbi] [debug] smf_info, context location http://oai-smf:80/nsmf-pdusession/v1/sm-contexts/1
+[2025-10-14 09:45:54.957] [amf_sbi] [debug] SMF URI: http://oai-smf:80/nsmf-pdusession/v1/sm-contexts/1/modify
+[2025-10-14 09:45:54.957] [amf_sbi] [debug] Buffer: 0003e0c0a84682c0bb17900001
+[2025-10-14 09:45:54.957] [common] [debug] Input string (26 bytes): 0003e0c0a84682c0bb17900001 
+[2025-10-14 09:45:54.957] [common] [debug] Data (formatted):
+ 00  03  e0  c0  a8  46  82  c0  bb  17  90  00  01 
+[2025-10-14 09:45:54.957] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-14 09:45:54.963] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-14 09:45:54.963] [amf_sbi] [info] JSON part 
+[2025-10-14 09:45:54.963] [amf_sbi] [warning] Could not get JSON content from the response
+[2025-10-14 09:45:59.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:46:19.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:46:39.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:46:59.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:47:19.364] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:47:39.365] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:47:59.365] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:48:19.365] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:48:39.365] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:48:59.366] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:49:19.366] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:49:39.366] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:49:59.366] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:50:19.366] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:50:39.367] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:50:59.367] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:51:19.367] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:51:39.368] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:51:59.368] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:52:19.368] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:52:39.368] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:52:59.369] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:53:19.369] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:53:39.369] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:53:59.370] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:54:19.370] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:54:39.371] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:54:59.371] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:55:19.371] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:55:40.321] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:56:00.321] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:56:20.321] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:56:40.322] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:57:00.322] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:57:20.322] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:57:40.322] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-14 09:58:00.323] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000031  |20895010041417999793|        0x00        |        0x01        |       208,95       |      000004001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+

@@ -1,0 +1,372 @@
+Trying to read .yaml configuration file: /openair-upf/etc/config.yaml
+LTTNG Tracing disabled at build-time!
+[2025-10-14 09:45:19.636] [upf_app] [start] Options parsed
+[2025-10-14 09:45:19.637] [config ] [info] Reading NF configuration from /openair-upf/etc/config.yaml
+[2025-10-14 09:45:19.645] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of log_level
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of register_nf
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of http_version
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of NRF
+[2025-10-14 09:45:19.647] [config ] [debug] Validating configuration of SMF
+[2025-10-14 09:45:19.648] [config ] [debug] Validating configuration of UPF Configuration
+[2025-10-14 09:45:19.650] [config ] [debug] Validating configuration of DNN
+[2025-10-14 09:45:19.651] [config ] [debug] Validating configuration of DNN
+[2025-10-14 09:45:19.652] [config ] [debug] Validating configuration of DNN
+[2025-10-14 09:45:19.652] [config ] [debug] Validating configuration of DNN
+[2025-10-14 09:45:19.653] [config ] [warning] The IPv6 prefix / length  is not valid
+[2025-10-14 09:45:19.653] [config ] [debug] Validating configuration of database
+[2025-10-14 09:45:19.653] [common] [debug] Resolving a DNS (name localhost)
+[2025-10-14 09:45:19.653] [common] [debug] Resolving DNS Try #0
+[2025-10-14 09:45:19.654] [common] [debug] Resolved a DNS (name localhost, protocol http): Ip Addr ::1, port 80
+[2025-10-14 09:45:19.654] [common] [debug] Resolved a DNS (name localhost, protocol http): Ip Addr 127.0.0.1, port 80
+[2025-10-14 09:45:19.654] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.128 
+[2025-10-14 09:45:19.654] [config ] [debug] IP Pool :  12.1.1.129 - 12.1.1.254
+[2025-10-14 09:45:19.654] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.64 
+[2025-10-14 09:45:19.654] [config ] [debug] IP Pool :  12.1.1.65 - 12.1.1.126
+[2025-10-14 09:45:19.654] [config ] [debug] PDN Network validation for UE Subnet:  12.1.1.0 
+[2025-10-14 09:45:19.654] [config ] [debug] IP Pool :  12.1.1.1 - 12.1.1.62
+[2025-10-14 09:45:19.654] [config ] [debug] PDN Network validation for UE Subnet:  14.1.1.2 
+[2025-10-14 09:45:19.654] [config ] [debug] IP Pool :  14.1.1.1 - 14.1.1.254
+[2025-10-14 09:45:19.654] [config ] [info] ==== OPENAIRINTERFACE upf vBranch: HEAD Abrev. Hash: ba57943 Date: Thu Jun 12 09:29:29 2025 +0000 ====
+[2025-10-14 09:45:19.654] [config ] [info] Basic Configuration:
+[2025-10-14 09:45:19.654] [config ] [info]   - log_level..................................: debug
+[2025-10-14 09:45:19.654] [config ] [info]   - register_nf................................: No
+[2025-10-14 09:45:19.654] [config ] [info]   - http_version...............................: 1
+[2025-10-14 09:45:19.654] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2025-10-14 09:45:19.654] [config ] [info] UPF Configuration:
+[2025-10-14 09:45:19.654] [config ] [info]   - host.......................................: oai-upf
+[2025-10-14 09:45:19.654] [config ] [info]   - SBI
+[2025-10-14 09:45:19.654] [config ] [info]     + URL......................................: http://oai-upf:80
+[2025-10-14 09:45:19.654] [config ] [info]     + API Version..............................: v1
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 Address ............................: 192.168.70.134
+[2025-10-14 09:45:19.654] [config ] [info]   - N3:
+[2025-10-14 09:45:19.654] [config ] [info]     + Port.....................................: 2152
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 Address ............................: 192.168.70.134
+[2025-10-14 09:45:19.654] [config ] [info]     + MTU......................................: 1500
+[2025-10-14 09:45:19.654] [config ] [info]     + Interface name: .........................: eth0
+[2025-10-14 09:45:19.654] [config ] [info]     + Network Instance.........................: access.oai.org
+[2025-10-14 09:45:19.654] [config ] [info]   - N4:
+[2025-10-14 09:45:19.654] [config ] [info]     + Port.....................................: 8805
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 Address ............................: 192.168.70.134
+[2025-10-14 09:45:19.654] [config ] [info]     + MTU......................................: 1500
+[2025-10-14 09:45:19.654] [config ] [info]     + Interface name: .........................: eth0
+[2025-10-14 09:45:19.654] [config ] [info]   - N6:
+[2025-10-14 09:45:19.654] [config ] [info]     + Port.....................................: 2152
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 Address ............................: 192.168.70.134
+[2025-10-14 09:45:19.654] [config ] [info]     + MTU......................................: 1500
+[2025-10-14 09:45:19.654] [config ] [info]     + Interface name: .........................: eth0
+[2025-10-14 09:45:19.654] [config ] [info]     + Network Instance.........................: core.oai.org
+[2025-10-14 09:45:19.654] [config ] [info]   - Instance ID................................: 0
+[2025-10-14 09:45:19.654] [config ] [info]   - Remote N6 Gateway..........................: localhost
+[2025-10-14 09:45:19.654] [config ] [info]   - Support Features:
+[2025-10-14 09:45:19.654] [config ] [info]     + Enable BPF Datapath......................: No
+[2025-10-14 09:45:19.654] [config ] [info]     + Enable QoS...............................: No
+[2025-10-14 09:45:19.654] [config ] [info]     + Enable SNAT..............................: Yes
+[2025-10-14 09:45:19.654] [config ] [info]     + enable_fr................................: No
+[2025-10-14 09:45:19.654] [config ] [info]   + upf_info:
+[2025-10-14 09:45:19.654] [config ] [info]     - snssai_upf_info_item:
+[2025-10-14 09:45:19.654] [config ] [info]       + snssai:
+[2025-10-14 09:45:19.654] [config ] [info]         - sst..................................: 1
+[2025-10-14 09:45:19.654] [config ] [info]         - sd...................................: FFFFFF
+[2025-10-14 09:45:19.654] [config ] [info]       + dnns:
+[2025-10-14 09:45:19.654] [config ] [info]         - dnn..................................: oai
+[2025-10-14 09:45:19.654] [config ] [info]     - snssai_upf_info_item:
+[2025-10-14 09:45:19.654] [config ] [info]       + snssai:
+[2025-10-14 09:45:19.654] [config ] [info]         - sst..................................: 1
+[2025-10-14 09:45:19.654] [config ] [info]         - sd...................................: 000001
+[2025-10-14 09:45:19.654] [config ] [info]       + dnns:
+[2025-10-14 09:45:19.654] [config ] [info]         - dnn..................................: oai.ipv4
+[2025-10-14 09:45:19.654] [config ] [info]     - snssai_upf_info_item:
+[2025-10-14 09:45:19.654] [config ] [info]       + snssai:
+[2025-10-14 09:45:19.654] [config ] [info]         - sst..................................: 222
+[2025-10-14 09:45:19.654] [config ] [info]         - sd...................................: 00007b
+[2025-10-14 09:45:19.654] [config ] [info]       + dnns:
+[2025-10-14 09:45:19.654] [config ] [info]         - dnn..................................: default
+[2025-10-14 09:45:19.654] [config ] [info] Peer NF Configuration:
+[2025-10-14 09:45:19.654] [config ] [info]   NRF:
+[2025-10-14 09:45:19.654] [config ] [info]     - host.....................................: oai-nrf
+[2025-10-14 09:45:19.654] [config ] [info]     - SBI
+[2025-10-14 09:45:19.654] [config ] [info]       + URL....................................: http://oai-nrf:80
+[2025-10-14 09:45:19.654] [config ] [info]       + API Version............................: v1
+[2025-10-14 09:45:19.654] [config ] [info]   SMF:
+[2025-10-14 09:45:19.654] [config ] [info]     - host.....................................: oai-smf
+[2025-10-14 09:45:19.654] [config ] [info]     - SBI
+[2025-10-14 09:45:19.654] [config ] [info]       + URL....................................: http://oai-smf:80
+[2025-10-14 09:45:19.654] [config ] [info]       + API Version............................: v1
+[2025-10-14 09:45:19.654] [config ] [info] DNNs:
+[2025-10-14 09:45:19.654] [config ] [info] - DNN:
+[2025-10-14 09:45:19.654] [config ] [info]     + DNN......................................: oai
+[2025-10-14 09:45:19.654] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 subnet..............................: 12.1.1.128/25
+[2025-10-14 09:45:19.654] [config ] [info]     + DNS Settings:
+[2025-10-14 09:45:19.654] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-14 09:45:19.654] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-14 09:45:19.654] [config ] [info] - DNN:
+[2025-10-14 09:45:19.654] [config ] [info]     + DNN......................................: oai.ipv4
+[2025-10-14 09:45:19.654] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 subnet..............................: 12.1.1.64/26
+[2025-10-14 09:45:19.654] [config ] [info]     + DNS Settings:
+[2025-10-14 09:45:19.654] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-14 09:45:19.654] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-14 09:45:19.654] [config ] [info] - DNN:
+[2025-10-14 09:45:19.654] [config ] [info]     + DNN......................................: default
+[2025-10-14 09:45:19.654] [config ] [info]     + PDU session type.........................: IPV4
+[2025-10-14 09:45:19.654] [config ] [info]     + IPv4 subnet..............................: 12.1.1.0/26
+[2025-10-14 09:45:19.654] [config ] [info]     + DNS Settings:
+[2025-10-14 09:45:19.654] [config ] [info]       - primary_dns_ipv4.......................: 8.8.8.8
+[2025-10-14 09:45:19.654] [config ] [info]       - secondary_dns_ipv4.....................: 1.1.1.1
+[2025-10-14 09:45:19.654] [upf_app] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 1
+[2025-10-14 09:45:19.654] [common] [start] Starting...
+[2025-10-14 09:45:19.654] [common] [start] Started
+[2025-10-14 09:45:19.654] [asc_cmd] [start] Starting...
+[2025-10-14 09:45:19.654] [common] [info] Starting timer_manager_task
+[2025-10-14 09:45:19.655] [asc_cmd] [start] Started
+[2025-10-14 09:45:19.655] [upf_app] [start] Starting...
+[2025-10-14 09:45:19.656] [udp    ] [debug] Creating new listen socket on address 192.168.70.134 and port 8805
+
+[2025-10-14 09:45:19.656] [udp    ] [debug] udp_server::udp_server(192.168.70.134:8805)
+[2025-10-14 09:45:19.656] [udp    ] [debug] Creating new listen socket on address 192.168.70.134 and port 0
+
+[2025-10-14 09:45:19.656] [udp    ] [debug] udp_server::udp_server(192.168.70.134:0)
+[2025-10-14 09:45:19.656] [pfcp   ] [info] pfcp_l4_stack created listening to 192.168.70.134:8805
+[2025-10-14 09:45:19.657] [upf_n4 ] [start] Starting...
+[2025-10-14 09:45:19.658] [upf_n4 ] [start] Started
+[2025-10-14 09:45:19.658] [udp    ] [debug] Creating new listen socket on address 192.168.70.134 and port 2152
+
+[2025-10-14 09:45:19.658] [udp    ] [debug] udp_server::udp_server(192.168.70.134:2152)
+[2025-10-14 09:45:19.658] [gtpv1_u] [info] gtpu_l4_stack created listening to 192.168.70.134:2152
+[2025-10-14 09:45:19.658] [upf_n3 ] [start] Starting...
+[2025-10-14 09:45:19.659] [upf_n3 ] [start] Started
+[2025-10-14 09:45:19.683] [pfcp_switch] [info] Source NAT added
+[2025-10-14 09:45:19.685] [pfcp_switch] [info] Route created
+[2025-10-14 09:45:19.687] [pfcp_switch] [info] Source NAT added
+[2025-10-14 09:45:19.690] [pfcp_switch] [info] Route created
+[2025-10-14 09:45:19.692] [pfcp_switch] [info] Source NAT added
+Error: Invalid prefix for given prefix length.
+[2025-10-14 09:45:19.694] [pfcp_switch] [warning] Route information not correct or does exists!
+[2025-10-14 09:45:19.696] [pfcp_switch] [info] Source NAT added
+[2025-10-14 09:45:19.696] [upf_app] [start] Started
+[2025-10-14 09:45:20.504] [upf_n4 ] [info] handle_receive(34 bytes)
+[2025-10-14 09:45:20.505] [upf_n4 ] [info] Handle SX ASSOCIATION SETUP REQUEST
+[2025-10-14 09:45:30.506] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:45:30.506] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:45:40.507] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:45:40.507] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:45:50.508] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:45:50.508] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:45:54.950] [upf_n4 ] [info] handle_receive(174 bytes)
+[2025-10-14 09:45:54.950] [upf_app] [info] Received N4_SESSION_ESTABLISHMENT_REQUEST seid 0x1 
+[2025-10-14 09:45:54.950] [upf_n4 ] [info] pfcp_session::add(far) seid 0x1 
+[2025-10-14 09:45:54.950] [upf_n4 ] [info] pfcp_session::add(pdr) seid 0x1 
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PFCP switch Packet Detection Rule list ordered by established sessions:                                                                                                                          |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|  SEID          |pdr |  far   |predence|   action   |        create outer hdr         tun id| rmv outer hdr  tun id|    UE IPv4     |                                                             |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|0000000000000001|0001|00000001|00000000|ACC>---->COR|none                                   |GTPU_UDP_IPV4:00000001|12.1.1.2        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[2025-10-14 09:45:54.959] [upf_n4 ] [info] handle_receive(142 bytes)
+[2025-10-14 09:45:54.959] [upf_app] [info] Received N4_SESSION_MODIFICATION_REQUEST seid 0x1 
+[2025-10-14 09:45:54.959] [upf_n4 ] [info] pfcp_session::add(far) seid 0x1 
+[2025-10-14 09:45:54.959] [upf_n4 ] [info] pfcp_session::add(pdr) seid 0x1 
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PFCP switch Packet Detection Rule list ordered by established sessions:                                                                                                                          |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|  SEID          |pdr |  far   |predence|   action   |        create outer hdr         tun id| rmv outer hdr  tun id|    UE IPv4     |                                                             |
++----------------+----+--------+--------+------------+---------------------------------------+----------------------+----------------+-------------------------------------------------------------+
+|0000000000000001|0001|00000001|00000000|ACC>---->COR|none                                   |GTPU_UDP_IPV4:00000001|12.1.1.2        |
+|0000000000000001|0002|00000002|00000000|COR>---->ACC|GTPU_UDP_IPV4:192.168.70.130  :c0bb1790|none                  |12.1.1.2        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[2025-10-14 09:46:00.509] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:00.509] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:46:10.510] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:10.510] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:46:20.511] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:20.511] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:46:28.441] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:28.441] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:29.479] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:29.479] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:30.480] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:30.480] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:30.511] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:30.511] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:46:40.002] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:40.002] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:40.512] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:40.512] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:46:41.005] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:41.005] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:42.006] [pfcp_switch] [info] PDR/PDI IP is 201010c 
+[2025-10-14 09:46:42.006] [pfcp_switch] [info] Upstream IP is 201010c 
+[2025-10-14 09:46:50.513] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:46:50.513] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:00.514] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:00.514] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:10.515] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:10.515] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:20.516] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:20.516] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:30.516] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:30.517] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:40.517] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:40.517] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:47:50.518] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:47:50.518] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:00.518] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:00.518] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:10.519] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:10.519] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:20.519] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:20.519] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:30.520] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:30.520] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:40.521] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:40.521] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:48:50.522] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:48:50.522] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:00.523] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:00.523] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:10.524] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:10.524] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:20.525] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:20.525] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:30.526] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:30.526] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:40.527] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:40.527] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:49:50.528] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:49:50.528] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:00.528] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:00.528] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:10.529] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:10.529] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:20.530] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:20.530] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:30.531] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:30.531] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:40.531] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:40.531] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:50:50.532] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:50:50.532] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:00.533] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:00.533] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:10.533] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:10.533] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:20.534] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:20.534] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:30.535] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:30.535] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:40.536] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:40.536] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:51:50.537] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:51:50.537] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:00.537] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:00.537] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:10.538] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:10.538] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:20.539] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:20.539] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:30.539] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:30.540] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:40.540] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:40.541] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:52:50.542] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:52:50.542] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:00.543] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:00.543] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:10.544] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:10.544] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:20.545] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:20.545] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:30.546] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:30.546] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:40.547] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:40.547] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:53:50.547] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:53:50.548] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:00.548] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:00.548] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:10.549] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:10.549] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:20.550] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:20.550] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:30.551] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:30.551] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:40.551] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:40.551] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:54:50.552] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:54:50.552] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:00.553] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:00.553] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:10.554] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:10.554] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:20.555] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:20.555] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:30.555] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:30.555] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:40.556] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:40.556] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:55:50.557] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:55:50.557] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:00.557] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:00.557] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:10.558] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:10.558] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:20.559] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:20.559] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:30.560] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:30.560] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:40.560] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:40.561] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:56:50.562] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:56:50.562] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:00.562] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:00.562] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:10.563] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:10.563] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:20.564] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:20.564] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:30.564] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:30.564] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:40.565] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:40.566] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:57:50.566] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:57:50.567] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:00.567] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:00.567] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:10.568] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:10.568] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:20.569] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:20.569] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:30.570] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:30.570] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:40.571] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:40.571] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:58:50.571] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:58:50.572] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:00.572] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:00.572] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:10.573] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:10.573] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:20.574] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:20.574] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:30.574] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:30.574] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:40.575] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:40.575] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 09:59:50.576] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 09:59:50.576] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 10:00:00.577] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 10:00:00.577] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 10:00:10.578] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 10:00:10.578] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 10:00:20.579] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 10:00:20.579] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
+[2025-10-14 10:00:30.579] [upf_n4 ] [info] handle_receive(16 bytes)
+[2025-10-14 10:00:30.580] [upf_n4 ] [info] Received SX HEARTBEAT REQUEST
