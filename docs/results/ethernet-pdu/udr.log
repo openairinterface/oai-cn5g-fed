@@ -1,0 +1,172 @@
+Trying to read .yaml configuration file: /openair-udr/etc/config.yaml
+LTTNG Tracing disabled at build-time!
+[2025-10-28 16:35:06.292] [common] [start] Options parsed
+[2025-10-28 16:35:06.292] [common] [debug] Parsing the configuration file, file type YAML.
+[2025-10-28 16:35:06.292] [config ] [info] Reading NF configuration from /openair-udr/etc/config.yaml
+[2025-10-28 16:35:06.298] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2025-10-28 16:35:06.298] [config ] [debug] Unknown NF smf in configuration. Ignored
+[2025-10-28 16:35:06.298] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2025-10-28 16:35:06.298] [config ] [debug] Unknown NF udm in configuration. Ignored
+[2025-10-28 16:35:06.298] [config ] [debug] Unknown NF ausf in configuration. Ignored
+[2025-10-28 16:35:06.298] [config ] [debug] Validating configuration of log_level
+[2025-10-28 16:35:06.298] [config ] [debug] Validating configuration of register_nf
+[2025-10-28 16:35:06.298] [config ] [debug] Validating configuration of http_version
+[2025-10-28 16:35:06.298] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-28 16:35:06.298] [config ] [debug] Validating configuration of NRF
+[2025-10-28 16:35:06.299] [config ] [debug] Validating configuration of UDR
+[2025-10-28 16:35:06.300] [config ] [debug] Validating configuration of database
+[2025-10-28 16:35:06.300] [config ] [info] ==== OPENAIRINTERFACE udr vBranch: HEAD Abrev. Hash: a7dbfc0 Date: Mon Sep 15 12:33:26 2025 +0200 ====
+[2025-10-28 16:35:06.300] [config ] [info] Basic Configuration:
+[2025-10-28 16:35:06.300] [config ] [info]   - log_level..................................: debug
+[2025-10-28 16:35:06.300] [config ] [info]   - register_nf................................: Yes
+[2025-10-28 16:35:06.300] [config ] [info]   - http_version...............................: 2
+[2025-10-28 16:35:06.300] [config ] [info]   TLS:
+[2025-10-28 16:35:06.300] [config ] [info]     - Enable TLS.................................: No
+[2025-10-28 16:35:06.300] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2025-10-28 16:35:06.300] [config ] [info]     UDR:
+[2025-10-28 16:35:06.300] [config ] [info]     - host.....................................: oai-udr
+[2025-10-28 16:35:06.300] [config ] [info]     - sbi
+[2025-10-28 16:35:06.300] [config ] [info]       + URL....................................: oai-udr:8080
+[2025-10-28 16:35:06.300] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.300] [config ] [info]       + IPv4 Address ..........................: 192.168.70.136
+[2025-10-28 16:35:06.300] [config ] [info]     - UDR Name.................................: oai-udr
+[2025-10-28 16:35:06.300] [config ] [info]   Database:
+[2025-10-28 16:35:06.300] [config ] [info]     - Host.....................................: mysql
+[2025-10-28 16:35:06.300] [config ] [info]     - Port.....................................: 3306
+[2025-10-28 16:35:06.300] [config ] [info]     - Database Type............................: mysql
+[2025-10-28 16:35:06.300] [config ] [info]     - User.....................................: test
+[2025-10-28 16:35:06.300] [config ] [info]     - Password.................................: test
+[2025-10-28 16:35:06.300] [config ] [info]     - Database Name............................: oai_db
+[2025-10-28 16:35:06.300] [config ] [info]     - Connection Timeout.......................: 300
+[2025-10-28 16:35:06.300] [config ] [info] Peer NF Configuration:
+[2025-10-28 16:35:06.300] [config ] [info]   NRF:
+[2025-10-28 16:35:06.300] [config ] [info]     - host.....................................: oai-nrf
+[2025-10-28 16:35:06.300] [config ] [info]     - sbi
+[2025-10-28 16:35:06.300] [config ] [info]       + URL....................................: oai-nrf:8080
+[2025-10-28 16:35:06.300] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.300] [udr_nrf] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+[2025-10-28 16:35:06.300] [udr_app] [start] Starting...
+[2025-10-28 16:35:06.300] [udr_db] [debug] Initializing MySQL DB ...
+[2025-10-28 16:35:06.302] [udr_db] [debug] Done!
+[2025-10-28 16:35:06.302] [udr_db] [debug] Connecting to MySQL DB
+[2025-10-28 16:35:06.312] [udr_db] [info] Connected to MySQL DB
+[2025-10-28 16:35:06.312] [udr_app] [debug] - NF instance info
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Instance ID: 08ca46ab-4d57-4d69-93f5-be2181016601
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Instance name: OAI-UDR
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Instance type: UDR
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Instance fqdn: 
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.312] [udr_app] [debug]     HeartBeat timer: 50
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.312] [udr_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.312] [udr_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.312] [udr_app] [debug]         192.168.70.136
+[2025-10-28 16:35:06.312] [udr_app] [debug] 	UDR Info
+[2025-10-28 16:35:06.312] [udr_app] [debug] 		GroupId: oai-udr-testgroupid
+[2025-10-28 16:35:06.312] [udr_app] [debug] 		 SupiRanges: Start - 208950000000131, End - , Pattern - ^imsi-20895[31-131]{6}$
+[2025-10-28 16:35:06.312] [udr_app] [debug] 		 GpsiRanges: Start - 752740000, End - 752749999, Pattern - ^gpsi-75274[0-9]{4}$
+[2025-10-28 16:35:06.312] [udr_app] [debug] 		 Data Set Id: 0210
+[2025-10-28 16:35:06.312] [udr_app] [debug] 		 Data Set Id: 9876
+[2025-10-28 16:35:06.312] [udr_app] [info] NRF TASK Created 
+[2025-10-28 16:35:06.312] [udr_server] [info] HTTP2 server being started 
+[2025-10-28 16:35:06.312] [udr_app] [debug] udr profile to JSON:
+ {"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.136"],"nfInstanceId":"08ca46ab-4d57-4d69-93f5-be2181016601","nfInstanceName":"OAI-UDR","nfStatus":"REGISTERED","nfType":"UDR","priority":1,"sNssais":[],"udrInfo":{"DataSetId":["0210","9876"],"externalGroupIdentifiersRanges":[],"gpsiRanges":[{"end":"752749999","pattern":"^gpsi-75274[0-9]{4}$","start":"752740000"}],"groupId":"oai-udr-testgroupid","supiRanges":[{"end":"","pattern":"^imsi-20895[31-131]{6}$","start":"208950000000131"}]}}
+[2025-10-28 16:35:06.312] [udr_nrf] [info] Sending NF Registration request
+[2025-10-28 16:35:06.312] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:35:16.314] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:35:16.314] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:35:26.453] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:35:26.453] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.613] [udr_server] [info] Received response: 
+[2025-10-28 16:35:35.613] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
+[2025-10-28 16:35:35.613] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
+[2025-10-28 16:35:35.613] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
+[2025-10-28 16:35:35.614] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
+[2025-10-28 16:35:35.614] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000020","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
+[2025-10-28 16:35:35.614] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+
+[2025-10-28 16:35:35.618] [udr_app] [info] [UE Id imsi-208950000000038] Modify the Authentication Subscription data of an UE
+[2025-10-28 16:35:35.618] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * from AuthenticationSubscription WHERE ueid='208950000000038'
+[2025-10-28 16:35:35.619] [udr_db] [info] [UE Id 208950000000038] MySQL Update command UPDATE AuthenticationSubscription SET sequenceNumber='{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"}' WHERE ueid='208950000000038'
+[2025-10-28 16:35:35.626] [udr_db] [info] [UE Id 208950000000038] AuthenticationSubscription PATCH: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000060\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2025-10-28 16:35:35.626] [udr_app] [info] [UE Id imsi-208950000000038] Successful modified the Authentication subscription data
+[2025-10-28 16:35:35.626] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+
+[2025-10-28 16:35:35.642] [udr_server] [info] Received response: 
+[2025-10-28 16:35:35.642] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
+[2025-10-28 16:35:35.642] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
+[2025-10-28 16:35:35.642] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
+[2025-10-28 16:35:35.643] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
+[2025-10-28 16:35:35.643] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
+[2025-10-28 16:35:35.643] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+
+[2025-10-28 16:35:35.644] [udr_app] [info] [UE Id imsi-208950000000038] Store the Authentication Status data of an UE
+[2025-10-28 16:35:35.644] [udr_db] [info] [UE Id 208950000000038] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='208950000000038'
+[2025-10-28 16:35:35.646] [udr_db] [info] [UE Id 208950000000038] MySQL query: INSERT INTO AuthenticationStatus SET ueid='208950000000038',nfInstanceId='400346f4-087e-40b1-a4cd-00566953999d',success=1,timeStamp='2025-10-28T15:35:35Z',authType='5G_AKA',servingNetworkName='5G:mnc095.mcc208.3gppnetwork.org',authRemovalInd=0
+[2025-10-28 16:35:35.650] [udr_db] [info] [UE Id 208950000000038] AuthenticationStatus PUT: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2025-10-28T15:35:35Z"}
+[2025-10-28 16:35:35.650] [udr_app] [info] [UE Id imsi-208950000000038] Successful stored the Authentication Status data
+[2025-10-28 16:35:35.650] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+
+[2025-10-28 16:35:35.666] [udr_server] [debug] QueryString: 
+[2025-10-28 16:35:35.666] [udr_app] [info] [UE Id 20895] Retrieve the access and mobility subscription data of an UE (ID 20895)
+[2025-10-28 16:35:35.667] [udr_db] [debug] [UE Id 20895] Handle Query AM Data
+[2025-10-28 16:35:35.667] [udr_db] [debug] [UE Id 20895] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='20895' AND servingPlmnid=''
+[2025-10-28 16:35:35.670] [udr_db] [error] [UE Id 20895] No data available for AccessAndMobilitySubscriptionData!
+[2025-10-28 16:35:35.670] [udr_server] [debug] HTTP Response code 404 (HTTP Version 2).
+
+[2025-10-28 16:35:36.455] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:35:36.455] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:35:46.457] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:35:46.458] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:35:56.468] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:35:56.469] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:36:06.469] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:36:06.469] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:36:16.472] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:36:16.472] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:36:26.475] [udr_nrf] [info] Sending NF Heartbeat Request
+[2025-10-28 16:36:26.475] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.825] [common] [info] Exiting: caught signal 15
+[2025-10-28 16:36:35.825] [common] [debug] Freeing Allocated memory...
+[2025-10-28 16:36:35.825] [common] [debug] First stop the nrf inst
+[2025-10-28 16:36:35.825] [udr_nrf] [info] Sending NF Deregistration request
+[2025-10-28 16:36:35.825] [udr_nrf] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.826] [common] [debug] Then stop the http servers
+[2025-10-28 16:36:35.826] [udr_server] [info] HTTP2 server fully stopped
+[2025-10-28 16:36:35.927] [udr_server] [info] HTTP2 server should be fully stopped
+[2025-10-28 16:36:35.977] [common] [debug] HTTP servers are shutdown
+[2025-10-28 16:36:35.977] [udr_db] [debug] Close the connection with MySQL DB
+[2025-10-28 16:36:35.977] [common] [debug] Freeing Allocated memory...
+[2025-10-28 16:36:35.977] [udr_app] [debug] Exit loop in manage_tasks
+[2025-10-28 16:36:35.987] [common] [debug] Stopped the UDR Task Manager.
+[2025-10-28 16:36:35.987] [udr_app] [debug] Delete UDR APP instance...
+[2025-10-28 16:36:35.987] [udr_db] [debug] Close the connection with MySQL DB
+[2025-10-28 16:36:35.987] [udr_db] [debug] Close the connection with MySQL DB
+[2025-10-28 16:36:35.987] [common] [debug] UDR APP memory done
+[2025-10-28 16:36:35.987] [common] [debug] Freeing allocated memory done
+[2025-10-28 16:36:35.987] [common] [info] Bye. Shutdown Procedure took 162 ms
+[2025-10-28 16:36:35.987] [udr_nrf] [info] Delete HTTP client instance

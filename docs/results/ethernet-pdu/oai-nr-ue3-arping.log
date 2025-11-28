@@ -1,0 +1,7 @@
+ARPING 192.168.72.135
+42 bytes from ee:9f:d2:0d:69:aa (192.168.72.135): index=0 time=20.865 msec
+42 bytes from ee:9f:d2:0d:69:aa (192.168.72.135): index=1 time=14.583 msec
+
+--- 192.168.72.135 statistics ---
+2 packets transmitted, 2 packets received,   0% unanswered (0 extra)
+rtt min/avg/max/std-dev = 14.583/17.724/20.865/3.141 ms

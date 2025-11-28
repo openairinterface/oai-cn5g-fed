@@ -1,0 +1,31 @@
+uicc0:
+  imsi: 208950000000037
+  key: 0C0A34601D4F07677303652C0462535B
+  opc: 63bfa50ee6523365ff14c1f45f88737d
+  dnn: default
+  nssai_sst: 222
+  nssai_sd: 0x00007B
+
+thread-pool: "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+
+#/* configuration for channel modelisation */
+#/* To be included in main config file when */
+#/* channel modelisation is used (rfsimulator with chanmod options enabled) */
+channelmod:
+  max_chan: 10
+  modellist: modellist_rfsimu_1
+  modellist_rfsimu_1:
+    - model_name: rfsimu_channel_enB0
+      type: AWGN
+      ploss_dB: 20
+      noise_power_dB: -4
+      forgetfact: 0
+      offset: 0
+      ds_tdl: 0
+    - model_name: rfsimu_channel_ue0
+      type: AWGN
+      ploss_dB: 20
+      nose_power_dB: -2
+      forgetfact: 0
+      offset: 0
+      ds_tdl: 0

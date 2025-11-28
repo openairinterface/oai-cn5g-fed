@@ -96,7 +96,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: oaisoftwarealliance/oai-smf:develop
+        image: phineroth/oai-smf:ethcp
         expose:
             - 80/tcp
             - 8080/tcp
@@ -114,14 +114,15 @@ services:
             - "oai-upf:192.168.70.129"
     oai-upf:
         container_name: "oai-upf"
-        image: oaisoftwarealliance/oai-upf:develop
+        image: phinetech/oai-upf:eth-pdu-latest
         expose:
             - 2152/udp
             - 8805/udp
             - 8080/tcp
         volumes:
-            - ./conf/basic_nrf_config_ebpf.yaml:/openair-upf/etc/config.yaml
+            - /sys/kernel/debug/:/sys/kernel/debug/
             - /sys/fs/bpf:/sys/fs/bpf
+            - ./conf/basic_nrf_config_ebpf.yaml:/openair-upf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:

@@ -1,0 +1,152 @@
+Trying to read .yaml configuration file: /openair-udm/etc/config.yaml
+LTTNG Tracing disabled at build-time!
+[2025-10-28 16:35:06.215] [system ] [start] Options parsed
+[2025-10-28 16:35:06.215] [system ] [debug] Parsing the configuration file (YAML).
+[2025-10-28 16:35:06.215] [config ] [info] Reading NF configuration from /openair-udm/etc/config.yaml
+[2025-10-28 16:35:06.224] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2025-10-28 16:35:06.224] [config ] [debug] Unknown NF smf in configuration. Ignored
+[2025-10-28 16:35:06.224] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2025-10-28 16:35:06.224] [config ] [debug] Unknown NF ausf in configuration. Ignored
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of log_level
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of register_nf
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of http_version
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of NRF
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of UDR
+[2025-10-28 16:35:06.224] [config ] [debug] Validating configuration of UDM
+[2025-10-28 16:35:06.225] [config ] [debug] Validating configuration of database
+[2025-10-28 16:35:06.225] [config ] [info] ==== OPENAIRINTERFACE udm vBranch: HEAD Abrev. Hash: 978d3ad Date: Mon Sep 15 12:35:22 2025 +0200 ====
+[2025-10-28 16:35:06.225] [config ] [info] Basic Configuration:
+[2025-10-28 16:35:06.225] [config ] [info]   - log_level..................................: debug
+[2025-10-28 16:35:06.225] [config ] [info]   - register_nf................................: Yes
+[2025-10-28 16:35:06.225] [config ] [info]   - http_version...............................: 2
+[2025-10-28 16:35:06.225] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2025-10-28 16:35:06.225] [config ] [info]     UDM:
+[2025-10-28 16:35:06.225] [config ] [info]     - host.....................................: oai-udm
+[2025-10-28 16:35:06.225] [config ] [info]     - SBI
+[2025-10-28 16:35:06.225] [config ] [info]       + URL....................................: http://oai-udm:8080
+[2025-10-28 16:35:06.225] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.225] [config ] [info]       + IPv4 Address ..........................: 192.168.70.137
+[2025-10-28 16:35:06.225] [config ] [info]     - Instance ID..............................: 0
+[2025-10-28 16:35:06.225] [config ] [info]     - PID Directory............................: 
+[2025-10-28 16:35:06.225] [config ] [info]     - UDM Name.................................: 
+[2025-10-28 16:35:06.225] [config ] [info] Peer NF Configuration:
+[2025-10-28 16:35:06.225] [config ] [info]   NRF:
+[2025-10-28 16:35:06.225] [config ] [info]     - host.....................................: oai-nrf
+[2025-10-28 16:35:06.225] [config ] [info]     - SBI
+[2025-10-28 16:35:06.225] [config ] [info]       + URL....................................: http://oai-nrf:8080
+[2025-10-28 16:35:06.225] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.225] [config ] [info]   UDR:
+[2025-10-28 16:35:06.225] [config ] [info]     - host.....................................: oai-udr
+[2025-10-28 16:35:06.225] [config ] [info]     - SBI
+[2025-10-28 16:35:06.225] [config ] [info]       + URL....................................: http://oai-udr:8080
+[2025-10-28 16:35:06.225] [config ] [info]       + API Version............................: v1
+[2025-10-28 16:35:06.225] [udm_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+[2025-10-28 16:35:06.225] [udm_app] [start] Starting...
+[2025-10-28 16:35:06.225] [udm_app] [debug] - NF instance info
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Instance ID: 7f2bcb44-b96e-4024-a446-36faa614dcf0
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Instance name: OAI-UDM
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Instance type: UDM
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Instance fqdn: oai-udm
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Status: REGISTERED
+[2025-10-28 16:35:06.225] [udm_app] [debug]     HeartBeat timer: 50
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Priority: 1
+[2025-10-28 16:35:06.225] [udm_app] [debug]     Capacity: 100
+[2025-10-28 16:35:06.225] [udm_app] [debug]     IPv4 Addr:
+[2025-10-28 16:35:06.225] [udm_app] [debug]         192.168.70.137
+[2025-10-28 16:35:06.225] [udm_app] [debug] 	UDM Info
+[2025-10-28 16:35:06.225] [udm_app] [debug] 		GroupId: oai-udm-testgroupid
+[2025-10-28 16:35:06.225] [udm_app] [debug] 		 SupiRanges: Start - 208950000000031, End - 208950000000131, Pattern - ^imsi-20895[31-131]{10}$
+[2025-10-28 16:35:06.225] [udm_app] [debug] 		 GpsiRanges: Start - 752740000, End - 752749999, Pattern - ^gpsi-75274[0-9]{4}$
+[2025-10-28 16:35:06.225] [udm_app] [debug] 		 Routing Indicators: 0210
+[2025-10-28 16:35:06.225] [udm_app] [debug] 		 Routing Indicators: 9876
+[2025-10-28 16:35:06.225] [udm_app] [debug] udm profile to JSON:
+ {"capacity":100,"fqdn":"oai-udm","heartBeatTimer":50,"ipv4Addresses":["192.168.70.137"],"nfInstanceId":"7f2bcb44-b96e-4024-a446-36faa614dcf0","nfInstanceName":"OAI-UDM","nfStatus":"REGISTERED","nfType":"UDM","priority":1,"sNssais":[],"udmInfo":{"externalGroupIdentifiersRanges":[],"gpsiRanges":[{"end":"752749999","pattern":"^gpsi-75274[0-9]{4}$","start":"752740000"}],"groupId":"oai-udm-testgroupid","internalGroupIdentifiersRanges":[],"routingIndicators":["0210","9876"],"supiRanges":[{"end":"208950000000131","pattern":"^imsi-20895[31-131]{10}$","start":"208950000000031"}]}}
+[2025-10-28 16:35:06.225] [udm_nrf] [info] Sending NF registration request to NRF, NRF's URI: http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/7f2bcb44-b96e-4024-a446-36faa614dcf0
+[2025-10-28 16:35:06.225] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:06.231] [udm_app] [info] NRF TASK Created 
+[2025-10-28 16:35:06.231] [udm_app] [start] Started
+[2025-10-28 16:35:06.234] [udm_server] [info] HTTP2 server being started
+[2025-10-28 16:35:16.229] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:16.229] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:26.302] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:26.302] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.612] [udm_ueau] [info] Handle generate_auth_data()
+[2025-10-28 16:35:35.612] [udm_ueau] [info] Handle Generate Auth Data Request
+[2025-10-28 16:35:35.612] [udm_ueau] [debug] Remote URI: http://oai-udr:8080/nudr-dr/v1/subscription-data/imsi-208950000000038/authentication-data/authentication-subscription
+[2025-10-28 16:35:35.612] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.615] [common] [debug] [udm_ueau]Result For F1-Alg Key
+0c 0a 34 60 1d 4f 07 67 73 03 65 2c 04 62 53 5b 
+[2025-10-28 16:35:35.615] [common] [debug] [udm_ueau]Result For F1-Alg OPC
+63 bf a5 0e e6 52 33 65 ff 14 c1 f4 5f 88 73 7d 
+[2025-10-28 16:35:35.615] [common] [debug] [udm_ueau]Result For F1-Alg AMF
+80 00 
+[2025-10-28 16:35:35.615] [common] [debug] [udm_ueau]Result For F1-Alg SQN: 
+00 00 00 00 00 20 
+[2025-10-28 16:35:35.615] [udm_ueau] [info] Current SQN 000000000040
+7e 9d c4 c9 c2 6e aa c9 56 a c0 f9 e 49 d9 fb 
+47 ab 1 4d 90 c 7b e3 5c 60 dd ba 36 4f 5 be 
+7e 9d c4 c9 c2 6e aa c9 56 a c0 f9 e 49 d9 fb 
+db 0 65 b7 29 96 bb fb c0 cb b9 40 8f d5 c5 a7 
+38 d3 88 fc ae 87 db b f8 b4 f3 d1 d3 68 2 8e 
+bf c2 e8 c 96 f8 91 9a a4 9 34 fb 30 bb ef c3 
+[2025-10-28 16:35:35.616] [common] [debug] [udm_ueau]XRES*(new)
+a9 7e a7 32 de a9 cf bf 2a a7 db 90 4c 75 44 4c f0 b4 5c 09 dd a2 30 8e 9f 06 1b 8b 54 91 85 fa 
+[2025-10-28 16:35:35.616] [udm_ueau] [debug] derive_kausf ...
+[2025-10-28 16:35:35.616] [common] [debug] [udm_ueau]derive_kausf key
+e4 8e e6 6e 35 05 6c 12 50 c8 93 cf b6 51 66 c2 c2 98 a9 e2 1d 64 5d 65 e8 0a 33 9e 1a 64 d4 9f 
+[2025-10-28 16:35:35.616] [common] [debug] [udm_ueau]derive_kausf kausf
+32 18 35 a6 d0 ee 4f 17 af 03 39 cd 32 1a 08 ec 2d 9c 17 aa 00 a3 a4 11 33 8a 05 9f a6 e7 0e ee 
+[2025-10-28 16:35:35.616] [udm_ueau] [info] New SQN (for next round) = 000000000060
+[2025-10-28 16:35:35.616] [udm_ueau] [debug] Remote URI: http://oai-udr:8080/nudr-dr/v1/subscription-data/imsi-208950000000038/authentication-data/authentication-subscription
+[2025-10-28 16:35:35.616] [udm_ueau] [info] Update UDR with PATCH message, body:  [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000060\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2025-10-28 16:35:35.616] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.627] [udm_ueau] [info] Send 200 OK response to AUSF
+[2025-10-28 16:35:35.627] [udm_ueau] [info] AuthInfoResult {"authType":"5G_AKA","authenticationVector":{"autn":"df4cb3465ff5800085f791b0a4da9ab3","avType":"5G_HE_AKA","kausf":"321835a6d0ee4f17af0339cd321a08ec2d9c17aa00a3a411338a059fa6e70eee","rand":"112855a739739ecbda1d642155a3f9dd","xresStar":"f0b45c09dda2308e9f061b8b549185fa"}}
+[2025-10-28 16:35:35.627] [udm_ueau] [info] Send response to AUSF
+[2025-10-28 16:35:35.627] [udm_ueau] [info] Update sqn in Database
+[2025-10-28 16:35:35.641] [udm_ueau] [info] Handle Authentication Confirmation
+[2025-10-28 16:35:35.641] [udm_ueau] [debug] Remote URI: http://oai-udr:8080/nudr-dr/v1/subscription-data/imsi-208950000000038/authentication-data/authentication-subscription
+[2025-10-28 16:35:35.641] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.643] [udm_ueau] [debug] Remote URI:http://oai-udr:8080/nudr-dr/v1/subscription-data/imsi-208950000000038/authentication-data/authentication-status
+[2025-10-28 16:35:35.643] [udm_ueau] [debug] Request body = {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2025-10-28T15:35:35Z"}
+[2025-10-28 16:35:35.643] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.650] [udm_ueau] [debug] authEventId=1c8c9289279e06efbebc20e1be5f278858657072faf626d4fd87c202fd7cfa91
+[2025-10-28 16:35:35.650] [udm_ueau] [info] Send 201 Created response to AUSF
+[2025-10-28 16:35:35.650] [udm_ueau] [info] Send response to AUSF
+[2025-10-28 16:35:35.665] [udm_server] [debug] QueryString: plmn-id={"mcc":"208","mnc":"95"}
+[2025-10-28 16:35:35.665] [udm_sdm] [debug] Handle Slice Selection Subscription Data Retrieval request
+[2025-10-28 16:35:35.665] [udm_sdm] [debug] Remote URI: http://oai-udr:8080/nudr-dr/v1/subscription-data/imsi-208950000000038/20895/provisioned-data/am-data
+[2025-10-28 16:35:35.665] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.670] [udm_sdm] [debug] HTTP response code 404
+[2025-10-28 16:35:35.670] [udm_sdm] [debug] Response from UDR: null
+[2025-10-28 16:35:36.304] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:36.304] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:46.307] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:46.307] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:35:56.310] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:35:56.310] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:06.314] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:06.314] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:16.318] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:16.318] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:26.322] [udm_nrf] [info] Sending NF heartbeat request
+[2025-10-28 16:36:26.322] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.825] [system ] [info] Exiting: caught signal 15
+[2025-10-28 16:36:35.825] [system ] [debug] First the app stop
+[2025-10-28 16:36:35.825] [udm_nrf] [info] Sending NF Deregistration request
+[2025-10-28 16:36:35.825] [udm_client] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.826] [udm_nrf] [info] NF Deregistration procedure successful
+[2025-10-28 16:36:35.826] [system ] [debug] Then HTTP server stop
+[2025-10-28 16:36:35.826] [udm_server] [info] HTTP2 server fully stopped
+[2025-10-28 16:36:35.926] [udm_server] [info] HTTP2 server should be fully stopped
+[2025-10-28 16:36:35.976] [system ] [debug] HTTP servers are shutdown
+[2025-10-28 16:36:35.976] [system ] [debug] Freeing Allocated memory...
+[2025-10-28 16:36:35.976] [system ] [debug] Stopped HTTP servers
+[2025-10-28 16:36:35.977] [udm_app] [debug] Exit loop in manage_tasks
+[2025-10-28 16:36:35.987] [system ] [debug] Stopped the UDM Task Manager.
+[2025-10-28 16:36:35.987] [udm_app] [debug] Delete UDM APP instance...
+[2025-10-28 16:36:35.987] [system ] [debug] UDM APP memory done
+[2025-10-28 16:36:35.987] [system ] [debug] Freeing allocated memory done
+[2025-10-28 16:36:35.987] [system ] [info] Bye. Shutdown Procedure took 161 ms
+[2025-10-28 16:36:35.987] [udm_client] [info] Delete HTTP client instance

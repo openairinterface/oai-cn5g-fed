@@ -1,0 +1,2364 @@
+Trying to read .yaml configuration file
+LTTNG Tracing disabled at build-time!
+[2025-10-28 16:35:06.284] [amf_app] [start] Options parsed!
+[2025-10-28 16:35:06.284] [system ] [debug] Parsing the configuration file, file type YAML.
+[2025-10-28 16:35:06.285] [config ] [info] Reading NF configuration from /openair-amf/etc/config.yaml
+[2025-10-28 16:35:06.294] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2025-10-28 16:35:06.294] [config ] [debug] Unknown NF udr in configuration. Ignored
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of log_level
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of register_nf
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of http_version
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of http_request_timeout
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of NSSF
+[2025-10-28 16:35:06.295] [config ] [debug] Validating configuration of NRF
+[2025-10-28 16:35:06.296] [config ] [debug] Validating configuration of UDM
+[2025-10-28 16:35:06.296] [config ] [debug] Validating configuration of AUSF
+[2025-10-28 16:35:06.296] [config ] [debug] Validating configuration of SMF
+[2025-10-28 16:35:06.296] [config ] [debug] Validating configuration of AMF
+[2025-10-28 16:35:06.297] [config ] [debug] Validating configuration of database
+[2025-10-28 16:35:06.298] [config] [info] ==== OAI-CN5G AMF vBranch: HEAD Abrev. Hash: 363fa5dc Date: Mon Sep 15 11:25:14 2025 +0200 ====
+[2025-10-28 16:35:06.298] [config] [info] ======================    AMF   =====================
+[2025-10-28 16:35:06.298] [config] [info] Configuration AMF:
+[2025-10-28 16:35:06.298] [config] [info] - Instance ................: 1
+[2025-10-28 16:35:06.298] [config] [info] - PID dir .................: /var/run
+[2025-10-28 16:35:06.298] [config] [info] - AMF NAME.................: OAI-AMF
+[2025-10-28 16:35:06.298] [config] [info] - GUAMI (MCC, MNC, Region ID, AMF Set ID, AMF pointer): 
+[2025-10-28 16:35:06.298] [config] [info]     (001, 01, 1, 1, 1)
+[2025-10-28 16:35:06.298] [config] [info] - Served Guami List:
+[2025-10-28 16:35:06.298] [config] [info]     (208, 95, 1 , 1, 1)
+[2025-10-28 16:35:06.298] [config] [info]     (001, 01, 1 , 1, 1)
+[2025-10-28 16:35:06.298] [config] [info] - Relative Capacity .......: 30
+[2025-10-28 16:35:06.298] [config] [info] - PLMN Support: 
+[2025-10-28 16:35:06.298] [config] [info]     MCC, MNC ..............: 208, 95
+[2025-10-28 16:35:06.298] [config] [info]     TAC ...................: 40960
+[2025-10-28 16:35:06.298] [config] [info]     Slice Support .........:
+[2025-10-28 16:35:06.298] [config] [info]         SST ...............: 1
+[2025-10-28 16:35:06.298] [config] [info]         SST, SD ...........: 1, 000001
+[2025-10-28 16:35:06.298] [config] [info]         SST ...............: 5
+[2025-10-28 16:35:06.298] [config] [info]         SST, SD ...........: 222, 00007B
+[2025-10-28 16:35:06.298] [config] [info] - Default DNN.................: default
+[2025-10-28 16:35:06.298] [config] [info] - Emergency Support .......: No
+[2025-10-28 16:35:06.298] [config] [info] - N2 Networking:
+[2025-10-28 16:35:06.298] [config] [info]     Iface .................: eth0
+[2025-10-28 16:35:06.298] [config] [info]     IP Addr ...............: 192.168.70.132
+[2025-10-28 16:35:06.298] [config] [info]     Port ..................: 38412
+[2025-10-28 16:35:06.298] [config] [info] - SBI Networking:
+[2025-10-28 16:35:06.298] [config] [info]     Iface .................: eth0
+[2025-10-28 16:35:06.298] [config] [info]     IP Addr ...............: 192.168.70.132
+[2025-10-28 16:35:06.298] [config] [info]     Port ..................: 8080
+[2025-10-28 16:35:06.298] [config] [info]     API version............: v1
+[2025-10-28 16:35:06.298] [config] [info] - NRF:
+[2025-10-28 16:35:06.298] [config] [info]     URI root ...............: http://oai-nrf:8080
+[2025-10-28 16:35:06.298] [config] [info]     API version ...........: v1
+[2025-10-28 16:35:06.298] [config] [info] - AUSF:
+[2025-10-28 16:35:06.298] [config] [info]     URI root ...............: http://oai-ausf:8080
+[2025-10-28 16:35:06.298] [config] [info]     API version ...........: v1
+[2025-10-28 16:35:06.298] [config] [info] - UDM:
+[2025-10-28 16:35:06.298] [config] [info]     URI root ...............: http://oai-udm:8080
+[2025-10-28 16:35:06.298] [config] [info]     API version ...........: v1
+[2025-10-28 16:35:06.298] [config] [info] - Supported Features:
+[2025-10-28 16:35:06.298] [config] [info]     NF Registration .......: Yes
+[2025-10-28 16:35:06.298] [config] [info]     SMF Selection .........: Yes
+[2025-10-28 16:35:06.298] [config] [info]     External AUSF .........: Yes
+[2025-10-28 16:35:06.298] [config] [info]     External UDM ..........: Yes
+[2025-10-28 16:35:06.298] [config] [info]     External NSSF .........: No
+[2025-10-28 16:35:06.298] [config] [info]     External LMF ..........: No
+[2025-10-28 16:35:06.298] [config] [info]     HTTP version...........: 2
+[2025-10-28 16:35:06.298] [config] [info] - Log Level ...............: debug
+[2025-10-28 16:35:06.298] [config] [info] - Supported NAS Algorithm: 
+[2025-10-28 16:35:06.298] [config] [info]     Ordered Integrity Algorithm: 5G_IA1 5G_IA2 
+[2025-10-28 16:35:06.298] [config] [info]     Ordered Ciphering Algorithm: 5G_EA1 5G_EA2 
+[2025-10-28 16:35:06.298] [itti] [start] Starting...
+[2025-10-28 16:35:06.298] [itti] [start] Started
+[2025-10-28 16:35:06.298] [amf_sbi] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+[2025-10-28 16:35:06.298] [amf_app] [start] Creating AMF application functionality layer
+[2025-10-28 16:35:06.298] [itti] [info] Starting timer_manager_task
+[2025-10-28 16:35:06.298] [itti] [warning] Could not set schedparam to ITTI task 0, err=1
+[2025-10-28 16:35:06.300] [amf_n1] [start] amf_n1 started
+[2025-10-28 16:35:06.300] [sctp] [debug] Creating socket!
+[2025-10-28 16:35:06.300] [sctp] [debug] Getaddrinfo on 192.168.70.132 was OK
+[2025-10-28 16:35:06.300] [sctp] [info] Created socket (3)
+[2025-10-28 16:35:06.300] [ngap] [info] Set N2 AMF IPv4 Addr 192.168.70.132, port 38412
+[2025-10-28 16:35:06.301] [sctp] [info] Create pthread to receive SCTP message
+[2025-10-28 16:35:06.302] [amf_n2] [start] amf_n2 started
+[2025-10-28 16:35:06.303] [amf_sbi] [start] amf_sbi started
+[2025-10-28 16:35:06.303] [amf_app] [debug] NF instance info
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Instance ID: 2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Instance name: OAI-AMF
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Instance type: AMF
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Status: REGISTERED
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	HeartBeat timer: 50
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Priority: 1
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	Capacity: 100
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	SNSSAI:
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		 SST, SD: 1, FFFFFF
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		 SST, SD: 1, 000001
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		 SST, SD: 5, FFFFFF
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		 SST, SD: 222, 00007B
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	IPv4 Addr:
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		 192.168.70.132
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	NF Service
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		Service Instance ID: namf_communication, Service name: namf_communication, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.70.132, TransportProtocol: TCP, Port: 8080
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		Service Instance ID: namf-evts, Service name: namf-evts, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.70.132, TransportProtocol: TCP, Port: 8080
+[2025-10-28 16:35:06.303] [amf_app] [debug] 	AMF Info
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		AMF Set ID: 001, AMF Region ID: 01
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 208, MNC: 95)
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-28 16:35:06.303] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 001, MNC: 01)
+[2025-10-28 16:35:06.303] [amf_app] [start] Started timer (1)
+[2025-10-28 16:35:06.303] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards all appropriate NRFs
+[2025-10-28 16:35:06.303] [amf_app] [debug] Initiating AMF server endpoints
+[2025-10-28 16:35:06.303] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2025-10-28 16:35:06.303] [amf_sbi] [debug] Send NF Instance Registration to NRF
+[2025-10-28 16:35:06.303] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.132"],"nfInstanceId":"2a808f22-393a-405d-89ec-a65433aaf810","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.132","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.70.132","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf-evts","serviceName":"namf-evts","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"FFFFFF","sst":5},{"sd":"00007B","sst":222}]}
+[2025-10-28 16:35:06.303] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:06.303] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.132"],"nfInstanceId":"2a808f22-393a-405d-89ec-a65433aaf810","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.132","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.70.132","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf-evts","serviceName":"namf-evts","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"FFFFFF","sst":5},{"sd":"00007B","sst":222}]}
+[2025-10-28 16:35:06.303] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:06.305] [amf_server] [info] HTTP2 server being started
+[2025-10-28 16:35:06.307] [amf_sbi] [info] Get response with HTTP code (201)
+[2025-10-28 16:35:06.307] [amf_sbi] [debug] NFRegistration, got successful response from NRF
+[2025-10-28 16:35:06.307] [amf_sbi] [debug] Registered AMF profile (from NRF)
+[2025-10-28 16:35:06.307] [amf_app] [debug] NF instance info
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Instance ID: 2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Instance name: OAI-AMF
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Instance type: AMF
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Status: REGISTERED
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	HeartBeat timer: 10
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Priority: 1
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	Capacity: 100
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	SNSSAI:
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		 SST, SD: 1, FFFFFF
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		 SST, SD: 1, 000001
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		 SST, SD: 5, FFFFFF
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		 SST, SD: 222, 00007B
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	IPv4 Addr:
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		 192.168.70.132
+[2025-10-28 16:35:06.307] [amf_app] [debug] 	AMF Info
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		AMF Set ID: 001, AMF Region ID: 01
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 208, MNC: 95)
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 010041
+[2025-10-28 16:35:06.307] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 001, MNC: 01)
+[2025-10-28 16:35:06.307] [amf_app] [debug] Delete AMF Profile instance...
+[2025-10-28 16:35:06.307] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:06.307] [amf_app] [debug] Handle NF Instance Registration response
+[2025-10-28 16:35:06.307] [amf_app] [debug] AMF has successfully registered to NRF.
+[2025-10-28 16:35:06.307] [amf_app] [debug] Set value of NRF Heartbeat timer to 10
+[2025-10-28 16:35:06.307] [amf_app] [debug] Delete AMF Profile instance...
+[2025-10-28 16:35:16.308] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:35:16.308] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:35:16.308] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:35:16.308] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:16.308] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:35:16.308] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:16.404] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:35:16.411] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:35:16.411] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:16.411] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:35:16.411] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:26.303] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    -   |                  -                 |                  -                 |                  -                 |                  -                 |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    -   |          -         |          -         |          -         |          -         |          -         |          -         |          -         |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:35:26.411] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:35:26.411] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:35:26.412] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:35:26.412] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:26.412] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:35:26.412] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:26.413] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:35:26.413] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:35:26.413] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:26.413] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:35:26.413] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:33.408] [sctp] [debug] SCTP Association Change event received
+[2025-10-28 16:35:33.408] [sctp] [debug] Add new association with Id (241)
+[2025-10-28 16:35:33.408] [sctp] [info] ----------------------
+[2025-10-28 16:35:33.408] [sctp] [info] Local addresses: 
+[2025-10-28 16:35:33.408] [sctp] [info]     - IPv4 Addr: 192.168.70.132
+[2025-10-28 16:35:33.408] [sctp] [info] ----------------------
+[2025-10-28 16:35:33.408] [sctp] [info] Peer addresses: 
+[2025-10-28 16:35:33.408] [sctp] [info]     - IPv4 Addr: 192.168.70.153
+[2025-10-28 16:35:33.408] [sctp] [info] ----------------------
+[2025-10-28 16:35:33.408] [ngap] [debug] Ready to handle new NGAP SCTP association request (id 241)
+[2025-10-28 16:35:33.408] [ngap] [debug] Create a new gNB context with assoc_id (241)
+[2025-10-28 16:35:33.408] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 59) from port 50839, on stream 0, PPID 60
+[2025-10-28 16:35:33.408] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (0), instreams (2), outstreams (2)
+[2025-10-28 16:35:33.412] [ngap] [debug] Decoded NGAP message, procedure code 21, present 1
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 E0 00 (4 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 82
+                criticality: 1 (ignore)
+                value: gnb-rfsim
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 01
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 05
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2025-10-28 16:35:33.412] [ngap] [debug] [gNB Assoc Id 241] Sending ITTI NG Setup Request message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 E0 00 (4 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 82
+                criticality: 1 (ignore)
+                value: gnb-rfsim
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 01
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 05
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2025-10-28 16:35:33.413] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:33.413] [amf_n2] [info] Received NGSetupRequest message, handling
+[2025-10-28 16:35:33.413] [amf_n2] [debug] [gNB Assoc ID 241] Handle NG Setup Request...
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Parameters: assoc_id 241, stream 0
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Update gNB context with assoc id (241)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] RAN Node Info, Global RAN Node ID: 0xe00, MCC 208, MNC 95
+[2025-10-28 16:35:33.413] [amf_n2] [debug] IE RanNodeName: gnb-rfsim
+[2025-10-28 16:35:33.413] [amf_n2] [debug] IE DefaultPagingDRX: 0
+[2025-10-28 16:35:33.413] [amf_n2] [debug] TAC configured 40960, TAC received 40960
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Common PLMN MCC 208, MNC 95
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from gNB (SST 1, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Common S-NSSAI (SST 1, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 000001)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 5, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 00007B)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from gNB (SST 5, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 000001)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 5, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Common S-NSSAI (SST 5, SD FFFFFF)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 00007B)
+[2025-10-28 16:35:33.413] [amf_n2] [debug] GNB PLMN (208, 95) is included in the common PLMNs
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Encoding NG_SETUP_RESPONSE ...
+SuccessfulOutcome ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupResponseIEs ::= {
+                id: 1
+                criticality: 0 (reject)
+                value: OAI-AMF
+            }
+            NGSetupResponseIEs ::= {
+                id: 96
+                criticality: 0 (reject)
+                value: ServedGUAMIList ::= {
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 02 F8 59
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 00 F1 10
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                }
+            }
+            NGSetupResponseIEs ::= {
+                id: 86
+                criticality: 1 (ignore)
+                value: 30
+            }
+            NGSetupResponseIEs ::= {
+                id: 80
+                criticality: 0 (reject)
+                value: PLMNSupportList ::= {
+                    PLMNSupportItem ::= {
+                        pLMNIdentity: 02 F8 59
+                        sliceSupportList: SliceSupportList ::= {
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                    sD: 00 00 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 05
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: DE
+                                    sD: 00 00 7B
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:33.413] [ngap] [debug] Encoded size (68)
+[2025-10-28 16:35:33.413] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346cc001650 of 68 bytes on stream 0 with PPID 60
+[2025-10-28 16:35:33.413] [sctp] [debug] Successfully sent 68 bytes on stream 0
+[2025-10-28 16:35:33.413] [amf_n2] [debug] Sending NG_SETUP_RESPONSE Ok
+[2025-10-28 16:35:33.413] [amf_n2] [debug] gNB with gNB_id 0xe00, assoc_id 241 has been attached to AMF
+[2025-10-28 16:35:33.413] [amf_app] [debug] A new gNB has been successfully added!
+[2025-10-28 16:35:33.413] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:33.413] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.607] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 76) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.607] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.608] [ngap] [debug] Decoded NGAP message, procedure code 15, present 1
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 09 00 0D 01 02 F8 59 00 00 00 00 00 00 
+                    00 00 83 2E 08 E0 60 00 00 00 00 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.608] [ngap] [debug] [gNB Assoc ID 241] Sending ITTI Initial UE Message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 09 00 0D 01 02 F8 59 00 00 00 00 00 00 
+                    00 00 83 2E 08 E0 60 00 00 00 00 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.608] [ngap] [debug] Received RanUeNgapId 1 
+[2025-10-28 16:35:35.608] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:35.608] [amf_n2] [info] Received Initial UE Message, handling
+[2025-10-28 16:35:35.608] [amf_n2] [debug] Handle Initial UE Message...
+[2025-10-28 16:35:35.608] [amf_n2] [debug] User Location Info NR (MCC 208, MNC 95, TAC 40960) is included in the supported TA List
+[2025-10-28 16:35:35.608] [amf_n2] [warning] No UE NGAP context with ran_ue_ngap_id 1, gnb_id 3584
+[2025-10-28 16:35:35.608] [amf_n2] [debug] Create a new UE NGAP context with ran_ue_ngap_id 1
+[2025-10-28 16:35:35.608] [amf_n2] [debug] 5g_s_tmsi not present
+[2025-10-28 16:35:35.608] [amf_n2] [debug] Store InitialUEMessage for Reroute NAS (if necessary)
+InitiatingMessage ::= {
+    procedureCode: 15
+    criticality: 1 (ignore)
+    value: InitialUEMessage ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialUEMessage-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialUEMessage-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 41 09 00 0D 01 02 F8 59 00 00 00 00 00 00 
+                    00 00 83 2E 08 E0 60 00 00 00 00 00 00
+            }
+            InitialUEMessage-IEs ::= {
+                id: 121
+                criticality: 0 (reject)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+            InitialUEMessage-IEs ::= {
+                id: 90
+                criticality: 1 (ignore)
+                value: 3 (mo-Signalling)
+            }
+            InitialUEMessage-IEs ::= {
+                id: 112
+                criticality: 1 (ignore)
+                value: 0 (requested)
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.608] [ngap] [debug] Encoded size (0)
+[2025-10-28 16:35:35.608] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.608] [amf_app] [debug] Received NAS_SIG_ESTAB_REQ
+[2025-10-28 16:35:35.608] [amf_app] [warning] No existing UE context associated with key app_ue_ranid_1:amfid_1
+[2025-10-28 16:35:35.608] [amf_app] [debug] No existing UE Context, Create a new one with ran_amf_id app_ue_ranid_1:amfid_1
+[2025-10-28 16:35:35.608] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.608] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.608] [amf_n1] [warning] No existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.608] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 00 41 09 00 0d 01 02 f8 59 00 00 00 00 00 00 00 00 83 2e 08 e0 60 00 00 00 00 00 00 
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Received plain NAS message
+[2025-10-28 16:35:35.608] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 41 09 00 0d 01 02 f8 59 00 00 00 00 00 00 00 00 83 2e 08 e0 60 00 00 00 00 00 00 
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Received NAS Signalling Establishment request...
+[2025-10-28 16:35:35.608] [amf_n1] [debug] No existing nas_context with amf_ue_ngap_id 1 --> Create a new one
+[2025-10-28 16:35:35.608] [amf_n1] [debug] NAS message type 0x41
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Received Registration Request message, handling...
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding RegistrationRequest message
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded 5GSMobilityIdentity IE length 13
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding 5GSMobilityIdentity SUCI
+[2025-10-28 16:35:35.608] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.608] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded Routing Indicator 0000
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded MSIN 0000000038
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded 5GSMobilityIdentity SUCI SUPI format IMSI (len 13)
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded SUCI (15 octets)
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded 5GS Mobile Identity, len (15)
+[2025-10-28 16:35:35.608] [nas] [debug] First option IEI 0x2e
+[2025-10-28 16:35:35.608] [nas] [debug] IEI 0x2e
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding IEI 0x2e
+[2025-10-28 16:35:35.608] [nas] [debug] Decoding UE Security Capability
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded UE Security Capability, len (10)
+[2025-10-28 16:35:35.608] [nas] [debug] 5G EA 0xe0, 5G IA 0x60
+[2025-10-28 16:35:35.608] [nas] [debug] EEA 0x0
+[2025-10-28 16:35:35.608] [nas] [debug] EIA 0x0
+[2025-10-28 16:35:35.608] [nas] [debug] Next IEI 0x0
+[2025-10-28 16:35:35.608] [nas] [debug] Decoded RegistrationRequest message (len 29)
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Received IMSI 208950000000038
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Signal the UE Reachability Status Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Send request to SBI to trigger UE Reachability Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:35:35.608] [amf_n1] [info] Associating SUPI (imsi-208950000000038) with NAS context
+[2025-10-28 16:35:35.608] [amf_app] [debug] A new UE (IMSI 208950000000038) has been successfully added!
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Set 5GMM state to COMM-PROC-INIT
+[2025-10-28 16:35:35.608] [amf_n1] [debug] Existing nas_context --> Update
+[2025-10-28 16:35:35.608] [amf_app] [debug] The UE's Info (IMSI 208950000000038) has been successfully updated!
+[2025-10-28 16:35:35.608] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000038  |                    |        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Send request to SBI to trigger UE Registration State Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:35:35.609] [amf_n1] [debug] NAS key set identifier: 0x0
+[2025-10-28 16:35:35.609] [amf_n1] [warning] No Optional IE 5GMMCapability available
+[2025-10-28 16:35:35.609] [amf_n1] [debug] No Optional IE RequestedNssai available
+[2025-10-28 16:35:35.609] [amf_n1] [debug] No Optional NAS Container inside Registration Request message
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Update UC context, SUPI imsi-208950000000038
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Start to run Registration Procedure
+[2025-10-28 16:35:35.609] [amf_n1] [debug] SUCI SUPI format IMSI is available
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Authentication vector in nas_context is not available
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Start to generate Authentication Vectors
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Get Authentication Vectors from AUSF
+[2025-10-28 16:35:35.609] [amf_n1] [debug] Promise ID generated 1
+[2025-10-28 16:35:35.609] [amf_sbi] [info] Receive UE Authentication Request message, handling ...
+[2025-10-28 16:35:35.609] [amf_sbi] [debug] Send UE Authentication Request to AUSF 
+[2025-10-28 16:35:35.609] [amf_sbi] [info] Send HTTP message to http://oai-ausf:8080/nausf-auth/v1/ue-authentications
+[2025-10-28 16:35:35.609] [amf_sbi] [info] HTTP message Body: {"servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","supiOrSuci":"imsi-208950000000038"}
+[2025-10-28 16:35:35.609] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.628] [amf_sbi] [info] Get response with HTTP code (201)
+[2025-10-28 16:35:35.628] [amf_app] [debug] Trigger process response: Set promise with ID 1 to ready
+[2025-10-28 16:35:35.628] [amf_n1] [debug] Got result for promise ID 1
+[2025-10-28 16:35:35.628] [amf_n1] [debug] Got UE Authentication from AUSF: {"5gAuthData":{"autn":"df4cb3465ff5800085f791b0a4da9ab3","hxresStar":"b1f97f6f9d3c34718a5cb58b0ea997ee","rand":"112855a739739ecbda1d642155a3f9dd"},"_links":{"5g-aka":{"href":"http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/df4cb3465ff5800085f791b0a4da9ab3/5g-aka-confirmation"}},"authType":"5G_AKA"}
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data 112855a739739ecbda1d642155a3f9dd (32 bytes)
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data (formatted):
+11 28 55 a7 39 73 9e cb da 1d 64 21 55 a3 f9 dd 
+[2025-10-28 16:35:35.628] [common] [debug] [amf_n1]5G AV: RAND
+11 28 55 a7 39 73 9e cb da 1d 64 21 55 a3 f9 dd 
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data df4cb3465ff5800085f791b0a4da9ab3 (32 bytes)
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data (formatted):
+df 4c b3 46 5f f5 80 0 85 f7 91 b0 a4 da 9a b3 
+[2025-10-28 16:35:35.628] [common] [debug] [amf_n1]5G AV: AUTN
+df 4c b3 46 5f f5 80 00 85 f7 91 b0 a4 da 9a b3 
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data b1f97f6f9d3c34718a5cb58b0ea997ee (32 bytes)
+[2025-10-28 16:35:35.628] [amf_app] [debug] Data (formatted):
+b1 f9 7f 6f 9d 3c 34 71 8a 5c b5 8b e a9 97 ee 
+[2025-10-28 16:35:35.628] [common] [debug] [amf_n1]5G AV: hxres*
+b1 f9 7f 6f 9d 3c 34 71 8a 5c b5 8b 0e a9 97 ee 
+[2025-10-28 16:35:35.628] [amf_n1] [info] Links is: http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/df4cb3465ff5800085f791b0a4da9ab3/5g-aka-confirmation
+[2025-10-28 16:35:35.628] [amf_n1] [debug] Received Security Vectors, try to setup security with the UE
+[2025-10-28 16:35:35.628] [amf_n1] [debug] Starting Authentication procedure
+[2025-10-28 16:35:35.628] [amf_n1] [debug] Sending Authentication Request with RAND
+[2025-10-28 16:35:35.628] [common] [debug] [amf_n1]RAND
+11 28 55 a7 39 73 9e cb da 1d 64 21 55 a3 f9 dd 
+[2025-10-28 16:35:35.628] [nas_mm] [debug] Size of Authentication Request message 42
+[2025-10-28 16:35:35.628] [nas] [debug] Encoding AuthenticationRequest message
+[2025-10-28 16:35:35.628] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:35:35.628] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:35:35.628] [nas] [debug] Encoding Abba
+[2025-10-28 16:35:35.628] [nas] [debug] Encoded Abba, len (3)
+[2025-10-28 16:35:35.628] [nas] [debug] Encoding Authentication Parameter RAND
+[2025-10-28 16:35:35.628] [nas] [debug] Encoded Authentication Parameter RAND, len (17)
+[2025-10-28 16:35:35.628] [nas] [debug] Encoding Authentication Parameter AUTN
+[2025-10-28 16:35:35.628] [nas] [debug] Encoded AuthenticationParameterAutn len (18)
+[2025-10-28 16:35:35.628] [nas] [debug] IE EAP Message is not available
+[2025-10-28 16:35:35.628] [nas] [debug] Encoded AuthenticationRequest message (len 42)
+[2025-10-28 16:35:35.628] [common] [debug] [amf_n1]Authentication-Request message buffer
+7e 00 56 02 02 00 00 21 11 28 55 a7 39 73 9e cb da 1d 64 21 55 a3 f9 dd 20 10 df 4c b3 46 5f f5 80 00 85 f7 91 b0 a4 da 9a b3 
+[2025-10-28 16:35:35.628] [amf_n1] [debug] amf_ue_ngap_id 1
+[2025-10-28 16:35:35.628] [amf_n2] [info] Received Downlink NAS Transport message, handling
+[2025-10-28 16:35:35.628] [amf_n2] [debug] Handle DL NAS Transport ...
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 56 02 02 00 00 21 11 28 55 A7 39 73 9E CB 
+                    DA 1D 64 21 55 A3 F9 DD 20 10 DF 4C B3 46 5F F5 
+                    80 00 85 F7 91 B0 A4 DA 9A B3
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.628] [ngap] [debug] Encoded size (66)
+[2025-10-28 16:35:35.628] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346cc003200 of 66 bytes on stream 1 with PPID 60
+[2025-10-28 16:35:35.628] [sctp] [debug] Successfully sent 66 bytes on stream 1
+[2025-10-28 16:35:35.628] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.638] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 64) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.638] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.638] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 57 2D 10 F0 B4 5C 09 DD A2 30 8E 9F 06 1B 
+                    8B 54 91 85 FA
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.639] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 00 57 2D 10 F0 B4 5C 09 DD A2 30 8E 9F 06 1B 
+                    8B 54 91 85 FA
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.639] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:35.639] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-28 16:35:35.639] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-28 16:35:35.639] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.639] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.639] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 00 57 2d 10 f0 b4 5c 09 dd a2 30 8e 9f 06 1b 8b 54 91 85 fa 
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Received plain NAS message
+[2025-10-28 16:35:35.639] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 57 2d 10 f0 b4 5c 09 dd a2 30 8e 9f 06 1b 8b 54 91 85 fa 
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Received Authentication Response message, handling...
+[2025-10-28 16:35:35.639] [amf_n1] [info] Found nas_context (0x7346d0000e60) with amf_ue_ngap_id (1)
+[2025-10-28 16:35:35.639] [nas] [debug] Decoding AuthenticationResponse message
+[2025-10-28 16:35:35.639] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:35:35.639] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:35:35.639] [nas] [debug] First option IEI (0x2d)
+[2025-10-28 16:35:35.639] [nas] [debug] Decoding IEI 0x2d
+[2025-10-28 16:35:35.639] [nas] [debug] Decoding Authentication Response Parameter
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0xf0
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0xb4
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x5c
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x9
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0xdd
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0xa2
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x30
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x8e
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x9f
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x6
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x1b
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x8b
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x54
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x91
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0x85
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded value 0xfa
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded Authentication Response Parameter, len (18)
+[2025-10-28 16:35:35.639] [nas] [debug] Next IEI (0x0)
+[2025-10-28 16:35:35.639] [nas] [debug] Decoded AuthenticationResponse message len (21)
+[2025-10-28 16:35:35.639] [amf_n1] [debug] 5G AKA Confirmation from AUSF
+[2025-10-28 16:35:35.639] [common] [debug] [amf_n1]resStar
+f0 b4 5c 09 dd a2 30 8e 9f 06 1b 8b 54 91 85 fa 
+[2025-10-28 16:35:35.639] [amf_n1] [info] resStar_s (F0B45C09DDA2308E9F061B8B549185FA)
+[2025-10-28 16:35:35.639] [amf_n1] [debug] Promise ID generated 2
+[2025-10-28 16:35:35.639] [amf_sbi] [info] Receive UE Authentication Confirmation message, handling ...
+[2025-10-28 16:35:35.639] [amf_sbi] [debug] Send UE Authentication Confirmation to AUSF 
+[2025-10-28 16:35:35.639] [amf_sbi] [info] Send HTTP message to http://192.168.70.138:8080/nausf-auth/v1/ue-authentications/df4cb3465ff5800085f791b0a4da9ab3/5g-aka-confirmation
+[2025-10-28 16:35:35.639] [amf_sbi] [info] HTTP message Body: {"resStar":"F0B45C09DDA2308E9F061B8B549185FA"}
+[2025-10-28 16:35:35.639] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.652] [amf_sbi] [info] Get response with HTTP code (200)
+[2025-10-28 16:35:35.652] [amf_app] [debug] Trigger process response: Set promise with ID 2 to ready
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Got result for promise ID 2
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Got ConfirmationDataResponse from AUSF: {"authResult":"AUTHENTICATION_SUCCESS","kseaf":"fe64a6171ef75a68b58215751098c989ddf4a8c2e482b05302589c6e54afca3c","supi":"imsi-208950000000038"}
+[2025-10-28 16:35:35.652] [amf_app] [debug] Data fe64a6171ef75a68b58215751098c989ddf4a8c2e482b05302589c6e54afca3c (64 bytes)
+[2025-10-28 16:35:35.652] [amf_app] [debug] Data (formatted):
+fe 64 a6 17 1e f7 5a 68 b5 82 15 75 10 98 c9 89 dd f4 a8 c2 e4 82 b0 53 2 58 9c 6e 54 af ca 3c 
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]5G AV: kseaf
+fe 64 a6 17 1e f7 5a 68 b5 82 15 75 10 98 c9 89 dd f4 a8 c2 e4 82 b0 53 02 58 9c 6e 54 af ca 3c 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Deriving Kamf
+[2025-10-28 16:35:35.652] [amf_n1] [debug] derive_kamf ...
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Kamf
+78 a6 c8 c8 d4 25 53 87 17 1f f3 5d 3a 58 64 73 a1 ea 7d 41 92 98 7c cc 9b f0 ec 9c ee be db 20 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Authentication successful by network!
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Start Security Mode Control procedure
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Using IntegrityProtectedWithNewSecurityContext for SecurityModeControl message
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Selected AMF NEA: 0x1
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Selected AMF NIA: 0x1
+[2025-10-28 16:35:35.652] [amf_n1] [debug] derive_knas ...
+[2025-10-28 16:35:35.652] [amf_n1] [debug] derive_knas ...
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Encoded ngKSI 0x2
+[2025-10-28 16:35:35.652] [nas_mm] [debug] Size of Security Mode Command message 14
+[2025-10-28 16:35:35.652] [nas] [debug] Encoding SecurityModeCommand message
+[2025-10-28 16:35:35.652] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:35:35.652] [nas] [debug] Encoding NAS Security Algorithms
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded NAS Security Algorithms, len (1)
+[2025-10-28 16:35:35.652] [nas] [debug] Encoding UE Security Capability
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded UE Security Capability, len (5)
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded Type1NasIeFormatTv, len (1)
+[2025-10-28 16:35:35.652] [nas] [debug] IE EPS NAS Security Algorithms is not available
+[2025-10-28 16:35:35.652] [nas] [debug] Encoding Additional 5G Security Information
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded Additional 5G Security Information, len (3)
+[2025-10-28 16:35:35.652] [nas] [debug] IE EAP Message is not available
+[2025-10-28 16:35:35.652] [nas] [debug] IE Abba is not available
+[2025-10-28 16:35:35.652] [nas] [debug] IE S1 UE Security Capability is not available
+[2025-10-28 16:35:35.652] [nas] [debug] Encoded SecurityModeCommand message len (14)
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Security-Mode-Command message buffer
+7e 00 5d 11 02 04 e0 60 00 00 e1 36 01 02 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Security Context status (is new:  true)
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Parameters for NIA, message: 
+00 7e 00 5d 11 02 04 e0 60 00 00 e1 36 01 02 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Result for NIA1, mac: 
+14 1c a7 e2 
+[2025-10-28 16:35:35.652] [amf_n1] [debug] Result for NIA1, mac32: 0x141ca7e2
+[2025-10-28 16:35:35.652] [amf_n1] [debug] mac32: 0x141ca7e2
+[2025-10-28 16:35:35.652] [common] [debug] [amf_n1]Encrypted Security-Mode-Command message buffer
+7e 03 14 1c a7 e2 00 7e 00 5d 11 02 04 e0 60 00 00 e1 36 01 02 
+[2025-10-28 16:35:35.652] [amf_n2] [info] Received Downlink NAS Transport message, handling
+[2025-10-28 16:35:35.652] [amf_n2] [debug] Handle DL NAS Transport ...
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 03 14 1C A7 E2 00 7E 00 5D 11 02 04 E0 60 00 
+                    00 E1 36 01 02
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.653] [ngap] [debug] Encoded size (45)
+[2025-10-28 16:35:35.653] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346e40027c0 of 45 bytes on stream 1 with PPID 60
+[2025-10-28 16:35:35.653] [sctp] [debug] Successfully sent 45 bytes on stream 1
+[2025-10-28 16:35:35.653] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.663] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 100) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.663] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.663] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 04 14 BB 81 6F 00 79 ED 3C 79 BE 7D 2A 97 0A 
+                    CB 9F 13 DD C1 75 71 5A F1 B8 EE E9 EA 27 9F D2 
+                    73 1A 0E 2D 37 7B 4E 79 25 33 7F 45 71 34 A0 28 
+                    8D AD 16 47 6E 55 B0 6D 99
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.663] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 04 14 BB 81 6F 00 79 ED 3C 79 BE 7D 2A 97 0A 
+                    CB 9F 13 DD C1 75 71 5A F1 B8 EE E9 EA 27 9F D2 
+                    73 1A 0E 2D 37 7B 4E 79 25 33 7F 45 71 34 A0 28 
+                    8D AD 16 47 6E 55 B0 6D 99
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.663] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:35.663] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-28 16:35:35.663] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-28 16:35:35.663] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.663] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 04 14 bb 81 6f 00 79 ed 3c 79 be 7d 2a 97 0a cb 9f 13 dd c1 75 71 5a f1 b8 ee e9 ea 27 9f d2 73 1a 0e 2d 37 7b 4e 79 25 33 7f 45 71 34 a0 28 8d ad 16 47 6e 55 b0 6d 99 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Uplink count in uplink: 0
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Parameters for NIA, message: 
+00 79 ed 3c 79 be 7d 2a 97 0a cb 9f 13 dd c1 75 71 5a f1 b8 ee e9 ea 27 9f d2 73 1a 0e 2d 37 7b 4e 79 25 33 7f 45 71 34 a0 28 8d ad 16 47 6e 55 b0 6d 99 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Result for NIA1, mac: 
+14 bb 81 6f 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Result for NIA1, mac32: 0x14bb816f
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Received mac32 (0x14bb816f) from the message
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Integrity matched
+[2025-10-28 16:35:35.663] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:35:35.663] [amf_n1] [debug] stream_cipher.blength 400
+[2025-10-28 16:35:35.663] [amf_n1] [debug] stream_cipher.message 79
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] stream_cipher.count 0
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 5e 77 00 09 65 57 54 76 98 10 32 14 f3 71 00 20 7e 00 41 09 00 0d 01 02 f8 59 00 00 00 00 00 00 00 00 83 10 01 06 2e 08 e0 60 00 00 10 00 00 00 44 af 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Received Security Mode Complete message, handling...
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Handling Security Mode Complete ...
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding SecurityModeComplete message
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded_size (3)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding IEI (0x77)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GSMobilityIdentity IE length 9
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding 5GSMobilityIdentity IMEISV
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GSMobilityIdentity IMEISV: 6754567890123413
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GSMobilityIdentity IMEISV len (9)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GS Mobile Identity, len (12)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding IEI (0x71)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding NAS Message Container
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x7e
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x41
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x9
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0xd
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x1
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x2
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0xf8
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x59
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x83
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x10
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x1
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x6
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x2e
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x8
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0xe0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x60
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x10
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMessageContainer value 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NAS Message Container, len (35)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding IEI (0x44)
+[2025-10-28 16:35:35.663] [nas] [warning] Unexpected IEI (0x44)
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]Security Mode Complete message buffer
+7e 00 5e 77 00 09 65 57 54 76 98 10 32 14 f3 71 00 20 7e 00 41 09 00 0d 01 02 f8 59 00 00 00 00 00 00 00 00 83 10 01 06 2e 08 e0 60 00 00 10 00 00 00 44 af 
+[2025-10-28 16:35:35.663] [nas_mm] [debug] Stored IMEISV in the NAS Context: 6754567890123413
+[2025-10-28 16:35:35.663] [common] [debug] [amf_n1]NAS Message Container
+7e 00 41 09 00 0d 01 02 f8 59 00 00 00 00 00 00 00 00 83 10 01 06 2e 08 e0 60 00 00 10 00 00 00 
+[2025-10-28 16:35:35.663] [amf_n1] [debug] NAS Message Container, Message Type 0x41
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Registration Request in NAS Message Container
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding RegistrationRequest message
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GSMobilityIdentity IE length 13
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding 5GSMobilityIdentity SUCI
+[2025-10-28 16:35:35.663] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.663] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded Routing Indicator 0000
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded MSIN 0000000038
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GSMobilityIdentity SUCI SUPI format IMSI (len 13)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded SUCI (15 octets)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GS Mobile Identity, len (15)
+[2025-10-28 16:35:35.663] [nas] [debug] First option IEI 0x10
+[2025-10-28 16:35:35.663] [nas] [debug] IEI 0x10
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding IEI 0x10
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding 5GMM Capability
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GMM Capability, Octet3 value (0x6)
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded 5GMM Capability, len (3)
+[2025-10-28 16:35:35.663] [nas] [debug] Next IEI 0x2e
+[2025-10-28 16:35:35.663] [nas] [debug] IEI 0x2e
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding IEI 0x2e
+[2025-10-28 16:35:35.663] [nas] [debug] Decoding UE Security Capability
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded UE Security Capability, len (10)
+[2025-10-28 16:35:35.663] [nas] [debug] 5G EA 0xe0, 5G IA 0x60
+[2025-10-28 16:35:35.663] [nas] [debug] EEA 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] EIA 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Next IEI 0x0
+[2025-10-28 16:35:35.663] [nas] [debug] Decoded RegistrationRequest message (len 32)
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Optional IE RequestedNssai is not present
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Optional IE UplinkDataStatus is not present
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Optional IE PDUSessionStatus is not present
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Verifying whether this AMF can handle the request...
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Get the Slice Selection Subscription Data from UDM
+[2025-10-28 16:35:35.663] [amf_n1] [debug] Promise ID generated 3
+[2025-10-28 16:35:35.664] [amf_sbi] [info] Receive Slice Selection Subscription Data Retrieval Request, handling ...
+[2025-10-28 16:35:35.664] [amf_sbi] [debug] Send Slice Selection Subscription Data Retrieval to UDM 
+[2025-10-28 16:35:35.664] [amf_sbi] [info] Send HTTP message to http://oai-udm:8080/nudm-sdm/v1/imsi-208950000000038/nssai?plmn-id={"mcc":"208","mnc":"95"}
+[2025-10-28 16:35:35.664] [amf_sbi] [info] HTTP message Body: 
+[2025-10-28 16:35:35.664] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.671] [amf_sbi] [info] Get response with HTTP code (404)
+[2025-10-28 16:35:35.671] [amf_app] [debug] Trigger process response: Set promise with ID 3 to ready
+[2025-10-28 16:35:35.671] [amf_n1] [debug] Got NSSAI from UDM: null
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Could not get the Slice Selection Subscription Data from UDM
+[2025-10-28 16:35:35.673] [amf_app] [debug] AMF registers for 3GPP access with UDM
+[2025-10-28 16:35:35.673] [amf_app] [debug] Discovering PCF for the UE
+[2025-10-28 16:35:35.673] [amf_sbi] [info] Receive AMF Registration for 3GPP Access message, handling ...
+[2025-10-28 16:35:35.673] [amf_sbi] [debug] Send AMF Registration for 3GPP Access towards UDM
+[2025-10-28 16:35:35.673] [amf_sbi] [warning] No NRF available
+[2025-10-28 16:35:35.673] [amf_app] [debug] Perform AM Policy Association with PCF for the UE
+[2025-10-28 16:35:35.673] [amf_sbi] [info] Send HTTP message to http://oai-udm:8080/nudm-uecm/v1/imsi-208950000000038/registrations/amf-3gpp-access
+[2025-10-28 16:35:35.673] [amf_sbi] [info] HTTP message Body: {"amfInstanceId":"2a808f22-393a-405d-89ec-a65433aaf810","deregCallbackUri":"192.168.70.132:8080/namf-callback/v1v1/imsi-208950000000038/deregistration-notification","guami":{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},"initialRegistrationInd":true,"ratType":"NR"}
+[2025-10-28 16:35:35.673] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Getting common S-NSSAIs between gNB and AMF
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Getting common S-NSSAIs between gNB and AMF
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Common S-NSSAI (SST 0x1, SD FFFFFF)
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Common S-NSSAI (SST 0x5, SD FFFFFF)
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Common S-NSSAI (SST 1, SD 16777215)
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Common S-NSSAI (SST 5, SD 16777215)
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Allowed S-NSSAI (SST 0x1, SD 0xffffff)
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Allowed S-NSSAI (SST 0x5, SD 0xffffff)
+[2025-10-28 16:35:35.673] [amf_app] [debug] Random number generated: 25784805
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Allocated GUTI 20895010041025784805 (TMSI 025784805)
+[2025-10-28 16:35:35.673] [nas_mm] [debug] Size of Registration Accept message 53
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding RegistrationAccept message
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding 5GS Registration Result
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded 5GS Registration Result, len (2)
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding 5GS Mobile Identity
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding 5G-GUTI IEI 0x77
+[2025-10-28 16:35:35.673] [nas] [debug] MNC digit 1: 0
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding MNC 2 digits
+[2025-10-28 16:35:35.673] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded 5G-GUTI IE (len 14 octets)
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding 5GS Tracking Area Identity List
+[2025-10-28 16:35:35.673] [nas] [debug] MNC digit 1: 0
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding MNC 2 digits
+[2025-10-28 16:35:35.673] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded 5GS Tracking Area Identity List, len (9)
+[2025-10-28 16:35:35.673] [nas] [debug] IE PLMN List is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding NSSAI
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded Nssai len (6)
+[2025-10-28 16:35:35.673] [nas] [debug] IE Rejected NSSAI is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding NSSAI
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded Nssai len (6)
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding 5GS Network Feature Support
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded 5GS Network Feature Support, len (4)
+[2025-10-28 16:35:35.673] [nas] [debug] IE PDU Session Status is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE PDU Session Reactivation Result is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE PDU Session Reactivation Result Error Cause is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding LADN Information
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded LADN Information, len (0)
+[2025-10-28 16:35:35.673] [nas] [debug] IE MICO Indication is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE Network Slicing Indication is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE Service Area List is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding GPRS Timer 3
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded GPRS Timer 3, len (3)
+[2025-10-28 16:35:35.673] [nas] [debug] IE GPRS Timer 2 is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoding GPRS Timer 2
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded GPRS Timer 2, len (3)
+[2025-10-28 16:35:35.673] [nas] [debug] IE SOR Transparent Container is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE EAP Message is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE NSSAI Inclusion Mode is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE 5GS DRX Parameters is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE Non-3GPP NW Provided Policies is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE EPS Bearer Context Status is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE Extended DRX Parameters is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE UE Radio Capability ID is not available
+[2025-10-28 16:35:35.673] [nas] [debug] IE NSSAI is not available
+[2025-10-28 16:35:35.673] [nas] [debug] Encoded RegistrationAccept message len (50)
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]Registration-Accept message buffer
+7e 00 42 01 01 77 00 0b f2 02 f8 59 01 00 41 01 89 71 e5 54 07 00 02 f8 59 00 a0 00 15 04 01 01 01 05 31 04 01 01 01 05 21 02 01 00 5e 01 b6 16 01 0c 
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:35:35.673] [amf_n1] [debug] stream_cipher.blength 400
+[2025-10-28 16:35:35.673] [amf_n1] [debug] stream_cipher.message 7e
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:35:35.673] [amf_n1] [debug] stream_cipher.count 1
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Parameters for NIA, count: 0x1
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]Parameters for NIA, message: 
+01 af c6 e8 3c 0b f1 62 16 90 8f 8b 9c 09 18 d9 45 00 cc bd f3 6d 2c e2 68 ef 35 2f 29 c5 7a bf 96 1a af e4 b6 5f 25 71 11 85 7d 9a 0f 2e 59 ee 1e 45 fc 
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]Result for NIA1, mac: 
+1c 1f 3c 6f 
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Result for NIA1, mac32: 0x1c1f3c6f
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Derive Kgnb ...
+[2025-10-28 16:35:35.673] [common] [debug] [amf_n1]Kamf
+78 a6 c8 c8 d4 25 53 87 17 1f f3 5d 3a 58 64 73 a1 ea 7d 41 92 98 7c cc 9b f0 ec 9c ee be db 20 
+[2025-10-28 16:35:35.673] [amf_n1] [info] UE (IMSI 208950000000038, GUTI 20895010041025784805, current RAN ID 1, current AMF ID 1) has been registered to the network
+[2025-10-28 16:35:35.673] [amf_app] [debug] The UE's state (IMSI 208950000000038, State 5GMM-REGISTERED) has been successfully updated!
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Set 5GMM state to 5GMM-REGISTERED
+[2025-10-28 16:35:35.673] [amf_n2] [info] Received Initial Context Setup Request message, handling
+[2025-10-28 16:35:35.673] [amf_n2] [debug] Handle Initial Context Setup Request ...
+[2025-10-28 16:35:35.673] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:35:35.673] [nas_mm] [debug] Set IMEISV InitialContextSetupRequestMsg: 6754567890123413
+InitiatingMessage ::= {
+    procedureCode: 14
+    criticality: 0 (reject)
+    value: InitialContextSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialContextSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 28
+                criticality: 0 (reject)
+                value: GUAMI ::= {
+                    pLMNIdentity: 00 F1 10
+                    aMFRegionID: 01
+                    aMFSetID: 00 40 (6 bits unused)
+                    aMFPointer: 04 (2 bits unused)
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 0
+                criticality: 0 (reject)
+                value: AllowedNSSAI ::= {
+                    AllowedNSSAI-Item ::= {
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: 01
+                        }
+                    }
+                    AllowedNSSAI-Item ::= {
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: 05
+                        }
+                    }
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 119
+                criticality: 0 (reject)
+                value: UESecurityCapabilities ::= {
+                    nRencryptionAlgorithms: C0 00
+                    nRintegrityProtectionAlgorithms: C0 00
+                    eUTRAencryptionAlgorithms: 00 00
+                    eUTRAintegrityProtectionAlgorithms: 00 00
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 94
+                criticality: 0 (reject)
+                value: 
+                        82 D1 87 40 C1 31 A5 92 8B E5 20 EE 94 15 27 8C 
+                        FA B1 D5 1C DB BB 7C 34 B0 FD FF B2 BB 85 07 56
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 36
+                criticality: 1 (ignore)
+                value: MobilityRestrictionList ::= {
+                    servingPLMN: 00 F1 10
+                }
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 34
+                criticality: 1 (ignore)
+                value: 76 45 65 87 09 FF FF 31
+            }
+            InitialContextSetupRequestIEs ::= {
+                id: 38
+                criticality: 1 (ignore)
+                value: 
+                    7E 02 1C 1F 3C 6F 01 AF C6 E8 3C 0B F1 62 16 90 
+                    8F 8B 9C 09 18 D9 45 00 CC BD F3 6D 2C E2 68 EF 
+                    35 2F 29 C5 7A BF 96 1A AF E4 B6 5F 25 71 11 85 
+                    7D 9A 0F 2E 59 EE 1E 45 FC
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.673] [ngap] [debug] Encoded size (170)
+[2025-10-28 16:35:35.673] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346cc001880 of 170 bytes on stream 1 with PPID 60
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Signal the UE Location Report Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Send request to SBI to trigger UE Location Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Signal the UE Registration State Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Send request to SBI to trigger UE Registration State Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Signal the UE Connectivity Status Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:35:35.673] [amf_n1] [debug] Send request to SBI to trigger UE Connectivity State Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:35:35.674] [sctp] [debug] Successfully sent 170 bytes on stream 1
+[2025-10-28 16:35:35.674] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.675] [amf_sbi] [info] Get response with HTTP code: 404
+[2025-10-28 16:35:35.675] [amf_sbi] [debug] Get response with body
+, <!DOCTYPE html><html lang="en"><title>404 Not Found</title><body><h1>404 Not Found</h1></body></html> 
+[2025-10-28 16:35:35.675] [amf_sbi] [info] Receive AM Policy Association message, handling ...
+[2025-10-28 16:35:35.675] [amf_sbi] [debug] Send AM Policy Association to PCF
+[2025-10-28 16:35:35.675] [amf_sbi] [info] Send HTTP message to /npcf-am-policy-control//policies
+[2025-10-28 16:35:35.675] [amf_sbi] [info] HTTP message Body: {"notificationUri":"192.168.70.132:8080/namf-callback/v1v1/imsi-208950000000038/PolicyUpdateNotification","supi":"imsi-208950000000038","suppFeat":""}
+[2025-10-28 16:35:35.675] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.675] [amf_sbi] [warning] Cannot get response when calling /npcf-am-policy-control//policies
+[2025-10-28 16:35:35.675] [amf_sbi] [info] Get response with HTTP code: 0
+[2025-10-28 16:35:35.675] [amf_sbi] [debug] Get response with body
+,  
+[2025-10-28 16:35:35.699] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 38) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.699] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.699] [ngap] [debug] Decoded NGAP message, procedure code 44, present 1
+InitiatingMessage ::= {
+    procedureCode: 44
+    criticality: 1 (ignore)
+    value: UERadioCapabilityInfoIndication ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UERadioCapabilityInfoIndicationIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UERadioCapabilityInfoIndicationIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UERadioCapabilityInfoIndicationIEs ::= {
+                id: 117
+                criticality: 1 (ignore)
+                value: 00 60 80 A0 00 00 00 00 00 00 00 00 00 00
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.699] [ngap] [debug] Sending ITTI UE Radio Capability Indication to TASK_AMF_N2
+[2025-10-28 16:35:35.699] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 19) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.699] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.699] [amf_n2] [info] Received UE Radio Capability Indication message, handling
+[2025-10-28 16:35:35.699] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.699] [ngap] [debug] Decoded NGAP message, procedure code 14, present 2
+SuccessfulOutcome ::= {
+    procedureCode: 14
+    criticality: 0 (reject)
+    value: InitialContextSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            InitialContextSetupResponseIEs ::= {
+                id: 10
+                criticality: 1 (ignore)
+                value: 1
+            }
+            InitialContextSetupResponseIEs ::= {
+                id: 85
+                criticality: 1 (ignore)
+                value: 1
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.699] [ngap] [debug] Handling Initial Context Setup Response
+[2025-10-28 16:35:35.699] [ngap] [debug] Decode PduSessionResourceSetupResponseList IE error or this IE is not available
+[2025-10-28 16:35:35.699] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.708] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 53) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.708] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.708] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 02 8F 2E BA A5 01 96 F9 30
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.708] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 02 8F 2E BA A5 01 96 F9 30
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.708] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:35.708] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-28 16:35:35.708] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-28 16:35:35.708] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.708] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 02 8f 2e ba a5 01 96 f9 30 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected and ciphered NAS message
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected with new security context NAS message
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Uplink count in uplink: 1
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, count: 0x0
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Parameters for NIA, message: 
+01 96 f9 30 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.708] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 80) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.708] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Result for NIA1, mac: 
+8f 2e ba a5 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Result for NIA1, mac32: 0x8f2ebaa5
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received mac32 (0x8f2ebaa5) from the message
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Integrity matched
+[2025-10-28 16:35:35.708] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:35:35.708] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 82 1F 54 D9 02 CF 0F 11 67 36 87 D4 20 8D 
+                    E0 03 31 A2 F9 1C 5B 6A 1F FA 20 BE 69 5C 8C 66 
+                    B0 F8 10 C0 B0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.708] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 82 1F 54 D9 02 CF 0F 11 67 36 87 D4 20 8D 
+                    E0 03 31 A2 F9 1C 5B 6A 1F FA 20 BE 69 5C 8C 66 
+                    B0 F8 10 C0 B0
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.708] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:35:35.708] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-28 16:35:35.708] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-28 16:35:35.708] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.708] [amf_n1] [debug] stream_cipher.blength 24
+[2025-10-28 16:35:35.708] [amf_n1] [debug] stream_cipher.message 96
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] stream_cipher.count 1
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 43 e3 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received Registration Complete message, handling...
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received Registration Complete message, processing
+[2025-10-28 16:35:35.708] [nas] [debug] Decoding RegistrationComplete message
+[2025-10-28 16:35:35.708] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:35:35.708] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:35:35.708] [nas] [debug] Decoded_size (3)
+[2025-10-28 16:35:35.708] [nas] [debug] First option IEI (0xe3)
+[2025-10-28 16:35:35.708] [nas] [warning] Unknown IEI 0xe3, stop decoding...
+[2025-10-28 16:35:35.708] [nas] [debug] Decoded RegistrationComplete message (len 3)
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Do not sending Configuration Update Command in this version!
+[2025-10-28 16:35:35.708] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 02 82 1f 54 d9 02 cf 0f 11 67 36 87 d4 20 8d e0 03 31 a2 f9 1c 5b 6a 1f fa 20 be 69 5c 8c 66 b0 f8 10 c0 b0 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected and ciphered NAS message
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected with new security context NAS message
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Uplink count in uplink: 2
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, count: 0x1
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-28 16:35:35.708] [common] [debug] [amf_n1]Parameters for NIA, message: 
+02 cf 0f 11 67 36 87 d4 20 8d e0 03 31 a2 f9 1c 5b 6a 1f fa 20 be 69 5c 8c 66 b0 f8 10 c0 b0 
+[2025-10-28 16:35:35.708] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.709] [common] [debug] [amf_n1]Result for NIA1, mac: 
+82 1f 54 d9 
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Result for NIA1, mac32: 0x821f54d9
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Received mac32 (0x821f54d9) from the message
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Integrity matched
+[2025-10-28 16:35:35.709] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:35:35.709] [amf_n1] [debug] stream_cipher.blength 240
+[2025-10-28 16:35:35.709] [amf_n1] [debug] stream_cipher.message cf
+[2025-10-28 16:35:35.709] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:35:35.709] [amf_n1] [debug] stream_cipher.count 2
+[2025-10-28 16:35:35.709] [common] [debug] [amf_n1]Decoded Plain Message
+7e 00 67 01 00 07 2e 0a 01 c1 ff ff 95 12 0a 81 22 01 05 25 09 08 65 74 68 65 72 6e 65 74 0d b7 
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Received UL NAS Transport message, handling...
+[2025-10-28 16:35:35.709] [amf_n1] [debug] Handling UL NAS Transport
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding UlNasTransport message
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding Payload Container
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded_size (13)
+[2025-10-28 16:35:35.709] [nas] [debug] First option IEI (0x12)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding IEI 0x12
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding PDU Session Identity 2
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0xa
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded PDU Session Identity 2, len (2)
+[2025-10-28 16:35:35.709] [nas] [debug] Next IEI (0x81)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding IEI 0x8
+[2025-10-28 16:35:35.709] [nas] [debug] Next IEI (0x22)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding IEI (0x22)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding S-NSSAI
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded S-NSSAI SST 0x5
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded S-NSSAI, len (3)
+[2025-10-28 16:35:35.709] [nas] [debug] Next IEI (0x25)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding IEI (0x25)
+[2025-10-28 16:35:35.709] [nas] [debug] Decoding DNN
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x8
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x65
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x74
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x68
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x65
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x72
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x6e
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x65
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded value 0x74
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded DNN, len (11)
+[2025-10-28 16:35:35.709] [nas] [debug] Next IEI (0xd)
+[2025-10-28 16:35:35.709] [nas] [warning] Unknown IEI 0xd, stop decoding...
+[2025-10-28 16:35:35.709] [nas] [debug] Decoded UlNasTransport message len (30)
+[2025-10-28 16:35:35.709] [amf_n1] [debug] S_NSSAI for this PDU Session SST 0x5
+[2025-10-28 16:35:35.709] [common] [debug] [amf_n1]Decoded DNN Bit String
+08 65 74 68 65 72 6e 65 74 
+[2025-10-28 16:35:35.709] [amf_sbi] [info] Running ITTI_SMF_PDU_SESSION_CREATE_SM_CTX
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] Handle ITTI SMF_PDU_SESSION_CREATE_SM_CTX
+[2025-10-28 16:35:35.709] [amf_sbi] [info] Find ue_context in amf_app using UE Context Key: app_ue_ranid_1:amfid_1
+[2025-10-28 16:35:35.709] [amf_app] [warning] No PDU Session Context with PDU Session ID 10
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] Create a PDU Session Context
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] PDU Session Context, NSSAI SST (0x5) SD FFFFFF
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] Requested DNN: ethernet
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] NRF NF Discover URI: http://oai-nrf:8080/nnrf-disc/v1/nf-instances
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] Send NFDiscovery to NRF to discover the available SMFs
+[2025-10-28 16:35:35.709] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF
+[2025-10-28 16:35:35.709] [amf_sbi] [info] HTTP message Body: 
+[2025-10-28 16:35:35.709] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.711] [amf_sbi] [info] Get response with HTTP code (200)
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] S-NSSAI [SST- 5, SD -FFFFFF] is matched for SMF profile
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] NFDiscovery, SMF Info: Addr 192.168.70.133, Port 8080, API Version v1
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] Decoded PTI for PDUSessionEstablishmentRequest(0x1)
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] Handle PDU Session Establishment Request (SUPI imsi-208950000000038, PDU Session ID 10)
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] SMF's URI: 192.168.70.133:8080/nsmf-pdusession/v1/sm-contexts
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] Message body {"anType":"3GPP_ACCESS","dnn":"\bethernet","epsInterworkingInd":"NONE","gpsi":"msisdn-10000000000","guami":{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},"n1SmMsg":{"contentId":"n1SmMsg"},"pduSessionId":10,"pei":"imeisv-8670000000000001","ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"FFFFFF","sst":5},"selMode":"VERIFIED","servingNetwork":{"mcc":"208","mnc":"95"},"servingNfId":"2a808f22-393a-405d-89ec-a65433aaf810","smContextStatusUri":"http://192.168.70.132:8080/namf-status-notify/v1/pdu-session-release/callback/imsi-208950000000038/10","supi":"imsi-208950000000038","ueLocation":{"nrLocation":{"ncgi":{"nrCellId":"0000e0000","plmnId":{"mcc":"208","mnc":"95"}},"tai":{"plmnId":{"mcc":"208","mnc":"95"},"tac":"40960"}}}}
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] Buffer: 2e0a01c1ffff95
+[2025-10-28 16:35:35.712] [common] [debug] Input string (14 bytes): 2e0a01c1ffff95 
+[2025-10-28 16:35:35.712] [common] [debug] Data (formatted):
+ 2e  0a  01  c1  ff  ff  95 
+[2025-10-28 16:35:35.712] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.719] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-28 16:35:35.719] [amf_sbi] [info] JSON part 
+[2025-10-28 16:35:35.719] [amf_sbi] [info] Location of the created SMF context: /nsmf-pdusession/v1/sm-contexts/1
+[2025-10-28 16:35:35.720] [amf_sbi] [warning] Could not get JSON content from the response
+[2025-10-28 16:35:35.724] [amf_server] [debug] Received message with URI: /namf-comm/v1/ue-contexts/imsi-208950000000038/n1-n2-messages
+[2025-10-28 16:35:35.724] [amf_server] [debug] Message content 
+ ------Boundary
+Content-Type: application/json
+
+{"n1MessageContainer":{"n1MessageClass":"SM","n1MessageContent":{"contentId":"n1SmMsg"}},"n1n2FailureTxfNotifURI":"http://oai-smf:8080/nsmf-pdusession/v1/callback/N1N2MsgTxfrFailureNotification/imsi-208950000000038","n2InfoContainer":{"n2InformationClass":"SM","smInfo":{"n2InfoContent":{"ngapData":{"contentId":"n2msg"},"ngapIeType":"PDU_RES_SETUP_REQ"},"pduSessionId":10,"sNssai":{"sd":"FFFFFF","sst":5}}},"pduSessionId":10}
+------Boundary
+Content-Type: application/vnd.3gpp.5gnas
+Content-Id: n1SmMsg
+
+.
+�
+[2025-10-28 16:35:35.724] [amf_server] [info] ue_context_id imsi-208950000000038
+[2025-10-28 16:35:35.724] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-28 16:35:35.724] [common] [debug] Boundary: ----Boundary
+[2025-10-28 16:35:35.724] [common] [debug] Content Type: application/json
+[2025-10-28 16:35:35.724] [common] [debug] Content Id: root
+[2025-10-28 16:35:35.724] [common] [debug] Body: {"n1MessageContainer":{"n1MessageClass":"SM","n1MessageContent":{"contentId":"n1SmMsg"}},"n1n2FailureTxfNotifURI":"http://oai-smf:8080/nsmf-pdusession/v1/callback/N1N2MsgTxfrFailureNotification/imsi-208950000000038","n2InfoContainer":{"n2InformationClass":"SM","smInfo":{"n2InfoContent":{"ngapData":{"contentId":"n2msg"},"ngapIeType":"PDU_RES_SETUP_REQ"},"pduSessionId":10,"sNssai":{"sd":"FFFFFF","sst":5}}},"pduSessionId":10}
+[2025-10-28 16:35:35.724] [common] [debug] Content Type: application/vnd.3gpp.5gnas
+[2025-10-28 16:35:35.724] [common] [debug] Content Id: n1SmMsg
+[2025-10-28 16:35:35.724] [common] [debug] Body: .
+�
+[2025-10-28 16:35:35.724] [common] [debug] Content Type: application/vnd.3gpp.ngap
+[2025-10-28 16:35:35.724] [common] [debug] Content Id: n2msg
+[2025-10-28 16:35:35.724] [common] [debug] Body: 
+[2025-10-28 16:35:35.724] [amf_server] [debug] Number of MIME parts 3
+[2025-10-28 16:35:35.724] [amf_server] [debug] MIME part: root (426)
+[2025-10-28 16:35:35.724] [amf_server] [debug] MIME part: n1SmMsg (81)
+[2025-10-28 16:35:35.724] [amf_server] [debug] MIME part: n2msg (45)
+[2025-10-28 16:35:35.724] [amf_server] [info] Procedure n1-n2-messages
+[2025-10-28 16:35:35.724] [amf_server] [debug] Receive N1N2MessageTransfer Request, handling...
+[2025-10-28 16:35:35.725] [amf_server] [debug] SUPI imsi-208950000000038
+[2025-10-28 16:35:35.725] [amf_server] [debug] N2InfoContainer is present, handling...
+[2025-10-28 16:35:35.725] [amf_server] [debug] N2 Information Class: SM
+[2025-10-28 16:35:35.725] [amf_server] [debug] n2_content_id: n2msg
+[2025-10-28 16:35:35.725] [amf_server] [debug] NGAP IE Type: PDU_RES_SETUP_REQ
+[2025-10-28 16:35:35.725] [amf_server] [debug] Key for PDU Session Context: SUPI (imsi-208950000000038)
+[2025-10-28 16:35:35.725] [common] [debug] Data input
+00 00 04 00 82 00 08 08 98 96 80 20 98 96 80 00 8b 00 0a 01 f0 c0 a8 47 81 00 00 00 01 00 86 00 01 30 00 88 00 07 00 01 00 00 52 00 00 
+[2025-10-28 16:35:35.725] [amf_app] [debug] Msg hex 000004008200080898968020989680008b000a01f0c0a847810000000100860001300088000700010000520000
+[2025-10-28 16:35:35.725] [amf_server] [debug] N1MessageContainer is present, handling...
+[2025-10-28 16:35:35.725] [amf_server] [debug] Key for PDU Session Context: SUPI (imsi-208950000000038)
+[2025-10-28 16:35:35.725] [amf_server] [debug] N1 Content Id: n1SmMsg
+[2025-10-28 16:35:35.725] [common] [debug] Data input
+2e 0a 01 c2 15 00 09 01 00 06 31 21 01 01 00 01 06 06 00 0a 06 00 0a 22 01 05 81 79 00 06 01 20 41 01 01 52 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1b 08 65 74 68 65 72 6e 65 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 
+[2025-10-28 16:35:35.725] [amf_app] [debug] Msg hex 2e0a01c21500090100063121010100010606000a06000a220105817900060120410101527b000d80000d04ac15036400100205dc251b0865746865726e6574056d6e633935066d63633230380467707273
+[2025-10-28 16:35:35.725] [common] [debug] [amf_server]Received N1 SM
+2e 0a 01 c2 15 00 09 01 00 06 31 21 01 01 00 01 06 06 00 0a 06 00 0a 22 01 05 81 79 00 06 01 20 41 01 01 52 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1b 08 65 74 68 65 72 6e 65 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 
+[2025-10-28 16:35:35.725] [amf_app] [debug] Received N1N2_MESSAGE_TRANSFER_REQ
+[2025-10-28 16:35:35.725] [amf_app] [info] Handle ITTI N1N2 Message Transfer Request
+[2025-10-28 16:35:35.725] [nas_mm] [debug] Size of DL NAS Transport message 89
+[2025-10-28 16:35:35.725] [nas] [debug] Encoding DlNasTransport message
+[2025-10-28 16:35:35.725] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:35:35.725] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:35:35.725] [nas] [debug] Encoded Type1NasIeFormatTv len 0
+[2025-10-28 16:35:35.725] [nas] [debug] Encoding Payload Container
+[2025-10-28 16:35:35.725] [nas] [debug] Encoded Payload Container, len (83)
+[2025-10-28 16:35:35.725] [nas] [debug] Encoding PDU Session Identity 2
+[2025-10-28 16:35:35.725] [nas] [debug] Encoded PDU Session Identity 2, len (2)
+[2025-10-28 16:35:35.725] [nas] [debug] IE Additional Information is not available
+[2025-10-28 16:35:35.725] [nas] [debug] IE 5GMM Cause is not available
+[2025-10-28 16:35:35.725] [nas] [debug] IE GPRS Timer 3 is not available
+[2025-10-28 16:35:35.725] [nas] [debug] Encoded DlNasTransport message len (89)
+[2025-10-28 16:35:35.725] [common] [debug] [amf_app]N1N2 message transfer
+7e 00 68 01 00 51 2e 0a 01 c2 15 00 09 01 00 06 31 21 01 01 00 01 06 06 00 0a 06 00 0a 22 01 05 81 79 00 06 01 20 41 01 01 52 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 1b 08 65 74 68 65 72 6e 65 74 05 6d 6e 63 39 35 06 6d 63 63 32 30 38 04 67 70 72 73 12 0a 
+[2025-10-28 16:35:35.725] [amf_n1] [info] Received DOWNLINK_NAS_TRANSFER
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Encoding nas_message_protected...
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:35:35.725] [amf_n1] [debug] stream_cipher.blength 712
+[2025-10-28 16:35:35.725] [amf_n1] [debug] stream_cipher.message 7e
+[2025-10-28 16:35:35.725] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:35:35.725] [amf_n1] [debug] stream_cipher.count 2
+[2025-10-28 16:35:35.725] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Parameters for NIA, count: 0x2
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Parameters for NIA, direction: 0x1
+[2025-10-28 16:35:35.725] [common] [debug] [amf_n1]Parameters for NIA, message: 
+02 f8 db 31 3f d5 30 bf 4e 98 7c ab 4d 5f f6 b5 7b e6 3e 03 58 5f f9 51 33 c7 86 03 68 a2 b4 2e ab 43 31 25 44 e7 cf 45 f8 68 eb 72 32 3c db 00 b4 ab c7 a1 a7 c0 e9 4f ec 46 68 f2 65 cc 2a 7d 6e 47 ac 39 38 22 5f c7 dc 5a 3e 2e 26 bd 0a a3 78 58 9d 18 9b 98 cc 2e 8c 3a 
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:35:35.725] [common] [debug] [amf_n1]Result for NIA1, mac: 
+9f 95 87 ea 
+[2025-10-28 16:35:35.725] [amf_n1] [debug] Result for NIA1, mac32: 0x9f9587ea
+[2025-10-28 16:35:35.725] [amf_n2] [info] Received PDU Session Resource Setup Request message, handling
+[2025-10-28 16:35:35.725] [amf_n2] [debug] Handle PDU Session Resource Setup Request ...
+[2025-10-28 16:35:35.725] [amf_n2] [debug] SUPI (imsi-208950000000038)
+[2025-10-28 16:35:35.725] [amf_n2] [debug] S_NSSAI (SST, SD) 5, FFFFFF
+InitiatingMessage ::= {
+    procedureCode: 29
+    criticality: 0 (reject)
+    value: PDUSessionResourceSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 74
+                criticality: 0 (reject)
+                value: PDUSessionResourceSetupListSUReq ::= {
+                    PDUSessionResourceSetupItemSUReq ::= {
+                        pDUSessionID: 10
+                        pDUSessionNAS-PDU: 
+                            7E 02 9F 95 87 EA 02 F8 DB 31 3F D5 30 BF 4E 98 
+                            7C AB 4D 5F F6 B5 7B E6 3E 03 58 5F F9 51 33 C7 
+                            86 03 68 A2 B4 2E AB 43 31 25 44 E7 CF 45 F8 68 
+                            EB 72 32 3C DB 00 B4 AB C7 A1 A7 C0 E9 4F EC 46 
+                            68 F2 65 CC 2A 7D 6E 47 AC 39 38 22 5F C7 DC 5A 
+                            3E 2E 26 BD 0A A3 78 58 9D 18 9B 98 CC 2E 8C 3A
+                        s-NSSAI: S-NSSAI ::= {
+                            sST: 05
+                        }
+                        pDUSessionResourceSetupRequestTransfer: 
+                            00 00 04 00 82 00 08 08 98 96 80 20 98 96 80 00 
+                            8B 00 0A 01 F0 C0 A8 47 81 00 00 00 01 00 86 00 
+                            01 30 00 88 00 07 00 01 00 00 52 00 00
+                    }
+                }
+            }
+            PDUSessionResourceSetupRequestIEs ::= {
+                id: 110
+                criticality: 1 (ignore)
+                value: UEAggregateMaximumBitRate ::= {
+                    uEAggregateMaximumBitRateDL: 1000000000
+                    uEAggregateMaximumBitRateUL: 1000000000
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.725] [ngap] [debug] Encoded message size ( 187 )
+[2025-10-28 16:35:35.725] [common] [debug] [amf_n2]N2 SM buffer data:
+00 1d 00 80 b6 00 00 04 00 0a 00 02 00 01 00 55 00 02 00 01 00 4a 00 80 94 00 40 0a 60 7e 02 9f 95 87 ea 02 f8 db 31 3f d5 30 bf 4e 98 7c ab 4d 5f f6 b5 7b e6 3e 03 58 5f f9 51 33 c7 86 03 68 a2 b4 2e ab 43 31 25 44 e7 cf 45 f8 68 eb 72 32 3c db 00 b4 ab c7 a1 a7 c0 e9 4f ec 46 68 f2 65 cc 2a 7d 6e 47 ac 39 38 22 5f c7 dc 5a 3e 2e 26 bd 0a a3 78 58 9d 18 9b 98 cc 2e 8c 3a 00 a0 2d 00 00 04 00 82 00 08 08 98 96 80 20 98 96 80 00 8b 00 0a 01 f0 c0 a8 47 81 00 00 00 01 00 86 00 01 30 00 88 00 07 00 01 00 00 52 00 00 00 6e 40 0a 0c 3b 9a ca 00 30 3b 9a ca 00 
+[2025-10-28 16:35:35.725] [amf_n2] [debug]  (187 bytes) 
+
+[2025-10-28 16:35:35.725] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346e40040a0 of 187 bytes on stream 1 with PPID 60
+[2025-10-28 16:35:35.726] [sctp] [debug] Successfully sent 187 bytes on stream 1
+[2025-10-28 16:35:35.726] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.744] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 40) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:35:35.744] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:35:35.744] [ngap] [debug] Decoded NGAP message, procedure code 29, present 2
+SuccessfulOutcome ::= {
+    procedureCode: 29
+    criticality: 0 (reject)
+    value: PDUSessionResourceSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 10
+                criticality: 1 (ignore)
+                value: 1
+            }
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 85
+                criticality: 1 (ignore)
+                value: 1
+            }
+            PDUSessionResourceSetupResponseIEs ::= {
+                id: 75
+                criticality: 1 (ignore)
+                value: PDUSessionResourceSetupListSURes ::= {
+                    PDUSessionResourceSetupItemSURes ::= {
+                        pDUSessionID: 10
+                        pDUSessionResourceSetupResponseTransfer: 00 03 E0 C0 A8 47 99 95 25 9A A5 00 01
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:35:35.744] [ngap] [debug] Handle PDU Session Resource Setup Response
+[2025-10-28 16:35:35.744] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:35:35.744] [amf_sbi] [info] Receive Nsmf_PDUSessionUpdateSMContext, handling ...
+[2025-10-28 16:35:35.744] [amf_sbi] [debug] Send PDU Session Update SM Context Request to SMF (SUPI imsi-208950000000038, PDU Session ID 10)
+[2025-10-28 16:35:35.744] [amf_sbi] [debug] smf_info, context location /nsmf-pdusession/v1/sm-contexts/1
+[2025-10-28 16:35:35.744] [amf_sbi] [debug] SMF URI: 192.168.70.133:8080/nsmf-pdusession/v1/sm-contexts/1/modify
+[2025-10-28 16:35:35.744] [amf_sbi] [debug] Buffer: 0003e0c0a8479995259aa50001
+[2025-10-28 16:35:35.744] [common] [debug] Input string (26 bytes): 0003e0c0a8479995259aa50001 
+[2025-10-28 16:35:35.744] [common] [debug] Data (formatted):
+ 00  03  e0  c0  a8  47  99  95  25  9a  a5  00  01 
+[2025-10-28 16:35:35.744] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:35.749] [common] [debug] Parsing the message with the Simple Parser
+[2025-10-28 16:35:35.749] [amf_sbi] [info] JSON part 
+[2025-10-28 16:35:35.749] [amf_sbi] [warning] Could not get JSON content from the response
+[2025-10-28 16:35:36.413] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:35:36.413] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:35:36.413] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:35:36.413] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:36.413] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:35:36.413] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:36.415] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:35:36.415] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:35:36.415] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:36.415] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:35:36.415] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:46.303] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:35:46.415] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:35:46.415] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:35:46.416] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:35:46.416] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:46.416] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:35:46.416] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:46.419] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:35:46.419] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:35:46.419] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:46.419] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:35:46.419] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:35:56.419] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:35:56.419] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:35:56.419] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:35:56.419] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:35:56.419] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:35:56.419] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:35:56.423] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:35:56.423] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:35:56.423] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:35:56.423] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:35:56.423] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:06.303] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:36:06.423] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:36:06.423] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:36:06.423] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:36:06.423] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:36:06.423] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:36:06.423] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:36:06.425] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:36:06.425] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:36:06.425] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:36:06.425] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:36:06.425] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:16.425] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:36:16.425] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:36:16.425] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:36:16.426] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:36:16.426] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:36:16.426] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:36:16.428] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:36:16.428] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:36:16.428] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:36:16.428] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:36:16.428] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:25.883] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 67) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:36:25.883] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:36:25.883] [ngap] [debug] Decoded NGAP message, procedure code 46, present 1
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 38 B4 D8 A1 03 FF E5 0A 1F CA 79 53 D1 1B 
+                    9C 04 B7 56 00 6C FD 2F
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:36:25.883] [ngap] [debug] Sending ITTI Uplink NAS Transport message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 46
+    criticality: 1 (ignore)
+    value: UplinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UplinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 
+                    7E 02 38 B4 D8 A1 03 FF E5 0A 1F CA 79 53 D1 1B 
+                    9C 04 B7 56 00 6C FD 2F
+            }
+            UplinkNASTransport-IEs ::= {
+                id: 121
+                criticality: 1 (ignore)
+                value: UserLocationInformationNR ::= {
+                    nR-CGI: NR-CGI ::= {
+                        pLMNIdentity: 02 F8 59
+                        nRCellIdentity: 00 00 E0 00 00 (4 bits unused)
+                    }
+                    tAI: TAI ::= {
+                        pLMNIdentity: 02 F8 59
+                        tAC: 00 A0 00
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:36:25.883] [ngap] [debug] Received TAC 0xa000
+[2025-10-28 16:36:25.883] [amf_n2] [info] Received Uplink NAS Transport message, handling
+[2025-10-28 16:36:25.883] [amf_n2] [debug] Handle Uplink NAS Transport...
+[2025-10-28 16:36:25.884] [amf_n1] [info] Received UL_NAS_DATA_IND
+[2025-10-28 16:36:25.884] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Serving network name 5G:mnc095.mcc208.3gppnetwork.org
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Existing nas_context with amf_ue_ngap_id 1
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]Received Uplink NAS Message
+7e 02 38 b4 d8 a1 03 ff e5 0a 1f ca 79 53 d1 1b 9c 04 b7 56 00 6c fd 2f 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received integrity protected and ciphered NAS message
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received integrity protected with new security context NAS message
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received integrity protected and ciphered with new security context NAS message
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]Parameters for NIA: Knas_int
+78 a6 e0 f9 a2 60 6e 60 a0 35 de 88 26 97 63 d2 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Uplink count in uplink: 3
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Parameters for NIA, count: 0x2
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Parameters for NIA, bearer: 0x1
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Parameters for NIA, direction: 0x0
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]Parameters for NIA, message: 
+03 ff e5 0a 1f ca 79 53 d1 1b 9c 04 b7 56 00 6c fd 2f 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Integrity with algorithms: 128-5G-IA1
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]Result for NIA1, mac: 
+38 b4 d8 a1 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Result for NIA1, mac32: 0x38b4d8a1
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received mac32 (0x38b4d8a1) from the message
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Integrity matched
+[2025-10-28 16:36:25.884] [amf_n1] [debug] nsc.ul_count.overflow 0
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Cipher protected with EA1_128_5G
+[2025-10-28 16:36:25.884] [amf_n1] [debug] stream_cipher.blength 136
+[2025-10-28 16:36:25.884] [amf_n1] [debug] stream_cipher.message ff
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]stream_cipher.key 
+68 04 d8 69 2b 50 5b 63 13 c1 ff ab 98 85 f1 0b 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] stream_cipher.count 3
+[2025-10-28 16:36:25.884] [common] [debug] [amf_n1]Decoded Plain Message
+7e 04 45 10 00 0b f2 02 f8 59 01 00 41 01 89 71 e5 df b5 dd 
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received Uplink NAS message...
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Received De-registration Request message, handling...
+[2025-10-28 16:36:25.884] [amf_n1] [debug] Handling UE-initiated De-registration Request
+[2025-10-28 16:36:25.884] [nas] [debug] Decoding DeregistrationRequest message
+[2025-10-28 16:36:25.884] [nas] [debug] Decoding NasMmPlainHeader
+[2025-10-28 16:36:25.884] [nas] [debug] Decoded NasMmPlainHeader len (3 octets)
+[2025-10-28 16:36:25.884] [nas] [debug] Decoding 5GSMobilityIdentity
+[2025-10-28 16:36:25.884] [nas] [debug] Decoded 5GSMobilityIdentity IE length 11
+[2025-10-28 16:36:25.884] [nas] [debug] Decoding 5GSMobilityIdentity 5G-GUTI
+[2025-10-28 16:36:25.884] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:36:25.884] [nas] [debug] MCC 208, MNC 95
+[2025-10-28 16:36:25.884] [nas] [debug] TMSI 0x18971e5
+[2025-10-28 16:36:25.884] [nas] [debug] Decoding 5GSMobilityIdentity 5G-GUTI
+[2025-10-28 16:36:25.884] [nas] [debug] Decoded 5GS Mobile Identity, len (13)
+[2025-10-28 16:36:25.884] [nas] [debug] Decoded DeregistrationRequest message (len 17)
+[2025-10-28 16:36:25.884] [amf_n1] [debug] 5G Mobile Identity Type 2
+[2025-10-28 16:36:25.885] [nas] [debug] 5G GUTI 20895010041025784805
+[2025-10-28 16:36:25.885] [amf_n1] [debug] 5G Mobile Identity, GUTI 20895010041025784805
+[2025-10-28 16:36:25.885] [amf_n1] [debug] Key for UE context search: app_ue_ranid_1:amfid_1
+[2025-10-28 16:36:25.885] [amf_n1] [debug] Promise ID generated 4
+[2025-10-28 16:36:25.885] [amf_sbi] [info] Receive Nsmf_PDUSessionReleaseSMContext, handling ...
+[2025-10-28 16:36:25.885] [amf_sbi] [debug] smf_info, context location /nsmf-pdusession/v1/sm-contexts/1
+[2025-10-28 16:36:25.885] [amf_sbi] [debug] SMF's URI: 192.168.70.133:8080/nsmf-pdusession/v1/sm-contexts/1/release
+[2025-10-28 16:36:25.885] [amf_sbi] [info] Send HTTP message to 192.168.70.133:8080/nsmf-pdusession/v1/sm-contexts/1/release
+[2025-10-28 16:36:25.885] [amf_sbi] [info] HTTP message Body: {"cause":"REL_DUE_TO_REACTIVATION"}
+[2025-10-28 16:36:25.885] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:36:25.888] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:36:25.888] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:36:25.888] [amf_app] [debug] Trigger process response: Set promise with ID 4 to ready
+[2025-10-28 16:36:25.888] [amf_server] [debug] Got result for promise ID 4
+[2025-10-28 16:36:25.888] [amf_app] [debug] PDU Session ID 10 removed
+[2025-10-28 16:36:25.888] [amf_n1] [debug] De-registration Type 0x0
+[2025-10-28 16:36:25.888] [nas_mm] [debug] Size of Deregistration Accept message 3
+[2025-10-28 16:36:25.888] [nas] [debug] Encoding De-registration Accept message
+[2025-10-28 16:36:25.888] [nas] [debug] Encoding NasMmPlainHeader
+[2025-10-28 16:36:25.888] [nas] [debug] Encoded NasMmPlainHeader (len 3 octets)
+[2025-10-28 16:36:25.888] [nas] [debug] Encoded De-registration Accept message len (3)
+[2025-10-28 16:36:25.888] [common] [debug] [amf_n1]De-registration Accept message buffer
+7e 00 46 
+[2025-10-28 16:36:25.888] [amf_n2] [info] Received Downlink NAS Transport message, handling
+[2025-10-28 16:36:25.888] [amf_n2] [debug] Handle DL NAS Transport ...
+InitiatingMessage ::= {
+    procedureCode: 4
+    criticality: 1 (ignore)
+    value: DownlinkNASTransport ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            DownlinkNASTransport-IEs ::= {
+                id: 10
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 85
+                criticality: 0 (reject)
+                value: 1
+            }
+            DownlinkNASTransport-IEs ::= {
+                id: 38
+                criticality: 0 (reject)
+                value: 7E 00 46
+            }
+        }
+    }
+}
+[2025-10-28 16:36:25.888] [ngap] [debug] Encoded size (27)
+[2025-10-28 16:36:25.888] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346cc003480 of 27 bytes on stream 1 with PPID 60
+[2025-10-28 16:36:25.888] [sctp] [debug] Successfully sent 27 bytes on stream 1
+[2025-10-28 16:36:25.888] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:36:26.088] [amf_app] [debug] The UE's state (IMSI 208950000000038, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Set 5GMM state to 5GMM-DEREGISTERED
+[2025-10-28 16:36:26.088] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |  5GMM-DEREGISTERED |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Signal the UE Registration State Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Send request to SBI to trigger UE Registration State Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Signal the UE Loss of Connectivity Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Send request to SBI to trigger UE Loss of Connectivity (SUPI imsi-208950000000038 )
+[2025-10-28 16:36:26.088] [amf_app] [debug] The UE's state (IMSI 208950000000038, State 5GMM-DEREGISTERED) has been successfully updated!
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Deleted nas_context associated with amf_ue_ngap_id 1
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Deleted nas_context associated SUPI imsi-208950000000038 
+[2025-10-28 16:36:26.088] [nas] [debug] 5G GUTI 20895010041025784805
+[2025-10-28 16:36:26.088] [nas] [debug] 5G GUTI 20895010041025784805
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Deleted nas_context associated GUTI 20895010041025784805 
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Sending ITTI UE Context Release Command to TASK_AMF_N2
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Signal the UE Connectivity Status Event notification for SUPI imsi-208950000000038
+[2025-10-28 16:36:26.088] [amf_n1] [debug] Send request to SBI to trigger UE Connectivity State Report (SUPI imsi-208950000000038 )
+[2025-10-28 16:36:26.088] [amf_n2] [info] Received UE Context Release Command message, handling
+[2025-10-28 16:36:26.088] [amf_n2] [debug] Handling UE Context Release Command ...
+InitiatingMessage ::= {
+    procedureCode: 41
+    criticality: 0 (reject)
+    value: UEContextReleaseCommand ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UEContextReleaseCommand-IEs ::= {
+                id: 114
+                criticality: 0 (reject)
+                value: UE-NGAP-ID-pair ::= {
+                    aMF-UE-NGAP-ID: 1
+                    rAN-UE-NGAP-ID: 1
+                }
+            }
+            UEContextReleaseCommand-IEs ::= {
+                id: 15
+                criticality: 1 (ignore)
+                value: 2 (deregister)
+            }
+        }
+    }
+}
+[2025-10-28 16:36:26.089] [ngap] [debug] Encoded size (20)
+[2025-10-28 16:36:26.089] [sctp] [debug] [Socket 4, Assoc ID 241] Sending buffer 0x7346cc003480 of 20 bytes on stream 1 with PPID 60
+[2025-10-28 16:36:26.089] [sctp] [debug] Successfully sent 20 bytes on stream 1
+[2025-10-28 16:36:26.089] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-28 16:36:26.089] [amf_n2] [warning] Could not notify RAN caused CommunicationFailure.No existing nas_context with amf_ue_ngap_id(1)
+[2025-10-28 16:36:26.089] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:36:26.144] [sctp] [info] [Assoc_id 241, Socket 4] Received a message (length 26) from port 50839, on stream 1, PPID 60
+[2025-10-28 16:36:26.144] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (241), stream_id (1), instreams (2), outstreams (2)
+[2025-10-28 16:36:26.144] [ngap] [debug] Decoded NGAP message, procedure code 41, present 2
+SuccessfulOutcome ::= {
+    procedureCode: 41
+    criticality: 0 (reject)
+    value: UEContextReleaseComplete ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            UEContextReleaseComplete-IEs ::= {
+                id: 10
+                criticality: 1 (ignore)
+                value: 1
+            }
+            UEContextReleaseComplete-IEs ::= {
+                id: 85
+                criticality: 1 (ignore)
+                value: 1
+            }
+            UEContextReleaseComplete-IEs ::= {
+                id: 60
+                criticality: 0 (reject)
+                value: PDUSessionResourceListCxtRelCpl ::= {
+                    PDUSessionResourceItemCxtRelCpl ::= {
+                        pDUSessionID: 10
+                    }
+                }
+            }
+        }
+    }
+}
+[2025-10-28 16:36:26.144] [ngap] [debug] Sending ITTI UE Context Release Complete to TASK_AMF_N2
+[2025-10-28 16:36:26.144] [amf_n2] [info] Received UE Context Release Complete message, handling
+[2025-10-28 16:36:26.144] [amf_n2] [debug] Handle UE Context Release Complete ...
+[2025-10-28 16:36:26.144] [amf_n2] [debug] UE Context Release Complete ran_ue_ngap_id (1) amf_ue_ngap_id (1)
+[2025-10-28 16:36:26.144] [amf_n2] [debug] Release cause 0 No UE NGAP context with gnb_assoc_id 241, Release gnb_assoc_id 0
+[2025-10-28 16:36:26.144] [amf_n2] [debug] Continue with UE Context Release Complete procedure
+[2025-10-28 16:36:26.144] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-28 16:36:26.144] [amf_n2] [warning] No existed nas_context with amf_ue_ngap_id (1)
+[2025-10-28 16:36:26.144] [ngap] [debug] Free NGAP Message PDU
+[2025-10-28 16:36:26.303] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |  5GMM-DEREGISTERED |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:36:26.429] [amf_app] [debug] Send ITTI msg to SBI task to trigger NRF Heartbeat
+[2025-10-28 16:36:26.429] [amf_sbi] [info] Receive Update NF Instance Request, handling ...
+[2025-10-28 16:36:26.429] [amf_sbi] [debug] Send NF Update to NRF
+[2025-10-28 16:36:26.429] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:36:26.429] [amf_sbi] [info] HTTP message Body: [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+[2025-10-28 16:36:26.429] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:36:26.431] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:36:26.432] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:36:26.432] [amf_app] [debug] Received SBI_UPDATE_NF_INSTANCE_RESPONSE
+[2025-10-28 16:36:26.432] [amf_app] [debug] Handle NF Update response
+[2025-10-28 16:36:26.432] [amf_app] [debug] Set a timer to the next Heart-beat (10)
+[2025-10-28 16:36:34.026] [sctp] [debug] SCTP Shutdown Event received
+[2025-10-28 16:36:34.026] [ngap] [debug] Handle a SCTP Shutdown event (association id: 241)
+[2025-10-28 16:36:34.026] [ngap] [debug] Sending ITTI SCTP Shutdown event to TASK_AMF_N2
+[2025-10-28 16:36:34.026] [amf_n2] [info] Received SCTP Shutdown Event, handling
+[2025-10-28 16:36:34.026] [amf_n2] [debug] Handle NG Shutdown ...
+[2025-10-28 16:36:34.026] [amf_app] [debug] Trigger PDU Session UP Deactivation towards SMF
+[2025-10-28 16:36:34.026] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-28 16:36:34.026] [amf_n2] [warning] No existed nas_context with amf_ue_ngap_id(1)
+[2025-10-28 16:36:34.026] [amf_n2] [debug] Removed UE NGAP context with amf_ue_ngap_id 1
+[2025-10-28 16:36:34.026] [amf_n1] [warning] No NAS context with amf_ue_ngap_id 1
+[2025-10-28 16:36:34.026] [amf_n2] [warning] No existed nas_context with amf_ue_ngap_id(1)
+[2025-10-28 16:36:34.026] [amf_n2] [debug] Removed UE NGAP context with ran_ue_ngap_id 1, gnb_id 3584
+[2025-10-28 16:36:34.026] [amf_app] [debug] The gNB's info has been successfully updated!
+[2025-10-28 16:36:34.026] [amf_n2] [debug] Remove gNB with association id 241, gnb_id 0xe00
+[2025-10-28 16:36:34.026] [amf_app] [info] 
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |            Disconnected            |               0x0E00               |              gnb-rfsim             |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |        IMSI        |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |  5GMM-DEREGISTERED |   208950000000038  |20895010041025784805|        0x01        |        0x01        |       208,95       |      0000e0000     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+[2025-10-28 16:36:35.820] [system ] [info] Caught signal 15
+[2025-10-28 16:36:35.820] [amf_server] [debug] HTTP2 server status: Success
+[2025-10-28 16:36:35.820] [amf_server] [info] HTTP2 server fully stopped
+[2025-10-28 16:36:35.920] [amf_server] [info] HTTP2 server should be fully stopped
+[2025-10-28 16:36:35.970] [amf_app] [debug] Send ITTI msg to SBI task to trigger the deregistration request to NRF
+[2025-10-28 16:36:35.970] [itti] [info] Waiting ITTI tasks closed
+[2025-10-28 16:36:35.970] [amf_sbi] [info] Receive Deregister NF Instance Request, handling ...
+[2025-10-28 16:36:35.970] [amf_sbi] [debug] Send NF Deregistration to NRF 
+[2025-10-28 16:36:35.970] [amf_app] [info] Received terminate message
+[2025-10-28 16:36:35.970] [amf_n2] [info] Received Terminate message
+[2025-10-28 16:36:35.970] [amf_n1] [info] Received terminate message
+[2025-10-28 16:36:35.970] [amf_sbi] [info] Send HTTP message to http://oai-nrf:8080/nnrf-nfm/v1/nf-instances/2a808f22-393a-405d-89ec-a65433aaf810
+[2025-10-28 16:36:35.970] [amf_sbi] [info] HTTP message Body: 
+[2025-10-28 16:36:35.970] [amf_sbi] [debug] Send a simple HTTP request
+[2025-10-28 16:36:35.971] [amf_sbi] [info] Get response with HTTP code (204)
+[2025-10-28 16:36:35.971] [amf_sbi] [info] Could not get JSON content from the response
+[2025-10-28 16:36:35.971] [itti] [warning] Unicast message number 65 can not be sent from 6 to 5, ended destination task!
+[2025-10-28 16:36:35.971] [amf_sbi] [error] Could not send ITTI message SBI_DEREGISTER_NF_INSTANCE_RESPONSE to task TASK_AMF_APP
+[2025-10-28 16:36:35.971] [amf_sbi] [info] Received terminate message
+[2025-10-28 16:36:35.972] [itti] [info] All ITTI tasks closed
+[2025-10-28 16:36:35.972] [system ] [debug] Freeing Allocated memory...
+[2025-10-28 16:36:35.972] [system ] [debug] HTTP/2 Server memory done.
+[2025-10-28 16:36:35.972] [amf_app] [info] Starting destruction of amf_app object
+[2025-10-28 16:36:35.972] [amf_app] [info] Deleting N1 object
+[2025-10-28 16:36:35.972] [amf_app] [info] Deleting N2 object
+[2025-10-28 16:36:35.972] [sctp] [error] shutdown on socket_ failed Operation not supported
+[2025-10-28 16:36:35.972] [sctp] [debug] Thread on sctp_receiver_thread should have ended!
+[2025-10-28 16:36:35.972] [amf_app] [info] Deleting SBI object
+[2025-10-28 16:36:35.972] [amf_app] [debug] Delete AMF Profile instance...
+[2025-10-28 16:36:35.972] [system ] [debug] AMF APP memory done.
+[2025-10-28 16:36:35.972] [itti] [info] ~itti()
+[2025-10-28 16:36:35.972] [itti] [debug] Joining timer_thread
+[2025-10-28 16:36:36.432] [itti] [warning] Unicast message number 66 can not be sent from 0 to 5, ended destination task!
+[2025-10-28 16:36:36.432] [itti] [info] timer_manager_task is stopped!
+[2025-10-28 16:36:36.432] [itti] [info] ~itti() Done!
+[2025-10-28 16:36:36.432] [system ] [debug] ITTI memory done.
+[2025-10-28 16:36:36.432] [system ] [info] Freeing Allocated memory done.
+[2025-10-28 16:36:36.432] [system ] [info] Bye. Shutdown Procedure took 611 ms
+[2025-10-28 16:36:36.433] [amf_sbi] [info] Delete HTTP client instance

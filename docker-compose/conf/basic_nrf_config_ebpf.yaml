@@ -119,6 +119,8 @@ snssais:
   - &embb_slice2
     sst: 1
     sd: 000001 # in hex
+  - &hmtc_slice1
+    sst: 5
   - &custom_slice
     sst: 222
     sd: 00007B # in hex
@@ -154,13 +156,14 @@ amf:
       nssai:
         - *embb_slice1
         - *embb_slice2
+        - *hmtc_slice1
         - *custom_slice
   supported_integrity_algorithms:
-    - "NIA0"
+    # - "NIA0"
     - "NIA1"
     - "NIA2"
   supported_encryption_algorithms:
-    - "NEA0"
+    # - "NEA0"
     - "NEA1"
     - "NEA2"
 
@@ -195,6 +198,10 @@ smf:
       - sNssai: *custom_slice
         dnnSmfInfoList:
           - dnn: "default"
+          - dnn: "ethernet"
+      - sNssai: *hmtc_slice1
+        dnnSmfInfoList:
+          - dnn: "ethernet"
   local_subscription_infos:
     - single_nssai: *embb_slice1
       dnn: "oai"
@@ -214,10 +221,23 @@ smf:
         5qi: 9
         session_ambr_ul: "50Mbps"
         session_ambr_dl: "100Mbps"
+    - single_nssai: *custom_slice
+      dnn: "ethernet"
+      qos_profile:
+        5qi: 9
+        session_ambr_ul: "50Mbps"
+        session_ambr_dl: "100Mbps"
+    - single_nssai: *hmtc_slice1
+      dnn: "ethernet"
+      qos_profile:
+        5qi: 82
+        session_ambr_ul: "10Mbps"
+        session_ambr_dl: "10Mbps"
 
 upf:
   support_features:
     enable_bpf_datapath: yes    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
+    enable_eth_pdu: yes      # If "on": ETHERNET PDU sessions are supported, DEFAULT= off
   remote_n6_gw: oai-ext-dn
   upf_info:
     sNssaiUpfInfoList:
@@ -230,6 +250,10 @@ upf:
       - sNssai: *custom_slice
         dnnUpfInfoList:
           - dnn: "default"
+          - dnn: "ethernet"
+      - sNssai: *hmtc_slice1
+        dnnUpfInfoList:
+          - dnn: "ethernet"
 
 ## DNN configuration
 dnns:
@@ -245,3 +269,6 @@ dnns:
   - dnn: "ims"
     pdu_session_type: "IPV4V6"
     ipv4_subnet: "14.1.1.2/24"
+  - dnn: "ethernet"
+    pdu_session_type: "ETHERNET"
+    ipv4_subnet: "12.1.1.0/26"

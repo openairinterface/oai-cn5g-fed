@@ -1,0 +1,1538 @@
+       ru_thread-2312862 [008] ..s11 328460.554650: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+       ru_thread-2312862 [008] ..s11 328460.554656: bpf_trace_printk: ================< XDP: Handle Uplink >================
+       ru_thread-2312862 [008] ..s11 328460.554658: bpf_trace_printk: Debug: l3_protocol:0x806
+       ru_thread-2312862 [008] ..s11 328460.554659: bpf_trace_printk: Info: This is an ARP packet
+       ru_thread-2312862 [008] ..s11 328460.554660: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+       ru_thread-2312862 [008] ..s11 328460.554661: bpf_trace_printk: ===== ETH PDU UL =======
+       ru_thread-2312862 [008] ..s1. 328460.554667: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+       ru_thread-2312862 [008] ..s1. 328460.554668: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+       ru_thread-2312862 [008] ..s1. 328460.554669: bpf_trace_printk: Exiting handle_broadcast, action = 0
+   PDCP data ind-2312850 [002] ..s21 328461.082353: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-2312850 [002] ..s21 328461.082355: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-2312850 [002] ..s21 328461.082357: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-2312850 [002] ..s21 328461.082357: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-2312850 [002] ..s21 328461.082359: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-2312850 [002] ..s21 328461.082360: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-2312850 [002] ..s21 328461.082360: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-2312850 [002] ..s21 328461.082361: bpf_trace_printk: Handling uplink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 328470.430716: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [006] ..s21 328470.430718: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [006] ..s21 328470.430719: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [006] ..s21 328470.430719: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 328470.430720: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 328470.430720: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [006] ..s2. 328470.430724: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 328470.430724: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 328470.430724: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 328470.465959: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 328470.465961: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 328470.465963: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [006] ..s21 328470.465963: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 328470.465964: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 328470.465964: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [006] ..s21 328470.465964: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 328470.465966: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [006] ..s2. 328470.465969: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 328470.465970: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 328470.465970: bpf_trace_printk: Exiting handle_broadcast, action = 0
+         dockerd-811721  [009] ..s21 328553.754925: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+         dockerd-811721  [009] ..s21 328553.754928: bpf_trace_printk: ================< XDP: Handle Downlink >================
+         dockerd-811721  [009] ..s21 328553.754929: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-811721  [009] ..s21 328553.754929: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-811721  [009] ..s21 328553.754930: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-811721  [009] ..s21 328553.754930: bpf_trace_printk: ===== ETH PDU DL =======
+         dockerd-811721  [009] ..s21 328553.754930: bpf_trace_printk: Handling downlink ETH PDU session traffic
+         dockerd-811721  [009] ..s21 328553.754934: bpf_trace_printk: ETH PDU: ARP packet, src_ip 192.168.072.135, dest_ip 192.168.072.135
+         dockerd-811721  [009] ..s21 328553.754935: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+         dockerd-811721  [009] ..s21 328553.754940: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+         dockerd-811721  [009] ..s21 328553.754941: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+         dockerd-811721  [009] ..s2. 328553.754946: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-811721  [009] ..s2. 328553.754998: bpf_trace_printk: Exiting handle_broadcast, action = 2
+    avahi-daemon-1712    [004] ..s21 328554.156613: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [004] ..s21 328554.156615: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [004] ..s21 328554.156616: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [004] ..s21 328554.156616: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [004] ..s21 328554.156617: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [004] ..s21 328554.156617: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [004] ..s21 328554.156617: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [004] ..s21 328554.156620: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [004] ..s21 328554.156626: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [004] ..s21 328554.156628: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [004] ..s2. 328554.156633: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [004] ..s2. 328554.156635: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [004] ..s2. 328554.156635: bpf_trace_printk: Not a multicast (cont): 7f:00:b1
+    avahi-daemon-1712    [004] ..s2. 328554.156636: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [004] ..s21 328554.156698: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [004] ..s21 328554.156698: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [004] ..s21 328554.156699: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [004] ..s21 328554.156699: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [004] ..s21 328554.156699: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [004] ..s21 328554.156699: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [004] ..s21 328554.156700: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [004] ..s21 328554.156701: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [004] ..s2. 328554.156701: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [004] ..s2. 328554.156702: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [004] ..s2. 328554.156702: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [004] ..s21 328554.156776: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [004] ..s21 328554.156777: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [004] ..s21 328554.156777: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [004] ..s21 328554.156777: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [004] ..s21 328554.156778: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [004] ..s21 328554.156778: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [004] ..s21 328554.156778: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [004] ..s21 328554.156779: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [004] ..s21 328554.156780: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [004] ..s21 328554.156781: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [004] ..s2. 328554.156782: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s21 328554.408119: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 328554.408122: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 328554.408123: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 328554.408124: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 328554.408124: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 328554.408125: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 328554.408126: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 328554.408128: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [001] ..s21 328554.408134: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [001] ..s21 328554.408136: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [001] ..s2. 328554.408141: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 328554.408143: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [001] ..s2. 328554.408144: bpf_trace_printk: Not a multicast (cont): 7f:00:b1
+    avahi-daemon-1712    [001] ..s2. 328554.408145: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [001] ..s21 328554.408209: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 328554.408210: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 328554.408211: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [001] ..s21 328554.408211: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 328554.408212: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 328554.408212: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 328554.408213: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 328554.408214: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [001] ..s2. 328554.408215: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 328554.408216: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [001] ..s2. 328554.408217: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.658967: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.658969: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [011] ..s21 328554.658971: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [011] ..s21 328554.658971: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.658971: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.658972: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [011] ..s21 328554.658972: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [011] ..s21 328554.658976: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [011] ..s21 328554.658983: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [011] ..s21 328554.658985: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [011] ..s2. 328554.658993: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.658996: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [011] ..s2. 328554.658996: bpf_trace_printk: Not a multicast (cont): 7f:00:b1
+    avahi-daemon-1712    [011] ..s2. 328554.658997: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [011] ..s21 328554.659070: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.659070: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [011] ..s21 328554.659070: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 328554.659071: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.659071: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.659071: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [011] ..s21 328554.659072: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [011] ..s21 328554.659073: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [011] ..s2. 328554.659073: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.659074: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.659074: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.659252: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.659253: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [011] ..s21 328554.659253: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 328554.659254: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.659254: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.659254: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [011] ..s21 328554.659255: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [011] ..s21 328554.659255: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [011] ..s2. 328554.659256: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.659256: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.659257: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.669401: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.669402: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 328554.669403: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [011] ..s21 328554.669404: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.669404: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.669404: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 328554.669406: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.669407: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.669407: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.669448: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.669448: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 328554.669449: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [011] ..s21 328554.669449: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.669449: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.669450: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 328554.669451: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.669451: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.669452: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.669485: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.669485: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 328554.669486: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 328554.669486: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.669486: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.669487: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 328554.669487: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.669487: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.669488: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328554.669610: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328554.669610: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 328554.669611: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 328554.669611: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328554.669611: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328554.669612: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 328554.669612: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328554.669613: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328554.669613: bpf_trace_printk: Exiting handle_broadcast, action = 0
+         dockerd-1924453 [007] ..s21 328554.754457: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+         dockerd-1924453 [007] ..s21 328554.754459: bpf_trace_printk: ================< XDP: Handle Downlink >================
+         dockerd-1924453 [007] ..s21 328554.754460: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-1924453 [007] ..s21 328554.754461: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-1924453 [007] ..s21 328554.754461: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-1924453 [007] ..s21 328554.754461: bpf_trace_printk: ===== ETH PDU DL =======
+         dockerd-1924453 [007] ..s21 328554.754462: bpf_trace_printk: Handling downlink ETH PDU session traffic
+         dockerd-1924453 [007] ..s21 328554.754467: bpf_trace_printk: ETH PDU: ARP packet, src_ip 192.168.072.135, dest_ip 192.168.072.135
+         dockerd-1924453 [007] ..s21 328554.754467: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+         dockerd-1924453 [007] ..s21 328554.754473: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+         dockerd-1924453 [007] ..s21 328554.754474: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+         dockerd-1924453 [007] ..s2. 328554.754478: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-1924453 [007] ..s2. 328554.754533: bpf_trace_printk: Exiting handle_broadcast, action = 2
+    avahi-daemon-1712    [006] ..s21 328554.858315: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 328554.858318: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 328554.858320: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [006] ..s21 328554.858320: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 328554.858321: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 328554.858321: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [006] ..s21 328554.858322: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 328554.858325: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [006] ..s2. 328554.858330: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 328554.858330: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 328554.858331: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 328554.858427: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 328554.858427: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 328554.858428: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [006] ..s21 328554.858428: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 328554.858428: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 328555.157790: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [007] ..s21 328555.157792: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [007] ..s21 328555.157794: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 328555.157795: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 328555.157796: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 328555.157797: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [007] ..s21 328555.157798: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [007] ..s21 328555.157801: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [007] ..s21 328555.157806: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [007] ..s21 328555.157808: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [007] ..s2. 328555.157814: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 328555.157817: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [007] ..s2. 328555.157818: bpf_trace_printk: Not a multicast (cont): 7f:00:95
+    avahi-daemon-1712    [007] ..s2. 328555.157819: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [007] ..s21 328555.171158: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 328555.171161: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 328555.171164: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 328555.171164: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 328555.171165: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 328555.171166: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [007] ..s2. 328555.171171: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 328555.171172: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [007] ..s2. 328555.171173: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328555.171338: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328555.171341: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328555.171343: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [000] ..s21 328555.171344: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328555.171345: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328555.171346: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328555.171350: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328555.171350: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328555.171351: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328555.171715: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328555.171716: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328555.171717: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [000] ..s21 328555.171718: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328555.171718: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328555.171719: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328555.171720: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328555.171722: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328555.171724: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328555.370546: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328555.370550: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328555.370551: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [000] ..s21 328555.370552: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328555.370553: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328555.370554: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328555.370560: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328555.370561: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328555.370562: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328555.370695: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328555.370696: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328555.370697: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [000] ..s21 328555.370698: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328555.370698: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328555.370699: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328555.370700: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328555.370700: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328555.370701: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [007] ..s21 328555.669907: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 328555.669909: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 328555.669910: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 328555.669910: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 328555.669911: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 328555.669911: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [007] ..s2. 328555.669915: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 328555.669915: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [007] ..s2. 328555.669916: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [007] ..s21 328556.420348: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 328556.420350: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 328556.420351: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [007] ..s21 328556.420351: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 328556.420352: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 328556.420352: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [007] ..s2. 328556.420355: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 328556.420356: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [007] ..s2. 328556.420356: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [007] ..s21 328556.420436: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 328556.420437: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 328556.420438: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [008] ..s21 328557.158270: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [008] ..s21 328557.158272: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [008] ..s21 328557.158273: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [008] ..s21 328557.158274: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [008] ..s21 328557.158274: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [008] ..s21 328557.158275: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [008] ..s21 328557.158275: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [008] ..s21 328557.158277: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [008] ..s21 328557.158283: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [008] ..s21 328557.158284: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [008] ..s2. 328557.158289: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [008] ..s2. 328557.158291: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [008] ..s2. 328557.158292: bpf_trace_printk: Not a multicast (cont): 7f:00:95
+    avahi-daemon-1712    [008] ..s2. 328557.158292: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [008] ..s21 328558.470526: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [008] ..s21 328558.470528: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [008] ..s21 328558.470529: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [008] ..s21 328558.470530: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [008] ..s21 328558.470530: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [008] ..s21 328558.470531: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [008] ..s2. 328558.470535: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [008] ..s2. 328558.470535: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [008] ..s2. 328558.470536: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [008] ..s21 328558.470624: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [008] ..s21 328558.470625: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [008] ..s21 328558.470626: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [008] ..s21 328558.470626: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [008] ..s21 328558.470626: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [008] ..s21 328558.470627: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [008] ..s2. 328558.470628: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [008] ..s2. 328558.470628: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [008] ..s2. 328558.470628: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [005] ..s21 328559.893832: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [005] ..s21 328559.893833: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [005] ..s21 328559.893835: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [005] ..s21 328559.893835: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [005] ..s21 328559.893836: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [005] ..s21 328559.893836: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [005] ..s21 328559.893837: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [005] ..s21 328559.893839: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [005] ..s2. 328559.893842: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [005] ..s2. 328559.893843: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [005] ..s2. 328559.893843: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [005] ..s21 328559.893996: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [005] ..s21 328559.893996: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [005] ..s21 328559.893997: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [005] ..s21 328559.893997: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [005] ..s21 328559.893997: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [005] ..s21 328559.893998: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [005] ..s21 328559.893998: bpf_trace_printk: Handling downlink ETH PDU session traffic
+CPU:6 [LOST 66 EVENTS]
+ Chrome_IOThread-23100   [006] ..s21 328562.896037: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [006] ..s21 328562.896038: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [006] ..s21 328562.896038: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [006] ..s21 328562.896038: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [006] .ns21 328562.896039: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [006] .Ns2. 328562.896040: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [006] .Ns2. 328562.896041: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [006] .Ns2. 328562.896041: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328594.527983: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 328594.527985: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 328594.527985: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 328594.527986: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 328594.527986: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 328594.527987: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 328594.527990: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 328594.527991: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 328594.527991: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [011] ..s21 328594.570231: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [011] .Ns21 328594.570234: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [011] .Ns21 328594.570235: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] .Ns21 328594.570235: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] .Ns21 328594.570236: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] .Ns21 328594.570236: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [011] .Ns21 328594.570236: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [011] .Ns21 328594.570238: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [011] .Ns2. 328594.570242: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] .Ns2. 328594.570242: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] .Ns2. 328594.570243: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 328617.671984: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [006] ..s21 328617.671986: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [006] ..s21 328617.671987: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [006] ..s21 328617.671987: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 328617.671988: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 328617.671988: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [006] ..s2. 328617.671992: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 328617.671992: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 328617.671993: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328658.527142: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328658.527143: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328658.527144: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [000] ..s21 328658.527144: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328658.527145: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328658.527145: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328658.527149: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328658.527149: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328658.527149: bpf_trace_printk: Exiting handle_broadcast, action = 0
+CPU:4 [LOST 66 EVENTS]
+    avahi-daemon-1712    [004] ..s2. 328681.670882: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [004] ..s2. 328681.670882: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [004] ..s2. 328681.670883: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [000] ..s21 328809.154996: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328809.154999: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [000] ..s21 328809.155000: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [000] ..s21 328809.155001: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328809.155002: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328809.155002: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [000] ..s21 328809.155003: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [000] ..s21 328809.155006: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [000] ..s21 328809.155012: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [000] ..s21 328809.155013: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [000] ..s2. 328809.155019: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328809.155021: bpf_trace_printk: Not a multicast: 60:0e:3d
+    avahi-daemon-1712    [000] ..s2. 328809.155022: bpf_trace_printk: Not a multicast (cont): 7f:00:95
+    avahi-daemon-1712    [000] ..s2. 328809.155023: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [000] ..s21 328809.668296: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [000] ..s21 328809.668298: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [000] ..s21 328809.668300: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [000] ..s21 328809.668301: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [000] ..s21 328809.668302: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [000] ..s21 328809.668302: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [000] ..s2. 328809.668307: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [000] ..s2. 328809.668308: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [000] ..s2. 328809.668309: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329033.544352: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329033.544354: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329033.544355: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329033.544356: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329033.544356: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329033.544357: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329033.544357: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329033.544359: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329033.544362: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329033.544362: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329033.544363: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329033.544522: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329033.544523: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329033.544524: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329033.544524: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329033.544524: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329033.544525: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329033.544525: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329033.544526: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329033.544526: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329033.544527: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329033.544527: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [004] ..s21 329034.544822: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [004] ..s21 329034.544824: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [004] ..s21 329034.544825: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [004] ..s21 329034.544826: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [004] ..s21 329034.544826: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [004] ..s21 329034.544827: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [004] ..s21 329034.544827: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [004] ..s21 329034.544829: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [004] ..s2. 329034.544831: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [004] ..s2. 329034.544832: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [004] ..s2. 329034.544832: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [004] ..s21 329034.545116: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [004] ..s21 329034.545118: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [004] ..s21 329034.545118: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [004] ..s21 329034.545119: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [004] ..s21 329034.545120: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [004] ..s21 329034.545121: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [004] ..s21 329034.545121: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [004] ..s21 329034.545122: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [004] ..s2. 329034.545124: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [004] ..s2. 329034.545125: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [004] ..s2. 329034.545125: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [006] ..s21 329036.545846: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [006] ..s21 329036.545848: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [006] ..s21 329036.545849: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [006] ..s21 329036.545850: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [006] ..s21 329036.545850: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [006] ..s21 329036.545851: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [006] ..s21 329036.545851: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [006] ..s21 329036.545853: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [006] ..s2. 329036.545856: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [006] ..s2. 329036.545856: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [006] ..s2. 329036.545857: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [006] ..s21 329036.546074: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [006] ..s21 329036.546075: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [006] ..s21 329036.546075: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [006] ..s21 329036.546076: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [006] ..s21 329036.546076: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [006] ..s21 329036.546076: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [006] ..s21 329036.546077: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [006] ..s21 329036.546077: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [006] ..s2. 329036.546078: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [006] ..s2. 329036.546079: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [006] ..s2. 329036.546079: bpf_trace_printk: Exiting handle_broadcast, action = 0
+CPU:2 [LOST 66 EVENTS]
+    avahi-daemon-1712    [002] ..s2. 329042.560885: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 329042.560886: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [002] ..s2. 329042.560887: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [010] ..s21 329065.662828: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [010] ..s21 329065.662831: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [010] ..s21 329065.662832: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [010] ..s21 329065.662833: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [010] ..s21 329065.662833: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [010] ..s21 329065.662834: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [010] ..s2. 329065.662838: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [010] ..s2. 329065.662838: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [010] ..s2. 329065.662839: bpf_trace_printk: Exiting handle_broadcast, action = 0
+CPU:7 [LOST 66 EVENTS]
+ Chrome_IOThread-23100   [007] ..s21 329078.729685: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329078.729688: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329078.729692: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329078.729693: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329078.729694: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [007] ..s21 329078.730041: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [007] ..s21 329078.730042: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [007] ..s21 329078.730043: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [007] ..s21 329078.730044: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [007] ..s21 329078.730045: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [007] ..s21 329078.730046: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [007] ..s21 329078.730046: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329078.730048: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329078.730049: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329078.730050: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329078.730051: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [007] ..s21 329081.731846: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [007] ..s21 329081.731848: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [007] ..s21 329081.731849: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [007] ..s21 329081.731849: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [007] ..s21 329081.731850: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [007] ..s21 329081.731850: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [007] ..s21 329081.731851: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329081.731853: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329081.731855: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329081.731856: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329081.731856: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [007] ..s21 329081.732045: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [007] ..s21 329081.732045: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [007] ..s21 329081.732046: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [007] ..s21 329081.732046: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [007] ..s21 329081.732046: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [007] ..s21 329081.732047: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [007] ..s21 329081.732047: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329081.732048: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329081.732048: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329081.732049: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329081.732049: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [008] ..s21 329097.865059: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [008] ..s21 329097.865061: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [008] ..s21 329097.865063: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [008] ..s21 329097.865063: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [008] ..s21 329097.865064: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [008] ..s21 329097.865064: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [008] ..s21 329097.865065: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [008] ..s21 329097.865068: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [008] ..s2. 329097.865072: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [008] ..s2. 329097.865072: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [008] ..s2. 329097.865073: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [008] ..s21 329097.865374: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [008] ..s21 329097.865375: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [008] ..s21 329097.865376: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [008] ..s21 329097.865377: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [008] ..s21 329097.865378: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [008] ..s21 329097.865378: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [008] ..s21 329097.865379: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [008] ..s21 329097.865380: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [008] ..s2. 329097.865381: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [008] ..s2. 329097.865381: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [008] ..s2. 329097.865382: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [008] ..s21 329098.866106: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [008] ..s21 329098.866110: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [008] ..s21 329098.866112: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [008] ..s21 329098.866113: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [008] ..s21 329098.866114: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [008] ..s21 329098.866115: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [008] ..s21 329098.866115: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [008] ..s21 329098.866119: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [008] ..s2. 329098.866124: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [008] ..s2. 329098.866125: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [008] ..s2. 329098.866126: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [008] ..s21 329098.866631: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [008] ..s21 329098.866633: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [008] ..s21 329098.866635: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [008] ..s21 329098.866635: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [008] ..s21 329098.866636: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [008] ..s21 329098.866637: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [008] ..s21 329098.866638: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [008] ..s21 329098.866640: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [008] ..s2. 329098.866642: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [008] ..s2. 329098.866643: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [008] ..s2. 329098.866644: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [003] ..s21 329100.867487: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [003] ..s21 329100.867492: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [003] ..s21 329100.867495: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [003] ..s21 329100.867496: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [003] ..s21 329100.867498: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [003] ..s21 329100.867499: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [003] ..s21 329100.867501: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [003] ..s21 329100.867505: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [003] ..s2. 329100.867510: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [003] ..s2. 329100.867511: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [003] ..s2. 329100.867513: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [003] ..s21 329100.868042: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [003] ..s21 329100.868044: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [003] ..s21 329100.868046: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [003] ..s21 329100.868047: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [003] ..s21 329100.868048: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [003] ..s21 329100.868050: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [003] ..s21 329100.868051: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [003] ..s21 329100.868053: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [003] ..s2. 329100.868055: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [003] ..s2. 329100.868057: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [003] ..s2. 329100.868059: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [007] ..s21 329124.523879: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [007] ..s21 329124.523881: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [007] ..s21 329124.523882: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [007] ..s21 329124.523882: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [007] ..s21 329124.523883: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [007] ..s21 329124.523883: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [007] ..s21 329124.523883: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329124.523885: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329124.523888: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329124.523888: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329124.523889: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [007] ..s21 329124.524045: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [007] ..s21 329124.524046: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [007] ..s21 329124.524047: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [007] ..s21 329124.524047: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [007] ..s21 329124.524047: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [007] ..s21 329124.524047: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [007] ..s21 329124.524048: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [007] ..s21 329124.524049: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [007] ..s2. 329124.524049: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [007] ..s2. 329124.524050: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [007] ..s2. 329124.524050: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329125.524962: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329125.524964: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329125.524965: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329125.524966: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329125.524966: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329125.524967: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329125.524967: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329125.524969: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329125.524972: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329125.524973: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329125.524973: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329125.525223: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329125.525224: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329125.525225: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329125.525225: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329125.525226: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329125.525226: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329125.525226: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329125.525227: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329125.525228: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329125.525229: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329125.525229: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329129.287301: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329129.287303: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329129.287304: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329129.287305: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329129.287305: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329129.287306: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329129.287306: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329129.287308: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329129.287311: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329129.287312: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329129.287313: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329129.287491: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329129.287492: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329129.287492: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329129.287493: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329129.287493: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329129.287494: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329129.287494: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329129.287495: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329129.287495: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329129.287496: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329129.287496: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329132.289823: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329132.289825: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329132.289827: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329132.289827: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329132.289827: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329132.289828: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329132.289828: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329132.289831: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329132.289834: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329132.289834: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329132.289835: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [009] ..s21 329132.290097: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [009] ..s21 329132.290098: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [009] ..s21 329132.290099: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [009] ..s21 329132.290099: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [009] ..s21 329132.290100: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [009] ..s21 329132.290100: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [009] ..s21 329132.290100: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [009] ..s21 329132.290102: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [009] ..s2. 329132.290103: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [009] ..s2. 329132.290103: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [009] ..s2. 329132.290104: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329238.434801: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329238.434803: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329238.434805: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329238.434805: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329238.434806: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329238.434807: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329238.434807: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329238.434809: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329238.434813: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329238.434813: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329238.434814: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329238.435008: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329238.435008: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329238.435009: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329238.435010: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329238.435010: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329238.435010: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329238.435011: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329238.435012: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329238.435013: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329238.435013: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329238.435014: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [011] ..s21 329239.435675: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [011] ..s21 329239.435677: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [011] ..s21 329239.435678: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [011] ..s21 329239.435679: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [011] ..s21 329239.435679: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [011] ..s21 329239.435680: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [011] ..s21 329239.435680: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [011] ..s21 329239.435682: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [011] ..s2. 329239.435685: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [011] ..s2. 329239.435686: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [011] ..s2. 329239.435686: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [011] ..s21 329239.435884: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [011] ..s21 329239.435885: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [011] ..s21 329239.435886: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [011] ..s21 329239.435886: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [011] ..s21 329239.435887: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [011] ..s21 329239.435887: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [011] ..s21 329239.435887: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [011] ..s21 329239.435888: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [011] ..s2. 329239.435889: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [011] ..s2. 329239.435889: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [011] ..s2. 329239.435890: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329241.437085: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329241.437087: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329241.437088: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329241.437088: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329241.437089: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329241.437089: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329241.437090: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329241.437092: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329241.437095: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329241.437095: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329241.437096: bpf_trace_printk: Exiting handle_broadcast, action = 0
+ Chrome_IOThread-23100   [010] ..s21 329241.437284: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+ Chrome_IOThread-23100   [010] ..s21 329241.437285: bpf_trace_printk: ================< XDP: Handle Downlink >================
+ Chrome_IOThread-23100   [010] ..s21 329241.437285: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+ Chrome_IOThread-23100   [010] ..s21 329241.437286: bpf_trace_printk: Error: Unknown L3 packet
+ Chrome_IOThread-23100   [010] ..s21 329241.437287: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+ Chrome_IOThread-23100   [010] ..s21 329241.437287: bpf_trace_printk: ===== ETH PDU DL =======
+ Chrome_IOThread-23100   [010] ..s21 329241.437288: bpf_trace_printk: Handling downlink ETH PDU session traffic
+ Chrome_IOThread-23100   [010] ..s21 329241.437288: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+ Chrome_IOThread-23100   [010] ..s2. 329241.437289: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+ Chrome_IOThread-23100   [010] ..s2. 329241.437295: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+ Chrome_IOThread-23100   [010] ..s2. 329241.437295: bpf_trace_printk: Exiting handle_broadcast, action = 0
+         dockerd-4041    [008] ..s21 413612.081860: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+         dockerd-4041    [008] ..s21 413612.081862: bpf_trace_printk: ================< XDP: Handle Downlink >================
+         dockerd-4041    [008] ..s21 413612.081863: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-4041    [008] ..s21 413612.081863: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-4041    [008] ..s21 413612.081864: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-4041    [008] ..s21 413612.081864: bpf_trace_printk: ===== ETH PDU DL =======
+         dockerd-4041    [008] ..s21 413612.081865: bpf_trace_printk: Handling downlink ETH PDU session traffic
+         dockerd-4041    [008] ..s21 413612.081869: bpf_trace_printk: ETH PDU: ARP packet, src_ip 192.168.072.135, dest_ip 192.168.072.135
+         dockerd-4041    [008] ..s21 413612.081870: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+         dockerd-4041    [008] ..s21 413612.081874: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+         dockerd-4041    [008] ..s21 413612.081876: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+         dockerd-4041    [008] ..s2. 413612.081880: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-4041    [008] ..s2. 413612.081930: bpf_trace_printk: Exiting handle_broadcast, action = 2
+    avahi-daemon-1712    [002] ..s21 413612.684571: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413612.684573: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [002] ..s21 413612.684574: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [002] ..s21 413612.684574: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413612.684575: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413612.684575: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [002] ..s2. 413612.684579: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413612.684579: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [002] ..s2. 413612.684580: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 413613.131768: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 413613.131770: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 413613.131771: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [006] ..s21 413613.131771: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 413613.131771: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 413613.131772: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [006] ..s21 413613.131772: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 413613.131774: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [006] ..s21 413613.131779: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [006] ..s21 413613.131780: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [006] ..s2. 413613.131784: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 413613.131785: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [006] ..s2. 413613.131786: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [006] ..s2. 413613.131786: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [013] ..s21 413613.187402: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.187405: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [013] ..s21 413613.187406: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [013] ..s21 413613.187407: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.187408: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.187409: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [013] ..s21 413613.187409: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [013] ..s21 413613.187412: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [013] ..s21 413613.187419: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [013] ..s21 413613.187420: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [013] ..s2. 413613.187427: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] ..s2. 413613.187430: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [013] ..s2. 413613.187431: bpf_trace_printk: Not a multicast (cont): 16:00:b1
+    avahi-daemon-1712    [013] ..s2. 413613.187431: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [013] ..s21 413613.187504: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.187505: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [013] ..s21 413613.187506: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [013] ..s21 413613.187506: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.187507: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.187508: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [013] ..s21 413613.187508: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [013] ..s21 413613.187509: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [013] ..s2. 413613.187511: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] ..s2. 413613.187511: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [013] ..s2. 413613.187512: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [013] ..s21 413613.187628: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.187628: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [013] ..s21 413613.187629: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [013] ..s21 413613.187630: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.187630: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.187631: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [013] ..s21 413613.187631: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [013] ..s21 413613.187632: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [013] ..s2. 413613.187634: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] ..s2. 413613.187634: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [013] ..s2. 413613.187635: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [013] ..s21 413613.241820: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.241824: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [013] ..s21 413613.241826: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [013] ..s21 413613.241827: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.241829: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.241830: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [013] .Ns2. 413613.241842: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] .Ns2. 413613.241843: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [013] .Ns2. 413613.241845: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [013] ..s21 413613.242013: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.242016: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [013] ..s21 413613.242017: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [013] ..s21 413613.242018: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.242019: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.242020: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [013] ..s2. 413613.242022: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] ..s2. 413613.242023: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [013] ..s2. 413613.242024: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [013] ..s21 413613.242277: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [013] ..s21 413613.242278: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [013] ..s21 413613.242279: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [013] ..s21 413613.242280: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [013] ..s21 413613.242281: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [013] ..s21 413613.242281: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [013] ..s2. 413613.242283: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [013] ..s2. 413613.242283: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [013] ..s2. 413613.242284: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 413613.438201: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 413613.438204: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 413613.438205: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [006] ..s21 413613.438206: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 413613.438207: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 413613.438208: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [006] ..s21 413613.438208: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 413613.438211: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [006] ..s21 413613.438215: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [006] ..s21 413613.438216: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [006] ..s2. 413613.438221: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 413613.438224: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [006] ..s2. 413613.438225: bpf_trace_printk: Not a multicast (cont): 16:00:b1
+    avahi-daemon-1712    [006] ..s2. 413613.438227: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [006] ..s21 413613.438293: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [006] ..s21 413613.438294: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [006] ..s21 413613.438295: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [006] ..s21 413613.438295: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 413613.438296: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 413613.438296: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [006] ..s21 413613.438297: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [006] ..s21 413613.438298: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [006] ..s2. 413613.438299: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 413613.438300: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 413613.438301: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 413613.441819: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [006] ..s21 413613.441821: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [006] ..s21 413613.441822: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [006] ..s21 413613.441823: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 413613.441824: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 413613.441824: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [006] ..s2. 413613.441828: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 413613.441829: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 413613.441829: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [006] ..s21 413613.441888: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [006] ..s21 413613.441889: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [006] ..s21 413613.441890: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [006] ..s21 413613.441890: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [006] ..s21 413613.441891: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [006] ..s21 413613.441891: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [006] ..s2. 413613.441893: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [006] ..s2. 413613.441893: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [006] ..s2. 413613.441894: bpf_trace_printk: Exiting handle_broadcast, action = 0
+CPU:5 [LOST 198 EVENTS]
+    avahi-daemon-1712    [005] ..s2. 413613.684290: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [005] ..s21 413613.689625: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413613.689626: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [005] ..s21 413613.689627: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [005] ..s21 413613.689627: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413613.689627: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413613.689628: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [005] ..s21 413613.689628: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [005] ..s21 413613.689631: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [005] ..s21 413613.689638: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [005] ..s21 413613.689639: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [005] ..s2. 413613.689642: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413613.689644: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [005] ..s2. 413613.689644: bpf_trace_printk: Not a multicast (cont): 16:00:b1
+    avahi-daemon-1712    [005] ..s2. 413613.689645: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [005] ..s21 413613.689696: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413613.689697: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [005] ..s21 413613.689697: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [005] ..s21 413613.689697: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413613.689698: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413613.689698: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [005] ..s21 413613.689698: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [005] ..s21 413613.689699: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [005] ..s2. 413613.689700: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413613.689700: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [005] ..s2. 413613.689700: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [005] ..s21 413613.689784: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413613.689785: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [005] ..s21 413613.689785: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [005] ..s21 413613.689785: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413613.689786: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413613.689786: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [005] ..s21 413613.689786: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [005] ..s21 413613.689787: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [005] ..s2. 413613.689787: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413613.689788: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [005] ..s2. 413613.689788: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [005] ..s21 413613.889296: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413613.889298: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [005] ..s21 413613.889299: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [005] ..s21 413613.889300: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413613.889301: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413613.889301: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [005] ..s21 413613.889302: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [005] ..s21 413613.889304: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [005] ..s2. 413613.889307: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413613.889308: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [005] ..s2. 413613.889309: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [005] ..s21 413613.889373: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413613.889374: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [005] ..s21 413613.889374: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [005] ..s21 413613.889374: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413613.889375: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413613.889375: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [005] ..s21 413613.889375: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [005] ..s21 413613.889376: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [005] ..s21 413613.889379: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [005] ..s21 413613.889380: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [005] ..s2. 413613.889381: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413613.889383: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [005] ..s2. 413613.889383: bpf_trace_printk: Not a multicast (cont): 16:00:a5
+    avahi-daemon-1712    [005] ..s2. 413613.889384: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [007] ..s21 413614.132658: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [007] ..s21 413614.132660: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [007] ..s21 413614.132661: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 413614.132662: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 413614.132662: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 413614.132663: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [007] ..s21 413614.132663: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [007] ..s21 413614.132666: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [007] ..s21 413614.132670: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [007] ..s21 413614.132671: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [007] ..s2. 413614.132675: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 413614.132677: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [007] ..s2. 413614.132677: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [007] ..s2. 413614.132678: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [007] ..s21 413614.547991: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 413614.547993: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 413614.547994: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [007] ..s21 413614.547994: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 413614.547994: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 413614.547995: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [007] ..s2. 413614.547998: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 413614.547998: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [007] ..s2. 413614.547998: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [007] ..s21 413614.548036: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [007] ..s21 413614.548036: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [007] ..s21 413614.548036: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 413614.548037: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 413614.548037: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 413614.548037: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [007] ..s2. 413614.548038: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 413614.548038: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [007] ..s2. 413614.548038: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [002] ..s21 413614.994728: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413614.994730: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [002] ..s21 413614.994732: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [002] ..s21 413614.994732: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413614.994733: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413614.994734: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [002] ..s21 413614.994734: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [002] ..s21 413614.994737: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [002] ..s2. 413614.994740: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413614.994741: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [002] ..s2. 413614.994742: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [002] ..s21 413614.994813: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413614.994814: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [002] ..s21 413614.994815: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [002] ..s21 413614.994815: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413614.994816: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413614.994816: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [002] ..s21 413614.994817: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [002] ..s21 413614.994818: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [002] ..s21 413614.994821: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [002] ..s21 413614.994822: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [002] ..s2. 413614.994823: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413614.994825: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [002] ..s2. 413614.994826: bpf_trace_printk: Not a multicast (cont): 16:00:a5
+    avahi-daemon-1712    [002] ..s2. 413614.994827: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [005] ..s21 413615.685207: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [005] ..s21 413615.685209: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [005] ..s21 413615.685210: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [005] ..s21 413615.685210: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [005] ..s21 413615.685211: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [005] ..s21 413615.685212: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [005] ..s2. 413615.685216: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [005] ..s2. 413615.685216: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [005] ..s2. 413615.685217: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [007] ..s21 413616.133415: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [007] ..s21 413616.133417: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [007] ..s21 413616.133418: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [007] ..s21 413616.133418: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [007] ..s21 413616.133419: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [007] ..s21 413616.133419: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [007] ..s21 413616.133420: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [007] ..s21 413616.133422: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [007] ..s21 413616.133427: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [007] ..s21 413616.133428: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [007] ..s2. 413616.133433: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [007] ..s2. 413616.133434: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [007] ..s2. 413616.133435: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [007] ..s2. 413616.133435: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [001] ..s21 413616.653711: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413616.653712: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [001] ..s21 413616.653713: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [001] ..s21 413616.653714: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413616.653714: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413616.653715: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [001] ..s2. 413616.653718: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413616.653718: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [001] ..s2. 413616.653718: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [001] ..s21 413616.653751: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413616.653752: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [001] ..s21 413616.653752: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 413616.653752: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413616.653753: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413616.653753: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [001] ..s2. 413616.653753: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413616.653754: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [001] ..s2. 413616.653754: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [001] ..s21 413617.100540: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413617.100542: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 413617.100543: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [001] ..s21 413617.100544: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413617.100546: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413617.100547: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 413617.100548: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 413617.100550: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [001] ..s2. 413617.100554: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413617.100555: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [001] ..s2. 413617.100556: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [001] ..s21 413617.100671: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413617.100672: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 413617.100673: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 413617.100674: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413617.100675: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413617.100676: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 413617.100676: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 413617.100678: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [001] ..s21 413617.100682: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [001] ..s21 413617.100684: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [001] ..s2. 413617.100686: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413617.100689: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [001] ..s2. 413617.100690: bpf_trace_printk: Not a multicast (cont): 16:00:a5
+    avahi-daemon-1712    [001] ..s2. 413617.100691: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [001] ..s21 413619.684733: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413619.684734: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [001] ..s21 413619.684735: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 413619.684735: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413619.684735: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413619.684736: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [001] ..s2. 413619.684738: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413619.684738: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [001] ..s2. 413619.684739: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [001] ..s21 413620.134123: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413620.134125: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 413620.134127: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 413620.134127: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413620.134128: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413620.134129: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 413620.134130: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 413620.134132: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [001] ..s21 413620.134138: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [001] ..s21 413620.134139: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [001] ..s2. 413620.134145: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413620.134147: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [001] ..s2. 413620.134148: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [001] ..s2. 413620.134149: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+    avahi-daemon-1712    [002] ..s21 413621.101413: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413621.101414: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [002] ..s21 413621.101415: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [002] ..s21 413621.101415: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413621.101416: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413621.101416: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [002] ..s2. 413621.101419: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413621.101419: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [002] ..s2. 413621.101419: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [002] ..s21 413621.134633: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413621.134635: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [002] ..s21 413621.134636: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [002] ..s21 413621.134636: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413621.134637: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413621.134637: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [002] ..s21 413621.134638: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [002] ..s21 413621.134639: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [002] ..s2. 413621.134643: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413621.134644: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [002] ..s2. 413621.134644: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [009] ..s21 413627.685464: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [009] ..s21 413627.685466: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [009] ..s21 413627.685467: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [009] ..s21 413627.685467: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [009] ..s21 413627.685467: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [009] ..s21 413627.685468: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [009] ..s2. 413627.685471: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [009] ..s2. 413627.685472: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [009] ..s2. 413627.685472: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [002] ..s21 413628.134793: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [002] ..s21 413628.134797: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [002] ..s21 413628.134798: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [002] ..s21 413628.134799: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [002] ..s21 413628.134800: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [002] ..s21 413628.134801: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [002] ..s21 413628.134802: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [002] ..s21 413628.134804: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [002] ..s21 413628.134809: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [002] ..s21 413628.134811: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [002] ..s2. 413628.134817: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [002] ..s2. 413628.134819: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [002] ..s2. 413628.134820: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [002] ..s2. 413628.134821: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+         dockerd-4041    [002] ..s21 413637.543151: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+         dockerd-4041    [002] ..s21 413637.543153: bpf_trace_printk: ================< XDP: Handle Uplink >================
+         dockerd-4041    [002] ..s21 413637.543153: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-4041    [002] ..s21 413637.543154: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-4041    [002] ..s21 413637.543154: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-4041    [002] ..s21 413637.543155: bpf_trace_printk: ===== ETH PDU UL =======
+         dockerd-4041    [002] ..s2. 413637.543160: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-4041    [002] ..s2. 413637.543160: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+         dockerd-4041    [002] ..s2. 413637.543160: bpf_trace_printk: Exiting handle_broadcast, action = 0
+         dockerd-1748233 [001] ..s21 413638.544363: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+         dockerd-1748233 [001] ..s21 413638.544366: bpf_trace_printk: ================< XDP: Handle Uplink >================
+         dockerd-1748233 [001] ..s21 413638.544367: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-1748233 [001] ..s21 413638.544368: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-1748233 [001] ..s21 413638.544369: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-1748233 [001] ..s21 413638.544369: bpf_trace_printk: ===== ETH PDU UL =======
+         dockerd-1748233 [001] ..s2. 413638.544377: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-1748233 [001] ..s2. 413638.544378: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+         dockerd-1748233 [001] ..s2. 413638.544379: bpf_trace_printk: Exiting handle_broadcast, action = 0
+         dockerd-1748233 [009] ..s21 413639.544180: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+         dockerd-1748233 [009] ..s21 413639.544183: bpf_trace_printk: ================< XDP: Handle Uplink >================
+         dockerd-1748233 [009] ..s21 413639.544184: bpf_trace_printk: Debug: l3_protocol:0x806
+         dockerd-1748233 [009] ..s21 413639.544184: bpf_trace_printk: Info: This is an ARP packet
+         dockerd-1748233 [009] ..s21 413639.544185: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+         dockerd-1748233 [009] ..s21 413639.544185: bpf_trace_printk: ===== ETH PDU UL =======
+         dockerd-1748233 [009] ..s2. 413639.544191: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+         dockerd-1748233 [009] ..s2. 413639.544192: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+         dockerd-1748233 [009] ..s2. 413639.544192: bpf_trace_printk: Exiting handle_broadcast, action = 0
+          arping-4101724 [000] ..s21 413641.052869: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+          arping-4101724 [000] ..s21 413641.052872: bpf_trace_printk: ================< XDP: Handle Downlink >================
+          arping-4101724 [000] ..s21 413641.052874: bpf_trace_printk: Debug: l3_protocol:0x806
+          arping-4101724 [000] ..s21 413641.052874: bpf_trace_printk: Info: This is an ARP packet
+          arping-4101724 [000] ..s21 413641.052875: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+          arping-4101724 [000] ..s21 413641.052876: bpf_trace_printk: ===== ETH PDU DL =======
+          arping-4101724 [000] ..s21 413641.052876: bpf_trace_printk: Handling downlink ETH PDU session traffic
+          arping-4101724 [000] ..s21 413641.052882: bpf_trace_printk: ETH PDU: ARP packet, src_ip 192.168.072.135, dest_ip 192.168.072.129
+          arping-4101724 [000] ..s21 413641.052882: bpf_trace_printk: ETH PDU: This is a N6 traffic
+          arping-4101724 [000] ..s2. 413641.052886: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+          arping-4101724 [000] ..s2. 413641.052887: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+          arping-4101724 [000] ..s2. 413641.052887: bpf_trace_printk: Exiting handle_broadcast, action = 0
+   PDCP data ind-4101497 [004] ..s21 413641.325870: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [004] ..s21 413641.325872: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [004] ..s21 413641.325874: bpf_trace_printk: Debug: l3_protocol:0x806
+   PDCP data ind-4101497 [004] ..s21 413641.325874: bpf_trace_printk: Info: This is an ARP packet
+   PDCP data ind-4101497 [004] ..s21 413641.325875: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [004] ..s21 413641.325875: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [004] ..s2. 413641.325879: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [004] ..s2. 413641.325880: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+   PDCP data ind-4101497 [004] ..s2. 413641.325880: bpf_trace_printk: Exiting handle_broadcast, action = 0
+   PDCP data ind-4101497 [004] .Ns21 413641.325926: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [004] .Ns21 413641.325927: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [004] .Ns21 413641.325928: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [004] .Ns21 413641.325928: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [004] .Ns21 413641.325930: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [004] .Ns21 413641.325930: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [004] .Ns21 413641.325930: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [004] .Ns21 413641.325930: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [004] .Ns21 413641.325931: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [004] .Ns21 413641.325933: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [004] .Ns21 413641.325937: bpf_trace_printk: Inner Eth: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413641.325938: bpf_trace_printk: Inner Eth Copy: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413641.325938: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [004] .Ns21 413641.325940: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [004] .Ns21 413641.325941: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [004] .Ns21 413641.325941: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [004] .Ns21 413641.325943: bpf_trace_printk: Checking packet with dest MAC (cont) 00:00:02
+   PDCP data ind-4101497 [004] .Ns21 413641.325944: bpf_trace_printk: Checking multicast with ethertype: 0x86dd
+   PDCP data ind-4101497 [004] .Ns21 413641.325945: bpf_trace_printk: Detected IPv6 multicast: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413641.325945: bpf_trace_printk: IPv6 multicast (cont): 00:00:02
+   PDCP data ind-4101497 [004] .Ns21 413641.325947: bpf_trace_printk: ETH PDU: Multicast packet detected, passing to TC
+   PDCP data ind-4101497 [004] .Ns2. 413641.325949: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [004] .Ns2. 413641.326015: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+    avahi-daemon-1712    [011] ..s21 413643.685936: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 413643.685939: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 413643.685940: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [011] ..s21 413643.685941: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 413643.685942: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 413643.685943: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 413643.685946: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 413643.685947: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 413643.685947: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [001] ..s21 413644.134158: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [001] ..s21 413644.134160: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [001] ..s21 413644.134161: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [001] ..s21 413644.134161: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [001] ..s21 413644.134161: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [001] ..s21 413644.134162: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [001] ..s21 413644.134162: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [001] ..s21 413644.134164: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [001] ..s21 413644.134168: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [001] ..s21 413644.134169: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [001] ..s2. 413644.134173: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [001] ..s2. 413644.134174: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [001] ..s2. 413644.134175: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [001] ..s2. 413644.134176: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+   PDCP data ind-4101497 [003] .Ns21 413646.132851: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [003] .Ns21 413646.132853: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [003] .Ns21 413646.132854: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [003] .Ns21 413646.132854: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [003] .Ns21 413646.132857: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [003] .Ns21 413646.132858: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [003] .Ns21 413646.132858: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [003] .Ns21 413646.132859: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [003] .Ns21 413646.132859: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [003] .Ns21 413646.132862: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [003] .Ns21 413646.132865: bpf_trace_printk: Inner Eth: 33:33:00
+   PDCP data ind-4101497 [003] .Ns21 413646.132865: bpf_trace_printk: Inner Eth Copy: 33:33:00
+   PDCP data ind-4101497 [003] .Ns21 413646.132866: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [003] .Ns21 413646.132868: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [003] .Ns21 413646.132869: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [003] .Ns21 413646.132870: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [003] .Ns21 413646.132872: bpf_trace_printk: Checking packet with dest MAC (cont) 00:00:02
+   PDCP data ind-4101497 [003] .Ns21 413646.132874: bpf_trace_printk: Checking multicast with ethertype: 0x86dd
+   PDCP data ind-4101497 [003] .Ns21 413646.132875: bpf_trace_printk: Detected IPv6 multicast: 33:33:00
+   PDCP data ind-4101497 [003] .Ns21 413646.132876: bpf_trace_printk: IPv6 multicast (cont): 00:00:02
+   PDCP data ind-4101497 [003] .Ns21 413646.132878: bpf_trace_printk: ETH PDU: Multicast packet detected, passing to TC
+   PDCP data ind-4101497 [003] .Ns2. 413646.132883: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [003] .Ns2. 413646.132998: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+    avahi-daemon-1712    [011] ..s21 413653.102005: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [011] ..s21 413653.102009: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [011] ..s21 413653.102011: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [011] ..s21 413653.102011: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [011] ..s21 413653.102012: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [011] ..s21 413653.102013: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [011] ..s2. 413653.102018: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [011] ..s2. 413653.102019: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [011] ..s2. 413653.102020: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [004] ..s21 413653.134417: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [004] ..s21 413653.134421: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [004] ..s21 413653.134423: bpf_trace_printk: Debug: l3_protocol:0xc0a8
+    avahi-daemon-1712    [004] ..s21 413653.134424: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [004] ..s21 413653.134425: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [004] .Ns21 413653.134429: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [004] .Ns21 413653.134430: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [004] .Ns21 413653.134436: bpf_trace_printk: ETH PDU: This is a Unknown traffic
+    avahi-daemon-1712    [004] .Ns2. 413653.134443: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [004] .Ns2. 413653.134444: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [004] .Ns2. 413653.134446: bpf_trace_printk: Exiting handle_broadcast, action = 0
+   PDCP data ind-4101497 [004] ..s21 413654.841204: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [004] ..s21 413654.841207: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [004] ..s21 413654.841209: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [004] ..s21 413654.841210: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [004] ..s21 413654.841212: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [004] ..s21 413654.841213: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [004] ..s21 413654.841214: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [004] ..s21 413654.841214: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [004] ..s21 413654.841215: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [004] ..s21 413654.841219: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [004] .Ns21 413654.841223: bpf_trace_printk: Inner Eth: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413654.841224: bpf_trace_printk: Inner Eth Copy: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413654.841226: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [004] .Ns21 413654.841228: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [004] .Ns21 413654.841230: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [004] .Ns21 413654.841231: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [004] .Ns21 413654.841235: bpf_trace_printk: Checking packet with dest MAC (cont) 00:00:02
+   PDCP data ind-4101497 [004] .Ns21 413654.841238: bpf_trace_printk: Checking multicast with ethertype: 0x86dd
+   PDCP data ind-4101497 [004] .Ns21 413654.841239: bpf_trace_printk: Detected IPv6 multicast: 33:33:00
+   PDCP data ind-4101497 [004] .Ns21 413654.841240: bpf_trace_printk: IPv6 multicast (cont): 00:00:02
+   PDCP data ind-4101497 [004] .Ns21 413654.841243: bpf_trace_printk: ETH PDU: Multicast packet detected, passing to TC
+   PDCP data ind-4101497 [004] .Ns2. 413654.841250: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [004] .Ns2. 413654.841368: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+   PDCP data ind-4101497 [002] ..s21 413672.245964: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [002] ..s21 413672.245967: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [002] ..s21 413672.245968: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [002] ..s21 413672.245969: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [002] ..s21 413672.245971: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [002] ..s21 413672.245972: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [002] ..s21 413672.245972: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [002] ..s21 413672.245973: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [002] ..s21 413672.245974: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [002] ..s21 413672.245977: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [002] ..s21 413672.245981: bpf_trace_printk: Inner Eth: 33:33:00
+   PDCP data ind-4101497 [002] ..s21 413672.245982: bpf_trace_printk: Inner Eth Copy: 33:33:00
+   PDCP data ind-4101497 [002] ..s21 413672.245984: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [002] ..s21 413672.245986: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [002] ..s21 413672.245988: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [002] ..s21 413672.245988: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [002] ..s21 413672.245991: bpf_trace_printk: Checking packet with dest MAC (cont) 00:00:02
+   PDCP data ind-4101497 [002] ..s21 413672.245993: bpf_trace_printk: Checking multicast with ethertype: 0x86dd
+   PDCP data ind-4101497 [002] ..s21 413672.245993: bpf_trace_printk: Detected IPv6 multicast: 33:33:00
+   PDCP data ind-4101497 [002] ..s21 413672.245995: bpf_trace_printk: IPv6 multicast (cont): 00:00:02
+   PDCP data ind-4101497 [002] ..s21 413672.245997: bpf_trace_printk: ETH PDU: Multicast packet detected, passing to TC
+   PDCP data ind-4101497 [002] .Ns2. 413672.246003: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [002] .Ns2. 413672.246155: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+    avahi-daemon-1712    [009] .Ns21 413675.686354: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+    avahi-daemon-1712    [009] .Ns21 413675.686357: bpf_trace_printk: ================< XDP: Handle Uplink >================
+    avahi-daemon-1712    [009] .Ns21 413675.686359: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [009] .Ns21 413675.686360: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [009] .Ns21 413675.686361: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [009] .Ns21 413675.686361: bpf_trace_printk: ===== ETH PDU UL =======
+    avahi-daemon-1712    [009] .Ns2. 413675.686366: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [009] .Ns2. 413675.686367: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+    avahi-daemon-1712    [009] .Ns2. 413675.686368: bpf_trace_printk: Exiting handle_broadcast, action = 0
+    avahi-daemon-1712    [004] .Ns21 413676.134887: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+    avahi-daemon-1712    [004] .Ns21 413676.134891: bpf_trace_printk: ================< XDP: Handle Downlink >================
+    avahi-daemon-1712    [004] .Ns21 413676.134893: bpf_trace_printk: Debug: l3_protocol:0x0
+    avahi-daemon-1712    [004] .Ns21 413676.134894: bpf_trace_printk: Error: Unknown L3 packet
+    avahi-daemon-1712    [004] .Ns21 413676.134895: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+    avahi-daemon-1712    [004] .Ns21 413676.134898: bpf_trace_printk: ===== ETH PDU DL =======
+    avahi-daemon-1712    [004] .Ns21 413676.134899: bpf_trace_printk: Handling downlink ETH PDU session traffic
+    avahi-daemon-1712    [004] .Ns21 413676.134902: bpf_trace_printk: ETH PDU: No PDU session found, passing to TC to send to all PDU sessions
+    avahi-daemon-1712    [004] .Ns21 413676.134910: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+    avahi-daemon-1712    [004] .Ns21 413676.134912: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+    avahi-daemon-1712    [004] .Ns2. 413676.134917: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+    avahi-daemon-1712    [004] .Ns2. 413676.134920: bpf_trace_printk: Not a multicast: 60:05:6c
+    avahi-daemon-1712    [004] .Ns2. 413676.134921: bpf_trace_printk: Not a multicast (cont): 16:00:95
+    avahi-daemon-1712    [004] .Ns2. 413676.134922: bpf_trace_printk: handle_broadcast: Not a broadcast/multicast packet
+
+     ksoftirqd/2-24      [002] ..s11 413677.349223: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+     ksoftirqd/2-24      [002] ..s11 413677.349226: bpf_trace_printk: ================< XDP: Handle Uplink >================
+     ksoftirqd/2-24      [002] ..s11 413677.349229: bpf_trace_printk: Debug: l3_protocol:0x806
+     ksoftirqd/2-24      [002] ..s11 413677.349230: bpf_trace_printk: Info: This is an ARP packet
+     ksoftirqd/2-24      [002] ..s11 413677.349231: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+     ksoftirqd/2-24      [002] ..s11 413677.349232: bpf_trace_printk: ===== ETH PDU UL =======
+     ksoftirqd/2-24      [002] ..s1. 413677.349238: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+     ksoftirqd/2-24      [002] ..s1. 413677.349239: bpf_trace_printk: handle_broadcast: This is not a GTP packet
+
+     ksoftirqd/2-24      [002] ..s1. 413677.349240: bpf_trace_printk: Exiting handle_broadcast, action = 0
+   PDCP data ind-4101497 [009] ..s21 413683.106771: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [009] ..s21 413683.106774: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [009] ..s21 413683.106776: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [009] ..s21 413683.106777: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [009] ..s21 413683.106779: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [009] ..s21 413683.106780: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [009] ..s21 413683.106782: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [009] ..s21 413683.106782: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [009] ..s21 413683.106783: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [009] ..s21 413683.106787: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [009] ..s21 413683.106792: bpf_trace_printk: Inner Eth: ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413683.106793: bpf_trace_printk: Inner Eth Copy: ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413683.106794: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [009] ..s21 413683.106797: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [009] ..s21 413683.106798: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [009] ..s21 413683.106799: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [009] ..s21 413683.106802: bpf_trace_printk: Checking packet with dest MAC (cont) ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413683.106803: bpf_trace_printk: Detected Ethernet broadcast (FF-FF-FF-FF-FF-FF)
+   PDCP data ind-4101497 [009] ..s21 413683.106806: bpf_trace_printk: ETH PDU: Broadcast packet detected, passing to TC
+   PDCP data ind-4101497 [009] ..s2. 413683.106812: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [009] ..s2. 413683.106915: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+   PDCP data ind-4101497 [009] .Ns21 413683.106972: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+   PDCP data ind-4101497 [009] .Ns21 413683.106975: bpf_trace_printk: ================< XDP: Handle Downlink >================
+   PDCP data ind-4101497 [009] .Ns21 413683.106975: bpf_trace_printk: Debug: l3_protocol:0x806
+   PDCP data ind-4101497 [009] .Ns21 413683.106976: bpf_trace_printk: Info: This is an ARP packet
+   PDCP data ind-4101497 [009] .Ns21 413683.106980: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [009] .Ns21 413683.106981: bpf_trace_printk: ===== ETH PDU DL =======
+   PDCP data ind-4101497 [009] .Ns21 413683.106983: bpf_trace_printk: Handling downlink ETH PDU session traffic
+   PDCP data ind-4101497 [009] .Ns21 413683.106986: bpf_trace_printk: ETH PDU: Found PDU session in MAC learning table. DL TEID: 2778342805
+   PDCP data ind-4101497 [009] .Ns21 413683.106993: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+   PDCP data ind-4101497 [009] .Ns21 413683.106996: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH
+   PDCP data ind-4101497 [009] ..s21 413684.101273: bpf_trace_printk: ================< PFCP PDR UL Sesction >================
+   PDCP data ind-4101497 [009] ..s21 413684.101276: bpf_trace_printk: ================< XDP: Handle Uplink >================
+   PDCP data ind-4101497 [009] ..s21 413684.101278: bpf_trace_printk: Debug: l3_protocol:0x800
+   PDCP data ind-4101497 [009] ..s21 413684.101279: bpf_trace_printk: Identified GTP Traffic
+   PDCP data ind-4101497 [009] ..s21 413684.101281: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [009] ..s21 413684.101282: bpf_trace_printk: ===== ETH PDU UL =======
+   PDCP data ind-4101497 [009] ..s21 413684.101282: bpf_trace_printk: ETH PDU: This is a GTP traffic
+   PDCP data ind-4101497 [009] ..s21 413684.101283: bpf_trace_printk: Handling uplink ETH PDU session traffic
+   PDCP data ind-4101497 [009] ..s21 413684.101284: bpf_trace_printk: Handling uplink FAR ETH PDU session traffic
+   PDCP data ind-4101497 [009] ..s21 413684.101288: bpf_trace_printk: Session found ( seid, teid_ul, teid_dl ) : ( 1, 1, 2502269605 )
+   PDCP data ind-4101497 [009] ..s21 413684.101291: bpf_trace_printk: Inner Eth: ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413684.101292: bpf_trace_printk: Inner Eth Copy: ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413684.101294: bpf_trace_printk: ETH PDU: Found next prog, DL teid 2778342805, seid 1
+   PDCP data ind-4101497 [009] ..s21 413684.101296: bpf_trace_printk: ( packet_teid,   pdi.fteid.teid    ) : ( 1  , 1 )
+   PDCP data ind-4101497 [009] ..s21 413684.101297: bpf_trace_printk: ( packet_qfi,    pdi.qfi.qfi       ) : ( 1  , 1 )
+   PDCP data ind-4101497 [009] ..s21 413684.101298: bpf_trace_printk: Highest precedence PDR found 1
+   PDCP data ind-4101497 [009] ..s21 413684.101301: bpf_trace_printk: Checking packet with dest MAC (cont) ff:ff:ff
+   PDCP data ind-4101497 [009] ..s21 413684.101302: bpf_trace_printk: Detected Ethernet broadcast (FF-FF-FF-FF-FF-FF)
+   PDCP data ind-4101497 [009] ..s21 413684.101304: bpf_trace_printk: ETH PDU: Broadcast packet detected, passing to TC
+   PDCP data ind-4101497 [009] ..s2. 413684.101312: bpf_trace_printk: handle_broadcast: Entering broadcast handler
+   PDCP data ind-4101497 [009] ..s2. 413684.101415: bpf_trace_printk: handle_broadcast: Redirecting packet to N6 interface, ifindex = 4001
+   PDCP data ind-4101497 [009] .Ns21 413684.101455: bpf_trace_printk: ================< PFCP PDR DL Sesction >================
+   PDCP data ind-4101497 [009] .Ns21 413684.101457: bpf_trace_printk: ================< XDP: Handle Downlink >================
+   PDCP data ind-4101497 [009] .Ns21 413684.101457: bpf_trace_printk: Debug: l3_protocol:0x806
+   PDCP data ind-4101497 [009] .Ns21 413684.101458: bpf_trace_printk: Info: This is an ARP packet
+   PDCP data ind-4101497 [009] .Ns21 413684.101459: bpf_trace_printk: PFCP Session Lookup (Find PFCP session with matching PDRs) failed
+   PDCP data ind-4101497 [009] .Ns21 413684.101460: bpf_trace_printk: ===== ETH PDU DL =======
+   PDCP data ind-4101497 [009] .Ns21 413684.101461: bpf_trace_printk: Handling downlink ETH PDU session traffic
+   PDCP data ind-4101497 [009] .Ns21 413684.101462: bpf_trace_printk: ETH PDU: Found PDU session in MAC learning table. DL TEID: 2778342805
+   PDCP data ind-4101497 [009] .Ns21 413684.101466: bpf_trace_printk: BPF_FIB_LKUP_RET_SUCCESS
+   PDCP data ind-4101497 [009] .Ns21 413684.101468: bpf_trace_printk: Pushes the GTP-Encapsulated Packet: Data/UDP/IP/EXT/GTP/UDP/IP/ETH

@@ -1,0 +1,54 @@
+
+1. Disable TCP Checksum on N6 interface (eth1):
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-checksum-sctp: off
+
+2. Setup MTU (1460) on N6 interface (eth1):
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 192.168.72.135  netmask 255.255.255.192  broadcast 192.168.72.191
+        ether ee:9f:d2:0d:69:aa  txqueuelen 0  (Ethernet)
+        RX packets 2  bytes 200 (200.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1  bytes 42 (42.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+3. Add a route to UE subnet (12.1.1.0/24) via UPF N6 interface (192.168.72.129):
+
+4. Disable the useless N3 interface (eth0):
+
+5. Update the default route:
+Delete the default route: default
+RTNETLINK answers: No such process
+Sgi interface is eth2
+default via 192.168.70.129 dev eth2 
+12.1.1.0/24 via 192.168.72.129 dev eth1 
+192.168.70.128/26 dev eth2 proto kernel scope link src 192.168.70.135 
+192.168.72.128/26 dev eth1 proto kernel scope link src 192.168.72.135 
+
+6. Add SNAT rule to allow UE traffic to reach the internet:
+Done setting the configuration
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Gateway Has the following configuration :
+
+                 +---------------+                      
+                 |               |                      
+  (UPF)----------|  OAI-EXT-GW   |----------- (Internet)
+              N6 |               | Sgi                  
+                 +---------------+                      
+
+    GW N6 Interface ----------------: (Ifname, IPv4, MTU) = (eth1, 192.168.72.135, 1460)
+    GW Sgi Interface ---------------: (Ifname, IPv4, MTU) = (eth2, 192.168.70.135, 1500)
+    GW Default Route ---------------: default via 192.168.70.129 dev eth2 
+    Route to UE --------------------: 12.1.1.0/24 via 192.168.72.129 dev eth1 
+# Warning: iptables-legacy tables present, use iptables-legacy to see them
+    Iptables Postrouting -----------: SNAT       all  --  12.1.1.0/24          anywhere             to:192.168.70.135
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
