@@ -5,6 +5,14 @@ version: '3.8'
 #
 #   # add routing
 #   docker exec -it oai-ext-dn ip route add 192.168.128.0/24 via 192.168.70.134 dev eth0
+#
+#   # commands for ran
+#   use docker-compose-ueransim-framed-routing. Set up commands are described within this file.
+
+#### How to test
+#   docker exec -it ueransim-fr ping -I 192.168.128.1 8.8.8.8
+#   docker exec -it oai-ext-dn ping 192.168.128.1
+
 
 services:
     mysql:
