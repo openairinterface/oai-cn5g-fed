@@ -106,7 +106,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: oaisoftwarealliance/oai-smf:fr
+        image: oaisoftwarealliance/oai-smf:develop
         expose:
             - 80/tcp
             - 8080/tcp
@@ -123,7 +123,7 @@ services:
                 ipv4_address: 192.168.70.133
     oai-upf:
         container_name: "oai-upf"
-        image: oaisoftwarealliance/oai-upf:fr
+        image: oaisoftwarealliance/oai-upf:develop
         expose:
             - 2152/udp
             - 8805/udp
