@@ -1,5 +1,12 @@
 version: '3.8'
 
+###############################################################
+#                                                             #
+#  ! Framed Routing is currently not working with eBPF UPF !  #
+#  ! We are already working on a solution                  !  #
+#                                                             #
+###############################################################
+
 #### Commands for Test Setup
 #
 #   # add routing
@@ -7,6 +14,14 @@ version: '3.8'
 #
 #   # add NATing
 #   docker exec -it oai-ext-dn iptables -t nat -A POSTROUTING -s 192.168.128.0/24 -o eth2 -j SNAT --to-source 192.168.70.135
+#
+#   # commands for ran
+#   use docker-compose-ueransim-ebpf-framed-routing. Set up commands are described within this file.
+
+#### How to test
+#   docker exec -it ueransim-fr ping -I 192.168.128.1 8.8.8.8
+#   docker exec -it oai-ext-dn ping 192.168.128.1
+
 
 services:
     mysql:
