@@ -229,6 +229,7 @@ upf:
   support_features:
     enable_bpf_datapath: yes    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
     enable_qos: yes
+    ignore_qfi_for_uplink: yes
   remote_n6_gw: oai-ext-dn
   upf_info:
     sNssaiUpfInfoList:

@@ -8,7 +8,7 @@ decision_supi2:
   supi_imsi: "208950000000032"
   pcc_rules:
     - gbr-rule-5qi-1
-    
+
 decision_supi3:
   supi_imsi: "208950000000033"
   pcc_rules:
@@ -23,6 +23,8 @@ decision_supi5:
   supi_imsi: "208950000000035"
   pcc_rules:
     - gbr-rule-5qi-1
+    - gbr-rule-iperf3-8080
+    - gbr-rule-iperf3-8081
 
 decision_supi6:
   supi_imsi: "208950000000036"
@@ -628,7 +630,7 @@ decision_supi111:
   supi_imsi: "208950000000131"
   pcc_rules:
     - gbr-rule-5qi-2
-    
+
 
 decision_dnn:
   dnn: default
@@ -641,7 +643,7 @@ decision_default:
     - non-gbr-rule-5qi-9
 
 decision_slice:
-  slice: 
+  slice:
     sst: 222
     sd: "123"
   pcc_rules:
