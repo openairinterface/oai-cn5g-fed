@@ -185,6 +185,8 @@ class RfSimLib:
 
     def check_ran_health_status(self):
         ran_containers = self.gnb + self.nr_ue
+        logging.info(ran_containers)
+        logging.info(self.docker_api.check_health_status(ran_containers))
         self.docker_api.check_health_status(ran_containers)
 
     def collect_all_ran_logs(self):
@@ -244,22 +246,27 @@ class RfSimLib:
                         logging.info("PDU session establishment successful")
                         return ip_address
         raise Exception(f"PDU session establishment ongoing for {container}, UE logs format changed ")
-    
+
     def get_ue_IMSI(self, container):
         log = self.docker_api.get_log(container)
         for line in log.split("\n"):
-            if "--uicc0.imsi" in line.lower():
-                parts = line.split(" ")
-                imsi = parts[10]
-                return str(imsi)
+           if "uicc0.imsi" in line.lower():
+              parts = line.split(" ")
+              # location of imsi in logs
+              loc = [i for i in range(0,len(parts)) if "uicc0.imsi" in parts[i]]
+              imsi = parts[loc[0]+1]
+              if int(imsi):
+                  return str(imsi)
         raise Exception(f"IMSI not found for {container}")
-        
+
     def get_ue_SUPI(self, container):
         log = self.docker_api.get_log(container)
         for line in log.split("\n"):
-            if "--uicc0.imsi" in line.lower():
-                parts = line.split(" ")
-                imsi = parts[10]
-                return "imsi-" + str(imsi)
-        raise Exception(f"IMSI not found for {container}")        
-            
+           if "uicc0.imsi" in line.lower():
+              parts = line.split(" ")
+              # location of imsi in logs
+              loc = [i for i in range(0,len(parts)) if "uicc0.imsi" in parts[i]]
+              imsi = parts[loc[0]+1]
+              if int(imsi):
+                  return str(imsi)
+        raise Exception(f"IMSI not found for {container}")

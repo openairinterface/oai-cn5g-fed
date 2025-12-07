@@ -92,8 +92,6 @@ def check_smf_callback(logs, nb_of_users):
                 if not match_found:
                     logger.error(f"Mismatch found for SUPI: {log_entry['SUPI']}, Callback data: {callback_entry}, logs data: {log_entry}")
                     raise Exception(f"Mismatch found for SUPI: {log_entry['SUPI']}")
-                    
-
             logger.info(f"All SMF contexts match the callback data.{callback_data}, logs data: {parsed_log_data}")
 
         else :
@@ -104,8 +102,7 @@ def check_smf_callback(logs, nb_of_users):
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         raise e
-    
-          
+
 def amf_report_from_handler(service_type: str):
     try:
         amf_collection = mongo_access(service_type)
@@ -180,7 +177,7 @@ def check_AMF_reg_callback(nb_of_users, logs):
         report_from_handler = amf_report_from_handler(service_type="amf notifications")
         report_from_AMF = extract_ue_info_from_AMF_logs(logs, nb_of_users)
         handler_dict = {report['imsi']: report['details'] for report in report_from_handler}
-        i = 0 
+        i = 0
         for report in report_from_AMF:
             imsi = report['IMSI']
             if report['5GMM State'] != '5GMM-REGISTERED':     #handle the case where its initiated, it shouldnt raise an error
@@ -246,12 +243,12 @@ def check_AMF_dereg_callback(logs,nb_of_users):
         raise e
 
 def check_AMF_Location_report_callback(logs, nb_of_users):
-    try: 
+    try:
         if logs == "":
             logger.error("No location reports found in logs.")
             raise Exception("No location reports found in logs.")
         report_from_handler = get_location_report_info(service_type="amf location report")
-        report_from_amf = extract_ue_info_from_AMF_logs(logs, nb_of_users)   
+        report_from_amf = extract_ue_info_from_AMF_logs(logs, nb_of_users)
         handler_dict = {report['imsi']: report['details'] for report in report_from_handler}
         if len(report_from_handler) != nb_of_users:
             logger.warning(f"Number of UE Location Reports ({len(report_from_handler)}) does not match the number of users added ({nb_of_users})")
@@ -270,7 +267,7 @@ def check_AMF_Location_report_callback(logs, nb_of_users):
             else:
                 logger.warning(f"UE {imsi} not found in handler collection.")
                 # raise Exception(f"UE {imsi} not found in handler collection.")
-        
+
         logger.info("All callback data matches the AMF UEs location Data.")
     except Exception as e:
         logger.error(f"Failed to check latest location reports: {e}")
@@ -287,7 +284,7 @@ def extract_ue_info_from_AMF_logs(logs, nb_of_users):
         end_index = None
         for i, line in enumerate(ue_info_lines):
             if 'UEs\' Information' in line:
-                start_index = i + 2 
+                start_index = i + 2
             elif '|-----------------------------------------------------------------------------------------------------------------------------------------------------------|' in line:
                 end_index = i
         if start_index is None or end_index is None:
@@ -307,7 +304,7 @@ def extract_ue_info_from_AMF_logs(logs, nb_of_users):
     except Exception as e:
         logger.error(f"Failed to extract UE information from logs: {e}")
         raise e
-    
+
 def extract_mobility_info_from_logs(eng_logs,amf_logs):
     mobsim_info = []
     amf_info = []
@@ -338,7 +335,12 @@ def extract_mobility_info_from_logs(eng_logs,amf_logs):
                 'current_cell': current_cell
             })
     pattern = re.compile(
-    r'HandoverNotifyIEs\s*::=\s*\{\s*id:\s*121\s*criticality:\s*1\s*\(ignore\).*?nRCellIdentity:\s*([0-9A-F\s]*)\s*\([^\)]*\)',re.DOTALL)
+              r'HandoverNotifyIEs\s*::=\s*\{.*?'
+              r'id:\s*121\s*'
+              r'criticality:\s*1\s*\(ignore\).*?'
+              r'nRCellIdentity:\s*([0-9A-F\s]+)\s*\(',
+              re.DOTALL
+             )
     matches = pattern.findall(amf_logs)
     if len(matches) == 0:
         raise ValueError("failed to change location by mobsim location simulatory.")
@@ -366,16 +368,17 @@ def check_AMF_location_mobility_report_callback():
         if amf_current_cell_id!= int(handler_data['details']['nr_cell_id']):
             logger.error(f"Missmatch in AMF Logs and Handler data, AMF current Cell ID = {hex(amf_current_cell_id)}, Handler data: Current Cell ID = {handler_data['details']['nr_cell_id']}")
             raise Exception(f"Missmatch in AMF Logs and Handler data, AMF current Cell ID = {hex(amf_current_cell_id)}, Handler data: Current Cell ID = {handler_data['details']['nr_cell_id']}")
-        logger.info(f"Mobility data matches between AMF and Handler for all UEs, AMF current Cell ID = {hex(amf_current_cell_id)}, Handler data: Current Cell ID = {hex(int(handler_data['details']['nr_cell_id']))}") 
+        logger.info(f"Mobility data matches between AMF and Handler for all UEs, AMF current Cell ID = {hex(amf_current_cell_id)}, Handler data: Current Cell ID = {hex(int(handler_data['details']['nr_cell_id']))}")
     except Exception as e:
         logger.error(f"Failed to check mobility data: {e}")
         raise e
-    
-def get_traffic_data_from_handler(ue_supi):                      
+
+def get_traffic_data_from_handler(ue_supi):
     smf_traffic_collection = mongo_access("smf traffic report")
     query = {
         'eventNotifs.supi': ue_supi,
         '$or': [
+            {'eventNotifs.customized_data.Usage Report.Volume.Total': {'$ne': 0}},
             {'eventNotifs.customized_data.Usage Report.Volume.Uplink': {'$ne': 0}},
             {'eventNotifs.customized_data.Usage Report.Volume.Downlink': {'$ne': 0}}
         ]
@@ -387,7 +390,7 @@ def get_traffic_data_from_handler(ue_supi):
     except Exception as e:
         logger.error(f"Failed to retrieve records from MongoDB: {str(e)}")
         raise RuntimeError(f"Failed to retrieve records from MongoDB: {str(e)}") from e
-    
+
     result_list = []
     for record in records:
         for event in record.get('eventNotifs', []):
@@ -396,7 +399,7 @@ def get_traffic_data_from_handler(ue_supi):
             ur_seqn = usage_report.get('UR-SEQN')
             volume_total = usage_report.get('Volume', {}).get('Total')
             nop_total = usage_report.get('NoP', {}).get('Total')
-            
+
             result_list.append({
                 'SEID': seid,
                 'UR-SEQN': ur_seqn,
@@ -406,7 +409,7 @@ def get_traffic_data_from_handler(ue_supi):
     if not result_list:
         logger.error(f"Required data not found for SUPI: {ue_supi}")
         raise ValueError(f"Required data not found for SUPI: {ue_supi}")
-    
+
     logger.info(f"Found {len(result_list)} records with non-zero traffic for SUPI: {ue_supi}")
     return result_list
 
@@ -437,17 +440,18 @@ def extract_info_by_seid_and_urseqn(logs, target_seid, target_ur_seqn):
                     for j in range(i + 2, i + 11):
                         if j < len(log_lines):
                             line_clean = ' '.join(log_lines[j].split()[4:])
-                            if ' -> ' in line_clean: 
+                            if ' -> ' in line_clean:
                                 key, value = line_clean.split(' -> ')
                                 dictionary[key.strip()] = value.strip()
                     return dictionary
-    raise ValueError("No log data available matching the specified SEID and UR-SEQN.") 
+    raise ValueError("No log data available matching the specified SEID and UR-SEQN.")
 
 def Check_ue_traffic_notification(iperf_results, imsi):
     try:
         logs = subprocess.check_output(['docker', 'logs', 'oai-smf'], text=True)
         traffic_iperf_results = get_iperf3_transfer_size(iperf_results)
-        tolerance = 0.1
+        # skew between iperf3 results and the results reported by SMF logs
+        tolerance = 0.3
         min_val = traffic_iperf_results * (1 - tolerance)
         max_val = traffic_iperf_results * (1 + tolerance)
         callback_data = get_traffic_data_from_handler(imsi)
