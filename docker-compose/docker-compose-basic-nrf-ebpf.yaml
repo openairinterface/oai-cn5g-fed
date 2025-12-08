@@ -96,7 +96,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: phineroth/oai-smf:ethcp
+        image: oaisoftwarealliance/oai-smf:develop
         expose:
             - 80/tcp
             - 8080/tcp
@@ -114,7 +114,7 @@ services:
             - "oai-upf:192.168.70.129"
     oai-upf:
         container_name: "oai-upf"
-        image: phinetech/oai-upf:eth-pdu-latest
+        image: oaisoftwarealliance/oai-upf:develop
         expose:
             - 2152/udp
             - 8805/udp
@@ -144,6 +144,7 @@ services:
         image: oaisoftwarealliance/trf-gen-cn5g:latest
         environment:
             - EBPF_GW_SETUP=yes
+            - EBPF_GW_MTU=1450
             - EBPF_GW_N6_IP_ADDR=192.168.72.135
             - GW_SGI_IP_ADDR=192.168.70.135
             - GW_N3_IP_ADDR=192.168.71.135
