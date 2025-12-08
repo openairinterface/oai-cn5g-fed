@@ -94,7 +94,7 @@ class CNTestLib:
                         nf["depends_on"].append("oai-nrf")
                     else:
                         nf["depends_on"] = ["oai-nrf"]
-                        
+
                 if "vpp-upf" in list_of_containers and service == "oai-smf":
                     extra_host_entry = "vpp-upf.node.5gcn.mnc95.mcc208.3gppnetwork.org:192.168.79.201"
                     if 'extra_hosts' in nf:
@@ -103,10 +103,10 @@ class CNTestLib:
                     else:
                         nf['extra_hosts'] = [extra_host_entry]
                 if "vpp-upf" in list_of_containers and service == "oai-ext-dn":
-                    entry_point = "/bin/bash -c \"ip route add 12.1.1.0/24 via 192.168.81.201; ip route; sleep infinity\""
+                    entry_point = '/bin/bash -c \"iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;"\"ip route add 12.1.1.0/24 via 192.168.81.201 dev eth0; ip route; sleep infinity"'
                     nf['entrypoint'] = entry_point
                     if 'networks' in nf:
-                        nf['networks'] = {'n6_test_net': {'ipv4_address': '192.168.81.141'}}  
+                        nf['networks'] = {'n6_test_net': {'ipv4_address': '192.168.81.141'}}
                 if get_image_tag(service):
                     nf["image"] = get_image_tag(service)
 
@@ -152,16 +152,16 @@ class CNTestLib:
             log_dir = os.path.join(log_dir, folder)
         cn_log_list = self.docker_api.store_all_logs(log_dir, all_services)
         for filename in cn_log_list:
-            if re.search('mysql', filename) is not None or re.search('oai-ext-dn', filename) is not None or re.search('trace_dummy', filename) is not None:
+            if re.search('mysql', filename) is not None or re.search('oai-ext-dn', filename) is not None or re.search('trace_dummy', filename) is not None or re.search('vpp-upf', filename) is not None:
                 continue
             name_split = filename.split('logs/')
             bye_message_present = False
             with open(filename, 'r') as f:
                 for line in f:
-                    result = re.search('system.*info.* Bye. Shutdown Procedure took (?P<duration>[0-9]+) ms', line)
-                    if result is not None and not bye_message_present:
+                    if "Bye." in line:
                         bye_message_present = True
-                        duration = int(result.group('duration'))
+                        temp_line = line.split(" ")
+                        duration = [temp_line[i+1] for i in range(0,len(temp_line)) if "took" in temp_line[i]][0]
                         logging.info(f'{name_split[1]} container properly shutdown in {duration} ms.')
             if not bye_message_present:
                 logging.error(f'{name_split[1]} container did NOT properly shutdown.')

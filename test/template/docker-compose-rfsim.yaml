@@ -1,6 +1,6 @@
 services:
     oai-gnb:
-        image: oaisoftwarealliance/oai-gnb:2024.w44
+        image: oaisoftwarealliance/oai-gnb:2025.w46
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
@@ -22,7 +22,7 @@ services:
             retries: 5
 
     oai-nr-ue:
-        image: oaisoftwarealliance/oai-nr-ue:2024.w44
+        image: oaisoftwarealliance/oai-nr-ue:2025.w46
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
