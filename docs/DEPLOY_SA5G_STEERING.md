@@ -36,20 +36,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 For this demo, all the images which use the `develop` branch have been retrieved from the official `docker-hub` (see also
 [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
 
-| NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
-|----------|:------------|-----------------------------|--------------|-------|
-| NSSF     | `develop`    | `v2.0.1`                    | X            | -     |
-| AMF      | `develop`    | `v2.0.1`                    | X            | -     |
-| AUSF     | `develop`    | `v2.0.1`                    | X            | -     |
-| NRF      | `develop`    | `v2.0.1`                    | X            | -     |
-| SMF      | `develop`    | `v2.0.1`                    | X            | -     |
-| UDR      | `develop`    | `v2.0.1`                    | X            | -     |
-| UDM      | `develop`    | `v2.0.1`                    | X            | -     |
-| PCF      | `develop`    | `v2.0.1`                    | X            | -     |
-| UPF-VPP  | `develop`    | `v2.0.1`                    | X            | -     |
-
-<br/>
-
 This tutorial shows how to configure the Traffic Steering feature at SMF and UPF, based on policies from the PCF.
 
 We will show and validate:

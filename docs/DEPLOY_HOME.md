@@ -14,14 +14,14 @@ Welcome to the tutorial home page of the OAI 5g Core project. Here you can find 
     - [Pull the container images](./RETRIEVE_OFFICIAL_IMAGES.md)
     - [Build the container images](./BUILD_IMAGES.md)
 - [Configuring the Containers](./CONFIGURATION.md)
-    - [How to use PCF Provisionning API](./PCF_PROVISIONING_API.md)
+    - [How to use PCF Provisioning API](./PCF_PROVISIONING_API.md)
 - 5G Core Network Deployment
     - [Using Docker-Compose, perform a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
     - [Using Docker-Compose, perform a `basic` deployment with `eBPF` implementation of UPF](./DEPLOY_SA5G_WITH_UPF_EBPF.md)
     - [Using Docker-Compose, perform a `basic-vpp` deployment with `VPP` implementation of UPF](./DEPLOY_SA5G_WITH_VPP_UPF.md)
     - [Using Docker-Compose, perform a `basic` deployment with `SD-Fabric` implementation of UPF](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-sdfabric/-/wikis/Deployment-using-Docker)
     - [Using Docker-Compose, perform a `basic` deployment with Static UE IP address allocation](./DEPLOY_SA5G_BASIC_STATIC_UE_IP.md)
-    - [Using Helm Chart, perform a `basic` deployment](./DEPLOY_SA5G_HC.md)
+    - [Using Helm Chart](https://gitlab.eurecom.fr/oai/orchestration/charts/-/tree/develop)
     - [Using Docker-Compose, doing network slicing](./DEPLOY_SA5G_SLICING.md)
 - 5G Core Network Deployment and Testing with Ran Emulators
     - [Using Docker-Compose, perform a `basic` deployment and test with `OAI RF simulator`](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/ci-scripts/yaml_files/5g_rfsimulator)

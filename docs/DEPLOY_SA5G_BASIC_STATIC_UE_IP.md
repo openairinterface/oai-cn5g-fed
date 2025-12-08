@@ -34,8 +34,6 @@ Please follow the tutorial step by step to create a stable working testbed.
 - Best practice open this markdown file with your favourite editor or online on gitlab and open a terminal separately
 - Before reading this tutorial read this [one](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
 
-**CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
-
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
@@ -87,7 +85,7 @@ Make sure you perform this for all the UEs, if there is a user information prese
 
 For now these two entries are present in the database file
 
-## 3. Deploying OAI 5g Core Network
+## 3. Deploying OAI 5G Core Network
 
 In the previous tutorial we explain how to deploy the core network using our [python deployer](../docker-compose/core-network.py). Here we will only provide quick commands needed to deploy the core network, to learn how to use the python deployer please follow [this page](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md).
 

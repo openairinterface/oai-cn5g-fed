@@ -33,21 +33,7 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
 9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 
-* In this demo the image tags which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below. When pulling images of network functions from dockerhub pull images for `develop` tag
-
-| CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8         |
-| ----------- |:-------------- | ----------------------------- | ------------ | --------------|
-| AMF         | `master`      | `v1.5.0`                      | X            | X              |
-| AUSF        | `master`      | `v1.5.0`                      | X            | X              |
-| NRF         | `master`      | `v1.5.0`                      | X            | X              |
-| SMF         | `master`      | `v1.5.0`                      | X            | X              |
-| UDR         | `master`      | `v1.5.0`                      | X            | X              |
-| UDM         | `master`      | `v1.5.0`                      | X            | X              |
-| SPGWU       | `master`      | `v1.5.0`                      | X            | X              |
-| UPF-VPP     | `master`      | `v1.5.0`                      | X            | X              |
-
-
-<br/>
+* In this demo the image tags which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below. When pulling images of network functions from Dockerhub pull images for `develop` tag
 
 This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
 

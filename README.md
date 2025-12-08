@@ -76,7 +76,11 @@ It also hosts some tutorials.
 * [How to do a container-based simple deployment](docs/DEPLOY_HOME.md).
 * [How to create a container-based developer environment](docs/DEBUG_5G_CORE.md).
 
-# Licence info
+# Feature Set
+
+Feature set of all the network functions is [here](./FEATURE_SET.md)
+
+# License info
 
 It is distributed under `OAI Public License V1.1`.
 See [OAI Website for more details](https://www.openairinterface.org/?page_id=698).

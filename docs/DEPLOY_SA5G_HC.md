@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-OAI 5G core network have different network functions which can be used invidiually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster. 
+OAI 5G core network have different network functions which can be used individually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster. 
 
 ![Helm Chart Deployment](./images/helm-chart.png)
 
@@ -36,27 +36,28 @@ OAI 5G core network have different network functions which can be used invidiual
 Clone the git repository 
 
 ```console 
-git clone -b <Branch> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed
+git clone -b <Branch> https://gitlab.eurecom.fr/oai/orchestration/charts.git
 ```
 
 ## 1. Description
 
-The helm charts can be used on any production grade kubernetes cluster or even vanilla kubernetes. We have also tested on a single node 4 CPU and 16 GB ram minikube cluster with docker virtualization environment. In our testing environment we deploy these charts on our inhouse Openshift clusters the cluster information can be found below.
+The helm charts can be used on any production grade kubernetes cluster or even vanilla kubernetes. We have also tested on a single node 4 CPU and 16 GB ram minikube cluster with docker virtualization environment. In our testing environment we deploy these charts on our in-house Openshift clusters the cluster information can be found below.
 
 | Software                        | Version                                 |
 |:--------------------------------|:----------------------------------------|
-| Openshift Client Version        | 4.10-4.16                               |
-| Kubernetes Version              | Kubernetes Version: v1.27.4             |
-| helm                            | v3.11.2                                 |
+| Openshift Client Version        | 4.16+                                   |
+| Kubernetes Version              | Kubernetes Version: v1.31               |
+| helm                            | v3.17                                   |
 | Base images of Network functions| Ubuntu 22.04/UBI 9(RHEL 9)              |
 
 Each NF has its independent helm-chart and apart from that there are parent helm-charts for below scenarios:
 
-1. Minimalist deployment: MYSQL (Subscriber Database), AMF, SMF, UPF, NRF
-2. Basic deployment: MYSQL (Subscriber Database), UDR, UDM, AUSF, AMF, SMF, UPF, NRF, LMF
-3. Advance deployment: MYSQL (Subscriber Database), NSSF, UDR, UDM, AUSF, AMF, SMF, UPF, NRF
+1. **Minimalist deployment**: MYSQL (Subscriber Database), AMF, SMF, UPF, NRF, Traffic Server
+2. **Basic deployment**: MYSQL (Subscriber Database), UDR, UDM, AUSF, AMF, SMF, UPF, NRF, LMF, Traffic Server
+3. **Advance deployment**: MYSQL (Subscriber Database), NSSF, UDR, UDM, AUSF, AMF, SMF, UPF, NRF, Traffic Server
 
 End to End testing scenario: 
+
 1. Case 1: Monolithic RAN: OAI-gNB (RFSimulated), OAI-NR-UE (RFSimulated)
 2. Case 2: F1 Split: OAI-CU, OAI-DU (RFSimulated), OAI-NR-UE (RFSimulated)
 3. Case 3: E1-F1 Split: OAI-CU-CP, OAI-CU-UP, OAI-DU (RFSimulated), OAI-NR-UE (RFSimulated)
@@ -78,7 +79,7 @@ metadata:
 EOF
 ```
 
-For Openshift you need to create a new project instead
+For Openshift you need to create a new project instead:
 
 ```shell
 oc new-project oai-tutorial
@@ -88,60 +89,55 @@ And later add the labels to allow creating `privileged` pods.
 
 ## 2. Fetching Network Function Images
 
-Ubuntu base images can be pulled from [docker-hub](https://hub.docker.com/u/oaisoftwarealliance). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. In case of RHEL based worker node you can build your own UBI images, to download packages from RHEL repository you need a developer or enterprise account. 
+Ubuntu base images can be pulled from [docker-hub](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. In case of RHEL based worker node you can build your own UBI images, to download packages from RHEL repository you need a developer or enterprise account. 
 
-1. To learn how to build UBI 9.X images follow this [tutorial](./openshift/README.md)
-2. To learn how to build Ubuntu images follow this [tutorial](./BUILD_IMAGES.md)
-
+1. To learn how to build UBI 9.X images follow this [tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads)
+2. To learn how to build Ubuntu images follow this [tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/BUILD_IMAGES.md?ref_type=heads)
 
 ## 3. Configuring Helm Charts
 
 ```console
-cd oai-cn5g-fed
-ls charts/
-oai-5g-core  oai-5g-ran
+ls -lrth charts/
+oai-5g-core  oai-5g-ran e2e_scenarios ci-scripts README.md
 ls charts/oai-5g-core/
-mysql  oai-5g-advance  oai-5g-basic  oai-5g-mini  oai-amf  oai-ausf  oai-lmf  oai-nrf  oai-nssf  oai-smf  oai-traffic-server  oai-udm  oai-udr  oai-upf
+mysql           oai-5g-basic  oai-amf   oai-lmf  oai-nssf  oai-smf             oai-udm  oai-upf
+oai-5g-advance  oai-5g-mini   oai-ausf  oai-nrf  oai-pcf   oai-traffic-server  oai-udr
 ls charts/oai-5g-ran/
-oai-cu  oai-cu-cp  oai-cu-up  oai-du  oai-gnb  oai-nr-ue
+oai-cu     oai-cu-up  oai-du-fhi-72  oai-gnb         oai-nr-ue      oai-xapp-template
+oai-cu-cp  oai-du     oai-flexric    oai-gnb-fhi-72  oai-raytracer
+ls charts/e2e_scenarios/
+case1  case2  case3
 ```
 
 All the OAI core network charts are present in `oai-5g-core` folder, there you can find charts of individual network functions and for the above described three different deployment settings. 
 
-1. Folder `oai-5g-mini` is for [minimalist deployment](../charts/oai-5g-core/oai-5g-mini/README.md)
-2. Folder `oai-5g-basic` is for [basic deployment](../charts/oai-5g-core/oai-5g-basic/README.md)
-3. Folder `oai-5g-advance` is for [advance deployment](../charts/oai-5g-core/oai-5g-advance/README.md)
+1. Folder `oai-5g-mini` is for [minimalist deployment](../oai-5g-core/oai-5g-mini/README.md)
+2. Folder `oai-5g-basic` is for [basic deployment](../oai-5g-core/oai-5g-basic/README.md)
+3. Folder `oai-5g-advance` is for [advance deployment](../oai-5g-core/oai-5g-advance/README.md)
 
-These charts are configured keeping in mind 5G service based architecture, if you want to deploy using reference based architecture then you need to make certain changes. 
+These charts are configured keeping in mind 5G service based architecture, if you want to deploy using reference based architecture then you need to make certain changes.
 
 The structure of all these folders is similar, 
 
 ```
-oai-5g-basic/
+oai-5g-core/oai-5g-basic/
 ├── Chart.yaml
 ├── config.yaml
 ├── README.md
 ├── templates
-│   ├── configmap.yaml
-│   ├── deployment.yaml
-│   ├── _helpers.tpl
-│   ├── multus.yaml (Only in AMF, SMF and UPF)
-│   ├── NOTES.txt
-│   ├── rbac.yaml
-│   ├── serviceaccount.yaml
-│   └── service.yaml
+│   └── configmap.yaml
 └── values.yaml
 
 1 directory, 5 files
-
 ```
 
-Starting version `2.0.0` of OAI 5G Core network functions their configuration will be in `config.yaml` and all infrastructure related information including image definition will be in `values.yaml`.
+- Configuration is in `config.yaml` 
+- Infrastructure related information including image definition is in `values.yaml`.
 
 Helm chart of every network function looks similar and has the below structure. Only the chart of mysql database and NRF is different.
 
 ```
-Network_function/
+oai-5g-core/oai-amf/
 ├── Chart.yaml
 ├── config.yaml
 ├── README.md
@@ -149,7 +145,7 @@ Network_function/
 │   ├── configmap.yaml
 │   ├── deployment.yaml
 │   ├── _helpers.tpl
-│   ├── multus.yaml
+│   ├── nad.yaml    (only for AMF, SMF, UPF, DU/gNB/CU-UP/CP/CU)
 │   ├── NOTES.txt
 │   ├── rbac.yaml
 │   ├── serviceaccount.yaml
@@ -157,7 +153,6 @@ Network_function/
 └── values.yaml
 
 1 directory, 12 files
-
 ```
 
 All the configurable parameters for a particular commit/release are mentioned in the `config.yaml` file. These parameters will keep on changing in the future depending on the nature of development and features. 
@@ -183,31 +178,30 @@ Core Network functions discovers each-other using NRF and instead of using the i
 ```
 ## Example from oai-amf/values.yaml
 multus:
-  ## If you don't want to add a default route in your pod then leave this field empty
-  defaultGateway: "172.21.7.254"
-  n2Interface:
-    create: false
-    ipAdd: "172.21.6.94"
-    netmask: "22"
-    ## If you do not have a gateway leave the field empty
-    gateway:
-    ## If you do not want to add any routes in your pod then leave this field empty
-    routes: [{'dst': '10.8.0.0/24','gw': '172.21.7.254'}]
-    name: 'n2'
-    hostInterface: "bond0" # Interface of the host machine on which this pod will be scheduled
+  enabled: false
+  interfaces:
+    - name: "n2"
+      hostInterface: "eth0"
+      ipAdd: "172.21.6.90"
+      netmask: "22"
+      defaultRoute: "172.21.7.254"
+      enabled: true
+      type: macvlan
+      mode: "bridge"
+    - name: "sbi"
+      hostInterface: "eth0"
+      ipAdd: "172.21.8.91"
+      netmask: "22"
+      gateway: "172.21.11.254"
+      enabled: false
+      type: macvlan
+      mode: "bridge"
 ```
 
 #### 3.1.2 Use Single Interface
 
 - No need to configure multus for any network function. For different communication interfaces network functions will use same Ethernet interface. Example AMF will use `eth0` interface to communicate with gNB, SMF and NRF.
-- In `values.yaml` of AMF, SMF and UPF in multus section do multus.create `false` like below, 
-
-```
-## Example from oai-amf/values.yaml
-multus:
-  n2Interface:
-    create: false
-```
+- In `values.yaml` of AMF, SMF and UPF in multus section do multus.enabled `false`
 
 #### 3.1.3 Capturing Packets (Optional)
 
@@ -218,14 +212,14 @@ To enable the persistent volume in the `values.yaml` of every network function m
 ```
 ## amf
 start:
-  amf: true #If false the network function container will run in sleep mode for manually testing
-  tcpdump: true
+  amf: true      # If false → NF container sleeps (for manual debugging)
+  tcpdump: false  # Enable tcpdump container inside pod
 
-includeTcpDumpContainer: true #If true it will add a tcpdump container inside network function pod for debugging
+includeTcpDumpContainer: false  # If true, add tcpdump sidecar for debugging
 
 #To store PCAP of NF in a sharedVolume so it can be easily fetched (PVC is created with NRF charts so make sure in NRF it is true)
 persistent:
-  sharedvolume: true
+  sharedvolume: false
 ```
 
 ### 3.2 Network function Images
@@ -250,12 +244,11 @@ imagePullSecrets:
 
 When pulling images from docker hub you have several choices either to use images with develop tag (based on latest develop branch sometimes might not be stable), latest (built from current master branch) and release tags. 
 
-
 ### 3.3 Configuring Helm Chart Parameters
 
-In the [config.yaml](../charts/oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
+In the [config.yaml](../oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
 
-For basic and advance deployment check the database [oai_db-basic.sql](../charts/oai-5g-core/mysql/initialization/oai_db-basic.sql)
+For basic and advance deployment check the database [oai_db-basic.sql](../oai-5g-core/mysql/initialization/oai_db-basic.sql)
 
 A new subscriber entry can be added directly in the sql file or it can be added once the core network is already deployed. 
 
@@ -295,7 +288,8 @@ Once the configuration is finished the charts can be deployed with a user who ha
 4. Create namespace/project
 
 ``` shell
-helm install basic oai-5g-basic/ -n oai-tutorial
+# to set the distribution --set kubernetesDistribution="Vanilla/Openshift"
+helm install basic ../oai-5g-core/oai-5g-basic/ -n oai-tutorial
 ```
 
 <details>
@@ -332,7 +326,7 @@ The images which are used in the tutorial are already present in docker-hub like
 
 ### 5.1 Images OAI-gNB and OAI-NR-UE
 
-For Ubuntu based worker nodes the images can be pulled directly from docker-hub. To build images manually follow this [link](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/docker). In case you have an Openshift cluster then follow this [link](../openshift/README.md)
+For Ubuntu based worker nodes the images can be pulled directly from docker-hub. To build images manually follow this [link](https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/docker). In case you have an Openshift cluster then follow this [link](https://gitlab.eurecom.fr/oai/openairinterface5g/-/raw/develop/openshift/README.md?ref_type=heads)
 
 ### 5.2 Configuring OAI-gNB RFSimulator and OAI-NR-UE
 
@@ -346,16 +340,21 @@ For this tutorial we are not using multus here for simplicity, generally there s
 ## oai-gNB configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
-  gnbName: "oai-gnb-rfsim"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"  #currently only 4 standard values are allowed 1,2,3,4
-  usrp: rfsim   #allowed values rfsim, b2xx, n3xx or x3xx
-  amfhost: "oai-amf"  # amf ip-address or service-name oai-amf-svc or 172.21.6.94
-  n2IfName: "eth0"    # if multus.n2Interface.create is true then use n2
-  n3IfName: "eth0"   #if multus.n3Interface.create is true then use n3 or you can only use 1 interface n2 or eth0 
+  useAdditionalOptions: "-E --rfsim --log_config.global_log_options level,nocolor,time"
+  gnbName: "oai-gnb"
+  gdbstack: 1     # 1 to see gdb traces 
+  radio: "rfsim"  # Options: rfsim, vrtsim, b2xx, n3xx, x3xx
+  enableE2: false
+  ricHost: "oai-flexric"
+  amfHost: "oai-amf" #oai-amf"   # AMF service name or IP (e.g., oai-amf / 172.21.6.94)
+  tac: 1
+  plmn_list:
+  - mcc: 001   # Must match AMF/SMF/UPF
+    mnc: 01
+    mnc_length: 2
+    snssaiList:
+      - sst: "1"
+        sd: "0xffffff"
 ``` 
 
 ### 5.3 Deploy OAI-gNB RFSimulator
@@ -363,8 +362,8 @@ config:
 To deploy the oai-gnb in rf simulator mode follow the below steps
 
 ``` shell
-cd ../oai-5g-ran/
-helm install gnb oai-gnb --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install gnb ../oai-5g-ran/oai-gnb --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -415,15 +414,16 @@ Defaulted container "amf" out of: amf, init (init)
 ```
 config:
   timeZone: "Europe/Paris"
-  rfSimServer: "oai-ran"    # ip-address of rfsim or service name oai-gnb or oai-du
+  rfSimServer: "oai-ran"
   fullImsi: "001010000000100"       # make sure all the below entries are present in the subscriber database
   fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
   opc: "C42449363BBAD02B66D16BC975D77CC1"
+  gdbstack: 1     # 1 to see gdb traces 
   dnn: "oai"
-  sst: "1"                     # configure according to gnb and amf, smf and upf 
+  sst: "1"              # configure according to gnb and amf, smf and upf 
   sd: "16777215"
-  usrp: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
-  useAdditionalOptions: "--rfsim -r 106 --numerology 1 -C 3619200000 --log_config.global_log_options level,nocolor,time"
+  radio: "rfsim"            # allowed rfsim, b2xx, n3xx, x3xx
+  useAdditionalOptions: "-E --rfsim -r 106 --numerology 1 -C 3319680000 --log_config.global_log_options level,nocolor,time"
 ```
 
 ### 5.5 Deploy OAI-NR-UE RFSimulator
@@ -431,7 +431,8 @@ config:
 To deploy the oai-nr-ue in rf simulator mode follow the below steps
 
 ``` shell
-helm install nrue oai-nr-ue/ --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install nrue ../oai-5g-ran/oai-nr-ue/ --namespace oai-tutorial
 ```
 
 <details>
@@ -446,7 +447,7 @@ TEST SUITE: None
 NOTES:
 1. Get the application name by running these commands:
   export NR_UE_POD_NAME=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-nr-ue,app.kubernetes.io/instance=nrue" -o jsonpath="{.items[0].metadata.name}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2 (for x86).
 3. Note: This helm chart of OAI-NR-UE is only tested in RF-simulator mode not tested with hardware on Openshift/Kubernetes Cluster
 4. In case you want to test these charts with USRP then make sure your CPU sleep states are off```
 </details>
@@ -495,11 +496,12 @@ rtt min/avg/max/mdev = 22.375/24.072/27.031/1.833 ms
 ## incase above doesn't work try with 8.8.8.8 instead of dns. If that works then probably you have't configure dns properly in SMF. 
 ```
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case1) 
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case1) 
 
 ```bash
-helm dependency update charts/e2e_scenarios/case1
-helm install case1 charts/e2e_scenarios/case1 -n oai-tutorial
+# to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift
+helm dependency update ../e2e_scenarios/case1
+helm install case1 ../e2e_scenarios/case1 -n oai-tutorial
 ```
 
 ## 6 Use Case 2: Testing with F1 Split RAN
@@ -521,39 +523,48 @@ config:
   useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
   # If mounting the configuration file then below parameters are not used
   cuName: "oai-cu"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"     
-  amfhost: "oai-amf"  # amf ip-address or service-name oai-amf-svc or 172.21.6.94
-  n2IfName: "eth0"    # if multus.n2Interface.create is true then use n2
-  n3IfName: "eth0"   #if multus.n3Interface.create is true then use n3 or you can only use 1 interface n2 or eth0 
-  f1IfName: "eth0"   #if multus.f1Interface.create is true then use multus.f1Interface.Ipadd
-  f1cuPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
-  f1duPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
+  amfHost: "oai-amf"  # amf ip-address or service-name oai-amf
+  tac: 1
+  enableE2: false
+  ricHost: "oai-flexric"
+  f1uPort: 2153
+  gdbstack: 1     # 1 to see gdb traces
+  plmn_list:
+  - mcc: "001"   # Must match AMF/SMF/UPF
+    mnc: "01"
+    mnc_length: "2"
+    snssaiList:
+      - sst: "1"
+        sd: "0xffffff"
 ``` 
 
 ```
 ## oai-du configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
-  duName: "oai-du-rfsim"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"  #currently only 4 standard values are allowed 1,2,3,4
-  usrp: rfsim   #allowed values rfsim, b2xx, n3xx or x3xx
-  f1IfName: "eth0"   #if multus.f1Interface.create is true then use f1
+  useAdditionalOptions: "-E --rfsim --log_config.global_log_options level,nocolor,time"
+  duName: "oai-rfsim"
+  usrp: "rfsim"  # Options: rfsim, b2xx, n3xx, x3xx
   cuHost: "oai-cu" ## Ip-address or hostname
-  f1cuPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
-  f1duPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
+  enableE2: false
+  f1duPort: 2153
+  ricHost: "oai-flexric"
+  gdbstack: 1     # 1 to see gdb traces 
+  tac: 1
+  plmn_list:
+  - mcc: "001"   # Must match AMF/SMF/UPF
+    mnc: "01"
+    mnc_length: "2"
+    snssaiList:
+      - sst: "1"
+        sd: "0xffffff"
 ```
 
 ### 6.2 Deploy OAI-CU and OAI-DU (RFSimulator)
 
 ``` shell
-helm install cu oai-cu --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install cu ../oai-5g-ran/oai-cu --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -568,7 +579,7 @@ NOTES:
 1. Get the application name by running these commands:
   export GNB__CU_POD_NAME=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-cu,app.kubernetes.io/instance=cu" -o jsonpath="{.items[0].metadata.name}")
   export GNB_CU_eth0_IP=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-cu,app.kubernetes.io/instance=cu" -o jsonpath="{.items[*].status.podIP}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2 (for x86).
 3. If you want to configure for a particular band then copy the configuration file in templates/configmap.yaml from here https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF
 ```
 </details>
@@ -582,7 +593,8 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=oai-cu --namesp
 Deploy oai-du
 
 ``` shell
-helm install du oai-du --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install du ../oai-5g-ran/oai-du --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -597,7 +609,7 @@ NOTES:
 1. Get the application name by running these commands:
   export GNB_DU_POD_NAME=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-du,app.kubernetes.io/instance=du" -o jsonpath="{.items[0].metadata.name}")
   export GNB_DU_eth0_IP=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-du,app.kubernetes.io/instance=du" -o jsonpath="{.items[*].status.podIP}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2 (for x86).
 3. Note: This helm chart of oai-du is only tested in RF-simulator mode and is not tested with USRPs/RUs on Openshift/Kubernetes Cluster
 4. In case you want to test these charts with USRP/RU then make sure your underlying kernel is realtime and CPU sleep states are off
 5. If you want to configure for a particular band then copy the configuration file in templates/configmap.yaml from here https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF
@@ -646,11 +658,12 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected. 
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case2) 
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case2) 
 
 ```bash
-helm dependency update charts/e2e_scenarios/case2
-helm install case2 charts/e2e_scenarios/case2 -n oai-tutorial
+# to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift
+helm dependency update ../e2e_scenarios/case2
+helm install case2 ../e2e_scenarios/case2 -n oai-tutorial
 ```
 
 ## 7 Use Case 3: Testing with E1 and F1 Split RAN
@@ -670,57 +683,49 @@ config:
   timeZone: "Europe/Paris"
   useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
   cucpName: "oai-cu-cp"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"  #currently only 4 standard values are allowed 1,2,3,4
-  amfhost: "oai-amf"  # amf ip-address or service-name oai-amf-svc or 172.21.6.94
-  n2IfName: "eth0"    # if multus.n2Interface.create is true then use n2
-  f1IfName: "eth0"   #if multus.f1Interface.create is true then use f1
-  e1IfName: "eth0"   #if multus.f1Interface.create is true then use e1
-  f1cuPort: "2153"   #2153 if using same interface for f1 and n2 else standard port 2152 should be use if f1 and n3 interface are different
-  f1duPort: "2153"   #2153 if using same interface for f1 and n2 else standard port 2152 should be use if f1 and n3 interface are different
+  amfHost: "oai-amf"  # amf ip-address or service-name oai-amf or 172.21.6.94
+  enableE2: false
+  ricHost: "oai-flexric"
+  f1uPort: 2153
+  gdbstack: 1     # 1 to see gdb traces 
+  tac: 1
+  plmn_list:
+  - mcc: "001"   # Must match AMF/SMF/UPF
+    mnc: "01"
+    mnc_length: "2"
+    snssaiList:
+      - sst: "1"
+        sd: "0xffffff"
 ``` 
 
 ```
 ## oai-cu-up configuration from values.yaml
 config:
   timeZone: "Europe/Paris"
-  useAdditionalOptions: ""
-  cuupName: "oai-cuup"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"     #currently only 4 standard values are allowed 1,2,3,4
-  cuCpHost: "oai-cu" # 
-  n3IfName: "eth0"   #if multus.n3Interface.create is true then use n3 or you can only use 1 interface n3 or eth0 
-  f1IfName: "eth0"   #if multus.f1uInterface.create is true then use f1 or you can only use 1 interface n3 or eth0 
-  e1IfName: "eth0"   #if multus.e1Interface.create is true then use e1 or you can only use 1 interface n3 or eth0 
-  f1cuPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
-  f1duPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
+  useAdditionalOptions: "--log_config.global_log_options level,nocolor,time"
+  cuupName: "oai-cu-up"
+  cucpHost: "oai-cu"
+  enableE2: false
+  ricHost: "oai-flexric"
+  f1uPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
+  gdbstack: 1     # 1 to see gdb traces
+  tac: 1
+  plmn_list:
+  - mcc: "001"   # Must match AMF/SMF/UPF
+    mnc: "01"
+    mnc_length: "2"
+    snssaiList:
+      - sst: "1"
+        sd: "0xffffff"
 ```
 
-```
-## oai-du configuration from values.yaml
-config:
-  timeZone: "Europe/Paris"
-  useAdditionalOptions: "--rfsim --log_config.global_log_options level,nocolor,time"
-  duName: "oai-du-rfsim"
-  mcc: "001"   # check the information with AMF, SMF, UPF
-  mnc: "01"    # check the information with AMF, SMF, UPF
-  tac: "1"     # check the information with AMF
-  sst: "1"  #currently only 4 standard values are allowed 1,2,3,4
-  usrp: rfsim   #allowed values rfsim, b2xx, n3xx or x3xx
-  f1IfName: "eth0"   #if multus.f1Interface.create is true then use f1
-  cuHost: "oai-cu" ## Ip-address or hostname
-  f1cuPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
-  f1duPort: "2153"   #2153 if using same interface for f1 and n3 else standard port 2152 should be use if f1 and n3 interface are different
-```
+DU configuration same as earlier
 
 ## 7.1 Deploy OAI-CU-CP, OAI-CU-UP and OAI-DU
 
 ``` shell
-helm install cucp oai-cu-cp --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install cucp ../oai-5g-ran/oai-cu-cp --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -734,7 +739,7 @@ TEST SUITE: None
 NOTES:
 1. Get the application name by running these commands:
   export GNB__CU_CP_POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=oai-cu-cp,app.kubernetes.io/instance=cucp" -o jsonpath="{.items[0].metadata.name}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2 (x86).
 3. If you want to configure for a particular band then copy the configuration file in templates/configmap.yaml from here https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF
 ```
 </details>
@@ -748,7 +753,8 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=oai-cu-cp --tim
 Deploy oai-cu-up
 
 ``` shell
-helm install cuup oai-cu-up --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install cuup ../oai-5g-ran/oai-cu-up --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -762,7 +768,7 @@ TEST SUITE: None
 NOTES:
 1. Get the application name by running these commands:
   export GNB__CU_POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=oai-cu-up,app.kubernetes.io/instance=cuup" -o jsonpath="{.items[0].metadata.name}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2(x86).
 3. If you want to configure for a particular band then copy the configuration file in templates/configmap.yaml from here https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF
 4. For good performance make sure your underlying kernel is realtime and CPU sleep states are off
 ```
@@ -791,7 +797,8 @@ kubectl logs --namespace oai-tutorial $(kubectl get pods --namespace oai-tutoria
 Deploy oai-du
 
 ``` shell
-helm install du oai-du --namespace oai-tutorial
+# to set the Kubernetes distribution --set kubernetesDistribution=Openshift
+helm install du ../oai-5g-ran/oai-du --namespace oai-tutorial
 ```
 <details>
 <summary>The output is similar to:</summary>
@@ -806,7 +813,7 @@ NOTES:
 1. Get the application name by running these commands:
   export GNB_DU_POD_NAME=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-du,app.kubernetes.io/instance=du" -o jsonpath="{.items[0].metadata.name}")
   export GNB_DU_eth0_IP=$(kubectl get pods --namespace oai-tutorial -l "app.kubernetes.io/name=oai-du,app.kubernetes.io/instance=du" -o jsonpath="{.items[*].status.podIP}")
-2. Dockerhub images of OpenAirInterface requires avx2 capabilities in the cpu and they are built for x86 architecture, tested on UBUNTU OS only.
+2. Dockerhub images of OpenAirInterface requires AVX2 (x86).
 3. Note: This helm chart of oai-du is only tested in RF-simulator mode and is not tested with USRPs/RUs on Openshift/Kubernetes Cluster
 4. In case you want to test these charts with USRP/RU then make sure your underlying kernel is realtime and CPU sleep states are off
 5. If you want to configure for a particular band then copy the configuration file in templates/configmap.yaml from here https://gitlab.eurecom.fr/oai/openairinterface5g/-/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF
@@ -855,11 +862,12 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected. 
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../charts/e2e_scenarios/case3) 
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case3) 
 
 ```bash
-helm dependency update charts/e2e_scenarios/case3
-helm install case3 charts/e2e_scenarios/case3 -n oai-tutorial
+# to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift
+helm dependency update ../e2e_scenarios/case3
+helm install case3 ../e2e_scenarios/case3 -n oai-tutorial
 ```
 
 ### 8 Uninstall the helm charts

@@ -35,20 +35,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 * In this demo the image tags which were used are listed below, follow the [Building images](./BUILD_IMAGES.md) to build images with below tags. When pulling images of network functions from dockerhub pull images for `develop` tag
 
-| CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8         |
-| ----------- |:-------------- | ----------------------------- | ------------ | --------------|
-| AMF         | `master`      | `v1.5.0`                      | X            | X              |
-| AUSF        | `master`      | `v1.5.0`                      | X            | X              |
-| NRF         | `master`      | `v1.5.0`                      | X            | X              |
-| SMF         | `master`      | `v1.5.0`                      | X            | X              |
-| UDR         | `master`      | `v1.5.0`                      | X            | X              |
-| UDM         | `master`      | `v1.5.0`                      | X            | X              |
-| SPGWU       | `master`      | `v1.5.0`                      | X            | X              |
-| UPF-VPP     | `master`      | `v1.5.0`                      | X            | X              |
-
-
-<br/>
-
 This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `omec-gnbsim`. With the help of `omec-gnbsim` tool, we can perform basic SA5G test by simulating multiple gnb & ue.

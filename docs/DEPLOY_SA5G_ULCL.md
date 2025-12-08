@@ -36,20 +36,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 For this demo, all the images which use the `v1.5.0` tag have been retrieved from the official `docker-hub` (see also
 [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
 
-| NF Name | Branch Name | Tag used at time of writing | Ubuntu 18.04 | RHEL8 |
-|----------|:------------|-----------------------------|--------------|-------|
-| NSSF     | `master`    | `v1.5.0`                    | X            | -     |
-| AMF      | `master`    | `v1.5.0`                    | X            | -     |
-| AUSF     | `master`    | `v1.5.0`                    | X            | -     |
-| NRF      | `master`    | `v1.5.0`                    | X            | -     |
-| SMF      | `master`    | `v1.5.0`                    | X            | -     |
-| UDR      | `master`    | `v1.5.0`                    | X            | -     |
-| UDM      | `master`    | `v1.5.0`                    | X            | -     |
-| PCF      | `master`    | `v1.5.0`                    | X            | -     |
-| UPF-VPP  | `master`    | `V1.5.0`                    | X            | -     |
-
-<br/>
-
 This tutorial shows how to configure the UL CL feature at SMF and UPF, based on policies from the PCF.
 
 We will show and validate:

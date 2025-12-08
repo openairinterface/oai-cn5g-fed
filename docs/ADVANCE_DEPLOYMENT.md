@@ -68,10 +68,10 @@ The example is for AMF:
 
 ```bash
 # clone amf repository 
-$ git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
-$ cd oai-cn5g-amf/docker/
+git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
+cd oai-cn5g-amf/docker/
 # Depending on the environment where the image will be used choose the correct dockerfile
-$ vi/vim/nano/subl Dockerfile.amf.ubuntu
+vi/vim/nano/subl Dockerfile.amf.ubuntu
 # replace the line RUN ./build_amf --clean --Verbose --build-type Release --jobs with below 
 # RUN ./build_amf --clean --Verbose --build-type Debug --jobs
 ```
