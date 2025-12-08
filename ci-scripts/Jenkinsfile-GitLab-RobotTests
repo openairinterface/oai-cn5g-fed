@@ -331,6 +331,9 @@ pipeline {
 
           sh 'sed -i -e "s@ngap-tester:develop@ngap-tester:' + ngapTesterTag + '@" test/image_tags.py'
           for (ii = 0; ii < imageTags.size(); ii++) {
+            if (imageNames[ii] == "oai-upf-vpp" && imageTags[ii] == "develop") { // As UPF-VPP is no longer maintained
+              imageTags[ii] = "develop-863d2bf7"
+            }
             prepareRobotImageTags(imageNames[ii], imageTags[ii])
           }
           sh 'robot ' + rfTags + ' --outputdir archives test'

@@ -34,16 +34,15 @@ AUSF=4
 UDM=5
 UDR=6
 NSSF=7
-UPF_VPP=8
-PCF=9
+PCF=8
 
 // Default tags / branches  --> could be passed on by upstream job
-imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-upf-vpp", "oai-pcf"]
-repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-upf-vpp", "oai-cn5g-pcf"]
-branchNames = ["", "", "", "", "", "", "", "", "", ""]
-imageTags = ["", "", "", "", "", "", "", "", "", ""]
-upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
-pulledImages = [false, false, false, false, false, false, false, false, false, false]
+imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-pcf"]
+repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-pcf"]
+branchNames = ["", "", "", "", "", "", "", "", ""]
+imageTags = ["", "", "", "", "", "", "", "", ""]
+upstreamJobs = [false, false, false, false, false, false, false, false, false]
+pulledImages = [false, false, false, false, false, false, false, false, false]
 
 // Which RAN TAG to use
 ranTag = params.ranTag
@@ -103,9 +102,6 @@ pipeline {
             }
             if (cause.toString().contains('OAI-CN5G-NSSF')) {
               upstreamJobs[NSSF] = true
-            }
-            if (cause.toString().contains('OAI-CN5G-UPF-VPP')) {
-              upstreamJobs[UPF_VPP] = true
             }
             if (cause.toString().contains('OAI-CN5G-PCF')) {
               upstreamJobs[PCF] = true
@@ -191,15 +187,6 @@ pipeline {
               if (upstreamEvent && upstreamJobs[NSSF]) {
                 echo "Upstream Job passed NSSF_TAG to use: ${imageTags[NSSF]}"
                 echo "Upstream Job passed NSSF_BRANCH to use: ${branchNames[NSSF]}"
-                run_ebpf_upf = false
-              }
-            }
-            if (ii == UPF_VPP) {
-              branchNames[UPF_VPP] = params.UPF_VPP_BRANCH
-              imageTags[UPF_VPP] = params.UPF_VPP_TAG
-              if (upstreamEvent && upstreamJobs[UPF_VPP]) {
-                echo "Upstream Job passed UPF_VPP_TAG to use: ${imageTags[UPF_VPP]}"
-                echo "Upstream Job passed UPF_VPP_BRANCH to use: ${branchNames[UPF_VPP]}"
                 run_ebpf_upf = false
               }
             }
