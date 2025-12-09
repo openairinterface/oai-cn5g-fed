@@ -106,6 +106,11 @@ pipeline {
           sh "git submodule deinit --force --all > /dev/null 2>&1"
           sh "git submodule update --init --recursive ci-scripts/common"
           sh "mkdir -p archives"
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.cn_oc_credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
+          ]) {
+          sh "oc login -u ${OC_Username} -p ${OC_Password} --server=https://api.oai.cs.eurecom.fr:6443"
+          sh "oc project ${oc_image_project_name}"
           for (ii = 0; ii < imageNames.size(); ii++) {
             if (ii == NRF) {
               branchNames[NRF] = params.NRF_BRANCH
@@ -136,11 +141,32 @@ pipeline {
               baseTags[UDR] = params.UDR_TAG
             }
             if ((branchNames[ii] == "develop") && (baseTags[ii] == "develop")) {
-              destTags[ii] = getLastCommitFromBranch(ii, repoNames[ii], branchNames[ii])
+              def desiredTag = getLastCommitFromBranch(ii, repoNames[ii], branchNames[ii])
+              echo "Desired tag for ${imageNames[ii]} is ${desiredTag}"
+              def exists = sh(
+                  returnStatus: true,
+                  script: "oc describe istag ${imageNames[ii]}:${desiredTag} -n ${oc_image_project_name}"
+              )
+              if (exists == 0) {
+                  echo "Tag ${desiredTag} exists. Using it."
+                  destTags[ii] = desiredTag
+              } else {
+                  echo "Tag ${desiredTag} NOT found. Searching for latest develop-* fallback."
+
+                  def fallbackTag = getLatestDevelopTagFromOc(imageNames[ii], oc_image_project_name)
+
+                  if (fallbackTag == null) {
+                      error "FATAL: No develop-* fallback tags found for ${imageNames[ii]} in ${oc_image_project_name}"
+                  }
+
+                  echo "Using fallback tag for ${imageNames[ii]}: ${fallbackTag}"
+                  destTags[ii] = fallbackTag
+              }
             } else {
               destTags[ii] = baseTags[ii]
             }
           }
+         }
         }
       }
     }
@@ -487,6 +513,40 @@ def getLastCommitFromBranch(index, repoName, branchName) {
   shaone = shaone.replaceAll('"','')
   shaone = shaone.take(8)
   return "${branchName}-${shaone}"
+}
+
+def getLatestDevelopTagFromOc(imageName, projectName) {
+    def jsonOutput = sh(
+        returnStdout: true,
+        script: "oc get is ${imageName} -n ${projectName} -o json"
+    ).trim()
+
+    def parsed = readJSON(text: jsonOutput)
+
+    if (!parsed.status || !parsed.status.tags) {
+        return null
+    }
+
+    def latestTag = null
+    def latestDate = "2022-01-01T00:00:00Z"
+
+    for (t in parsed.status.tags) {
+        if (!t.tag.startsWith("develop-")) continue
+        if (!t.items || t.items.isEmpty()) continue
+
+        def ts = t.items[0].created
+        if (ts > latestDate) {
+            latestDate = ts
+            latestTag = t.tag
+        }
+    }
+    if (latestTag != null) {
+    echo "Using tag ${latestTag} for ${imageName} in ${projectName}"
+    }
+    else {
+      echo "No develop-* tags found for ${imageName} in project ${projectName}"
+    }
+    return latestTag
 }
 
 def checkCoreNetworkDeployment() {
