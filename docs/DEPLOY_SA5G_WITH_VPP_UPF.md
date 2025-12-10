@@ -18,7 +18,10 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+**Note**: 
+
+1. In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+2. We are not maintaining VPP-UPF any more
 
 **TABLE OF CONTENTS**
 
@@ -27,18 +30,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 * In this demo the image tags and commits which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below.
 
 You can also retrieve the images from `docker-hub`. See [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md).
-
-| CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 18.04 | RHEL8          |
-| ----------- |:-------------- | ----------------------------- | ------------ | ---------------|
-| AMF         | `master`       | `v1.5.0`                      | X            | X              |
-| AUSF        | `master`       | `v1.5.0`                      | X            | X              |
-| NRF         | `master`       | `v1.5.0`                      | X            | X              |
-| SMF         | `master`       | `v1.5.0`                      | X            | X              |
-| UDR         | `master`       | `v1.5.0`                      | X            | X              |
-| UDM         | `master`       | `v1.5.0`                      | X            | X              |
-| UPF-VPP     | `master`       | `v1.5.0`                      | X            | X              |
-
-<br/>
 
 In previous tutorials, we were using the `oai-spgwu-tiny` implementation UPF. That implementation has limited throughput capacity and is a pure SW solution.
 

@@ -25,16 +25,16 @@ This page content expects you to read [deployment pre-requisites](./DEPLOY_PRE_R
 
 # 1. Building images in debug mode
 
-By default all the dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
+By default all the Dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
 
 This way user will have more logs and can have better understanding. To build any core network image in debug mode follow the below steps **after cloning the network function repository**, the example is for AMF, 
 
 ```bash
 # clone amf repository 
-$ git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
-$ cd oai-cn5g-amf/docker/
+git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
+cd oai-cn5g-amf/docker/
 # Depending on the environment where the image will be used choose the correct dockerfile
-$ vi/vim/nano/subl Dockerfile.amf.ubuntu
+vi/vim/nano/subl Dockerfile.amf.ubuntu
 # replace the line RUN ./build_amf --clean --Verbose --build-type Release --jobs with below 
 # RUN ./build_amf --clean --Verbose --build-type Debug --jobs
 ```
@@ -50,15 +50,15 @@ If you are interested in doing development you can leave the code inside the con
 The example below is only for AMF, you need to repeat it for all network functions.
 
 ``` bash
-$: git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
-$: docker build -f oai-cn5g-amf/docker/Dockerfile.amf.ubuntu --target oai-amf-builder --tag oai-amf-builder:develop --no-cache oai-cn5g-amf/
+git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
+docker build -f oai-cn5g-amf/docker/Dockerfile.amf.ubuntu --target oai-amf-builder --tag oai-amf-builder:develop --no-cache oai-cn5g-amf/
 ```
 
 This will build your image and later you can use this image with the command below,
 
 ``` bash
-$: docker run --privileged -d --name oai-amf-development oai-amf-builder:develop sleep infinity
-$: docker exec -it oai-amf-development bash
+docker run --privileged -d --name oai-amf-development oai-amf-builder:develop sleep infinity
+docker exec -it oai-amf-development bash
 # You will be inside the container
 ```
 
@@ -69,15 +69,15 @@ But in this approach you have to code inside the container using vi/vim/nano no 
 The example below is only for AMF you need to repeat it for all network functions.
 
 ``` bash
-$: git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git /openair-amf
-$: docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf  ubuntu:bionic sleep infinity
-$: docker exec -it oai-amf-development bash
+git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git /openair-amf
+docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf  ubuntu:bionic sleep infinity
+docker exec -it oai-amf-development bash
 # below command is same for all network functions
-$: sudo apt update && apt install psmisc software-properties-common git vim nano vi gnupg
+sudo apt update && apt install psmisc software-properties-common git vim nano vi gnupg
 # now you can peform the build
-$: cd /openair-amf/build/scripts
-$: /build_amf --install-deps --force
-$: /build_amf --clean --Verbose --build-type Debug --jobs
+cd /openair-amf/build/scripts
+/build_amf --install-deps --force
+/build_amf --clean --Verbose --build-type Debug --jobs
 ```
 
 Now you are ready, start developing and testing.
@@ -108,38 +108,23 @@ Using docker environment for deployment and development is the preferred way bec
 1. Build the docker-images in debug mode following the [previous section](#1-building-images-in-debug-mode)
 2. Create a new folder `oai-docker-compose`
 3. In the `oai-docker-compose` folder create `confs`, `logs`, `entrypoints` and `healthchecks` folders
-4. In the `confs` folder copy the configuration files for each component you want to use. The configuration files are located here
-
-
-    | File Name   | Repository                                   | Location        |
-    |:----------- |:-------------------------------------------- |:--------------- |
-    | amf.conf    | (Gitlab) cn5g/oai-cn5g-amf                   | [etc/amf.conf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/blob/develop/etc/amf.conf)    |
-    | smf.conf    | (Gitlab) cn5g/oai-cn5g-smf                   | [etc/smf.conf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf/-/blob/develop/etc/smf.conf)    |
-    | nrf.conf    | (Gilab) cn5g/oai-cn5g-nrf                    | [etc/nrf.conf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/blob/develop/etc/nrf.conf)   |
-    | spgw_u.conf | (Github) OPENAIRINTERFACE/openair-spgwu-tiny | [etc/spgw_u.conf](https://github.com/OPENAIRINTERFACE/openair-spgwu-tiny/blob/nrf_fqdn/etc/spgw_u.conf) |
-
+4. In the `confs` folder copy the configuration files for each component you want to use [example](../docker-compose/conf)
 5. Create empty log files for the component you want to use in the `logs` folder using the `touch` command
 6. Copy [oai_db1.sql](../docker-compose/database/oai_db1.sql), make a user database depending on the IMSI, LTKEY and Opc. New user entry can be added after this [line](../docker-compose/database/oai_db1.sql#L193)
 
 ```
 # Create the directory structure
-$ mkdir ~/oai-docker-compose
-$ mkdir -p ~/oai-docker-compose/confs
-$ mkdir -p ~/oai-docker-compose/logs
-$ mkdir -p ~/oai-docker-compose/entrypoints
-$ mkdir -p ~/oai-docker-compose/healthchecks
+mkdir ~/oai-docker-compose
+mkdir -p ~/oai-docker-compose/confs
+mkdir -p ~/oai-docker-compose/logs
+mkdir -p ~/oai-docker-compose/entrypoints
+mkdir -p ~/oai-docker-compose/healthchecks
 
 # Create empty log files
-$ touch ~/oai-docker-compose/logs/amf.log
-$ touch ~/oai-docker-compose/logs/smf.log
-$ touch ~/oai-docker-compose/logs/nrf.log
-$ touch ~/oai-docker-compose/logs/spgwu.log
-
-# Copy the configuration files, if you have yours you can use that else copy from the repository and make changes manually
-$ cp ~/oai-cn5g-amf/etc/amf.conf ~/oai-docker-compose/confs/
-$ cp ~/oai-cn5g-smf/etc/smf.conf ~/oai-docker-compose/confs/
-$ cp ~/oai-cn5g-nrf/etc/nrf.conf ~/oai-docker-compose/confs/
-$ cp ~/openair-spgwu-tiny/etc/spgwu.conf ~/oai-docker-compose/confs/
+touch ~/oai-docker-compose/logs/amf.log
+touch ~/oai-docker-compose/logs/smf.log
+touch ~/oai-docker-compose/logs/nrf.log
+touch ~/oai-docker-compose/logs/upf.log
 ```
 
 ### 2.2.2 Create entrypoint files
@@ -151,19 +136,19 @@ The example of amf entrypoint.sh is below, for other network functions it is ana
 set -eumb
 
 echo "Running amf to check logs use tail -100f ~/oai-docker-compose/logs/amf.log"
-exec nohup /usr/local/bin/amf -c /openair-amf/etc/amf.conf -o >> /openair-amf/etc/amf.log 2>&1
+exec nohup /usr/local/bin/amf -c /openair-amf/etc/config.yaml -o >> /openair-amf/etc/amf.log 2>&1
 ```
 
 In the example above, replace amf with nrf, smf to create entrypoints for nrf and smf. For spgwu it is slightly different.
 
 ```
 echo "Running spgwu to check logs use tail -100f ~/oai-docker-compose/logs/spgw_u.log"
-exec nohup /usr/local/bin/spgwu -c /openair-spgwu-tiny/etc/spgw_u.conf -o >> /openair-spgwu-tiny/etc/spgw_u.log 2>&1
+exec nohup /usr/local/bin/upf -c /oai-upf/etc/config.yaml -o >> /oai-upf/etc/spgw_u.log 2>&1
 ```
 
-Create entrypoints for all the network functions which are required.
+Create entry-points for all the network functions which are required.
 
-# 2.2.3 Healthchecks
+# 2.2.3 Health checks
 
 The healthchecks can be directly used from [here](../docker-compose/healthscripts), copy them in the `healthchecks` folder.
 
@@ -171,8 +156,7 @@ The healthchecks can be directly used from [here](../docker-compose/healthscript
 
 To run this docker-compose the network `demo-oai-public-net` should be created.
 
-```
-version: '3.8'
+```yaml
 services:
     oai-nrf:
         container_name: oai-nrf
@@ -180,7 +164,7 @@ services:
         entrypoint: ["/openair-nrf/bin/nrf-entrypoint.sh"]
         restart: always
         volumes:
-            - ./confs/nrf.conf:/openair-nrf/etc/nrf.conf
+            - ./confs/basic_nrf_config.yaml:/openair-nrf/etc/config.yaml
             - ./entrypoints/nrf-entrypoint.sh:/openair-nrf/bin/nrf-entrypoint.sh
             - ./logs/nrf.log:/openair-nrf/etc/nrf.log:rw
         networks:
@@ -217,7 +201,7 @@ services:
         depends_on:
             - mysql
         volumes:
-            - ./confs/amf.conf:/openair-amf/etc/amf.conf
+            - ./confs/basic_nrf_config.yaml:/openair-amf/etc/config.yaml
             - ./entrypoints/amf-entrypoint.sh:/openair-amf/bin/amf-entrypoint.sh
             - ./logs/amf.log:/openair-amf/etc/amf.log:rw
         networks:
@@ -231,16 +215,16 @@ services:
         depends_on:
             - oai-amf
         volumes:
-            - ./entrypoints/smf-entrypoint.sh:/openair-smf/bin/smf-entrypoint.sh
-            - ./confs/smf.conf:/openair-smf/etc/smf.conf
+            - ./entrypoints/smf.sh:/openair-smf/bin/smf-entrypoint.sh
+            - ./confs/basic_nrf_config.yaml:/openair-smf/etc/config.yaml
             - ./logs/smf.log:/openair-smf/etc/smf.log:rw
         networks:
             public_net:
                 ipv4_address: 192.168.70.133
-    oai-spgwu:
-        container_name: "oai-spgwu"
-        image: oai-spgwu:develop
-        entrypoint: ["/openair-spgwu-tiny/bin/spgwu-entrypoint.sh"]
+    oai-upf:
+        container_name: "oai-upf"
+        image: oai-upf:develop
+        entrypoint: ["/openair-upf/bin/spgwu-entrypoint.sh"]
         restart: always
         depends_on:
             - oai-smf
@@ -251,9 +235,9 @@ services:
             - ALL
         privileged: true
         volumes:
-            - ./entrypoints/spgwu-entrypoint.sh:/openair-spgwu-tiny/bin/spgwu-entrypoint.sh
-            - ./confs/spgw_u.conf:/openair-spgwu-tiny/etc/spgw_u.conf
-            - ./logs/spgw_u.log:/openair-spgwu-tiny/etc/spgw_u.log:rw
+            - ./entrypoints/upf.sh:/openair-upf/bin/upf-entrypoint.sh
+            - ./confs/basic_nrf_config.yaml:/openair-upf/etc/config.yaml
+            - ./logs/spgw_u.log:/openair-upf/etc/spgw_u.log:rw
         networks:
             public_net:
                 ipv4_address: 192.168.70.134
@@ -261,7 +245,6 @@ networks:
     public_net:
         external:
            name: demo-oai-public-net
-
 ```
 
 
@@ -269,17 +252,17 @@ networks:
 
 ```
 # start docker-compose
-$: docker-compose -p <project-name> -f <file-name> up -d
+docker-compose -p <project-name> -f <file-name> up -d
 # if changes are made in the conf files located in ./confs/, restart the container/service
-$: docker-compose -p <project-name> -f <file-name> restart <service-name>
+docker-compose -p <project-name> -f <file-name> restart <service-name>
 # force recreate a service
-$: docker-compose -p <project-name> -f <file-name> up -d <service-name> --force-create
+docker-compose -p <project-name> -f <file-name> up -d <service-name> --force-create
 # in case the code is present inside the container and some changes are made, then just restart the container, never remove it
-$: docker-compose -p <project-name> -f <file-name> restart <service-name>
+docker-compose -p <project-name> -f <file-name> restart <service-name>
 # stop the containers/service
-$: docker-compose -p <project-name> -f <file-name> stop <service-name>
+docker-compose -p <project-name> -f <file-name> stop <service-name>
 # remove the deployment
-$: docker-compose -p <project-name> -f <file-name> down -t 0
+docker-compose -p <project-name> -f <file-name> down -t 0
 ```
 
 Network components configuration is present in `~/oai-docker-compose/confs/` the logs are present in `~/oai-docker-compose/logs/`. There will be only one log file and it will contain huge amount of logs. If needed this can also be rotated to avoid having one bulky file. To make it rotate, make changes in the entrypoint.sh script.

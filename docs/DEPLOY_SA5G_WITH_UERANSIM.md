@@ -35,18 +35,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 * In this demo the image tags and commits which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below.
 
-| CNF Name    | Branch Name | Tag      | Ubuntu 18.04 | RHEL8 (UBI8)    |
-| ----------- | ----------- | -------- | ------------ | ----------------|
-| AMF         | `develop`   | `v1.5.0` | X            | X               |
-| SMF         | `develop`   | `v1.5.0` | X            | X               |
-| NRF         | `develop`   | `v1.5.0` | X            | X               |
-| VPP-UPF     | `develop`   | `v1.5.0` | X            | X               |
-| UDR         | `develop`   | `v1.5.0` | X            | X               |
-| UDM         | `develop`   | `v1.5.0` | X            | X               |
-| AUSF        | `develop`   | `v1.5.0` | X            | X               |
-
-<br/>
-
 This tutorial is an extension of a previous tutorial: [testing a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
 
 Moreover, there are various other opensource gnb/ue simulator tools that are available for SA5G test. In this tutorial, we use an opensource simulator tool called `UERANSIM`. With the help of `UERANSIM` tool, we can perform very basic SA5G test by simulating one gnb and multiple ues.

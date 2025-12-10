@@ -13,6 +13,7 @@
 </table>
 
 
+
 |Phone                 |Android Version                                           |PLMN |Remark         |
 |----------------------|----------------------------------------------------------|-----|---------------|
 |Pixel 5               |11, RQ1C.210205.006, Feb 2021, Google Fi, T-Mobile, Sprint|00101|NA             |
@@ -45,4 +46,5 @@
 3. Some phones use TCP for SIP and some UDP. You need to configure the IMS properly
 
 **Known Issues**
+
 1. We have issues with Anritsu Test UICC TM P0551A sim cards because they sent concealed SUCI which is not yet implemented.

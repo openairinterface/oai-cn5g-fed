@@ -66,10 +66,6 @@ XDP is widely used in high-performance networking applications, such as NFV, SDN
 | 2           | `XDP_PASS`      | `Allow farther processing by network stack`   |
 | 3           | `XDP_REDIRECT`  | `Forward the packet to a different interface` |
 
-
-
-
-
 ---------------------------------------------------------------------------------------------------------------------
 ## 2. UPF Architecture
 

@@ -20,8 +20,6 @@
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 
-**CAUTION: 2023/07/13: This tutorial has been updated to use the new UPF that replaces SPGWU-TINY.**
-
 **TABLE OF CONTENTS**
 
 1.  [Pre-requisites](#1-pre-requisites)
@@ -34,17 +32,6 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 8.  [Analysing the Scenario Results](#8-analysing-the-scenario-results)
 9.  [Trying some advanced stuff](#9-trying-some-advanced-stuff)
 10. [Undeploy the network functions](#10-undeploy-the-network-functions)
-
-* In this demo the image tags and commits which are used are listed below, follow [Building images](./BUILD_IMAGES.md) instructions to build images with these tags.
-
-| CNF Name    | Branch Name             | tag      | Ubuntu 22.04 | RHEL8          |
-| ----------- |:----------------------- | ---------| ------------ | ---------------|
-| AMF         | `master`                | `v2.0.1` | X            | X              |
-| SMF         | `master`                | `v2.0.1` | X            | X              |
-| NRF         | `master`                | `v2.0.1` | X            | X              |
-| UPF         | `master`                | `v2.0.1` | X            | X              |
-
-<br/>
 
 In this tutorial, we use an opensource simulator tool called `gnbsim`. With the help of the `gnbsim` tool, we can perform very basic SA5G tests by simulating one gnb and one ue.
 
