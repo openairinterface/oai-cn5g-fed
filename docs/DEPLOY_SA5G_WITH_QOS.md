@@ -33,7 +33,7 @@ Create a folder where you can store all the result files of the tutorial and lat
 
 Ensure that the following tools are installed and meet the required versions:
 
-- **awk**: Version >= 5.1.0  
+- **awk**: Version >= 5.1.0
   You can check the version of `awk` installed on your system using the following command:
   ``` shell
   awk --version
@@ -63,7 +63,7 @@ The QoS framework in OAI 5G Core enables:
 ```
                                +-------+
                                |  N6   |
-                               +-------+                      
+                               +-------+
                                   ^
                                   | DL Packet
                                   |
@@ -93,8 +93,8 @@ The QoS framework in OAI 5G Core enables:
                           | (QoS Operations,|       |
                           | Redirect to N3) |       |
                           +-----------------+       |
-                                  |                 | 
-                                  v                 | 
+                                  |                 |
+                                  v                 |
                           +-----------------+       |
                           | N3 TC Egress    |       |
                           | (QoS Operation) |       |
@@ -112,7 +112,7 @@ The QoS framework in OAI 5G Core enables:
 
 ## 3. Database Configuration
 
-First, we need to configure the subscriber database with UEs having different QoS profiles in [mysql database file](../docker-compose/database/oai_db2.sql). 
+First, we need to configure the subscriber database with UEs having different QoS profiles in [mysql database file](../docker-compose/database/oai_db2.sql).
 
 In the table `SessionManagementSubscriptionData` add the following entries with varying QoS settings. We put a static IP to make it easier to know the expected bitrate per IP addresss:
 
@@ -165,7 +165,7 @@ Create the [policy decisions configuration file](../docker-compose/policies/qos/
 # Map UEs (by SUPI) to PCC rules
 decision_supi1:
   supi_imsi: "208950000000033"
-  pcc_rules: 
+  pcc_rules:
     - non-gbr-rule-5qi-9
 ```
 
@@ -341,10 +341,10 @@ docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /
 Connecting to host 12.1.1.10, port 5201
 [  5] local 192.168.72.135 port 48777 connected to 12.1.1.10 port 5201
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   411 KBytes  3.36 Mbits/sec    0   47.4 KBytes       
-[  5]   1.00-2.00   sec   382 KBytes  3.13 Mbits/sec    0   64.5 KBytes       
-[  5]   2.00-3.00   sec   425 KBytes  3.48 Mbits/sec    0   80.3 KBytes       
-[  5]   3.00-4.00   sec   379 KBytes  3.11 Mbits/sec    0   97.4 KBytes       
+[  5]   0.00-1.00   sec   411 KBytes  3.36 Mbits/sec    0   47.4 KBytes
+[  5]   1.00-2.00   sec   382 KBytes  3.13 Mbits/sec    0   64.5 KBytes
+[  5]   2.00-3.00   sec   425 KBytes  3.48 Mbits/sec    0   80.3 KBytes
+[  5]   3.00-4.00   sec   379 KBytes  3.11 Mbits/sec    0   97.4 KBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
 [  5]   0.00-4.00   sec  1.56 MBytes  3.27 Mbits/sec    0             sender
@@ -390,10 +390,10 @@ docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /
 Connecting to host 12.1.1.9, port 5201
 [  5] local 192.168.72.135 port 44757 connected to 12.1.1.9 port 5201
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec  12.6 MBytes   106 Mbits/sec    0    591 KBytes       
-[  5]   1.00-2.00   sec  12.5 MBytes   105 Mbits/sec    0   1.13 MBytes       
-[  5]   2.00-3.00   sec  11.2 MBytes  94.4 Mbits/sec   50   1008 KBytes       
-[  5]   3.00-4.00   sec  11.2 MBytes  94.4 Mbits/sec    0   1.09 MBytes       
+[  5]   0.00-1.00   sec  12.6 MBytes   106 Mbits/sec    0    591 KBytes
+[  5]   1.00-2.00   sec  12.5 MBytes   105 Mbits/sec    0   1.13 MBytes
+[  5]   2.00-3.00   sec  11.2 MBytes  94.4 Mbits/sec   50   1008 KBytes
+[  5]   3.00-4.00   sec  11.2 MBytes  94.4 Mbits/sec    0   1.09 MBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
 [  5]   0.00-4.00   sec  47.6 MBytes  99.8 Mbits/sec   50             sender
@@ -402,6 +402,63 @@ Connecting to host 12.1.1.9, port 5201
 iperf Done.
 ```
 </details>
+### 7.4. Test Multiple QoS Flows on a Single PDU Session
+
+A single PDU session can support multiple QoS flows with different QoS parameters (QERs) based on Service Data Flows (SDFs) and their precedence rules. In this test, we verify that different QoS limits are correctly enforced for traffic on different ports within the same PDU session.
+
+For this test, we have configured three QoS rules for the same UE:
+
+- **gbr-rule-5qi-1**: 3 Mbps (default QoS flow, all other traffic)
+- **gbr-rule-iperf3-8080**: 20 Mbps (traffic on port 8080)
+- **gbr-rule-iperf3-8081**: 10 Mbps (traffic on port 8081)
+
+#### Test 1: Traffic on Port 8080 (Expected: ~20 Mbps)
+
+Start an iperf3 server on the UE listening on port 8080:
+
+``` shell
+docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8080
+```
+
+Start an iperf3 client on the data network to generate traffic to port 8080:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8080 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json | awk '{if($1>=19 && $1<=21.5){print "Max bitrate "$1" Mbps is within range (19-21.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (19-21.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+```
+-->
+
+The throughput should be limited to approximately 20 Mbps, as configured in the gbr-rule-iperf3-8080 policy.
+
+#### Test 2: Traffic on Port 8081 (Expected: ~10 Mbps)
+
+Start an iperf3 server on the UE listening on port 8081:
+
+``` shell
+docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8081
+```
+
+Start an iperf3 client on the data network to generate traffic to port 8081:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8081 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json | awk '{if($1>=9 && $1<=11){print "Max bitrate "$1" Mbps is within range (9-11)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9-11)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+```
+-->
+
+The throughput should be limited to approximately 10 Mbps, as configured in the gbr-rule-iperf3-8081 policy.
+
+These tests demonstrate that the UPF correctly enforces different QoS parameters for different traffic flows within a single PDU session based on port-based traffic filtering rules.
 
 ## 8. Log Collection
 

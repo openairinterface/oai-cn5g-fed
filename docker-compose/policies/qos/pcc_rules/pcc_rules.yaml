@@ -40,7 +40,7 @@ non-gbr-rule-5qi-9:
   precedence: 24
   refQosData:
     - non-gbr-qos-5qi-9
-    
+
 non-gbr-rule-5qi-69:
   flowInfos:
     - flowDescription: permit out ip from any to assigned
@@ -78,11 +78,27 @@ non-gbr-rule-5qi-80:
 # GBR QoS Rules
 #######################################################################
 
+gbr-rule-iperf3-8080:
+  flowInfos:
+    - flowDescription: permit out tcp from any to assigned 8080
+      packetFilterUsage: true
+  precedence: 7
+  refQosData:
+    - gbr-qos-iperf3-8080
+
+gbr-rule-iperf3-8081:
+  flowInfos:
+    - flowDescription: permit out tcp from any to assigned 8081
+      packetFilterUsage: true
+  precedence: 8
+  refQosData:
+    - gbr-qos-iperf3-8081
+
 gbr-rule-5qi-1:
   flowInfos:
     - flowDescription: permit out ip from any to any
       packetFilterUsage: true
-  precedence: 7
+  precedence: 10
   refQosData:
     - gbr-qos-5qi-1
 
@@ -224,4 +240,4 @@ delay-critical-gbr-rule-5qi-86:
   precedence: 6
   refQosData:
     - delay-critical-gbr-qos-5qi-86
-    
+
