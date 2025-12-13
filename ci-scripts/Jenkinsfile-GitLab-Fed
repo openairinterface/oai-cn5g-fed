@@ -1,0 +1,293 @@
+#!/bin/groovy
+/*
+ * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The OpenAirInterface Software Alliance licenses this file to You under
+ * the OAI Public License, Version 1.1  (the "License"); you may not use this file
+ * except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.openairinterface.org/?page_id=698
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *-------------------------------------------------------------------------------
+ * For more information about the OpenAirInterface (OAI) Software Alliance:
+ *      contact@openairinterface.org
+ */
+
+//-------------------------------------------------------------------------------
+
+// Location of the CN executor node
+// Its main purpose is the Ubuntu Build
+// Assign parameters to variables
+ubuntuBuildNode = params.UbuntuBuildNode
+ubuntuBuildResource = params.UbuntuBuildResource
+def failingStages = ""
+
+
+pipeline {
+    agent {
+        label "${ubuntuBuildNode}"
+    }
+
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        ansiColor('xterm')
+        gitLabConnection('OAI GitLab')
+    }
+
+    stages {
+        stage('Verify Parameters') {
+            steps {
+                script {
+                    JOB_TIMESTAMP = sh(
+                        returnStdout: true,
+                        script: "date --utc --rfc-3339=seconds | sed -e 's/+00:00//'"
+                    ).trim()
+                    echo "Current UTC Date/Time: ${JOB_TIMESTAMP}"
+                    if (!ubuntuBuildNode) {
+                        echo '\u26D4 \u001B[31mNo Node is specified!\u001B[0m'
+                        error "Stopping pipeline!"
+                    } else {
+                        echo "Node: ${ubuntuBuildNode}"
+                    }
+                }
+            }
+        }
+
+        stage ('Prepare Source Code') {
+            steps {
+                script {
+                    if ("MERGE".equals(env.gitlabActionType)) {
+                        gitlabMergeRequestLink = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-fed/merge_requests/${env.gitlabMergeRequestIid}' | jq .web_url | sed 's#\"##g'"
+                        gitlabMergeRequestLink = gitlabMergeRequestLink.trim()
+                        gitCommittorEmailAddr  = env.gitlabUserEmail
+
+                        shortenShaOne = sh returnStdout: true, script: 'git log -1 --pretty=format:"%h" --abbrev=8 ' + env.gitlabMergeRequestLastCommit
+                        shortenShaOne = shortenShaOne.trim()
+                        fed_tag       = 'ci-tmp-fed-' + env.gitlabMergeRequestIid + '-' + shortenShaOne
+                        fed_branch    = env.gitlabSourceBranch
+
+                        echo "\uD83D\uDD00 THIS IS A MERGE REQUEST \uD83D\uDD00"
+                        echo "Merge Request ID            : ${env.gitlabMergeRequestIid}"
+                        echo "Merge Request Link          : ${gitlabMergeRequestLink}"
+                        echo "Merge Request Title         : ${env.gitlabMergeRequestTitle}"
+                        echo "Merge Request User Email    : ${gitCommittorEmailAddr}"
+                        echo "Merge Request Tag           : ${fed_tag}"
+                        echo "Merge Request Source Branch : ${fed_branch}"
+                    } else {
+                        gitCommittorEmailAddr = sh returnStdout: true, script: 'git log -n1 --pretty=format:%ae ${GIT_COMMIT}'
+                        gitCommittorEmailAddr = gitCommittorEmailAddr.trim()
+
+                        shortenShaOne = sh returnStdout: true, script: 'git log -1 --pretty=format:"%h" --abbrev=8 ' + env.GIT_COMMIT
+                        shortenShaOne = shortenShaOne.trim()
+                        fed_tag       = 'develop-' + shortenShaOne
+                        fed_branch    = env.GIT_BRANCH
+
+                        echo "\uD83D\uDE80 THIS IS A PUSH REQUEST \uD83D\uDE80"
+                        echo "Git Branch     : ${GIT_BRANCH}"
+                        echo "Git Commit     : ${GIT_COMMIT}"
+                        echo "CI  User Email : ${gitCommittorEmailAddr}"
+                        echo "CI develop Tag : ${fed_tag}"
+                    }
+                    prepareWorkspaceMergeCase()
+                }
+            }
+            post {
+                failure {
+                    script {
+                        def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): Merge Conflicts -- Cannot perform CI"
+                        addGitLabMRComment comment: message
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+
+        stage('Testing 5G Core Network Functions') {
+            parallel {
+                stage('Testing with COTS-UE') {
+                    steps {
+                        script {
+                            gitlabCommitStatus(name: "Test with COTS-UE") {
+                                localStatus = build(
+                                    job: 'OAI-CN5G-COTS-UE-Test',
+                                    propagate: false
+                                )
+                                localResult = localStatus.getResult()
+
+                                if (localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+                                    echo "Testing with COTS-UE is OK \u2705"
+                                } else {
+                                    failingStages += '\n * OAI-CN5G-COTS-UE-Test'
+                                    error "Testing with COTS-UE is KO \u274C"
+                                }
+                            }
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                copyArtifacts(
+                                    projectName: 'OAI-CN5G-COTS-UE-Test',
+                                    filter: '*_results_oai_cn5g*.html',
+                                    selector: lastCompleted()
+                                )
+                            }
+                        }
+                    }
+                }
+                stage('Load Testing') {
+                    steps {
+                        script {
+                            gitlabCommitStatus(name: "Load Testing") {
+                                localStatus = build(
+                                    job: 'OAI-CN5G-Load-Test',
+                                    propagate: false
+                                )
+                                localResult = localStatus.getResult()
+
+                                if (localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+                                    echo "Load Testing is OK \u2705"
+                                } else {
+                                    failingStages += '\n * OAI-CN5G-Load-Test'
+                                    error "Load Testing is KO \u274C"
+                                }
+                            }
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                copyArtifacts(
+                                    projectName: 'OAI-CN5G-Load-Test',
+                                    filter: '*_results_oai_cn5g*.html',
+                                    selector: lastCompleted()
+                                )
+                            }
+                        }
+                    }
+                }
+                stage('Robot Test') {
+                    steps {
+                        script {
+                            gitlabCommitStatus(name: "Robot Test") {
+                                localStatus = build(
+                                    job: 'OAI-CN5G-RobotTest',
+                                    propagate: false
+                                )
+                                localResult = localStatus.getResult()
+
+                                if (localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+                                    echo "Robot Test is OK \u2705"
+                                } else {
+                                    failingStages += '\n * OAI-CN5G-RobotTest'
+                                    error "Robot Test is KO \u274C"
+                                }
+                            }
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                copyArtifacts(
+                                    projectName: 'OAI-CN5G-RobotTest',
+                                    filter: 'archives/*.html', // log.html and report.html
+                                    selector: lastCompleted(),
+                                    flatten: true
+                                )
+                                if (fileExists('log.html')) {
+                                    sh 'mv log.html oai-cn5g-robot-test-log.html'
+                                }
+                                if (fileExists('report.html')) {
+                                    sh 'mv report.html oai-cn5g-robot-test-report.html'
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('Testing the Tutorials') {
+                    steps {
+                        script {
+                            gitlabCommitStatus(name: "Testing Tutorials") {
+                                localStatus = build(
+                                    job: 'OAI-CN5G-Tutorials-Check',
+                                    propagate: false
+                                )
+                                localResult = localStatus.getResult()
+
+                                if (localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+                                    echo "Tutorials Test is OK \u2705"
+                                } else {
+                                    failingStages += '\n * OAI-CN5G-Tutorials-Check'
+                                    error "Tutorials Test is KO \u274C"
+                                }
+                            }
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                copyArtifacts(
+                                    projectName: 'OAI-CN5G-Tutorials-Check',
+                                    filter: '*_results_oai_cn5g*.html',
+                                    selector: lastCompleted()
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                if ("MERGE".equals(env.gitlabActionType)) {
+                    def message = "\u2705 OAI ${JOB_NAME} build (${BUILD_ID}): passed (${BUILD_URL})"
+                    echo "This is a MERGE event"
+                    echo "${message}"
+                    addGitLabMRComment comment: message
+                }
+            }
+        }
+
+        failure {
+            script {
+                if ("MERGE".equals(env.gitlabActionType)) {
+                    def message = "\u274C OAI ${JOB_NAME} build (${BUILD_ID}): failed (${BUILD_URL})"
+                    def failureMessage = message + '\n\nList of failing test stages:' + failingStages
+                    echo "This is a MERGE event"
+                    echo "${failureMessage}"
+                    addGitLabMRComment comment: failureMessage
+                }
+            }
+        }
+        always {
+            script {
+                // ARCHIVING THE COPIED ARTIFACTS
+                archiveArtifacts(
+                    artifacts: '*.html',
+                )
+            }
+        }
+    }
+}
+
+def prepareWorkspaceMergeCase () {
+    echo "\u2692\uFE0F PREPARING WORKSPACE \u2692\uFE0F"
+    sh "git clean -x -d -f > /dev/null 2>&1"
+    sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
+    sh "git submodule deinit --force --all > /dev/null 2>&1"
+    if ("MERGE".equals(env.gitlabActionType)) {
+        sh "./ci-scripts/doGitLabMerge.sh --src-branch ${env.gitlabSourceBranch} --src-commit ${env.gitlabMergeRequestLastCommit} --target-branch ${env.gitlabTargetBranch} --target-commit ${GIT_COMMIT}"
+    }
+    sh "git submodule update --init --recursive"
+    sh "mkdir -p archives"
+}
