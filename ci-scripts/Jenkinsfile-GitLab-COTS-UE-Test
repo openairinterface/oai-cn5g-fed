@@ -516,38 +516,31 @@ def getLastCommitFromBranch(index, repoName, branchName) {
 }
 
 def getLatestDevelopTagFromOc(imageName, projectName) {
-    def jsonOutput = sh(
+    def latestTag = sh(
         returnStdout: true,
-        script: "oc get is ${imageName} -n ${projectName} -o json"
+        script: """
+        oc get is ${imageName} -n ${projectName} -o json |
+        jq -r '
+          .status.tags[]
+          | select(.tag | startswith("develop-"))
+          | select(.items and .items[0].created)
+          | [.tag, .items[0].created]
+          | @tsv
+        ' |
+        sort -k2 |
+        tail -n1 |
+        cut -f1
+        """
     ).trim()
 
-    def parsed = readJSON(text: jsonOutput)
-
-    if (!parsed.status || !parsed.status.tags) {
-        return null
+    if (latestTag == "") {
+        error "FATAL: No develop-* tags found for ${imageName} in ${projectName}"
     }
 
-    def latestTag = null
-    def latestDate = "2022-01-01T00:00:00Z"
-
-    for (t in parsed.status.tags) {
-        if (!t.tag.startsWith("develop-")) continue
-        if (!t.items || t.items.isEmpty()) continue
-
-        def ts = t.items[0].created
-        if (ts > latestDate) {
-            latestDate = ts
-            latestTag = t.tag
-        }
-    }
-    if (latestTag != null) {
-    echo "Using tag ${latestTag} for ${imageName} in ${projectName}"
-    }
-    else {
-      echo "No develop-* tags found for ${imageName} in project ${projectName}"
-    }
+    echo "Using fallback tag ${latestTag} for ${imageName}"
     return latestTag
 }
+
 
 def checkCoreNetworkDeployment() {
   status = 0
