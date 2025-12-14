@@ -235,10 +235,338 @@ smf:
         session_ambr_dl: "10Mbps"
 
 upf:
+  # ===========================================================================
+  # FEATURE FLAGS
+  # ===========================================================================
   support_features:
-    enable_bpf_datapath: yes    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
-    enable_eth_pdu: yes      # If "on": ETHERNET PDU sessions are supported, DEFAULT= off
+    # BPF/XDP Data Plane: Use eBPF/XDP for high-performance packet processing
+    # If disabled, simpleswitch (legacy) datapath is used
+    # Recommendation: Always enable for production (10x+ better performance)
+    enable_bpf_datapath: yes
+    
+    # QoS Enforcement: Enable TC-BPF for per-flow QoS (rate limiting, prioritization)
+    # Maps to 3GPP PFCP: QER (QoS Enforcement Rule) IE
+    # Requires enable_bpf_datapath: yes
+    enable_qos: yes
+    
+    # Source NAT: Translate UE IP to N6 interface IP
+    # Use when UE IPs are not routable in data network
+    enable_snat: no
+    
+    # Framed Routing: Route traffic based on UE IP pools
+    # (Typically used with RADIUS/AAA integration)
+    enable_fr: no
+    
+    # Ethernet PDU Sessions: Support non-IP (Layer 2) PDU sessions
+    # Required for 5G LAN, TSN, or industrial use cases
+    enable_eth_pdu: no
+
+  # Remote N6 gateway (Data Network gateway)
+  # Used for ARP resolution and default route in data network
   remote_n6_gw: oai-ext-dn
+
+  # ===========================================================================
+  # BPF MAP CAPACITY CONFIGURATION
+  # ===========================================================================
+  # These parameters control eBPF map sizes and directly affect:
+  #   - Maximum capacity (sessions, rules, flows)
+  #   - Memory consumption
+  #   - Performance characteristics
+  #
+  # Memory estimation formula (approximate):
+  #   Per-session memory = 1KB + (PDRs×256B) + (QERs×128B) + (SDFs×(128B+filter_size))
+  #   Total memory ≈ max_pfcp_sessions × per-session memory
+  #
+  # Deployment size examples:
+  #   Small/Test:  max_pfcp_sessions=100,    memory~50-100MB
+  #   Medium:      max_pfcp_sessions=10000,  memory~1-2GB
+  #   Large:       max_pfcp_sessions=50000,  memory~5-10GB
+  #   Enterprise:  max_pfcp_sessions=100000, memory~10-20GB
+  # ===========================================================================
+  
+  # ---------------------------------------------------------------------------
+  # SESSION CAPACITY (3GPP TS 29.244 - PFCP Session Establishment)
+  # ---------------------------------------------------------------------------
+  # Maximum concurrent PFCP sessions (PDU sessions)
+  # Each PFCP session represents one UE's data connection (PDU session)
+  # 
+  # Corresponds to 3GPP IE: CP F-SEID (PFCP Session)
+  # 
+  # Sizing guide:
+  #   - Small network:     100-1,000 sessions
+  #   - Medium network:    1,000-10,000 sessions
+  #   - Large network:     10,000-100,000 sessions
+  #   - Per UE typically:  1-2 PDU sessions (default + dedicated)
+  #
+  # Default: 100 (suitable for testing/small deployments)
+  # Range: 1-100,000
+  max_pfcp_sessions: 100
+
+  # ---------------------------------------------------------------------------
+  # PFCP RULES PER SESSION (3GPP TS 29.244 Section 7.5.2)
+  # ---------------------------------------------------------------------------
+  
+  # Maximum PDRs (Packet Detection Rules) per PDU session
+  # PDRs define how to detect and classify packets
+  # 
+  # Corresponds to 3GPP IE: Create PDR (mandatory in Session Establishment)
+  # 
+  # Typical usage per session:
+  #   - Minimum: 2 PDRs (uplink + downlink)
+  #   - Normal:  2-4 PDRs (UL/DL for default bearer + dedicated bearers)
+  #   - Complex: 4-8 PDRs (multiple service flows with different QoS)
+  #
+  # 
+  # Default: 8
+  # Range: 1-64
+  max_pdrs_per_pdu_session: 8
+
+  # Maximum FARs (Forwarding Action Rules) per PDU session
+  # FARs define what to do with matched packets (forward, drop, buffer)
+  # 
+  # Corresponds to 3GPP IE: Create FAR (mandatory in Session Establishment)
+  # 
+  # Typical usage:
+  #   - Usually matches PDR count (each PDR → FAR)
+  #   - Range: Same as PDRs (1:1 mapping typical)
+  #
+  # Default: 8
+  # Range: 1-64
+  max_fars_per_pdu_session: 8
+
+  # Maximum QERs (QoS Enforcement Rules) per PDU session
+  # QERs define QoS treatment (bandwidth limits, scheduling)
+  # 
+  # Corresponds to 3GPP IE: Create QER (conditional on QoS requirements)
+  # 
+  # Typical usage per session:
+  #   - Minimum: 1 QER (default QoS flow)
+  #   - Normal:  1-2 QERs (default + one guaranteed bitrate flow)
+  #   - Maximum: Up to 8 QERs (multiple prioritized flows)
+  #
+  # Note: Only used if enable_qos: yes
+  # 
+  # Default: 8
+  # Range: 1-32
+  max_qers_per_pdu_session: 8
+
+  # Maximum URRs (Usage Reporting Rules) per PDU session
+  # URRs define when and how to report usage (volume, time)
+  # 
+  # Corresponds to 3GPP IE: Create URR (conditional on charging/reporting)
+  # 
+  # Typical usage:
+  #   - 0-1 URR for most sessions (if no usage reporting)
+  #   - 1-2 URRs for charged sessions (volume + time triggers)
+  #   - More URRs for complex charging scenarios
+  #
+  # Default: 4
+  # Range: 0-16
+  max_urrs_per_pdu_session: 4
+
+  # Maximum BARs (Buffering Action Rules) per PDU session
+  # BARs define buffering behavior during handover or state transitions
+  # 
+  # Corresponds to 3GPP IE: Create BAR (conditional on buffering requirements)
+  # 
+  # Typical usage:
+  #   - 0 BARs for most sessions (no buffering)
+  #   - 1 BAR for handover support
+  #   - Rarely >1 BAR per session
+  #
+  # Default: 2
+  # Range: 0-8
+  max_bars_per_pdu_session: 2
+
+  # ---------------------------------------------------------------------------
+  # TRAFFIC CLASSIFICATION (3GPP TS 29.244 Section 7.5.2.2)
+  # ---------------------------------------------------------------------------
+  
+  # Maximum SDF (Service Data Flow) filters per PDU session
+  # SDF filters classify traffic within QoS flows (by IP, port, protocol)
+  # 
+  # Corresponds to 3GPP IE: SDF Filter (within Create PDR)
+  # 
+  # Typical usage per session:
+  #   - Simple:  1-2 SDFs (default + one app-specific)
+  #   - Normal:  2-4 SDFs (multiple apps with different treatment)
+  #   - Complex: 4-8 SDFs (fine-grained traffic steering)
+  #
+  # Examples:
+  #   - "All traffic": permit in/out from any to assigned
+  #   - "HTTP/HTTPS": permit out 80 from 10.0.0.0/8 to assigned
+  #   - "Video streaming": permit out from 203.0.113.0/24 to assigned
+  #
+  # Default: 8
+  # Range: 1-32
+  max_sdf_filters_per_pdu_session: 8
+
+  # Maximum string length for SDF filter descriptions (in bytes)
+  # SDF filters can contain complex match expressions
+  # 
+  # Example SDF filter string:
+  #   "permit out ip from 10.0.0.0/8 80 to assigned"
+  # 
+  # Buffer must accommodate:
+  #   - IP addresses/ranges
+  #   - Port numbers/ranges
+  #   - Protocol specifications
+  #   - Permit/deny actions
+  #
+  # Default: 512 bytes (sufficient for most filters)
+  # Range: 64-2048 bytes
+  max_sdf_filter_string_length: 512
+
+  # ---------------------------------------------------------------------------
+  # NETWORK INTERFACE LIMITS
+  # ---------------------------------------------------------------------------
+  
+  # Maximum network interfaces UPF can manage
+  # Includes: N3 (GTP-U), N4 (PFCP), N6 (Data Network), N9 (inter-UPF)
+  # 
+  # Typical deployment:
+  #   - Simple:  3-4 interfaces (N3, N4, N6, management)
+  #   - Complex: 6-8 interfaces (multiple N6, N9 for UL-CL/branching)
+  #
+  # Default: 4
+  # Range: 2-16
+  max_upf_interfaces: 4
+
+  # Maximum interfaces for traffic redirection (egress interfaces)
+  # Used in FARs for forwarding packets to specific destinations
+  # 
+  # Corresponds to 3GPP IE: Forwarding Parameters (in Create FAR)
+  #   - Outer Header Creation
+  #   - Destination Interface
+  # 
+  # Must be ≤ max_upf_interfaces
+  # 
+  # Default: 2
+  # Range: 1-max_upf_interfaces
+  max_upf_redirect_interfaces: 2
+
+  # ---------------------------------------------------------------------------
+  # ARP/NEIGHBOR DISCOVERY
+  # ---------------------------------------------------------------------------
+  
+  # Maximum ARP/ND (Neighbor Discovery) entries
+  # Used for MAC address resolution in data network (N6)
+  # 
+  # Sizing guide:
+  #   - Number of next-hop gateways in data network
+  #   - Typically: 10-100 for small networks
+  #   - Large deployments: 256-1024
+  #
+  # Default: 256
+  # Range: 2-4096
+  max_arp_entries: 256
+
+  # ---------------------------------------------------------------------------
+  # ADDITIONAL PFCP IE-RELATED PARAMETERS (For Future Usage)
+  # ---------------------------------------------------------------------------
+  
+  # Maximum Application IDs per session
+  # Used for application detection and reporting
+  # 
+  # Corresponds to 3GPP IE: Application ID (in PDR/URR)
+  # 
+  # Default: 8
+  # Range: 0-32
+  max_application_ids_per_session: 8
+
+  # Maximum Traffic Endpoints per session
+  # Used for multi-access PDU sessions (3GPP R16+)
+  # Each endpoint represents a different access network
+  # 
+  # Corresponds to 3GPP IE: Traffic Endpoint ID
+  # 
+  # Default: 2 (typically 2 access networks max)
+  # Range: 1-4
+  max_traffic_endpoints_per_session: 2
+
+  # Maximum Ethernet packet filters per session
+  # Used for Ethernet PDU sessions (Layer 2)
+  # Only relevant if enable_eth_pdu: yes
+  # 
+  # Corresponds to 3GPP IE: Ethernet Packet Filter (in PDR)
+  # 
+  # Default: 4
+  # Range: 0-16
+  max_ethernet_packet_filters_per_session: 4
+
+  # Maximum redundant transmission parameters per session
+  # Used for ultra-reliable communications (URLLC)
+  # 
+  # Corresponds to 3GPP IE: Redundant Transmission Parameters
+  # 
+  # Default: 0 (disabled by default)
+  # Range: 0-4
+  max_redundant_transmission_params_per_session: 0
+
+  # ===========================================================================
+  # DEPLOYMENT-SPECIFIC EXAMPLES
+  # ===========================================================================
+  # Uncomment the configuration that matches your deployment size:
+  
+  # # SMALL DEPLOYMENT (testing, PoC, <100 UEs)
+  # max_pfcp_sessions: 100
+  # max_pdrs_per_pdu_session: 4
+  # max_qers_per_pdu_session: 4
+  # max_sdf_filters_per_pdu_session: 4
+  # max_arp_entries: 64
+  # # Estimated memory: ~50MB
+  
+  # # MEDIUM DEPLOYMENT (enterprise, campus, <10K UEs)
+  # max_pfcp_sessions: 10000
+  # max_pdrs_per_pdu_session: 8
+  # max_qers_per_pdu_session: 8
+  # max_sdf_filters_per_pdu_session: 8
+  # max_arp_entries: 512
+  # # Estimated memory: ~1-2GB
+  
+  # # LARGE DEPLOYMENT (service provider, <100K UEs)
+  # max_pfcp_sessions: 50000
+  # max_pdrs_per_pdu_session: 8
+  # max_qers_per_pdu_session: 8
+  # max_sdf_filters_per_pdu_session: 8
+  # max_arp_entries: 2048
+  # # Estimated memory: ~5-10GB
+
+################################################################################
+# NOTES AND BEST PRACTICES
+################################################################################
+# 
+# 1. MEMORY PLANNING:
+#    - Monitor actual memory usage: watch -n1 'ps aux | grep upf'
+#    - eBPF maps are allocated at startup (not dynamic)
+#    - Rule of thumb: 1-2KB per session + (PDRs×QERs×SDFs overhead)
+#
+# 2. CAPACITY PLANNING:
+#    - Start conservative, monitor, then increase
+#    - Leave 20-30% headroom for bursts
+#    - Consider peak hour traffic, not average
+#
+# 3. VALIDATION:
+#    - UPF validates all parameters at startup
+#    - Invalid values will prevent UPF from starting
+#    - Check logs for detailed validation errors
+#
+# 4. DERIVED MAP SIZES (calculated automatically):
+#    - rules_match_pdr_map = max_pfcp_sessions × max_pdrs_per_pdu_session
+#    - session_qos_enabled_map = max_pfcp_sessions
+#    - sdf_filters_map = max_pfcp_sessions × max_sdf_filters_per_pdu_session
+#
+# 5. 3GPP COMPLIANCE:
+#    - All parameters based on 3GPP TS 29.244 (PFCP)
+#    - IE names in comments reference specification
+#    - Defaults follow 3GPP recommendations where applicable
+#
+################################################################################
+
+# ===========================================================================
+  # UPF INFO (3GPP TS 29.510 - NRF Registration)
+  # ===========================================================================
+  # Advertises UPF capabilities to NRF for SMF discovery
   upf_info:
     sNssaiUpfInfoList:
       - sNssai: *embb_slice1
