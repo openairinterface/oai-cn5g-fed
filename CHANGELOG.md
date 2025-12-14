@@ -1,5 +1,110 @@
 # RELEASE NOTES: #
 
+## v2.2.0 -- December 2025 ##
+
+* Archived Network Function:
+  * UPF-VPP
+* Helm charts moved to `oai/orchestration/charts`
+* Tutorials
+  - Add tutorial for Ethernet PDU session
+  - Add tutorial for QOS
+  - Add tutorial for PCF provisioning
+* Future Fixes for all NFs
+  - Add support for Ubuntu 24.04
+  - Add support for RHEL 10, update container images to UBI 10
+  - Fix build issue in non-containerized environment (except UPF)
+* `AMF` changes:
+  * Features
+    - AMF Location Service APIs
+    - AMF Mobile Terminated Service APIs
+    - AMF Status Change APIs
+    - AM Policy Association Retrieval/Update/Termination
+    - SMF Selection Subscription Data Retrieval
+    - Access and Mobility Subscription Data Retrieval
+    - UE Context In SMF Data Retrieval
+    - AMF Registration for 3GPP Access
+    - PCF discovery
+    - TLS support
+  * Fixes
+    - Address UE-originated de-registration request in race condition
+    - Integrity check for Security Mode complete
+    - NR Cell ID
+    - MCC, MNC with 3 digits
+    - Release NAS signalling after the completion of the registration procedure: FOR is set to nN Follow-on request pending
+    - Use SUPI as UE identity
+    - Disable SCTP delays to support multiple UEs at the same time
+* `SMF` changes:
+  * Features
+    - Ethernet PDU session
+    - Support framed routing
+    - Support QoS enforcement
+    - Support SMF Registration/De-registration towards UDM
+    - SM Policy Association Establishment/Modification/Termination
+    - SM Policy Notification
+    - SM Context Status Notify
+    - Trigger the association with the UPFs in the configuration file even NRF discovery option is enabled
+    - Support TLS
+  * Fixes
+    - Default QoS info: ARP values
+    - Add NF Service List in SMF profile
+    - Fix SmfEventExposurePathSubscriptionsSubscriptionId
+    - Fix SMF SM context update endpoint
+    - Add SubscriptionID for SubscriptionData
+    - Fix NRF URI
+    - Fix NRF NF Discovery SearchNFInstances URI
+    - Fix UDM SDM URI
+    - Mime parser with insensitive content-type
+    - SD with/without 0x prefix
+    - Add fix for QoSFlowDescriptons and QoSFlows IE length
+    - Fix GTP TEID IE
+* Miscellaneous
+  - Code refactoring: NAS SM IEs, NGAP IEs
+* `UPF` changes:
+  * Features
+    - Framed routing for simple switch UPF
+    - Ethernet PDU session
+    - Configure eBPF map sizes via config file
+    - Manipulate BPF debug logging
+    - Support QoS enforcement
+  * Fixes
+    - Fix the pFAR add to map
+    - Apply SEID fix on framed routing change
+    - Fix XDP_DROP does not exit in TC
+    - Update code to manage the TC BPF program separately
+  * Future Fixes
+    - Add support for framed routing for eBPF UPF
+    - Improve throughput of simple switch UPF
+* `NRF` changes:
+  * Fixes
+    - Update LTTNG to v0.15.0 to avoid building issue
+* `UDR` changes:
+  * Fixes
+    - Use SUPI as UE identity
+    - Use MySQL query with lowercase in JSON
+    - Fix MySQL query to work with SD with/without 0x prefix
+    - Update LTTNG to v0.15.0 to avoid building issue
+* `UDM` changes:
+  * Fixes
+    - Update LTTNG to v0.15.0 to avoid building issues
+* `AUSF` changes:
+  * Fixes
+    - Fix UEAuthenticationCtx, AuthResult IEs
+    - Update LTTNG to v0.15.0 to avoid build issues
+* `LMR` changes:
+  * Fixes
+    - Fix gNB ID encoding
+    - Update LTTNG to v0.15.0 to avoid build issues
+* `PCF` changes:
+  * Features
+    - PCF Provisioning API: Introduced support for provisioning Policy Decisions,
+    PCC Rules, QoS Data, and Traffic Control Data
+  * Fixes
+    - HTTP/2 PUT request for each endpoint
+    - LTTNG build issue
+* `NSSF` changes:
+  * Fixes
+    - Update LTTNG to v0.15.0 to avoid build issues
+
 ## v2.1.0 -- August 2024 ##
 
 * 1 new Network Funtion:
