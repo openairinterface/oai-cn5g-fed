@@ -1,0 +1,24 @@
+log_level:
+  general: debug
+
+register_nf:
+  general: no
+
+http_version: 2
+http_request_timeout: 3000
+
+nrf:
+  instance_id: 0
+  pid_directory: "/tmp"
+
+  host: 192.168.70.10
+
+  sbi:
+    interface_name: oai-core
+    ipv4_address: 192.168.70.10
+    port: 8081
+    api_version: v1
+
+  heartbeat: 10
+  suspended_nf_interval: 300
+  nrf_name: "oai-nrf"

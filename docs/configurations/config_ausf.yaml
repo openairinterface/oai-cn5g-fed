@@ -1,0 +1,48 @@
+
+log_level:
+  general: debug
+
+register_nf:
+  general: no
+
+http_version: 2
+http_request_timeout: 3000
+
+
+nfs:
+  ausf:
+    host: 192.168.70.10
+    sbi:
+      interface_name: oai-core
+      port: 8084
+    api_version: v1
+
+peer_nfs:
+  nrf:
+    host: 192.168.70.10
+    sbi:
+      interface_name: oai-core
+      port: 8081
+    api_version: v1
+
+  udm:
+    host: 192.168.70.10
+    sbi:
+      interface_name: oai-core
+      port: 8083
+    api_version: v1
+
+
+ausf:
+  instance_id: 1
+  pid_directory: "/tmp"
+
+  sbi:
+    iface:
+      name: oai-core
+      address: 192.168.70.10
+      port: 8084
+      api_version: v1
+
+  ausf_name: "oai-ausf"
+  heartBeatTimer: 10

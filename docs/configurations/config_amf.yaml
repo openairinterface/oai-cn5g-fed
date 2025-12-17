@@ -1,0 +1,76 @@
+log_level:
+  general: debug
+
+register_nf:
+  general: yes
+
+http_version: 2
+http_request_timeout: 3000
+
+nfs:
+  nrf:
+    host: 192.168.70.10
+    sbi:
+      port: 8081
+      interface_name: oai-core
+    api_version: v1
+
+  udm:
+    host: 192.168.70.10
+    sbi:
+      port: 8083
+      interface_name: oai-core
+    api_version: v1
+
+  ausf:
+    host: 192.168.70.10
+    sbi:
+      port: 8084
+      interface_name: oai-core
+    api_version: v1
+
+amf:
+  instance_id: 0
+  pid_directory: "/tmp"
+
+  amf_name: "oai-amf"
+
+  statistics_timer_interval: 20
+
+  relative_capacity: 30
+
+  plmn_list:
+    - mcc: "208"
+      mnc: "95"
+      tac: 1
+
+  guami:
+    - plmn:
+        mcc: "208"
+        mnc: "95"
+      amf_region_id: 1
+      amf_set_id: 1
+      amf_pointer: 1
+
+  sbi:
+    interface_name: oai-core
+    ipv4_address: 192.168.70.10
+    port: 8080
+    api_version: v1
+
+  n2:
+    interface_name: oai-core
+    ipv4_address: 192.168.70.10
+    port: 38412
+
+smf:
+  local:
+    host: 192.168.70.10
+    port: 8085
+
+database:
+  type: mysql
+  host: 127.0.0.1
+  user: test
+  password: test
+  database_name: oai_db

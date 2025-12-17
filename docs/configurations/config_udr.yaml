@@ -1,0 +1,46 @@
+log_level:
+  general: debug
+
+register_nf:
+  general: yes
+
+http_version: 2
+http_request_timeout: 3000
+
+
+nfs:
+  nrf:
+    host: 192.168.70.10
+    sbi:
+      interface_name: oai-core
+      port: 8081
+    api_version: v1
+
+  udr:
+    host: 192.168.70.10
+    sbi:
+      interface_name: oai-core
+      port: 8082
+    api_version: v1
+
+
+database:
+  type: mysql
+  host: 127.0.0.1
+  user: test
+  password: test
+  database_name: oai_db
+  generate_random: true
+  connection_timeout: 300
+
+
+udr:
+  instance_id: 1
+  pid_directory: "/tmp"
+
+  sbi:
+    iface:
+      name: oai-core
+      address: 192.168.70.10
+      port: 8082
+      api_version: v1
