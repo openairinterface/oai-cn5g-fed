@@ -302,7 +302,7 @@ def check_config(file_name):
             print(smf_registration_nrf)
         if file_name == BASIC_VPP_W_NRF or file_name == BASIC_VPP_W_NRF_REDIRECT or file_name == BASIC_VPP_W_NRF_STEERING:
             cmd = f'{curl_cmd}"UPF" | grep -o "192.168.70.201"'
-        elif file_name == BASIC_EBPF_W_NRF:
+        elif file_name == BASIC_EBPF_W_NRF or file_name == BASIC_EBPF_W_QOS:
             cmd = f'{curl_cmd}"UPF" | grep -o "192.168.70.129"'
         else:
             cmd = f'{curl_cmd}"UPF" | grep -o "{cn.UPF_IP_ADDRESS}"'
