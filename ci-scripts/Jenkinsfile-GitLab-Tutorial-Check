@@ -47,6 +47,7 @@ pulledImages = [false, false, false, false, false, false, false, false, false]
 // Which RAN TAG to use
 ranTag = params.ranTag
 upstreamTagToUse = params.upstreamTagToUse
+upstreamIsFED = false
 
 // means to shorten the pipeline
 run_mini_gnbsim = true
@@ -110,12 +111,15 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-PCF')) {
               upstreamJobs[PCF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
+            }
           }
           sh "git clean -x -d -f > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
           // For any upstream job (PR or post-merge), let run on certified tag.
-          if (upstreamEvent) {
+          if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
           sh 'git submodule update --init --recursive ci-scripts/common'
