@@ -255,8 +255,9 @@ pipeline {
             sh 'sed -i -e "s@TEST_REGISTER@True@" -e "s@NB_REGISTRATIONS@625@" omec-gnbsim-config-*.yaml'
             sh 'sed -i -e "s@TEST_PDU_SESSION@False@" -e "s@NB_PDU_SESSIONS@10@" omec-gnbsim-config-*.yaml'
             sh 'docker-compose -f docker-compose-omec-gnbsim.yaml up -d'
-            // Test should be finished in 150 seconds
-            sh '../../checkOmecGnbsimStatus.py --timeout 250'
+            // One UE takes 3.7 seconds to finish (3 seconds for the traffic test)
+            // 125 UE * 3.7 seconds = 460 minutes (i.e., 8 minutes)
+            sh '../../checkOmecGnbsimStatus.py --timeout 500'
           }
           retrieveGnbsimLogs('archives/registration-test', 'ci-scripts/docker-compose/load-test-gnbsim')
           dir ('ci-scripts/docker-compose/load-test-gnbsim') {
