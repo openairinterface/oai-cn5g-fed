@@ -2,6 +2,11 @@
 
 <!-- Link to the related issue(s) using GitLab references, e.g., Closes #123, or link to related merge requests. -->  
 
+## CI Trigger
+
+<!--To trigger the CI pipeline for a Merge Request targeting the `develop` branch, add the `CI` label to the Merge Request. -->  
+<!--To retrigger a CI pipeline, you can add the `RETRIGGER-CI` label. -->
+
 ## Description
 
 <!-- Provide a clear and concise summary of the changes introduced in this MR. -->  
