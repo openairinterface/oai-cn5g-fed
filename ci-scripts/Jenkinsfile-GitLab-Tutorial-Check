@@ -39,6 +39,8 @@ run_slicing_w_nssf = false
 run_ulcl_pcf = true
 run_mongo_db = true
 run_qos = true
+run_ethernet_pdu = true
+
 //-------------------------------------------------------------------------------
 // Pipeline start
 pipeline {
@@ -127,6 +129,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == AMF) {
@@ -141,6 +144,7 @@ pipeline {
                 run_ulcl_pcf = true
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == SMF) {
@@ -155,6 +159,7 @@ pipeline {
                 run_ulcl_pcf = true
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = true
               }
             }
             if (ii == UPF) {
@@ -169,6 +174,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = true
               }
             }
             if (ii == AUSF) {
@@ -183,6 +189,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == UDM) {
@@ -197,6 +204,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == UDR) {
@@ -211,6 +219,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = true
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == NSSF) {
@@ -225,6 +234,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = false
+                run_ethernet_pdu = false
               }
             }
             if (ii == PCF) {
@@ -239,6 +249,7 @@ pipeline {
                 run_ulcl_pcf = true
                 run_mongo_db = false
                 run_qos = true
+                run_ethernet_pdu = false
               }
             }
           }
@@ -405,6 +416,28 @@ pipeline {
           }
           archivesArtifacts('docker-compose/docker-compose-basic-nrf-qos.yaml', 'qos-testing')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-qos.yaml')
+        }
+      }
+    }
+      stage ('Check Ethernet PDU Sessions Tutorial') {
+      when { expression {run_ethernet_pdu} }
+      steps {
+        script {
+          updateDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml', ranTag)
+          dir ('ci-scripts') {
+            // Tee will make the command always pass
+            // Please use the same log name as the folder used in the tutorial
+            sh './checkTutorial.py --tutorial Ethernet_PDU_Sessions.md | tee ../archives/ethernet-pdu-testing.log'
+          }
+          try {
+            sh 'grep -l "is PASS" archives/ethernet-pdu-testing.log > /dev/null'
+            echo "Ethernet PDU Sessions Tutorial PASSED"
+          } catch (Exception e) {
+            currentBuild.result = 'FAILURE'
+            echo "Ethernet PDU Sessions Tutorial FAILED"
+          }
+          archivesArtifacts('docker-compose/docker-compose-basic-nrf-ebpf.yaml', 'ethernet-pdu-testing')
+          cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml')
         }
       }
     }
