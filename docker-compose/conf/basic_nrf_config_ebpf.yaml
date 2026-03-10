@@ -228,7 +228,7 @@ upf:
     # QoS Enforcement: Enable TC-BPF for per-flow QoS (rate limiting, prioritization)
     # Maps to 3GPP PFCP: QER (QoS Enforcement Rule) IE
     # Requires enable_bpf_datapath: yes
-    enable_qos: yes
+    enable_qos: no
     
     # Source NAT: Translate UE IP to N6 interface IP
     # Use when UE IPs are not routable in data network
