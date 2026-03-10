@@ -179,7 +179,7 @@ def check_AMF_reg_callback(nb_of_users, logs):
         handler_dict = {report['imsi']: report['details'] for report in report_from_handler}
         i = 0
         for report in report_from_AMF:
-            imsi = report['IMSI']
+            imsi = report['IMSI/SUPI']
             if report['5GMM State'] != '5GMM-REGISTERED':     #handle the case where its initiated, it shouldnt raise an error
                 logger.warning(f"UE {imsi} is {report['5GMM State']}")
                 i=+1
@@ -214,7 +214,7 @@ def check_AMF_dereg_callback(logs,nb_of_users):
         handler_dict = {report['imsi']: report['details'] for report in report_from_handler}
         i = 0
         for report in report_from_AMF:
-            imsi = report['IMSI']
+            imsi = report['IMSI/SUPI']
             if report['5GMM State'] != '5GMM-DEREGISTERED':     #if it still initiated no error should be raised as awe are testing callbacks.
                 logger.warning(f"UE {imsi} is {report['5GMM State']}")
                 i+=1
@@ -256,7 +256,7 @@ def check_AMF_Location_report_callback(logs, nb_of_users):
                 logger.error(f"No location reports notifications received")
                 raise Exception(f"No location reports notifications received")
         for report in report_from_amf:
-            imsi = report['IMSI']
+            imsi = report['IMSI/SUPI']
             if imsi in handler_dict:
                 handler_details = handler_dict[imsi]
                 if int(handler_details['nr_cell_id'],10) != int(report['Cell Id'],16):
