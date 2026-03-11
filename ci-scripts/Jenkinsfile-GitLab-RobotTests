@@ -24,6 +24,8 @@
 def cn_ci_host = params.Host_CN_CI_Server
 def cn_ci_resource = params.DockerContainers
 def upstreamEvent = false
+def upstreamIsFED = false
+
 
 // Variables that can used in main pipeline and in functions
 DEFAULT=-1
@@ -115,15 +117,24 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-PCF')) {
               upstreamJobs[PCF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
+            }
           }
 
           sh "git clean -x -d -ff > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
           // For any upstream job (PR or post-merge), let run on certified tag.
-          if (upstreamEvent) {
+          if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
+          if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
+            sh "git fetch origin ${FED_COMMIT_SHA}"
+            sh "git checkout ${FED_COMMIT_SHA}"
+          }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
           sh 'git submodule update --init --recursive ci-scripts/common'
           sh "mkdir -p archives"
 

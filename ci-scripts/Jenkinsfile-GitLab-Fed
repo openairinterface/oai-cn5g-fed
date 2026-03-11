@@ -97,6 +97,8 @@ pipeline {
                         echo "CI develop Tag : ${fed_tag}"
                     }
                     prepareWorkspaceMergeCase()
+                    FED_COMMIT_SHA = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+                    echo "Current Commit is ${FED_COMMIT_SHA}"
                 }
             }
             post {
@@ -149,7 +151,10 @@ pipeline {
                             gitlabCommitStatus(name: "Load Testing") {
                                 localStatus = build(
                                     job: 'OAI-CN5G-Load-Test',
-                                    propagate: false
+                                    propagate: false,
+                                    parameters: [
+                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                    ]
                                 )
                                 localResult = localStatus.getResult()
 
@@ -180,7 +185,10 @@ pipeline {
                             gitlabCommitStatus(name: "Robot Test") {
                                 localStatus = build(
                                     job: 'OAI-CN5G-RobotTest',
-                                    propagate: false
+                                    propagate: false,
+                                    parameters: [
+                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                    ]
                                 )
                                 localResult = localStatus.getResult()
 
@@ -218,7 +226,10 @@ pipeline {
                             gitlabCommitStatus(name: "Testing Tutorials") {
                                 localStatus = build(
                                     job: 'OAI-CN5G-Tutorials-Check',
-                                    propagate: false
+                                    propagate: false,
+                                    parameters: [
+                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                    ]
                                 )
                                 localResult = localStatus.getResult()
 
