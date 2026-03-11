@@ -74,6 +74,8 @@ pipeline {
   stages {
     stage ('Verify Parameters') {
       steps {
+        deleteDir()           // wipe workspace
+        checkout scm          // get fresh code
         script {
           echo '\u2705 \u001B[32mVerify Parameters\u001B[0m'
 

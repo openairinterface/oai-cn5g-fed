@@ -63,6 +63,8 @@ pipeline {
 
         stage ('Prepare Source Code') {
             steps {
+                deleteDir() // Wipes the workspace clean
+                checkout scm // Checks out the repository
                 script {
                     if ("MERGE".equals(env.gitlabActionType)) {
                         gitlabMergeRequestLink = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-fed/merge_requests/${env.gitlabMergeRequestIid}' | jq .web_url | sed 's#\"##g'"

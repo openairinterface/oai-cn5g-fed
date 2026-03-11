@@ -278,7 +278,7 @@ pipeline {
                 imageTags[ii] = pullImageFromSelfix(ii, imageNames[ii], imageTags[ii], branchNames[ii])
               }
               // Logout
-              sh 'docker logout elfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
           }
 
