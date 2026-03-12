@@ -99,8 +99,7 @@ pipeline {
                         echo "CI develop Tag : ${fed_tag}"
                     }
                     prepareWorkspaceMergeCase()
-                    FED_COMMIT_SHA = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
-                    echo "Current Commit is ${FED_COMMIT_SHA}"
+                    echo "Current Commit is ${shortenShaOne}"
                 }
             }
             post {
@@ -155,7 +154,7 @@ pipeline {
                                     job: 'OAI-CN5G-Load-Test',
                                     propagate: false,
                                     parameters: [
-                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                        string(name: 'GIT_COMMIT_SHA', value: shortenShaOne)
                                     ]
                                 )
                                 localResult = localStatus.getResult()
@@ -189,7 +188,7 @@ pipeline {
                                     job: 'OAI-CN5G-RobotTest',
                                     propagate: false,
                                     parameters: [
-                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                        string(name: 'GIT_COMMIT_SHA', value: shortenShaOne)
                                     ]
                                 )
                                 localResult = localStatus.getResult()
@@ -230,7 +229,7 @@ pipeline {
                                     job: 'OAI-CN5G-Tutorials-Check',
                                     propagate: false,
                                     parameters: [
-                                        string(name: 'GIT_COMMIT_SHA', value: FED_COMMIT_SHA)
+                                        string(name: 'GIT_COMMIT_SHA', value: shortenShaOne)
                                     ]
                                 )
                                 localResult = localStatus.getResult()
