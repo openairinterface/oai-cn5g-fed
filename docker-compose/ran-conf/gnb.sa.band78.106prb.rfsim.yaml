@@ -16,7 +16,7 @@ gNBs:
         snssaiList:
           - sst: 1
             sd: 0xffffff
-          - sst: 5
+          - sst: 3
             sd: 0xffffff
     nr_cellid: 12345678
     ##### Physical parameters:
@@ -107,20 +107,20 @@ gNBs:
         # ssb_periodicityServingCell
         # 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
         ssb_periodicityServingCell: 2
-        
+
         # dmrs_TypeA_position
         # 0 = pos2, 1 = pos3
         dmrs_TypeA_Position: 0
-        
+
         # subcarrierSpacing
         # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
         subcarrierSpacing: 1
-        
+
         #tdd-UL-DL-ConfigurationCommon
         # subcarrierSpacing
         # 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
         referenceSubcarrierSpacing: 1
-        
+
         # pattern1
         # dl_UL_TransmissionPeriodicity
         # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10

@@ -149,6 +149,13 @@ Deploy the OAI gNB:
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml up -d oai-gnb
 ```
 
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: sleep 20
+```
+-->
+
 Deploy the OAI UE with Ethernet PDU session configured
 
 ``` shell
@@ -165,13 +172,7 @@ docker-compose-host $: sleep 10
 -->
 
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip a | grep oaitap_ue0
-```
-
-Install arping
-``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 apt update -y
-docker-compose-host $: docker exec -it oai-nr-ue3 apt install arping -y
+docker-compose-host $: docker exec -it oai-nr-ue3 ip a | grep oaitap_ue1
 ```
 
 Send Ethernet traffic using arping
@@ -179,22 +180,22 @@ Send Ethernet traffic using arping
 Assign IP address to tap device on OAI UE
 
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip addr add 192.168.72.140/26 dev oaitap_ue0
+docker-compose-host $: docker exec -it oai-nr-ue3 ip addr add 192.168.72.140/26 dev oaitap_ue1
 ```
 
 Set interface UP
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip link set dev oaitap_ue0 up
+docker-compose-host $: docker exec -it oai-nr-ue3 ip link set dev oaitap_ue1 up
 ```
 
 Send ARP ping packets
 ```console
-docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue0 192.168.72.135
+docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135
 ```
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue0 192.168.72.135 > /tmp/oai/ethernet-pdu-sessions/oai-nr-ue3-arping.log 2>&1
+docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135 > /tmp/oai/ethernet-pdu-sessions/oai-nr-ue3-arping.log 2>&1
 ```
 -->
 
