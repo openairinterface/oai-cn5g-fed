@@ -437,6 +437,7 @@ pipeline {
             echo "Ethernet PDU Sessions Tutorial FAILED"
           }
           archivesArtifacts('docker-compose/docker-compose-basic-nrf-ebpf.yaml', 'ethernet-pdu-testing')
+          archivesArtifacts('docker-compose/docker-compose-oai-rfsim-ebpf.yaml', 'ethernet-pdu-testing')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml')
         }
       }

@@ -12,13 +12,13 @@ Create a folder where you can store all the result files of the tutorial and lat
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: rm -rf /tmp/oai/ethernet-pdu-sessions
+docker-compose-host $: rm -rf /tmp/oai/ethernet-pdu-testing
 ```
 -->
 
 ``` shell
-docker-compose-host $: mkdir -p /tmp/oai/ethernet-pdu-sessions
-docker-compose-host $: chmod 777 /tmp/oai/ethernet-pdu-sessions
+docker-compose-host $: mkdir -p /tmp/oai/ethernet-pdu-testing
+docker-compose-host $: chmod 777 /tmp/oai/ethernet-pdu-testing
 ```
 
 ## 2. Architecture Overview
@@ -35,16 +35,16 @@ The Ethernet PDU session support in OAI 5G Core enables:
 
 First, we need to configure the subscriber database to support Ethernet PDU sessions. Update your database with a UE subscription that includes PDU session type "ETHERNET".
 
- In the table `SessionManagementSubscriptionData` in [oai_db2.sql](../docker-compose/database/oai_db2.sql) add below entries. Execute the following SQL statement to insert a UE with Ethernet PDU session support:
+ In the table `SessionManagementSubscriptionData` in [docker-compose/database/oai_db2.sql](../docker-compose/database/oai_db2.sql) add below entries. Execute the following SQL statement to insert a UE with Ethernet PDU session support:
 
 ```sql
 INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
-('208950000000035', '20895', '{\"sst\": 222, \"sd\": \"00007B"}','{\"default\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"ETHERNET\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"150Mbps\", \"downlink\":\"150Mbps\"}}, \"ethernet\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"ETHERNET\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"150Mbps\", \"downlink\":\"150Mbps\"}}}');
+('208950000000038', '20895', '{\"sst\": 3, \"sd\": \"FFFFFF\"}','{\"default\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"ETHERNET\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"150Mbps\", \"downlink\":\"150Mbps\"}}, \"ethernet\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"ETHERNET\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"150Mbps\", \"downlink\":\"150Mbps\"}}}');
 ```
 
 ## 4. UPF Configuration
 
-Update the UPF configuration to support Ethernet PDU sessions. Edit the [basic_nrf_config_ebpf.yaml](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file:
+Update the UPF configuration to support Ethernet PDU sessions. Edit the [docker-compose/conf/basic_nrf_config_ebpf.yaml](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file:
 
 ```yaml
 upf:
@@ -52,6 +52,7 @@ upf:
     enable_bpf_datapath: yes    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
     enable_eth_pdu: yes      # If "on": ETHERNET PDU sessions are supported, DEFAULT= off
 
+## DNN configuration
 dnns:
   - dnn: "oai"
     pdu_session_type: "IPV4"
@@ -60,11 +61,14 @@ dnns:
     pdu_session_type: "IPV4"
     ipv4_subnet: "12.1.1.64/26"
   - dnn: "default"
-    pdu_session_type: "ETHERNET"
+    pdu_session_type: "IPV4"
     ipv4_subnet: "12.1.1.0/26"
   - dnn: "ims"
     pdu_session_type: "IPV4V6"
     ipv4_subnet: "14.1.1.2/24"
+  - dnn: "ethernet"
+    pdu_session_type: "ETHERNET"
+    ipv4_subnet: "12.1.1.0/26"
 ```
 
 > **Note** that for Ethernet PDU sessions, the `ipv4_subnet` field is not actually used but must be present in the configuration for compatibility.
@@ -86,7 +90,7 @@ For CI purposes, we are deploying with an automated PCAP capture on the docker n
 > **REMEMBER: if you are planning to run your CN5G deployment for a long time, the PCAP file can become huge!**
 
 ``` shell
-docker-compose-host $: python3 core-network.py --type start-basic-ebpf --scenario 1 --capture /tmp/oai/ethernet-pdu-sessions/ethernet-pdu-sessions.pcap
+docker-compose-host $: python3 core-network.py --type start-basic-ebpf --scenario 1 --capture /tmp/oai/ethernet-pdu-testing/ethernet-pdu-testing.pcap
 ```
 <details>
 <summary>The output will look like this:</summary>
@@ -172,30 +176,48 @@ docker-compose-host $: sleep 10
 -->
 
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip a | grep oaitap_ue1
+docker-compose-host $: docker exec -i oai-nr-ue3 ip a | grep oaitap_ue1
 ```
+
+<details>
+<summary>The output will look like this:</summary>
+
+```
+3: oaitap_ue1: <BROADCAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+```
+</details>
 
 Send Ethernet traffic using arping
 
 Assign IP address to tap device on OAI UE
 
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip addr add 192.168.72.140/26 dev oaitap_ue1
+docker-compose-host $: docker exec -i oai-nr-ue3 ip addr add 192.168.72.140/26 dev oaitap_ue1
 ```
 
 Set interface UP
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 ip link set dev oaitap_ue1 up
+docker-compose-host $: docker exec -i oai-nr-ue3 ip link set dev oaitap_ue1 up
 ```
+
+<details>
+<summary>The output will look like this:</summary>
+
+```bash
+# docker exec -i oai-nr-ue3 ip a | grep oaitap_ue1
+3: oaitap_ue1: <BROADCAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+    inet 192.168.72.140/26 scope global oaitap_ue1
+```
+</details>
 
 Send ARP ping packets
 ```console
-docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135
+docker-compose-host $: docker exec -i oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135
 ```
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: docker exec -it oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135 > /tmp/oai/ethernet-pdu-sessions/oai-nr-ue3-arping.log 2>&1
+docker-compose-host $: docker exec -i oai-nr-ue3 arping -c 2 -I oaitap_ue1 192.168.72.135 > /tmp/oai/ethernet-pdu-testing/oai-nr-ue3-arping.log 2>&1
 ```
 -->
 
@@ -220,7 +242,7 @@ rtt min/avg/max/std-dev = 14.583/17.724/20.865/3.141 ms
 <!---
 For CI purposes please ignore these lines
 ``` shell
-docker-compose-host $: docker exec -it oai-upf sh -c 'timeout 2s cat /sys/kernel/debug/tracing/trace_pipe || true' > /tmp/oai/ethernet-pdu-sessions/upf-ebpf-trace-pipe.log 2>&1
+docker-compose-host $: docker exec -i oai-upf sh -c 'timeout 2s cat /sys/kernel/debug/tracing/trace_pipe || true' > /tmp/oai/ethernet-pdu-testing/upf-ebpf-trace-pipe.log 2>&1
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml stop -t 2
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-ebpf.yaml stop -t 30
 ```
@@ -253,16 +275,16 @@ docker-compose-host $: pkill tshark
 - **Collect the logs of all the components**:
 
 ``` shell
-docker-compose-host $: docker logs oai-amf > /tmp/oai/ethernet-pdu-sessions/amf.log 2>&1
-docker-compose-host $: docker logs oai-smf > /tmp/oai/ethernet-pdu-sessions/smf.log 2>&1
-docker-compose-host $: docker logs oai-nrf > /tmp/oai/ethernet-pdu-sessions/nrf.log 2>&1
-docker-compose-host $: docker logs oai-upf > /tmp/oai/ethernet-pdu-sessions/upf.log 2>&1
-docker-compose-host $: docker logs oai-udr > /tmp/oai/ethernet-pdu-sessions/udr.log 2>&1
-docker-compose-host $: docker logs oai-udm > /tmp/oai/ethernet-pdu-sessions/udm.log 2>&1
-docker-compose-host $: docker logs oai-ausf > /tmp/oai/ethernet-pdu-sessions/ausf.log 2>&1
-docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/ethernet-pdu-sessions/ext-dn.log 2>&1
-docker-compose-host $: docker logs oai-gnb > /tmp/oai/ethernet-pdu-sessions/oai-gnb.log 2>&1
-docker-compose-host $: docker logs oai-nr-ue3 > /tmp/oai/ethernet-pdu-sessions/oai-nr-ue3.log 2>&1
+docker-compose-host $: docker logs oai-amf > /tmp/oai/ethernet-pdu-testing/amf.log 2>&1
+docker-compose-host $: docker logs oai-smf > /tmp/oai/ethernet-pdu-testing/smf.log 2>&1
+docker-compose-host $: docker logs oai-nrf > /tmp/oai/ethernet-pdu-testing/nrf.log 2>&1
+docker-compose-host $: docker logs oai-upf > /tmp/oai/ethernet-pdu-testing/upf.log 2>&1
+docker-compose-host $: docker logs oai-udr > /tmp/oai/ethernet-pdu-testing/udr.log 2>&1
+docker-compose-host $: docker logs oai-udm > /tmp/oai/ethernet-pdu-testing/udm.log 2>&1
+docker-compose-host $: docker logs oai-ausf > /tmp/oai/ethernet-pdu-testing/ausf.log 2>&1
+docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/ethernet-pdu-testing/ext-dn.log 2>&1
+docker-compose-host $: docker logs oai-gnb > /tmp/oai/ethernet-pdu-testing/oai-gnb.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue3 > /tmp/oai/ethernet-pdu-testing/oai-nr-ue3.log 2>&1
 ```
 
 ## 8. Undeploy the network functions
@@ -318,7 +340,7 @@ Removing network demo-oai-public-net
 ```
 </details>
 
-- If you replicate then your log files and pcap file will be present in `/tmp/oai/ethernet-pdu-sessions/`. If you want to compare it with our provided logs and pcaps, then follow the previous section
+- If you replicate then your log files and pcap file will be present in `/tmp/oai/ethernet-pdu-testing/`. If you want to compare it with our provided logs and pcaps, then follow the previous section
 
 
 ## 9. Conclusion

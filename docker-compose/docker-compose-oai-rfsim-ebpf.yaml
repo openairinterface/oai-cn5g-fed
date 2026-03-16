@@ -3,7 +3,7 @@
 version: '3.8'
 services:
     oai-gnb:
-        image: oaisoftwarealliance/oai-gnb:2026.w05
+        image: oaisoftwarealliance/oai-gnb:develop
         privileged: true
         container_name: oai-gnb
         environment:
@@ -22,7 +22,7 @@ services:
             timeout: 5s
             retries: 5
     oai-nr-ue1:
-        image: oaisoftwarealliance/oai-nr-ue:2026.w05
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue1
         environment: 
@@ -40,7 +40,7 @@ services:
             timeout: 5s
             retries: 5
     oai-nr-ue2:
-        image: oaisoftwarealliance/oai-nr-ue:2026.w05
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue2
         environment:
@@ -59,7 +59,7 @@ services:
             retries: 5
     # For ETH PDU session testing
     oai-nr-ue3:
-        image: oaisoftwarealliance/oai-nr-ue:2026.w05
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue3
         environment:
