@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 # Robot test suit
 
 In CI we are using [robot test framework](https://robotframework.org/) to test certain functionalities of the core network functions. 

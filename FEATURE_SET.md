@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 # Feature Set
 
 ## 5GC Service Based Architecture
