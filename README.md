@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-    <a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-OAI--Public--V1.1-blue" alt="License"></a>
+    <a href="https://openairinterface.org/oai-cssl/"><img src="https://img.shields.io/badge/license-OAI--CSSL--v1.0-blue" alt="License"></a>
     <a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License"></a>
     <a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/releases"><img alt="GitLab Release (custom instance)" src="https://img.shields.io/gitlab/v/release/oai/cn5g/oai-cn5g-fed?gitlab_url=https%3A%2F%2Fgitlab.eurecom.fr&include_prereleases&sort=semver"></a>
     <a href="https://releases.ubuntu.com/20.04/"><img src="https://img.shields.io/badge/OS-Ubuntu20-Green" alt="Supported OS"></a>
@@ -84,11 +84,16 @@ Feature set of all the network functions is [here](./FEATURE_SET.md)
 
 # License info
 
-It is distributed under `OAI Public License V1.1`.
-See [OAI Website for more details](https://www.openairinterface.org/?page_id=698).
+The source code is distributed under `Collaborative Standards Software License v1.0 (CSSL v1.0)`.
+For more details, visit the [OAI Website](https://openairinterface.org/oai-cssl/).
 
-The text for `OAI Public License V1.1` is also available under [LICENSE](LICENSE)
+The full text of `Collaborative Standards Software License v1.0` is also included in the [LICENSE](LICENSE)
 file at the root of this repository.
+
+Certain files in the repository are using MIT License and documentation is distributed under
+Creative Commons Attribution 4.0 International license.
+
+For third-party softwares, please refer to the [NOTICE](NOTICE) file.
 
 Note that the `UPF-VPP` implementation is distributed under `Apache V2.0 License`.
 
