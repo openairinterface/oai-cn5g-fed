@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
 openapi: 3.0.1
 info:
   title: PCC Rule, QoS Data, Traffic Control Data and Policy Decisions API

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 services:
     gnb_mono_tdd:
         image: oaisoftwarealliance/oai-gnb:develop

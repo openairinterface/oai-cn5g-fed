@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
 
 UPF_FQDN=${UPF_FQDN:-oai-upf}
 USE_FQDN=${USE_FQDN:-no}

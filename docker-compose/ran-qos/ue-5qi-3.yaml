@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: AGPL-3.0
+
 # IMSI number of the UE. IMSI = [MCC|MNC|MSISDN] (In total 15 digits)
 supi: 'imsi-208950000000034'
 # Mobile Country Code value of HPLMN

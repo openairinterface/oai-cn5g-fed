@@ -1,4 +1,6 @@
-# Reference:- TS 29.531 R16.0.0., Section- 6.1.6 Data Model 
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+# Reference:- TS 29.531 R16.0.0., Section- 6.1.6 Data Model
 info:
   version: 1.4.0
   description: OAI-NSSF Release v1.4.0

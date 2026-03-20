@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 apiVersion: v2
 name: mysql
 version: 9.2.0

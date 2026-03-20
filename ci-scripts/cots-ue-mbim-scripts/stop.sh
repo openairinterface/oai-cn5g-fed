@@ -1,4 +1,6 @@
 #!/bin/bash
+# SPDX-License-Identifier: MIT
+
 # This script requires below environment variables
 # DNN1 -- dnn of the second PDU session
 

@@ -1,4 +1,6 @@
 #!/bin/bash
+# SPDX-License-Identifier: MIT
+
 # This script requires below environment variables
 # INTERFACE -- interface name which it will configure
 # DNN0 -- dnn of the first PDU session
