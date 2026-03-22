@@ -27,6 +27,8 @@ Usage:
 import time
 import argparse
 import logging
+import json
+import os
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List
@@ -49,6 +51,7 @@ BASE_SEID = 0x00000001
 BASE_FTEID_DL = 0x00000010
 MAX_PFCP_RETRIES = 3
 PFCP_TIMEOUT = 2
+DEFAULT_SESSIONS_FILE = None
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
@@ -61,21 +64,22 @@ class UserQoS:
     gbr: int
 
 USERS: List[UserQoS] = [
-    # === prio 1 (2 users) - High: GBR=10Gbps, MBR=15Gbps ===
-    UserQoS("12.1.1.2", 15000000, 10000000),
-    UserQoS("12.1.1.3", 15000000, 10000000),
+    # Stable official-source profile for a ~7 Gbps aggregate downlink ceiling.
+    # === prio 1 (2 users) - High: GBR=0.8Gbps, MBR=1.2Gbps ===
+    UserQoS("12.1.1.2", 1200000, 800000),
+    UserQoS("12.1.1.3", 1200000, 800000),
 
-    # === prio 2 (3 users) - Medium: GBR=5Gbps, MBR=10Gbps ===
-    UserQoS("12.1.1.4", 10000000, 5000000),
-    UserQoS("12.1.1.5", 10000000, 5000000),
-    UserQoS("12.1.1.6", 10000000, 5000000),
+    # === prio 2 (3 users) - Medium: GBR=0.4Gbps, MBR=0.8Gbps ===
+    UserQoS("12.1.1.4", 800000, 400000),
+    UserQoS("12.1.1.5", 800000, 400000),
+    UserQoS("12.1.1.6", 800000, 400000),
 
-    # === prio 3 (5 users) - Low: GBR=2Gbps, MBR=5Gbps ===
-    UserQoS("12.1.1.7", 5000000, 2000000),
-    UserQoS("12.1.1.8", 5000000, 2000000),
-    UserQoS("12.1.1.9", 5000000, 2000000),
-    UserQoS("12.1.1.10", 5000000, 2000000),
-    UserQoS("12.1.1.11", 5000000, 2000000),
+    # === prio 3 (5 users) - Low: GBR=0.2Gbps, MBR=0.4Gbps ===
+    UserQoS("12.1.1.7", 400000, 200000),
+    UserQoS("12.1.1.8", 400000, 200000),
+    UserQoS("12.1.1.9", 400000, 200000),
+    UserQoS("12.1.1.10", 400000, 200000),
+    UserQoS("12.1.1.11", 400000, 200000),
 ]
 # -----------------------------------------------------------------------------
 
@@ -89,12 +93,13 @@ def create_qer(qer_id: int, qfi: int, ul_mbr: int, dl_mbr: int, ul_gbr: int, dl_
         IE_GBR(ul=ul_gbr, dl=dl_gbr)
     ])
 
-def create_pdr(pdr_id: int, far_id: int, qer_id: int, nwi: str, source_iface: str, ip: str, sd: int, precedence: int, direction: str):
+def create_pdr(pdr_id: int, far_id: int, qer_id: int, qfi: int, nwi: str, source_iface: str, ip: str, sd: int, precedence: int, direction: str):
     """Create PDR Information Element dynamically based on direction (UL/DL)."""
     pdi_list = [
         IE_SourceInterface(interface=source_iface),
         IE_NetworkInstance(instance=nwi),
-        IE_UE_IP_Address(ipv4=ip, V4=1, SD=sd)
+        IE_UE_IP_Address(ipv4=ip, V4=1, SD=sd),
+        IE_QFI(QFI=qfi),
     ]
     
     if direction.upper() == "UL":
@@ -142,17 +147,17 @@ def session_establishment_ul(seid_: int, ue_ip: str, smf_ip: str, pdr_id_ul: int
         IE_NodeId(id_type="FQDN", id=smf_ip),
         IE_FSEID(seid=seid_, ipv4=smf_ip, v4=1),
         create_qer(qer_id, qfi=qfi, ul_mbr=mbr, dl_mbr=mbr, ul_gbr=gbr, dl_gbr=gbr),
-        create_pdr(pdr_id_ul, far_id_ul, qer_id, "access.oai.org", "Access", ue_ip, 0, precedence, "UL"),
+        create_pdr(pdr_id_ul, far_id_ul, qer_id, qfi, "access.oai.org", "Access", ue_ip, 0, precedence, "UL"),
         create_far_ul(far_id_ul, "core.oai.org"),
         IE_PDNType(pdn_type=1),
         IE_APN_DNN(apn_dnn="internet"),
     ])
 
-def session_modification_dl(seid_: int, ue_ip: str, fteid_dl: int, smf_ip: str, gnb_ip: str, pdr_id_dl: int, far_id_dl: int, qer_id: int, precedence: int):
+def session_modification_dl(seid_: int, ue_ip: str, fteid_dl: int, smf_ip: str, gnb_ip: str, pdr_id_dl: int, far_id_dl: int, qer_id: int, precedence: int, qfi: int):
     """Generate PFCP Session Modification Request for DL."""
     return PFCPSessionModificationRequest(IE_list=[
         IE_FSEID(seid=seid_, ipv4=smf_ip, v4=1),
-        create_pdr(pdr_id_dl, far_id_dl, qer_id, "core.oai.org", "Core", ue_ip, 1, precedence, "DL"),
+        create_pdr(pdr_id_dl, far_id_dl, qer_id, qfi, "core.oai.org", "Core", ue_ip, 1, precedence, "DL"),
         create_far_dl(far_id_dl, "access.oai.org", fteid_dl, gnb_ip),
     ])
 
@@ -195,17 +200,47 @@ def generate_unique_fteid(base: int, off: int):
 
 def get_qos_params_from_gbr(gbr_kbps: int):
     """Map GBR bandwidth to Priority (Precedence) and QFI values."""
-    if gbr_kbps >= 10000000:   return 10, 1  # High Priority
-    elif gbr_kbps >= 5000000:  return 50, 5  # Medium Priority
-    else:                      return 100, 9 # Low Priority
+    if gbr_kbps >= 800000:   return 10, 1   # High Priority
+    elif gbr_kbps >= 400000: return 50, 5   # Medium Priority
+    else:                    return 100, 9  # Low Priority
 
-def create_pdu_sessions(smf_ip: str, upf_ip_n4: str, gnb_ip: str, first_seq_number: int):
+
+def qos_tier_from_qfi(qfi: int):
+    """Translate QFI to a display-friendly QoS tier."""
+    return {
+        1: "HIGH",
+        5: "MEDIUM",
+        9: "LOW"
+    }.get(qfi, "UNKNOWN")
+
+
+def write_sessions_manifest(session_records, sessions_file):
+    """Persist session metadata for the web UI."""
+    if not sessions_file:
+        logger.info(
+            "Skipping sessions manifest export. Use --sessions-file on the host "
+            "running the WebUI if you want to persist session metadata."
+        )
+        return
+
+    os.makedirs(os.path.dirname(sessions_file), exist_ok=True)
+    with open(sessions_file, "w", encoding="utf-8") as f:
+        json.dump(session_records, f, indent=2)
+
+    logger.info("Wrote %d session records to %s", len(session_records), sessions_file)
+
+def create_pdu_sessions(
+    smf_ip: str, upf_ip_n4: str, gnb_ip: str,
+    first_seq_number: int, sessions_file
+):
     """Main workflow to establish PFCP sessions for multiple users."""
+    session_records = []
     logger.info(f"Sending PFCP Association Request to {upf_ip_n4}...")
     try:
         send_receive_pfcp(association(smf_ip), seq_counter=first_seq_number, smf_ip=smf_ip, upf_ip_n4=upf_ip_n4)
     except TimeoutError as e:
         logger.error(f"Association failed: {e}")
+        write_sessions_manifest([], sessions_file)
         return
         
     time.sleep(1)
@@ -228,6 +263,18 @@ def create_pdu_sessions(smf_ip: str, upf_ip_n4: str, gnb_ip: str, first_seq_numb
         current_seq += 1
 
         prio_val, qfi_val = get_qos_params_from_gbr(user.gbr)
+        session_record = {
+            "user_id": i,
+            "seid": unique_seid,
+            "user_ip": user.ip,
+            "teid": hex(unique_fteid_dl),
+            "qos_tier": qos_tier_from_qfi(qfi_val),
+            "gbr_gbps": round(user.gbr / 1_000_000, 1),
+            "mbr_gbps": round(user.mbr / 1_000_000, 1),
+            "qfi": qfi_val,
+            "precedence": prio_val,
+            "status": "pending"
+        }
 
         logger.info(f"Creating Session {i}: IP={user.ip}, TEID=0x{unique_fteid_dl:02x} | "
                     f"GBR={user.gbr/1000000:.1f}G -> Precedence={prio_val}, QFI={qfi_val}")
@@ -245,15 +292,22 @@ def create_pdu_sessions(smf_ip: str, upf_ip_n4: str, gnb_ip: str, first_seq_numb
                 current_seq += 1
                 send_receive_pfcp(
                     session_modification_dl(unique_seid, user.ip, unique_fteid_dl, smf_ip, gnb_ip, 
-                                            pdr_id_dl, far_id_dl, qer_id, prio_val),
+                                            pdr_id_dl, far_id_dl, qer_id, prio_val, qfi_val),
                     seid_=unique_seid, seq_counter=current_seq, smf_ip=smf_ip, upf_ip_n4=upf_ip_n4
                 )
+                session_record["status"] = "configured"
             else:
                 logger.error(f"Session {i} setup failed during UL establishment.")
+                session_record["status"] = "failed"
         except TimeoutError as e:
             logger.error(f"Session {i} failed: {e}")
+            session_record["status"] = "failed"
+
+        session_records.append(session_record)
 
         time.sleep(0.05)
+
+    write_sessions_manifest(session_records, sessions_file)
 
 def main():
     parser = argparse.ArgumentParser(description="Configure PFCP sessions with Priority QERs.")
@@ -261,9 +315,17 @@ def main():
     parser.add_argument("--upf_ip_n4", default="10.112.68.24", help="N4 IP address of the UPF")
     parser.add_argument("--gnb_ip", default="192.168.10.100", help="IP address of the gNB")
     parser.add_argument("--first_seq_number", type=int, default=16770408, help="Initial PFCP Sequence Number")
+    parser.add_argument(
+        "--sessions-file",
+        default=os.environ.get("OAI_WEBUI_SESSIONS_FILE", DEFAULT_SESSIONS_FILE),
+        help="Optional path to write sessions.json for the WebUI host"
+    )
     
     args = parser.parse_args()
-    create_pdu_sessions(args.smf_ip, args.upf_ip_n4, args.gnb_ip, args.first_seq_number)
+    create_pdu_sessions(
+        args.smf_ip, args.upf_ip_n4, args.gnb_ip,
+        args.first_seq_number, args.sessions_file
+    )
 
 if __name__ == "__main__":
     main()

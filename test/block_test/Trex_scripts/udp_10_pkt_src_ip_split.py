@@ -21,10 +21,13 @@ For more information about the OpenAirInterface (OAI) Software Alliance:
 ------------------------------------------------------------------------------
 
 Usage within TRex Console:
-  start -f udp_10_pkt_src_ip_split.py -m 100gbps
+  start -f udp_10_pkt_src_ip_split.py -m 100%
+  start -f udp_10_pkt_src_ip_split.py -m 100% -t profile=stress
 """
 
 # Specific imports avoiding star imports based on review feedback
+import argparse
+
 from scapy.layers.inet import IP, UDP
 from scapy.layers.l2 import Ether
 from trex_stl_lib.api import (STLScVmRaw, STLVmFixIpv4, STLPktBuilder, 
@@ -35,20 +38,46 @@ from trex_stl_lib.api import (STLScVmRaw, STLVmFixIpv4, STLPktBuilder,
 # (which have 64 sub-streams each) without overlapping port ranges.
 SPORT_OFFSET_MULTIPLIER = 2000
 
-# Mapping structure defining priority and bandwidth percentage for each User/Packet Group
-# Target Total MBR = 85Gbps. Input = 100Gbps.
-# We ensure EVERY user receives > MBR to saturate the pipe.
-USER_QOS_MAP = {
-    1:  {"prio": "High", "percent": 16.0}, # MBR=15G, Input=16G
-    2:  {"prio": "High", "percent": 16.0},
-    3:  {"prio": "Med",  "percent": 11.0}, # MBR=10G, Input=11G
-    4:  {"prio": "Med",  "percent": 11.0},
-    5:  {"prio": "Med",  "percent": 11.0},
-    6:  {"prio": "Low",  "percent": 7.0},  # MBR=5G, Input=7G
-    7:  {"prio": "Low",  "percent": 7.0},
-    8:  {"prio": "Low",  "percent": 7.0},
-    9:  {"prio": "Low",  "percent": 7.0},
-    10: {"prio": "Low",  "percent": 7.0},
+USER_QOS_PROFILES = {
+    # Official-source stable profile: match the reduced per-user MBR/HTB classes.
+    "official": {
+        1:  {"prio": "High", "percent": 1.2},
+        2:  {"prio": "High", "percent": 1.2},
+        3:  {"prio": "Med",  "percent": 0.8},
+        4:  {"prio": "Med",  "percent": 0.8},
+        5:  {"prio": "Med",  "percent": 0.8},
+        6:  {"prio": "Low",  "percent": 0.4},
+        7:  {"prio": "Low",  "percent": 0.4},
+        8:  {"prio": "Low",  "percent": 0.4},
+        9:  {"prio": "Low",  "percent": 0.4},
+        10: {"prio": "Low",  "percent": 0.4},
+    },
+    # Backward-compatible alias for the baseline profile.
+    "mbr": {
+        1:  {"prio": "High", "percent": 1.2},
+        2:  {"prio": "High", "percent": 1.2},
+        3:  {"prio": "Med",  "percent": 0.8},
+        4:  {"prio": "Med",  "percent": 0.8},
+        5:  {"prio": "Med",  "percent": 0.8},
+        6:  {"prio": "Low",  "percent": 0.4},
+        7:  {"prio": "Low",  "percent": 0.4},
+        8:  {"prio": "Low",  "percent": 0.4},
+        9:  {"prio": "Low",  "percent": 0.4},
+        10: {"prio": "Low",  "percent": 0.4},
+    },
+    # Stress profile mildly oversubscribes the stable profile for quick validation.
+    "stress": {
+        1:  {"prio": "High", "percent": 1.35},
+        2:  {"prio": "High", "percent": 1.35},
+        3:  {"prio": "Med",  "percent": 0.90},
+        4:  {"prio": "Med",  "percent": 0.90},
+        5:  {"prio": "Med",  "percent": 0.90},
+        6:  {"prio": "Low",  "percent": 0.45},
+        7:  {"prio": "Low",  "percent": 0.45},
+        8:  {"prio": "Low",  "percent": 0.45},
+        9:  {"prio": "Low",  "percent": 0.45},
+        10: {"prio": "Low",  "percent": 0.45},
+    }
 }
 
 class STLS1(object):
@@ -90,16 +119,35 @@ class STLS1(object):
 
     def get_streams(self, direction=0, tunables=None, **kwargs):
         """Generate streams based on mapped QoS profiles."""
+        parser = argparse.ArgumentParser(
+            description="Generate per-user UDP streams for 10-user QoS testing"
+        )
+        parser.add_argument(
+            "--profile",
+            choices=sorted(USER_QOS_PROFILES.keys()),
+            default="official",
+            help="Traffic profile: 'official' matches the reduced upstream HTB/MBR limits, 'stress' mildly oversubscribes them"
+        )
+        parser.add_argument(
+            "--sub-streams",
+            dest="sub_streams",
+            type=int,
+            default=64,
+            help="Number of sub-streams per user"
+        )
+        args = parser.parse_args(tunables or [])
+
         streams = []
         base_ip_prefix = "12.1.1"
-        sub_streams_count = 64
+        sub_streams_count = max(args.sub_streams, 1)
+        user_qos_map = USER_QOS_PROFILES[args.profile]
 
         for i in range(1, 11):
             user_ip = f"{base_ip_prefix}.{i + 1}"
             pg_id = i
             
             # Fetch mapped configuration using the data structure
-            qos_config = USER_QOS_MAP.get(i, {"prio": "Unknown", "percent": 1.0})
+            qos_config = user_qos_map.get(i, {"prio": "Unknown", "percent": 1.0})
             prio = qos_config["prio"]
             total_percent = qos_config["percent"]
 
