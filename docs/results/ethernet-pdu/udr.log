@@ -1,849 +1,174 @@
 Trying to read .yaml configuration file: /openair-udr/etc/config.yaml
 LTTNG Tracing disabled at build-time!
-[2026-03-16 13:19:39.883] [common] [start] Options parsed
-[2026-03-16 13:19:39.884] [common] [debug] Parsing the configuration file, file type YAML.
-[2026-03-16 13:19:39.884] [config ] [info] Reading NF configuration from /openair-udr/etc/config.yaml
-[2026-03-16 13:19:39.899] [config ] [debug] Unknown NF amf in configuration. Ignored
-[2026-03-16 13:19:39.899] [config ] [debug] Unknown NF smf in configuration. Ignored
-[2026-03-16 13:19:39.899] [config ] [debug] Unknown NF upf in configuration. Ignored
-[2026-03-16 13:19:39.899] [config ] [debug] Unknown NF udm in configuration. Ignored
-[2026-03-16 13:19:39.899] [config ] [debug] Unknown NF ausf in configuration. Ignored
-[2026-03-16 13:19:39.899] [config ] [debug] Validating configuration of log_level
-[2026-03-16 13:19:39.899] [config ] [debug] Validating configuration of register_nf
-[2026-03-16 13:19:39.899] [config ] [debug] Validating configuration of http_version
-[2026-03-16 13:19:39.899] [config ] [debug] Validating configuration of http_request_timeout
-[2026-03-16 13:19:39.899] [config ] [debug] Validating configuration of NRF
-[2026-03-16 13:19:39.900] [config ] [debug] Validating configuration of UDR
-[2026-03-16 13:19:39.901] [config ] [debug] Validating configuration of database
-[2026-03-16 13:19:39.901] [config ] [info] ==== OPENAIRINTERFACE udr vBranch: HEAD Abrev. Hash: 3042587 Date: Fri Feb 6 14:50:06 2026 +0100 ====
-[2026-03-16 13:19:39.901] [config ] [info] Basic Configuration:
-[2026-03-16 13:19:39.901] [config ] [info]   - log_level..................................: debug
-[2026-03-16 13:19:39.901] [config ] [info]   - register_nf................................: Yes
-[2026-03-16 13:19:39.901] [config ] [info]   - http_version...............................: 2
-[2026-03-16 13:19:39.901] [config ] [info]   TLS:
-[2026-03-16 13:19:39.901] [config ] [info]     - Enable TLS.................................: No
-[2026-03-16 13:19:39.901] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
-[2026-03-16 13:19:39.901] [config ] [info]     UDR:
-[2026-03-16 13:19:39.901] [config ] [info]     - host.....................................: oai-udr
-[2026-03-16 13:19:39.901] [config ] [info]     - sbi
-[2026-03-16 13:19:39.901] [config ] [info]       + URL....................................: oai-udr:8080
-[2026-03-16 13:19:39.901] [config ] [info]       + API Version............................: v1
-[2026-03-16 13:19:39.901] [config ] [info]       + IPv4 Address ..........................: 192.168.70.136
-[2026-03-16 13:19:39.901] [config ] [info]     - UDR Name.................................: oai-udr
-[2026-03-16 13:19:39.901] [config ] [info]   Database:
-[2026-03-16 13:19:39.901] [config ] [info]     - Host.....................................: mysql
-[2026-03-16 13:19:39.901] [config ] [info]     - Port.....................................: 3306
-[2026-03-16 13:19:39.901] [config ] [info]     - Database Type............................: mysql
-[2026-03-16 13:19:39.901] [config ] [info]     - User.....................................: test
-[2026-03-16 13:19:39.901] [config ] [info]     - Password.................................: test
-[2026-03-16 13:19:39.901] [config ] [info]     - Database Name............................: oai_db
-[2026-03-16 13:19:39.901] [config ] [info]     - Connection Timeout.......................: 300
-[2026-03-16 13:19:39.901] [config ] [info] Peer NF Configuration:
-[2026-03-16 13:19:39.901] [config ] [info]   NRF:
-[2026-03-16 13:19:39.901] [config ] [info]     - host.....................................: oai-nrf
-[2026-03-16 13:19:39.901] [config ] [info]     - sbi
-[2026-03-16 13:19:39.901] [config ] [info]       + URL....................................: oai-nrf:8080
-[2026-03-16 13:19:39.901] [config ] [info]       + API Version............................: v1
-[2026-03-16 13:19:39.901] [udr_nrf] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
-[2026-03-16 13:19:39.901] [udr_app] [start] Starting...
-[2026-03-16 13:19:39.901] [udr_db] [debug] Initializing MySQL DB ...
-[2026-03-16 13:19:39.902] [udr_db] [debug] Done!
-[2026-03-16 13:19:39.902] [udr_db] [debug] Connecting to MySQL DB
-[2026-03-16 13:19:39.902] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:40.403] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:40.904] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:41.405] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:41.905] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:42.406] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:42.907] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:43.408] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:43.909] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:44.410] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:44.911] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:45.412] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:45.913] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:46.414] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:46.915] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:47.416] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:47.917] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql:3306' (111)), retry ...
-[2026-03-16 13:19:48.431] [udr_db] [info] Connected to MySQL DB
-[2026-03-16 13:19:48.431] [udr_app] [debug] - NF instance info
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Instance ID: cfbf0613-90b0-4b0a-a1b4-ac5b8c6a12db
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Instance name: OAI-UDR
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Instance type: UDR
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Instance fqdn: 
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Status: REGISTERED
-[2026-03-16 13:19:48.431] [udr_app] [debug]     HeartBeat timer: 50
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Priority: 1
-[2026-03-16 13:19:48.431] [udr_app] [debug]     Capacity: 100
-[2026-03-16 13:19:48.431] [udr_app] [debug]     IPv4 Addr:
-[2026-03-16 13:19:48.431] [udr_app] [debug]         192.168.70.136
-[2026-03-16 13:19:48.431] [udr_app] [debug] 	UDR Info
-[2026-03-16 13:19:48.431] [udr_app] [debug] 		GroupId: oai-udr-testgroupid
-[2026-03-16 13:19:48.431] [udr_app] [debug] 		 SupiRanges: Start - 208950000000131, End - , Pattern - ^imsi-20895[31-131]{6}$
-[2026-03-16 13:19:48.431] [udr_app] [debug] 		 GpsiRanges: Start - 752740000, End - 752749999, Pattern - ^gpsi-75274[0-9]{4}$
-[2026-03-16 13:19:48.431] [udr_app] [debug] 		 Data Set Id: 0210
-[2026-03-16 13:19:48.431] [udr_app] [debug] 		 Data Set Id: 9876
-[2026-03-16 13:19:48.432] [udr_server] [info] HTTP2 server being started 
-[2026-03-16 13:19:48.432] [udr_app] [info] NRF TASK Created 
-[2026-03-16 13:19:48.432] [udr_app] [debug] udr profile to JSON:
- {"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.136"],"nfInstanceId":"cfbf0613-90b0-4b0a-a1b4-ac5b8c6a12db","nfInstanceName":"OAI-UDR","nfStatus":"REGISTERED","nfType":"UDR","priority":1,"sNssais":[],"udrInfo":{"DataSetId":["0210","9876"],"externalGroupIdentifiersRanges":[],"gpsiRanges":[{"end":"752749999","pattern":"^gpsi-75274[0-9]{4}$","start":"752740000"}],"groupId":"oai-udr-testgroupid","supiRanges":[{"end":"","pattern":"^imsi-20895[31-131]{6}$","start":"208950000000131"}]}}
-[2026-03-16 13:19:48.432] [udr_nrf] [info] Sending NF Registration request
-[2026-03-16 13:19:48.432] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:19:58.433] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:19:58.433] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:08.484] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:08.484] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:18.486] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:18.486] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:28.487] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:28.487] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:38.488] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:38.488] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:48.079] [udr_server] [info] Received response: 
-[2026-03-16 13:20:48.079] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
-[2026-03-16 13:20:48.079] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
-[2026-03-16 13:20:48.079] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
-[2026-03-16 13:20:48.080] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
-[2026-03-16 13:20:48.080] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000020","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
-[2026-03-16 13:20:48.080] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+[2026-04-07 11:58:54.005] [common] [start] Options parsed
+[2026-04-07 11:58:54.005] [common] [debug] Parsing the configuration file, file type YAML.
+[2026-04-07 11:58:54.005] [config ] [info] Reading NF configuration from /openair-udr/etc/config.yaml
+[2026-04-07 11:58:54.015] [config ] [debug] Unknown NF amf in configuration. Ignored
+[2026-04-07 11:58:54.015] [config ] [debug] Unknown NF smf in configuration. Ignored
+[2026-04-07 11:58:54.015] [config ] [debug] Unknown NF upf in configuration. Ignored
+[2026-04-07 11:58:54.015] [config ] [debug] Unknown NF udm in configuration. Ignored
+[2026-04-07 11:58:54.015] [config ] [debug] Unknown NF ausf in configuration. Ignored
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of log_level
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of register_nf
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of http_version
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of http_request_timeout
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of NRF
+[2026-04-07 11:58:54.015] [config ] [debug] Validating configuration of UDR
+[2026-04-07 11:58:54.016] [config ] [debug] Validating configuration of database
+[2026-04-07 11:58:54.016] [config ] [info] ==== OPENAIRINTERFACE udr vBranch: HEAD Abrev. Hash: 3f80d31 Date: Fri Mar 27 13:27:10 2026 +0100 ====
+[2026-04-07 11:58:54.016] [config ] [info] Basic Configuration:
+[2026-04-07 11:58:54.016] [config ] [info]   - log_level..................................: debug
+[2026-04-07 11:58:54.016] [config ] [info]   - register_nf................................: Yes
+[2026-04-07 11:58:54.016] [config ] [info]   - http_version...............................: 2
+[2026-04-07 11:58:54.016] [config ] [info]   TLS:
+[2026-04-07 11:58:54.016] [config ] [info]     - Enable TLS.................................: No
+[2026-04-07 11:58:54.016] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+[2026-04-07 11:58:54.016] [config ] [info]     UDR:
+[2026-04-07 11:58:54.016] [config ] [info]     - host.....................................: oai-udr
+[2026-04-07 11:58:54.016] [config ] [info]     - sbi
+[2026-04-07 11:58:54.016] [config ] [info]       + URL....................................: oai-udr:8080
+[2026-04-07 11:58:54.016] [config ] [info]       + API Version............................: v1
+[2026-04-07 11:58:54.016] [config ] [info]       + IPv4 Address ..........................: 192.168.70.136
+[2026-04-07 11:58:54.016] [config ] [info]     - UDR Name.................................: oai-udr
+[2026-04-07 11:58:54.016] [config ] [info]   Database:
+[2026-04-07 11:58:54.016] [config ] [info]     - Host.....................................: mysql
+[2026-04-07 11:58:54.016] [config ] [info]     - Port.....................................: 3306
+[2026-04-07 11:58:54.016] [config ] [info]     - Database Type............................: mysql
+[2026-04-07 11:58:54.016] [config ] [info]     - User.....................................: test
+[2026-04-07 11:58:54.016] [config ] [info]     - Password.................................: test
+[2026-04-07 11:58:54.016] [config ] [info]     - Database Name............................: oai_db
+[2026-04-07 11:58:54.016] [config ] [info]     - Connection Timeout.......................: 300
+[2026-04-07 11:58:54.016] [config ] [info] Peer NF Configuration:
+[2026-04-07 11:58:54.016] [config ] [info]   NRF:
+[2026-04-07 11:58:54.016] [config ] [info]     - host.....................................: oai-nrf
+[2026-04-07 11:58:54.016] [config ] [info]     - sbi
+[2026-04-07 11:58:54.016] [config ] [info]       + URL....................................: oai-nrf:8080
+[2026-04-07 11:58:54.016] [config ] [info]       + API Version............................: v1
+[2026-04-07 11:58:54.016] [udr_nrf] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+[2026-04-07 11:58:54.016] [udr_app] [start] Starting...
+[2026-04-07 11:58:54.016] [udr_db] [debug] Initializing MySQL DB ...
+[2026-04-07 11:58:54.016] [udr_db] [debug] Done!
+[2026-04-07 11:58:54.016] [udr_db] [debug] Connecting to MySQL DB
+[2026-04-07 11:58:54.024] [udr_db] [info] Connected to MySQL DB
+[2026-04-07 11:58:54.024] [udr_app] [debug] - NF instance info
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Instance ID: acf554e3-7cd6-416c-bdab-b9750cd2987e
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Instance name: OAI-UDR
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Instance type: UDR
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Instance fqdn: 
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Status: REGISTERED
+[2026-04-07 11:58:54.024] [udr_app] [debug]     HeartBeat timer: 50
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Priority: 1
+[2026-04-07 11:58:54.024] [udr_app] [debug]     Capacity: 100
+[2026-04-07 11:58:54.024] [udr_app] [debug]     IPv4 Addr:
+[2026-04-07 11:58:54.024] [udr_app] [debug]         192.168.70.136
+[2026-04-07 11:58:54.024] [udr_app] [debug] 	UDR Info
+[2026-04-07 11:58:54.024] [udr_app] [debug] 		GroupId: oai-udr-testgroupid
+[2026-04-07 11:58:54.024] [udr_app] [debug] 		 SupiRanges: Start - 208950000000131, End - , Pattern - ^imsi-20895[31-131]{6}$
+[2026-04-07 11:58:54.024] [udr_app] [debug] 		 GpsiRanges: Start - 752740000, End - 752749999, Pattern - ^gpsi-75274[0-9]{4}$
+[2026-04-07 11:58:54.024] [udr_app] [debug] 		 Data Set Id: 0210
+[2026-04-07 11:58:54.024] [udr_app] [debug] 		 Data Set Id: 9876
+[2026-04-07 11:58:54.024] [udr_app] [info] NRF TASK Created 
+[2026-04-07 11:58:54.024] [udr_server] [info] HTTP2 server being started 
+[2026-04-07 11:58:54.024] [udr_app] [debug] udr profile to JSON:
+ {"capacity":100,"fqdn":"","heartBeatTimer":50,"ipv4Addresses":["192.168.70.136"],"nfInstanceId":"acf554e3-7cd6-416c-bdab-b9750cd2987e","nfInstanceName":"OAI-UDR","nfStatus":"REGISTERED","nfType":"UDR","priority":1,"sNssais":[],"udrInfo":{"DataSetId":["0210","9876"],"externalGroupIdentifiersRanges":[],"gpsiRanges":[{"end":"752749999","pattern":"^gpsi-75274[0-9]{4}$","start":"752740000"}],"groupId":"oai-udr-testgroupid","supiRanges":[{"end":"","pattern":"^imsi-20895[31-131]{6}$","start":"208950000000131"}]}}
+[2026-04-07 11:58:54.024] [udr_nrf] [info] Sending NF Registration request
+[2026-04-07 11:58:54.024] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:04.024] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:04.024] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:14.147] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:14.147] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:24.148] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:24.148] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:34.148] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:34.148] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:44.148] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:44.148] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:44.407] [udr_server] [info] Received response: 
+[2026-04-07 11:59:44.407] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
+[2026-04-07 11:59:44.407] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
+[2026-04-07 11:59:44.407] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
+[2026-04-07 11:59:44.408] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
+[2026-04-07 11:59:44.408] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000020","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
+[2026-04-07 11:59:44.408] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
 
-[2026-03-16 13:20:48.083] [udr_app] [info] [UE Id imsi-208950000000038] Modify the Authentication Subscription data of an UE
-[2026-03-16 13:20:48.083] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * from AuthenticationSubscription WHERE ueid='208950000000038'
-[2026-03-16 13:20:48.084] [udr_db] [info] [UE Id 208950000000038] MySQL Update command UPDATE AuthenticationSubscription SET sequenceNumber='{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"}' WHERE ueid='208950000000038'
-[2026-03-16 13:20:48.087] [udr_db] [info] [UE Id 208950000000038] AuthenticationSubscription PATCH: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000060\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
-[2026-03-16 13:20:48.087] [udr_app] [info] [UE Id imsi-208950000000038] Successful modified the Authentication subscription data
-[2026-03-16 13:20:48.087] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+[2026-04-07 11:59:44.412] [udr_app] [info] [UE Id imsi-208950000000038] Modify the Authentication Subscription data of an UE
+[2026-04-07 11:59:44.412] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * from AuthenticationSubscription WHERE ueid='208950000000038'
+[2026-04-07 11:59:44.413] [udr_db] [info] [UE Id 208950000000038] MySQL Update command UPDATE AuthenticationSubscription SET sequenceNumber='{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"}' WHERE ueid='208950000000038'
+[2026-04-07 11:59:44.419] [udr_db] [info] [UE Id 208950000000038] AuthenticationSubscription PATCH: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"000000000060\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+[2026-04-07 11:59:44.419] [udr_app] [info] [UE Id imsi-208950000000038] Successful modified the Authentication subscription data
+[2026-04-07 11:59:44.419] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
 
-[2026-03-16 13:20:48.113] [udr_server] [info] Received response: 
-[2026-03-16 13:20:48.113] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
-[2026-03-16 13:20:48.113] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
-[2026-03-16 13:20:48.113] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
-[2026-03-16 13:20:48.113] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
-[2026-03-16 13:20:48.113] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
-[2026-03-16 13:20:48.113] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+[2026-04-07 11:59:44.435] [udr_server] [info] Received response: 
+[2026-04-07 11:59:44.435] [udr_app] [info] [UE Id imsi-208950000000038] Retrieve the Authentication Subscription data of an UE
+[2026-04-07 11:59:44.435] [udr_db] [info] [UE Id 208950000000038] Query Authentication Subscription
+[2026-04-07 11:59:44.435] [udr_db] [info] [UE Id 208950000000038] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='208950000000038'
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [0]: ueid 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [1]: authenticationMethod 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [2]: encPermanentKey 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [3]: protectionParameterId 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [4]: sequenceNumber 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [5]: authenticationManagementField 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [6]: algorithmId 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [7]: encOpcKey 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [8]: encTopcKey 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [9]: vectorGenerationInHss 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [10]: n5gcAuthMethod 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [11]: rgAuthenticationInd 
+[2026-04-07 11:59:44.436] [udr_db] [debug] [UE Id 208950000000038] Row [12]: supi 
+[2026-04-07 11:59:44.436] [udr_app] [info] [UE Id imsi-208950000000038] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000060","sqnScheme":"NON_TIME_BASED"},"supi":"208950000000038"}
+[2026-04-07 11:59:44.436] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
 
-[2026-03-16 13:20:48.115] [udr_app] [info] [UE Id imsi-208950000000038] Store the Authentication Status data of an UE
-[2026-03-16 13:20:48.115] [udr_db] [info] [UE Id 208950000000038] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='208950000000038'
-[2026-03-16 13:20:48.118] [udr_db] [info] [UE Id 208950000000038] MySQL query: INSERT INTO AuthenticationStatus SET ueid='208950000000038',nfInstanceId='400346f4-087e-40b1-a4cd-00566953999d',success=1,timeStamp='2026-03-16T12:20:48Z',authType='5G_AKA',servingNetworkName='5G:mnc095.mcc208.3gppnetwork.org',authRemovalInd=0
-[2026-03-16 13:20:48.119] [udr_db] [info] [UE Id 208950000000038] AuthenticationStatus PUT: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"400346f4-087e-40b1-a4cd-00566953999d","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2026-03-16T12:20:48Z"}
-[2026-03-16 13:20:48.119] [udr_app] [info] [UE Id imsi-208950000000038] Successful stored the Authentication Status data
-[2026-03-16 13:20:48.119] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+[2026-04-07 11:59:44.439] [udr_app] [info] [UE Id imsi-208950000000038] Store the Authentication Status data of an UE
+[2026-04-07 11:59:44.439] [udr_db] [info] [UE Id 208950000000038] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='208950000000038'
+[2026-04-07 11:59:44.451] [udr_db] [info] [UE Id 208950000000038] MySQL query: INSERT INTO AuthenticationStatus SET ueid='208950000000038',nfInstanceId='59ea7d6c-a2d0-482b-934f-228512e4808b',success=1,timeStamp='2026-04-07T09:59:44Z',authType='5G_AKA',servingNetworkName='5G:mnc095.mcc208.3gppnetwork.org',authRemovalInd=0
+[2026-04-07 11:59:44.455] [udr_db] [info] [UE Id 208950000000038] Authentication Status PUT: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"59ea7d6c-a2d0-482b-934f-228512e4808b","servingNetworkName":"5G:mnc095.mcc208.3gppnetwork.org","success":true,"timeStamp":"2026-04-07T09:59:44Z"}
+[2026-04-07 11:59:44.455] [udr_app] [info] [UE Id imsi-208950000000038] Successful stored the Authentication Status data
+[2026-04-07 11:59:44.455] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
 
-[2026-03-16 13:20:48.151] [udr_server] [debug] QueryString: 
-[2026-03-16 13:20:48.153] [udr_app] [info] [UE Id 20895] Retrieve the access and mobility subscription data of an UE (ID 20895)
-[2026-03-16 13:20:48.154] [udr_db] [debug] [UE Id 20895] Handle Query AM Data
-[2026-03-16 13:20:48.154] [udr_db] [debug] [UE Id 20895] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='20895' AND servingPlmnid=''
-[2026-03-16 13:20:48.158] [udr_db] [error] [UE Id 20895] No data available for AccessAndMobilitySubscriptionData!
-[2026-03-16 13:20:48.158] [udr_server] [debug] HTTP Response code 404 (HTTP Version 2).
+[2026-04-07 11:59:44.469] [udr_server] [debug] QueryString: 
+[2026-04-07 11:59:44.469] [udr_app] [info] [UE Id 20895] Retrieve the access and mobility subscription data of an UE (ID 20895)
+[2026-04-07 11:59:44.469] [udr_db] [debug] [UE Id 20895] Handle Query AM Data
+[2026-04-07 11:59:44.469] [udr_db] [debug] [UE Id 20895] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='20895' AND servingPlmnid=''
+[2026-04-07 11:59:44.473] [udr_db] [error] [UE Id 20895] No data available for Access and Mobility Subscription Data!
+[2026-04-07 11:59:44.473] [udr_server] [debug] HTTP Response code 404 (HTTP Version 2).
 
-[2026-03-16 13:20:48.488] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:48.488] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:20:58.491] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:20:58.491] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:08.491] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:08.491] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:18.492] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:18.492] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:28.494] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:28.494] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:38.494] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:38.494] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:48.495] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:48.495] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:21:58.496] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:21:58.496] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:08.504] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:08.504] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:18.504] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:18.504] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:28.505] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:28.505] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:38.505] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:38.505] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:48.505] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:48.505] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:22:58.506] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:22:58.506] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:08.507] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:08.507] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:18.508] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:18.508] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:28.510] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:28.510] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:38.510] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:38.510] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:48.511] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:48.511] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:23:58.512] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:23:58.512] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:08.513] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:08.513] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:18.514] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:18.514] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:28.515] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:28.515] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:38.517] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:38.517] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:48.516] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:24:48 2026
-
-[2026-03-16 13:24:48.519] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:48.519] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:24:58.519] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:24:58.519] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:08.519] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:08.519] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:18.520] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:18.520] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:28.520] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:28.520] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:38.521] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:38.521] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:48.523] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:48.523] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:25:58.524] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:25:58.524] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:08.525] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:08.525] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:18.525] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:18.525] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:28.526] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:28.526] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:38.527] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:38.527] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:48.528] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:48.528] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:26:58.529] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:26:58.529] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:08.531] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:08.531] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:18.532] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:18.532] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:28.533] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:28.533] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:38.533] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:38.533] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:48.534] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:48.534] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:27:58.535] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:27:58.535] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:08.536] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:08.536] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:18.539] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:18.539] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:28.540] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:28.540] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:38.541] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:38.541] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:48.542] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:48.542] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:28:58.544] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:28:58.544] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:08.545] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:08.545] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:18.545] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:18.545] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:28.545] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:28.545] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:38.547] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:38.547] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:48.546] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:29:48 2026
-
-[2026-03-16 13:29:48.549] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:48.549] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:29:58.550] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:29:58.550] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:08.551] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:08.551] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:18.553] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:18.553] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:28.554] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:28.554] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:38.556] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:38.556] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:48.557] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:48.557] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:30:58.558] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:30:58.558] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:08.559] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:08.559] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:18.562] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:18.562] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:28.563] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:28.563] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:38.566] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:38.566] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:48.566] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:48.566] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:31:58.569] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:31:58.569] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:08.570] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:08.572] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:18.576] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:18.576] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:28.577] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:28.578] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:38.581] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:38.581] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:48.581] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:48.581] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:32:58.582] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:32:58.582] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:08.583] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:08.583] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:18.586] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:18.586] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:28.588] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:28.588] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:38.589] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:38.589] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:48.589] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:48.589] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:33:58.591] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:33:58.591] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:08.593] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:08.593] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:18.595] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:18.595] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:28.596] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:28.596] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:38.599] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:38.599] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:48.597] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:34:48 2026
-
-[2026-03-16 13:34:48.600] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:48.600] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:34:58.601] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:34:58.602] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:08.603] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:08.603] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:18.603] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:18.603] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:28.604] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:28.604] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:38.605] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:38.605] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:48.608] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:48.608] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:35:58.609] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:35:58.609] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:08.610] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:08.610] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:18.615] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:18.615] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:28.616] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:28.616] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:38.618] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:38.618] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:48.620] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:48.620] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:36:58.621] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:36:58.621] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:08.622] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:08.622] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:18.624] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:18.624] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:28.625] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:28.625] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:38.625] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:38.625] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:48.628] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:48.628] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:37:58.631] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:37:58.631] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:08.632] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:08.632] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:18.636] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:18.636] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:28.637] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:28.637] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:38.641] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:38.641] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:48.642] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:48.642] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:38:58.643] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:38:58.643] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:08.645] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:08.645] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:18.646] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:18.646] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:28.646] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:28.646] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:38.651] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:38.651] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:48.649] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:39:48 2026
-
-[2026-03-16 13:39:48.652] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:48.652] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:39:58.653] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:39:58.653] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:08.655] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:08.655] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:18.657] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:18.657] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:28.658] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:28.658] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:38.659] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:38.659] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:48.660] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:48.660] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:40:58.661] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:40:58.661] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:08.662] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:08.662] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:18.662] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:18.662] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:28.663] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:28.663] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:38.664] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:38.664] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:48.664] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:48.664] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:41:58.665] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:41:58.665] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:08.666] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:08.666] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:18.667] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:18.667] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:28.668] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:28.668] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:38.669] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:38.669] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:48.669] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:48.669] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:42:58.669] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:42:58.669] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:08.670] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:08.670] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:18.671] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:18.671] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:28.672] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:28.672] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:38.673] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:38.673] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:48.673] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:48.673] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:43:58.673] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:43:58.673] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:08.673] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:08.673] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:18.673] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:18.673] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:28.674] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:28.674] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:38.676] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:38.676] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:48.673] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:44:48 2026
-
-[2026-03-16 13:44:48.676] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:48.676] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:44:58.677] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:44:58.677] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:08.677] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:08.677] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:18.678] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:18.678] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:28.678] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:28.678] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:38.680] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:38.680] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:48.681] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:48.681] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:45:58.682] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:45:58.682] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:08.683] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:08.683] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:18.683] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:18.683] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:28.684] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:28.684] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:38.684] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:38.684] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:48.685] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:48.685] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:46:58.686] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:46:58.686] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:08.687] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:08.687] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:18.687] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:18.688] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:28.688] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:28.688] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:38.688] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:38.688] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:48.689] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:48.689] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:47:58.693] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:47:58.693] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:08.694] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:08.694] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:18.694] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:18.694] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:28.695] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:28.695] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:38.696] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:38.696] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:48.697] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:48.697] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:48:58.698] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:48:58.698] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:08.699] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:08.699] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:18.700] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:18.700] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:28.701] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:28.701] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:38.701] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:38.701] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:48.699] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:49:48 2026
-
-[2026-03-16 13:49:48.702] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:48.702] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:49:58.703] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:49:58.703] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:08.704] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:08.704] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:18.707] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:18.707] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:28.709] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:28.709] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:38.710] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:38.710] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:48.712] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:48.712] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:50:58.713] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:50:58.713] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:08.714] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:08.714] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:18.715] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:18.715] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:28.717] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:28.717] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:38.720] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:38.720] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:48.721] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:48.721] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:51:58.723] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:51:58.723] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:08.724] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:08.724] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:18.727] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:18.727] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:28.727] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:28.727] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:38.728] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:38.728] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:48.729] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:48.730] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:52:58.730] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:52:58.730] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:08.732] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:08.732] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:18.735] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:18.735] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:28.736] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:28.736] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:38.737] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:38.737] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:48.740] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:48.740] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:53:58.741] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:53:58.741] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:08.743] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:08.743] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:18.744] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:18.744] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:28.746] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:28.746] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:38.749] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:38.749] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:48.746] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:54:48 2026
-
-[2026-03-16 13:54:48.749] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:48.749] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:54:58.750] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:54:58.750] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:08.751] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:08.751] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:18.752] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:18.752] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:28.757] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:28.757] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:38.758] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:38.758] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:48.759] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:48.759] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:55:58.760] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:55:58.760] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:08.761] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:08.761] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:18.762] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:18.762] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:28.762] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:28.762] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:38.762] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:38.762] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:48.763] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:48.763] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:56:58.764] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:56:58.764] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:08.765] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:08.765] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:18.767] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:18.767] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:28.768] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:28.768] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:38.769] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:38.769] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:48.769] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:48.770] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:57:58.771] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:57:58.771] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:08.772] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:08.773] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:18.777] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:18.777] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:28.778] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:28.778] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:38.779] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:38.779] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:48.780] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:48.780] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:58:58.781] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:58:58.781] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:08.782] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:08.782] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:18.783] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:18.783] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:28.786] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:28.786] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:38.792] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:38.792] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:48.791] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 13:59:48 2026
-
-[2026-03-16 13:59:48.794] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:48.794] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 13:59:58.795] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 13:59:58.795] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:08.797] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:08.797] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:18.798] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:18.798] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:28.799] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:28.799] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:38.800] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:38.800] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:48.802] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:48.802] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:00:58.804] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:00:58.804] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:08.804] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:08.804] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:18.804] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:18.804] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:28.805] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:28.805] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:38.806] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:38.806] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:48.807] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:48.807] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:01:58.808] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:01:58.808] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:08.810] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:08.810] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:18.811] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:18.811] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:28.811] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:28.811] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:38.812] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:38.812] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:48.816] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:48.816] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:02:58.819] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:02:58.819] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:08.819] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:08.819] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:18.822] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:18.822] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:28.823] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:28.823] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:38.824] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:38.824] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:48.825] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:48.825] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:03:58.826] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:03:58.826] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:08.827] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:08.827] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:18.828] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:18.828] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:28.829] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:28.829] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:38.830] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:38.830] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:48.828] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 14:04:48 2026
-
-[2026-03-16 14:04:48.831] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:48.831] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:04:58.834] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:04:58.834] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:08.835] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:08.835] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:18.838] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:18.838] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:28.839] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:28.839] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:38.840] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:38.840] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:48.841] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:48.841] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:05:58.842] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:05:58.842] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:08.843] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:08.843] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:18.845] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:18.845] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:28.846] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:28.846] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:38.846] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:38.846] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:48.849] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:48.849] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:06:58.850] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:06:58.850] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:08.851] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:08.851] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:18.852] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:18.852] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:28.853] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:28.853] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:38.855] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:38.855] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:48.856] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:48.856] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:07:58.857] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:07:58.857] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:08.857] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:08.857] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:18.858] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:18.858] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:28.862] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:28.862] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:38.862] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:38.863] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:48.863] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:48.863] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:08:58.864] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:08:58.864] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:08.865] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:08.865] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:18.866] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:18.866] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:28.867] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:28.867] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:38.868] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:38.868] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:48.865] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 14:09:48 2026
-
-[2026-03-16 14:09:48.868] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:48.868] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:09:58.869] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:09:58.869] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:08.869] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:08.869] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:18.875] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:18.875] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:28.877] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:28.877] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:38.878] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:38.878] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:48.880] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:48.880] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:10:58.881] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:10:58.881] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:08.881] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:08.881] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:18.881] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:18.881] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:28.881] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:28.881] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:38.882] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:38.882] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:48.883] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:48.883] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:11:58.884] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:11:58.884] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:08.885] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:08.885] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:18.885] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:18.885] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:28.886] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:28.886] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:38.886] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:38.886] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:48.887] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:48.888] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:12:58.888] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:12:58.888] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:08.888] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:08.888] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:18.889] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:18.889] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:28.889] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:28.889] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:38.890] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:38.890] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:48.892] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:48.892] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:13:58.893] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:13:58.893] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:08.894] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:08.894] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:18.895] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:18.895] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:28.895] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:28.895] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:38.898] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:38.898] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:48.896] [udr_db] [debug] DB Connection handling, current time: Mon Mar 16 14:14:48 2026
-
-[2026-03-16 14:14:48.899] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:48.899] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:14:58.902] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:14:58.902] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:08.902] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:08.902] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:18.902] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:18.902] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:28.904] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:28.904] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:38.905] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:38.905] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:48.906] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:48.906] [udr_nrf] [debug] Send a simple HTTP request
-[2026-03-16 14:15:58.907] [udr_nrf] [info] Sending NF Heartbeat Request
-[2026-03-16 14:15:58.907] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 11:59:54.185] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 11:59:54.185] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 12:00:04.203] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 12:00:04.203] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 12:00:14.224] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 12:00:14.224] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 12:00:24.226] [udr_nrf] [info] Sending NF Heartbeat Request
+[2026-04-07 12:00:24.226] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 12:00:32.517] [common] [info] Exiting: caught signal 15
+[2026-04-07 12:00:32.517] [common] [debug] Freeing Allocated memory...
+[2026-04-07 12:00:32.517] [common] [debug] First stop the nrf inst
+[2026-04-07 12:00:32.517] [udr_nrf] [info] Sending NF Deregistration request
+[2026-04-07 12:00:32.517] [udr_nrf] [debug] Send a simple HTTP request
+[2026-04-07 12:00:32.518] [common] [debug] Then stop the http servers
+[2026-04-07 12:00:32.518] [udr_server] [info] HTTP2 server fully stopped
+[2026-04-07 12:00:32.618] [udr_server] [info] HTTP2 server should be fully stopped
+[2026-04-07 12:00:32.668] [common] [debug] HTTP servers are shutdown
+[2026-04-07 12:00:32.668] [udr_db] [debug] Close the connection with MySQL DB
+[2026-04-07 12:00:32.668] [common] [debug] Freeing Allocated memory...
+[2026-04-07 12:00:32.669] [udr_app] [debug] Exit loop in manage_tasks
+[2026-04-07 12:00:32.678] [common] [debug] Stopped the UDR Task Manager.
+[2026-04-07 12:00:32.678] [udr_app] [debug] Delete UDR APP instance...
+[2026-04-07 12:00:32.678] [udr_db] [debug] Close the connection with MySQL DB
+[2026-04-07 12:00:32.678] [udr_db] [debug] Close the connection with MySQL DB
+[2026-04-07 12:00:32.678] [common] [debug] UDR APP memory done
+[2026-04-07 12:00:32.678] [common] [debug] Freeing allocated memory done
+[2026-04-07 12:00:32.678] [common] [info] Bye. Shutdown Procedure took 161 ms
+[2026-04-07 12:00:32.678] [udr_nrf] [info] Delete HTTP client instance

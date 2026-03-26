@@ -171,7 +171,7 @@ First, check that the UE is registered and has Ethernet tap interface:
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: sleep 10
+docker-compose-host $: sleep 20
 ```
 -->
 
@@ -243,7 +243,7 @@ rtt min/avg/max/std-dev = 14.583/17.724/20.865/3.141 ms
 For CI purposes please ignore these lines
 ``` shell
 docker-compose-host $: docker exec -i oai-upf sh -c 'timeout 2s cat /sys/kernel/debug/tracing/trace_pipe || true' > /tmp/oai/ethernet-pdu-testing/upf-ebpf-trace-pipe.log 2>&1
-docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml stop -t 2
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml stop -t 10
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-ebpf.yaml stop -t 30
 ```
 -->
