@@ -1,6 +1,15 @@
-# RELEASE NOTES: #
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-## v2.2.0 -- December 2025 ##
+# RELEASE NOTES:
+
+## v2.2.1 -- March 2026
+
+* Change of license from OAI Public License v1.1 to CSSL v1.0
+* Re-license documentation to the CC-BY-4.0 License
+* Re-license orchestration files (docker compose yaml files, health scripts, openshift build files)
+  and CI-scripts under the MIT License
+
+## v2.2.0 -- December 2025
 
 * Archived Network Function:
   * UPF-VPP
@@ -105,7 +114,7 @@
   * Fixes
     - Update LTTNG to v0.15.0 to avoid build issues
 
-## v2.1.0 -- August 2024 ##
+## v2.1.0 -- August 2024
 
 * 1 new Network Funtion:
   * LMF
@@ -254,7 +263,7 @@
       - bpftool to `v7.3.0`
       - This should allow to build on newer systems
 
-## v2.0.1 -- January 2024 ##
+## v2.0.1 -- January 2024
 
 * `AMF` changes:
   * Features
@@ -285,7 +294,7 @@
     - Fixed builds
     - Refactor mongoDB
 
-## v2.0.0 -- December 2023 ##
+## v2.0.0 -- December 2023
 
 * 2 new Network Functions:
   * NWDAF
@@ -384,7 +393,7 @@
     - Fixed hardcoded HTTP/2 port
     - Added missing HTTP2 for Authentication Data and Session Management Subscription Data
 
-## v1.5.1 -- May 2023 ##
+## v1.5.1 -- May 2023
 
 * Tutorials:
   * All basic-based tutorials are now only in HTTP/2 mode and with NRF
@@ -443,7 +452,7 @@
   * logging: Add UE ID in the log
   * Retry NF Register if registration failed
 
-## v1.5.0 -- January 2023 ##
+## v1.5.0 -- January 2023
 
 * New tutorials:
   - UL CL with policies --> `docs/DEPLOY_SA5G_ULCL.md`
@@ -533,7 +542,7 @@
   - GTP payload length fix
   - Major Configuration update
 
-## v1.4.0 -- July 2022 ##
+## v1.4.0 -- July 2022
 
 * All official images produced by CI are pushed to `oaisoftwarealliance` Docker-Hub Team account
 * New tutorial:
@@ -547,7 +556,7 @@
   - Fix 100% CPU consumption issue
   - Fix RAN UE ID display
   - Fix issue for TMSI and GUTI value
-  - Fix for handling S-NSSAI 
+  - Fix for handling S-NSSAI
   - Remove OPC value from AMF configuration
   - Support for Ubuntu 20.04 bare-metal installation
 * `AUSF` Changes:
@@ -559,12 +568,12 @@
   - Add NF profile handling for PCF
   - HTTP/2 support for SBI interface
 * `NSSF` Changes:
-  - Network slice selection for UE registration 
+  - Network slice selection for UE registration
   - NS-AVAIBALITY API support to CREATE new slice
   - Fix bare-metal setup configuration management
   - HTTP/2 support for SBI interface
 * `SMF` Changes:
-  - Fix for handling S-NSSAI 
+  - Fix for handling S-NSSAI
   - Add support for IMS
   - HTTP/2 support for SBI interface
   - Add usage report feature
@@ -578,7 +587,7 @@
   - Fix issue to support Slice Selection Subscription Data retrieval
   - NRF Registration and heartbeat exchange
 * `SPGWU-TINY` Changes:
-  - Fix for handling S-NSSAI 
+  - Fix for handling S-NSSAI
   - Add support for multiple slices via config file
   - Allowed reusing GTPv1-U socket
   - Fix GTPU offset sequence number
@@ -589,7 +598,7 @@
   - Support for Ubuntu 20.04 bare-metal/docker installation
 * `NEF` It is ongoing so far it is not functional
 
-## v1.3.0 -- January 2022 ##
+## v1.3.0 -- January 2022
 
 * Incorporation of new public network functions:
   - NSSF
@@ -648,7 +657,7 @@
   - Build fixes
   - Deployment fixes (wait launch of NRF Client until VPP is getting ready)
 
-## v1.2.1 -- October 2021 ##
+## v1.2.1 -- October 2021
 
 * Incorporation of new public network functions:
   - UPF-VPP
@@ -678,7 +687,7 @@
   - CI Build support
   - Tutorial validated
 
-## v1.2.0 -- September 2021 ##
+## v1.2.0 -- September 2021
 
 * Incorporation of new public network functions:
   - AUSF
@@ -723,7 +732,7 @@
   - Adding 5G features
     - HTTP2 support
 
-## v1.1.0 -- July 2021 ##
+## v1.1.0 -- July 2021
 
 * Improvements on Continuous Integration:
   - DsTester validation on Ubuntu18 docker deployment
@@ -754,7 +763,7 @@
   - Adding 5G features
     - NRF discovery and FQDN support
 
-## v1.0.0 -- September 2020 ##
+## v1.0.0 -- September 2020
 
 * Initial release
 

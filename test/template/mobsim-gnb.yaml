@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
 mcc: '208'          # Mobile Country Code value
 mnc: '95'           # Mobile Network Code value (2 or 3 digits)
 

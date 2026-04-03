@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 # Feature Set
 
 ## 5GC Service Based Architecture
@@ -91,6 +93,7 @@ Based on document **3GPP TS 23.501 v16.14.0 (Section 6.2.2)**.
 | 21     | Support for interaction with external DN                            | :x:                |                                           |
 | 22     | Instructs UPF/NG-RAN to perform redundant transmission              | :x:                |                                           |
 |        | on N3/N9 interfaces                                                 |                    |                                           |
+
 ## OAI UPF
 
 
@@ -162,7 +165,6 @@ Based on document **3GPP TS 23.501 V16.0.0 §6.2.3**.
 
 **NOTE:** Not all of the UPF functionalities are required to be supported in an instance of user plane function of a Network Slice.
 
-```markdown
 **NB: Excluded Features from Coverage**
 
 The following features are **excluded from implementation coverage** as they are non-applicable to standalone 5G UPF deployments:
@@ -196,7 +198,6 @@ These features are correctly out-of-scope for:
 - Single-operator networks
 - Single-UPF architectures
 - Mobile broadband (eMBB) use cases
-```
 
 ---
 
@@ -580,4 +581,20 @@ Based on document **TS 23.273 (section 4.3.8 of TS 23.273)**.
 | 7    | Support change of a serving LMF for periodic or triggered location reporting for       | :x:          |              |
 |      | a target UE                                                                            |              |              |
 
-      
+
+## OAI NWDAF
+
+### Feature List
+
+Based on  **TS 29.520 V17.19.0**:
+
+- Event: NETWORK_PERFORMANCE
+   - Type: Number of connected users (NwPerType: NUM_OF_UE)
+   - Type: Session success ratio (NwPerType: SESS_SUCC_RATIO)
+- Event: UE_COMMUNICATION
+- Event: UE_MOBILITY
+
+In addition to these features, we have also implemented an ML-based
+feature exclusively for the Events Subscription API:
+
+- Event: ABNORMAL_BEHAVIOUR

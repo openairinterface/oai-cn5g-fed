@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 # ⚠️ Repo Archive Notice
 
 As of Nov 13, 2020, charts in this repo will no longer be updated.

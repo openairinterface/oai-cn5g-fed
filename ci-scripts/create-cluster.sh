@@ -1,5 +1,7 @@
 ## A script to create minikube cluster for testing helm-charts
 #/bin/bash
+# SPDX-License-Identifier: MIT
+
 set -eo pipefail
 if ! command -v minikube &> /dev/null
 then

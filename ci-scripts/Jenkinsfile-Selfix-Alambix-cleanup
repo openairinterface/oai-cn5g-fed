@@ -1,3 +1,6 @@
+/*
+ * SPDX-License-Identifier: MIT
+ */
 def node1 = "Selfix"
 def resource1 = "Selfix"
 def node2 = "Alambix"

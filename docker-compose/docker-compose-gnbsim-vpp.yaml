@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 services:
     gnbsim-vpp:
         container_name: gnbsim-vpp

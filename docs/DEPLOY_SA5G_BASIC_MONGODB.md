@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 <table>
   <tr style="border-collapse: collapse; border: none;">
     <td style="border-collapse: collapse; border: none;">

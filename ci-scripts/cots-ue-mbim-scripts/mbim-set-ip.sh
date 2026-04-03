@@ -1,9 +1,8 @@
 #!/bin/bash
+# SPDX-License-Identifier: Apache-2.0
 
-# Modified by Karim Boutiba (karim.boutiba@eurecom.fr)
 # mbim-set-ip script version 1.1
 # Modified mbimcli IPv4 IPv6 parsing script based on parts of project https://github.com/grandcentrix/thinkpad-x260-modem-scripts
-# Licensed under the Apache License, Version 2.0
 # Modified by Jörgen Storvist, Techship http://www.techship.com
 # Further details in the Techship FAQ sections on using MBIM and setting correct modes in cellular modules:
 # https://techship.com/faq/how-to-set-up-a-simple-data-connection-over-the-mbim-interface-using-libmbim-and-driver-cdc-mbim-in-linux/

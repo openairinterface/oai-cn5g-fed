@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
 kind: PersistentVolumeClaim
 apiVersion: v1

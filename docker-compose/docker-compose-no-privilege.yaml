@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 # In this docker-compose upf is not privileged access, it is good example for security purpose
 services:
     mysql:
