@@ -3,11 +3,11 @@
 version: '3.8'
 services:
     oai-gnb:
-        image: phinetech/oai-gnb:eth-pdu-latest
+        image: oaisoftwarealliance/oai-gnb:develop
         privileged: true
         container_name: oai-gnb
         environment:
-            USE_ADDITIONAL_OPTIONS: -E --rfsim --log_config.global_log_options level,nocolor,time
+            USE_ADDITIONAL_OPTIONS: -E --rfsim --MACRLCs.[0].stats_max_ue 0 --log_config.global_log_options level,nocolor,time
             ASAN_OPTIONS: detect_leaks=0
         volumes:
             - ./ran-conf/gnb.sa.band78.106prb.rfsim.yaml:/opt/oai-gnb/etc/gnb.yaml
@@ -22,10 +22,10 @@ services:
             timeout: 5s
             retries: 5
     oai-nr-ue1:
-        image: phinetech/oai-ue:eth-pdu-latest
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue1
-        environment: 
+        environment:
             USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 -C 3619200000 --rfsimulator.serveraddr 192.168.70.153 --log_config.global_log_options level,nocolor,time
         depends_on:
             - oai-gnb
@@ -40,7 +40,7 @@ services:
             timeout: 5s
             retries: 5
     oai-nr-ue2:
-        image: phinetech/oai-ue:eth-pdu-latest
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue2
         environment:
@@ -59,7 +59,7 @@ services:
             retries: 5
     # For ETH PDU session testing
     oai-nr-ue3:
-        image: phinetech/oai-ue:eth-pdu-latest
+        image: oaisoftwarealliance/oai-nr-ue:develop
         privileged: true
         container_name: oai-nr-ue3
         environment:

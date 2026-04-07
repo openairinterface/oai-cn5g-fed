@@ -8,10 +8,10 @@ tx-tcp-mangleid-segmentation: off [not requested]
 tx-tcp6-segmentation: off [not requested]
 tx-checksum-sctp: off
 
-2. Setup MTU (1460) on N6 interface (eth1):
-eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+2. Setup MTU (1450) on N6 interface (eth1):
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         inet 192.168.72.135  netmask 255.255.255.192  broadcast 192.168.72.191
-        ether ee:9f:d2:0d:69:aa  txqueuelen 0  (Ethernet)
+        ether 12:0c:51:d4:48:6d  txqueuelen 0  (Ethernet)
         RX packets 2  bytes 200 (200.0 B)
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 1  bytes 42 (42.0 B)
@@ -43,7 +43,7 @@ Gateway Has the following configuration :
               N6 |               | Sgi                  
                  +---------------+                      
 
-    GW N6 Interface ----------------: (Ifname, IPv4, MTU) = (eth1, 192.168.72.135, 1460)
+    GW N6 Interface ----------------: (Ifname, IPv4, MTU) = (eth1, 192.168.72.135, 1450)
     GW Sgi Interface ---------------: (Ifname, IPv4, MTU) = (eth2, 192.168.70.135, 1500)
     GW Default Route ---------------: default via 192.168.70.129 dev eth2 
     Route to UE --------------------: 12.1.1.0/24 via 192.168.72.129 dev eth1 
