@@ -11,7 +11,8 @@
 ubuntuBuildNode = params.UbuntuBuildNode
 ubuntuBuildResource = params.UbuntuBuildResource
 def failingStages = ""
-
+def unSignedMsg = ""
+def runFullTestSuite = true
 
 pipeline {
     agent {
@@ -40,6 +41,23 @@ pipeline {
                     } else {
                         echo "Node: ${ubuntuBuildNode}"
                     }
+                    if ("MERGE".equals(env.gitlabActionType)) {
+                        VERIFY_MR_LABEL = (env.gitlabMergeRequestLabels?.trim()) ?: 'NONE'
+                        if (VERIFY_MR_LABEL == 'NONE') {
+                             def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): Your merge request should have a proper label, for example:\n\n"
+                             message += " - ~Documentation (skips the testing stages)\n"
+                             message += " - ~CI (Testing 5G Core Network Functions)\n\n"
+                             message += "*Note: Any label other than only ~Documentation (e.g., ~Bug, ~Feature, ~CI) will trigger the full test suite.*\n\n"
+                             message += "Not performing CI due to lack of proper labels"
+                             addGitLabMRComment comment: message
+                             error('Not performing CI due to lack of proper labels')
+                           }
+                        if (VERIFY_MR_LABEL.split(',').collect{it.trim()} == ['Documentation']) {
+                            runFullTestSuite = false
+                            echo "Skipping Full Test Suite: the merge request contains only the Documentation label."
+                            // Skips testing if the label is only Documentation
+                        }
+                    }
                 }
             }
         }
@@ -52,6 +70,18 @@ pipeline {
                     if ("MERGE".equals(env.gitlabActionType)) {
                         gitlabMergeRequestLink = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-fed/merge_requests/${env.gitlabMergeRequestIid}' | jq .web_url | sed 's#\"##g'"
                         gitlabMergeRequestLink = gitlabMergeRequestLink.trim()
+                        def unsignedCount = sh(
+                        returnStdout: true,
+                        script: """
+                            curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2Foai-cn5g-fed/merge_requests/${env.gitlabMergeRequestIid}/commits' | \
+                            jq '[.[] | select(.message | contains("Signed-off-by:") | not)] | length'
+                        """
+                        ).trim()
+                        if (unsignedCount.toInteger() > 0) {
+                            unSignedMsg = "\u274C ${unsignedCount} commit(s) are missing the 'Signed-off-by' line. Please sign the commits using 'git commit -s'"
+                            error unSignedMsg
+                        }
+                        echo "All commits are signed-off."
                         gitCommittorEmailAddr  = env.gitlabUserEmail
 
                         shortenShaOne = sh returnStdout: true, script: 'git log -1 --pretty=format:"%h" --abbrev=8 ' + env.gitlabMergeRequestLastCommit
@@ -88,7 +118,15 @@ pipeline {
             post {
                 failure {
                     script {
-                        def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): Merge Conflicts -- Cannot perform CI"
+                        def message = "OAI " + JOB_NAME + " build (" + BUILD_ID + "): "
+                        if (unSignedMsg)
+                        {
+                            message += unSignedMsg
+                        }
+                        else
+                        {
+                            message += "\u26D4 Merge Conflicts -- Cannot perform CI"
+                        }
                         addGitLabMRComment comment: message
                         currentBuild.result = 'FAILURE'
                     }
@@ -97,6 +135,10 @@ pipeline {
         }
 
         stage('Testing 5G Core Network Functions') {
+            when {
+                expression { return runFullTestSuite }
+                // This stage will only run if runFullTestSuite was set to true in 'Verify Parameters'
+            }
             parallel {
                 stage('Testing with COTS-UE') {
                     steps {
@@ -269,6 +311,7 @@ pipeline {
                 // ARCHIVING THE COPIED ARTIFACTS
                 archiveArtifacts(
                     artifacts: '*.html',
+                    allowEmptyArchive: true
                 )
             }
         }

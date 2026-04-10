@@ -2,12 +2,61 @@
 
 # RELEASE NOTES:
 
-## v2.2.1 -- March 2026
+## v2.2.1 -- April 2026
 
-* Change of license from OAI Public License v1.1 to CSSL v1.0
-* Re-license documentation to the CC-BY-4.0 License
-* Re-license orchestration files (docker compose yaml files, health scripts, openshift build files)
-  and CI-scripts under the MIT License
+* Build and CI fixes for RHEL 9 based environments
+  - Switch container registry usage to `registry.redhat.io`
+  - Replace RHEL `yq` image pull with direct GitHub download flow
+  - Pass the EPEL URL as a parameter in Jenkins RHEL jobs
+* Licensing and documentation
+  - Re-license the project from OAI Public License v1.1 to CSSL v1.0
+  - Re-license documentation under CC-BY-4.0 and orchestration/CI assets under MIT
+  - Add `NOTICE`, `LICENSES/`, and related contribution/documentation updates
+* `FED` changes:
+  - Update gNB SRS configuration to use "periodic" mode and removed redundant default values for SRS and CSI-RS settings
+  - Fix column names for AMF statistics in the notification test
+  - Add Ethernet PDU session tutorial for UPF and SMF to the CI, including updated configurations and tutorial.
+* There are no specific changes in SMF, PCF, NEF, NRF, NSSF and NWDAF
+* `AMF` changes:
+  * Features
+    - Introduce a new NAS state machine and NAS procedure/timer management infrastructure
+    - Add SUCI Scheme A support and advanced-feature configuration switches
+    - Improve SMF selection and discovery, including NRF-based discovery and requested NSSAI handling for PDU session establishment
+    - Align NGAP procedure handling with 3GPP TS 38.413 v16.14.0
+  * Fixes
+    - Fix N2 handover NH/NCC key chaining according to TS 33.501
+    - Harden NAS message processing and state-transition validation
+    - Fix NGAP decode and memory-management issues, including double-free and free-parameter defects
+    - Improve AMF robustness with N1/N2 memory-leak fixes, cleanup of dead code, and safer NAS context handling
+    - Correct DNN/NSSAI conversion and encoding issues impacting SM context creation and SMF selection
+  * Improvements
+    - Update the AMF/common-src integration and refresh the documented feature set
+    - Remove obsolete AMF options and extend build/runtime configuration support
+* `UDR` changes:
+* Features
+  - Add the missing Session Management Data API function for MongoDB-backed deployments
+* `UDM` changes:
+  * Features
+    - Add SUCI de-concealment support for SIDF Scheme A / ECIES Profile A
+    - Load subscriber profiles from configuration and use the correct profile for Scheme A/B
+    - Add example subscriber-profile configuration in `etc/config.yaml`
+  * Fixes
+    - Fix CMake/build integration for the new 5G AKA and SIDF code paths
+    - Fix Docker builds, including `libcrypto` installation, ARM build issues, and shared library copying
+  * Tests
+    - Add unit tests for 5G AKA, SHA-256, ECIES format, and ECIES Profile A
+  * Documentation
+    - Update feature-set documentation for the new SIDF capability
+* `AUSF` changes:
+  * Features
+    - Retrieve the SUPI from UDM when it is returned in the authentication response
+  * Fixes
+    - Fix SUCI Scheme A handling in the AUSF authentication flow
+    - Optimize JSON and string handling in the SBI/authentication path
+    - AUSF NRF task initialization when NRF registration is disabled
+* `LMF` changes:
+  * Features
+    - Add a basic linear least-squares estimator for TDoA (Time Difference of Arrival) positioning, including improved matrix inversion using LAPACK/BLAS
 
 ## v2.2.0 -- December 2025
 
