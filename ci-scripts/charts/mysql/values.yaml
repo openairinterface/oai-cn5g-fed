@@ -4,7 +4,7 @@
 ## ref: https://hub.docker.com/r/library/mysql/tags/
 ##
 image: "docker.io/mysql"
-imageTag: "9.2.0"
+imageTag: "9.6.0"
 
 strategy:
   type: Recreate
