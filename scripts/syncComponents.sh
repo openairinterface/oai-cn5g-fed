@@ -17,7 +17,7 @@ declare -A COMPONENTS=(
 )
 
 # Detect current branch from the main repo
-DEFAULT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'master')"
+DEFAULT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'develop')"
 COMMON_BRANCH=""
 declare -A BRANCHES
 verbose=0

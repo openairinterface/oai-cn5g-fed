@@ -244,7 +244,7 @@ imagePullSecrets:
   - name: "regcred"
 ```
 
-When pulling images from docker hub you have several choices either to use images with develop tag (based on latest develop branch sometimes might not be stable), latest (built from current master branch) and release tags. 
+When pulling images from docker hub you have several choices either to use images with develop tag (based on latest develop branch sometimes might not be stable), latest and release tags. 
 
 ### 3.3 Configuring Helm Chart Parameters
 

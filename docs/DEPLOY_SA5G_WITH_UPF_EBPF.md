@@ -134,13 +134,13 @@ You can also retrieve the images from `docker-hub`. See [Retrieving images](./RE
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 20.04 | Ubuntu 22.04  | RHEL8        |
 | ----------- |:-------------- | ----------------------------- | ------------ | --------------|------------- |
-| AMF         | `master`       | `v2.0.1`                      | x            | X             | x            |
-| AUSF        | `master`       | `v2.0.1`                      | x            | X             | x            |
-| NRF         | `master`       | `v2.0.1`                      | x            | X             | x            |
-| SMF         | `master`       | `v2.0.1`                      | x            | X             | x            |
-| UDR         | `master`       | `v2.0.1`                      | x            | X             | x            |
-| UDM         | `master`       | `v2.0.1`                      | x            | X             | x            |
-| UPF         | `master`       | `v2.0.1`                      | X            | X             |              |
+| AMF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| AUSF        | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| NRF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| SMF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| UDR         | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| UDM         | `develop`       | `v2.2.1`                      | x            | X             | x            |
+| UPF         | `develop`       | `v2.2.1`                      | X            | X             |              |
 
 
 <br/>
@@ -215,7 +215,7 @@ If you want to run OAI-UPF-eBPF from sources you can first install these depende
 ## 5. Network Functions Configuration
 
 ### i. SMF
-Please follow the [SMF Config tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/CONFIGURATION.md?ref_type=heads) for the SMF configuration.
+Please follow the [SMF Config tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for the SMF configuration.
 
 Here we focus on the SMF details that needed to update (if not set by default) in order to make the SMF interacting with both AMF and UPF. Note that the `basic_nrf_config_ebpf.yaml` that is used as a shared volume is used by entire 5GCN functions including the UPF.
 
@@ -273,7 +273,7 @@ smf:
 
 
 ### ii. AMF
-Please refer to the [Documentation](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/CONFIGURATION.md?ref_type=heads) for more details about the AMF configuration.
+Please refer to the [Documentation](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for more details about the AMF configuration.
 
 ```console
 $ cat docker-compose-basic-nrf-ebpf.yaml
@@ -426,7 +426,7 @@ For the first release of the UPF-eBPF we are using a gateway that has two roles:
   ```bash
   docker-compose-host $: sudo iptables -t nat -A POSTROUTING -o enp53s0 -s 12.1.1.0/24 -j SNAT --to 172.21.19.56
   ```
- 
+
    - 3. __MTU Functionality__:  Another point that we want to address here is the Maximum Transmission Unit (MTU), representing the maximum frame size a NIC can transmit. Typically, NICs have a fixed MTU, with Ethernet's default being 1,500 bytes. Within the IP network stack, the MTU constrains packet transmission size. On the uplink side, the gNB sets the MTU at 1,500 bytes. Consequently, each user packet, encapsulated in a GTP header, adheres to this size, achieved through packet fragmentation or data padding. On the downlink, the UPF receives packets over the n6 interface, fixed at the Ethernet MTU (1,500 bytes). If the UPF forwards a received packet to the n3 interface, it undergoes encapsulation within a GTP header, adding 40 bytes (20 Bytes for external IP header, 8 bytes for external UDP header, and 12 Bytes for GTPv2 header). The gNB's MTU limit is 1,500 bytes; thus, packet sizes on the UPF side must be reduced. Since the UPF doesn't handle packet fragmentation, MTU reduction within the gateway is necessary before the packet reaches the N6 interface.
 
   ```bash

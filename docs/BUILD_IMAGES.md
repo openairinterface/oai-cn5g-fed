@@ -24,9 +24,9 @@ They are named as `git sub-modules` in the `component` folder.
 
 Before doing anything, you SHALL retrieve the code for each git sub-module.
 
-Normally the `./scripts/syncComponents.sh` should help synchronize all of them.
+Normally the [scripts/syncComponents.sh](../scripts/syncComponents.sh) should help synchronize all of them.
 
-Now if you have non-tracked files or modified files within git submodules, this script may not work. 
+Now if you have non-tracked files or modified files within git submodules, this script may not work.
 
 Use the `--verbose` option to see the execution of each command.
 
@@ -41,7 +41,7 @@ You can execute them at this federation level or at the nf component level.
 
 ## 1.1. You are interested in a stable version. ##
 
-We recommend to synchronize with the master branches on all git sub-modules.
+We recommend to synchronize with the develop branches on all git sub-modules.
 
 We also recommend that you synchronize this "tutorial" repository with a provided tag. By doing so, the `docker-compose` files will be aligned with feature sets of each cNF.
 
@@ -53,20 +53,20 @@ cd oai-cn5g-fed
 git checkout -f <tag>
 
 # Synchronize all git submodules
-./scripts/syncComponents.sh
+./scripts/syncComponents.sh --branch develop
 ---------------------------------------------------------
-OAI-NRF     component branch : master
-OAI-AMF     component branch : master
-OAI-SMF     component branch : master
-OAI-UPF     component branch : master
-OAI-AUSF    component branch : master
-OAI-UDM     component branch : master
-OAI-UDR     component branch : master
-OAI-UPF-VPP component branch : master
-OAI-NSSF    component branch : master
-OAI-NEF     component branch : master
-OAI-PCF     component branch : master
-OAI-LMF     component branch : master
+OAI-NRF     component branch : develop
+OAI-AMF     component branch : develop
+OAI-SMF     component branch : develop
+OAI-UPF     component branch : develop
+OAI-AUSF    component branch : develop
+OAI-UDM     component branch : develop
+OAI-UDR     component branch : develop
+OAI-UPF-VPP component branch : develop
+OAI-NSSF    component branch : develop
+OAI-NEF     component branch : develop
+OAI-PCF     component branch : develop
+OAI-LMF     component branch : develop
 ---------------------------------------------------------
 git submodule deinit --all --force
 git submodule init
@@ -80,9 +80,7 @@ All the latest features are pushed to the `develop` branches of each NF reposito
 It means that we/you are able to build and the Continuous Integration test suite makes sure it
 does NOT break any existing tested feature.
 
-So for example, at time of writing, N2 Handover support code is included in `v1.1.0` release. But it is not tested yet. So it is not advertised in the `CHANGELOG.md` and the Release Notes.
-
-Anyhow, the tutorials' docker-compose files on the latest commit of the `develop` branch of `oai-cn5g-fed` repository SHALL support any additional un-tested feature.
+The tutorials' docker-compose files on the latest commit of the `develop` branch of `oai-cn5g-fed` repository SHALL support any additional un-tested feature.
 
 # 2. Generic Parameters #
 

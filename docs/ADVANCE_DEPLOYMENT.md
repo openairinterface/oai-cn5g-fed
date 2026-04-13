@@ -37,11 +37,11 @@ The users can either pull the docker images from official docker-hub repository 
 
 ## 1.1 Pulling docker images ##
 
-OAI [official docker-hub repository](https://hub.docker.com/u/oaisoftwarealliance) has three type of image tags develop, latest or version, 
+OAI [official docker-hub repository](https://hub.docker.com/u/oaisoftwarealliance) has three type of image tags develop, latest or version,
 
-- `latest` tag coresponds to latest release or master branch of the core network function 
-- `develop` tag corresponds to develop branch or next release of the core network function 
-- `version tag vX.X.X` corresponds to a release 
+- `latest` tag coresponds to latest release of the core network function
+- `develop` tag corresponds to develop branch or next release of the core network function
+- `version tag vX.X.X` corresponds to a release
 
 You can copy the below lines in a shell script and use it to pull the images or just pull it the way you want and re-tag if you want. By default, we are pulling develop images.
 

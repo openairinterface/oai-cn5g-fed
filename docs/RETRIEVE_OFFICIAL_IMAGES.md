@@ -38,7 +38,8 @@ Password:
 ```
 
 The OAI CI/CD team has automated more frequent pushes to Docker-Hub on `oaisoftwarealliance` account. Two important things to be noted:
-  - We will keep pushing to the `latest` tag when a milestone is reached. Currently, the `latest` tag corresponds to v1.5.0 release.
+
+  - We will keep pushing to the `latest` tag for the network functions when a milestone is reached. Currently, the `latest` tag corresponds to `v2.2.1` release.
   - We are making pushes on the `develop` tag whenever a contribution has been accepted. These images are **EXPERIMENTAL**.
   - Release tag `vx.x.x` contains the release code
 
@@ -46,17 +47,17 @@ Now pull images according to your requirement,
 
 ```bash
 #!/bin/bash
-docker pull oaisoftwarealliance/oai-amf:v2.1.0
-docker pull oaisoftwarealliance/oai-nrf:v2.1.0
-docker pull oaisoftwarealliance/oai-upf:v2.1.0
-docker pull oaisoftwarealliance/oai-smf:v2.1.0
-docker pull oaisoftwarealliance/oai-udr:v2.1.0
-docker pull oaisoftwarealliance/oai-udm:v2.1.0
-docker pull oaisoftwarealliance/oai-ausf:v2.1.0
-docker pull oaisoftwarealliance/oai-upf-vpp:v2.1.0
-docker pull oaisoftwarealliance/oai-nssf:v2.1.0
-docker pull oaisoftwarealliance/oai-pcf:v2.1.0
-docker pull oaisoftwarealliance/oai-lmf:v2.1.0
+docker pull oaisoftwarealliance/oai-amf:v2.2.1
+docker pull oaisoftwarealliance/oai-nrf:v2.2.1
+docker pull oaisoftwarealliance/oai-upf:v2.2.1
+docker pull oaisoftwarealliance/oai-smf:v2.2.1
+docker pull oaisoftwarealliance/oai-udr:v2.2.1
+docker pull oaisoftwarealliance/oai-udm:v2.2.1
+docker pull oaisoftwarealliance/oai-ausf:v2.2.1
+docker pull oaisoftwarealliance/oai-upf-vpp:v2.2.1
+docker pull oaisoftwarealliance/oai-nssf:v2.2.1
+docker pull oaisoftwarealliance/oai-pcf:v2.2.1
+docker pull oaisoftwarealliance/oai-lmf:v2.2.1
 # Utility image to generate traffic
 docker pull oaisoftwarealliance/trf-gen-cn5g:latest
 ```
@@ -75,45 +76,43 @@ We will push new versions when new features are validated.
 
 This repository only has tutorials and Continuous Integration scripts.
 
-**At the time of writing (2024/08), the release tag is `v2.1.0`.**
-
 | CNF Name    | Branch Name | Tag      | Ubuntu 22.04 | RHEL9 (UBI9)    |
 | ----------- | ----------- | -------- | ------------ | ----------------|
-| FED REPO    | N/A         | `v2.1.0` |              |                 |
-| AMF         | `master`    | `v2.1.0` | X            | X               |
-| SMF         | `master`    | `v2.1.0` | X            | X               |
-| NRF         | `master`    | `v2.1.0` | X            | X               |
-| UPF         | `master`    | `v2.1.0` | X            | X               |
-| UDR         | `master`    | `v2.1.0` | X            | X               |
-| UDM         | `master`    | `v2.1.0` | X            | X               |
-| AUSF        | `master`    | `v2.1.0` | X            | X               |
-| UPF-VPP     | `master`    | `v2.1.0` | X            | X               |
-| NSSF        | `master`    | `v2.1.0` | X            | X               |
-| LMF         | `master`    | `v2.1.0` | X            | X               |
-| PCF         | `master`    | `v2.1.0` | X            | X               |
+| FED REPO    | N/A         | `v2.2.1` |              |                 |
+| AMF         | `develop`    | `v2.2.1` | X            | X               |
+| SMF         | `develop`    | `v2.2.1` | X            | X               |
+| NRF         | `develop`    | `v2.2.1` | X            | X               |
+| UPF         | `develop`    | `v2.2.1` | X            | X               |
+| UDR         | `develop`    | `v2.2.1` | X            | X               |
+| UDM         | `develop`    | `v2.2.1` | X            | X               |
+| AUSF        | `develop`    | `v2.2.1` | X            | X               |
+| UPF-VPP     | `develop`    | `v2.2.1` | X            | X               |
+| NSSF        | `develop`    | `v2.2.1` | X            | X               |
+| LMF         | `develop`    | `v2.2.1` | X            | X               |
+| PCF         | `develop`    | `v2.2.1` | X            | X               |
 
 ```bash
 # Clone directly on the latest release tag
-$ git clone --branch v2.1.0 https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+$ git clone --branch v2.2.1 https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
 $ cd oai-cn5g-fed
 # If you forgot to clone directly to the latest release tag
-$ git checkout -f v2.1.0
+$ git checkout -f v2.2.1
 
 # Synchronize all git submodules
 $ ./scripts/syncComponents.sh
 ---------------------------------------------------------
-OAI-NRF     component branch : master
-OAI-AMF     component branch : master
-OAI-SMF     component branch : master
-OAI-UPF     component branch : master
-OAI-AUSF    component branch : master
-OAI-UDM     component branch : master
-OAI-UDR     component branch : master
-OAI-UPF-VPP component branch : master
-OAI-NSSF    component branch : master
-OAI-NEF     component branch : master
-OAI-PCF     component branch : master
-OAI-LMF     component branch : master
+OAI-NRF     component branch : develop
+OAI-AMF     component branch : develop
+OAI-SMF     component branch : develop
+OAI-UPF     component branch : develop
+OAI-AUSF    component branch : develop
+OAI-UDM     component branch : develop
+OAI-UDR     component branch : develop
+OAI-UPF-VPP component branch : develop
+OAI-NSSF    component branch : develop
+OAI-NEF     component branch : develop
+OAI-PCF     component branch : develop
+OAI-LMF     component branch : develop
 ---------------------------------------------------------
 git submodule deinit --all --force
 git submodule init
@@ -141,8 +140,6 @@ docker pull oaisoftwarealliance/oai-lmf:develop
 # Utility image to generate traffic
 docker pull oaisoftwarealliance/trf-gen-cn5g:latest
 ```
-
-Now these development images will **NOT** work with the `master` versions of the tutorials. You **SHALL** switch to the `develop` versions.
 
 ```bash
 # Clone directly on the latest release tag
