@@ -2,8 +2,8 @@
 
 apiVersion: v2
 name: mysql
-version: 9.2.0
-appVersion: 9.2.0
+version: 9.6.0
+appVersion: 9.6.0
 description: mysql chart used for oai5g core 
 keywords:
 - mysql

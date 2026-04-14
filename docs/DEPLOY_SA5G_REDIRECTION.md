@@ -41,15 +41,15 @@ For this demo, all the images which use the `develop` branch have been retrieved
 
 | NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
 |----------|:------------|-----------------------------|--------------|-------|
-| NSSF     | `develop`    | `v2.0.1`                    | X            | -     |
-| AMF      | `develop`    | `v2.0.1`                    | X            | -     |
-| AUSF     | `develop`    | `v2.0.1`                    | X            | -     |
-| NRF      | `develop`    | `v2.0.1`                    | X            | -     |
-| SMF      | `develop`    | `v2.0.1`                    | X            | -     |
-| UDR      | `develop`    | `v2.0.1`                    | X            | -     |
-| UDM      | `develop`    | `v2.0.1`                    | X            | -     |
-| PCF      | `develop`    | `v2.0.1`                    | X            | -     |
-| UPF-VPP  | `develop`    | `v2.0.1`                    | X            | -     |
+| NSSF     | `develop`    | `v2.2.1`                    | X            | -     |
+| AMF      | `develop`    | `v2.2.1`                    | X            | -     |
+| AUSF     | `develop`    | `v2.2.1`                    | X            | -     |
+| NRF      | `develop`    | `v2.2.1`                    | X            | -     |
+| SMF      | `develop`    | `v2.2.1`                    | X            | -     |
+| UDR      | `develop`    | `v2.2.1`                    | X            | -     |
+| UDM      | `develop`    | `v2.2.1`                    | X            | -     |
+| PCF      | `develop`    | `v2.2.1`                    | X            | -     |
+| UPF-VPP  | `develop`    | `v2.2.1`                    | X            | -     |
 
 <br/>
 
@@ -84,7 +84,7 @@ for details.
 
 ### Docker Networks
 In total, 3 different docker networks are used:
-* public_net (demo-oai) for control plane 
+* public_net (demo-oai) for control plane
 * public_net_access (cn5g-access) for the N3 interface between gnbsim and gNB
 * public_net_core (cn5g-core) for the N6 interface between UPF and DN
 
@@ -94,18 +94,18 @@ In total, 3 different docker networks are used:
 The first interface (demo-oai) is used for the control plane, including the N4 interfaces to all UPFs. The others are used for the user plane.
 
 Therefore, we do not need to filter out the UP when tracing on the `demo-oai` interface.
-We run the `mysql` service first, so that we can start the trace before anything is sent over the CP. 
+We run the `mysql` service first, so that we can start the trace before anything is sent over the CP.
 You can choose to skip this step and deploy all the NFs at once.
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-redirection.yaml up -d mysql 
+docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-redirection.yaml up -d mysql
 Creating network "demo-oai-public-net" with driver "bridge"
 Creating network "oai-public-access" with the default driver
 Creating network "oai-public-core" with the default driver
 Creating mysql ... done
 ```
 
-We capture the packets on the docker networks and filter out ARP. 
+We capture the packets on the docker networks and filter out ARP.
 ``` shell
 docker-compose-host $: sleep 1
 docker-compose-host $: nohup sudo tshark -i demo-oai -f "not arp" -w /tmp/oai/redirect-scenario/control_plane.pcap > /tmp/oai/redirect-scenario/control_plane.log 2>&1 &
@@ -146,7 +146,7 @@ docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-redirectio
 Using `docker ps` you can verify that no NF exited, e.g. because of a faulty configuration:
 
 Also all should be in an `healthy` state before going further. The `mysql` container may take some time.
-``` console 
+``` console
 docker-compose-host $: docker ps
 CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS                    PORTS                          NAMES
 16e442edd7b9   oai-smf:develop        "/bin/bash /openair-…"   30 seconds ago   Up 29 seconds (healthy)   80/tcp, 8080/tcp, 8805/udp     oai-smf
@@ -158,19 +158,19 @@ b867ac7db503   oai-upf-vpp:develop    "/openair-upf/bin/en…"   34 seconds ago 
 4e133a45bd0b   oai-pcf:develop        "/bin/bash /openair-…"   34 seconds ago   Up 33 seconds (healthy)   80/tcp, 8080/tcp               oai-pcf
 341271bb659a   oai-udr:develop        "/bin/bash /openair-…"   34 seconds ago   Up 33 seconds (healthy)   80/tcp                         oai-udr
 aa8cbc6fe533   oai-nrf:develop        "python3 /openair-nr…"   34 seconds ago   Up 33 seconds (healthy)   80/tcp, 9090/tcp               oai-nrf
-ac10687810e0   mysql:5.7             "docker-entrypoint.s…"   34 seconds ago   Up 33 seconds (healthy)   3306/tcp, 33060/tcp            mysql         
+ac10687810e0   mysql:5.7             "docker-entrypoint.s…"   34 seconds ago   Up 33 seconds (healthy)   3306/tcp, 33060/tcp            mysql
 ```
 
-Please wait until all NFs are healthy. 
+Please wait until all NFs are healthy.
 
 
 ## 4. Simulate with gnbsim
 
-When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`. 
+When the CN is deployed successfully, we can simulate a gNB and UE using `gnbsim`.
 Please see the [gnbsim tutorial](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) on how to retrieve or build the image.
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml up -d 
+docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml up -d
 Creating gnbsim-vpp ...
 Creating gnbsim-vpp ... done
 ```
@@ -183,7 +183,7 @@ docker-compose-host $: ../ci-scripts/checkContainerStatus.py --container_name gn
 -->
 
 
-We can verify that the gNB received an IP address and that the PDU session establishment was successful. 
+We can verify that the gNB received an IP address and that the PDU session establishment was successful.
 ``` shell
 docker-compose-host $: docker logs gnbsim-vpp 2>&1 | grep "UE address:"
 [gnbsim]2023/01/13 17:07:05.134094 example.go:332: UE address: 12.1.1.2
@@ -193,9 +193,9 @@ you see the IP address.
 
 ## 5. Traffic Test for Redirection
 
-*Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*  
+*Note: As tshark is running in the background, and we run everything in the same terminal, we will stop the control plane traces here. If you want, you can open tshark on another terminal and terminate it whenever it suits you.*
 ``` shell
-docker-compose-host $: sudo pkill tshark 
+docker-compose-host $: sudo pkill tshark
 docker-compose-host $: sleep 5
 ```
 
@@ -227,11 +227,11 @@ redirection-scenario:
     redirectAddressType: URL
     redirectServerAddress: facebook.com
 ```
-* Note: Currently only URL type of redirection supported 
+* Note: Currently only URL type of redirection supported
 
 Now, we generate HTTP traffic to destination as `google.com`, which will be redirected to destination server `facebook.com`.
 
-``` console 
+``` console
 docker-compose-host $: docker exec -it gnbsim-vpp curl --interface 12.1.1.2 google.com
 <!DOCTYPE html>
 <html>
@@ -250,7 +250,7 @@ docker-compose-host $: docker exec -it gnbsim-vpp curl --interface 12.1.1.2 goog
 
 <!--
 For CI purposes please ignore these lines
-we use 1.1.1.1 as it serves HTTP, so we can verify if the redirect works properly in the generated traces 
+we use 1.1.1.1 as it serves HTTP, so we can verify if the redirect works properly in the generated traces
  * 192.168.73.135 is oai-ext-dn interface on N6 primary subnet
 
 ``` shell
@@ -281,11 +281,11 @@ docker-compose-host $: sudo chmod 666 /tmp/oai/redirect-scenario/user_plane_redi
 ```
 
 As we capture more than one interface, the pcap files are likely out-of-order. To solve this, sort based on the `Time`
-column. 
+column.
 
 ### Redirection Scenario
 
-The results of this tutorial are located in [results/redirect](results/redirect). 
+The results of this tutorial are located in [results/redirect](results/redirect).
 
 We can verify the PDU session details as per [UPF session logs](docs/results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
 
@@ -302,7 +302,7 @@ In the [UE traffic trace](results/redirect/ue-test.log) at gnbsim-vpp, we can se
 
 ## 7 Undeploy Network Functions
 
-When you are done, you can undeploy the gnbsim instances and stop the NFs. 
+When you are done, you can undeploy the gnbsim instances and stop the NFs.
 
 First, we stop the gnbsim instances:
 
@@ -310,7 +310,7 @@ First, we stop the gnbsim instances:
 docker-compose-host $: docker-compose -f docker-compose-gnbsim-vpp.yaml stop -t 2
 ```
 
-Then, we stop the NFs. 
+Then, we stop the NFs.
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-basic-vpp-pcf-redirection.yaml stop -t 2

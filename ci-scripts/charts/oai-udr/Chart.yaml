@@ -10,9 +10,9 @@ type: application
 
 icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
 
-version: v2.1.0
+version: v2.2.1
 
-appVersion: v2.1.0
+appVersion: v2.2.1
 
 keywords:
   - 5GCN
