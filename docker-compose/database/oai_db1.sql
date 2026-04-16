@@ -16,8 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `apn`
+-- Drop other tables (if existed)
 --
+
+DROP TABLE IF EXISTS `apn`;
+DROP TABLE IF EXISTS `mmeidentity`;
+DROP TABLE IF EXISTS `pdn`;
+DROP TABLE IF EXISTS `pgw`;
+DROP TABLE IF EXISTS `terminal-info`;
 
 --
 -- Table structure for table `users`
