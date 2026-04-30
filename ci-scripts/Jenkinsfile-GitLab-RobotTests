@@ -41,6 +41,9 @@ rfTags = ""
 
 // TODO: once 5gcsdk is public, not required anymore.
 def gitlab_credentials = params.Private_GitLab_Repo_Credentials
+// 5gcsdk branch and repository URL
+def SDK_BRANCH = params.SDK_BRANCH ?: 'oai-jenkins-ci'
+def SDK_URL = params.SDK_URL ?: 'https://gitlab.eurecom.fr/5gc/5gcsdk.git'
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -306,11 +309,11 @@ pipeline {
         sh "mkdir -p test/5gcsdk"
         dir ('test/5gcsdk') {
           checkout scmGit(
-            branches: [[name: '*/develop-testing']], 
-            extensions: [], 
+            branches: [[name: "*/${SDK_BRANCH}"]],
+            extensions: [],
             userRemoteConfigs: [[
             credentialsId: gitlab_credentials,
-            url: 'https://gitlab.eurecom.fr/5gc/5gcsdk.git']])
+            url: "${SDK_URL}"]])
         }
 
         // Making sure that the latest version of oai-gnb and oai-nr-ue develop images
