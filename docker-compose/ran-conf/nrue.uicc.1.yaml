@@ -9,6 +9,9 @@ uicc0:
 
 thread-pool: "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
 
+rfsimulator:
+  serveraddr = "192.168.71.153";
+
 #/* configuration for channel modelisation */
 #/* To be included in main config file when */
 #/* channel modelisation is used (rfsimulator with chanmod options enabled) */
@@ -26,7 +29,7 @@ channelmod:
     - model_name: rfsimu_channel_ue0
       type: AWGN
       ploss_dB: 20
-      nose_power_dB: -2
+      noise_power_dB: -2
       forgetfact: 0
       offset: 0
       ds_tdl: 0
