@@ -145,10 +145,10 @@ amf:
     - "NIA1"
     - "NIA2"
   supported_encryption_algorithms:
-    # - "NEA0"
     - "NEA1"
     - "NEA2"
-
+    - "NEA0"
+    
 smf:
   ue_mtu: 1500
   support_features:
