@@ -39,7 +39,7 @@ run_slicing_w_nssf = false
 run_ulcl_pcf = true
 run_mongo_db = true
 run_qos = true
-run_ethernet_pdu = true
+run_ethernet_pdu = false
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -174,7 +174,7 @@ pipeline {
                 run_ulcl_pcf = false
                 run_mongo_db = false
                 run_qos = true
-                run_ethernet_pdu = true
+                run_ethernet_pdu = false
               }
             }
             if (ii == AUSF) {
