@@ -7,6 +7,12 @@
 ### If you intend to mount this file or use a bare-metal deployment, please refer to README.md
 ### The README.md also defines default values and allowed values for each configuration parameter
 
+## NOTE ON YAML ANCHORS
+# We use YAML anchors to ease the configuration and to avoid duplicating parts of the configuration.
+# This is especially true for the SNSSAIs, as we have to define them for multiple NFs.
+# Please note that the use of anchors is not mandatory, and you can define the SNSSAI in each NF yourself.
+# You can read more about anchors here: https://yaml.org/spec/1.2.2/#anchors-and-aliases
+
 ############# Common configuration
 
 # Log level for all the NFs
@@ -233,30 +239,68 @@ upf:
     # Recommendation: Always enable for production (10x+ better performance)
     enable_bpf_datapath: yes
 
-    # QoS Enforcement: Enable TC-BPF for per-flow QoS (rate limiting, prioritization)
-    # Maps to 3GPP PFCP: QER (QoS Enforcement Rule) IE
-    # Requires enable_bpf_datapath: yes
+    # -------------------------------------------------------------------------
+    # PFCP RULE ENFORCEMENT (3GPP TS 29.244)
+    # -------------------------------------------------------------------------
+
+    # QoS Enforcement Rules (QER): Enable TC-BPF for per-flow QoS (rate limiting, prioritization)
+    # Implements 3GPP PFCP QER (QoS Enforcement Rule) IE
+    # - Rate limiting (MBR - Maximum Bit Rate)
+    # - Prioritization (QFI - QoS Flow Identifier)
+    # - Traffic shaping per QoS flow
+    # Requires: enable_bpf_datapath: yes
+    # Status: Implemented
     enable_qos: yes
 
-    # Usage Reporting Rules (URR)
+    # Usage Reporting Rules (URR): Usage monitoring and reporting
+    # Implements 3GPP PFCP URR (Usage Reporting Rule) IE
+    # - Volume-based reporting
+    # - Time-based reporting
+    # - Quota enforcement
+    # - Charging integration
+    # Status: Not implemented (forced to false)
     enable_urr: no
 
-    # Buffering Action Rules (BAR)
+    # Buffering Action Rules (BAR): Downlink packet buffering
+    # Implements 3GPP PFCP BAR (Buffering Action Rule) IE
+    # - Buffer DL packets when UE is idle/unreachable
+    # - Notification procedures
+    # - Power saving support
+    # Status: Not implemented (forced to false)
     enable_bar: no
 
-    # Multi-Access Rules (MAR)
+    # Multi-Access Rules (MAR): Multi-Access
+    # Implements 3GPP PFCP MAR (Multi Access Rule) IE (Rel-16+)
+    # - Dynamic QoS adaptation
+    # - Policy changes without session re-establishment
+    # - Access technology steering
+    # Status: Not implemented (forced to false)
     enable_mar: no
+
+    # -------------------------------------------------------------------------
+    # NETWORK FEATURES
+    # -------------------------------------------------------------------------
 
     # Source NAT: Translate UE IP to N6 interface IP
     # Use when UE IPs are not routable in data network
+    # Typical for private UE address pools (e.g., 10.0.0.0/8)
+    # Status: not implemented
     enable_snat: no
 
     # Framed Routing: Route traffic based on UE IP pools
-    # (Typically used with RADIUS/AAA integration)
+    # Typically used with RADIUS/AAA integration
+    # Installs per-UE routes in kernel routing table
+    # Status: Implemented
     enable_fr: no
 
     # Ethernet PDU Sessions: Support non-IP (Layer 2) PDU sessions
-    # Required for 5G LAN, TSN, or industrial use cases
+    # Implements 3GPP Ethernet PDU Session Type (TS 29.244 Section 8.2.5)
+    # Required for:
+    # - 5G LAN (Local Area Network)
+    # - TSN (Time-Sensitive Networking)
+    # - Industrial IoT
+    # - Ethernet-based services
+    # Status: Implemented
     enable_eth_pdu: yes
 
   # Remote N6 gateway (Data Network gateway)
