@@ -175,7 +175,7 @@ decision_supi1:
 
 ### 5.1. Configure PCF to Use Policy Files
 
-Update the PCF configuration in the [config file](../docker-compose/conf/basic_nrf_config_qos.yaml) file to point to our policy files:
+Update the PCF configuration in the [config file](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to point to our policy files:
 
 ```yaml
 pcf:
@@ -188,7 +188,7 @@ pcf:
 
 ### 5.2. Enable QoS in UPF
 
-Update the UPF configuration in the [config file](../docker-compose/conf/basic_nrf_config_qos.yaml) file to enable QoS enforcement:
+Update the UPF configuration in the [config file](../docker-compose/conf/basic_nrf_config_ebpf.yaml) file to enable QoS enforcement:
 
 ```yaml
 upf:
