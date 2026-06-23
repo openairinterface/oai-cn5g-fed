@@ -464,7 +464,72 @@ The throughput should be limited to approximately 10 Mbps, as configured in the 
 
 These tests demonstrate that the UPF correctly enforces different QoS parameters for different traffic flows within a single PDU session based on port-based traffic filtering rules.
 
-## 8. Log Collection
+## 8. Testing Closed Loop QoS modification
+
+The section tests enforcement of QoS modification request in the closed loop scenario. In the scenario, the Application Function (AF) sends a QoS modification request for a particular UE PDU session. The PCF and SMF process the request and then the UPF installs the new QoS rules (AF -> PCF -> SMF -> UPF).
+
+### 8.1. Test new QoS profile from AF
+
+First, check that the UE is registered and has an IP address:
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: sleep 10
+```
+-->
+
+``` shell
+docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
+```
+
+Send a QoS profile from the AF based on the UE IPv4 address.
+
+``` shell
+docker-compose-host $: docker exec oai-af curl \
+  -H 'Content-Type: application/json' \
+  -X POST \
+  -d '{"ascReqData": { "notifUri" :"http://192.168.70.143/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDecs": [ "permit out ip from any 50000 to 12.1.1.10 50000" ], "fStatus": "ENABLED"  } } } } }}' \
+ --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions
+```
+
+
+Next, run an iperf3 client in the UE to test throughput:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=2.5 && $1<=3.5){print "Max bitrate "$1" Mbps is within range (14.5-15.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (14.5-15.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+```
+-->
+
+<details>
+<summary>The output will look like this:</summary>
+
+```
+Connecting to host 12.1.1.10, port 5201
+[  5] local 192.168.72.135 port 48777 connected to 12.1.1.10 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   411 KBytes  3.36 Mbits/sec    0   47.4 KBytes
+[  5]   1.00-2.00   sec   382 KBytes  3.13 Mbits/sec    0   64.5 KBytes
+[  5]   2.00-3.00   sec   425 KBytes  3.48 Mbits/sec    0   80.3 KBytes
+[  5]   3.00-4.00   sec   379 KBytes  3.11 Mbits/sec    0   97.4 KBytes
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-4.00   sec  1.56 MBytes  3.27 Mbits/sec    0             sender
+[  5]   0.00-4.33   sec  1.42 MBytes  2.75 Mbits/sec                  receiver
+
+iperf Done.
+```
+</details>
+
+Notice how the throughput stays close to but below 20 Mbps, which is the configured limit for this UE.
+
+## 9. Log Collection
 
 <!---
 For CI purposes please ignore these lines
@@ -497,9 +562,9 @@ docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-testing/ue-5
 docker-compose-host $: docker logs ueransim-ue-5qi-3 > /tmp/oai/qos-testing/ue-5qi-3.log 2>&1
 ```
 
-## 9. Undeploy the network functions
+## 10. Undeploy the network functions
 
-### 9.1. Undeploy UERANSIM
+### 10.1. Undeploy UERANSIM
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml down
@@ -516,7 +581,7 @@ Network demo-oai-public-net is external, skipping
 ```
 </details>
 
-### 9.2. Undeploy the core network
+### 10.2. Undeploy the core network
 
 ``` shell
 docker-compose-host $: python3 core-network.py --type stop-basic-qos --scenario 1
@@ -553,7 +618,7 @@ Removing network demo-oai-public-net
 ```
 </details>
 
-## 10. Conclusion
+## 11. Conclusion
 
 You have successfully configured and tested QoS enforcement in the OAI 5G Core network. This tutorial demonstrated how to:
 
