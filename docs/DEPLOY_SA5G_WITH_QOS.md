@@ -487,21 +487,27 @@ Send a QoS profile from the AF based on the UE IPv4 address.
 docker-compose-host $: docker exec oai-af curl \
   -H 'Content-Type: application/json' \
   -X POST \
-  -d '{"ascReqData": { "notifUri" :"http://192.168.70.143/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDecs": [ "permit out ip from any 50000 to 12.1.1.10 50000" ], "fStatus": "ENABLED"  } } } } }}' \
+  -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDecs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' \
  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions
 ```
 
 
-Next, run an iperf3 client in the UE to test throughput:
+Start an iperf3 server on the UE listening on port 5000 (the port targeted by the AF flow description):
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json
+docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
+```
+
+Next, run an iperf3 client in the UE to test throughput on port 5000:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json
 ```
 
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=2.5 && $1<=3.5){print "Max bitrate "$1" Mbps is within range (14.5-15.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (14.5-15.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=4.5 && $1<=5.5){print "Max bitrate "$1" Mbps is within range (4.5-5.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (4.5-5.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -509,23 +515,23 @@ docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /
 <summary>The output will look like this:</summary>
 
 ```
-Connecting to host 12.1.1.10, port 5201
-[  5] local 192.168.72.135 port 48777 connected to 12.1.1.10 port 5201
+Connecting to host 12.1.1.10, port 5000
+[  5] local 192.168.72.135 port 49267 connected to 12.1.1.10 port 5000
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   411 KBytes  3.36 Mbits/sec    0   47.4 KBytes
-[  5]   1.00-2.00   sec   382 KBytes  3.13 Mbits/sec    0   64.5 KBytes
-[  5]   2.00-3.00   sec   425 KBytes  3.48 Mbits/sec    0   80.3 KBytes
-[  5]   3.00-4.00   sec   379 KBytes  3.11 Mbits/sec    0   97.4 KBytes
+[  5]   0.00-1.00   sec   677 KBytes  5.54 Mbits/sec    0   54.0 KBytes
+[  5]   1.00-2.00   sec   633 KBytes  5.19 Mbits/sec    0   82.9 KBytes
+[  5]   2.00-3.00   sec   700 KBytes  5.74 Mbits/sec    0    111 KBytes
+[  5]   3.00-4.00   sec   638 KBytes  5.23 Mbits/sec    0    140 KBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-4.00   sec  1.56 MBytes  3.27 Mbits/sec    0             sender
-[  5]   0.00-4.33   sec  1.42 MBytes  2.75 Mbits/sec                  receiver
+[  5]   0.00-4.00   sec  2.59 MBytes  5.42 Mbits/sec    0             sender
+[  5]   0.00-4.29   sec  2.34 MBytes  4.58 Mbits/sec                  receiver
 
 iperf Done.
 ```
 </details>
 
-Notice how the throughput stays close to but below 20 Mbps, which is the configured limit for this UE.
+Notice how the throughput stays close to but below 5 Mbps, which is the limit requested by the AF (`OAI_QOS_GBR_VIDEO_1`) for traffic on port 5000.
 
 ## 9. Log Collection
 
