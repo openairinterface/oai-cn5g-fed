@@ -82,7 +82,7 @@ services:
                 ipv4_address: 192.168.70.130
     oai-amf:
         container_name: "oai-amf"
-        image: oaisoftwarealliance/oai-amf:develop
+        image: phinetech/oai-amf:net-qos-v2.24-06
         expose:
             - 80/tcp
             - 8080/tcp
@@ -98,7 +98,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: phinetech/oai-smf:qos-mod-v3.23-06
+        image: phinetech/oai-smf:qos-mod-v4.25-06
         expose:
             - 80/tcp
             - 8080/tcp
@@ -132,7 +132,7 @@ services:
                 ipv4_address: 192.168.70.139
     oai-upf:
         container_name: "oai-upf"
-        image: oaisoftwarealliance/oai-upf:develop
+        image: phinetech/oai-upf:fix-pfcp-mod-v2.25-06
         expose:
             - 2152/udp
             - 8805/udp
@@ -177,7 +177,7 @@ services:
             - oai-pcf
         networks:
             public_net:
-                ipv4_address: 192.168.70.143
+                ipv4_address: 192.168.70.144
     oai-ext-dn:
         privileged: true
         init: true
