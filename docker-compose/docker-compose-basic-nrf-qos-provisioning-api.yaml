@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 services:
     mysql:
         container_name: "mysql"
