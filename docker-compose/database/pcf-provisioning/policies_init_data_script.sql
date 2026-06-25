@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MIT */
+
 /* data initialization script for UEs 208950000000031 and 208950000000032 */
 USE `oai_db`;
 
