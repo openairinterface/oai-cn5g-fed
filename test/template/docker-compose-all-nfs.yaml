@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LicenseRef-CSSL-1.0
 
 ## DO NOT START THIS DOCKER-COMPOSE-FILE. IT IS INTENDED AS TEMPLATE FOR THE TESTS AND CONTAINS ALL NFS ##
-## DURING TEST, UNNECESSARY NFS ARE BEING DELETED # 
+## DURING TEST, UNNECESSARY NFS ARE BEING DELETED #
 
 version: '3.8'
 services:
@@ -141,6 +141,17 @@ services:
             - ALL
         privileged: true
         network_mode: host
+        entrypoint:
+            - /bin/bash
+            - -c
+            - |
+              # UE-pool egress -> N6 gateway (oai-ext-dn). UPF is host-netns, so this
+              # lands in the host FIB that the eBPF bpf_fib_lookup() reads.
+              for i in $$(seq 1 30); do ip link show demo-n6-test >/dev/null 2>&1 && break; sleep 1; done
+              while ip rule del from 12.1.1.0/24 lookup 200 2>/dev/null; do :; done
+              ip rule add from 12.1.1.0/24 lookup 200
+              ip route replace default via 192.168.81.144 dev demo-n6-test table 200
+              exec sh /openair-upf/bin/entrypoint.sh /openair-upf/bin/oai_upf -c /openair-upf/etc/config.yaml -o
         extra_hosts:
             - "oai-ext-dn-ebpf:192.168.81.144"
             - "oai-nrf:192.168.79.130"
