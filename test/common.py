@@ -12,7 +12,6 @@ from robot.libraries.BuiltIn import BuiltIn
 from image_tags import image_tags
 
 GENERATED_DIR = "archives/robot_framework"
-GENERATED_DIR_NGAP = "archives_ngap/framework"
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -29,8 +28,6 @@ def get_out_dir():
     except robot.libraries.BuiltIn.RobotNotRunningError:
         suite_name = "local"
     dir_to_use = GENERATED_DIR
-    if "ngap tester" in suite_name.lower():
-        dir_to_use = GENERATED_DIR_NGAP
     out_path = os.path.join(os.getcwd(), dir_to_use)
     return os.path.join(out_path, suite_name)
 
@@ -82,17 +79,17 @@ def __docker_subprocess(args):
 def start_docker_compose(path, container=None):
     logging.info(f"Docker-compose file: {path}")
     if container:
-        __docker_subprocess(["docker-compose", "-f", path, "up", "-d", container])
+        __docker_subprocess(["docker", "compose", "-f", path, "up", "-d", container])
     else:
-        __docker_subprocess(["docker-compose", "-f", path, "up", "-d"])
+        __docker_subprocess(["docker", "compose", "-f", path, "up", "-d"])
 
 
 def stop_docker_compose(path):
-    __docker_subprocess(["docker-compose", "-f", path, "stop", "-t", "30"])
+    __docker_subprocess(["docker", "compose", "-f", path, "stop", "-t", "30"])
 
 
 def down_docker_compose(path):
-    __docker_subprocess(["docker-compose", "-f", path, "down", "-t", "30", "-v"])
+    __docker_subprocess(["docker", "compose", "-f", path, "down", "-t", "30", "-v"])
 
 
 def get_docker_compose_services(docker_compose_file):
