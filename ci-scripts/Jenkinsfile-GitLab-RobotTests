@@ -34,7 +34,6 @@ pulledImages = [false, false, false, false, false, false, false, false, false, f
 
 
 // Which OMEC-GNBSIM TAG to use
-ngapTesterTag = params.ngapTesterTag
 upstreamTagToUse = params.upstreamTagToUse
 
 rfTags = ""
@@ -281,7 +280,6 @@ pipeline {
               for (ii = 0; ii < imageNames.size(); ii++) {
                 imageTags[ii] = pullImageFromSelfix(ii, imageNames[ii], imageTags[ii], branchNames[ii])
               }
-              pullImageFromSelfix(-1, 'ngap-tester', ngapTesterTag, 'develop')
               // Logout
               sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
@@ -297,7 +295,6 @@ pipeline {
           for (ii = 0; ii < imageNames.size(); ii++) {
             imageStatus += checkImageInfo(imageNames[ii], imageTags[ii])
           }
-          imageStatus += checkImageInfo('ngap-tester', ngapTesterTag)
           if (imageStatus > 0) {
             error ("Some images are not present!")
           }
@@ -326,9 +323,6 @@ pipeline {
     stage ('Run Robot Framework Tests') {
       steps {
         script {
-          sh 'cp -Rf /opt/ngap-tester-robot/* test/template/'
-
-          sh 'sed -i -e "s@ngap-tester:develop@ngap-tester:' + ngapTesterTag + '@" test/image_tags.py'
           for (ii = 0; ii < imageTags.size(); ii++) {
             if (imageNames[ii] == "oai-upf-vpp" && imageTags[ii] == "develop") { // As UPF-VPP is no longer maintained
               imageTags[ii] = "develop-863d2bf7"
@@ -344,12 +338,6 @@ pipeline {
     always {
       script {
         // Zipping all archived log files
-        if (fileExists('archives_ngap')) {
-          sh 'zip -r -qq cn5g_fed_ngap_tests.zip archives_ngap'
-          // Currently no public artifacting on the logs and pcap of NGAP tester
-          sh 'chmod 666 cn5g_fed_ngap_tests.zip'
-          sh 'cp cn5g_fed_ngap_tests.zip /opt/ngap-tester-logs/cn5g_fed-${JOB_NAME}-${BUILD_ID}.zip'
-        }
         if (fileExists('archives')) {
           sh 'zip -r -qq cn5g_fed_robot_tests.zip archives'
           archiveArtifacts artifacts: 'cn5g_fed_robot_tests.zip'

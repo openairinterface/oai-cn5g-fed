@@ -14,7 +14,6 @@ image_tags = {
     "oai-nssf": "oaisoftwarealliance/oai-nssf:develop",
     "oai-pcf": "oaisoftwarealliance/oai-pcf:develop",
     "vpp-upf": "oaisoftwarealliance/oai-upf-vpp:develop",
-    "ngap-tester": "ngap-tester:develop",
     "gnbsim": "gnbsim:latest",
     "oai-gnb": "oaisoftwarealliance/oai-gnb:2025.w46",
     "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:2025.w46",
