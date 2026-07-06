@@ -6,6 +6,7 @@ services:
         image: mysql:9.6.0
         volumes:
             - ./database/oai_db2.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./database/oai_db_policy_data.sql:/docker-entrypoint-initdb.d/oai_db_policy_data.sql
             - ./healthscripts/mysql-healthcheck2.sh:/tmp/mysql-healthcheck.sh
         environment:
             - TZ=Europe/Paris
@@ -20,11 +21,11 @@ services:
             retries: 30
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.131
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.131
     oai-udr:
         container_name: "oai-udr"
-        image: oaisoftwarealliance/oai-udr:develop
+        image: phinetech/oai-udr:fix-ueid-ext
         expose:
             - 80/tcp
             - 8080/tcp
@@ -37,8 +38,8 @@ services:
             - oai-nrf
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.136
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.136
     oai-udm:
         container_name: "oai-udm"
         image: oaisoftwarealliance/oai-udm:develop
@@ -53,8 +54,8 @@ services:
             - oai-nrf
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.137
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.137
     oai-ausf:
         container_name: "oai-ausf"
         image: oaisoftwarealliance/oai-ausf:develop
@@ -69,8 +70,8 @@ services:
             - oai-nrf
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.138
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.138
     oai-nrf:
         container_name: "oai-nrf"
         image: oaisoftwarealliance/oai-nrf:develop
@@ -83,8 +84,8 @@ services:
             - TZ=Europe/Paris
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.130
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.130
     oai-amf:
         container_name: "oai-amf"
         image: oaisoftwarealliance/oai-amf:develop
@@ -100,8 +101,8 @@ services:
             - oai-nrf
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.132
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
         image: oaisoftwarealliance/oai-smf:develop
@@ -117,8 +118,8 @@ services:
             - oai-nrf
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.133
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.133
     oai-upf:
         container_name: "oai-upf"
         image: oaisoftwarealliance/oai-upf:develop
@@ -139,8 +140,8 @@ services:
         privileged: true
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.134
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.134
     oai-ext-dn:
         privileged: true
         init: true
@@ -157,8 +158,8 @@ services:
             retries: 5
         networks:
             public_net:
-# For CI purposes, we are keeping the line commented
-#                ipv4_address: 192.168.70.135
+                # For CI purposes, we are keeping the line commented
+                ipv4_address: 192.168.70.135
 
 networks:
     public_net:
