@@ -5,7 +5,6 @@
 Library    Process
 Library    CNTestLib.py
 Library    GNBSimTestLib.py
-Library    NGAPTesterLib.py
 Library    RfSimLib.py
 
 Variables    vars.py
@@ -132,8 +131,6 @@ Suite Teardown Default
     Set Suite Documentation    ${docu}   append=${TRUE}
     ${gnbsim_docu} =   Create Gnbsim Docu
     Set Suite Documentation    ${gnbsim_docu}   append=${TRUE}
-    ${ngap_docu} =    Create Ngap Tester Docu
-    Set Suite Documentation    ${ngap_docu}   append=${TRUE}
 
 Check Core Network Health Status
     Wait Until Keyword Succeeds  60s  1s    Check CN Health Status
@@ -162,33 +159,6 @@ Check gnbsim IP
     Wait Until Keyword Succeeds    30s  1s  Check Gnbsim Ongoing   ${gnbsim_name}
     ${ip} =    Get Gnbsim Ip    ${gnbsim_name}    # to get the output we parse again
     RETURN      ${ip}
-
-Run NGAP Tester Test
-    [Arguments]    ${TC_NAME}    ${MT_PROFILE}=default     ${single_interface}=${TRUE}
-    Prepare Ngap Tester    ${TC_NAME}   ${MT_PROFILE}   ${single_interface}
-    IF  not ${single_interface}
-        @{replace_list} =    Create List  configuration  gnbs  gnb1  n3IpAddr
-        Replace In Ngap Tester Config    ${replace_list}  192.168.80.171
-        @{replace_list} =    Create List  configuration  trafficReflector  ipAddr
-        Replace In Ngap Tester Config    ${replace_list}  192.168.81.179
-    END
-
-    Start Ngap Tester
-    Wait Until Keyword Succeeds   30s   1s    Check Ngap Tester Done
-    Check NGAP Tester Result
-
-Test Setup NGAP Tester
-    Check Cn Health Status
-    # set single interface currently to true to receive better traces, if we have eBPF support, we should fix this
-    Start Trace   ${TEST_NAME}   signaling_only=${FALSE}   single_interface=${True}
-
-Test Teardown NGAP Tester
-     Stop Ngap Tester
-     ${doc} =    Get Ngap Tester Description
-     Set Test Documentation    ${doc}
-     Collect All Ngap Tester Logs
-     Down Ngap Tester
-     Stop Trace   ${TEST_NAME}
 
 Deactive NF Registration in CN Config
     @{replace_list} =  Create List  register_nf  general
