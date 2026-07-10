@@ -1,0 +1,76 @@
+# -----------------------------------------------------------------------------
+# Operator-preconfigured QoS reference sets [3GPP TS 29.513 §7.3.3].
+#
+# Loaded at PCF startup by load_qos_references_from_directory() from the
+# directory configured as pcf.local_policy.qos_reference_path
+# (default: /openair-pcf/policies/qos_references).
+#
+# Structure: a map of <qosReference> : { <QosData fields> }. The map KEY is the
+# value an Application Function sends in MediaComponent.qosReference; when it
+# resolves here, the PCF uses this QosData as the authoritative base (5QI, ARP,
+# MBR, GBR, ...) instead of deriving QoS from the request.
+#
+# Field names are the QosData wire names (TS 29.512 §5.6.2.8):
+#   5qi                int   0..255   (standardized values -> no QosCharacteristics
+#                                       signalled; other values -> QosCharacteristics
+#                                       are emitted from the fields below)
+#   maxbrUl/maxbrDl    str   Maximum Authorized Data Rate; regex ^\d+(\.\d+)? ?(bps|Kbps|Mbps|Gbps|Tbps)$
+#   gbrUl/gbrDl        str   Guaranteed Data Rate (GBR flows only); same format
+#   arp                obj   { priorityLevel 1..15, preemptCap, preemptVuln }
+#                            preemptCap : NOT_PREEMPT | MAY_PREEMPT
+#                            preemptVuln: NOT_PREEMPTABLE | PREEMPTABLE
+#   priorityLevel      int   1..127   5QI priority level (for QosCharacteristics)
+#   averWindow         int   1..4095  averaging window in ms (GBR only)
+#   packetDelayBudget  int   ms       (used when 5qi is non-standardized)
+#   packetErrorRate    str   e.g. "1E-6"
+#   qnc                bool  QoS Notification Control
+#   maxPacketLossRateUl/Dl int 0..1000 (authorized only for 5QI=1)
+# -----------------------------------------------------------------------------
+
+# GBR conversational/live video. 5QI 2 is a standardized GBR value
+# (TS 23.501 Table 5.7.4-1: PDB 150 ms, PER 1E-3), so the PCF does not signal a
+# QosCharacteristics entry for it -- 5QI/ARP/MBR/GBR below are used as-is.
+OAI_QOS_GBR_VIDEO_1:
+  5qi: 2
+  maxbrUl: "15 Mbps"
+  maxbrDl: "15 Mbps"
+  gbrUl: "10 Mbps"
+  gbrDl: "10 Mbps"
+  arp:
+    priorityLevel: 4
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+  averWindow: 2000
+
+# Best-effort non-GBR default. 5QI 9 is standardized (TS 23.501 Table 5.7.4-1).
+OAI_QOS_NON_GBR_DEFAULT:
+  5qi: 9
+  maxbrUl: "25 Mbps"
+  maxbrDl: "50 Mbps"
+  arp:
+    priorityLevel: 8
+    preemptCap: "NOT_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+
+# Low-latency GBR using a NON-standardized 5QI (130). Because 130 is not in the
+# standardized set, the PCF emits an explicit QosCharacteristics entry built from
+# priorityLevel / packetDelayBudget / packetErrorRate / averWindow below
+# (TS 29.512 §4.2.6.6.3, §5.6.2.16). Include those fields so no defensive
+# defaults are needed.
+OAI_QOS_GBR_LOWLAT_1:
+  5qi: 130
+  maxbrUl: "20 Mbps"
+  maxbrDl: "20 Mbps"
+  gbrUl: "15 Mbps"
+  gbrDl: "15 Mbps"
+  arp:
+    priorityLevel: 2
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: true
+  priorityLevel: 20
+  packetDelayBudget: 30
+  packetErrorRate: "1E-5"
+  averWindow: 2000
