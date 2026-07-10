@@ -123,6 +123,7 @@ services:
         volumes:
             - ./policies/qos:/openair-pcf/policies
             - ./conf/basic_nrf_config_qos.yaml:/openair-pcf/etc/config.yaml
+            - ./policies/qos_references:/openair-pcf/policies/qos_references/
         environment:
             - TZ=Europe/Paris
         depends_on:
