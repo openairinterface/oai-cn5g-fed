@@ -33,7 +33,7 @@ Please follow the tutorial step by step to create a stable working testbed.
 
 **Note**:
 - The commands mentioned in the document assume that your present working directory is `./docker-compose`. Make sure in the terminal in which you copy and paste the commands or write the tutorial commands as `pwd` as `./docker-compose`.
-- Best practice open this markdown file with your favourite editor or online on gitlab and open a terminal separately
+- Best practice open this markdown file with your favourite editor or online on github and open a terminal separately
 - Before reading this tutorial read this [one](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
 
 **TABLE OF CONTENTS**

@@ -93,7 +93,7 @@ This repository only has tutorials and Continuous Integration scripts.
 
 ```bash
 # Clone directly on the latest release tag
-$ git clone --branch v2.2.1 https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+$ git clone --branch v2.2.1 https://github.com/openairinterface/oai-cn5g-fed.git
 $ cd oai-cn5g-fed
 # If you forgot to clone directly to the latest release tag
 $ git checkout -f v2.2.1
@@ -143,7 +143,7 @@ docker pull oaisoftwarealliance/trf-gen-cn5g:latest
 
 ```bash
 # Clone directly on the latest release tag
-$ git clone --branch develop https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+$ git clone --branch develop https://github.com/openairinterface/oai-cn5g-fed.git
 $ cd oai-cn5g-fed
 # If you forgot to clone directly to the latest release tag
 $ git checkout -f develop

@@ -47,7 +47,7 @@ We also recommend that you synchronize this "tutorial" repository with a provide
 
 ```bash
 # Clone directly on the <tag> release tag
-git clone --branch <tag> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
+git clone --branch <tag> https://github.com/openairinterface/oai-cn5g-fed.git
 cd oai-cn5g-fed
 # If you forgot to clone directly with tag/branch
 git checkout -f <tag>

@@ -64,4 +64,4 @@ The gNB image is build in three steps
 - Builder image
 - Final/Target image
 
-You can follow [this tutorial](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/openshift/README.md?ref_type=heads) to build RAN network function images. 
+You can follow [this tutorial](https://github.com/duranta-project/openairinterface5g/-/blob/develop/openshift/README.md?ref_type=heads) to build RAN network function images. 

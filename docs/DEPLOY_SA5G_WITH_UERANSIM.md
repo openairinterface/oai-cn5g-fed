@@ -47,7 +47,7 @@ Moreover, there are various other opensource gnb/ue simulator tools that are ava
 
 Let's begin !!
 
-* Steps 1 to 5 are similar to this previous [tutorial on vpp-upf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network). Please follow these steps to deploy OAI 5G core network components.
+* Steps 1 to 5 are similar to this previous [tutorial on vpp-upf](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network). Please follow these steps to deploy OAI 5G core network components.
 * We deploy ueransim docker service on the same host as for core network, so there is no need to create additional route as
 we did for gnb-host.
 * Before we proceed further for end-to-end SA5G test, make sure you have healthy docker services for OAI cn5g
@@ -76,7 +76,7 @@ Creating oai-amf    ... done
 Creating oai-smf    ... done
 ```
 
-More details in [section 5 of the `basic` vpp tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
+More details in [section 5 of the `basic` vpp tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
 After deploying core network, make sure all services are healthy.
 
 ```bash

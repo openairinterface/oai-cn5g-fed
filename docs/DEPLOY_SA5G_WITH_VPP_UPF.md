@@ -71,7 +71,7 @@ docker-compose-host $: chmod 777 /tmp/oai/vpp-upf-gnbsim
 
 * We will use the same wrapper script for docker-compose that was used for previous tutorials to set up 5gcn with `UPF-VPP`. Use the --help option to check how to use this wrapper script.
 
-**Note: - To use vpp-upf on bare metal, follow [these instructions.](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf-vpp/-/blob/develop/docs/INSTALL_ON_HOST.md)**
+**Note: - To use vpp-upf on bare metal, follow [these instructions.](https://github.com/openairinterface/oai-cn5g-upf-vpp/-/blob/develop/docs/INSTALL_ON_HOST.md)**
 
 All the following commands shall be executed from the `oai-cn5g-fed/docker-compose` folder.
 
