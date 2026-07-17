@@ -347,4 +347,4 @@ Removing network demo-oai-public-net
 
 You have successfully configured and tested Ethernet PDU sessions with the OAI 5G Core. This functionality allows your 5G network to transport Ethernet frames natively, opening up possibilities for various enterprise and industrial use cases.
 
-For more information on the implementation details, refer to the [UPF Merge Request](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/merge_requests/71) that added this functionality.
+For more information on the implementation details, refer to the [UPF Merge Request](https://github.com/openairinterface/oai-cn5g-upf/-/merge_requests/71) that added this functionality.

@@ -18,7 +18,7 @@ spec:
     runPolicy: "Serial"
     source:
         git:
-            uri: "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf.git"
+            uri: "https://github.com/openairinterface/oai-cn5g-smf.git"
             ref: "develop"
         secrets:
           - secret:

@@ -14,7 +14,7 @@
   </tr>
 </table>
 
-The motive of this testing is to be sure all the merge request on AMF, SMF, UDR, UDM, AUSF and UPF gitlab repositories always works properly with COTSUE. This testing will be performed via oai-jenkins platform, this readme explains how jenkins perform the testing. 
+The motive of this testing is to be sure all the merge request on AMF, SMF, UDR, UDM, AUSF and UPF github repositories always works properly with COTSUE. This testing will be performed via oai-jenkins platform, this readme explains how jenkins perform the testing. 
 
 Our correct testing scenario is
 

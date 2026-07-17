@@ -137,7 +137,7 @@ for comp in "${!COMPONENTS[@]}"; do
   comp_dir="component/${COMPONENTS[$comp]}"
   branch="${BRANCHES[$comp]}"
 
-  git ls-remote https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-"${comp}".git --exit-code origin "refs/heads/${branch}" > /dev/null 2>&1
+  git ls-remote https://github.com/openairinterface/oai-cn5g-"${comp}".git --exit-code origin "refs/heads/${branch}" > /dev/null 2>&1
   ret_code=$?
   # Check if branch exists remotely
   if [[ $ret_code != 0 ]]; then

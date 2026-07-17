@@ -17,11 +17,11 @@
 
 ![SA Demo](./images/docker-compose/5gCN-basic.jpg)
 
-This tutorial is strictly for the advanced users of OAI who have an understanding about how the core network functions work and are comfortable in changing the configuration directly in the config file of each network function rather than in docker-compose using environment variables. 
+This tutorial is strictly for the advanced users of OAI who have an understanding about how the core network functions work and are comfortable in changing the configuration directly in the config file of each network function rather than in docker-compose using environment variables.
 
-The current method which we provide to the community to change the network functions configuration is not good since it has some limitations. Till the time we find a better way to configure our core network functions we propose this alternative way of configuring each network function. We do understand this is a laborious alternative and we are working on better configuration management techniques. 
+The current method which we provide to the community to change the network functions configuration is not good since it has some limitations. Till the time we find a better way to configure our core network functions we propose this alternative way of configuring each network function. We do understand this is a laborious alternative and we are working on better configuration management techniques.
 
-If you would like to contribute then we will be glad to have your contributions. 
+If you would like to contribute then we will be glad to have your contributions.
 
 Before reading this tutorial it will be good if you can go through [deployment pre-requisites](./DEPLOY_PRE_REQUESITES.md) and try to deploy a [mini](./DEPLOY_SA5G_MINI_DS_TESTER_DEPLOYMENT.md) or [basic](./DEPLOY_SA5G_BASIC_DS_TESTER_DEPLOYMENT.md) deployment.
 
@@ -35,7 +35,7 @@ Before reading this tutorial it will be good if you can go through [deployment p
 
 The users can either pull the docker images from official docker-hub repository or build by themselves if they make any changes in the code or would like to enable debug logging.
 
-## 1.1 Pulling docker images ##
+## 1.1 Pulling docker images
 
 OAI [official docker-hub repository](https://hub.docker.com/u/oaisoftwarealliance) has three type of image tags develop, latest or version,
 
@@ -58,34 +58,34 @@ docker pull oaisoftwarealliance/oai-spgwu-tiny:develop
 
 In the docker-compose file we are using the image names as above. If you wish to re-tag with some other name then please change the name in the docker-compose file.
 
-## 1.2 Building docker images ##
+## 1.2 Building docker images
 
-Read the tutorial [build image](./BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip. 
+Read the tutorial [build image](./BUILD_IMAGES.md) to know how to build core network functions docker image. If you want to change the logging in the image to debug then read the below paragraph else you can skip.
 
 By default all the dockerfiles present in any network function repository (AMF, SMF, NRF, UPF, UDR, UDM, AUSF) produce `info` level logs. This is done to reduce the image size and have a better performance. If a user wants debug information to get more logs then make below changes in `dockerfile` of any network function.
 
-This way user will have more logs and can have better understanding and debug possibilities. To build any core network image in debug mode follow the below steps **after cloning the network function repository**. 
+This way user will have more logs and can have better understanding and debug possibilities. To build any core network image in debug mode follow the below steps **after cloning the network function repository**.
 
-The example is for AMF: 
+The example is for AMF:
 
 ```bash
-# clone amf repository 
-git clone -b <prefered_branch or develop> https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf.git
+# clone amf repository
+git clone -b <prefered_branch or develop> https://github.com/openairinterface/oai-cn5g-amf.git
 cd oai-cn5g-amf/docker/
 # Depending on the environment where the image will be used choose the correct dockerfile
 vi/vim/nano/subl Dockerfile.amf.ubuntu
-# replace the line RUN ./build_amf --clean --Verbose --build-type Release --jobs with below 
+# replace the line RUN ./build_amf --clean --Verbose --build-type Release --jobs with below
 # RUN ./build_amf --clean --Verbose --build-type Debug --jobs
 ```
 
 
 # 2. Deploying core network #
 
-Before running the docker containers it is important to configure PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql). The config files are present in [conf folder](../docker-compose/conf). 
+Before running the docker containers it is important to configure PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql). The config files are present in [conf folder](../docker-compose/conf).
 
-## 2.1 Configure the network functions according to your PLMN, Slice and DNN ##
+## 2.1 Configure the network functions according to your PLMN, Slice and DNN
 
-The IP address or fully qualified domain name (FQDN) for each service is configured properly in their config files. You just need to change PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql), 
+The IP address or fully qualified domain name (FQDN) for each service is configured properly in their config files. You just need to change PLMN, TAC, network slice parameters(SST, SD), DNN, and user data (mysql),
 
 1. Configure `plmn` and `tac` in AMF
 2. Configure `sst` and `sd` in AMF, SMF and SPGWU-Tiny
@@ -100,35 +100,35 @@ The IP address or fully qualified domain name (FQDN) for each service is configu
   ('208990200000001', '5G_AKA', 'fec86ba6eb707ed08905757b1bb44b8f', 'fec86ba6eb707ed08905757b1bb44b8f', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', 'c42449363bbad02b66d16bc975d77cc1', NULL, NULL, NULL, NULL, '208990200000001');
   ```
 
-  PDU session information is provisioned in table `SessionManagementSubscriptionData`. To add information, follow the steps below. 
-  
+  PDU session information is provisioned in table `SessionManagementSubscriptionData`. To add information, follow the steps below.
+
   + Static UE IP address allocation
-  
+
   ``` sql
-  INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES 
+  INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
   ('208990200000001', '20899', '{\"sst\": 1, \"sd\": \"16777215\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"1000Mbps\", \"downlink\":\"1.00Mbps\"},\"staticIpAddress\":[{\"ipv4Addr\": \"12.1.1.4\"}]}}');
   ```
-  
+
   + Dynamic IP address allocation
 
   ``` sql
-  INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES 
+  INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
   ('208990200000001', '20899', '{\"sst\": 1, \"sd\": \"16777215\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"1000Mbps\", \"downlink\":\"1000Mbps\"}}}');
   ```
-  
+
   Make sure you perform this for all the UEs. For every user information in the `AuthenticationSubscription` table there should be a corresponding entry in `SessionManagementSubscriptionData` table. This information is only used if `USE_LOCAL_SUBSCRIPTION_INFO` parameter is set to `no` in the SMF config file. In that case, SMF retrieves this information from the UDM. In case the paramater is `yes`, SMF will use the DNN, IP address and slice mapping which is defined in the SMF configuration file in `LOCAL_CONFIGURATION` field.
 
 
 **NOTE**: By default the SBI interface is configured with HTTP/1.1. It can be changed to HTTP/2 by changing the configuration in all network functions.
 
 
-## 2.2 Instantiating the Docker Containers ##
+## 2.2 Instantiating the Docker Containers
 
 To start the core network function containers do,
 
 ```shell
 cd ../docker-compose
-# if you have compose plugin in docker then do 
+# if you have compose plugin in docker then do
 docker compose -f docker-compose-mount-conf.yaml up -d
 # in case you don't have compose plugin and use docker-compose command
 docker-compose -f docker-compose-mount-conf.yaml up -d
@@ -142,13 +142,13 @@ watch docker compose -f  docker-compose-mount-conf.yaml ps -a
 **Note**: If you are stuck with `watch` command, exit using `ctrl + c`
 
 
-## 2.3 When to start testing? ##
+## 2.3 When to start testing?
 
-SMF and SPGWU/UPF needs to have a PFCP session between them before starting any test. When SMF and UPF(spgwu-tiny or vpp-upf) starts they send a NF registration request to NRF and SMF subscribe to UPF registration events. When a UPF registers with NRF, SMF gets the notification and it initiates a PFCP session for which there are regular heartbeats. 
+SMF and SPGWU/UPF needs to have a PFCP session between them before starting any test. When SMF and UPF(spgwu-tiny or vpp-upf) starts they send a NF registration request to NRF and SMF subscribe to UPF registration events. When a UPF registers with NRF, SMF gets the notification and it initiates a PFCP session for which there are regular heartbeats.
 
-**NOTE**: SMF and UPF(spgwu-tiny or vpp-upf) both can initiate a PFCP session with or without NRF. 
+**NOTE**: SMF and UPF(spgwu-tiny or vpp-upf) both can initiate a PFCP session with or without NRF.
 
-To check that the heartbeat exchange is there use the below commands 
+To check that the heartbeat exchange is there use the below commands
 
 ```shell
 # Output of this means SPGWU has received heartbeat request from SMF
@@ -158,17 +158,17 @@ docker logs oai-spgwu-tiny | grep 'Received SX HEARTBEAT REQUEST' | wc -l
 # Output of this means SMF is starting the heartbeat procedure
 docker logs oai-smf | grep 'PFCP HEARTBEAT PROCEDURE' | wc -l
 ```
-If both the values are more than 1 then it is good. 
+If both the values are more than 1 then it is good.
 
-Now you can start testing with this core network 
+Now you can start testing with this core network
 
-## 2.4 Understanding Core Network Logs ##
+## 2.4 Understanding Core Network Logs
 
-Most of the times the registration issue can occur because of slicing or PLMN mismatch for that check the logs of AMF. If there is a PDU session related issue that can also occur because of slice or DNN mismatch which is configured in SMF and UPF. 
+Most of the times the registration issue can occur because of slicing or PLMN mismatch for that check the logs of AMF. If there is a PDU session related issue that can also occur because of slice or DNN mismatch which is configured in SMF and UPF.
 
-AMF asks the NRF to provide list of SMF and from there it finds the common slice or DNN. In case of PDU session rejections check the logs of AMF --> SMF --> UPF. 
+AMF asks the NRF to provide list of SMF and from there it finds the common slice or DNN. In case of PDU session rejections check the logs of AMF --> SMF --> UPF.
 
-## 2.5 Collecting logs and pcap ##
+## 2.5 Collecting logs and pcap
 
 To collect the logs of all the network function you can follow the below commands or copy them to make a script
 
@@ -187,7 +187,7 @@ Start the packet capture always before connecting the UE or even before connecti
 sudo tshark -i oaicore -f "(not host 192.168.70.135 and not arp and not port 53 and not port 2152) or (host 192.168.70.135 and icmp)" -w {filename} > /dev/null 2>&1 &
 ```
 
-## 2.6 Redeploy or undeploy core network functions ##
+## 2.6 Redeploy or undeploy core network functions
 
 To re-deploy
 
@@ -204,11 +204,26 @@ docker compose -f docker-compose-mount-conf.yaml stop -t2
 docker compose -f docker-compose-mount-conf.yaml down -t2
 ```
 
-# 3. How to report an issue? #
+## 3. Report an Issue
 
-To report an issue regarding any component of CN5G follow the below procedure:
+To report an issue with any CN5G component, please provide the following information:
 
-1. Share the testing scenario, what the test is trying to achieve
-2. Debug logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured take care of interface on which the packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`
-3. If you have an issue with testing then you can send an email to openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters. 
-4. You can report an issue directly on network function repository on gitlab. To create an account on our gitlab server please follow account creation part from [here](../CONTRIBUTING.md)
+1. Describe the testing scenario
+   *  Explain the test setup, the expected behavior, and what the test is intended to validate.
+
+2. Provide relevant logs and packet captures
+   *  Share the logs of the affected 5GCN components and packet captures (`tcpdump`/`.pcap`) from the relevant interfaces.
+   *  When capturing packets, ensure that the correct interface is selected.
+   *  To keep the capture size manageable, use appropriate filters such as: `ngap || http || pfcp || gtp`.
+
+3. Contact the mailing lists
+   *  Please use a clear and descriptive subject line.
+   *  Provide configuration files, component logs with debug level enabled, packet captures with appropriate filters
+      and the exact commit SHA, branch, or patch used during testing.
+
+4. Create a GitHub issue
+   *  You can also report bugs directly by creating an issue in the corresponding GitHub repository.
+   *  Signing the Contributor License Agreement (CLA) is not required to open issues; it is only required when contributing code changes.
+
+5. Contribute to the project
+If you would like to contribute fixes, improvements, or new features, please follow the [contribution guidelines](../CONTRIBUTING.md).

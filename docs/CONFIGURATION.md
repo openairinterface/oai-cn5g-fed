@@ -34,17 +34,17 @@ inside the container:
 
 Each of the NF repositories has an example documentation, which is also copied in the Docker image during build:
 
-| Network Function | Repository                  | Location                                                                                           | 
+| Network Function | Repository                  | Location                                                                                           |
 |:-----------------|:----------------------------|:---------------------------------------------------------------------------------------------------|
-| AMF              | (Gitlab) cn5g/oai-cn5g-amf  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/blob/develop/etc/config.yaml)  |
-| AUSF             | (Gitlab) cn5g/oai-cn5g-ausf | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-ausf/-/blob/develop/etc/config.yaml) |
-| NRF              | (Gitlab) cn5g/oai-cn5g-nrf  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/blob/develop/etc/config.yaml)  |
-| NSSF             | (Gitlab) cn5g/oai-cn5g-nssf | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nssf/-/blob/develop/etc/config.yaml) |
-| PCF              | (Gitlab) cn5g/oai-cn5g-pcf  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-pcf/-/blob/develop/etc/config.yaml)  |
-| SMF              | (Gitlab) cn5g/oai-cn5g-smf  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf/-/blob/develop/etc/config.yaml)  |
-| UDM              | (Gitlab) cn5g/oai-cn5g-udm  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udm/-/blob/develop/etc/config.yaml)  |
-| UDR              | (Gitlab) cn5g/oai-cn5g-udr  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-udr/-/blob/develop/etc/config.yaml)  |
-| UPF              | (Gitlab) cn5g/oai-cn5g-upf  | [etc/config.yaml](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/blob/develop/etc/config.yaml)  |
+| AMF              | oai-cn5g-amf  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-amf/-/blob/develop/etc/config.yaml)  |
+| AUSF             | oai-cn5g-ausf | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-ausf/-/blob/develop/etc/config.yaml) |
+| NRF              | oai-cn5g-nrf  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-nrf/-/blob/develop/etc/config.yaml)  |
+| NSSF             | oai-cn5g-nssf | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-nssf/-/blob/develop/etc/config.yaml) |
+| PCF              | oai-cn5g-pcf  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-pcf/-/blob/develop/etc/config.yaml)  |
+| SMF              | oai-cn5g-smf  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-smf/-/blob/develop/etc/config.yaml)  |
+| UDM              | oai-cn5g-udm  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-udm/-/blob/develop/etc/config.yaml)  |
+| UDR              | oai-cn5g-udr  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-udr/-/blob/develop/etc/config.yaml)  |
+| UPF              | oai-cn5g-upf  | [etc/config.yaml](https://github.com/openairinterface/oai-cn5g-upf/-/blob/develop/etc/config.yaml)  |
 
 When you are using a bare-metal deployment, you have to tell the NF which file to load, for example for SMF:
 
@@ -199,10 +199,10 @@ this:
 | `nrf`  | `oai-nrf`          | All NFs        | If `register_nf` is on                                        |
 | `nssf` | `oai-nssf`         | NSSF, AMF      | Only if NSSF is used                                          |
 | `pcf`  | `oai-pcf`          | PCF, SMF       | Only if PCF is used (`use_local_pcc_rules` in SMF is off)     |
-| `smf`  | `oai-smf`          | SMF, AMF       | Yes                                                           |                
+| `smf`  | `oai-smf`          | SMF, AMF       | Yes                                                           |
 | `udm`  | `oai-udm`          | UDM, AMF, SMF  | Only if UDM is used (`enable_simple_scenario` in AMF is off)  |
 | `udr`  | `oai-udr`          | UDR, UDM, AUSF | Only if UDR is used (`enable_simple_scenario` in AMF is off)  |
-| `upf`  | `oai-upf`          | UPF            | Only for OAI-UPF, not for VPP-UPF                             | 
+| `upf`  | `oai-upf`          | UPF            | Only for OAI-UPF, not for VPP-UPF                             |
 
 The NF will only parse and validate the NF key if necessary. For example, if [register NF](#register-nf) is set, it will
 rely on NF discovery and does not read remote hosts from `nfs`. It does, however, take the `api_version` from the `nfs`
@@ -272,7 +272,7 @@ n4:
   port: <n4_port>
 n6:
   interface_name: <n6_interface_name>
-``` 
+```
 
 The description of the N3, N4 and N6 interfaces of UPF is as follows:
 
@@ -424,7 +424,7 @@ this AMF.
 | GUAMI MCC     | String | MCC Part of GUAMI      | 3-digit decimal string                                                                                         | `001`         | Yes       |
 | GUAMI MNC     | String | MNC Part of GUAMI      | 2 or 3-digit decimal string                                                                                    | `01`          | Yes       |
 | AMF Region ID | String | AMF Region ID of GUAMI | 2-digit hex string (8 bits length)                                                                             | `FF`          | Yes       |
-| AMF Set ID    | String | AMF Set ID of GUAMI    | 3-digit hex string (10 bits length), where first digit is limited to values 0 to 3 (see 3GPP TS 23.003/29.571) | `001`         | Yes       | 
+| AMF Set ID    | String | AMF Set ID of GUAMI    | 3-digit hex string (10 bits length), where first digit is limited to values 0 to 3 (see 3GPP TS 23.003/29.571) | `001`         | Yes       |
 | AMF Pointer   | String | AMF Pointer of GUAMI   | 2-digit hex string (6 bits length), where first digit is limited to values 0 to 3 (see 3GPP TS 23.003)         | `01`          | Yes       |
 
 ### PLMN configuration
@@ -584,7 +584,7 @@ global DNS configuration. If you provide a DNS for a specific DNN, the DNN-speci
 | Name               | Type   | Description                                    | Allowed values                                | Default value | Mandatory |
 |:-------------------|:-------|:-----------------------------------------------|:----------------------------------------------|:--------------|:----------|
 | Primary DNS IPv4   | String | Primary DNS IPv4, signaled to the UE via PCO   | IPv4 address in dotted decimal representation | `8.8.8.8`     | Yes       |
-| Primary DNS IPv6   | String | Primary DNS IPv6, signaled to the UE via PCO   | Any string                                    |               | No        | 
+| Primary DNS IPv6   | String | Primary DNS IPv6, signaled to the UE via PCO   | Any string                                    |               | No        |
 | Secondary DNS IPv4 | String | Secondary DNS IPv4, signaled to the UE via PCO | IPv4 address in dotted decimal representation | `1.1.1.1`     | No        |
 | Secondary DNS IPv6 | String | Secondary DNS IPv6, signaled to the UE via PCO | Any string                                    |               | No        |
 
@@ -672,7 +672,7 @@ the [policies](../docker-compose/policies) folder for examples.
 The allowed values of the PCF configuration are as follows:
 
 | Name                  | Type   | Description                            | Allowed values | Default value                            | Mandatory |
-|:----------------------|:-------|:---------------------------------------|:---------------|:-----------------------------------------|:----------| 
+|:----------------------|:-------|:---------------------------------------|:---------------|:-----------------------------------------|:----------|
 | Policy Decisions Path | String | Path to the policy decisions directory | Any string     | `/openair-pcf/policies/policy_decisions` | Yes       |
 | PCC Rules Path        | String | Path to the PCC rules directory        | Any string     | `/openair-pcf/policies/pcc_rules`        | Yes       |
 | Traffic Rules Path    | String | Path to the traffic rules directory    | Any string     | `/openair-pcf/policies/traffic_rules`    | No        |
@@ -685,7 +685,7 @@ directories on start and inform you if there was an issue and terminate the NF.
 You can configure the directory where NSSF slicing configuration is stored:
 
 ```yaml
-slice_config_path: <slice_config_path> 
+slice_config_path: <slice_config_path>
 ```
 
 How to configure the slice configuration for NSSF itself is not covered in this document. You can see
@@ -712,8 +712,8 @@ upf:
     enable_bpf_datapath: <enable_bpf_datapath>
     enable_snat: <enable_snat>
   remote_n6_gw: <remote_n6_gw>
-  smfs: 
-    - <smf_hostname> 
+  smfs:
+    - <smf_hostname>
   # Here you can configure a list of supported NSSAIs/DNNs
   upf_info: # UPF Info according to 3GPP TS 29.510
 ```

@@ -26,7 +26,7 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 **TABLE OF CONTENTS**
 
 1.  Pre-requisites
-2.  [Building Container Images](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/omec-gnbsim-tutorial/docs/BUILD_IMAGES.md)/[Pull the container images](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/omec-gnbsim-tutorial/docs/RETRIEVE_OFFICIAL_IMAGES.md)
+2.  [Building Container Images](https://github.com/openairinterface/oai-cn5g-fed/-/blob/omec-gnbsim-tutorial/docs/BUILD_IMAGES.md)/[Pull the container images](https://github.com/openairinterface/oai-cn5g-fed/-/blob/omec-gnbsim-tutorial/docs/RETRIEVE_OFFICIAL_IMAGES.md)
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
 5.  Deploying OAI 5G Core Network
@@ -57,7 +57,7 @@ procedures :
 
 Let's begin !!
 
-* Steps 1 to 5 are similar as previous [tutorial on vpp-upf](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network). Please follow these steps to deploy OAI 5G core network components.
+* Steps 1 to 5 are similar as previous [tutorial on vpp-upf](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network). Please follow these steps to deploy OAI 5G core network components.
 * We deploy omec-gnbsim docker service on same host as of core network, so there is no need to create additional route as
 we did for gnb-host.
 * Before we proceed further for end-to-end SA5G test, make sure you have healthy docker services for OAI cn5g
@@ -146,7 +146,7 @@ vpp-upf      /openair-upf/bin/entrypoin ...   Up (healthy)   2152/udp, 8085/udp
 [2022-02-08 16:20:11,928] root:DEBUG:  OAI 5G Core network is configured and healthy....
 ```
 
-More details in [section 5 of the `basic` vpp tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
+More details in [section 5 of the `basic` vpp tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
 
 ## 6. Building a `omec-gnbsim` docker image
 * Pull pre-built docker image 

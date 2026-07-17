@@ -43,14 +43,14 @@ Please follow the tutorial step by step to create a stable working testbed. You 
 
 [[_TOC_]]
 
-## 1. Basic Deployment Flavours ##
+## 1. Basic Deployment Flavours
 
 The Basic functional 5g core network can be deployed into 2 scenarios:
 
     - Scenario I:  AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL
     - Scenario II:  AMF, SMF, UPF (SPGWU), UDM, UDR, AUSF, MYSQL
 
-## 2. Pre-requisites ##
+## 2. Pre-requisites
 
 The container images are built using `docker build` command on Ubuntu 18.04 host machine. The base image for all the containers is Ubuntu 18.04.
 
@@ -63,7 +63,7 @@ The required software and their respected versions are listed below. To replicat
 | tshark                     | 4.6                    |
 | wireshark                  | 4.6                    |
 
-### 2.1. Networking considerations ###
+### 2.1. Networking considerations#
 
 Most of the times the `docker-compose-host` machine is not configured with packet forwarding. It can be enabled using the command below (if you have already done it in any other section then don't repeat).
 
@@ -76,11 +76,11 @@ sudo sysctl net.ipv4.conf.all.forwarding=1
 sudo iptables -P FORWARD ACCEPT
 ```
 
-## 3. Network Function Container Images ##
+## 3. Network Function Container Images
 
-In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](./BUILD_IMAGES.md) 
+In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](./BUILD_IMAGES.md)
 
-## 4. Configuring Host Machines ##
+## 4. Configuring Host Machines
 
 All the network functions are connected using `demo-oai` bridge.
 
@@ -89,7 +89,7 @@ There are two ways to create this bridge, either manually or automatically using
 * The manual version will allow packet capturing while network functions are getting deployed. So the initial tested setup packets can be captured for debugging purposes or checking if network functions registered properly to NRF.
 * The second option of automatic deployment is good when initial packet capture is not important.
 
-### 4.1 Creating bridge manually ###
+### 4.1 Creating bridge manually#
 
 Since this is not the `default` behavior, you **have to** edit the docker-compose file.
 
@@ -132,7 +132,7 @@ Since this is not the `default` behavior, you **have to** edit the docker-compos
     455631b3749c        demo-oai-public-net   bridge              local
     ```
 
-### 4.2 Create bridge automatically ###
+### 4.2 Create bridge automatically#
 
 - Though the bridge can be automatically created using docker-compose file if there is no need to capture initial packets.
 
@@ -155,14 +155,14 @@ The bottom section SHALL look like this:
                   com.docker.network.bridge.name: "demo-oai"
     ```
 
-### 4.3 In case you forgot, the section below is for both manual and automatic network creation. ###
+### 4.3 In case you forgot, the section below is for both manual and automatic network creation.#
 
 - If the `docker-compose-host` machine is not configured with packet forwarding then it can be done using the command below (**important step**),
 
     ```console
-    ## run the commands on docker-compose-host
+    run the commands on docker-compose-host
     sudo sysctl net.ipv4.conf.all.forwarding=1
-    ## run the commands on docker-compose-host
+    run the commands on docker-compose-host
     sudo iptables -P FORWARD ACCEPT
     ```
 
@@ -182,7 +182,7 @@ The bottom section SHALL look like this:
     ping 192.168.70.129
     ```
 
-## 5. Configuring the OAI-5G Core Network Functions ##
+## 5. Configuring the OAI-5G Core Network Functions
 
 5G core network has two architectures service based or reference point which makes the NRF component optional, similarly you can choose to deploy the OAI core network components with or without NRF. Additionally in cloud native world it is preferred to provide a Fully Qualified Domain Name (FQDN) to a service rather than static ip-address. Each of our network functions can communicate with other core network function's using ip-address or FQDN. For example, AMF can register to NRF either with NRFs ip-address or FQDN.
 
@@ -190,11 +190,11 @@ Configuring network functions with static ip-addresses is preferred for bare-met
 
 In docker-compose the [service-name](https://docs.docker.com/compose/compose-file/#services-top-level-element) is actually the FQDN of the service.
 
-### 5.1. Core Network Configuration ###
+### 5.1. Core Network Configuration#
 
 The configuration is in [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml)
 
-### 5.2. User Subscription Profile ###
+### 5.2. User Subscription Profile#
 
 There are two ways to configure the User Subscription Profile,
 
@@ -211,7 +211,7 @@ INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPe
 Make sure you edit the IMSI, opc and key according to the settings of your user device.
 
 
-## 6. Deploying OAI 5G Core Network ##
+## 6. Deploying OAI 5G Core Network
 
 ```console
 docker-compose -f ../docker-compose/docker-compose-basic-nrf.yaml up -d
@@ -246,19 +246,33 @@ docker exec -it oai-ext-dn bash
 ping <ue-ip-address>
 ```
 
-## 7. Notes ##
+## 7. Notes
 
 - The `oai-ext-dn` container is optional and is only required if the user wants to ping from the UE. In general this container is not required except for testing purposes.
 - This tutorial can be taken as reference to test the OAI 5G core with a COTS UE. The configuration file has to be changed according to the gNB, and COTS UE information should be present in the mysql database.
 - Generally, in a COTS UE, two PDN sessions are created by default so configure the IMS in SMF properly.
 - In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
 
-## 8. Report an Issue ##
+## 8. Report an Issue
 
-To report an issue regarding any-component of CN5G,
+To report an issue with any CN5G component, please provide the following information:
 
-1. Share the testing scenario, what the test is trying to achieve.
-2. Share logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured take care of interface on which the packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`. So that the size of `.pcap` file is not huge.
-3. You can send an email at openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters. Choose an appropriate subject.
-4. You can also report an issue or create a bug directly on gitlab. You don't need to sign `Contributor License Agreement` to open issues, it is only needed when you want to contribute and push your changes. You have to send us an email to whitelist your domain/email-address to create a gitlab account, please contact us at contact@openairinterface.org.
-5. If you are interested to contribute then please follow [contribution guidelines](../CONTRIBUTING.md).
+1. Describe the testing scenario
+   *  Explain the test setup, the expected behavior, and what the test is intended to validate.
+
+2. Provide relevant logs and packet captures
+   *  Share the logs of the affected 5GCN components and packet captures (`tcpdump`/`.pcap`) from the relevant interfaces.
+   *  When capturing packets, ensure that the correct interface is selected.
+   *  To keep the capture size manageable, use appropriate filters such as: `ngap || http || pfcp || gtp`.
+
+3. Contact the mailing lists
+   *  Please use a clear and descriptive subject line.
+   *  Provide configuration files, component logs with debug level enabled, packet captures with appropriate filters
+      and the exact commit SHA, branch, or patch used during testing.
+
+4. Create a GitHub issue
+   *  You can also report bugs directly by creating an issue in the corresponding GitHub repository.
+   *  Signing the Contributor License Agreement (CLA) is not required to open issues; it is only required when contributing code changes.
+
+5. Contribute to the project
+If you would like to contribute fixes, improvements, or new features, please follow the [contribution guidelines](../CONTRIBUTING.md).
