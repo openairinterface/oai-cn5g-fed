@@ -9,7 +9,10 @@ def ubuntuResource = params.UbuntuBuildResource
 
 // CN Release Tag
 // For example, v2.1.10
-def version = params.tagToUse 
+def version = params.tagToUse
+
+// GitHub organization hosting the CN network function repositories
+def GH_ORG = params.GitHubOrg
 
 // Docker Hub account to push to
 def DH_Account = "oaisoftwarealliance"
@@ -85,9 +88,11 @@ pipeline {
                 sh "echo ${DH_Password} | docker login --username ${DH_Username} --password-stdin"
               }
               sh "docker login -u ${PrivateRegistryUsername} -p ${PrivateRegistryPassword} ${PrivateRegistryURL} > /dev/null 2>&1"
-              for (nf in networkFunctions) {
-              echo "\u2705 \u001B[32mProcessing ${nf}\u001B[0m"
-              sh "bash ./ci-scripts/pushCNRelease.sh ${nf} ${version}"
+              withCredentials([usernamePassword(credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
+                for (nf in networkFunctions) {
+                echo "\u2705 \u001B[32mProcessing ${nf}\u001B[0m"
+                sh "bash ./ci-scripts/pushCNRelease.sh ${nf} ${version} ${GH_ORG}"
+                }
               }
          }
         }

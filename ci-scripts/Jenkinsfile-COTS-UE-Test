@@ -490,8 +490,10 @@ pipeline {
 }
 
 def getLastCommitFromBranch(index, repoName, branchName) {
-  echo "Checking on GitLab"
-  shaone = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2F${repoName}/repository/branches/${branchName}' | jq .commit.id"
+  echo "Checking on GitHub"
+  withCredentials([usernamePassword(credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
+    shaone = sh returnStdout: true, script: "curl --silent -H \"Authorization: Bearer \$GH_TOKEN\" 'https://api.github.com/repos/openairinterface/${repoName}/branches/${branchName}' | jq .commit.sha"
+  }
   shaone = shaone.trim()
   shaone = shaone.replaceAll('"','')
   shaone = shaone.take(8)
