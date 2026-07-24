@@ -7,8 +7,11 @@
 def cn_ci_host = params.Host_CN_CI_Server
 def cn_ci_resource = params.DockerContainers
 def upstreamEvent = false
+def upstreamIsFED = false
+
 
 // Variables that can used in main pipeline and in functions
+DEFAULT=-1
 NRF=0
 AMF=1
 SMF=2
@@ -17,22 +20,29 @@ AUSF=4
 UDM=5
 UDR=6
 NSSF=7
-PCF=8
+UPF_VPP=8
+PCF=9
+NORTH=10
 
 // Default tags / branches  --> could be passed on by upstream job
-imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-pcf"]
-repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-pcf"]
-branchNames = ["", "", "", "", "", "", "", "", ""]
-imageTags = ["", "", "", "", "", "", "", "", ""]
-upstreamJobs = [false, false, false, false, false, false, false, false, false]
-pulledImages = [false, false, false, false, false, false, false, false, false]
+imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-upf-vpp", "oai-pcf"]
+repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-upf-vpp", "oai-cn5g-pcf"]
+branchNames = ["", "", "", "", "", "", "", "", "", ""]
+imageTags = ["", "", "", "", "", "", "", "", "", ""]
+upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
+pulledImages = [false, false, false, false, false, false, false, false, false, false]
 
-// Which RAN TAG to use
-ranTag = params.ranTag
+
+// Which OMEC-GNBSIM TAG to use
 upstreamTagToUse = params.upstreamTagToUse
 
-// means to shorten the pipeline
-run_ebpf_upf = true
+rfTags = ""
+
+// TODO: once 5gcsdk is public, not required anymore.
+def sdk_credentials = params.Private_Repo_Credentials ?: 'github-jenkins-oai-cn'
+// 5gcsdk branch and repository URL
+def SDK_BRANCH = params.SDK_BRANCH ?: 'oai-jenkins-ci'
+def SDK_URL = params.SDK_URL ?: 'https://github.com/openairinterface/5gcsdk.git'
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -49,6 +59,8 @@ pipeline {
   stages {
     stage ('Verify Parameters') {
       steps {
+        deleteDir()           // wipe workspace
+        checkout scm          // get fresh code
         script {
           echo '\u2705 \u001B[32mVerify Parameters\u001B[0m'
 
@@ -86,107 +98,181 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-NSSF')) {
               upstreamJobs[NSSF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-UPF-VPP')) {
+              upstreamJobs[UPF_VPP] = true
+            }
             if (cause.toString().contains('OAI-CN5G-PCF')) {
               upstreamJobs[PCF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
+            }
           }
-          sh "git clean -x -d -f > /dev/null 2>&1"
+
+          sh "git clean -x -d -ff > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
           // For any upstream job (PR or post-merge), let run on certified tag.
-          if (upstreamEvent) {
+          if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
-          sh 'git submodule update --init --recursive ci-scripts/common'
+          if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
+            sh "git fetch origin ${FED_COMMIT_SHA}"
+            sh "git checkout ${FED_COMMIT_SHA}"
+          }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
+
+          // Having the possibility to run manually as in CI
+          int emulation_run = params.EMULATE_MR_RUN.toInteger()
+          switch (emulation_run) {
+            case NRF:
+              upstreamEvent = true
+              upstreamJobs[NRF] = true
+              break
+            case AMF:
+              upstreamEvent = true
+              upstreamJobs[AMF] = true
+              break
+            case SMF:
+              upstreamEvent = true
+              upstreamJobs[SMF] = true
+              break
+            case UPF:
+              upstreamEvent = true
+              upstreamJobs[UPF] = true
+              break
+            case AUSF:
+              upstreamEvent = true
+              upstreamJobs[AUSF] = true
+              break
+            case UDM:
+              upstreamEvent = true
+              upstreamJobs[UDM] = true
+              break
+            case UDR:
+              upstreamEvent = true
+              upstreamJobs[UDR] = true
+              break
+            case NSSF:
+              upstreamEvent = true
+              upstreamJobs[NSSF] = true
+              break
+            case PCF:
+              upstreamEvent = true
+              upstreamJobs[PCF] = true
+              break
+            case NORTH:
+              rfTags = rfTags + ' -i North '
+              break
+            case DEFAULT:
+              break
+          }
 
           for (ii = 0; ii < imageNames.size(); ii++) {
             if (ii == NRF) {
               branchNames[NRF] = params.NRF_BRANCH
               imageTags[NRF] = params.NRF_TAG
               if (upstreamEvent && upstreamJobs[NRF]) {
+                rfTags = rfTags + ' -i NRF '
                 echo "Upstream Job passed NRF_TAG to use: ${imageTags[NRF]}"
                 echo "Upstream Job passed NRF_BRANCH to use: ${branchNames[NRF]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == AMF) {
               branchNames[AMF] = params.AMF_BRANCH
               imageTags[AMF] = params.AMF_TAG
               if (upstreamEvent && upstreamJobs[AMF]) {
+                rfTags = rfTags + ' -i AMF '
                 echo "Upstream Job passed AMF_TAG to use: ${imageTags[AMF]}"
                 echo "Upstream Job passed AMF_BRANCH to use: ${branchNames[AMF]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == SMF) {
               branchNames[SMF] = params.SMF_BRANCH
               imageTags[SMF] = params.SMF_TAG
               if (upstreamEvent && upstreamJobs[SMF]) {
+                rfTags = rfTags + ' -i SMF '
                 echo "Upstream Job passed SMF_TAG to use: ${imageTags[SMF]}"
                 echo "Upstream Job passed SMF_BRANCH to use: ${branchNames[SMF]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == UPF) {
               branchNames[UPF] = params.UPF_BRANCH
               imageTags[UPF] = params.UPF_TAG
               if (upstreamEvent && upstreamJobs[UPF]) {
+                rfTags = rfTags + ' -i UPF '
                 echo "Upstream Job passed UPF_TAG to use: ${imageTags[UPF]}"
                 echo "Upstream Job passed UPF_BRANCH to use: ${branchNames[UPF]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == AUSF) {
               branchNames[AUSF] = params.AUSF_BRANCH
               imageTags[AUSF] = params.AUSF_TAG
               if (upstreamEvent && upstreamJobs[AUSF]) {
+                rfTags = rfTags + ' -i AUSF '
                 echo "Upstream Job passed AUSF_TAG to use: ${imageTags[AUSF]}"
                 echo "Upstream Job passed AUSF_BRANCH to use: ${branchNames[AUSF]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == UDM) {
               branchNames[UDM] = params.UDM_BRANCH
               imageTags[UDM] = params.UDM_TAG
               if (upstreamEvent && upstreamJobs[UDM]) {
+                rfTags = rfTags + ' -i UDM '
                 echo "Upstream Job passed UDM_TAG to use: ${imageTags[UDM]}"
                 echo "Upstream Job passed UDM_BRANCH to use: ${branchNames[UDM]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == UDR) {
               branchNames[UDR] = params.UDR_BRANCH
               imageTags[UDR] = params.UDR_TAG
               if (upstreamEvent && upstreamJobs[UDR]) {
+                rfTags = rfTags + ' -i UDR '
                 echo "Upstream Job passed UDR_TAG to use: ${imageTags[UDR]}"
                 echo "Upstream Job passed UDR_BRANCH to use: ${branchNames[UDR]}"
-                run_ebpf_upf = true
               }
             }
             if (ii == NSSF) {
               branchNames[NSSF] = params.NSSF_BRANCH
               imageTags[NSSF] = params.NSSF_TAG
               if (upstreamEvent && upstreamJobs[NSSF]) {
+                rfTags = rfTags + ' -i NSSF '
                 echo "Upstream Job passed NSSF_TAG to use: ${imageTags[NSSF]}"
                 echo "Upstream Job passed NSSF_BRANCH to use: ${branchNames[NSSF]}"
-                run_ebpf_upf = false
+              }
+            }
+            if (ii == UPF_VPP) {
+              branchNames[UPF_VPP] = params.UPF_VPP_BRANCH
+              imageTags[UPF_VPP] = params.UPF_VPP_TAG
+              if (upstreamEvent && upstreamJobs[UPF_VPP]) {
+                rfTags = rfTags + ' -i UPF_VPP '
+                echo "Upstream Job passed UPF_VPP_TAG to use: ${imageTags[UPF_VPP]}"
+                echo "Upstream Job passed UPF_VPP_BRANCH to use: ${branchNames[UPF_VPP]}"
               }
             }
             if (ii == PCF) {
               branchNames[PCF] = params.PCF_BRANCH
               imageTags[PCF] = params.PCF_TAG
               if (upstreamEvent && upstreamJobs[PCF]) {
+                rfTags = rfTags + ' -i PCF '
                 echo "Upstream Job passed PCF_TAG to use: ${imageTags[PCF]}"
                 echo "Upstream Job passed PCF_BRANCH to use: ${branchNames[PCF]}"
-                run_ebpf_upf = false
               }
             }
           }
 
-
           // On Ubuntu servers, we shall pull from private local registry
-          if ((cn_ci_host == 'Selfix') || (cn_ci_host == 'Alambix') || (cn_ci_host == 'Cetautomatix')) {
+          if ((cn_ci_host == 'Selfix') || (cn_ci_host == 'Alambix')) {
             pullFromSelfix = true
             try {
               // Login
@@ -205,6 +291,11 @@ pipeline {
               sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
           }
+          if (cn_ci_host == 'Alambix') {
+            // Forcing to run on Northbound testing on Alambix
+            // TODO: remove this when UPF-VPP runs again on Ubuntu-24
+            rfTags = '-i North '
+          }
 
           // Verify that the images are available
           imageStatus = 0
@@ -215,27 +306,37 @@ pipeline {
             error ("Some images are not present!")
           }
         }
+
+        // TODO: once the 5gcsdk repo is public, no longer needed.
+        // A git submodule approach would be better.
+        sh "rm -Rf test/5gcsdk"
+        sh "mkdir -p test/5gcsdk"
+        dir ('test/5gcsdk') {
+          checkout scmGit(
+            branches: [[name: "*/${SDK_BRANCH}"]],
+            extensions: [],
+            userRemoteConfigs: [[
+            credentialsId: sdk_credentials,
+            url: "${SDK_URL}"]])
+        }
+
+        // Making sure that the latest version of oai-gnb and oai-nr-ue develop images
+        // is on the test server
+        sh "docker pull oaisoftwarealliance/oai-gnb:develop || true"
+        sh "docker pull oaisoftwarealliance/oai-nr-ue:develop || true"
+        sh "docker image prune -f"
       }
     }
-    stage ('Check Basic w/ eBPF Deployment Tutorial') {
-      when { expression {run_ebpf_upf} }
+    stage ('Run Robot Framework Tests') {
       steps {
         script {
-          updateDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml', ranTag)
-          dir ('ci-scripts') {
-            // Tee will make the command always pass
-            // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_UPF_EBPF.md | tee ../archives/upf-ebpf-gnbsim.log'
+          for (ii = 0; ii < imageTags.size(); ii++) {
+            if (imageNames[ii] == "oai-upf-vpp" && imageTags[ii] == "develop") { // As UPF-VPP is no longer maintained
+              imageTags[ii] = "develop-863d2bf7"
+            }
+            prepareRobotImageTags(imageNames[ii], imageTags[ii])
           }
-          try {
-            sh 'grep -l "is PASS" archives/upf-ebpf-gnbsim.log > /dev/null'
-            echo "Basic eBPF Tutorial PASSED"
-          } catch (Exception e) {
-            currentBuild.result = 'FAILURE'
-            echo "Basic eBPF Tutorial FAILED"
-          }
-          archivesArtifacts('docker-compose/docker-compose-basic-nrf-ebpf.yaml', 'upf-ebpf-gnbsim')
-          cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml')
+          sh 'robot ' + rfTags + ' --outputdir archives test'
         }
       }
     }
@@ -244,14 +345,26 @@ pipeline {
     always {
       script {
         // Zipping all archived log files
-        sh "zip -r -qq cn5g_fed_tutorials_logs.zip archives"
-        if (fileExists('cn5g_fed_tutorials_logs.zip')) {
-          archiveArtifacts artifacts: 'cn5g_fed_tutorials_logs.zip'
+        if (fileExists('archives')) {
+          sh 'zip -r -qq cn5g_fed_robot_tests.zip archives'
+          archiveArtifacts artifacts: 'cn5g_fed_robot_tests.zip'
         }
-        sh './ci-scripts/checkTutorialHtmlReport.py --job_name ' + JOB_NAME + ' --job_id ' + BUILD_ID + ' --job_url ' + BUILD_URL
-        if (fileExists('test_results_oai_cn5g_tutorials.html')) {
-          sh 'mv test_results_oai_cn5g_tutorials.html test_results_oai_cn5g_tutorials_ebpf.html'
-          archiveArtifacts artifacts: 'test_results_oai_cn5g_tutorials_ebpf.html'
+        // archive robot framework log
+        if (fileExists('archives/log.html')) {
+          archiveArtifacts artifacts: 'archives/log.html, archives/report.html'
+        }
+        // We generate HTML report if we did not already
+        // we shall not fail in post section
+        if (!fileExists('test_results_robot_framework.html')) {
+          sh './ci-scripts/checkRobotFrameworkHtmlReport.py --job_name ' + JOB_NAME + ' --job_id ' + BUILD_ID + ' --job_url ' + BUILD_URL + ' || true'
+        }
+        if (fileExists('test_results_robot_framework.html')) {
+          if (JOB_NAME == 'OAI-CN5G-RobotTest-NorthBound-Testing') {
+            sh 'mv test_results_robot_framework.html test_results_robot_framework_northbound.html'
+            archiveArtifacts artifacts: 'test_results_robot_framework_northbound.html'
+          } else {
+            archiveArtifacts artifacts: 'test_results_robot_framework.html'
+          }
         }
       }
     }
@@ -285,7 +398,9 @@ def pullImageFromSelfix(idx, imageName, imageTag, branchName) {
     sh 'docker pull selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
     sh 'docker image tag selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
     sh 'docker rmi selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
-    pulledImages[idx] = true
+    if (idx != -1) {
+      pulledImages[idx] = true
+    }
   } catch (Exception e) {
     echo "${imageName} Image tag to test (${imageName}:${tag} does not exist on selfix private registry!"
     tag = imageTag
@@ -306,27 +421,6 @@ def checkImageInfo(imageName, origTag) {
   return status
 }
 
-def updateDockerCompose(filename, lRanTag) {
-  for (ii = 0; ii < imageNames.size(); ii++) {
-    sh 'sed -i -e "s@oaisoftwarealliance/' + imageNames[ii] + ':develop@' + imageNames[ii] + ':' + imageTags[ii] + '@" ' + filename
-  }
-  sh 'sed -i -e "s@oaisoftwarealliance/trf-gen-cn5g:latest@trf-gen-cn5g:latest@" ' + filename
-  // Using the develop variant of gnbsim
-  sh 'sed -i -e "s@gnbsim:latest@gnbsim:develop@" docker-compose/docker-compose-gnbsim*.y*ml docker-compose/docker-compose*ransim.y*ml'
-  // Using a dedicated version of the OAI RAN images
-  sh 'sed -i -e "s@oaisoftwarealliance/oai-gnb:develop@oai-gnb:' + lRanTag + '@" docker-compose/docker-compose-slicing-ransim.yaml'
-  sh 'sed -i -e "s@oaisoftwarealliance/oai-nr-ue:develop@oai-nr-ue:' + lRanTag + '@" docker-compose/docker-compose-slicing-ransim.yaml'
-}
-
-def archivesArtifacts(filename,folder) {
-  sh 'cp -Rf /tmp/oai/' + folder + ' archives || true'
-  // Making a copy of the docker-compose for debugging
-  sh 'cp ' + filename + ' archives/' + folder + ' || true'
-}
-
-def cleanUpDockerCompose(filename) {
-  sh 'git checkout -- ' + filename
-  sh 'git checkout -- docker-compose/docker-compose-gnbsim*.y*ml docker-compose/docker-compose*ransim.y*ml'
-  sh 'docker network prune --force'
-  sh 'docker volume prune --force'
+def prepareRobotImageTags(imageName, tag) {
+   sh 'sed -i -e "s@oaisoftwarealliance/' + imageName + ':develop@' + imageName + ':' + tag + '@" test/image_tags.py'
 }

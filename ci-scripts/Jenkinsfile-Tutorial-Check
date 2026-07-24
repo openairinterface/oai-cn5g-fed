@@ -113,7 +113,14 @@ pipeline {
             sh "git checkout ${FED_COMMIT_SHA}"
           }
           sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
-          sh 'git submodule update --init --recursive ci-scripts/common'
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
 
           for (ii = 0; ii < imageNames.size(); ii++) {

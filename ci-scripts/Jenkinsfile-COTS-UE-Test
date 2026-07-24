@@ -87,7 +87,24 @@ pipeline {
           sh "git clean -x -d -ff > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
-          sh "git submodule update --init --recursive ci-scripts/common"
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            // Fed push: fetch first; the sha may be abbreviated.
+            sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
+            sh "git checkout -f ${params.GIT_COMMIT_SHA}"
+          }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
           withCredentials([
             [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.cn_oc_credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
@@ -490,8 +507,10 @@ pipeline {
 }
 
 def getLastCommitFromBranch(index, repoName, branchName) {
-  echo "Checking on GitLab"
-  shaone = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2F${repoName}/repository/branches/${branchName}' | jq .commit.id"
+  echo "Checking on GitHub"
+  withCredentials([usernamePassword(credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
+    shaone = sh returnStdout: true, script: "curl --silent -H \"Authorization: Bearer \$GH_TOKEN\" 'https://api.github.com/repos/openairinterface/${repoName}/branches/${branchName}' | jq .commit.sha"
+  }
   shaone = shaone.trim()
   shaone = shaone.replaceAll('"','')
   shaone = shaone.take(8)

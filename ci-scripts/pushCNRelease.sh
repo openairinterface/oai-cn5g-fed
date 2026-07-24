@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-License-Identifier: MIT
 
-# SCRIPT USAGE: ./pushCNRelease.sh amf v2.1.10
+# SCRIPT USAGE: ./pushCNRelease.sh amf v2.1.10 openairinterface
 
 # 1. RELEASE TAG
 VERSION=$2 # This tag will be pushed to DockerHub
@@ -10,18 +10,18 @@ VERSION=$2 # This tag will be pushed to DockerHub
 DH_Account="oaisoftwarealliance"
 REGISTRY_URL='selfix.sboai.cs.eurecom.fr'
 
-# 3. GET THE LATEST COMMIT_SHA OF develop BRANCH FOR THE CORE NETWORK FUNCTION FROM GITLAB
+# 3. GET THE LATEST COMMIT_SHA OF develop BRANCH FOR THE CORE NETWORK FUNCTION FROM GITHUB
 NF=$1
-BASE_API_URL="https://gitlab.eurecom.fr/api/v4/projects"
+GH_ORG=$3
+BASE_API_URL="https://api.github.com/repos"
 BRANCH="develop"
 REPO="oai-cn5g-$NF"
-ENCODED_REPO="oai%2Fcn5g%2F$REPO"
 
 ## 3.1 Construct API URL for the develop branch
-API_URL="$BASE_API_URL/$ENCODED_REPO/repository/branches/$BRANCH"
+API_URL="$BASE_API_URL/$GH_ORG/$REPO/branches/$BRANCH"
 
-## 3.2 Fetch latest commit SHA using GitLab API
-LATEST_COMMIT=$(curl -s "$API_URL" | jq -r '.commit.id')
+## 3.2 Fetch latest commit SHA using GitHub API (private repos require GH_TOKEN)
+LATEST_COMMIT=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "$API_URL" | jq -r '.commit.sha')
 
 ## 3.3 Get short 8-character commit SHA
 SHORT_COMMIT=${LATEST_COMMIT:0:8} # Example: c054106e

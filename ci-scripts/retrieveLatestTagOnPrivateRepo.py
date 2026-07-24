@@ -39,7 +39,7 @@ def main() -> None:
         if res is not None:
             tag = res.group('tag')
             # on SPGWU / GitHub     `git log -1 --pretty=format:"%h"` returns 7 characters
-            # on other NF / GitLab  `git log -1 --pretty=format:"%h"` returns 8 characters
+            # on other NF           `git log -1 --pretty=format:"%h"` returns 8 characters
             if len(tag) == nbChars or len(tag) == (nbChars+1):
                 cmd = f'curl --insecure -Ss -u oaicicd:oaicicd {PRIVATE_LOCAL_REGISTRY_URL}/v2/{args.repo_name}/manifests/{tag} | jq .history'
                 tagInfo = myCmds.run(cmd, silent=True)
