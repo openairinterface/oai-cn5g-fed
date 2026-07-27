@@ -121,9 +121,9 @@ pipeline {
             sh "git fetch origin ${params.GIT_MERGE_REF}"
             sh "git checkout -f FETCH_HEAD"
           } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
-            FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
-            sh "git fetch origin ${FED_COMMIT_SHA}"
-            sh "git checkout ${FED_COMMIT_SHA}"
+            // Fed push: fetch first; the sha may be abbreviated.
+            sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
+            sh "git checkout -f ${params.GIT_COMMIT_SHA}"
           }
           sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
           // Authenticate the submodule clone: -c scopes the credential helper to just this command.
