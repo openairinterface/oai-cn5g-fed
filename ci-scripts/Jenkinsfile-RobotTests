@@ -116,7 +116,11 @@ pipeline {
           if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
-          if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
             FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
             sh "git fetch origin ${FED_COMMIT_SHA}"
             sh "git checkout ${FED_COMMIT_SHA}"

@@ -44,6 +44,7 @@ chartKeyTags = ["NRF_TAG", "AMF_TAG", "SMF_TAG", "UPF_TAG", "AUSF_TAG", "UDM_TAG
 containerInPods = ["nrf", "amf", "smf", "upf", "ausf", "udm", "udr"]
 
 def upstreamEvent = false
+def upstreamIsFED = false
 upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
 
 // Status booleans
@@ -81,6 +82,9 @@ pipeline {
             }
             if (cause.toString().contains('OAI-CN5G-UPF')) {
               upstreamJobs[UPF] = true
+            }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
             }
           }
 
