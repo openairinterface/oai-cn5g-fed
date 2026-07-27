@@ -20,7 +20,9 @@ import groovy.transform.Field
 @Field def fed_branch         = ''     // source branch
 @Field def targetBranch       = ''     // PR target branch
 @Field def shortenShaOne      = ''     // short commit SHA passed to downstream jobs
-@Field def failingStages      = ''     // markdown bullet list of failed stages, for the PR comment
+// Keyed by stage name so that each parallel stage writes only its own entry: a shared
+// string appended with += is a read-modify-write and can lose a concurrent stage's entry.
+@Field def failingStages      = [:]    // stage name -> markdown bullet, for the PR comment
 @Field def mrValidationWarning   = ''  // Signed-off-by/merge guideline message, for the PR comment
 @Field def preBuildFailureMessage = '' // pre-build stage failure note, for the PR comment
 @Field def downstreamUrls     = [:]    // stage name -> downstream job build URL, for its GitHub check link
@@ -450,7 +452,7 @@ pipeline {
         if (isPullRequest) {
           def message = "**CI Build:** [#${env.BUILD_NUMBER}](${BUILD_URL}) | **Failed**"
           if (failingStages) {
-            message += " on the following stages:\n${failingStages}"
+            message += " on the following stages:\n${failingStages.values().join('')}"
           } else {
             message += "\nThe pipeline may have failed due to a CI, validation, or scripting error. See the build for more details."
           }
@@ -534,7 +536,7 @@ def prepareWorkspace() {
 
 // emitCheck=false: record in the PR comment only, let a parent stage emit one rolled-up check.
 def recordFailure(String reportLink = null, boolean emitCheck = true) {
-  failingStages += reportLink ? "\n * [${env.STAGE_NAME}](${reportLink})" : "\n * ${env.STAGE_NAME}"
+  failingStages[env.STAGE_NAME] = reportLink ? "\n * [${env.STAGE_NAME}](${reportLink})" : "\n * ${env.STAGE_NAME}"
   if (emitCheck) {
     notifyStageStatus('FAILURE', 'Failed')
   }
