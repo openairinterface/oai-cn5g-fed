@@ -44,6 +44,7 @@ chartKeyTags = ["NRF_TAG", "AMF_TAG", "SMF_TAG", "UPF_TAG", "AUSF_TAG", "UDM_TAG
 containerInPods = ["nrf", "amf", "smf", "upf", "ausf", "udm", "udr"]
 
 def upstreamEvent = false
+def upstreamIsFED = false
 upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
 
 // Status booleans
@@ -82,11 +83,23 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-UPF')) {
               upstreamJobs[UPF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
+            }
           }
 
           sh "git clean -x -d -ff > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
+            sh "git fetch origin ${FED_COMMIT_SHA}"
+            sh "git checkout ${FED_COMMIT_SHA}"
+          }
           sh "git submodule update --init --recursive ci-scripts/common"
           sh "mkdir -p archives"
           withCredentials([
