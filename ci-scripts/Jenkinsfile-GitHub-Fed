@@ -1,0 +1,627 @@
+#!/bin/groovy
+/*
+ * SPDX-License-Identifier: MIT
+ */
+
+import groovy.transform.Field
+
+// ----------------------------------------------------------------------------
+// Orchestration pipeline for the oai-cn5g-fed repository.
+// It does NOT build images; it checks out the fed sources, validates the PR,
+// and triggers the downstream 5G Core integration test jobs
+// ----------------------------------------------------------------------------
+
+@Field def ubuntuBuildNode                       // node that runs the orchestration (git ops only)
+@Field def ubuntuBuildResource                   // lockable resource
+@Field def githubCredentialsId = 'github-jenkins-oai-cn'  // GitHub checkout / API creds
+
+@Field def isPullRequest      = false  // true if triggered by a PR
+@Field def runFullTestSuite   = true   // false when the PR is Documentation-only
+@Field def fed_branch         = ''     // source branch
+@Field def targetBranch       = ''     // PR target branch
+@Field def shortenShaOne      = ''     // short commit SHA passed to downstream jobs
+// Keyed by stage name so that each parallel stage writes only its own entry: a shared
+// string appended with += is a read-modify-write and can lose a concurrent stage's entry.
+@Field def failingStages      = [:]    // stage name -> markdown bullet, for the PR comment
+@Field def mrValidationWarning   = ''  // Signed-off-by/merge guideline message, for the PR comment
+@Field def preBuildFailureMessage = '' // pre-build stage failure note, for the PR comment
+@Field def downstreamUrls     = [:]    // stage name -> downstream job build URL, for its GitHub check link
+@Field def downstreamBuilds   = [:]    // stage name -> downstream build number, to copy that build's report
+
+// A stage runs only when its flag is true. Each flag
+// defaults to true and can be disabled from the job via the matching do<Test>
+// boolean parameter (unset parameters keep the default).
+@Field def cfg
+
+//-------------------------------------------------------------------------------
+pipeline {
+  agent {
+    label params.UbuntuBuildNode
+  }
+  options {
+    disableConcurrentBuilds()
+    timestamps()
+    ansiColor('xterm')
+  }
+
+  stages {
+    // Load + validate job params and detect PR-vs-push early so that even a
+    // pre-build failure can still post a PR comment.
+    stage('Initialize Pipeline Configuration') {
+      steps {
+        script {
+          isPullRequest       = !!env.GITHUB_PR_NUMBER?.trim()
+          ubuntuBuildNode     = params.UbuntuBuildNode
+          ubuntuBuildResource = params.UbuntuBuildResource
+
+          if (!ubuntuBuildNode) {
+            echo 'No Node is specified!'
+            error "Stopping pipeline!"
+          }
+          echo "Node: ${ubuntuBuildNode}"
+
+          // Test-stage enable matrix (override with the do<Test> job parameters).
+          cfg = [
+            hasTutorialsTest:       (params.doTutorialsTest       != null) ? params.doTutorialsTest       : true,
+            hasCotsUeTest:          (params.doCotsUeTest          != null) ? params.doCotsUeTest          : true,
+            hasLoadTest:            (params.doLoadTest            != null) ? params.doLoadTest            : true,
+            hasEbpfTutorialsTest:   (params.doEbpfTutorialsTest   != null) ? params.doEbpfTutorialsTest   : true,
+            hasRobotTest:           (params.doRobotTest           != null) ? params.doRobotTest           : true,
+            hasRobotNorthBoundTest: (params.doRobotNorthBoundTest != null) ? params.doRobotNorthBoundTest : true,
+          ]
+
+          env.JOB_TIMESTAMP = sh(
+            returnStdout: true,
+            script: 'date --utc --rfc-3339=seconds | sed -e "s#+00:00##"'
+          ).trim()
+          echo "Current UTC Date/Time: ${env.JOB_TIMESTAMP}"
+          echo "Pipeline configuration loaded (${isPullRequest ? 'PULL REQUEST' : 'PUSH'})"
+          echo "Enabled test stages: ${cfg.findAll { it.value }.keySet().join(', ')}"
+        }
+      }
+      post {
+        failure {
+          script {
+            preBuildFailureMessage = "Invalid or missing parameters, or internal CI error"
+            echo preBuildFailureMessage
+          }
+        }
+      }
+    }
+
+    // Derive PR-vs-push, branch, SHA, and tag, then check out the fed source.
+    stage('Prepare Source Metadata') {
+      steps {
+        lock(ubuntuBuildResource) {
+          script {
+            def gitLocalBranch = env.GIT_BRANCH ? env.GIT_BRANCH.replace('origin/', '') : ''
+
+            if (isPullRequest) {
+              def prHeadSha = env.GITHUB_PR_HEAD_SHA
+              if (!prHeadSha) {
+                error "GITHUB_PR_HEAD_SHA is missing -- cannot identify the commit to build for PR #${env.GITHUB_PR_NUMBER}"
+              }
+              fed_branch    = env.GITHUB_PR_SOURCE_BRANCH
+              targetBranch  = env.GITHUB_PR_TARGET_BRANCH
+              shortenShaOne = prHeadSha.take(8)
+
+              echo "THIS IS A PULL REQUEST"
+              echo "PR number           :   ${env.GITHUB_PR_NUMBER}"
+              echo "Source Repository   :   ${env.GITHUB_PR_URL}"
+              echo "Source Branch       :   ${fed_branch}"
+              echo "Commit ID           :   ${prHeadSha}"
+              echo "Target Repo         :   ${env.GIT_URL}"
+              echo "Target Branch       :   ${targetBranch}"
+              echo "Label               :   ${env.GITHUB_PR_LABELS}"
+            } else {
+              if (!env.GIT_COMMIT) {
+                error "GIT_COMMIT is missing -- cannot identify the commit to build for branch '${gitLocalBranch}'"
+              }
+              fed_branch    = gitLocalBranch
+              shortenShaOne = env.GIT_COMMIT.take(8)
+
+              echo "THIS IS A PUSH REQUEST"
+              echo "Branch              :   ${gitLocalBranch}"
+              echo "Commit ID           :   ${env.GIT_COMMIT}"
+            }
+
+            prepareWorkspace()
+            echo "Current Commit is ${shortenShaOne}"
+          }
+        }
+      }
+      post {
+        failure {
+          script {
+            preBuildFailureMessage = "Git operation failure or internal CI error"
+            echo preBuildFailureMessage
+          }
+        }
+      }
+    }
+
+    // PR-only: verify Signed-off-by lines / merge guidelines via the common checker.
+    stage('Verify Guidelines') {
+      when {
+        expression { return isPullRequest }
+      }
+      steps {
+        lock(ubuntuBuildResource) {
+          script {
+            withCredentials([
+              [$class: 'UsernamePasswordMultiBinding', credentialsId: githubCredentialsId, usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+            ]) {
+              sh "git -c credential.helper='!f() { echo \"username=\$GITHUB_USERNAME\"; echo \"password=\$GITHUB_TOKEN\"; }; f' fetch --no-tags ${env.GIT_URL} +refs/heads/${targetBranch}:refs/remotes/origin/${targetBranch}"
+            }
+
+            def mrValidationLog = "signedCommit_${env.BUILD_NUMBER}.log"
+            def mrValidationExitCode = sh(
+              script: "bash ./ci-scripts/common/bash/pre-ci-check.sh -s ${env.GITHUB_PR_HEAD_SHA} -t origin/${targetBranch} > ${mrValidationLog} 2>&1",
+              returnStatus: true
+            )
+            def mrValidationMessage = readFile(mrValidationLog).trim()
+            sh "rm -f ${mrValidationLog}"
+
+            if (mrValidationExitCode >= 1) {
+              mrValidationWarning = mrValidationMessage
+            }
+            if (mrValidationExitCode >= 2) {
+              error("${mrValidationMessage}")
+            }
+          }
+        }
+      }
+      post {
+        failure {
+          script {
+            if (mrValidationWarning) {
+              echo "Guideline verification failed: ${mrValidationWarning}"
+            } else {
+              preBuildFailureMessage = "Git operation failure or internal CI error"
+              echo preBuildFailureMessage
+            }
+          }
+        }
+      }
+    }
+
+    // PR-only: no label runs the full suite; a Documentation label skips the test stages.
+    stage('Verify Labels') {
+      when {
+        expression { return isPullRequest }
+      }
+      steps {
+        script {
+          if (env.GITHUB_PR_LABELS?.toLowerCase()?.contains('documentation')) {
+            runFullTestSuite = false
+            echo "Skipping the test stages: the pull request contains the Documentation label."
+          } else {
+            echo "Running the full test suite (labels: ${env.GITHUB_PR_LABELS ?: 'none'})."
+          }
+        }
+      }
+    }
+
+    // PR-only: pick tests from the changed files. Documentation (.md, docs/, LICENSE,
+    // NOTICE, LICENSES/) is ignored; a change set confined to test/ runs only the Robot
+    // tests; docs-only skips all tests.
+    stage('Determine Test Scope') {
+      when {
+        expression { return isPullRequest && runFullTestSuite }
+      }
+      steps {
+        script {
+          def isDoc = { f ->
+            // A docs/*.md file is an executable tutorial, so it is not treated as documentation.
+            !(f.startsWith('docs/') && f.endsWith('.md')) &&
+            (f.endsWith('.md') || f.startsWith('docs/') || f.startsWith('LICENSES/') ||
+             f == 'LICENSE' || f == 'NOTICE')
+          }
+          def files = sh(
+            returnStdout: true,
+            // origin/<targetBranch> was fetched by the earlier Verify Guidelines stage.
+            script: "git diff --name-only origin/${targetBranch}...HEAD"
+          ).trim().split('\n').findAll { it && !isDoc(it) }
+          echo "${files}"
+
+          if (files.size() == 0) {
+            runFullTestSuite = false
+            echo "Only documentation changed -- skipping all tests."
+          } else if (files.every { it.startsWith('test/') }) {
+            cfg.hasTutorialsTest     = false
+            cfg.hasCotsUeTest        = false
+            cfg.hasLoadTest          = false
+            cfg.hasEbpfTutorialsTest = false
+            echo "Only test/ folder changed -- running Robot tests only."
+          } else if (files.every { it.toLowerCase().contains('ebpf') }) {
+            cfg.hasTutorialsTest       = false
+            cfg.hasCotsUeTest          = false
+            cfg.hasLoadTest            = false
+            cfg.hasRobotTest           = false
+            cfg.hasRobotNorthBoundTest = false
+            echo "Only eBPF files changed -- running eBPF Tutorials test only."
+          } else if (files.every { it.contains('load-test-gnbsim') }) {
+            cfg.hasTutorialsTest       = false
+            cfg.hasCotsUeTest          = false
+            cfg.hasEbpfTutorialsTest   = false
+            cfg.hasRobotTest           = false
+            cfg.hasRobotNorthBoundTest = false
+            echo "Only load test files changed -- running Load Testing only."
+          } else if (files.every { it.toLowerCase().contains('cots') }) {
+            cfg.hasTutorialsTest       = false
+            cfg.hasLoadTest            = false
+            cfg.hasEbpfTutorialsTest   = false
+            cfg.hasRobotTest           = false
+            cfg.hasRobotNorthBoundTest = false
+            echo "Only COTS-UE files changed -- running COTS-UE test only."
+          } else if (files.every { it.startsWith('docs/') && it.endsWith('.md') }) {
+            cfg.hasCotsUeTest          = false
+            cfg.hasLoadTest            = false
+            cfg.hasEbpfTutorialsTest   = false
+            cfg.hasRobotTest           = false
+            cfg.hasRobotNorthBoundTest = false
+            echo "Only tutorial docs changed -- running Tutorials test only."
+          } else {
+            echo "Running the full enabled test suite."
+          }
+
+          echo "Test flags: ${cfg}"
+          if (!cfg.any { it.value }) {
+            echo "Test stages disabled (all disabled by config or scope)."
+          }
+        }
+      }
+    }
+
+    // Exercises the full 5G Core by delegating to the downstream test jobs in parallel.
+    // Each stage is enabled/disabled via its cfg.has<Test> flag (see the enable matrix above).
+    stage('5G Core Network Integration Testing') {
+      when {
+        expression { return runFullTestSuite }
+      }
+      parallel {
+        stage('Testing the Tutorials') {
+          when {
+            expression { return cfg.hasTutorialsTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-Tutorials-Check', 'Testing the Tutorials')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-Tutorials-Check', 'tutorials-report', '*_results_oai_cn5g*.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('tutorials-report')) }
+            }
+          }
+        }
+
+        stage('Testing with COTS-UE') {
+          when {
+            expression { return cfg.hasCotsUeTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-COTS-UE-Test', 'Testing with COTS-UE')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-COTS-UE-Test', 'cots-ue-report', '*_results_oai_cn5g*.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('cots-ue-report')) }
+            }
+          }
+        }
+
+        stage('Load Testing') {
+          when {
+            expression { return cfg.hasLoadTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-Load-Test', 'Load Testing')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-Load-Test', 'load-test-report', '*_results_oai_cn5g*.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('load-test-report')) }
+            }
+          }
+        }
+
+        stage('Testing the Tutorials with eBPF') {
+          when {
+            expression { return cfg.hasEbpfTutorialsTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-Tutorials-Check-eBPF', 'eBPF Tutorials Test')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-Tutorials-Check-eBPF', 'tutorials-ebpf-report', '*_results_oai_cn5g*.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('tutorials-ebpf-report')) }
+            }
+          }
+        }
+
+        stage('Robot Test') {
+          when {
+            expression { return cfg.hasRobotTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-RobotTest', 'Robot Test')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-RobotTest', 'robot-test-report', 'test_results_robot_framework.html, archives/report.html, archives/log.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('robot-test-report', 'archives/report.html')) }
+            }
+          }
+        }
+
+        stage('Robot NorthBound Test') {
+          when {
+            expression { return cfg.hasRobotNorthBoundTest }
+          }
+          steps {
+            script {
+              runTestJob('OAI-CN5G-RobotTest-NorthBound-Testing', 'Robot NorthBound Test')
+            }
+          }
+          post {
+            always {
+              script {
+                collectTestReport('OAI-CN5G-RobotTest-NorthBound-Testing', 'robot-northbound-test-report', 'test_results_robot_framework_northbound.html, archives/report.html, archives/log.html')
+              }
+            }
+            success {
+              script { notifyStageStatus('SUCCESS', 'Passed') }
+            }
+            failure {
+              script { recordFailure(latestArchivedReportLink('robot-northbound-test-report', 'archives/report.html')) }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      echo "Build finished: ${currentBuild.currentResult}"
+      script { emitSkippedTestStatuses() }
+    }
+    success {
+      script {
+        if (isPullRequest) {
+          def message = "**CI Build:** [#${env.BUILD_NUMBER}](${BUILD_URL}) | **Passed**"
+          if (mrValidationWarning) {
+            message += "\n\n**Validation:** ${mrValidationWarning}"
+          }
+          githubPRComment comment: githubPRMessage(message)
+        }
+        notifyGitHub('SUCCESS', 'Build success', env.JOB_BASE_NAME)
+        echo "Pipeline is SUCCESSFUL"
+      }
+    }
+    failure {
+      script {
+        if (isPullRequest) {
+          def message = "**CI Build:** [#${env.BUILD_NUMBER}](${BUILD_URL}) | **Failed**"
+          if (failingStages) {
+            message += " on the following stages:\n${failingStages.values().join('')}"
+          } else {
+            message += "\nThe pipeline may have failed due to a CI, validation, or scripting error. See the build for more details."
+          }
+          if (preBuildFailureMessage) {
+            message += "\n\n${preBuildFailureMessage}"
+          }
+          if (mrValidationWarning) {
+            message += "\n\n**Validation:** ${mrValidationWarning}"
+          }
+          githubPRComment comment: githubPRMessage(message)
+        }
+        notifyGitHub('FAILURE', 'Build failed', env.JOB_BASE_NAME)
+        echo "Pipeline FAILED"
+      }
+    }
+    cleanup {
+      script {
+        // Downstream HTML reports were copied + archived per stage by collectTestReport().
+        archiveArtifacts artifacts: '**/*_results_oai_cn5g*.html, **/test_results_robot_framework*.html, **/report.html, **/log.html', allowEmptyArchive: true
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Helper functions
+// ----------------------------------------------------------------------------
+
+// Check out GitHub's precomputed PR-merge ref (refs/pull/<N>/merge) so we test
+// exactly what GitHub considers mergeable; a missing ref means a conflict.
+def checkoutSource() {
+  if (isPullRequest) {
+    echo "PR triggered - checking out merge ref for PR #${env.GITHUB_PR_NUMBER}"
+    try {
+      checkout([
+        $class: 'GitSCM',
+        branches: [[name: "refs/remotes/origin/pr/${env.GITHUB_PR_NUMBER}/merge"]],
+        userRemoteConfigs: [[
+          url: env.GIT_URL,
+          refspec: "+refs/pull/${env.GITHUB_PR_NUMBER}/merge:refs/remotes/origin/pr/${env.GITHUB_PR_NUMBER}/merge",
+          credentialsId: githubCredentialsId
+        ]]
+      ])
+    } catch (e) {
+      error("Checkout failed for PR #${env.GITHUB_PR_NUMBER} -- merge ref not found. " +
+            "The PR likely has a conflict with ${targetBranch} that must be resolved before CI can run. (${e.message})")
+    }
+  } else {
+    echo "Push triggered - checking out ${env.GIT_COMMIT} on branch ${fed_branch}"
+    try {
+      checkout([
+        $class: 'GitSCM',
+        branches: [[name: env.GIT_COMMIT]],
+        userRemoteConfigs: [[
+          url: env.GIT_URL,
+          credentialsId: githubCredentialsId
+        ]]
+      ])
+    } catch (e) {
+      error("Checkout failed for commit ${env.GIT_COMMIT} on branch ${fed_branch} from ${env.GIT_URL}. (${e.message})")
+    }
+  }
+}
+
+def prepareWorkspace() {
+  echo "PREPARING WORKSPACE"
+  deleteDir()          // recreate a clean workspace before checking out the source
+  checkoutSource()
+  sh 'git config user.email "oaicicdteam@openairinterface.org"'
+  sh 'git config user.name "OAI Jenkins"'
+  // -c scopes the credential helper to just this command, unlike a persisted `git config` write.
+  withCredentials([
+    [$class: 'UsernamePasswordMultiBinding', credentialsId: githubCredentialsId, usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+  ]) {
+    sh '''
+      git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+    '''
+  }
+  sh "mkdir -p archives"
+}
+
+// emitCheck=false: record in the PR comment only, let a parent stage emit one rolled-up check.
+def recordFailure(String reportLink = null, boolean emitCheck = true) {
+  failingStages[env.STAGE_NAME] = reportLink ? "\n * [${env.STAGE_NAME}](${reportLink})" : "\n * ${env.STAGE_NAME}"
+  if (emitCheck) {
+    notifyStageStatus('FAILURE', 'Failed')
+  }
+}
+
+// Post a GitHub commit status; PR builds target the PR head, push builds the triggering commit.
+def notifyGitHub(String status, String description, String context, String targetUrl = null) {
+  githubNotify account: params.gitAccount,
+               repo: params.gitRepo,
+               credentialsId: githubCredentialsId,
+               sha: isPullRequest ? env.GITHUB_PR_HEAD_SHA : env.GIT_COMMIT,
+               status: status,
+               description: description,
+               targetUrl: targetUrl ?: BUILD_URL,
+               context: context
+}
+
+// Per-stage check (context = stage name); test stages link to their downstream build, else this one.
+def notifyStageStatus(String status, String description) {
+  notifyGitHub(status, description, env.STAGE_NAME, downstreamUrls[env.STAGE_NAME])
+}
+
+// A skipped stage posts no status, so an earlier run's result on the same commit would stay
+// as the reported one. SUCCESS is the only non-blocking state the commit status API has.
+def emitSkippedTestStatuses() {
+  if (cfg == null) {
+    return
+  }
+  def testStageContexts = [
+    hasTutorialsTest:       'Testing the Tutorials',
+    hasCotsUeTest:          'Testing with COTS-UE',
+    hasLoadTest:            'Load Testing',
+    hasEbpfTutorialsTest:   'Testing the Tutorials with eBPF',
+    hasRobotTest:           'Robot Test',
+    hasRobotNorthBoundTest: 'Robot NorthBound Test',
+  ]
+
+  for (entry in testStageContexts) {
+    if (!runFullTestSuite || !cfg[entry.key]) {
+      // Never let a status call throwing from post{always} turn a passing build red.
+      try {
+        notifyGitHub('SUCCESS', 'Skipped', entry.value)
+      } catch (e) {
+        echo "Could not publish skipped status for '${entry.value}': ${e.message}"
+      }
+    }
+  }
+}
+
+// Trigger a downstream test job; fails the stage on a bad result. Push the fed commit
+// SHA (passCommitSha=true) for jobs that check out fed sources by commit.
+def runTestJob(String jobName, String failureLabel, boolean passSource = true) {
+  def jobParams = []
+  if (passSource) {
+    // PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+    // Push: test the pushed commit.
+    jobParams = isPullRequest
+      ? [string(name: 'GIT_MERGE_REF', value: "refs/pull/${env.GITHUB_PR_NUMBER}/merge")]
+      : [string(name: 'GIT_COMMIT_SHA', value: shortenShaOne)]
+  }
+  def localStatus = build job: jobName, parameters: jobParams, propagate: false
+  downstreamUrls[env.STAGE_NAME] = localStatus.absoluteUrl
+  downstreamBuilds[env.STAGE_NAME] = localStatus.number
+  if (!localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
+    error "${failureLabel} Failed"
+  }
+}
+
+// Copy + archive the downstream job's HTML report into reportDir (filterPattern may be comma-separated).
+def collectTestReport(String jobName, String reportDir, String filterPattern) {
+  copyArtifacts(projectName: jobName,
+                filter: filterPattern,
+                // The exact build this stage triggered: lastCompleted() may be a run of
+                // the same job started by an NF pipeline.
+                selector: specific("${downstreamBuilds[env.STAGE_NAME]}"),
+                target: reportDir,
+                optional: true)
+  def archivePatterns = filterPattern.split(',').collect { "${reportDir}/${it.trim()}" }.join(', ')
+  archiveArtifacts artifacts: archivePatterns, allowEmptyArchive: true
+}
+
+// URL of the HTML report just archived under reportDir by this stage's `always` post block, if any.
+def latestArchivedReportLink(String reportDir, String filterPattern = '*_results_oai_cn5g*.html') {
+  def reportFiles = sh(returnStdout: true, script: "ls ${reportDir}/${filterPattern} 2>/dev/null || true").trim()
+  if (!reportFiles) {
+    return null
+  }
+  def firstReport = reportFiles.split('\n')[0]
+  return "${env.BUILD_URL}artifact/${firstReport}"
+}
