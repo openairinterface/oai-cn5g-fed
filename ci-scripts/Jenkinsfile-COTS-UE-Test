@@ -259,7 +259,6 @@ pipeline {
           sleep 2
           // Deploying now
           dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
-            sh "sudo b2xx_fx3_utils --reset-device"
             sh "sudo uhd_find_devices > /dev/null 2>&1 || true"
             sleep 5
             sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
