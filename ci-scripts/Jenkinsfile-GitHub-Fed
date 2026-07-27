@@ -24,6 +24,7 @@ import groovy.transform.Field
 @Field def mrValidationWarning   = ''  // Signed-off-by/merge guideline message, for the PR comment
 @Field def preBuildFailureMessage = '' // pre-build stage failure note, for the PR comment
 @Field def downstreamUrls     = [:]    // stage name -> downstream job build URL, for its GitHub check link
+@Field def downstreamBuilds   = [:]    // stage name -> downstream build number, to copy that build's report
 
 // A stage runs only when its flag is true. Each flag
 // defaults to true and can be disabled from the job via the matching do<Test>
@@ -569,6 +570,7 @@ def runTestJob(String jobName, String failureLabel, boolean passSource = true) {
   }
   def localStatus = build job: jobName, parameters: jobParams, propagate: false
   downstreamUrls[env.STAGE_NAME] = localStatus.absoluteUrl
+  downstreamBuilds[env.STAGE_NAME] = localStatus.number
   if (!localStatus.resultIsBetterOrEqualTo('SUCCESS')) {
     error "${failureLabel} Failed"
   }
@@ -578,7 +580,9 @@ def runTestJob(String jobName, String failureLabel, boolean passSource = true) {
 def collectTestReport(String jobName, String reportDir, String filterPattern) {
   copyArtifacts(projectName: jobName,
                 filter: filterPattern,
-                selector: lastCompleted(),
+                // The exact build this stage triggered: lastCompleted() may be a run of
+                // the same job started by an NF pipeline.
+                selector: specific("${downstreamBuilds[env.STAGE_NAME]}"),
                 target: reportDir,
                 optional: true)
   def archivePatterns = filterPattern.split(',').collect { "${reportDir}/${it.trim()}" }.join(', ')
