@@ -192,9 +192,9 @@ def nrRegistrationCheck(nfName):
 def upfPfcpCheck():
     cwd = os.getcwd()
     count = 0
-    if not os.path.isfile(os.path.join(cwd, f'archives/upf_pcfp_heartbeat.log')):
-        return generate_list_row(f'could not open archives/upf_pcfp_heartbeat.log', 'question-sign')
-    with open(os.path.join(cwd, f'archives/upf_pcfp_heartbeat.log'), 'r') as pfcpLog:
+    if not os.path.isfile(os.path.join(cwd, f'archives/upf_pfcp_heartbeat.log')):
+        return generate_list_row(f'could not open archives/upf_pfcp_heartbeat.log', 'question-sign')
+    with open(os.path.join(cwd, f'archives/upf_pfcp_heartbeat.log'), 'r') as pfcpLog:
         for line in pfcpLog:
            if re.search('Received SX HEARTBEAT REQUEST', line) is not None:
                count += 1
