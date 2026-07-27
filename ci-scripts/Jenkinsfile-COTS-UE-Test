@@ -105,6 +105,7 @@ pipeline {
             sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
             sh "git checkout -f ${params.GIT_COMMIT_SHA}"
           }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
           sh "git submodule update --init --recursive ci-scripts/common"
           sh "mkdir -p archives"
           withCredentials([
