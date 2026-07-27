@@ -267,8 +267,17 @@ pipeline {
           sleep 2
           // Deploying now
           dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
-            sh "sudo b2xx_fx3_utils --reset-device"
-            sh "sudo uhd_find_devices > /dev/null 2>&1 || true"
+            // Reset the B210 out of a stale USB state, up to 3 times.
+            def uhdResets = 0
+            while (sh(script: "sudo uhd_find_devices > /dev/null 2>&1", returnStatus: true) != 0) {
+              if (uhdResets == 3) {
+                error "No UHD device found after ${uhdResets} B2xx resets"
+              }
+              uhdResets++
+              echo "No UHD device detected -- resetting the B2xx (${uhdResets}/3)"
+              sh "sudo b2xx_fx3_utils --reset-device || true"
+              sleep 5
+            }
             sleep 5
             sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
             if (mountedFileAsMountedDotConf) {
