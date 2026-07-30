@@ -80,6 +80,9 @@ pipeline {
         }
       }
       post {
+        success {
+          script { notifyStageStatus('SUCCESS', 'Passed') }
+        }
         failure {
           script {
             preBuildFailureMessage = "Invalid or missing parameters, or internal CI error"
@@ -132,6 +135,9 @@ pipeline {
         }
       }
       post {
+        success {
+          script { notifyStageStatus('SUCCESS', 'Passed') }
+        }
         failure {
           script {
             preBuildFailureMessage = "Git operation failure or internal CI error"
@@ -182,7 +188,6 @@ pipeline {
               preBuildFailureMessage = "Git operation failure or internal CI error"
               echo preBuildFailureMessage
             }
-            recordFailure()
           }
         }
       }
