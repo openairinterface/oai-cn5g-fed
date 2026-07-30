@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
+
 # Ethernet PDU Sessions with OAI 5G Core Network
 
 This tutorial explains how to configure and use Ethernet PDU sessions with the OAI 5G Core network. Ethernet PDU sessions allow transporting Ethernet frames between UE and Data Network (DN) through the 5G core, enabling various use cases like enterprise networking and industrial IoT applications.
