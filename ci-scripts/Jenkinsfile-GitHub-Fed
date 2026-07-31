@@ -438,6 +438,7 @@ pipeline {
   post {
     always {
       echo "Build finished: ${currentBuild.currentResult}"
+      script { emitSkippedTestStatuses() }
     }
     success {
       script {
@@ -562,6 +563,33 @@ def notifyGitHub(String status, String description, String context, String targe
 // Per-stage check (context = stage name); test stages link to their downstream build, else this one.
 def notifyStageStatus(String status, String description) {
   notifyGitHub(status, description, env.STAGE_NAME, downstreamUrls[env.STAGE_NAME])
+}
+
+// A skipped stage posts no status, so an earlier run's result on the same commit would stay
+// as the reported one. SUCCESS is the only non-blocking state the commit status API has.
+def emitSkippedTestStatuses() {
+  if (cfg == null) {
+    return
+  }
+  def testStageContexts = [
+    hasTutorialsTest:       'Testing the Tutorials',
+    hasCotsUeTest:          'Testing with COTS-UE',
+    hasLoadTest:            'Load Testing',
+    hasEbpfTutorialsTest:   'Testing the Tutorials with eBPF',
+    hasRobotTest:           'Robot Test',
+    hasRobotNorthBoundTest: 'Robot NorthBound Test',
+  ]
+
+  for (entry in testStageContexts) {
+    if (!runFullTestSuite || !cfg[entry.key]) {
+      // Never let a status call throwing from post{always} turn a passing build red.
+      try {
+        notifyGitHub('SUCCESS', 'Skipped', entry.value)
+      } catch (e) {
+        echo "Could not publish skipped status for '${entry.value}': ${e.message}"
+      }
+    }
+  }
 }
 
 // Trigger a downstream test job; fails the stage on a bad result. Push the fed commit
