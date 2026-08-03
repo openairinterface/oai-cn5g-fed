@@ -74,34 +74,34 @@ pipeline {
             if (cause.toString().contains('UpstreamCause')) {
               upstreamEvent = true
             }
-            if (cause.toString().contains('OAI-CN5G-NRF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NRF')) {
               upstreamJobs[NRF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AMF')) {
               upstreamJobs[AMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-SMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-SMF')) {
               upstreamJobs[SMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UPF')) {
               upstreamJobs[UPF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AUSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AUSF')) {
               upstreamJobs[AUSF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDM')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDM')) {
               upstreamJobs[UDM] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDR')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDR')) {
               upstreamJobs[UDR] = true
             }
-            if (cause.toString().contains('OAI-CN5G-NSSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NSSF')) {
               upstreamJobs[NSSF] = true
             }
             if (cause.toString().contains('OAI-CN5G-UPF-VPP')) {
               upstreamJobs[UPF_VPP] = true
             }
-            if (cause.toString().contains('OAI-CN5G-PCF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-PCF')) {
               upstreamJobs[PCF] = true
             }
             if (cause.toString().contains('OAI-CN5G-FED')) {

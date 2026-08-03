@@ -85,7 +85,7 @@ pipeline {
             if (cause.toString().contains('UpstreamCause')) {
               upstreamEvent = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UPF')) {
               upstreamJobs[UPF] = true
             }
             if (cause.toString().contains('OAI-CN5G-FED')) {
