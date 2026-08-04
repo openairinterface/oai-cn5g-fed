@@ -277,8 +277,30 @@ git push origin feature-branch --force-with-lease
 
 ## Synchronizing all NFs
 
-We are using nested Git submodules for network functions in this repository, you can also use `scripts/syncComponents.sh`
-script to fetch all the network functions.
+You can use `scripts/syncComponents.sh` to synchronize the network functions
+into `component/`.
+
+```bash
+./scripts/syncComponents.sh                      # every NF on develop by default
+./scripts/syncComponents.sh --branch v2.2.1      # every NF on tag v2.2.1
+./scripts/syncComponents.sh --smf-branch my-fix  # SMF on my-fix, the rest on develop
+```
+
+The script stops when it finds local changes or untracked files in a component,
+and names the concerned directories.
+Commit or stash your work, or pass `--force` to discard it:
+
+```bash
+./scripts/syncComponents.sh --force
+```
+
+Use the `--verbose` option to display detailed execution information, and `--help` to list all options:
+
+```bash
+./scripts/syncComponents.sh --verbose
+```
+
+To synchronize the common submodules like `ci-scripts/common`:
 
 ```bash
 git submodule deinit --force .
@@ -305,7 +327,7 @@ Then retry:
 git submodule update --init --recursive
 ```
 
-Use the `--verbose` option to display detailed execution information:
+The `--verbose` option also works for the submodule commands:
 
 ```bash
 git submodule update --init --recursive --verbose

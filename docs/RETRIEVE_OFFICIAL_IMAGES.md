@@ -98,25 +98,24 @@ $ cd oai-cn5g-fed
 # If you forgot to clone directly to the latest release tag
 $ git checkout -f v2.2.1
 
-# Synchronize all git submodules
-$ ./scripts/syncComponents.sh
+# Synchronize all the network functions
+# By default, the script synchronizes on develop branch
+$ ./scripts/syncComponents.sh --branch v2.2.1
 ---------------------------------------------------------
-OAI-NRF     component branch : develop
-OAI-AMF     component branch : develop
-OAI-SMF     component branch : develop
-OAI-UPF     component branch : develop
-OAI-AUSF    component branch : develop
-OAI-UDM     component branch : develop
-OAI-UDR     component branch : develop
-OAI-UPF-VPP component branch : develop
-OAI-NSSF    component branch : develop
-OAI-NEF     component branch : develop
-OAI-PCF     component branch : develop
-OAI-LMF     component branch : develop
+Common branch (unless overridden) : v2.2.1
+Components synchronized into      : component/
+OAI-CN5G-PCF     component branch : v2.2.1
+OAI-CN5G-NRF     component branch : v2.2.1
+OAI-CN5G-SMF     component branch : v2.2.1
+OAI-CN5G-UPF     component branch : v2.2.1
+OAI-CN5G-NSSF    component branch : v2.2.1
+OAI-CN5G-LMF     component branch : v2.2.1
+OAI-CN5G-AMF     component branch : v2.2.1
+OAI-CN5G-NEF     component branch : v2.2.1
+OAI-CN5G-UDM     component branch : v2.2.1
+OAI-CN5G-UDR     component branch : v2.2.1
+OAI-CN5G-AUSF    component branch : v2.2.1
 ---------------------------------------------------------
-git submodule deinit --all --force
-git submodule init
-git submodule update
 ```
 
 ## If you are using the `develop` images ##
