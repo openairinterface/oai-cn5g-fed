@@ -13,6 +13,17 @@ from image_tags import image_tags
 
 GENERATED_DIR = "archives/robot_framework"
 
+# Healthcheck polling interval forced onto every generated docker-compose file.
+# See speed_up_healthchecks().
+HEALTHCHECK_INTERVAL = "2s"
+
+# Grace period given to a container to shut down on SIGTERM before it is killed.
+# The CN NFs shut down cleanly well within this (the teardown asserts on their
+# "Bye." log line), so it stays generous. Components that do not handle SIGTERM
+# at all should pass a much shorter timeout rather than burn the full grace period
+# on every test.
+STOP_TIMEOUT = 30
+
 logging.basicConfig(
     level=logging.DEBUG,
     stream=sys.stdout,
@@ -76,6 +87,28 @@ def __docker_subprocess(args):
         raise e
 
 
+def speed_up_healthchecks(services, skip=()):
+    """
+    Lower the healthcheck polling interval on a generated docker-compose structure.
+
+    Docker only runs the first health probe once `interval` has elapsed, so the 10s
+    default baked into the NF images puts a hard 10s floor under every
+    "wait until healthy" in the test suites, no matter how fast a container actually
+    comes up.
+
+    Only `interval` is set: leaving `test` out means the healthcheck defined by the
+    image (or by the template) is kept and just polled more often.
+
+    :param services: the "services" mapping of a parsed docker-compose file
+    :param skip: service names to leave untouched
+    :return:
+    """
+    for name, service in services.items():
+        if name in skip:
+            continue
+        service.setdefault("healthcheck", {})["interval"] = HEALTHCHECK_INTERVAL
+
+
 def start_docker_compose(path, container=None):
     logging.info(f"Docker-compose file: {path}")
     if container:
@@ -84,12 +117,12 @@ def start_docker_compose(path, container=None):
         __docker_subprocess(["docker", "compose", "-f", path, "up", "-d"])
 
 
-def stop_docker_compose(path):
-    __docker_subprocess(["docker", "compose", "-f", path, "stop", "-t", "30"])
+def stop_docker_compose(path, timeout=STOP_TIMEOUT):
+    __docker_subprocess(["docker", "compose", "-f", path, "stop", "-t", str(timeout)])
 
 
-def down_docker_compose(path):
-    __docker_subprocess(["docker", "compose", "-f", path, "down", "-t", "30", "-v"])
+def down_docker_compose(path, timeout=STOP_TIMEOUT):
+    __docker_subprocess(["docker", "compose", "-f", path, "down", "-t", str(timeout), "-v"])
 
 
 def get_docker_compose_services(docker_compose_file):

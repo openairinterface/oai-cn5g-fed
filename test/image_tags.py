@@ -15,7 +15,7 @@ image_tags = {
     "oai-pcf": "oaisoftwarealliance/oai-pcf:develop",
     "vpp-upf": "oaisoftwarealliance/oai-upf-vpp:develop",
     "gnbsim": "gnbsim:latest",
-    "oai-gnb": "oaisoftwarealliance/oai-gnb:2025.w46",
-    "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:2025.w46",
+    "oai-gnb": "oaisoftwarealliance/oai-gnb:develop",
+    "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:develop",
     "mobsim": "carot0/mobsim:latest"
 }

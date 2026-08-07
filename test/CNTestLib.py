@@ -90,6 +90,9 @@ class CNTestLib:
                 if get_image_tag(service):
                     nf["image"] = get_image_tag(service)
 
+            # trace_dummy is a one-shot container and is excluded from the health check
+            speed_up_healthchecks(parsed["services"], skip=(TRACE_DUMMY_CONTAINER_NAME,))
+
             with open(self.docker_compose_path, "w") as out_file:
                 yaml.dump(parsed, out_file)
         logging.info(f"Successfully prepared scenario for TC {tc_name}")
