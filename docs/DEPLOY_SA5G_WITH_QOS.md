@@ -464,9 +464,31 @@ The throughput should be limited to approximately 10 Mbps, as configured in the 
 
 These tests demonstrate that the UPF correctly enforces different QoS parameters for different traffic flows within a single PDU session based on port-based traffic filtering rules.
 
-## 8. Testing Closed Loop QoS modification
+## 8. Testing QoS on Demand (N5 AF-Initiated QoS)
 
-The section tests enforcement of QoS modification request in the closed loop scenario. In the scenario, the Application Function (AF) sends a QoS modification request for a particular UE PDU session. The PCF and SMF process the request and then the UPF installs the new QoS rules (AF -> PCF -> SMF -> UPF).
+Sections 3-7 configured **static QoS**: the PCC rules and QoS profiles were provisioned ahead of time in the subscriber database and PCF policy files, and applied automatically as soon as the UE established its PDU session. There was no need for any external party to ask for it at runtime.
+
+**QoS on Demand** is the opposite: an Application Function (AF) — typically a server on the data network that knows it is about to start a latency- or bandwidth-sensitive flow (e.g. a video call) — asks the network for QoS treatment *while the session is already running*, for a specific traffic flow it identifies by IP address and port. This is done over the **N5 interface**, using the `Npcf_PolicyAuthorization` service (3GPP TS 29.514): the AF creates an "AF session with QoS" (an *app session*) against the PCF, which derives a QoS profile and PCC rule from it — either from an operator-preconfigured `qosReference` or from bandwidth/latency values the AF supplies directly — and pushes the result down to the SMF (N7), which in turn installs it on the UPF (N4). This request/response loop is why the scenario is also called "closed loop QoS":
+
+```
+   AF                        PCF                        SMF                        UPF
+   |                          |                          |                          |
+   | N5: POST app-session     |                          |                          |
+   |------------------------->|                          |                          |
+   |                          | derive QosData + PCC rule|                          |
+   |                          | from AF service info     |                          |
+   |                          |                          |                          |
+   |                          | N7: SM Policy            |                          |
+   |                          | UpdateNotify             |                          |
+   |                          |------------------------->|                          |
+   |                          |                          | N4: install QER/PDR     |
+   |                          |                          |------------------------->|
+   |                          |                          |                          |
+   |       201 Created        |                          |                          |
+   |<-------------------------|                          |                          |
+```
+
+The app session can then be read (`GET`), changed in place (`PATCH`, modifying/adding/removing individual media components), and eventually terminated (`DELETE`) — an application-driven lifecycle layered on top of the PDU session, rather than a fixed profile picked at attach time.
 
 ### 8.1. Test new QoS profile from AF
 
@@ -483,18 +505,38 @@ docker-compose-host $: sleep 10
 docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
 ```
 
-Send a QoS profile from the AF based on the UE IPv4 address.
+Send a QoS profile from the AF based on the UE IPv4 address. The `-i` flag prints the response headers so we can capture the `Location` header, which contains the `appSessionId` the PCF assigned to this app session — every following request addresses that same app session:
 
 ``` shell
-docker-compose-host $: docker exec oai-af curl \
+docker-compose-host $: docker exec oai-af curl -i \
   -H 'Content-Type: application/json' \
   -X POST \
   -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' \
- --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions
+ --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
+docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r')
+docker-compose-host $: echo "app session id: $APP_SESSION_ID"
 ```
 
+The PCF answers `201 Created`, and the SMF/UPF now enforce a 5 Mbps downlink limit on port 5000 (the `OAI_QOS_GBR_VIDEO_1` operator-preconfigured `qosReference`) for this UE — even though nothing about port 5000 was ever in the static PCC rules from Section 4.
 
-Start an iperf3 server on the UE listening on port 5000 (the port targeted by the AF flow description):
+To GET the app session and confirm what the PCF stored:
+
+```
+docker exec oai-af curl -i \
+  --http2-prior-knowledge \
+  http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+```
+
+PATCH the app session to change it in place — the request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch, so reusing an existing `medCompN` **modifies** that component, and a new `medCompN` **adds** one alongside it (setting `fStatus: "REMOVED"` on a component **removes** it). Here we add a second media component (medCompN 2) for traffic on port 8000:
+
+```
+docker exec oai-af curl -i -X PATCH \
+  -H 'Content-Type: application/merge-patch+json' \
+  -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "marBwDl": "5 Mbps", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fStatus": "ENABLED", "fDescs": [ "permit out ip from any to 12.1.1.10 8000" ] } } } } }}' \
+  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+```
+
+Start an iperf3 server on the UE listening on port 5000 (the port targeted by the original AF flow description):
 
 ``` shell
 docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
@@ -535,6 +577,34 @@ iperf Done.
 
 Notice how the throughput stays close to but below 5 Mbps, which is the limit requested by the AF (`OAI_QOS_GBR_VIDEO_1`) for traffic on port 5000.
 
+### 8.2. Remove a QoS flow and terminate the app session
+
+To finish the lifecycle, remove the media component added in 8.1 by setting its `fStatus` to `"REMOVED"`, then terminate the whole app session:
+
+```
+docker exec oai-af curl -i -X PATCH \
+  -H 'Content-Type: application/merge-patch+json' \
+  -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "fStatus": "REMOVED" } } } }' \
+  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+
+docker exec oai-af curl -i -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"events": [{"event": "ACCESS_TYPE_CHANGE"}]}' \
+  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID/delete
+```
+
+The `DELETE` request returns `204 No Content` and removes the AF-derived QER/PCC rule from the SMF and UPF — a subsequent `GET` on the same `$APP_SESSION_ID` now returns `404 Not Found`, and traffic on port 5000 falls back to whatever static PCC rule (or the default flow) would otherwise apply.
+
+### 8.3. Going further: the full N5 lifecycle test
+
+This tutorial only walks through create → modify/add → remove → delete manually to show the mechanics. The `oai-cn5g-pcf` repository ships an automated test, `ci-scripts/tests/pa_app_session_tests.py`, that exercises the same `Npcf_PolicyAuthorization` app-sessions API end-to-end against this same demo topology, including a scenario this tutorial doesn't cover — a **rejected** PATCH (requesting uplink GBR with no matching uplink packet filter, which the PCF must reject with `403 INVALID_SERVICE_INFORMATION`). Against a running deployment from Section 6:
+
+```console
+docker-compose-host $: AF_CONTAINER=oai-af ./pa_app_session_tests.py lifecycle
+```
+
+This runs create → get → patch (modify/add/remove) → patch (reject) → delete → get (expect 404) as one sequence and reports a single pass/fail count. The individual `create`/`get`/`patch --scenario {modify,add,remove,reject}`/`delete` subcommands are also available if you want to drive one step at a time — see the script's `--help` for options.
+
 ## 9. Log Collection
 
 <!---
@@ -562,6 +632,7 @@ docker-compose-host $: docker logs oai-udr > /tmp/oai/qos-testing/udr.log 2>&1
 docker-compose-host $: docker logs oai-udm > /tmp/oai/qos-testing/udm.log 2>&1
 docker-compose-host $: docker logs oai-ausf > /tmp/oai/qos-testing/ausf.log 2>&1
 docker-compose-host $: docker logs oai-pcf > /tmp/oai/qos-testing/pcf.log 2>&1
+docker-compose-host $: docker logs oai-af > /tmp/oai/qos-testing/af.log 2>&1
 docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/qos-testing/ext-dn.log 2>&1
 docker-compose-host $: docker logs ueransim-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
 docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
@@ -629,4 +700,7 @@ Removing network demo-oai-public-net
 You have successfully configured and tested QoS enforcement in the OAI 5G Core network. This tutorial demonstrated how to:
 
 1. Configure subscriber QoS profiles in the database
-2. Set up PC
+2. Set up PCF policy files (QoS data, PCC rules, policy decisions) to enforce **static QoS**, applied automatically when a UE's PDU session comes up
+3. Enable QoS enforcement on the UPF's eBPF datapath and verify per-UE and per-flow bitrate limits with iperf3
+4. Drive **QoS on Demand** over the N5 interface: have an AF create, inspect, patch (modify/add/remove), and terminate an app session at runtime via `Npcf_PolicyAuthorization`, and see the PCF push the resulting QoS down to the SMF and UPF
+5. Point to the automated `pa_app_session_tests.py` lifecycle test in `oai-cn5g-pcf` for broader N5 coverage, including the rejected-PATCH error case
