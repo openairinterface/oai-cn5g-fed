@@ -35,6 +35,8 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 For this demo, all the images which use the `v1.5.0` tag have been retrieved from the official `docker-hub` (see also
 [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
 

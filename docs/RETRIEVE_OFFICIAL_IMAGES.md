@@ -14,19 +14,17 @@
   </tr>
 </table>
 
-# This page is only valid for a `Ubuntu` host.
+# Retrieve Official Images
 
-If you are using any other distributions, please refer to [Build your own images](./BUILD_IMAGES.md).
+The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
 
-If you want to use a specific branch or commit, please refer to [Build your own images](./BUILD_IMAGES.md).
+Any Docker or Podman version available for those host releases should be fine. The examples below use Docker; Podman users can replace `docker` with `podman`.
 
-# Pulling the images from Docker Hub #
+If you want to use a specific branch or commit instead of an official image tag, refer to [Build your own images](./BUILD_IMAGES.md).
+
+# Pulling Images From Docker Hub #
 
 The images are hosted under the oai account `oaisoftwarealliance`.
-
-**All images that are currently pushed to Docker-Hub have an `Ubuntu-22.04` base image.**
-
-**But they should be working on any recent Ubuntu host (such as `20.04`) or newer versions (`23.xx1).**
 
 Once again you may need to log on [docker-hub](https://hub.docker.com/) if your organization has the reached pulling limit as `anonymous`.
 
@@ -70,26 +68,26 @@ $ docker logout
 
 We will push new versions when new features are validated.
 
-# Synchronizing the tutorials #
+# Synchronizing The Tutorials #
 
 **CAUTION: PLEASE READ THIS SECTION VERY CAREFULLY!**
 
 This repository only has tutorials and Continuous Integration scripts.
 
-| CNF Name    | Branch Name | Tag      | Ubuntu 22.04 | RHEL9 (UBI9)    |
-| ----------- | ----------- | -------- | ------------ | ----------------|
-| FED REPO    | N/A         | `v2.2.1` |              |                 |
-| AMF         | `develop`    | `v2.2.1` | X            | X               |
-| SMF         | `develop`    | `v2.2.1` | X            | X               |
-| NRF         | `develop`    | `v2.2.1` | X            | X               |
-| UPF         | `develop`    | `v2.2.1` | X            | X               |
-| UDR         | `develop`    | `v2.2.1` | X            | X               |
-| UDM         | `develop`    | `v2.2.1` | X            | X               |
-| AUSF        | `develop`    | `v2.2.1` | X            | X               |
-| UPF-VPP     | `develop`    | `v2.2.1` | X            | X               |
-| NSSF        | `develop`    | `v2.2.1` | X            | X               |
-| LMF         | `develop`    | `v2.2.1` | X            | X               |
-| PCF         | `develop`    | `v2.2.1` | X            | X               |
+| CNF Name    | Branch Name | Tag      | Official image base |
+| ----------- | ----------- | -------- | ------------------- |
+| FED REPO    | N/A         | `v2.2.1` | N/A                 |
+| AMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| SMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| NRF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| UPF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| UDR         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| UDM         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| AUSF        | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| UPF-VPP     | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| NSSF        | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| LMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| PCF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
 
 ```bash
 # Clone directly on the latest release tag

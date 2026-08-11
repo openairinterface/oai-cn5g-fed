@@ -14,6 +14,8 @@
   </tr>
 </table>
 
+# Helm Chart Deployment
+
 OAI 5G core network have different network functions which can be used individually or deployed all together in different combination on a production grade Kubernetes cluster like Openshift or a Vanilla Kubernetes cluster.
 
 ![Helm Chart Deployment](./images/helm-chart.png)
@@ -25,9 +27,22 @@ OAI 5G core network have different network functions which can be used individua
 
 **NOTE**: This tutorial will move in Orchestration repository starting next release.
 
+## At A Glance
+
+| Item | Value |
+| ---- | ----- |
+| Goal | Deploy OAI 5G Core and RAN network functions with Helm charts |
+| Main repository | [openairinterface/orchestration](https://github.com/openairinterface/orchestration/tree/main) |
+| Working directory | `charts/` in the orchestration repository |
+| Supported hosts for CN5G images | Ubuntu 22.04-26.04, Fedora 39-43, RHEL 8-10 |
+
+The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for the supported host releases should be fine.
+
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
+
+Use the document outline or your Markdown viewer to navigate between sections.
 
 
 ### Pre-requisite
@@ -50,7 +65,7 @@ The helm charts can be used on any production grade kubernetes cluster or even v
 | Openshift Client Version        | 4.16+                                   |
 | Kubernetes Version              | Kubernetes Version: v1.31               |
 | helm                            | v3.17                                   |
-| Base images of Network functions| Ubuntu 22.04/UBI 9(RHEL 9)              |
+| Base images of Network functions| Ubuntu 22.04 official images            |
 
 Each NF has its independent helm-chart and apart from that there are parent helm-charts for below scenarios:
 
@@ -113,9 +128,9 @@ case1  case2  case3
 
 All the OAI core network charts are present in `oai-5g-core` folder, there you can find charts of individual network functions and for the above described three different deployment settings.
 
-1. Folder `oai-5g-mini` is for [minimalist deployment](../oai-5g-core/oai-5g-mini/README.md)
-2. Folder `oai-5g-basic` is for [basic deployment](../oai-5g-core/oai-5g-basic/README.md)
-3. Folder `oai-5g-advance` is for [advance deployment](../oai-5g-core/oai-5g-advance/README.md)
+1. Folder `oai-5g-mini` is for [minimalist deployment](https://github.com/openairinterface/orchestration/tree/main/charts/oai-5g-core/oai-5g-mini)
+2. Folder `oai-5g-basic` is for [basic deployment](https://github.com/openairinterface/orchestration/tree/main/charts/oai-5g-core/oai-5g-basic)
+3. Folder `oai-5g-advance` is for [advance deployment](https://github.com/openairinterface/orchestration/tree/main/charts/oai-5g-core/oai-5g-advance)
 
 These charts are configured keeping in mind 5G service based architecture, if you want to deploy using reference based architecture then you need to make certain changes.
 
@@ -248,9 +263,9 @@ When pulling images from docker hub you have several choices either to use image
 
 ### 3.3 Configuring Helm Chart Parameters
 
-In the [config.yaml](../oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
+In the [config.yaml](https://github.com/openairinterface/orchestration/blob/main/charts/oai-5g-core/oai-5g-basic/config.yaml) of oai-5g-basic helm charts you will see the configurable parameters for all the network functions check, the PLMN, DNN and subscriber information in mysql database
 
-For basic and advance deployment check the database [oai_db-basic.sql](../oai-5g-core/mysql/initialization/oai_db-basic.sql)
+For basic and advance deployment check the database [oai_db-basic.sql](https://github.com/openairinterface/orchestration/blob/main/charts/oai-5g-core/mysql/initialization/oai_db-basic.sql)
 
 A new subscriber entry can be added directly in the sql file or it can be added once the core network is already deployed.
 
@@ -498,7 +513,7 @@ rtt min/avg/max/mdev = 22.375/24.072/27.031/1.833 ms
 ## incase above doesn't work try with 8.8.8.8 instead of dns. If that works then probably you have't configure dns properly in SMF.
 ```
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case1)
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](https://github.com/openairinterface/orchestration/tree/main/charts/e2e_scenarios/case1)
 
 ```bash
 # to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift
@@ -660,7 +675,7 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected.
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case2)
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](https://github.com/openairinterface/orchestration/tree/main/charts/e2e_scenarios/case2)
 
 ```bash
 # to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift
@@ -864,7 +879,7 @@ Defaulted container "amf" out of: amf, init (init)
 
 After this follow the same procedure to start oai-nr-ue and ping to see if the UE is connected.
 
-**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](../e2e_scenarios/case3)
+**NOTE**: You can also deploy the Core and RAN network functions directly via the parent [helm-chart](https://github.com/openairinterface/orchestration/tree/main/charts/e2e_scenarios/case3)
 
 ```bash
 # to set the Kubernetes distribution --set global.kubernetesDistribution=Openshift

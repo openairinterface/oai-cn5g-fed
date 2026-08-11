@@ -14,6 +14,7 @@
   </tr>
 </table>
 
+# Deployment With UERANSIM
 
 ![SA Demo](./images/5gcn_vpp_upf_ueransim.png)
 
@@ -21,15 +22,17 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
+**Supported hosts**: Ubuntu 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10. The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for those host releases should be fine.
+
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 
 **TABLE OF CONTENTS**
 
-1.  Pre-requisites
+1.  [Pre-requisites](#1-pre-requisites)
 2.  [Building Container Images](./BUILD_IMAGES.md) or [Retrieving Container Images](./RETRIEVE_OFFICIAL_IMAGES.md)
 3.  Configuring Host Machines
 4.  Configuring OAI 5G Core Network Functions
-5.  Deploying OAI 5G Core Network
+5.  [Deploying OAI 5G Core Network](#5-deploying-oai-5g-core-network)
 6.  [Getting a `ueransim` docker image](#6-getting-a-ueransim-docker-image)
 7.  [Executing `ueransim` Scenario](#7-executing-the-ueransim-scenario)
 8.  [Analysing Scenario Results](#8-analysing-the-scenario-results)
@@ -52,6 +55,12 @@ Let's begin !!
 we did for gnb-host.
 * Before we proceed further for end-to-end SA5G test, make sure you have healthy docker services for OAI cn5g
 
+## 1. Pre-requisites
+
+Complete the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md), then retrieve or build the images with [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md) or [Build images](./BUILD_IMAGES.md).
+
+All commands in this tutorial are expected to run from the `oai-cn5g-fed/docker-compose` folder. Podman users can use their distribution's Compose-compatible Podman command where this tutorial uses Docker Compose.
+
 #### NOTE: ####
 UERANSIM currently does not support integraty and ciphering algorithm NIA0, NEA0 repectively. Hence we have to update AMF config in the docker-compose as below -
 
@@ -61,6 +70,8 @@ UERANSIM currently does not support integraty and ciphering algorithm NIA0, NEA0
             - INT_ALGO_LIST=["NIA1" , "NIA2"]
             - CIPH_ALGO_LIST=["NEA1" , "NEA2"]
 ```
+
+## 5. Deploying OAI 5G Core Network
 
 Then we follow deployment procedure as usual.
 ```bash
@@ -85,7 +96,7 @@ CONTAINER ID   IMAGE                COMMAND                  CREATED          ST
 4349e8808902   oai-smf:latest       "/bin/bash /openair-…"   49 seconds ago   Up 48 seconds (healthy)   80/tcp, 9090/tcp, 8805/udp     oai-smf
 62e774768482   oai-amf:latest       "/bin/bash /openair-…"   49 seconds ago   Up 48 seconds (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
 0302e6a3d2b3   oai-ausf:latest      "/bin/bash /openair-…"   50 seconds ago   Up 49 seconds (healthy)   80/tcp                         oai-ausf
-fb3249a5ade7   ubuntu:bionic        "/bin/bash -c ' apt …"   51 seconds ago   Up 49 seconds                                            oai-ext-dn
+fb3249a5ade7   ubuntu:jammy         "/bin/bash -c ' apt …"   51 seconds ago   Up 49 seconds                                            oai-ext-dn
 4f114039c218   oai-udm:latest       "/bin/bash /openair-…"   51 seconds ago   Up 49 seconds (healthy)   80/tcp                         oai-udm
 c0838aff8796   oai-udr:latest       "/bin/bash /openair-…"   51 seconds ago   Up 50 seconds (healthy)   80/tcp                         oai-udr
 99ab1b23862c   oai-upf-vpp:latest   "/openair-upf/bin/en…"   51 seconds ago   Up 50 seconds (healthy)   2152/udp, 8085/udp             vpp-upf
@@ -130,7 +141,7 @@ cb206b9b0a25   ueransim:latest      "/ueransim/bin/entry…"   14 seconds ago   
 4349e8808902   oai-smf:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp, 9090/tcp, 8805/udp     oai-smf
 62e774768482   oai-amf:develop      "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
 0302e6a3d2b3   oai-ausf:latest      "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-ausf
-fb3249a5ade7   ubuntu:bionic        "/bin/bash -c ' apt …"   About a minute ago   Up About a minute                                            oai-ext-dn
+fb3249a5ade7   ubuntu:jammy         "/bin/bash -c ' apt …"   About a minute ago   Up About a minute                                            oai-ext-dn
 4f114039c218   oai-udm:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-udm
 c0838aff8796   oai-udr:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-udr
 99ab1b23862c   oai-upf-vpp:latest   "/openair-upf/bin/en…"   About a minute ago   Up About a minute (healthy)   2152/udp, 8085/udp             vpp-upf

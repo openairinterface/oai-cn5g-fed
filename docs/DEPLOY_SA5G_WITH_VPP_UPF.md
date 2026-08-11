@@ -23,11 +23,13 @@
 **Note**: 
 
 1. In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
-2. We are not maintaining VPP-UPF any more
+2. **We are not maintaining VPP-UPF any more**
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
+
+Use the document outline or your Markdown viewer to navigate between sections.
 
 * In this demo the image tags and commits which were used are listed below, follow [Building images](./BUILD_IMAGES.md) to build images with the tags below.
 
@@ -487,7 +489,7 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 - Generally, in a COTS UE two PDN sessions are created by default so configure the IMS in SMF properly.
 - In case you want to deploy debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 - It is not necessary to use [core-network.py](../docker-compose/core-network.py) Python script, it is possible to directly deploy using `docker-compose` command
-- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, then you have to use docker-compose [docker-compose-basic-vpp-nrf-http2.yaml](../docker-compose/docker-compose-basic-vpp-nrf-http2.yaml).
+- In case you are interested in using HTTP V2 for SBI between the network functions instead of HTTP V1, configure the HTTP version as described in [Configuration](./CONFIGURATION.md#http-version).
 ``` console
 #To start the containers
 docker-compose-host $: docker-compose -f <file-name> up -d

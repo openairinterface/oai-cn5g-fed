@@ -17,6 +17,9 @@
 
 ![SA Demo](./images/5gcn_vpp_upf_omec_gnbsim.png)
 
+Note: the diagram above shows the VPP-UPF variant. This tutorial now uses the
+`basic` deployment, which is the same call flow with `oai-upf` and a single network.
+
 **Reading time: ~ 30mins**
 
 **Tutorial replication time: ~ 1h30mins**
@@ -49,15 +52,15 @@ procedures :
     1. Registration                              -> Validated with OAI-5GCN
     2. UE Initiated PDU Session Establishment    -> Validated with OAI-5GCN
     3. UE Initiated De-registration              -> Validated with OAI-5GCN
-    4. AN Release                                -> Not validated with OAI-5GCN
-    5. UE Initiated Service Request              -> Not validated with OAI-5GCN
-    6. N/W triggered PDU Session Release         -> Not validated with OAI-5GCN
-    7. UE Requested PDU Session Release          -> Not validated with OAI-5GCN
-    8. N/W triggered UE Deregistration           -> Not validated with OAI-5GCN
+    4. AN Release                                -> Validated with OAI-5GCN
+    5. UE Initiated Service Request              -> Validated with OAI-5GCN
+    6. N/W triggered PDU Session Release         -> Not supported by OAI-5GCN
+    7. UE Requested PDU Session Release          -> Validated with OAI-5GCN
+    8. N/W triggered UE Deregistration           -> Not supported by OAI-5GCN
 
 Let's begin !!
 
-* Steps 1 to 5 are similar as previous [tutorial on vpp-upf](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network). Please follow these steps to deploy OAI 5G core network components.
+* Steps 1 to 5 are the same as in the [`basic` deployment tutorial](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md). Please follow those steps to deploy the OAI 5G core network components.
 * We deploy omec-gnbsim docker service on same host as of core network, so there is no need to create additional route as
 we did for gnb-host.
 * Before we proceed further for end-to-end SA5G test, make sure you have healthy docker services for OAI cn5g
@@ -69,90 +72,66 @@ Create a folder where you can store all the result files of the tutorial and lat
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: rm -rf /tmp/oai/vpp-upf-omec-gnbsim
+docker-compose-host $: rm -rf /tmp/oai/omec-gnbsim
 ```
 -->
 
-#### NOTE: ####
-OMEC GNBSIM does not includes optional IE requested NSSAI slice during pdu resource setup procedure hence we need to retrive default NSSAI information from UDM here.   -
+#### NOTE on slice selection ####
 
-##### IMPORTANT: Add following parameters in oai-amf service of docker-compose, before deploying core network. #####
+omec-gnbsim does not include the optional requested NSSAI IE during the PDU session
+resource setup procedure, so the network has to fall back on the subscriber's default
+NSSAI. Earlier versions of this tutorial asked for `EXTERNAL_UDM=yes` on the
+`oai-amf` service; that environment variable no longer exists, since the NFs are now
+configured through [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml).
+No extra configuration is needed for the `basic` deployment: with
+`amf.support_features_options.enable_simple_scenario: no`, which is the default, the
+AMF retrieves the slice selection subscription data from the UDM itself.
 
-```bash
-            - EXTERNAL_UDM=yes
+If PDU session establishment fails on the slice or the DNN, make the SMF take those
+from the UDM rather than from its own configuration:
+
+```yaml
+smf:
+  support_features:
+    use_local_subscription_info: no
 ```
 
 ``` shell
-docker-compose-host $: mkdir -p /tmp/oai/vpp-upf-omec-gnbsim
-docker-compose-host $: chmod 777 /tmp/oai/vpp-upf-omec-gnbsim
+docker-compose-host $: mkdir -p /tmp/oai/omec-gnbsim
+docker-compose-host $: chmod 777 /tmp/oai/omec-gnbsim
 ```
 
 ## 5. Deploying OAI 5g Core Network
-* We will use same wrapper script for docker-compose that used for previous tutorials to set up 5gcn with `UPF-VPP`. Use help option to check how to use this wrapper script.
+* We use the same wrapper script for docker compose as in the previous tutorials, this time with the `basic` deployment (`oai-upf` rather than `vpp-upf`). Use the help option to see how to use the script.
 
 ``` shell
-docker-compose-host $: python3 ./core-network.py --type start-basic-vpp --scenario 1 --capture /tmp/oai/vpp-upf-omec-gnbsim/vpp-upf-omec-gnbsim.pcap
-[2022-02-08 16:18:19,328] root:DEBUG:  Starting 5gcn components... Please wait....
-[2022-02-08 16:18:19,328] root:DEBUG: docker-compose -f docker-compose-basic-vpp-nrf.yaml up -d mysql
-Creating network "oai-public-cp" with the default driver
-Creating network "oai-public-access" with the default driver
-Creating network "oai-public-core" with the default driver
-Creating mysql   ... done
-[2022-02-08 16:18:32,203] root:DEBUG: nohup sudo tshark -i demo-oai -i cn5g-core -f "(not host 192.168.73.135 and not arp and not port 53 and not port 2152) or (host 192.168.73.135 and icmp)" -w /tmp/oai/vpp-upf-gnbsim/vpp-upf-gnbsim.pcap > /dev/null 2>&1 &
-[2022-02-08 16:18:52,217] root:DEBUG: docker-compose -f docker-compose-basic-vpp-nrf.yaml up -d
-mysql is up-to-date
-Creating oai-nrf ... done
-Creating vpp-upf ... done
-Creating oai-udr ... done
-Creating oai-udm    ... done
-Creating oai-ext-dn ... done
-Creating oai-ausf   ... done
-Creating oai-amf    ... done
-Creating oai-smf    ... done
-
-[2022-02-08 16:19:47,977] root:DEBUG:  OAI 5G Core network started, checking the health status of the containers... takes few secs....
-[2022-02-08 16:19:47,977] root:DEBUG: docker-compose -f docker-compose-basic-vpp-nrf.yaml ps -a
-[2022-02-08 16:20:11,681] root:DEBUG:  All components are healthy, please see below for more details....
-Name                 Command                  State                  Ports
------------------------------------------------------------------------------------------
-mysql        docker-entrypoint.sh mysqld      Up (healthy)   3306/tcp, 33060/tcp
-oai-amf      /bin/bash /openair-amf/bin ...   Up (healthy)   38412/sctp, 80/tcp, 9090/tcp
-oai-ausf     /bin/bash /openair-ausf/bi ...   Up (healthy)   80/tcp
-oai-ext-dn   /bin/bash -c  apt update;  ...   Up
-oai-nrf      /bin/bash /openair-nrf/bin ...   Up (healthy)   80/tcp, 9090/tcp
-oai-smf      /bin/bash /openair-smf/bin ...   Up (healthy)   80/tcp, 8805/udp, 9090/tcp
-oai-udm      /bin/bash /openair-udm/bin ...   Up (healthy)   80/tcp
-oai-udr      /bin/bash /openair-udr/bin ...   Up (healthy)   80/tcp
-vpp-upf      /openair-upf/bin/entrypoin ...   Up (healthy)   2152/udp, 8085/udp
-[2022-02-08 16:20:11,681] root:DEBUG:  Checking if the containers are configured....
-[2022-02-08 16:20:11,681] root:DEBUG:  Checking if AMF, SMF and UPF registered with nrf core network....
-[2022-02-08 16:20:11,681] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="AMF" | grep -o "192.168.70.132"
-192.168.70.132
-[2022-02-08 16:20:11,694] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="SMF" | grep -o "192.168.70.133"
-192.168.70.133
-[2022-02-08 16:20:11,706] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="UPF" | grep -o "192.168.70.202"
-192.168.70.202
-[2022-02-08 16:20:11,717] root:DEBUG:  Checking if AUSF, UDM and UDR registered with nrf core network....
-[2022-02-08 16:20:11,717] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="AUSF" | grep -o "192.168.70.138"
-192.168.70.138
-[2022-02-08 16:20:11,728] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="UDM" | grep -o "192.168.70.137"
-192.168.70.137
-[2022-02-08 16:20:11,739] root:DEBUG: curl -s -X GET http://192.168.70.130/nnrf-nfm/v1/nf-instances?nf-type="UDR" | grep -o "192.168.70.136"
-192.168.70.136
-[2022-02-08 16:20:11,750] root:DEBUG:  AUSF, UDM, UDR, AMF, SMF and UPF are registered to NRF....
-[2022-02-08 16:20:11,750] root:DEBUG:  Checking if SMF is able to connect with UPF....
-[2022-02-08 16:20:11,868] root:DEBUG:  UPF did answer to N4 Association request from SMF....
-[2022-02-08 16:20:11,927] root:DEBUG:  SMF receiving heathbeats from UPF....
-[2022-02-08 16:20:11,928] root:DEBUG:  OAI 5G Core network is configured and healthy....
+docker-compose-host $: python3 ./core-network.py --type start-basic --scenario 1 --capture /tmp/oai/omec-gnbsim/omec-gnbsim.pcap
+[2025-01-01 10:00:00,000] root:DEBUG:  Starting 5gcn components... Please wait....
+[2025-01-01 10:00:00,000] root:DEBUG: docker compose -f docker-compose-basic-nrf.yaml up -d mysql
+...
+[2025-01-01 10:01:00,000] root:DEBUG:  All components are healthy, please see below for more details....
+NAME         IMAGE                                        STATUS
+mysql        mysql:8.0                                    Up (healthy)
+oai-amf      oaisoftwarealliance/oai-amf:develop          Up (healthy)
+oai-ausf     oaisoftwarealliance/oai-ausf:develop         Up (healthy)
+oai-ext-dn   oaisoftwarealliance/trf-gen-cn5g:latest      Up (healthy)
+oai-nrf      oaisoftwarealliance/oai-nrf:develop          Up (healthy)
+oai-smf      oaisoftwarealliance/oai-smf:develop          Up (healthy)
+oai-udm      oaisoftwarealliance/oai-udm:develop          Up (healthy)
+oai-udr      oaisoftwarealliance/oai-udr:develop          Up (healthy)
+oai-upf      oaisoftwarealliance/oai-upf:develop          Up (healthy)
+[2025-01-01 10:01:00,000] root:DEBUG:  Checking if the containers are configured....
+[2025-01-01 10:01:00,000] root:DEBUG:  OAI 5G Core network is configured and healthy....
 ```
 
-More details in [section 5 of the `basic` vpp tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/DEPLOY_SA5G_WITH_VPP_UPF.md#5-deploying-oai-5g-core-network).
+More details in [section 5 of the `basic` deployment tutorial](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
 
 ## 6. Building a `omec-gnbsim` docker image
+
 * Pull pre-built docker image 
+
 ``` console
-docker-compose-host $: docker pull rohankharade/5gc-gnbsim:0.0.1-dev
-docker-compose-host $: docker tag rohankharade/5gc-gnbsim:0.0.1-dev 5gc-gnbsim:0.0.1-dev
+docker-compose-host $: docker pull oaisoftwarealliance/omec-gnbsim:v2.3-fixes
 ```
 
 OR 
@@ -168,7 +147,11 @@ docker-compose-host $: make docker-build
 ## 7. Executing the `omec-gnbsim` Scenario
 
 * Refer and update accordingly the Omec-gnbsim test profiles in [omec-gnbsim-config.yaml](../docker-compose/omec-gnbsim-config.yaml)
-* The configuration parameters, are preconfigured in [docker-compose-basic-vpp-nrf.yaml](../docker-compose/docker-compose-basic-vpp-nrf.yaml) and [docker-compose-omec-gnbsim-vpp.yaml](../docker-compose/docker-compose-omec-gnbsim-vpp.yaml) and one can modify it for test.
+* The configuration parameters are preconfigured in [docker-compose-basic-nrf.yaml](../docker-compose/docker-compose-basic-nrf.yaml) and [docker-compose-omec-gnbsim.yaml](../docker-compose/docker-compose-omec-gnbsim.yaml) and one can modify them for the test.
+* gnbsim runs in `singleInterface` mode here: the `basic` deployment has one network
+  (`demo-oai-public-net`, 192.168.70.128/26), so N2 and N3 share the address
+  192.168.70.171. The enabled profiles use DNN `default` with SST 222 / SD 00007B,
+  matching the subscribers in the database, and ping the ext-DN at 192.168.70.135.
 * Launch omec-gnbsim docker service
 
 <!---
@@ -180,15 +163,14 @@ docker-compose-host $: sleep 5
 
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-omec-gnbsim-vpp.yaml up -d
-Creating omec-gnbsim-vpp ... done
+docker-compose-host $: docker compose -f docker-compose-omec-gnbsim.yaml up -d
+ Container omec-gnbsim  Started
 ```
 
 Verify docker logs
 
 ``` bash
-docker-compose-host $: docker logs omec-gnbsim-vpp -f
-Creating omec-gnbsim-vpp ... done
+docker-compose-host $: docker logs omec-gnbsim -f
 ```
 
 After successful test, we should see selected test profiles are passed
@@ -210,8 +192,8 @@ After successful test, we should see selected test profiles are passed
 ## Stop the core network and gnbsim
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-omec-gnbsim-vpp.yaml down
-docker-compose-host $: python3 ./core-network.py --type stop-basic-vpp --scenario 1
+docker-compose-host $: docker compose -f docker-compose-omec-gnbsim.yaml down
+docker-compose-host $: python3 ./core-network.py --type stop-basic --scenario 1
 ```
 
 

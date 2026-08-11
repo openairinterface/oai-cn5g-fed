@@ -86,13 +86,17 @@ The tutorials' docker-compose files on the latest commit of the `develop` branch
 
 # 2. Generic Parameters #
 
+The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
+
+Any Docker or Podman version available for those host releases should be fine. The examples below use Docker; Podman users can replace `docker` with `podman`.
+
 If you are re-building CN5G images, be careful that `docker` or `podman` may re-use `cached` blobs to construct the intermediate layers.
 
 We recommend to add the `--no-cache` option in that case.
 
-## 2.1. On a Ubuntu Host ##
+## 2.1. Ubuntu-Based Images ##
 
-We are supporting the following releases:
+The default Ubuntu image base is:
 
 * Ubuntu `22.04` or `jammy`
 
@@ -100,7 +104,7 @@ You just add the `--build-arg BASE_IMAGE=ubuntu:xxxx` option.
 
 # 3. Build Network Function Images #
 
-## 3.1 On a Ubuntu Host ##
+## 3.1 Build Ubuntu-Based Images ##
 
 For example amf image can be build like below for base container image `ubuntu:jammy`:
 
@@ -111,7 +115,7 @@ docker build --target oai-amf --tag oai-amf:latest \
                component/oai-cn5g-amf
 ```
 
-## 3.2 RHEL9/UBI Images ##
+## 3.2 RHEL/UBI Images ##
 
 Checkout this [tutorial](../openshift/README.md)
 

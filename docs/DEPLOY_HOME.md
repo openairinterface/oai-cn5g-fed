@@ -4,42 +4,63 @@
     <img src="./images/oai_final_logo.png" alt="Openairinterface logo" title="Openairinterface" align="right" height="60" />
 </a>
 
+[[_TOC_]]
+
 # OpenAirInterface 5G Core Network Deployment
 
-Welcome to the tutorial home page of the OAI 5g Core project. Here you can find lots of tutorials and help manuals. We regularly update these documents depending on the new feature set.
+This page is the starting point for OAI 5G Core deployment tutorials. If this is your first time with the project, follow the quick-start path below before moving to feature-specific guides.
 
-## Table of contents
+## Supported Hosts
 
-- [List of COTS UEs tested with OAI](./LIST_OF_TESTED_COTSUE.md)
-- [Pre-requisites](./DEPLOY_PRE_REQUISITES.md)
-- How to get the container images
-    - [Pull the container images](./RETRIEVE_OFFICIAL_IMAGES.md)
-    - [Build the container images](./BUILD_IMAGES.md)
-- [Configuring the Containers](./CONFIGURATION.md)
-    - [How to use PCF Provisioning API](./PCF_PROVISIONING_API.md)
-- 5G Core Network Deployment
-    - [Using Docker-Compose, perform a `basic` deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md)
-    - [Using Docker-Compose, perform a `basic` deployment with `eBPF` implementation of UPF](./DEPLOY_SA5G_WITH_UPF_EBPF.md)
-    - [Using Docker-Compose, perform a `basic-vpp` deployment with `VPP` implementation of UPF](./DEPLOY_SA5G_WITH_VPP_UPF.md)
-    - [Using Docker-Compose, perform a `basic` deployment with `SD-Fabric` implementation of UPF](https://github.com/openairinterface/oai-cn5g-upf-sdfabric/-/wikis/Deployment-using-Docker)
-    - [Using Docker-Compose, perform a `basic` deployment with Static UE IP address allocation](./DEPLOY_SA5G_BASIC_STATIC_UE_IP.md)
-    - [Using Helm Chart](https://github.com/openairinterface/orchestration/tree/main)
-    - [Using Docker-Compose, doing network slicing](./DEPLOY_SA5G_SLICING.md)
-- 5G Core Network Deployment and Testing with Ran Emulators
-    - [Using Docker-Compose, perform a `basic` deployment and test with `OAI RF simulator`](https://github.com/duranta-project/openairinterface5g/-/tree/develop/ci-scripts/yaml_files/5g_rfsimulator)
-    - [Using Docker-Compose, perform a `minimalist` deployment and test with `gnbsim`](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md)
-    - [Using Docker-Compose, perform a `basic` deployment and test with `UERANSIM`](./DEPLOY_SA5G_WITH_UERANSIM.md)
-    - [Using Docker-Compose, perform a `basic` deployment and test with `My5g-RANTester`](./DEPLOY_SA5G_WITH_My5g-RANTester.md)
-    - [Using Docker-Compose, perform a `basic` deployment and test with `omec-gnbsim`](./DEPLOY_SA5G_WITH_OMEC_GNBSIM.md)
-    - [Using Docker-Compose, when testing with Commercial UE, troubleshoot traffic issues](./TROUBLESHOOT_COTS_UE_TRAFFIC.md)
-    - [Using Docker-Compose, perform a `basic` Traffic Redirection deployment and test with `gnbsim`](./DEPLOY_SA5G_REDIRECTION.md)
-    - [Using Docker-Compose, perform a `basic` Traffic Steering deployment and test with `gnbsim`](./DEPLOY_SA5G_STEERING.md)
-    - [Using Docker-Compose, perform a `basic` UL/CL deployment and test with `gnbsim`](./DEPLOY_SA5G_ULCL.md)
-    - [Using Docker-Compose, test the  5G Network Data Analytics Function](https://github.com/openairinterface/oai-cn5g-nwdaf/-/blob/develop/docs/TUTORIAL.md)
-- Connecting a real RAN to OAI 5G Core Network
-    - [Network Considerations](./NETWORK_CONSIDERATIONS.md)
-- The Developers Corner
-    - [How to Deploy Developers Core Network and Basic Debugging](./DEBUG_5G_CORE.md)
-    - [Advance Deployment of OAI 5G Core](./ADVANCE_DEPLOYMENT.md)
-    - [Using Virtual Machine, deploy and test with a Commercial UE](./DEPLOY_SA5G_VM_COTSUE.md)
-- [Report an Issue or bug for Core Network Functions](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md#8-report-an-issue)
+The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with the following Linux hosts:
+
+| Host family | Supported versions |
+| ----------- | ------------------ |
+| Ubuntu      | 22.04 through 26.04 |
+| Fedora      | 39 through 43 |
+| RHEL        | 8 through 10 |
+
+Any Docker or Podman version available for those host releases should be fine. The tutorials use Docker command names in most examples; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where needed.
+
+## First Deployment
+
+1. Prepare the host with the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md).
+2. Run the basic [Docker Compose deployment with Duranta/OAI RAN and UE](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md).
+
+## Choose A Tutorial
+
+| Goal | Start here |
+| ---- | ---------- |
+| Learn the Docker Compose deployment, static UE IP allocation, and OAI RF simulator test | [Basic deployment](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md) |
+| Run a compact end-to-end core plus RAN test | [Mini deployment with gnbsim](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) |
+| Test with UERANSIM | [Deployment with UERANSIM](./DEPLOY_SA5G_WITH_UERANSIM.md) |
+| Test with OMEC Gnbsim | [Deployment with OMEC gnbsim](./DEPLOY_SA5G_WITH_OMEC_GNBSIM.md) |
+| Use the eBPF UPF | [Deployment with UPF eBPF](./DEPLOY_SA5G_WITH_UPF_EBPF.md) |
+| Use the legacy VPP UPF | [Deployment with UPF-VPP](./DEPLOY_SA5G_WITH_VPP_UPF.md) |
+| Use MongoDB instead of MySQL | [MongoDB deployment](./DEPLOY_SA5G_BASIC_MONGODB.md) |
+| Configure QoS policies | [QoS tutorial](./DEPLOY_SA5G_WITH_QOS.md) |
+| Configure Ethernet PDU sessions | [Ethernet PDU sessions](./ETHERNET_PDU_SESSION.md) |
+| Configure slicing | [Network slicing tutorial](./DEPLOY_SA5G_SLICING.md) |
+| Configure traffic redirection | [Traffic redirection tutorial](./DEPLOY_SA5G_REDIRECTION.md) |
+| Configure traffic steering | [Traffic steering tutorial](./DEPLOY_SA5G_STEERING.md) |
+| Configure UL CL | [UL CL tutorial](./DEPLOY_SA5G_ULCL.md) |
+| Deploy with Helm charts | [OpenAirInterface orchestration repository](https://github.com/openairinterface/orchestration/tree/main) |
+
+## Reference Guides
+
+- [Configuration reference](./CONFIGURATION.md)
+- [PCF provisioning API](./PCF_PROVISIONING_API.md)
+- [Network considerations for real RAN connections](./NETWORK_CONSIDERATIONS.md)
+- [List of tested COTS UEs](./LIST_OF_TESTED_COTSUE.md)
+- [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md)
+- [Build images](./BUILD_IMAGES.md)
+
+## Developer Guides
+
+- [Debug 5G Core network functions](./DEBUG_5G_CORE.md)
+- [Advanced deployment](./ADVANCE_DEPLOYMENT.md)
+- [Tutorial authoring template](./TUTORIAL_TEMPLATE.md)
+
+## Support
+
+- [Report an issue or bug for Core Network Functions](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md#8-report-an-issue)

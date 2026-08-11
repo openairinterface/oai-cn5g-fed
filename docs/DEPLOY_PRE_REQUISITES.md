@@ -1,146 +1,103 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 
-<table style="border-collapse: collapse; border: none;">
-  <tr style="border-collapse: collapse; border: none;">
-    <td style="border-collapse: collapse; border: none;">
-      <a href="http://www.openairinterface.org/">
-         <img src="./images/oai_final_logo.png" alt="" border=3 height=50 width=150>
-         </img>
-      </a>
-    </td>
-    <td style="border-collapse: collapse; border: none; vertical-align: center;">
-      <b><font size = "5">OpenAirInterface 5G Core Network Docker Deployment : Pre-Requisites </font></b>
-    </td>
-  </tr>
-</table>
+# Deployment Pre-Requisites
 
-# 1. Install the proper version of Docker #
+Complete these host-level steps before running any Docker Compose or Podman-based OAI 5G Core tutorial.
 
+## Supported Hosts And Runtimes
 
-```bash
-$ dpkg --list | grep docker
-ii  docker-ce                             5:19.03.6~3-0~ubuntu-bionic                     amd64        Docker: the open-source application container engine
-ii  docker-ce-cli                         5:19.03.6~3-0~ubuntu-bionic                     amd64        Docker CLI: the open-source application container engine
-```
+The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with the following Linux hosts:
 
-Also python3 (at least 3.6) shall be installed.
+| Host family | Supported versions |
+| ----------- | ------------------ |
+| Ubuntu      | 22.04 through 26.04 |
+| Fedora      | 39 through 43 |
+| RHEL        | 8 through 10 |
 
-```bash
-$ python3 --version
-Python 3.6.9
-```
+Any Docker or Podman version available for those host releases should be fine. The tutorials mostly show Docker commands; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where a tutorial uses `docker compose` or `docker-compose`.
 
-**CAUTION: do not forget to add your username to the `docker` group**
+## Required Tools
 
-Otherwise you will have to run in `sudo` mode.
+- Docker or Podman
+- A Compose-compatible command (`docker compose`, `docker-compose`, or `podman compose`/`podman-compose`)
+- Python 3
+- `iptables` or a compatible firewall tool
+- Optional but recommended for packet analysis: `tshark` and Wireshark
+
+Check the runtime and Python installation:
 
 ```bash
-$ sudo usermod -a -G docker myusername
+docker --version
+docker compose version
+python3 --version
 ```
 
-On Centos 7.7 host:
+For Podman:
 
 ```bash
-$ sudo yum install -y yum-utils
-$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-$ sudo yum install docker-ce docker-ce-cli containerd.io
-$ sudo systemctl start docker
-$ docker info
+podman --version
+podman compose version
+python3 --version
 ```
 
-# 2. Create an account on Docker Hub #
+## Runtime Permissions
 
-Go to [docker-hub](https://hub.docker.com/) and create an account.
-
-# 3. Pull base images #
-
-* Ubuntu  version: We need 2 base images: `ubuntu:bionic` and `mysql/mysql:8.0`
-
-At the time of writing, the tested mysql version was 8.0.31
-
-Currently we are working to support `CentOS8` and `RHEL8` distributions.
-
-First, log in with your Docker Hub credentials. This is required if your organization has reached pulling limit as `anonymous`.
+If you use Docker and want to run commands without `sudo`, add your user to the `docker` group and start a new login session:
 
 ```bash
-$ docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-Username:
-Password:
+sudo usermod -a -G docker "$USER"
 ```
 
-On a Ubuntu-22.04 host:
+If you use Podman, follow your distribution's rootless Podman setup. Some tutorials use packet capture or networking commands that still require `sudo`.
+
+## Image Pulls
+
+The tutorials use official images from Docker Hub under the `oaisoftwarealliance` namespace. Docker Hub login is optional unless your network has reached anonymous pull limits.
 
 ```bash
-$ docker pull ubuntu:jammy
-$ docker pull mysql:8.0
+docker login
+docker pull oaisoftwarealliance/oai-amf:develop
+docker logout
 ```
 
-Finally you may logoff --> your token is stored in plain text..
+Podman users can pull the same images:
 
 ```bash
-$ docker logout
+podman pull docker.io/oaisoftwarealliance/oai-amf:develop
 ```
 
-# 4. Network Configuration #
+For the full image list, continue with [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md). To build locally, use [Build images](./BUILD_IMAGES.md).
 
-**CAUTION: THIS FIRST STEP IS MANDATORY.**
+## Network Configuration
 
-Based on this [recommendation](https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world):
+Container forwarding must be enabled for end-to-end connectivity:
 
 ```bash
-$ sudo sysctl net.ipv4.conf.all.forwarding=1
-$ sudo iptables -P FORWARD ACCEPT
+sudo sysctl net.ipv4.conf.all.forwarding=1
+sudo iptables -P FORWARD ACCEPT
 ```
 
-**CAUTION: THIS SECOND STEP MAY NOT BE NEEDED IN YOUR ENVIRONMENT.**
+Some environments already use Docker's default `172.17.0.0/16` bridge range. If that overlaps with your network, choose an unused bridge subnet and configure the runtime before deploying OAI CN5G.
 
-* The default docker network (ie "bridge") is on "172.17.0.0/16" range.
-* In our Eurecom private network, this IP address range is already in use.
-  - We have to change it to another IP range is free in our private network configuration.
-  - We picked a **new/IDLE** IP range by adding a `/etc/docker/daemon.json` file:
-* If you have to do the same change:
-  - Select "192.168.17.1/24" range if it is free in your environment.
-  - Select another IP range if not.
+For Docker, one option is `/etc/docker/daemon.json`:
 
 ```json
 {
-    "bip": "192.168.17.1/24"
+    "bip": "192.168.17.1/24",
+    "ip-forward-no-drop": true
 }
 ```
 
-Restart the docker daemon:
+Then restart Docker:
 
 ```bash
-$ sudo service docker restart
-$ docker info
+sudo systemctl restart docker
+docker network inspect bridge
 ```
 
-Check the new network configuration:
+## Next Step
 
-```bash
-$ docker network inspect bridge
-[
-    {
-        "Name": "bridge",
-....
-        "Scope": "local",
-        "Driver": "bridge",
-        "EnableIPv6": false,
-        "IPAM": {
-            "Driver": "default",
-            "Options": null,
-            "Config": [
-                {
-                    "Subnet": "192.168.17.1/24",
-                    "Gateway": "192.168.17.1"
-                }
-            ]
-        },
-....
-```
+Choose one image path:
 
-Here you have 2 choices:
-
-*  You can pull official images from Docker Hub like [this](./RETRIEVE_OFFICIAL_IMAGES.md).
-*  Or you are ready to [build your-self the network function images](./BUILD_IMAGES.md).
+- Pull official images: [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md)
+- Build local images: [Build images](./BUILD_IMAGES.md)

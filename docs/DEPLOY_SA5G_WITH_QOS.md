@@ -24,6 +24,8 @@
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 -----------------------------------------------------------------------------------------
 # Quality of Service (QoS) with OAI 5G Core Network
 

@@ -18,6 +18,8 @@
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 # 1. Basics
 
 The Provisioning API is a way to provision new PCC Rules, QoS data, TrafficControl data as well as, SUPI, DNN and slice based policy decisions, during the runtime of the PCF.

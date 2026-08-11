@@ -80,6 +80,3 @@ docker-compose-host $: docker logs mongodb > /tmp/oai/mongodb-test/mongodb.log 2
 docker-compose-host $: docker-compose -f docker-compose-gnbsim.yaml down -t 2
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-mongodb.yaml down -t 2
 ```
-
-## 6. Dummy section
-

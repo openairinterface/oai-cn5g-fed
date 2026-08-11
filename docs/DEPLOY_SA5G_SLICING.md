@@ -30,6 +30,8 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 * In this demo the image tags and commits which were used are listed below, follow the [Building images](./BUILD_IMAGES.md) to build images with the tags below.
 
 You can also retrieve the images from `docker-hub`. See [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md).

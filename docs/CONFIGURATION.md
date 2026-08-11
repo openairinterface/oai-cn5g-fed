@@ -18,6 +18,8 @@
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 # 1. Basics
 
 All the OAI NFs are configured using a `YAML` configuration file. This document describes the structure, the allowed

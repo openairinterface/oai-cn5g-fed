@@ -1,23 +1,17 @@
 # SPDX-License-Identifier: MIT
 
 services:
-    omec-gnbsim-vpp:
-        container_name: omec-gnbsim-vpp
-        image: 5gc-gnbsim:0.0.1-dev
+    omec-gnbsim:
+        container_name: omec-gnbsim
+        image: oaisoftwarealliance/omec-gnbsim:v2.3-fixes
         privileged: true
         command: bash -c "./gnbsim --cfg gnbsim.yaml && sleep infinity"
-        #command: sleep infinity
         networks:
             public_net:
                 ipv4_address: 192.168.70.171
-            public_net_access:
-                ipv4_address: 192.168.72.171
         volumes:
             - ./omec-gnbsim-config.yaml:/gnbsim/bin/gnbsim.yaml
 networks:
     public_net:
         name: demo-oai-public-net
-        external: True
-    public_net_access:
-        name: oai-public-access
         external: True

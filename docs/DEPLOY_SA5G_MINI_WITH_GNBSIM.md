@@ -14,11 +14,15 @@
   </tr>
 </table>
 
+# Mini Deployment With gnbsim
+
 ![SA Demo](./images/5gCN_gnbsim.jpg)
 
 **Reading time: ~ 20mins**
 
 **Tutorial replication time: ~ 40mins**
+
+**Supported hosts**: Ubuntu 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10. The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for those host releases should be fine.
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 
@@ -49,6 +53,8 @@ Let's begin !!
 
 ## 1. Pre-requisites
 
+Complete the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md), then retrieve or build the images with [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md) or [Build images](./BUILD_IMAGES.md).
+
 Create the folder to store the logs.
 
 <!---
@@ -63,7 +69,7 @@ docker-compose-host $: mkdir -p /tmp/oai/mini-gnbsim
 docker-compose-host $: chmod 777 /tmp/oai/mini-gnbsim
 ```
 
-**CAUTION: all the commands are to be executed from the `docker-compose` folder on the `CN5G host` server.**
+**CAUTION: all the commands are to be executed from the `docker-compose` folder on the `CN5G host` server.** Podman users can use their distribution's Compose-compatible Podman command where this tutorial uses Docker Compose.
 
 ## 5. Deploying OAI 5G Core Network
 
@@ -277,8 +283,7 @@ docker-compose-host $: docker logs gnbsim > /tmp/oai/mini-gnbsim/gnbsim.log 2>&1
 | Pcap/log files                                                                             |
 |:------------------------------------------------------------------------------------------ |
 | [5gcn-deployment-gnbsim.pcap](./results/gnbSIM/pcap/5gcn-deployment-gnbsim.pcap)                  |
-| [amf.log](./results/dsTest/logs/amf.log), [initialmessage.log](./results/dsTest/logs/initialmessage.log) |
-| [smf.log](./results/dsTest/logs/smf.log)                                                          |
+| Reference AMF and SMF logs are generated locally under `/tmp/oai/mini-gnbsim/`                      |
 
 ## 9. Trying Some Advanced Stuff
 

@@ -328,7 +328,7 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_STATIC_UE_IP.md | tee ../archives/static-ue-ip.log'
+            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_DEPLOYMENT.md | tee ../archives/static-ue-ip.log'
           }
           try {
             sh 'grep -l "is PASS" archives/static-ue-ip.log > /dev/null'

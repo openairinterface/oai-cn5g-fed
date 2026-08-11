@@ -23,7 +23,7 @@ This page content expects you to read [deployment pre-requisites](./DEPLOY_PRE_R
 1.  [Building images in debug mode](#1-building-images-in-debug-mode)
 2.  [Debugger deployment of core network functions](#2-debugger-deployment-of-core-network-functions)
 3.  [Basic debugging](#3-basic-debugging)
-4.  [How to report an issue?](#4-how-to-report-an-issue)
+4.  [Report an Issue](#4-report-an-issue)
 
 ## 1. Building images in debug mode
 
@@ -72,7 +72,7 @@ The example below is only for AMF you need to repeat it for all network function
 
 ``` bash
 git clone -b <prefered_branch or develop> https://github.com/openairinterface/oai-cn5g-amf.git /openair-amf
-docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf  ubuntu:bionic sleep infinity
+docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf ubuntu:jammy sleep infinity
 docker exec -it oai-amf-development bash
 # below command is same for all network functions
 sudo apt update && apt install psmisc software-properties-common git vim nano vi gnupg
