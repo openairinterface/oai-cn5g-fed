@@ -15,7 +15,7 @@ logging.basicConfig(
     format="[%(asctime)s] %(levelname)8s: %(message)s"
 )
 
-PRIVATE_LOCAL_REGISTRY_URL='https://selfix.sboai.cs.eurecom.fr:443'
+PRIVATE_LOCAL_REGISTRY_URL='https://gracehopper3-oai.sboai.cs.eurecom.fr'
 
 def main() -> None:
     args = _parse_args()

@@ -181,7 +181,7 @@ pipeline {
             pullFromSelfix = true
             try {
               // Login
-              sh 'docker login -u oaicicd -p oaicicd selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker login -u oaicicd -p oaicicd gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             } catch (Exception e) {
               echo 'Problem w/ selfix registry. Let see if we can use local images'
               pullFromSelfix = false
@@ -194,7 +194,7 @@ pipeline {
               }
               pullImageFromSelfix(-1, '5gc-gnbsim', gnbsimTag, 'main')
               // Logout
-              sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker logout gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
           }
 
@@ -538,9 +538,9 @@ def pullImageFromSelfix(idx, imageName, imageTag, branchName) {
   }
   // We may have wrong image tag?
   try {
-    sh 'docker pull selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
-    sh 'docker image tag selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
-    sh 'docker rmi selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker pull gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker image tag gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
+    sh 'docker rmi gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
     if (idx != -1) {
       pulledImages[idx] = true
     }

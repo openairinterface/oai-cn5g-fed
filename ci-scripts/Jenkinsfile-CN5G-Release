@@ -18,7 +18,7 @@ def GH_ORG = params.GitHubOrg
 def DH_Account = "oaisoftwarealliance"
 
 // Private Local Registry 
-PrivateRegistryURL = 'selfix.sboai.cs.eurecom.fr'
+PrivateRegistryURL = 'gracehopper3-oai.sboai.cs.eurecom.fr'
 PrivateRegistryUsername = 'oaicicd'
 PrivateRegistryPassword = 'oaicicd'
 

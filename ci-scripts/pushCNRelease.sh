@@ -8,7 +8,7 @@ VERSION=$2 # This tag will be pushed to DockerHub
 
 # 2. DOCKER HUB ACCOUNT AND REGISTRY URL
 DH_Account="oaisoftwarealliance"
-REGISTRY_URL='selfix.sboai.cs.eurecom.fr'
+REGISTRY_URL='gracehopper3-oai.sboai.cs.eurecom.fr'
 
 # 3. GET THE LATEST COMMIT_SHA OF develop BRANCH FOR THE CORE NETWORK FUNCTION FROM GITHUB
 NF=$1
