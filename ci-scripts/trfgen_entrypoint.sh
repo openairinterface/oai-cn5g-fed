@@ -8,29 +8,67 @@ UE_NETWORK=${UE_NETWORK:-12.1.1.0/24}
 EBPF_GW_SETUP=${EBPF_GW_SETUP:-no}
 EBPF_GW_MTU=${EBPF_GW_MTU:-1460}
 
+# Returns 0 if $1 is reachable directly on one of our interfaces, and echoes the
+# interface to use. Docker's embedded DNS forwards names it does not know to the
+# host's resolver, and many ISP or captive-portal resolvers answer *every* name with
+# a wildcard public address. getent then "succeeds" with something like
+# 195.154.179.210 and the route add fails with "Nexthop has invalid gateway".
+# An on-link check is what distinguishes a real container address from that: for a
+# neighbour, "ip route get" answers "<addr> dev X", for anything routed it answers
+# "<addr> via <gw> dev X".
+upf_addr_is_on_link() {
+    local addr="$1" route_info
+    route_info=$(ip -o route get "${addr}" 2>/dev/null) || return 1
+    [[ "${route_info}" == *" via "* ]] && return 1
+    echo "${route_info}" | sed -nE 's/.* dev ([^ ]+).*/\1/p'
+    return 0
+}
+
 if [[ ${USE_FQDN} == "yes" ]];then
-    echo -e "Trying to resolve UPF by FQDN : $UPF_FQDN"
+    # Escape hatch: skip DNS entirely when the address is known up front
+    if [[ -n "${UPF_ADDR}" ]]; then
+        echo -e "Using UPF address from the environment : ${UPF_ADDR}"
+    else
+        echo -e "Trying to resolve UPF by FQDN : $UPF_FQDN"
+    fi
     x=0
+    UPF_DEV=""
     while [ $x -le 50 ]
     do
-        echo -e "Try number $x"
-        getent hosts $UPF_FQDN > /dev/null
-        ret=$?
-        if [[ $ret -eq 0 ]]; then
-            x=100
+        if [[ -z "${UPF_ADDR}" ]]; then
+            echo -e "Try number $x"
+            # Ask Docker's embedded DNS first: on a user-defined network the
+            # <service>.<network> alias is resolved locally, so a wildcard upstream
+            # answer is less likely to be reached at all.
+            CANDIDATE=$(getent hosts "${UPF_FQDN}" | awk '{print $1; exit}')
         else
-            x=$((x + 1))
-            sleep 5
+            CANDIDATE="${UPF_ADDR}"
         fi
+
+        if [[ -n "${CANDIDATE}" ]]; then
+            UPF_DEV=$(upf_addr_is_on_link "${CANDIDATE}")
+            if [[ -n "${UPF_DEV}" ]]; then
+                UPF_ADDR="${CANDIDATE}"
+                break
+            fi
+            # Resolvable but not a neighbour: almost always a wildcard DNS answer,
+            # or the UPF is not attached to this network yet. Keep waiting.
+            echo -e "Ignoring $UPF_FQDN -> ${CANDIDATE}: not reachable on any local network"
+        fi
+        x=$((x + 1))
+        sleep 5
     done
-    if [[ $ret -ne 0 ]]; then
-      echo -e "Could not resolve $UPF_FQDN"
+
+    if [[ -z "${UPF_DEV}" ]]; then
+      echo -e "Could not resolve $UPF_FQDN to an address on a local network."
+      echo -e "If your DNS resolves unknown names to a public address, set UPF_ADDR"
+      echo -e "explicitly on this service, for example UPF_ADDR=192.168.70.134"
       exit 2
     fi
-    UPF_ADDR=(`getent hosts $UPF_FQDN | awk '{print $1}'`)
-    echo -e "\nResolving UPF by FQDN : $UPF_FQDN - $UPF_ADDR"
-    echo -e "ip route add $UE_NETWORK via $UPF_ADDR dev eth0"
-    ip route add $UE_NETWORK via $UPF_ADDR dev eth0
+
+    echo -e "\nResolving UPF by FQDN : $UPF_FQDN - $UPF_ADDR (on ${UPF_DEV})"
+    echo -e "ip route add $UE_NETWORK via $UPF_ADDR dev ${UPF_DEV}"
+    ip route add "$UE_NETWORK" via "$UPF_ADDR" dev "${UPF_DEV}"
 fi
 
 if [[ ${EBPF_GW_SETUP} == "yes" ]];then
