@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: MIT
+
+services:
+    oai-gnb-basic:
+        image: oaisoftwarealliance/oai-gnb:develop
+        container_name: oai-gnb-basic
+        cap_add:
+            - SYS_NICE
+        cap_drop:
+            - ALL
+        environment:
+            USE_ADDITIONAL_OPTIONS: -E --rfsim --MACRLCs.[0].stats_max_ue 0 --log_config.global_log_options level,nocolor,time
+            ASAN_OPTIONS: detect_leaks=0
+        volumes:
+            - ./ran-conf/gnb.conf:/opt/oai-gnb/etc/gnb.conf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.153
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-softmodem"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    oai-nr-ue-basic:
+        image: oaisoftwarealliance/oai-nr-ue:develop
+        container_name: oai-nr-ue-basic
+        cap_drop:
+            - ALL
+        cap_add:
+            - NET_ADMIN  # for interface bringup
+            - NET_RAW    # for ping
+            - SYS_NICE
+        environment:
+            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 -C 3619200000 --rfsimulator.[0].serveraddr 192.168.70.153 --log_config.global_log_options level,nocolor,time
+            ASAN_OPTIONS: detect_leaks=0
+        depends_on:
+            - oai-gnb-basic
+        devices:
+             - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./ran-conf/nr-ue.conf:/opt/oai-nr-ue/etc/nr-ue.conf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.154
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+networks:
+    public_net:
+        name: demo-oai-public-net
+        external: true

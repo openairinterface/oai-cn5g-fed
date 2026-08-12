@@ -17,7 +17,7 @@ keywords:
   - iperf
 
 sources:
-  - https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed
+  - https://github.com/openairinterface/oai-cn5g-fed
   - https://openairinterface.org/
 
 maintainers:

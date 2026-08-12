@@ -39,17 +39,17 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 For this demo, all the images which use the `develop` branch have been retrieved from the official `docker-hub` (see also
 [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md)).
 
-| NF Name | Branch Name | Tag used at time of writing | Ubuntu 22.04 | RHEL8 |
-|----------|:------------|-----------------------------|--------------|-------|
-| NSSF     | `develop`    | `v2.2.1`                    | X            | -     |
-| AMF      | `develop`    | `v2.2.1`                    | X            | -     |
-| AUSF     | `develop`    | `v2.2.1`                    | X            | -     |
-| NRF      | `develop`    | `v2.2.1`                    | X            | -     |
-| SMF      | `develop`    | `v2.2.1`                    | X            | -     |
-| UDR      | `develop`    | `v2.2.1`                    | X            | -     |
-| UDM      | `develop`    | `v2.2.1`                    | X            | -     |
-| PCF      | `develop`    | `v2.2.1`                    | X            | -     |
-| UPF-VPP  | `develop`    | `v2.2.1`                    | X            | -     |
+| NF Name | Branch Name | Tag used at time of writing | Official image base |
+|----------|:------------|-----------------------------|---------------------|
+| NSSF     | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| AMF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| AUSF     | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| NRF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| SMF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| UDR      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| UDM      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| PCF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| UPF-VPP  | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
 
 <br/>
 
@@ -243,7 +243,7 @@ docker-compose-host $: docker exec -it gnbsim-vpp curl --interface 12.1.1.2 goog
       <meta http-equiv="refresh" content="0; URL=facebook.com">
    </head>
    <body>
-      Please <a href='facebook.com'>click here</a> to continue
+      Please <a href='https://facebook.com'>click here</a> to continue
    </body>
 </html>
 ```
@@ -264,7 +264,7 @@ We capture here UPF session details & traffic trace
 docker-compose-host $: docker exec vpp-upf bin/vppctl show upf session > /tmp/oai/redirect-scenario/vpp-upf-redirect-session.log 2>&1
 ```
 
-We will see in the [analysis](#8-trace-analysis) that the IP packets to `google.com` are redirected to destination `facebook.com` over EXT-DN-Internet.
+We will see in the [analysis](#6-trace-analysis) that the IP packets to `google.com` are redirected to destination `facebook.com` over EXT-DN-Internet.
 
 
 ## 6 Trace Analysis
@@ -287,7 +287,7 @@ column.
 
 The results of this tutorial are located in [results/redirect](results/redirect).
 
-We can verify the PDU session details as per [UPF session logs](docs/results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
+We can verify the PDU session details as per [UPF session logs](results/redirect/vpp-upf-redirect-session.log). We should note that the forwarding rule is set with redirect information, describing all HTTP traffic will be redirected to destination URL `facebook.com`
 
 ```yaml
 FAR: 1
@@ -298,7 +298,7 @@ FAR: 1
     Redirect Information: HTTP to facebook.com
 ```
 
-In the [UE traffic trace](results/redirect/ue-test.log) at gnbsim-vpp, we can see that the HTTP GET request generated using curl for destination `google.com` is redirected to new HTTP address `facebook.com`. This can be also confirmed in the pcap trace [user_plane_redirect.pcapng](results/redirect/user_plane_redirect.pcapng), where request packet #4 is destinated for URI `google.com` & the response packet #6 is with HTTP code (302-redirection) from destination `facebook.com`
+In the [UE traffic trace](results/redirect/ue-test.log) at gnbsim-vpp, we can see that the HTTP GET request generated using curl for destination `google.com` is redirected to new HTTP address `facebook.com`. This can be also confirmed in the pcap trace [user_plane_redirect.pcap](results/redirect/user_plane_redirect.pcap), where request packet #4 is destinated for URI `google.com` & the response packet #6 is with HTTP code (302-redirection) from destination `facebook.com`
 
 ## 7 Undeploy Network Functions
 

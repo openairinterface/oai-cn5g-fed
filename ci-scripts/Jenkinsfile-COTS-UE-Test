@@ -23,6 +23,11 @@ oc_image_project_name = 'oaicicd-core'
 oc_test_project_name = 'oaicicd-core-testing'
 ran_Image_Registry = params.ran_Image_Registry
 
+// Assigned by the gNB and core stages. Declared here so that the post and cleanup
+// blocks can read them even when a stage failed before the assignment.
+ranFullImage = ''
+nrfPod = ''
+
 // Variables that can used in main pipeline and in functions
 NRF=0
 AMF=1
@@ -44,6 +49,7 @@ chartKeyTags = ["NRF_TAG", "AMF_TAG", "SMF_TAG", "UPF_TAG", "AUSF_TAG", "UDM_TAG
 containerInPods = ["nrf", "amf", "smf", "upf", "ausf", "udm", "udr"]
 
 def upstreamEvent = false
+def upstreamIsFED = false
 upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
 
 // Status booleans
@@ -79,15 +85,35 @@ pipeline {
             if (cause.toString().contains('UpstreamCause')) {
               upstreamEvent = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UPF')) {
               upstreamJobs[UPF] = true
+            }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
             }
           }
 
           sh "git clean -x -d -ff > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
-          sh "git submodule update --init --recursive ci-scripts/common"
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            // Fed push: fetch first; the sha may be abbreviated.
+            sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
+            sh "git checkout -f ${params.GIT_COMMIT_SHA}"
+          }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
           withCredentials([
             [$class: 'UsernamePasswordMultiBinding', credentialsId: "${params.cn_oc_credentials}", usernameVariable: 'OC_Username', passwordVariable: 'OC_Password']
@@ -246,8 +272,17 @@ pipeline {
           sleep 2
           // Deploying now
           dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
-            sh "sudo b2xx_fx3_utils --reset-device"
-            sh "sudo uhd_find_devices > /dev/null 2>&1 || true"
+            // Reset the B210 out of a stale USB state, up to 3 times.
+            def uhdResets = 0
+            while (sh(script: "sudo uhd_find_devices > /dev/null 2>&1", returnStatus: true) != 0) {
+              if (uhdResets == 3) {
+                error "No UHD device found after ${uhdResets} B2xx resets"
+              }
+              uhdResets++
+              echo "No UHD device detected -- resetting the B2xx (${uhdResets}/3)"
+              sh "sudo b2xx_fx3_utils --reset-device || true"
+              sleep 5
+            }
             sleep 5
             sh "sed -i -e 's@image: oaisoftwarealliance/oai-gnb:develop@image: ${ranFullImage}@' docker-compose.yml"
             if (mountedFileAsMountedDotConf) {
@@ -334,7 +369,7 @@ pipeline {
                 testStop1 = false
               }
             }
-            sh 'sudo chmod 666 /tmp/test-st*.log'
+            sh 'sudo chmod 666 /tmp/test-st*.log || true'
             sh 'cp -f /tmp/test-*.log /tmp/test-*.png archives || true'
             sh 'sudo rm -f /tmp/test-*.log /tmp/test-*.png || true'
             stash allowEmpty: true, includes: 'archives/*.*', name: 'ue_logs'
@@ -386,7 +421,7 @@ pipeline {
           }
           dir ('ci-scripts/charts/oai-5g-basic') {
             // helm default timeout is 5mins
-            sh 'helm uninstall $(helm list -aq) --wait'
+            sh 'helm list -aq | xargs -r helm uninstall --wait'
             // Let's do later a script to check.
             sh "oc get pods -o wide"
             deployedCore = false
@@ -445,7 +480,7 @@ pipeline {
           }
           dir ('ci-scripts/charts/oai-5g-basic') {
             // helm default timeout is 5mins
-            sh 'helm uninstall $(helm list -aq) --wait'
+            sh 'helm list -aq | xargs -r helm uninstall --wait'
           }
         }
         if (logoutToDo) {
@@ -490,8 +525,10 @@ pipeline {
 }
 
 def getLastCommitFromBranch(index, repoName, branchName) {
-  echo "Checking on GitLab"
-  shaone = sh returnStdout: true, script: "curl --silent 'https://gitlab.eurecom.fr/api/v4/projects/oai%2Fcn5g%2F${repoName}/repository/branches/${branchName}' | jq .commit.id"
+  echo "Checking on GitHub"
+  withCredentials([usernamePassword(credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
+    shaone = sh returnStdout: true, script: "curl --silent -H \"Authorization: Bearer \$GH_TOKEN\" 'https://api.github.com/repos/openairinterface/${repoName}/branches/${branchName}' | jq .commit.sha"
+  }
   shaone = shaone.trim()
   shaone = shaone.replaceAll('"','')
   shaone = shaone.take(8)
@@ -553,9 +590,9 @@ def checkCoreNetworkDeployment() {
   // Checking the PFCP heart-beat w/ SMF
   UPF_POD = sh returnStdout: true, script: 'oc get pods -l app.kubernetes.io/name=oai-upf -o jsonpath="{.items[*].metadata.name}"'
   UPF_POD = UPF_POD.trim()
-  UPF_log1 = sh returnStdout: true, script: "oc logs ${UPF_POD} upf | grep 'Received SX HEARTBEAT REQUEST' 2>&1 | tee archives/upf_pcfp_heartbeat.log"
+  UPF_log1 = sh returnStdout: true, script: "oc logs ${UPF_POD} upf | grep 'Received SX HEARTBEAT REQUEST' 2>&1 | tee archives/upf_pfcp_heartbeat.log"
   UPF_log1 = UPF_log1.trim()
-  UPF_log2 = sh returnStdout: true, script: "oc logs ${UPF_POD} upf | grep 'handle_receive(16 bytes)' 2>&1 | tee -a archives/upf_pcfp_heartbeat.log"
+  UPF_log2 = sh returnStdout: true, script: "oc logs ${UPF_POD} upf | grep 'handle_receive(16 bytes)' 2>&1 | tee -a archives/upf_pfcp_heartbeat.log"
   UPF_log2 = UPF_log2.trim()
   if ((UPF_log1.length() > 0) && (UPF_log2.length() > 0)) {
     echo "PFCP association / heartbeat seems OK"

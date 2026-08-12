@@ -34,16 +34,15 @@ pulledImages = [false, false, false, false, false, false, false, false, false, f
 
 
 // Which OMEC-GNBSIM TAG to use
-ngapTesterTag = params.ngapTesterTag
 upstreamTagToUse = params.upstreamTagToUse
 
 rfTags = ""
 
 // TODO: once 5gcsdk is public, not required anymore.
-def gitlab_credentials = params.Private_GitLab_Repo_Credentials
+def sdk_credentials = params.Private_Repo_Credentials ?: 'github-jenkins-oai-cn'
 // 5gcsdk branch and repository URL
 def SDK_BRANCH = params.SDK_BRANCH ?: 'oai-jenkins-ci'
-def SDK_URL = params.SDK_URL ?: 'https://gitlab.eurecom.fr/5gc/5gcsdk.git'
+def SDK_URL = params.SDK_URL ?: 'https://github.com/openairinterface/5gcsdk.git'
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -75,34 +74,34 @@ pipeline {
             if (cause.toString().contains('UpstreamCause')) {
               upstreamEvent = true
             }
-            if (cause.toString().contains('OAI-CN5G-NRF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NRF')) {
               upstreamJobs[NRF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AMF')) {
               upstreamJobs[AMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-SMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-SMF')) {
               upstreamJobs[SMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UPF')) {
               upstreamJobs[UPF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AUSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AUSF')) {
               upstreamJobs[AUSF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDM')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDM')) {
               upstreamJobs[UDM] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDR')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDR')) {
               upstreamJobs[UDR] = true
             }
-            if (cause.toString().contains('OAI-CN5G-NSSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NSSF')) {
               upstreamJobs[NSSF] = true
             }
             if (cause.toString().contains('OAI-CN5G-UPF-VPP')) {
               upstreamJobs[UPF_VPP] = true
             }
-            if (cause.toString().contains('OAI-CN5G-PCF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-PCF')) {
               upstreamJobs[PCF] = true
             }
             if (cause.toString().contains('OAI-CN5G-FED')) {
@@ -117,13 +116,24 @@ pipeline {
           if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
-          if (upstreamIsFED && params.GIT_COMMIT_SHA) {
-            FED_COMMIT_SHA = sh(script: "git rev-parse ${params.GIT_COMMIT_SHA}", returnStdout: true).trim()
-            sh "git fetch origin ${FED_COMMIT_SHA}"
-            sh "git checkout ${FED_COMMIT_SHA}"
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            // Fed push: fetch first; the sha may be abbreviated.
+            sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
+            sh "git checkout -f ${params.GIT_COMMIT_SHA}"
           }
           sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
-          sh 'git submodule update --init --recursive ci-scripts/common'
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
 
           // Having the possibility to run manually as in CI
@@ -270,7 +280,7 @@ pipeline {
             pullFromSelfix = true
             try {
               // Login
-              sh 'docker login -u oaicicd -p oaicicd selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker login -u oaicicd -p oaicicd gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             } catch (Exception e) {
               echo 'Problem w/ selfix registry. Let see if we can use local images'
               pullFromSelfix = false
@@ -281,9 +291,8 @@ pipeline {
               for (ii = 0; ii < imageNames.size(); ii++) {
                 imageTags[ii] = pullImageFromSelfix(ii, imageNames[ii], imageTags[ii], branchNames[ii])
               }
-              pullImageFromSelfix(-1, 'ngap-tester', ngapTesterTag, 'develop')
               // Logout
-              sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker logout gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
           }
           if (cn_ci_host == 'Alambix') {
@@ -297,7 +306,6 @@ pipeline {
           for (ii = 0; ii < imageNames.size(); ii++) {
             imageStatus += checkImageInfo(imageNames[ii], imageTags[ii])
           }
-          imageStatus += checkImageInfo('ngap-tester', ngapTesterTag)
           if (imageStatus > 0) {
             error ("Some images are not present!")
           }
@@ -312,7 +320,7 @@ pipeline {
             branches: [[name: "*/${SDK_BRANCH}"]],
             extensions: [],
             userRemoteConfigs: [[
-            credentialsId: gitlab_credentials,
+            credentialsId: sdk_credentials,
             url: "${SDK_URL}"]])
         }
 
@@ -326,9 +334,6 @@ pipeline {
     stage ('Run Robot Framework Tests') {
       steps {
         script {
-          sh 'cp -Rf /opt/ngap-tester-robot/* test/template/'
-
-          sh 'sed -i -e "s@ngap-tester:develop@ngap-tester:' + ngapTesterTag + '@" test/image_tags.py'
           for (ii = 0; ii < imageTags.size(); ii++) {
             if (imageNames[ii] == "oai-upf-vpp" && imageTags[ii] == "develop") { // As UPF-VPP is no longer maintained
               imageTags[ii] = "develop-863d2bf7"
@@ -344,12 +349,6 @@ pipeline {
     always {
       script {
         // Zipping all archived log files
-        if (fileExists('archives_ngap')) {
-          sh 'zip -r -qq cn5g_fed_ngap_tests.zip archives_ngap'
-          // Currently no public artifacting on the logs and pcap of NGAP tester
-          sh 'chmod 666 cn5g_fed_ngap_tests.zip'
-          sh 'cp cn5g_fed_ngap_tests.zip /opt/ngap-tester-logs/cn5g_fed-${JOB_NAME}-${BUILD_ID}.zip'
-        }
         if (fileExists('archives')) {
           sh 'zip -r -qq cn5g_fed_robot_tests.zip archives'
           archiveArtifacts artifacts: 'cn5g_fed_robot_tests.zip'
@@ -400,9 +399,9 @@ def pullImageFromSelfix(idx, imageName, imageTag, branchName) {
   }
   // We may have wrong image tag?
   try {
-    sh 'docker pull selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
-    sh 'docker image tag selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
-    sh 'docker rmi selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker pull gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker image tag gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
+    sh 'docker rmi gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
     if (idx != -1) {
       pulledImages[idx] = true
     }

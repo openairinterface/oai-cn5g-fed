@@ -9,256 +9,279 @@
       </a>
     </td>
     <td style="border-collapse: collapse; border: none; vertical-align: center;">
-      <b><font size = "5">OpenAirInterface 5G Core Network Basic Deployment using Docker-Compose</font></b>
+      <b><font size = "5">OpenAirInterface 5G Core Network Basic Deployment using Docker Compose</font></b>
     </td>
   </tr>
 </table>
 
+# Basic Docker Compose Deployment
 
 ![SA Demo](./images/docker-compose/5gCN-basic.jpg)
 
-**OVERVIEW**
+This tutorial deploys the basic OAI 5G Core with NRF, MySQL, AMF, SMF, UPF, AUSF, UDM, UDR, and an external data network container. It then validates end-to-end traffic with Duranta/OAI gNB and OAI NR-UE in RF simulator mode.
 
-This tutorial will help in understanding how to deploy a `basic` OAI core network using docker-compose. The recommended hardware to install the above core network setting is
+## At A Glance
 
-- 4 CPU
-- 16GiB RAM
-- Minimum 1.5 GiB of free storage for docker images
+| Item | Value |
+| ---- | ----- |
+| Goal | Deploy the basic OAI 5G Core and validate UE traffic with Duranta/OAI gNB and OAI NR-UE |
+| Working directory | `oai-cn5g-fed/docker-compose` |
+| Core compose file | `docker-compose-basic-nrf.yaml` |
+| RFSIM RAN compose file | `docker-compose-oai-rfsim-basic.yaml` |
+| Reference configuration | `conf/basic_nrf_config.yaml` |
+| Subscription database | `database/oai_db2.sql` |
+| Result folder used below | `/tmp/oai/basic-deployment` |
 
-Please follow the tutorial step by step to create a stable working testbed. You can use this tutorial to deploy OAI-5G core and test it with oai-gNB and oai-nr-ue.
+**Reading time**: ~20 minutes
 
-
-**Reading time**: ~ 20 mins
-
-**Tutorial replication time**: ~ 30 mins
-
-
-**Note**
-
-- In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md).
-- In this tutorial we have considered two different host machines, `docker-compose-host` as the host machine to deploy core network functions and `gNB-host` as the gNB host machine.
-
+**Replication time**: ~30-45 minutes, depending on image availability.
 
 **TABLE OF CONTENTS**
 
 [[_TOC_]]
 
-## 1. Basic Deployment Flavours ##
+Use the document outline or your Markdown viewer to navigate between sections.
 
-The Basic functional 5g core network can be deployed into 2 scenarios:
+## 1. Pre-Requisites
 
-    - Scenario I:  AMF, SMF, UPF (SPGWU), NRF, UDM, UDR, AUSF, MYSQL
-    - Scenario II:  AMF, SMF, UPF (SPGWU), UDM, UDR, AUSF, MYSQL
+Complete the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md) before starting. The official OAI CN5G container images use Ubuntu 22.04 as the container base image and are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
 
-## 2. Pre-requisites ##
+Any Docker or Podman version available for those host releases should be fine. The commands below use `docker compose`; if your host only has the legacy command, replace `docker compose` with `docker-compose`.
 
-The container images are built using `docker build` command on Ubuntu 18.04 host machine. The base image for all the containers is Ubuntu 18.04.
+Pull or build the required images before deploying:
 
-The required software and their respected versions are listed below. To replicate the testbed use these versions.
+- Pull official images: [Retrieve official images](./RETRIEVE_OFFICIAL_IMAGES.md)
+- Build local images: [Build images](./BUILD_IMAGES.md)
 
-| Software                   | Version                |
-|:-------------------------- |:-----------------------|
-| docker engine              | 29.1.2                 |
-| Host operating system      | Ubuntu 22.04/24.04 LTS |
-| tshark                     | 4.6                    |
-| wireshark                  | 4.6                    |
-
-### 2.1. Networking considerations ###
-
-Most of the times the `docker-compose-host` machine is not configured with packet forwarding. It can be enabled using the command below (if you have already done it in any other section then don't repeat).
-
-**This is the most important step towards end-to-end connectivity.**
+For the RF simulator test, also pull the RAN images. These commands are shown for users; CI jobs normally preload the required images before running the tutorial checker.
 
 ```console
-## run the commands on docker-compose-host
+docker pull oaisoftwarealliance/oai-gnb:develop
+docker pull oaisoftwarealliance/oai-nr-ue:develop
+```
+
+All commands below run from the `docker-compose` folder:
+
+``` shell
+docker-compose-host $: rm -rf /tmp/oai/basic-deployment
+docker-compose-host $: mkdir -p /tmp/oai/basic-deployment
+docker-compose-host $: chmod 777 /tmp/oai/basic-deployment
+```
+
+Enable IPv4 forwarding on the host:
+
+```console
 sudo sysctl net.ipv4.conf.all.forwarding=1
-## run the commands on docker-compose-host
 sudo iptables -P FORWARD ACCEPT
 ```
 
-## 3. Network Function Container Images ##
+## 2. Choose The UE IP Allocation Mode
 
-In this demo the network function branch and tags which were used are listed below, follow the [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md) or the [Building images](./BUILD_IMAGES.md) 
+The SMF can get UE session information in two ways:
 
-## 4. Configuring Host Machines ##
+| Mode | SMF setting | Use when |
+| ---- | ----------- | -------- |
+| Local subscription info | `use_local_subscription_info: yes` | You want the simplest dynamic nrUE IP test. This is the default. |
+| UDM/UDR/MySQL subscription info | `use_local_subscription_info: no` | You want static nrUE IP allocation or database-driven DNN/NSSAI mapping. |
 
-All the network functions are connected using `demo-oai` bridge.
+The setting is in [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml):
 
-There are two ways to create this bridge, either manually or automatically using docker-compose.
-
-* The manual version will allow packet capturing while network functions are getting deployed. So the initial tested setup packets can be captured for debugging purposes or checking if network functions registered properly to NRF.
-* The second option of automatic deployment is good when initial packet capture is not important.
-
-### 4.1 Creating bridge manually ###
-
-Since this is not the `default` behavior, you **have to** edit the docker-compose file.
-
-- The bottom section of [docker-compose file](../docker-compose/docker-compose-mini-nrf.yaml) SHALL look like this:
-
-```
-    networks:
-          public_net:
-              external:
-                  name: demo-oai-public-net
-        # public_net:
-        #     driver: bridge
-        #     name: demo-oai-public-net
-        #     ipam:
-        #         config:
-        #             - subnet: 192.168.70.128/26
-        #     driver_opts:
-        #         com.docker.network.bridge.name: "demo-oai"
+```yaml
+smf:
+  support_features:
+    use_local_subscription_info: yes
 ```
 
-- The `docker-compose-host` machine needs to be configured with `demo-oai` bridge before deploying core network components. To capture initial message exchange between network functions.
+### 2.1 Enable Static UE IP Allocation
 
-    ```console
-    docker-compose-host $: docker network create \
-      --driver=bridge \
-      --subnet=192.168.70.128/26 \
-      -o "com.docker.network.bridge.name"="demo-oai" \
-      demo-oai-public-net
-    455631b3749ccd6f10a366cd1c49d5a66cf976d176884252d5d88a1e54049bc5
-    docker-compose-host $: ifconfig demo-oai
-    demo-oai: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-            inet 192.168.70.129  netmask 255.255.255.192  broadcast 192.168.70.191
-            RX packets 0  bytes 0 (0.0 B)
-            RX errors 0  dropped 0  overruns 0  frame 0
-            TX packets 0  bytes 0 (0.0 B)
-            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-    docker-compose-host $: docker network ls
-    NETWORK ID          NAME                  DRIVER              SCOPE
-    d2d34e05bb2d        bridge                bridge              local
-    455631b3749c        demo-oai-public-net   bridge              local
-    ```
+Static UE IP allocation requires database-driven subscription information:
 
-### 4.2 Create bridge automatically ###
-
-- Though the bridge can be automatically created using docker-compose file if there is no need to capture initial packets.
-
-This is the `default` version in the [docker-compose-basic-nrf.yaml](../docker-compose/docker-compose-basic-nrf.yaml).
-
-The bottom section SHALL look like this:
-
-    ```
-    networks:
-        # public_net:
-        #     external:
-        #         name: demo-oai-public-net
-          public_net:
-              driver: bridge
-              name: demo-oai-public-net
-              ipam:
-                  config:
-                      - subnet: 192.168.70.128/26
-              driver_opts:
-                  com.docker.network.bridge.name: "demo-oai"
-    ```
-
-### 4.3 In case you forgot, the section below is for both manual and automatic network creation. ###
-
-- If the `docker-compose-host` machine is not configured with packet forwarding then it can be done using the command below (**important step**),
-
-    ```console
-    ## run the commands on docker-compose-host
-    sudo sysctl net.ipv4.conf.all.forwarding=1
-    ## run the commands on docker-compose-host
-    sudo iptables -P FORWARD ACCEPT
-    ```
-
-- The `gNB-host` needs to be configured with a route to reach `docker-compose-host`. Assuming `gNB-host` physical interface which is connected with `docker-compose-host` is NIC1 and the ip-address of this interface is IP_ADDR_NIC1 then,
-
-    ```console
-    #execute the command on gNB host
-    sudo ip route add route 192.168.70.128/26 \
-                           via IP_ADDR_NIC1\
-                           dev NIC1_NAME
-    ```
-
-- To verify, ping the ip-address of the `docker-compose-host` interface connected to demo-oai bridge, if possible also ping amf from the gNB host machine.
-
-    ```console
-    #execute the command on gNB host
-    ping 192.168.70.129
-    ```
-
-## 5. Configuring the OAI-5G Core Network Functions ##
-
-5G core network has two architectures service based or reference point which makes the NRF component optional, similarly you can choose to deploy the OAI core network components with or without NRF. Additionally in cloud native world it is preferred to provide a Fully Qualified Domain Name (FQDN) to a service rather than static ip-address. Each of our network functions can communicate with other core network function's using ip-address or FQDN. For example, AMF can register to NRF either with NRFs ip-address or FQDN.
-
-Configuring network functions with static ip-addresses is preferred for bare-metal deployment of network functions. Whereas for docker-compose or helm chart based deployment it is better to use FQDN of network functions. In the docker-compose file you will see each network function is configured with both ip-address and FQDN, but if you are using FQDN then the code of network function will ignore the ip-address configuration.
-
-In docker-compose the [service-name](https://docs.docker.com/compose/compose-file/#services-top-level-element) is actually the FQDN of the service.
-
-### 5.1. Core Network Configuration ###
-
-The configuration is in [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml)
-
-### 5.2. User Subscription Profile ###
-
-There are two ways to configure the User Subscription Profile,
-
-1. Pre-configure all the users in the [database file](../docker-compose/database/oai_db2.sql). This way when the core network starts it will have all the users.
-2. Add a new user when the core-network is already running.
-
-For the first method, you have to edit the [database file](../docker-compose/database/oai_db2.sql) and add or change the entries in table `AuthenticationSubscription`, either remove the already present entries or add a new one like below:
-
-```sql
-INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPermanentKey`, `protectionParameterId`, `sequenceNumber`, `authenticationManagementField`, `algorithmId`, `encOpcKey`, `encTopcKey`, `vectorGenerationInHss`, `n5gcAuthMethod`, `rgAuthenticationInd`, `supi`) VALUES
-('208950000000031', '5G_AKA', '0C0A34601D4F07677303652C0462535B', '0C0A34601D4F07677303652C0462535B', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', '63bfa50ee6523365ff14c1f45f88737d', NULL, NULL, NULL, NULL, '208950000000031'),
-```
-
-Make sure you edit the IMSI, opc and key according to the settings of your user device.
-
-
-## 6. Deploying OAI 5G Core Network ##
-
-```console
-docker-compose -f ../docker-compose/docker-compose-basic-nrf.yaml up -d
-# to follow if the components are healthy or not
-docker-compose -f ../docker-compose/docker-compose-basic-nrf.yaml ps -a
-```
-
-```console
-# To capture packets execute on core network host
-sudo tshark -i demo-oai
-     -f "not arp and not port 53 and not host archive.ubuntu.com and not host security.ubuntu.com" \
-     -w /tmp/5gcn-basic-deployment-nrf.pcap
-```
-
-- Explanation on the capture filter:
-   *  `not arp` : Not capturing ARP traffic
-   *  `not port 53` : Not capturing DNS traffic
-   *  `not host archive.ubuntu.com and not host security.ubuntu.com` : Not capturing traffic from `oai-ext-dn` container when installing tools
-- To stop the core network you can use:
-
-```console
-docker-compose -f ../docker-compose/docker-compose-basic-nrf.yaml down -t2
-```
-
-Your core network is ready you can use it.
-
-You can use `oai-ext-dn` to perform iperf or ping towards the UE, just make sure that the subnet used by the UE is properly defined in the `oai-ext-dn` container using `ip route` command.
+The command sequence below enables static IP allocation because it gives CI and users a deterministic UE address to test.
 
 ``` shell
-#on core network host
-docker exec -it oai-ext-dn bash
-ping <ue-ip-address>
+docker-compose-host $: sed -i 's/use_local_subscription_info: yes/use_local_subscription_info: no/g' conf/basic_nrf_config.yaml
 ```
 
-## 7. Notes ##
+The OAI NR-UE configuration in [ran-conf/nr-ue.conf](../docker-compose/ran-conf/nr-ue.conf) uses IMSI `208950000000036`, DNN `oai`, SST `1`, and the default SD `FFFFFF`. The `oai` DNN subnet in [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml) is `12.1.1.128/25`, so the static address must be inside that subnet.
 
-- The `oai-ext-dn` container is optional and is only required if the user wants to ping from the UE. In general this container is not required except for testing purposes.
-- This tutorial can be taken as reference to test the OAI 5G core with a COTS UE. The configuration file has to be changed according to the gNB, and COTS UE information should be present in the mysql database.
-- Generally, in a COTS UE, two PDN sessions are created by default so configure the IMS in SMF properly.
-- In case you want to deploy debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
+The default database already has a dynamic session entry for this nrUE. For a persistent static-IP setup, replace the existing `208950000000036` `SessionManagementSubscriptionData` row in [database/oai_db2.sql](../docker-compose/database/oai_db2.sql) before starting the core:
 
-## 8. Report an Issue ##
+```sql
+INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
+('208950000000036', '20895', '{\"sst\": 1, \"sd\": \"FFFFFF\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"},\"staticIpAddress\":[{\"ipv4Addr\": \"12.1.1.130\"}]}}');
+```
 
-To report an issue regarding any-component of CN5G,
+To return the same nrUE to dynamic IP allocation, restore that row without the `staticIpAddress` field:
 
-1. Share the testing scenario, what the test is trying to achieve.
-2. Share logs of the 5GCN components and packet capture/tcpdump of the 5GCN components. Depending on where the packets are captured take care of interface on which the packets are captured. Also it will be nice to capture packets using a filter `ngap || http || pfcp || gtp`. So that the size of `.pcap` file is not huge.
-3. You can send an email at openair5g-cn@lists.eurecom.fr with the configuration files, log files in debug mode and pcaps with appropriate filters. Choose an appropriate subject.
-4. You can also report an issue or create a bug directly on gitlab. You don't need to sign `Contributor License Agreement` to open issues, it is only needed when you want to contribute and push your changes. You have to send us an email to whitelist your domain/email-address to create a gitlab account, please contact us at contact@openairinterface.org.
-5. If you are interested to contribute then please follow [contribution guidelines](../CONTRIBUTING.md).
+```sql
+INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
+('208950000000036', '20895', '{\"sst\": 1, \"sd\": \"FFFFFF\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"}}}');
+```
+
+Every UE in `AuthenticationSubscription` should also have a matching entry in `SessionManagementSubscriptionData` when `use_local_subscription_info` is set to `no`.
+
+### 2.2 Return To Dynamic Local Subscription Mode
+
+For the simplest dynamic nrUE test, return to the default local subscription mode:
+
+```console
+sed -i 's/use_local_subscription_info: no/use_local_subscription_info: yes/g' conf/basic_nrf_config.yaml
+```
+
+## 3. Deploy The Basic Core
+
+Start the core and wait for the containers used by this tutorial. After AMF is running, update `ran-conf/gnb.conf` with the AMF container IP that Docker assigned on the `demo-oai-public-net` network.
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-basic-nrf.yaml up -d
+docker-compose-host $: timeout 180 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" mysql 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: docker exec mysql mysql -uroot -plinux oai_db -e "UPDATE SessionManagementSubscriptionData SET dnnConfigurations=JSON_SET(dnnConfigurations, '$.oai.staticIpAddress', JSON_ARRAY(JSON_OBJECT('ipv4Addr', '12.1.1.130'))) WHERE ueid='208950000000036';"
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-nrf 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-amf 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-smf 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-upf 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-ext-dn 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: sed -i "s/amf_ip_address      = ( { ipv4       = \".*\";});/amf_ip_address      = ( { ipv4       = \"$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oai-amf)\";});/" ran-conf/gnb.conf
+docker-compose-host $: docker-compose -f docker-compose-basic-nrf.yaml ps -a
+```
+
+Expected status: all core containers should be `running` or `healthy`.
+
+Check that NRF, AMF, SMF, UPF, UDM, UDR, AUSF, MySQL, and `oai-ext-dn` are up:
+
+``` shell
+docker-compose-host $: docker ps --format "table {{.Names}}\t{{.Status}}"
+```
+
+If you want a packet capture, start it after the Docker network exists:
+
+```console
+sudo tshark -i demo-oai \
+  -f "not arp and not port 53" \
+  -w /tmp/oai/basic-deployment/basic-core.pcap
+```
+
+## 4. Validate With Duranta/OAI gNB And OAI NR-UE
+
+This flow uses:
+
+- [docker-compose-oai-rfsim-basic.yaml](../docker-compose/docker-compose-oai-rfsim-basic.yaml) to start `oai-gnb-basic` and `oai-nr-ue-basic`.
+- [ran-conf/gnb.conf](../docker-compose/ran-conf/gnb.conf), whose AMF address is updated by the command sequence in [section 3](#3-deploy-the-basic-core).
+- [ran-conf/nr-ue.conf](../docker-compose/ran-conf/nr-ue.conf), which uses IMSI `208950000000036`, key `0C0A...535B`, OPC `63bf...837d`, DNN `oai`, and SST `1`.
+
+Start the gNB:
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-basic.yaml up -d oai-gnb-basic
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-gnb-basic 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: docker logs oai-gnb-basic --tail 30
+```
+
+The AMF logs should show the gNB connection:
+
+```console
+docker logs oai-amf 2>&1 | grep -i "connected"
+```
+
+Start the UE:
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-basic.yaml up -d oai-nr-ue-basic
+docker-compose-host $: timeout 180 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-nr-ue-basic 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: docker logs oai-nr-ue-basic --tail 50
+```
+
+Check that the UE received a PDU session interface:
+
+``` shell
+docker-compose-host $: timeout 120 bash -c 'until docker exec oai-nr-ue-basic ip -4 addr show oaitun_ue1 | grep -q "12.1.1.130"; do sleep 2; done'
+docker-compose-host $: docker exec oai-nr-ue-basic ip -4 addr show oaitun_ue1
+```
+
+If you selected static UE IP allocation in [section 2.1](#21-enable-static-ue-ip-allocation), the expected nrUE address is `12.1.1.130`. If you kept the default dynamic mode, the address should be in the `12.1.1.128/25` range.
+
+Capture the UE IP and ping it from the external DN container:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn ping -c4 12.1.1.130
+```
+
+You can also test uplink traffic from the UE:
+
+``` shell
+docker-compose-host $: docker exec oai-nr-ue-basic ping -I oaitun_ue1 -c4 $(docker exec oai-ext-dn hostname -I | awk '{print $1}')
+```
+
+## 5. Collect Logs
+
+Stop any running `tshark` capture first:
+
+``` shell
+docker-compose-host $: pkill tshark || true
+docker-compose-host $: chmod 666 /tmp/oai/basic-deployment/*.pcap 2>/dev/null || true
+```
+
+Collect core logs:
+
+``` shell
+docker-compose-host $: docker logs oai-amf > /tmp/oai/basic-deployment/amf.log 2>&1
+docker-compose-host $: docker logs oai-smf > /tmp/oai/basic-deployment/smf.log 2>&1
+docker-compose-host $: docker logs oai-nrf > /tmp/oai/basic-deployment/nrf.log 2>&1
+docker-compose-host $: docker logs oai-upf > /tmp/oai/basic-deployment/upf.log 2>&1
+docker-compose-host $: docker logs oai-udr > /tmp/oai/basic-deployment/udr.log 2>&1
+docker-compose-host $: docker logs oai-udm > /tmp/oai/basic-deployment/udm.log 2>&1
+docker-compose-host $: docker logs oai-ausf > /tmp/oai/basic-deployment/ausf.log 2>&1
+docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/basic-deployment/ext-dn.log 2>&1
+```
+
+Collect RAN and UE logs:
+
+``` shell
+docker-compose-host $: docker logs oai-gnb-basic > /tmp/oai/basic-deployment/oai-gnb-basic.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-basic > /tmp/oai/basic-deployment/oai-nr-ue-basic.log 2>&1
+```
+
+Reference logs for the old standalone static UE IP tutorial are still available under [results/static-ue-ip](./results/static-ue-ip/).
+
+## 6. Cleanup
+
+Stop the OAI RF simulator:
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-basic.yaml down -t 2
+```
+
+Stop the core:
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-basic-nrf.yaml down -t 2
+```
+
+If you enabled static UE IP allocation and want to return to the default tutorial state:
+
+``` shell
+docker-compose-host $: sed -i 's/use_local_subscription_info: no/use_local_subscription_info: yes/g' conf/basic_nrf_config.yaml
+docker-compose-host $: sed -i 's/amf_ip_address      = ( { ipv4       = ".*";});/amf_ip_address      = ( { ipv4       = "192.168.70.138";});/' ran-conf/gnb.conf
+```
+
+## 7. Troubleshooting
+
+| Symptom | First check |
+| ------- | ----------- |
+| Core containers are not healthy | `docker compose -f docker-compose-basic-nrf.yaml ps` and `docker logs <container>` |
+| Static UE IP is not `12.1.1.130` | Confirm `use_local_subscription_info: no` and the `208950000000036` `SessionManagementSubscriptionData` entry in `database/oai_db2.sql` |
+| OAI gNB does not connect to AMF | Confirm `ran-conf/gnb.conf` contains the current `oai-amf` container IP from `docker inspect` |
+| OAI UE has no `oaitun_ue1` | Check `docker logs oai-nr-ue-basic` and confirm `oai-gnb-basic` is healthy |
+| No traffic between UE and `oai-ext-dn` | Re-run host forwarding commands and check routes inside `oai-ext-dn` with `docker exec oai-ext-dn ip route` |
+
+## 8. Report An Issue
+
+When opening an issue, include:
+
+1. The exact scenario: dynamic nrUE IP or static nrUE IP.
+2. The commands used to start the core and RAN/UE.
+3. The edited parts of `conf/basic_nrf_config.yaml` and any database changes.
+4. Logs from the affected containers.
+5. Packet captures from `demo-oai` when available.
+
+For contribution workflow details, see [CONTRIBUTING.md](../CONTRIBUTING.md).

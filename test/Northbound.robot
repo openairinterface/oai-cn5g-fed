@@ -80,8 +80,8 @@ Northbound Suite Setup
     Check RAN Elements Health Status
     Launch Mongo
     Handler.Start Handler
-    Sleep   10s
-    
+    Wait Until Keyword Succeeds    30s  1s    Handler.Check Handler Ready
+
     @{UEs}=    Get UE container Names
     FOR   ${ue}   IN    @{UEs}   
         Start NR UE    ${ue}
@@ -132,6 +132,7 @@ Test Setup With MobSim
     Update Event Rate    ${0.08}
     Launch Mongo
     Handler.Start Handler
+    Wait Until Keyword Succeeds    30s  1s    Handler.Check Handler Ready
     Start MobSim
     Sleep   15s
 

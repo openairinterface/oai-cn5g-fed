@@ -10,7 +10,7 @@ info:
   description: GNBSIM initial local configuration
 
 configuration:
-  singleInterface: false #default value
+  singleInterface: true # the basic deployment has a single network, so N2 and N3 share it
   execInParallel: false #run all profiles in parallel
   runConfigProfilesAtStart: true
   httpServer: # Serves APIs to create/control profiles on the go
@@ -19,17 +19,16 @@ configuration:
     port: 8080
   gnbs: # pool of gNodeBs
     gnb1:
-      n2IpAddr: # gNB N2 interface IP address used to connect to AMF 
+      n2IpAddr: 192.168.70.171 # gNB N2 interface IP address used to connect to AMF, pinned in docker-compose-omec-gnbsim.yaml
       n2Port: 9487 # gNB N2 Port used to connect to AMF
-      n3IpAddr: 192.168.72.171 # gNB N3 interface IP address used to connect to UPF. when singleInterface mode is false
-      #n3IpAddr: "POD_IP" # when gnb is deployed in singleInterface mode
+      n3IpAddr: 192.168.70.171 # same address as N2: the basic deployment has one network only
       n3Port: 2152 # gNB N3 Port used to connect to UPF
       name: gnb1 # gNB name that uniquely identify a gNB within application
       globalRanId:
         plmnId:
           mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
           mnc: 95 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
-        gNbId: 
+        gNbId:
           bitLength: 24
           gNBValue: 000102 # gNB identifier (3 bytes hex string, range: 000000~FFFFFF)
       supportedTaList:
@@ -91,7 +90,7 @@ configuration:
       gnbName: gnb1 # gNB to be used for this profile
       startImsi: 208950000000031
       ueCount: 5
-      defaultAs: "192.168.73.135" #default icmp pkt destination
+      defaultAs: "192.168.70.135" #default icmp pkt destination
       opc: "63bfa50ee6523365ff14c1f45f88737d"
       key: "0C0A34601D4F07677303652C0462535B"
       sequenceNumber: "16f3b3f70fc2"
@@ -109,7 +108,7 @@ configuration:
       gnbName: gnb1 # gNB to be used for this profile
       startImsi: 208950000000125 # First IMSI. Subsequent values will be used if ueCount is more than 1
       ueCount: 5 # Number of UEs for for which the profile will be executed
-      defaultAs: "192.168.73.135" #default icmp pkt destination
+      defaultAs: "192.168.70.135" #default icmp pkt destination
       opc: "63bfa50ee6523365ff14c1f45f88737d"
       key: "0C0A34601D4F07677303652C0462535B"
       sequenceNumber: "16f3b3f70fc2"
@@ -164,7 +163,7 @@ configuration:
       gnbName: gnb1 # gNB to be used for this profile
       startImsi: 208950000000125 # First IMSI. Subsequent values will be used if ueCount is more than 1
       ueCount: 5 # Number of UEs for for which the profile will be executed
-      defaultAs: "192.168.73.135" #default icmp pkt destination
+      defaultAs: "192.168.70.135" #default icmp pkt destination
       sequenceNumber: "16f3b3f70fc2"
       opc: "63bfa50ee6523365ff14c1f45f88737d"
       key: "0C0A34601D4F07677303652C0462535B"

@@ -10,6 +10,11 @@ GNBSIM_FIRST_IP = "192.168.79.160"
 GNBSIM_FIRST_IP_N3 = "192.168.80.160"
 GNBSIM_FIRST_MSIN = 31
 
+# gnbsim does not react to SIGTERM, so it always burns the full grace period and is
+# then killed. Nothing asserts a graceful gnbsim shutdown and its logs are already in
+# the Docker journal by the time we collect them, so there is nothing to wait for.
+GNBSIM_STOP_TIMEOUT = 2
+
 
 class GNBSimTestLib:
     ROBOT_LIBRARY_SCOPE = 'SUITE'
@@ -68,6 +73,7 @@ class GNBSimTestLib:
                 break
             if name == "":
                 raise Exception("Reading docker-compose for gnbsim failed")
+            speed_up_healthchecks(parsed["services"])
             with (open(self.__get_docker_compose_path(name), "w")) as out_file:
                 yaml.dump(parsed, out_file)
             return name
@@ -101,10 +107,10 @@ class GNBSimTestLib:
         start_docker_compose(self.__get_docker_compose_path(gnbsim_name))
 
     def stop_gnbsim(self, gnbsim_name):
-        stop_docker_compose(self.__get_docker_compose_path(gnbsim_name))
+        stop_docker_compose(self.__get_docker_compose_path(gnbsim_name), timeout=GNBSIM_STOP_TIMEOUT)
 
     def down_gnbsim(self, gnbsim_name):
-        down_docker_compose(self.__get_docker_compose_path(gnbsim_name))
+        down_docker_compose(self.__get_docker_compose_path(gnbsim_name), timeout=GNBSIM_STOP_TIMEOUT)
 
     def stop_all_gnbsims(self):
         for gnbsim in self.gnbsims:

@@ -28,19 +28,16 @@ This tutorial will help in understanding how to deploy an OAI Core Network and t
 
 ## 1. Pre-requisites ##
 
-The container images are built using the command `docker build` on a Ubuntu 18.04 host machine. The base image for all the containers is Ubuntu 18.04.
+The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
 
-The required software and their respective versions are listed below. To replicate the testbed use these versions or newer ones.
+Any Docker or Podman version available for those host releases should be fine. The tutorials mostly show Docker commands; Podman users can replace `docker` with `podman` and use a Compose-compatible Podman command where needed.
 
 
-| Software                   | Version                         |
-|:-------------------------- |:------------------------------- |
-| docker engine              | 19.03.6, build 369ce74a3c       |
-| docker-compose             | 1.27.4, build 40524192          |
-| Host operating system      | Ubuntu 18.04.4 LTS              |
-| Container operating system | Ubuntu 18.04                    |
-| tshark                     | 3.4.4 (Git commit c33f6306cbb2) |
-| wireshark                  | 3.4.4 (Git commit c33f6306cbb2) |
+| Software | Requirement |
+|:---------|:------------|
+| Container runtime | Docker or Podman |
+| Host operating system | Ubuntu 22.04-26.04, Fedora 39-43, or RHEL 8-10 |
+| Packet analysis | `tshark` and Wireshark are optional but recommended |
 
 ### 1.1. Wireshark ###
 

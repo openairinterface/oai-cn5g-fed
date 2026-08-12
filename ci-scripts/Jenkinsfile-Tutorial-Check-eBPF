@@ -7,6 +7,7 @@
 def cn_ci_host = params.Host_CN_CI_Server
 def cn_ci_resource = params.DockerContainers
 def upstreamEvent = false
+def upstreamIsFED = false
 
 // Variables that can used in main pipeline and in functions
 NRF=0
@@ -62,42 +63,62 @@ pipeline {
             if (cause.toString().contains('UpstreamCause')) {
               upstreamEvent = true
             }
-            if (cause.toString().contains('OAI-CN5G-NRF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NRF')) {
               upstreamJobs[NRF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AMF')) {
               upstreamJobs[AMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-SMF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-SMF')) {
               upstreamJobs[SMF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UPF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UPF')) {
               upstreamJobs[UPF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-AUSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-AUSF')) {
               upstreamJobs[AUSF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDM')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDM')) {
               upstreamJobs[UDM] = true
             }
-            if (cause.toString().contains('OAI-CN5G-UDR')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-UDR')) {
               upstreamJobs[UDR] = true
             }
-            if (cause.toString().contains('OAI-CN5G-NSSF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-NSSF')) {
               upstreamJobs[NSSF] = true
             }
-            if (cause.toString().contains('OAI-CN5G-PCF')) {
+            if (cause.toString().contains('OAI-CN5G-GitHub-PCF')) {
               upstreamJobs[PCF] = true
+            }
+            if (cause.toString().contains('OAI-CN5G-FED')) {
+              upstreamIsFED = true
             }
           }
           sh "git clean -x -d -f > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
-          // For any upstream job (PR or post-merge), let run on certified tag.
-          if (upstreamEvent) {
+          // For a NF upstream job (PR or post-merge), run on the certified tag.
+          if (upstreamEvent && !upstreamIsFED) {
             sh 'git checkout -f ' + upstreamTagToUse
           }
-          sh 'git submodule update --init --recursive ci-scripts/common'
+          if (upstreamIsFED && params.GIT_MERGE_REF) {
+            // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
+            sh "git fetch origin ${params.GIT_MERGE_REF}"
+            sh "git checkout -f FETCH_HEAD"
+          } else if (upstreamIsFED && params.GIT_COMMIT_SHA) {
+            // Fed push: fetch first; the sha may be abbreviated.
+            sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
+            sh "git checkout -f ${params.GIT_COMMIT_SHA}"
+          }
+          sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
+          // Authenticate the submodule clone: -c scopes the credential helper to just this command.
+          withCredentials([
+            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-jenkins-oai-cn', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN']
+          ]) {
+            sh '''
+              git -c credential.helper='!f() { echo "username=$GITHUB_USERNAME"; echo "password=$GITHUB_TOKEN"; }; f' submodule update --init --recursive ci-scripts/common
+            '''
+          }
           sh "mkdir -p archives"
 
           for (ii = 0; ii < imageNames.size(); ii++) {
@@ -190,7 +211,7 @@ pipeline {
             pullFromSelfix = true
             try {
               // Login
-              sh 'docker login -u oaicicd -p oaicicd selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker login -u oaicicd -p oaicicd gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             } catch (Exception e) {
               echo 'Problem w/ selfix registry. Let see if we can use local images'
               pullFromSelfix = false
@@ -202,7 +223,7 @@ pipeline {
                 imageTags[ii] = pullImageFromSelfix(ii, imageNames[ii], imageTags[ii], branchNames[ii])
               }
               // Logout
-              sh 'docker logout selfix.sboai.cs.eurecom.fr > /dev/null 2>&1'
+              sh 'docker logout gracehopper3-oai.sboai.cs.eurecom.fr > /dev/null 2>&1'
             }
           }
 
@@ -282,9 +303,9 @@ def pullImageFromSelfix(idx, imageName, imageTag, branchName) {
   }
   // We may have wrong image tag?
   try {
-    sh 'docker pull selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
-    sh 'docker image tag selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
-    sh 'docker rmi selfix.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker pull gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
+    sh 'docker image tag gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag + ' ' + imageName + ':' + tag
+    sh 'docker rmi gracehopper3-oai.sboai.cs.eurecom.fr/' + imageName + ':' + tag
     pulledImages[idx] = true
   } catch (Exception e) {
     echo "${imageName} Image tag to test (${imageName}:${tag} does not exist on selfix private registry!"

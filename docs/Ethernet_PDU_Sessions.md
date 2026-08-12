@@ -144,7 +144,11 @@ eba2988ac04d   mysql:8.0                                 "docker-entrypoint.s…
 
 ## 6. Testing Ethernet PDU Sessions
 
-We'll use the cn5g-tester docker image to verify the Ethernet PDU session functionality. The cn5g-tester will send control plane messages to establish an Ethernet PDU Session and it will send ping packets towards the data network (oai-ext-dn) and wait for responses. Users can replace the tester with an gNB and UE that supports Ethernet PDU sessions.
+This section demonstrates how to verify Ethernet PDU Session functionality.
+After the OAI NR UE establishes an Ethernet PDU Session with the core network,
+an Ethernet TAP interface is created on the UE. Ethernet connectivity is then
+verified by assigning an IP address to the TAP interface and sending ARP requests
+using `arping`.
 
 
 Deploy the OAI gNB:
@@ -347,4 +351,4 @@ Removing network demo-oai-public-net
 
 You have successfully configured and tested Ethernet PDU sessions with the OAI 5G Core. This functionality allows your 5G network to transport Ethernet frames natively, opening up possibilities for various enterprise and industrial use cases.
 
-For more information on the implementation details, refer to the [UPF Merge Request](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-upf/-/merge_requests/71) that added this functionality.
+For more information on the implementation details, refer to the [UPF Merge Request](https://github.com/openairinterface/oai-cn5g-upf/-/merge_requests/71) that added this functionality.

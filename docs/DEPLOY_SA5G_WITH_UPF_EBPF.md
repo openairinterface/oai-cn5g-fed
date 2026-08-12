@@ -14,10 +14,23 @@
   </tr>
 </table>
 
+# Deployment With UPF eBPF
 
 **Reading time: ~ 50mins**
 
 **Tutorial replication time: ~ 1h30mins**
+
+## At A Glance
+
+| Item | Value |
+| ---- | ----- |
+| Goal | Deploy OAI 5G Core with the eBPF UPF and validate traffic |
+| First-time path | Complete [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md), then start at [Pre-requisites](#4-pre-requisites) |
+| Optional background | Sections 1 to 3 explain eBPF, XDP, and the UPF architecture |
+| Working directory | `oai-cn5g-fed/docker-compose` |
+| Supported hosts | Ubuntu 22.04-26.04, Fedora 39-43, RHEL 8-10 |
+
+The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for the supported host releases should be fine.
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
 
@@ -25,8 +38,10 @@ Note: In case readers are interested in deploying debuggers/developers core netw
 
 [[_TOC_]]
 
+Use the document outline or your Markdown viewer to navigate between sections.
+
 -----------------------------------------------------------------------------------------
-__Note:__ If you are familiar with eBPF and XDP you can skip Section 1
+__Note:__ If you are familiar with eBPF and XDP you can skip Section 1.
 
 ## 1. Understanding the (e)BPF-XDP
 
@@ -132,15 +147,15 @@ If such PDR is found, the packet passes to the Forwarder (i.e., FAR Program). Th
 You can also retrieve the images from `docker-hub`. See [Retrieving images](./RETRIEVE_OFFICIAL_IMAGES.md).
 
 
-| CNF Name    | Branch Name    | Tag used at time of writing   | Ubuntu 20.04 | Ubuntu 22.04  | RHEL8        |
-| ----------- |:-------------- | ----------------------------- | ------------ | --------------|------------- |
-| AMF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| AUSF        | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| NRF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| SMF         | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| UDR         | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| UDM         | `develop`       | `v2.2.1`                      | x            | X             | x            |
-| UPF         | `develop`       | `v2.2.1`                      | X            | X             |              |
+| CNF Name    | Branch Name    | Tag used at time of writing   | Official image base |
+| ----------- |:-------------- | ----------------------------- | ------------------- |
+| AMF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| AUSF        | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| NRF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| SMF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| UDR         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| UDM         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| UPF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
 
 
 <br/>
@@ -192,7 +207,7 @@ docker-compose-host $: chmod 777 /tmp/oai/upf-ebpf-gnbsim
   * python3-docutils
   * tar
 
-If you want to run OAI-UPF-eBPF from sources you can first install these dependencies on ubutnu 20.04 or 22.04 using the command:
+If you want to run OAI-UPF-eBPF from sources you can first install these dependencies on a supported Ubuntu host using the command:
 
 ```console
  oai-cn5g-upf$sudo apt install -y git gcc-multilib clang make cmake binutils-dev \
@@ -215,7 +230,7 @@ If you want to run OAI-UPF-eBPF from sources you can first install these depende
 ## 5. Network Functions Configuration
 
 ### i. SMF
-Please follow the [SMF Config tutorial](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for the SMF configuration.
+Please follow the [SMF Config tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for the SMF configuration.
 
 Here we focus on the SMF details that needed to update (if not set by default) in order to make the SMF interacting with both AMF and UPF. Note that the `basic_nrf_config_ebpf.yaml` that is used as a shared volume is used by entire 5GCN functions including the UPF.
 
@@ -273,7 +288,7 @@ smf:
 
 
 ### ii. AMF
-Please refer to the [Documentation](https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for more details about the AMF configuration.
+Please refer to the [Documentation](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/CONFIGURATION.md?ref_type=heads) for more details about the AMF configuration.
 
 ```console
 $ cat docker-compose-basic-nrf-ebpf.yaml
