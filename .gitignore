@@ -1,4 +1,4 @@
-archives/
+*archives/
 DS-TEST-RESULTS/
 ci-scripts/mysql-complete.cmd
 ci-scripts/temp/ci-*.sh
@@ -18,3 +18,4 @@ charts/e2e_scenarios/case2/Chart.lock
 charts/e2e_scenarios/case2/charts/
 charts/e2e_scenarios/case3/Chart.lock
 charts/e2e_scenarios/case3/charts/
+*rfvenv

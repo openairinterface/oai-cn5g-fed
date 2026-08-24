@@ -122,7 +122,7 @@ amf:
     enable_nssf: no
     enable_smf_selection: yes
   relative_capacity: 30
-  statistics_timer_interval: 20  # in seconds
+  statistics_timer_interval: 90  # in seconds
   emergency_support: false
   served_guami_list:
     - mcc: "208"

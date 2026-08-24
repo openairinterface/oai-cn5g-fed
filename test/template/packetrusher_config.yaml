@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+#
+# PacketRusher configuration for the OAI CN5G test networks.
+#
+# Values are aligned with the robot test bed rather than PacketRusher's defaults:
+#   - AMF at 192.168.79.132 on the 192.168.79.128/25 (N2/SBI) network
+#   - subscriber credentials and slice taken from template/mysql/oai_db2.sql,
+#     where IMSI 208950000000031 uses SST 222 / SD 00007B and DNN "default"
+#
+# N2 handover needs at least two gNodeBs, i.e. two N2/N3 addresses. PacketRusher
+# derives the second gNB by incrementing controlif/dataif, so the addresses below
+# give gnb1 .181 and gnb2 .182; both must be free on the test network.
+gnodeb:
+  controlif:
+    ip: "192.168.79.181"
+    port: 9487
+  dataif:
+    ip: "192.168.79.181"
+    port: 2152
+  plmnlist:
+    mcc: "208"
+    mnc: "95"
+    tac: "00a000"
+    gnbid: "000008"
+  slicesupportlist:
+    sst: "DE"        # 222 decimal, the SST the test subscribers are provisioned with
+    sd: "00007B"
+
+ue:
+  hplmn:
+    mcc: "208"
+    mnc: "95"
+  msin: "0000000031"        # -> imsi-208950000000031
+  routingindicator: "0000"
+  protectionScheme: 0
+  homeNetworkPublicKey: "5a8d38864820197c3394b92613b20b91633cbd897119273bf8e4a6f4eec0a650"
+  homeNetworkPublicKeyID: 1
+
+  # From AuthenticationSubscription in oai_db2.sql
+  key: "0C0A34601D4F07677303652C0462535B"
+  opc: "63bfa50ee6523365ff14c1f45f88737d"
+  amf: "8000"
+  sqn: "000000000020"
+
+  dnn: "default"
+  snssai:
+    sst: 222          # ue.snssai.sst is an int here, unlike the gNB list which is a hex string
+    sd: "00007B"
+
+  # The AMF in this test bed is configured for NIA2/NEA2. NEA0 would leave NAS in
+  # cleartext for Wireshark, but the AMF here does not offer it.
+  integrity:
+    nia0: false
+    nia1: false
+    nia2: true
+    nia3: false
+  ciphering:
+    nea0: false
+    nea1: false
+    nea2: true
+    nea3: false
+
+amfif:
+  - ip: "192.168.79.132"
+    port: 38412
+
+logs:
+  level: 4

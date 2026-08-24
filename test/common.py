@@ -11,7 +11,12 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from image_tags import image_tags
 
-GENERATED_DIR = "archives/robot_framework"
+# Suite artefacts (container logs, pcaps, generated compose and config) are
+# written under Robot's own --outputdir, so a run keeps them next to its
+# log.html and two runs with different output directories do not overwrite
+# each other. FALLBACK_OUT_DIR only applies outside a Robot run.
+GENERATED_SUBDIR = "robot_framework"
+FALLBACK_OUT_DIR = "archives"
 
 # Healthcheck polling interval forced onto every generated docker-compose file.
 # See speed_up_healthchecks().
@@ -36,11 +41,12 @@ DIR_PATH = os.path.split(os.path.abspath(__file__))[0]
 def get_out_dir():
     try:
         suite_name = BuiltIn().get_variable_value("${SUITE_NAME}")
+        output_dir = BuiltIn().get_variable_value("${OUTPUT_DIR}")
     except robot.libraries.BuiltIn.RobotNotRunningError:
         suite_name = "local"
-    dir_to_use = GENERATED_DIR
-    out_path = os.path.join(os.getcwd(), dir_to_use)
-    return os.path.join(out_path, suite_name)
+        output_dir = None
+    base_dir = output_dir or os.path.join(os.getcwd(), FALLBACK_OUT_DIR)
+    return os.path.join(base_dir, GENERATED_SUBDIR, suite_name)
 
 
 def get_log_dir():

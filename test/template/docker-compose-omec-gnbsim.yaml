@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+#
+# Template for a single omec-gnbsim instance. OmecGnbsimLib generates one
+# docker-compose file per run from this, replacing the REPLACE_* placeholders.
+#
+# gnbsim runs to completion rather than staying up, so there is deliberately no
+# healthcheck here: the library waits for the container to exit and then reads
+# the profile summary and the per-UE statistics out of its log.
+version: '3.8'
+services:
+    REPLACE_SERVICE:
+        container_name: REPLACE_NAME
+        image: omec-gnbsim:develop
+        privileged: true
+        volumes:
+            - REPLACE_CONFIG:/gnbsim/config/gnbsim.yaml
+        command: ["--cfg", "/gnbsim/config/gnbsim.yaml"]
+        networks:
+            public_test_net:
+                ipv4_address: REPLACE_IP_N2
+            n3_test_net:
+                ipv4_address: REPLACE_IP_N3
+networks:
+    public_test_net:
+        external:
+            name: test-oai-public-net
+    n3_test_net:
+        external:
+            name: test-oai-n3-net
