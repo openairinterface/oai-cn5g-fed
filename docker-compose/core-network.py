@@ -113,7 +113,7 @@ def deploy(file_name, extra_interface=False):
         #   * port 8805                 --> PFCP traffic
         #   * `icmp`                    --> ping traffic
         #   * port 3306                 --> mysql traffic
-        cmd = f'nohup sudo tshark -i demo-oai -f "sctp or port 80 or port 8080 or port 8805 or icmp or port 3306" -w {args.capture} > /dev/null 2>&1 &'
+        cmd = f'nohup sudo tshark -f "sctp or port 80 or port 8080 or port 8805 or icmp or port 3306 or port 2152 or arp" -i demo-oai -w {args.capture} > /dev/null 2>&1 &'
         if extra_interface:
             if file_name == BASIC_VPP_W_NRF:
                 cmd = re.sub('-i demo-oai', '-i demo-oai -i cn5g-core', cmd)
