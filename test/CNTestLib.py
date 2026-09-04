@@ -97,6 +97,180 @@ class CNTestLib:
                 yaml.dump(parsed, out_file)
         logging.info(f"Successfully prepared scenario for TC {tc_name}")
 
+    def add_subscribers_to_database(self, count, start_imsi="208950000000031"):
+        """
+        Extends the generated MySQL seed so `count` consecutive IMSIs can authenticate.
+
+        The committed oai_db2.sql carries ~100 subscribers, which is enough for the
+        functional suites but not for scale runs. Rather than committing thousands of
+        rows, the missing AuthenticationSubscription entries are generated into the
+        per-scenario copy of the seed. Only that table is needed: the SMF runs with
+        use_local_subscription_info, so session data comes from the NF config, and the
+        AMF tolerates a missing AccessAndMobilitySubscriptionData row.
+
+        Must be called after Prepare Scenario (which copies the seed) and before Start CN
+        (mysql reads it once, on first boot).
+
+        :param count: number of consecutive IMSIs required, starting at start_imsi
+        :param start_imsi: first IMSI
+        :return: number of rows added
+        """
+        count = int(count)
+        db_path = os.path.join(get_out_dir(), "mysql", "oai_db2.sql")
+        if not os.path.isfile(db_path):
+            raise Exception(f"{db_path} not found. Call Prepare Scenario with mysql first.")
+
+        with open(db_path) as f:
+            content = f.read()
+
+        # Take an existing row as the template so keys, OPc and SQN stay in sync
+        # with whatever the committed seed uses.
+        row_re = re.compile(r"^\('(?P<imsi>\d+)', '5G_AKA'.*\)[,;]$", re.MULTILINE)
+        rows = list(row_re.finditer(content))
+        if not rows:
+            raise Exception("No AuthenticationSubscription rows found to use as a template")
+        existing = {m.group("imsi") for m in rows}
+        template_row = rows[0].group(0)
+        template_imsi = rows[0].group("imsi")
+
+        wanted = [str(int(start_imsi) + i) for i in range(count)]
+        missing = [imsi for imsi in wanted if imsi not in existing]
+        if not missing:
+            logging.info(f"Database already covers {count} subscribers from {start_imsi}")
+            return 0
+
+        # A fresh INSERT rather than editing the existing block, so the committed
+        # statement and its terminator are left untouched.
+        header = ("INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, "
+                  "`encPermanentKey`, `protectionParameterId`, `sequenceNumber`, "
+                  "`authenticationManagementField`, `algorithmId`, `encOpcKey`, `encTopcKey`, "
+                  "`vectorGenerationInHss`, `n5gcAuthMethod`, `rgAuthenticationInd`, `supi`) VALUES\n")
+        generated = []
+        for imsi in missing:
+            generated.append(template_row.rstrip(",;").replace(template_imsi, imsi))
+
+        with open(db_path, "a") as f:
+            f.write(f"\n-- {len(generated)} subscribers generated for the scale tests\n")
+            f.write(header)
+            f.write(",\n".join(generated))
+            f.write(";\n")
+
+        logging.info(f"Added {len(generated)} subscribers to {db_path} "
+                     f"(IMSI {missing[0]}..{missing[-1]})")
+        return len(generated)
+
+    def set_ext_dn_ue_subnet(self, subnet):
+        """
+        Points the ext-DN's route towards the UE pool at `subnet`.
+
+        The template hardcodes 12.1.1.0/24, which caps a scale run at 254 PDU
+        sessions. The healthcheck greps the routing table for that same prefix, so
+        both have to move together.
+
+        Must be called after Prepare Scenario and before Start CN.
+
+        :param subnet: UE subnet in CIDR, e.g. 12.1.0.0/16
+        """
+        with open(self.docker_compose_path) as f:
+            parsed = yaml.safe_load(f)
+
+        service = parsed["services"].get("oai-ext-dn")
+        if service is None:
+            raise Exception("oai-ext-dn is not part of this scenario")
+
+        old_prefix = "12.1.1.0/24"
+        service["entrypoint"] = service["entrypoint"].replace(old_prefix, subnet)
+        # grep on the network part only, so it still matches once the route is installed
+        network = subnet.split("/")[0].rsplit(".", 1)[0]
+        service["healthcheck"]["test"] = f'/bin/bash -c "ip r | grep {network}"'
+
+        with open(self.docker_compose_path, "w") as f:
+            yaml.dump(parsed, f)
+        logging.info(f"ext-DN now routes the UE pool {subnet}")
+
+    def amf_ue_context_count(self, container="oai-amf"):
+        """
+        Number of UEs the AMF still holds, read from its periodic statistics table.
+
+        The AMF prints a "UEs' Information" table every statistics_timer_interval
+        seconds (20 by default). Only the most recent table is counted, so the answer
+        reflects the AMF's current state rather than the whole history.
+
+        Useful for leak detection: after every UE has deregistered the table should be
+        empty, and a count that grows across repeated attach/detach cycles means the
+        AMF is not releasing contexts.
+
+        :return: number of distinct SUPIs in the latest statistics table
+        """
+        log = self.docker_api.get_log(container)
+        marker = "UEs' Information"
+        if marker not in log:
+            raise Exception(
+                f"{container} has not printed a '{marker}' table yet. It is emitted "
+                f"every statistics_timer_interval seconds, so allow one interval.")
+
+        # From the last table header up to the dashed line that closes it
+        tail = log[log.rindex(marker):]
+        body = re.split(r"\n-{20,}", tail, maxsplit=2)
+        table = body[1] if len(body) > 1 else tail
+
+        # The AMF does NOT drop rows when a UE deregisters: it keeps them with state
+        # 5GMM-DEREGISTERED. Counting rows would therefore never reach zero, so only
+        # UEs still in an active state are counted. Row layout is
+        #   | Index | 5GMM State | IMSI/SUPI | GUTI | RAN UE NGAP ID | ...
+        active = []
+        for line in table.splitlines():
+            fields = [f.strip() for f in line.split("|")]
+            if len(fields) < 4:
+                continue
+            state, supi = fields[2], fields[3]
+            if not re.fullmatch(r"\d{15}", supi):
+                continue  # header or padding row
+            if "DEREGISTERED" not in state.upper():
+                active.append(f"{supi} ({state})")
+
+        if active:
+            logging.info(f"{container} still holds {len(active)} active UE context(s): "
+                         f"{active[:5]}{' ...' if len(active) > 5 else ''}")
+        else:
+            logging.info(f"{container} holds no active UE context")
+        return len(active)
+
+    def core_should_have_no_ue_context(self, container="oai-amf"):
+        """
+        Fails unless the AMF's latest statistics table is empty.
+
+        Call after every UE has deregistered. Give the AMF one statistics interval
+        first, e.g. with Wait Until Keyword Succeeds, since the table is only
+        refreshed periodically.
+        """
+        count = self.amf_ue_context_count(container)
+        if count != 0:
+            raise Exception(
+                f"{container} still holds {count} UE context(s) after every UE "
+                f"deregistered; contexts are leaking")
+        logging.info(f"{container} released every UE context")
+        return 0
+
+    def ext_dn_route_should_exist(self, subnet, container="oai-ext-dn"):
+        """
+        Fails unless the ext-DN actually has a route to the UE pool.
+
+        Set Ext Dn Ue Subnet rewrites the entrypoint before the container starts, but
+        the route is only installed at runtime and a failure there is easy to miss:
+        downlink traffic towards the UEs would simply be dropped. Worth asserting
+        explicitly for tests that send traffic towards a UE, such as paging.
+
+        :param subnet: expected UE subnet in CIDR, e.g. 12.1.0.0/16
+        :param container: container to check, normally the ext-DN
+        """
+        routes = self.docker_api.exec_on_container(container, "/bin/bash -c 'ip route'")
+        if subnet not in routes:
+            raise Exception(
+                f"{container} has no route to the UE pool {subnet}. Routes are:\n{routes}")
+        logging.info(f"{container} routes the UE pool {subnet}")
+        return routes
+
     def add_dependency(self, container, depends_on):
         parsed = None
         with open(self.docker_compose_path, "r") as f:

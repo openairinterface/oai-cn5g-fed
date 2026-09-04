@@ -1,0 +1,323 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+#
+# gnbsim configuration template for the robot test suite.
+#
+# OmecGnbsimLib copies this file per run and rewrites it through
+# Replace In Gnbsim Config, so the values below are defaults for the
+# 192.168.79.128/25 (N2/SBI) and 192.168.80.128/25 (N3) test networks.
+#
+# Exactly one profile is enabled per run; the suite selects it by name.
+---
+info:
+  version: 1.0.0
+  description: gnbsim configuration for the OAI CN5G robot tests
+
+configuration:
+  runConfigProfilesAtStart: true
+  singleInterface: false
+  execInParallel: false
+  httpServer:
+    enable: false
+    ipAddr: "POD_IP"
+    port: 8080
+
+  gnbs:
+    gnb1:
+      n2IpAddr: 192.168.79.171
+      n2Port: 9487
+      n3IpAddr: 192.168.80.171
+      n3Port: 2152
+      name: gnb1
+      globalRanId:
+        plmnId:
+          mcc: 208
+          mnc: 95
+        gNbId:
+          bitLength: 24
+          gNBValue: "000001"
+      supportedTaList:
+        - tac: 00a000
+          broadcastPlmnList:
+            - plmnId:
+                mcc: 208
+                mnc: 95
+              taiSliceSupportList:
+                - sst: 222
+                  sd: "00007B"
+      defaultAmf:
+        hostName: oai-amf
+        ipAddr: 192.168.79.132
+        port: 38412
+
+  customProfiles:
+    # Complete UE lifecycle in one profile. The predefined profile types are fixed
+    # sequences and none of them covers release plus deregistration, so this is
+    # expressed as a custom profile. The trailing number on each step is the wait
+    # in seconds before the next one.
+    #
+    # The UE context release is not a separate step: deregistration makes the AMF
+    # send UEContextReleaseCommand with cause "deregister", so the context is
+    # released as part of it. An explicit AN-RELEASE before the deregistration
+    # instead tears down the RAN connection, leaving the deregistration NAS message
+    # no path - all 500 UEs then time out on exactly that step.
+    #
+    # ICMP is reply driven in every profile: the procedure only passes when the echo
+    # replies come back, which is the only way the test says anything about the user
+    # plane. Note that this has been measured to fail at 500 UEs, where every UE
+    # established its PDU session and then saw zero replies; that is a real user plane
+    # limitation to chase rather than something to paper over with send-only data.
+    lifecycle:
+      profileType: custom
+      profileName: lifecycle
+      enable: false
+      execInParallel: false
+      stepTrigger: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      retransMsg: false
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      plmnId:
+        mcc: 208
+        mnc: 95
+      perUserTimeout: 60
+      dataPktCount: 4
+      startiteration: iteration1
+      iterations:
+        - "name": "iteration1"
+          "1": "REGISTRATION-PROCEDURE 2"
+          "2": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 2"
+          "3": "USER-DATA-PACKET-GENERATION-PROCEDURE 2"
+          "4": "UE-REQUESTED-PDU-SESSION-RELEASE-PROCEDURE 2"
+          "5": "UE-INITIATED-DEREGISTRATION-PROCEDURE 2"
+          "next": "quit"
+
+    # Idle/active cycle for a single UE: establish, go to CM-IDLE via AN release,
+    # come back with a Service Request, and prove the user plane returned.
+    #
+    # There is deliberately no second PDU-SESSION-ESTABLISHMENT after the Service
+    # Request: the Service Request reactivates the existing session (the AMF handles
+    # the PDU Session Reactivation IE), so establishing again would create a second,
+    # additional session rather than restoring the first one. The check that matters
+    # is the second USER-DATA round.
+    #
+    # ICMP here is reply driven (no dataPktInterval), so the procedure only passes if
+    # the echo replies actually come back. That is the whole point of the second
+    # round, and it works reliably for a single UE.
+    #
+    # Seven steps is the per-iteration maximum that gnbsim supports.
+    idlecycle:
+      profileType: custom
+      profileName: idlecycle
+      enable: false
+      execInParallel: false
+      stepTrigger: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      retransMsg: false
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      plmnId:
+        mcc: 208
+        mnc: 95
+      perUserTimeout: 60
+      dataPktCount: 4
+      startiteration: iteration1
+      iterations:
+        - "name": "iteration1"
+          "1": "REGISTRATION-PROCEDURE 2"
+          "2": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 2"
+          "3": "USER-DATA-PACKET-GENERATION-PROCEDURE 2"
+          "4": "AN-RELEASE-PROCEDURE 2"
+          "5": "UE-TRIGGERED-SERVICE-REQUEST-PROCEDURE 2"
+          "6": "USER-DATA-PACKET-GENERATION-PROCEDURE 2"
+          "7": "UE-INITIATED-DEREGISTRATION-PROCEDURE 2"
+          "next": "quit"
+
+    # Release a PDU session and then establish a new one on the same
+    # registration, which is what a real modem does between two connects
+    # (mbimcli --disconnect followed by --connect). Nothing else in the suite
+    # covers it: lifecycle releases and then deregisters straight away, so the
+    # SMF is never asked for a second session while the UE stays registered.
+    #
+    # This is the sequence that caught the SMF releasing a session's resources
+    # twice: the ids went back to their generators before the UE's Release
+    # Complete arrived, and the RAN then rejected the second establishment with
+    # 5GSM cause #26, insufficient resources. The second ICMP round is the
+    # assertion that matters, since it only passes if the new session has a
+    # working user plane rather than merely having been accepted.
+    #
+    # Seven steps is the per-iteration maximum, so there is no room for an
+    # eighth; the deregistration doubles as the context release.
+    relcycle:
+      profileType: custom
+      profileName: relcycle
+      enable: false
+      execInParallel: false
+      stepTrigger: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      retransMsg: false
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      plmnId:
+        mcc: 208
+        mnc: 95
+      perUserTimeout: 60
+      dataPktCount: 4
+      startiteration: iteration1
+      iterations:
+        - "name": "iteration1"
+          "1": "REGISTRATION-PROCEDURE 2"
+          "2": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 2"
+          "3": "USER-DATA-PACKET-GENERATION-PROCEDURE 2"
+          # The trailing number is a wait in MILLISECONDS, applied after this
+          # step and before the next. 2 ms re-establishes the session about as
+          # fast as the SMF's release notification reaches the AMF, and the AMF
+          # then removes PDU session 10 while it is still building the create for
+          # the new one ("PDU Session ID 10 removed" followed by "No PDU Session
+          # Context with PDU Session ID 10"), so the create is never sent and the
+          # UE waits out its timeout. A real modem leaves far more than this
+          # between an mbimcli --disconnect and the next --connect.
+          "4": "UE-REQUESTED-PDU-SESSION-RELEASE-PROCEDURE 2000"
+          "5": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 2"
+          "6": "USER-DATA-PACKET-GENERATION-PROCEDURE 2"
+          "7": "UE-INITIATED-DEREGISTRATION-PROCEDURE 2"
+          "next": "quit"
+
+  profiles:
+    # Registration only. Measures registration and, with the deregister
+    # profile, the full attach/detach cycle.
+    - profileType: register
+      profileName: reg
+      enable: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      execInParallel: false
+      perUserTimeout: 30
+      plmnId:
+        mcc: 208
+        mnc: 95
+
+    # Registration + PDU session establishment + uplink user data.
+    - profileType: pdusessest
+      profileName: pdusess
+      enable: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      execInParallel: false
+      perUserTimeout: 30
+      plmnId:
+        mcc: 208
+        mnc: 95
+      dataPktCount: 2
+
+    # Attach then detach: this is the profile that yields both
+    # TotalRegTime and TotalDeregistrationTime per UE.
+    - profileType: deregister
+      profileName: dereg
+      enable: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      execInParallel: false
+      perUserTimeout: 30
+      plmnId:
+        mcc: 208
+        mnc: 95
+      dataPktCount: 2      # with
+    # AN release: moves the UE to CM-IDLE. Prerequisite for the
+    # service request procedure below.
+    - profileType: anrelease
+      profileName: anrel
+      enable: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      execInParallel: false
+      perUserTimeout: 30
+      plmnId:
+        mcc: 208
+        mnc: 95
+      dataPktCount: 5
+
+    # UE-triggered service request: idle -> connected, giving
+    # TotalServiceReqTime per UE.
+    - profileType: uetriggservicereq
+      profileName: servicereq
+      enable: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      execInParallel: false
+      perUserTimeout: 30
+      plmnId:
+        mcc: 208
+        mnc: 95
+      dataPktCount: 5
+
+    # N2 (AMF-controlled) handover between the two simulated gNBs. gnbsim verifies
+    # the user plane before and after the handover, so a pass means the UPF followed
+    # the path switch, not just that the signalling completed.
+
+logger:
+  logLevel: info

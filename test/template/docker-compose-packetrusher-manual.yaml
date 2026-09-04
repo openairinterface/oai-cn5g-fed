@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+#
+# PacketRusher against an already-running OAI core, for N2/Xn handover testing.
+#
+# Bring the core up first (any suite that deploys it, or the docker-compose the
+# robot tests generate), then:
+#
+#   docker build -f test/template/Dockerfile.packetrusher \
+#                -t packetrusher:develop test/PacketRusher
+#   docker compose -f test/template/docker-compose-packetrusher.yaml up
+#
+# The container owns two N2/N3 addresses because N2 handover needs two gNodeBs.
+# compose can pin only one per network, so the second is added at start-up; the
+# container is privileged and carries iproute2.
+#
+# No gtp5g kernel module is involved: the command below omits --tunnel, so this is
+# a pure control plane run. Add --tunnel only if gtp5g is loaded (and signed, on a
+# Secure Boot host) on the machine, not in here.
+version: '3.8'
+services:
+    packetrusher:
+        container_name: packetrusher
+        image: packetrusher:develop
+        privileged: true
+        volumes:
+            - ./packetrusher_config.yaml:/packetrusher/config/config.yml
+        entrypoint:
+            - /bin/bash
+            - -c
+            - |
+              ip addr add 192.168.79.182/25 dev eth0
+              exec /usr/local/bin/packetrusher --config /packetrusher/config/config.yml \
+                multi-ue -n 1 --timeBeforeNgapHandover 20000 --tunnel --dedicatedGnb
+        networks:
+            public_test_net:
+                ipv4_address: 192.168.79.181
+networks:
+    public_test_net:
+        external:
+            name: test-oai-public-net

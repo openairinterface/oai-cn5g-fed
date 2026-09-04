@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+#
+# Template for one PacketRusher run. PacketRusherLib generates a compose file from
+# this per test, replacing the REPLACE_* placeholders. For a hand-run example see
+# docker-compose-packetrusher-manual.yaml next to this file.
+#
+# PacketRusher does not exit on its own: multi-ue keeps the UEs registered until it
+# is stopped. The library therefore runs it for a bounded time, then reads results
+# from the log and the pcap, rather than waiting for the container to end.
+#
+# The container owns two N2/N3 addresses because handover needs two gNodeBs, and
+# compose can pin only one per network, so the second is added at start-up.
+#
+# gtp5g note: --tunnel needs the module loaded on the host. It is namespace aware,
+# so a privileged container creates its GTP-U interface in its own netns; host
+# networking is not required. On a Secure Boot host the module must be signed.
+version: '3.8'
+services:
+    REPLACE_SERVICE:
+        container_name: REPLACE_NAME
+        image: packetrusher:develop
+        privileged: true
+        volumes:
+            - REPLACE_CONFIG:/packetrusher/config/config.yml
+            - REPLACE_PCAP_DIR:/pcap
+        entrypoint:
+            - /bin/bash
+            - -c
+            - |
+              ip addr add REPLACE_IP_2/25 dev eth0
+              exec /usr/local/bin/packetrusher --config /packetrusher/config/config.yml REPLACE_COMMAND
+        networks:
+            public_test_net:
+                ipv4_address: REPLACE_IP_1
+networks:
+    public_test_net:
+        external:
+            name: test-oai-public-net

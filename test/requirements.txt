@@ -7,3 +7,4 @@ robotframework-extendedrequestslibrary==0.5.5
 pymongo==4.15.5
 requests==2.32.5
 jsonify==0.5
+pyyaml==6.0.3
