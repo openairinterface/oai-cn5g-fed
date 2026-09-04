@@ -82,7 +82,7 @@ services:
                 ipv4_address: 192.168.70.130
     oai-amf:
         container_name: "oai-amf"
-        image: oaisoftwarealliance/oai-amf:develop
+        image: oaisoftwarealliance/oai-amf:net-qos
         expose:
             - 80/tcp
             - 8080/tcp
@@ -98,7 +98,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: oaisoftwarealliance/oai-smf:develop
+        image: oaisoftwarealliance/oai-smf:qos-mod
         expose:
             - 80/tcp
             - 8080/tcp
@@ -116,13 +116,14 @@ services:
             - "oai-upf:192.168.70.129"
     oai-pcf:
         container_name: "oai-pcf"
-        image: oaisoftwarealliance/oai-pcf:develop
+        image: oaisoftwarealliance/oai-pcf:n5-qos
         expose:
             - 80/tcp
             - 8080/tcp
         volumes:
             - ./policies/qos:/openair-pcf/policies
             - ./conf/basic_nrf_config_qos.yaml:/openair-pcf/etc/config.yaml
+            - ./policies/qos_references:/openair-pcf/policies/qos_references/
         environment:
             - TZ=Europe/Paris
         depends_on:
@@ -132,7 +133,7 @@ services:
                 ipv4_address: 192.168.70.139
     oai-upf:
         container_name: "oai-upf"
-        image: oaisoftwarealliance/oai-upf:develop
+        image: oaisoftwarealliance/oai-upf:fix-pfcp-mod
         expose:
             - 2152/udp
             - 8805/udp
@@ -166,6 +167,18 @@ services:
         extra_hosts:
             - "oai-ext-dn:192.168.72.135"
             - "oai-nrf:192.168.70.130"
+    oai-af:
+        container_name: "oai-af"
+        image: curlimages/curl
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        command: [ "sleep", "infinity" ]
+        depends_on:
+            - oai-pcf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.144
     oai-ext-dn:
         privileged: true
         init: true
