@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 
-version: '3.8'
 services:
     mysql:
         container_name: "mysql"
-        image: mysql:9.6.0
+        image: mysql:9.0
         volumes:
             - ./database/oai_db2.sql:/docker-entrypoint-initdb.d/oai_db.sql
             - ./database/pcf-provisioning/DnnPolicyDecision.sql:/docker-entrypoint-initdb.d/DnnPolicyDecision.sql
@@ -13,6 +12,7 @@ services:
             - ./database/pcf-provisioning/QosData.sql:/docker-entrypoint-initdb.d/QosData.sql
             - ./database/pcf-provisioning/TrafficControlDataODB.sql:/docker-entrypoint-initdb.d/TrafficControlDataODB.sql
             - ./database/pcf-provisioning/PccRuleODB.sql:/docker-entrypoint-initdb.d/PccRuleODB.sql
+            - ./database/pcf-provisioning/policies_init_data_script.sql:/docker-entrypoint-initdb.d/policies_init_data_script.sql
             - ./healthscripts/mysql-healthcheck2.sh:/tmp/mysql-healthcheck.sh
         environment:
             - TZ=Europe/Paris
@@ -30,12 +30,12 @@ services:
                 ipv4_address: 192.168.70.131
     oai-udr:
         container_name: "oai-udr"
-        image: oaisoftwarealliance/oai-udr:develop
+        image: oaisoftwarealliance/oai-udr:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-udr/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-udr/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
@@ -46,12 +46,12 @@ services:
                 ipv4_address: 192.168.70.136
     oai-udm:
         container_name: "oai-udm"
-        image: oaisoftwarealliance/oai-udm:develop
+        image: oaisoftwarealliance/oai-udm:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-udm/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-udm/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
@@ -61,12 +61,12 @@ services:
                 ipv4_address: 192.168.70.137
     oai-ausf:
         container_name: "oai-ausf"
-        image: oaisoftwarealliance/oai-ausf:develop
+        image: oaisoftwarealliance/oai-ausf:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-ausf/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-ausf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
@@ -76,12 +76,12 @@ services:
                 ipv4_address: 192.168.70.138
     oai-nrf:
         container_name: "oai-nrf"
-        image: oaisoftwarealliance/oai-nrf:develop
+        image: oaisoftwarealliance/oai-nrf:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-nrf/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-nrf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         networks:
@@ -89,30 +89,29 @@ services:
                 ipv4_address: 192.168.70.130
     oai-amf:
         container_name: "oai-amf"
-        image: oaisoftwarealliance/oai-amf:develop
+        image: oaisoftwarealliance/oai-amf:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
             - 38412/sctp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-amf/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-amf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
-            - mysql
             - oai-nrf
         networks:
             public_net:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: oaisoftwarealliance/oai-smf:develop
+        image: oaisoftwarealliance/oai-smf:v2.2.0
         expose:
             - 80/tcp
             - 8080/tcp
             - 8805/udp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-smf/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-smf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
@@ -120,28 +119,8 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.70.133
-    oai-upf:
-        container_name: "oai-upf"
-        image: oaisoftwarealliance/oai-upf:develop
-        expose:
-            - 2152/udp
-            - 8805/udp
-        volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-upf/etc/config.yaml
-        environment:
-            - TZ=Europe/Paris
-        depends_on:
-            - oai-nrf
-            - oai-smf
-        cap_add:
-            - NET_ADMIN
-            - SYS_ADMIN
-        cap_drop:
-            - ALL
-        privileged: true
-        networks:
-            public_net:
-                ipv4_address: 192.168.70.134
+        extra_hosts:
+            - "oai-upf:192.168.70.129"
     oai-pcf:
         container_name: "oai-pcf"
         image: oaisoftwarealliance/oai-pcf:v2.2.0
@@ -149,24 +128,52 @@ services:
             - 80/tcp
             - 8080/tcp
         volumes:
-            - ./conf/pcf_provisioning_config.yaml:/openair-pcf/etc/config.yaml
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-pcf/etc/config.yaml
         environment:
             - TZ=Europe/Paris
         depends_on:
-            - mysql
             - oai-nrf
         networks:
             public_net:
                 ipv4_address: 192.168.70.139
+    oai-upf:
+        container_name: "oai-upf"
+        image: oaisoftwarealliance/oai-upf:v2.2.0
+        expose:
+            - 2152/udp
+            - 8805/udp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos_provisioning_api.yaml:/openair-upf/etc/config.yaml
+            - /sys/fs/bpf:/sys/fs/bpf
+            - /sys/kernel/debug:/sys/kernel/debug:rw
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        network_mode: host
+        extra_hosts:
+            - "oai-ext-dn:192.168.72.135"
+            - "oai-nrf:192.168.70.130"
     oai-ext-dn:
         privileged: true
         init: true
         container_name: oai-ext-dn
         image: oaisoftwarealliance/trf-gen-cn5g:latest
         environment:
-            - UPF_FQDN=oai-upf
-            - UE_NETWORK=12.1.1.0/24
-            - USE_FQDN=yes
+            - EBPF_GW_SETUP=yes
+            - EBPF_GW_N6_IP_ADDR=192.168.72.135
+            - GW_SGI_IP_ADDR=192.168.70.135
+            - GW_N3_IP_ADDR=192.168.71.135
+            - UE_IP_ADDRESS_POOL=12.1.1.0/24
+            - N6_UPF_IP_ADDR=192.168.72.129
+            - SGI_DEMO_OAI_ADDR=192.168.70.129
         healthcheck:
             test: /bin/bash -c "ip r | grep 12.1.1"
             interval: 10s
@@ -175,7 +182,10 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.70.135
-
+            n3_net:
+                ipv4_address: 192.168.71.135
+            n6_net:
+                ipv4_address: 192.168.72.135
 networks:
     public_net:
         driver: bridge
@@ -185,3 +195,19 @@ networks:
                 - subnet: 192.168.70.128/26
         driver_opts:
             com.docker.network.bridge.name: "demo-oai"
+    n3_net:
+        driver: bridge
+        name: demo-oai-n3-net
+        ipam:
+            config:
+                - subnet: 192.168.71.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-n3"
+    n6_net:
+        driver: bridge
+        name: demo-oai-n6-net
+        ipam:
+            config:
+                - subnet: 192.168.72.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-n6"
