@@ -206,6 +206,47 @@ configuration:
           "7": "UE-INITIATED-DEREGISTRATION-PROCEDURE 2"
           "next": "quit"
 
+    # Session-hold profile for the N7/N5 policy API integration tests. One UE
+    # registers, establishes a PDU session, then WAITS (the trailing number is a
+    # per-step delay in milliseconds) so the session stays live while the HTTP
+    # policy scripts run against the SMF/PCF, and finally deregisters cleanly.
+    #
+    # Unlike the other profiles, the point here is not what gnbsim measures but
+    # that a real SM policy association exists for the duration: the SMF has an
+    # SM context (scid) and the PCF an app-session anchor keyed on the UE address.
+    # The hold must stay below perUserTimeout; OmecGnbsimLib forces perUserTimeout
+    # to max(60, ueCount), so the suite raises it again after Prepare Omec Gnbsim.
+    policyhold:
+      profileType: custom
+      profileName: policyhold
+      enable: false
+      execInParallel: false
+      stepTrigger: false
+      gnbName: gnb1
+      startImsi: 208950000000031
+      ueCount: 1
+      defaultAs: "192.168.79.141"
+      opc: "63bfa50ee6523365ff14c1f45f88737d"
+      key: "0C0A34601D4F07677303652C0462535B"
+      sequenceNumber: "000000000020"
+      retransMsg: false
+      dnn: "default"
+      sNssai:
+        sst: 222
+        sd: "00007B"
+      plmnId:
+        mcc: 208
+        mnc: 95
+      perUserTimeout: 180
+      dataPktCount: 4
+      startiteration: iteration1
+      iterations:
+        - "name": "iteration1"
+          "1": "REGISTRATION-PROCEDURE 2"
+          "2": "PDU-SESSION-ESTABLISHMENT-PROCEDURE 40000"
+          "3": "UE-INITIATED-DEREGISTRATION-PROCEDURE 2"
+          "next": "quit"
+
   profiles:
     # Registration only. Measures registration and, with the deregister
     # profile, the full attach/detach cycle.

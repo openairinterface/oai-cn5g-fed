@@ -1,0 +1,30 @@
+# N7 PCF-initiated PDU Session Modification test script
+
+`smf_pcf_n7_tests.py` exercises the SMF's `Nsmf_Callback` policy notification
+endpoint (`POST /nsmf-callback/v1/{scid}/sm-policy-control-notify/update`)
+[TS 29.512 §4.2.3.2] against a live SMF over HTTP/2 prior-knowledge, via
+`curl` (neither `requests` nor `httpx` can speak that transport). No pip
+dependencies.
+
+## Requirements
+
+- `python3` 3.10+, `curl` built with HTTP/2 support
+- A reachable SMF with a UE that has an established PDU session (the demo
+  topology: `docker-compose-basic-nrf-qos.yaml` +
+  `docker-compose-ueransim-qos.yaml` in `oai-cn5g-fed`)
+
+## Quick start
+
+```bash
+PCF_CONTAINER=oai-pcf ./smf_pcf_n7_tests.py lifecycle
+```
+
+Sends an `SmPolicyNotification` update to the SMF's N7 callback endpoint and
+asserts on the SMF response (204 full-success / 200 partial-success /
+4xx-5xx with `ProblemDetails`), with one pass/fail exit code for the whole
+sequence.
+
+For individual subcommands, their options, and the
+`SMF_HOST`/`SMF_PORT`/`SMF_API_VERSION`/`PCF_CONTAINER` environment
+variables, see `./smf_pcf_n7_tests.py --help` or the module docstring at the
+top of the script.
