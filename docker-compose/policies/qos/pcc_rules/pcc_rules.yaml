@@ -82,7 +82,7 @@ non-gbr-rule-5qi-80:
 
 gbr-rule-iperf3-8080:
   flowInfos:
-    - flowDescription: permit out tcp from any to assigned 8080
+    - flowDescription: permit out 6 from any to assigned 8080
       packetFilterUsage: true
   precedence: 7
   refQosData:
@@ -90,7 +90,7 @@ gbr-rule-iperf3-8080:
 
 gbr-rule-iperf3-8081:
   flowInfos:
-    - flowDescription: permit out tcp from any to assigned 8081
+    - flowDescription: permit out 6 from any to assigned 8081
       packetFilterUsage: true
   precedence: 8
   refQosData:
