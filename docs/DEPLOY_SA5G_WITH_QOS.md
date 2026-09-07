@@ -508,11 +508,7 @@ docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
 Send a QoS profile from the AF based on the UE IPv4 address. The `-i` flag prints the response headers so we can capture the `Location` header, which contains the `appSessionId` the PCF assigned to this app session — every following request addresses that same app session:
 
 ``` shell
-docker-compose-host $: docker exec oai-af curl -i \
-  -H 'Content-Type: application/json' \
-  -X POST \
-  -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' \
- --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
+docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
 docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r')
 docker-compose-host $: echo "app session id: $APP_SESSION_ID"
 ```
@@ -522,9 +518,7 @@ The PCF answers `201 Created`, and the SMF/UPF now enforce a 5 Mbps downlink lim
 To GET the app session and confirm what the PCF stored:
 
 ```
-docker exec oai-af curl -i \
-  --http2-prior-knowledge \
-  http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
 ```
 
 PATCH the app session to change it in place — the request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch, so reusing an existing `medCompN` **modifies** that component, and a new `medCompN` **adds** one alongside it (setting `fStatus: "REMOVED"` on a component **removes** it). Here we add a second media component (medCompN 2) for traffic on port 8000:
