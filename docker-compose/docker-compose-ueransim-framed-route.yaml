@@ -1,0 +1,67 @@
+version: '3.8'
+
+
+#### Commands for Test Setup
+#
+#    # setup subnet IP address
+#    docker exec -it ueransim-fr ip addr add 192.168.128.1/24 dev uesimtun0
+#
+#    # add routing
+#    docker exec -it ueransim-fr ip rule add from 192.168.128.1 lookup rt_uesimtun0
+#    docker exec -it ueransim-fr ip route add 192.168.128.1 dev uesimtun0 table rt_uesimtun0
+#    # route entry for ping 8.8.8.8.
+#    docker exec -it ueransim-fr ip route add 8.8.8.8 via 12.1.1.2 dev uesimtun0 src 192.168.128.1
+#
+#    # Test
+#    docker exec -it ueransim-fr ping -I 192.168.128.1 8.8.8.8
+#    docker exec -it oai-ext-dn ping 192.168.128.1
+
+services:
+    ueransim-fr:
+        container_name: ueransim-fr
+        image: ueransim:latest
+        privileged: true
+        environment:
+            # GNB Congig Parameters
+            - MCC=208
+            - MNC=95
+            - NCI=0x000000010
+            - TAC=0xa000
+            - LINK_IP=192.168.70.149
+            - NGAP_IP=192.168.70.149
+            - GTP_IP=192.168.70.149
+            - NGAP_PEER_IP=192.168.70.132
+            - SST=222
+            - SD=123
+            - IGNORE_STREAM_IDS=true
+            # UE Config Parameters
+            - NUMBER_OF_UE=1
+            - IMSI=208950000000032
+            - KEY=0C0A34601D4F07677303652C0462535B
+            - OP=63bfa50ee6523365ff14c1f45f88737d
+            - OP_TYPE=OPC
+            - AMF_VALUE=8000
+            - IMEI=356938035643803
+            - IMEI_SV=0035609204079514
+            - GNB_IP_ADDRESS=192.168.70.149
+            - PDU_TYPE=IPv4
+            - APN=default
+            - SST_0=222
+            - SD_0=123
+            - SST_C=222
+            - SD_C=123
+            - SST_D=222
+            - SD_D=123
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.149
+        healthcheck:
+            test: /bin/bash -c "ifconfig uesimtun0"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+networks:
+    public_net:
+        external:
+            name: demo-oai-public-net
