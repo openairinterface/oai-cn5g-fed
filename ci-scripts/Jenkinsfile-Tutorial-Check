@@ -328,16 +328,16 @@ pipeline {
           dir ('ci-scripts') {
             // Tee will make the command always pass
             // Please use the same log name as the folder used in the tutorial
-            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_DEPLOYMENT.md | tee ../archives/static-ue-ip.log'
+            sh './checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_DEPLOYMENT.md | tee ../archives/basic-deployment.log'
           }
           try {
-            sh 'grep -l "is PASS" archives/static-ue-ip.log > /dev/null'
+            sh 'grep -l "is PASS" archives/basic-deployment.log > /dev/null'
             echo "Static UE IP Tutorial PASSED"
           } catch (Exception e) {
             currentBuild.result = 'FAILURE'
             echo "Static UE IP Tutorial FAILED"
           }
-          archivesArtifacts('docker-compose/docker-compose-basic-nrf.yaml', 'static-ue-ip')
+          archivesArtifacts('docker-compose/docker-compose-basic-nrf.yaml', 'basic-deployment')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf.yaml')
         }
       }
@@ -532,7 +532,7 @@ def updateDockerCompose(filename, lRanTag) {
 }
 
 def archivesArtifacts(filename,folder) {
-  sh 'cp -Rf /tmp/oai/' + folder + ' archives || true'
+  sh 'cp -Rf /tmp/oai/' + folder + ' archives'
   // Making a copy of the docker-compose for debugging
   sh 'cp ' + filename + ' archives/' + folder + ' || true'
 }
