@@ -191,7 +191,23 @@ docker-compose-host $: docker exec -i oai-nr-ue3 ip a | grep oaitap_ue1
 ```
 </details>
 
-Send Ethernet traffic using arping
+### 6.1. Set the MTU
+
+GTP-U adds 40 bytes and an Ethernet PDU session carries a further 14-byte inner Ethernet
+header, so the usable MTU is below the 1500 the TAP defaults to.
+
+``` shell
+docker-compose-host $: docker exec -i oai-nr-ue3 ip link set oaitap_ue1 mtu 1446
+```
+
+### 6.2. Allow L2 multicast on the Docker bridges
+
+Docker creates its bridges with `multicast_snooping=1` and no querier, so unregistered L2 multicast groups are never forwarded to bridge ports. Broadcast is unaffected. Without this, any multicast protocol over the session e.g., gPTP (EtherType `0x88F7`) will fails.
+
+``` shell
+docker-compose-host $: echo 0 | sudo tee /sys/class/net/demo-n6/bridge/multicast_snooping
+docker-compose-host $: echo 0 | sudo tee /sys/class/net/demo-n3/bridge/multicast_snooping
+```
 
 Assign IP address to tap device on OAI UE
 
@@ -213,6 +229,25 @@ docker-compose-host $: docker exec -i oai-nr-ue3 ip link set dev oaitap_ue1 up
     inet 192.168.72.140/26 scope global oaitap_ue1
 ```
 </details>
+
+### 6.3. Downlink to an unlearned MAC — run this FIRST
+
+This tests that the UPF/DN can reach a UE it has not yet heard from. The UPF learns UE
+MAC addresses from uplink traffic; before any uplink, the UE's MAC is unknown and the frame must be flooded to the PDU sessions.
+
+> **Ordering matters.** Any uplink traffic — including the `arping` below — teaches the UPF the UE's MAC, after which this test passes for the wrong reason.
+
+``` shell
+docker-compose-host $: docker exec -i oai-ext-dn ping -c 3 -W 3 192.168.72.140
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: docker exec -i oai-ext-dn ping -c 3 -W 3 192.168.72.140 > /tmp/oai/ethernet-pdu-testing/dl-unlearned-mac.log 2>&1 || true
+docker-compose-host $: grep -q " 0% packet loss" /tmp/oai/ethernet-pdu-testing/dl-unlearned-mac.log && echo "PASS: downlink to unlearned MAC" || { echo "FAIL: downlink to an unlearned MAC did not work"; exit 1; }
+```
+-->
 
 Send ARP ping packets
 ```console
@@ -240,6 +275,104 @@ ARPING 192.168.72.135
 rtt min/avg/max/std-dev = 14.583/17.724/20.865/3.141 ms
 ```
 </details>
+
+### 6.4. Uplink IP traffic — the test that actually exercises the tunnel
+
+This tests that a user-plane Ethernet frame is carried UE → gNB → GTP-U → UPF → N6.
+
+> **`arping` alone does not validate the feature.** ARP is answered locally by the UPF's own ARP handling and **never enters the GTP-U tunnel**
+
+``` shell
+docker-compose-host $: docker exec -i oai-nr-ue3 ping -c 3 -W 2 -I oaitap_ue1 192.168.72.135
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: docker exec -i oai-nr-ue3 ping -c 3 -W 2 -I oaitap_ue1 192.168.72.135 > /tmp/oai/ethernet-pdu-testing/ul-ping.log 2>&1 || true
+docker-compose-host $: grep -q " 0% packet loss" /tmp/oai/ethernet-pdu-testing/ul-ping.log && echo "PASS: uplink IP through the tunnel" || { echo "FAIL: no uplink user-plane traffic"; exit 1; }
+```
+-->
+
+<details>
+<summary>The output will look like this:</summary>
+
+```
+3 packets transmitted, 3 received, 0% packet loss, time 2050ms
+rtt min/avg/max/mdev = 18.237/25.424/38.508/9.266 ms
+```
+</details>
+
+### 6.5. Uplink L2 multicast
+
+This tests that L2 multicast groups traverse the session. Multicast and broadcast
+take different paths through the Linux bridge, so §6.3 does not cover this. The UE emits IPv6 MLD/ND to `33:33:…` of its own accord, so no extra tooling is needed.
+
+The check requires frames whose **source MAC is the UE's**, not merely any `33:33:` frame — `oai-ext-dn` generates its own IPv6 multicast locally, and counting that would pass even with no PDU session at all.
+
+``` shell
+docker-compose-host $: docker exec -d oai-ext-dn sh -c 'N6IF=$(ip -o -4 addr show | awk "/192.168.72./{sub(/:\$/,\"\",\$2); print \$2}"); timeout 12 tcpdump -i $N6IF -e -n -w /tmp/mc.pcap'
+docker-compose-host $: docker exec -i oai-nr-ue3 ping6 -c 2 -W 2 -I oaitap_ue1 ff02::1
+docker-compose-host $: docker exec -i oai-ext-dn sh -c 'sleep 11; tcpdump -r /tmp/mc.pcap -e -n 2>/dev/null | grep "33:33:"'
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: docker exec -i oai-ext-dn rm -f /tmp/mc.pcap; docker exec -d oai-ext-dn sh -c 'N6IF=$(ip -o -4 addr show | awk "/192.168.72./{sub(/:\$/,\"\",\$2); print \$2}"); timeout 14 tcpdump -i $N6IF -e -n -w /tmp/mc.pcap'; sleep 2; docker exec -i oai-nr-ue3 ping6 -c 2 -W 2 -I oaitap_ue1 ff02::1 > /dev/null 2>&1 || true; sleep 14; UEMAC=$(docker exec -i oai-nr-ue3 cat /sys/class/net/oaitap_ue1/address); MC=$(docker exec -i oai-ext-dn sh -c "tcpdump -r /tmp/mc.pcap -e -n 2>/dev/null | grep '33:33:' | grep -c \"^.*$UEMAC >\""); [ -n "$UEMAC" ] && [ "${MC:-0}" -ge 1 ] && echo "PASS: uplink L2 multicast from the UE ($MC frames)" || { echo "FAIL: no L2 multicast from the UE reached N6"; exit 1; }
+```
+-->
+
+### 6.6. VLAN tag and PCP are preserved
+
+This tests that an 802.1Q tag and its PCP priority bits survive the session unchanged. This is the property that makes an Ethernet PDU session usable as a TSN bridge port.
+
+`egress-qos-map 0:5` maps the default socket priority to PCP 5, so ordinary `ping` traffic carries PCP 5 — no priority-setting tool is required.
+
+> **The `ping` is a frame generator here, not the assertion.** It may report 100% loss: the tagged ARP *request* reaches the DN, but the tagged reply is not currently observed arriving back at the UE. The check is that tagged, priority-marked frames **from the UE's MAC** reach N6.
+
+``` shell
+docker-compose-host $: docker exec -i oai-nr-ue3 ip link add link oaitap_ue1 name oaitap_ue1.10 type vlan id 10 egress-qos-map 0:5
+docker-compose-host $: docker exec -i oai-nr-ue3 ip addr add 192.168.201.10/24 dev oaitap_ue1.10
+docker-compose-host $: docker exec -i oai-nr-ue3 ip link set oaitap_ue1.10 mtu 1442 up
+docker-compose-host $: docker exec -i oai-ext-dn sh -c 'N6IF=$(ip -o -4 addr show | awk "/192.168.72./{sub(/:\$/,\"\",\$2); print \$2}"); ip link add link $N6IF name $N6IF.10 type vlan id 10; ip addr add 192.168.201.20/24 dev $N6IF.10; ip link set $N6IF.10 mtu 1442 up'
+docker-compose-host $: docker exec -d oai-ext-dn sh -c 'N6IF=$(ip -o -4 addr show | awk "/192.168.72./{sub(/:\$/,\"\",\$2); print \$2}"); timeout 16 tcpdump -i $N6IF -e -n -w /tmp/vlan.pcap'
+docker-compose-host $: docker exec -i oai-nr-ue3 ping -c 3 -W 2 -I oaitap_ue1.10 192.168.201.20 || true
+docker-compose-host $: docker exec -i oai-ext-dn sh -c 'sleep 15; tcpdump -r /tmp/vlan.pcap -e -n 2>/dev/null | grep "vlan 10, p 5"'
+```
+
+<details>
+<summary>The output will look like this:</summary>
+
+```
+0a:cb:d7:c7:ea:22 > ff:ff:ff:ff:ff:ff, ethertype 802.1Q (0x8100), length 46:
+  vlan 10, p 5, ethertype ARP (0x0806), Request who-has 192.168.201.20 tell 192.168.201.10
+```
+</details>
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: docker exec -i oai-ext-dn rm -f /tmp/vlan.pcap; docker exec -d oai-ext-dn sh -c 'N6IF=$(ip -o -4 addr show | awk "/192.168.72./{sub(/:\$/,\"\",\$2); print \$2}"); timeout 18 tcpdump -i $N6IF -e -n -w /tmp/vlan.pcap'; sleep 2; docker exec -i oai-nr-ue3 ping -c 3 -W 2 -I oaitap_ue1.10 192.168.201.20 > /dev/null 2>&1 || true; sleep 18; UEMAC=$(docker exec -i oai-nr-ue3 cat /sys/class/net/oaitap_ue1/address); VP=$(docker exec -i oai-ext-dn sh -c "tcpdump -r /tmp/vlan.pcap -e -n 2>/dev/null | grep 'vlan 10, p 5' | grep -c \"^.*$UEMAC >\""); [ -n "$UEMAC" ] && [ "${VP:-0}" -ge 1 ] && echo "PASS: VLAN 10 / PCP 5 preserved from the UE ($VP frames)" || { echo "FAIL: VLAN tag or PCP not preserved"; exit 1; }
+```
+-->
+
+### 6.7. Throughput
+
+This tests sustained forwarding, and that the MTU of §6.1 is correct. A session that passes single pings can still fail under load or at full-size frames.
+
+``` shell
+docker-compose-host $: docker exec -d oai-nr-ue3 iperf3 -s -B 192.168.72.140
+docker-compose-host $: docker exec -i oai-ext-dn iperf3 -c 192.168.72.140 -u -b 20M -t 5 -l 1200
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: docker exec -d oai-nr-ue3 iperf3 -s -B 192.168.72.140; sleep 2; docker exec -i oai-ext-dn iperf3 -c 192.168.72.140 -u -b 20M -t 5 -l 1200 > /tmp/oai/ethernet-pdu-testing/iperf-udp.log 2>&1 || true
+docker-compose-host $: grep -q receiver /tmp/oai/ethernet-pdu-testing/iperf-udp.log && awk '/receiver/{ok=($7+0>15)} END{exit ok?0:1}' /tmp/oai/ethernet-pdu-testing/iperf-udp.log && echo "PASS: throughput" || { echo "FAIL: no iperf3 receiver line, or throughput below 15 Mbit/s"; cat /tmp/oai/ethernet-pdu-testing/iperf-udp.log; exit 1; }
+```
+-->
 
 ## 7. Log Collection
 
