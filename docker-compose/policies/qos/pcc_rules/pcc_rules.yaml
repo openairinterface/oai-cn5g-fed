@@ -117,7 +117,7 @@ gbr-rule-5qi-3:
  #  - flowDescription: permit out ip from any to assigned
     - flowDescription: permit out ip from any to any
       packetFilterUsage: true
-  precedence: 9
+  precedence: 10
   refQosData:
     - gbr-qos-5qi-3
 gbr-rule-5qi-4:
