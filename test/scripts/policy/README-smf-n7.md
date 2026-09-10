@@ -19,10 +19,19 @@ dependencies.
 PCF_CONTAINER=oai-pcf ./smf_pcf_n7_tests.py lifecycle
 ```
 
-Sends an `SmPolicyNotification` update to the SMF's N7 callback endpoint and
-asserts on the SMF response (204 full-success / 200 partial-success /
-4xx-5xx with `ProblemDetails`), with one pass/fail exit code for the whole
-sequence.
+Runs three scenarios against the SMF's N7 callback endpoint, in order, with
+one aggregate pass/fail exit code:
+
+1. **update-notify** -- POSTs a well-formed `SmPolicyNotification` and
+   asserts on the response (204 full-success / 200 partial-success / 4xx-5xx
+   with `ProblemDetails`).
+2. **terminate-notify** -- POSTs a `TerminationNotification` and asserts the
+   handler answers 204 immediately, with no body. Run after update-notify
+   since, against a live scid, it actually releases the SM Policy
+   Association.
+3. **update-notify, malformed body** -- POSTs unparseable JSON to the update
+   endpoint and asserts it is rejected with a bare 400, exercising the
+   JSON-parsing error path independently of session state.
 
 For individual subcommands, their options, and the
 `SMF_HOST`/`SMF_PORT`/`SMF_API_VERSION`/`PCF_CONTAINER` environment

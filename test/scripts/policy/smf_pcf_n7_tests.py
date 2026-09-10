@@ -24,6 +24,8 @@ Configuration (environment variables):
 Usage:
     ./smf_pcf_n7_tests.py lifecycle
     ./smf_pcf_n7_tests.py update-notify [--scid <scid>]
+    ./smf_pcf_n7_tests.py terminate-notify [--scid <scid>]
+    ./smf_pcf_n7_tests.py update-notify-malformed [--scid <scid>]
 
 Every subcommand exits 0 if all its assertions passed, 1 otherwise.
 """
@@ -234,6 +236,20 @@ def sm_policy_update_notification_body(
     }
 
 
+def sm_policy_termination_notification_body(scid: str) -> dict:
+    """A `TerminationNotification` [TS 29.512 §5.6.2.19] reporting that the
+    PCF is unilaterally ending the SM Policy Association. Both `resourceUri`
+    and `cause` are mandatory on the wire (`from_json` reads them with
+    `.at()`), so a well-formed body always carries both."""
+    return {
+        "resourceUri": (
+            f"http://{SMF_HOST}:{SMF_PORT}/nsmf-callback/{SMF_API_VERSION}"
+            f"/{scid}/sm-policy-control-notify"
+        ),
+        "cause": "UNSPECIFIED",
+    }
+
+
 # ===========================================================================
 # UPDATE-NOTIFY -- POST /{scid}/sm-policy-control-notify/update [TS 29.512 §4.2.3.2]
 # ===========================================================================
@@ -301,7 +317,98 @@ def update_notify(
 
 
 # ===========================================================================
-# LIFECYCLE -- update-notify (single-scenario smoke test)
+# TERMINATE-NOTIFY -- POST /{scid}/sm-policy-control-notify/terminate [TS 29.512 §4.2.4.2]
+# ===========================================================================
+
+# Unlike update-notify, the terminate handler writes its response head
+# *before* touching any session state -- PCF does not wait for SMF-side
+# cleanup to finish -- so 204 is the only spec-compliant answer, regardless
+# of whether scid names a live association.
+_TERMINATE_STATUS = 204
+
+
+def terminate_notify(
+    scid: str,
+    report: TestReport | None = None,
+) -> Response:
+    """POST a `TerminationNotification` to SMF's N7 terminate callback and
+    assert on the response envelope. Returns the Response.
+
+    Exercises the "terminate" branch of the callback URL routing added
+    alongside "update" -- previously this suite only ever hit "update".
+    """
+    own_report = report or TestReport("terminate_notify")
+    body = sm_policy_termination_notification_body(scid)
+
+    resp = curl_request(
+        "POST",
+        path=f"/{scid}/sm-policy-control-notify/terminate",
+        content_type="application/json",
+        body=body,
+    )
+
+    own_report.check_eq(
+        "POST terminate returns 204 No Content", _TERMINATE_STATUS, resp.status
+    )
+    own_report.check(
+        "204 responses carry no body", not resp.body.strip(),
+        f"got body: {resp.body!r}",
+    )
+
+    if report is None:
+        own_report.summary()
+    return resp
+
+
+# ===========================================================================
+# UPDATE-NOTIFY, MALFORMED BODY -- callback JSON-parsing error handling
+# ===========================================================================
+
+# A body the JSON parser rejects outright fails at the SBI layer before any
+# session lookup happens, so -- unlike a well-formed update-notify, whose
+# status can legitimately depend on whether scid names a live association --
+# this is always 400, with no body (the parse-error catch path never builds
+# a ProblemDetails, it just writes the bare status).
+_MALFORMED_BODY_STATUS = 400
+
+
+def update_notify_malformed(
+    scid: str,
+    report: TestReport | None = None,
+) -> Response:
+    """POST unparseable JSON to SMF's N7 update callback and assert it is
+    rejected cleanly at the parsing stage, rather than crashing the server
+    or hanging the connection. Returns the Response.
+
+    Exercises the try/catch around `nlohmann::json::parse(...).get_to(...)`
+    in the callback route -- previously untested, since the suite only ever
+    sent well-formed `SmPolicyNotification` bodies.
+    """
+    own_report = report or TestReport("update_notify_malformed")
+
+    resp = curl_request(
+        "POST",
+        path=f"/{scid}/sm-policy-control-notify/update",
+        content_type="application/json",
+        body='{"resourceUri": "truncated',
+    )
+
+    own_report.check_eq(
+        "POST with unparseable JSON returns 400 Bad Request",
+        _MALFORMED_BODY_STATUS, resp.status,
+    )
+    own_report.check(
+        "400 (parse error) responses carry no body", not resp.body.strip(),
+        f"got body: {resp.body!r}",
+    )
+
+    if report is None:
+        own_report.summary()
+    return resp
+
+
+# ===========================================================================
+# LIFECYCLE -- update-notify, terminate-notify, malformed body
 # ===========================================================================
 
 
@@ -310,8 +417,8 @@ def run_lifecycle() -> bool:
     and reports one aggregate pass/fail count -- a single broken step
     doesn't hide problems in the rest of the sequence.
 
-    Currently only exercises the update-notify path; terminate-notify and a
-    live-session round-trip are TODO."""
+    A live-session round-trip that asserts on the resulting N4/N1N2 side
+    effects (rather than just the HTTP response envelope) is still TODO."""
     overall = TestReport("n7_lifecycle")
 
     scid = DEFAULT_SCID or uuid.uuid4().hex[:16]
@@ -320,6 +427,21 @@ def run_lifecycle() -> bool:
 
     step = TestReport("1. update-notify")
     update_notify(scid, step)
+    overall.merge(step)
+    step.summary()
+
+    print()
+    # Run after update-notify, not before: against a live scid this actually
+    # releases the SM Policy Association, so anything meant to exercise it
+    # (like update-notify above) must run first.
+    step = TestReport("2. terminate-notify")
+    terminate_notify(scid, step)
+    overall.merge(step)
+    step.summary()
+
+    print()
+    step = TestReport("3. update-notify, malformed body")
+    update_notify_malformed(scid, step)
     overall.merge(step)
     step.summary()
 
@@ -347,6 +469,25 @@ def main() -> int:
         help="SM context reference (default: $SCID or a random hex string)",
     )
 
+    p_terminate = sub.add_parser(
+        "terminate-notify", help="POST /{scid}/sm-policy-control-notify/terminate"
+    )
+    p_terminate.add_argument(
+        "--scid",
+        default=DEFAULT_SCID or None,
+        help="SM context reference (default: $SCID or a random hex string)",
+    )
+
+    p_malformed = sub.add_parser(
+        "update-notify-malformed",
+        help="POST unparseable JSON to /{scid}/sm-policy-control-notify/update",
+    )
+    p_malformed.add_argument(
+        "--scid",
+        default=DEFAULT_SCID or None,
+        help="SM context reference (default: $SCID or a random hex string)",
+    )
+
     sub.add_parser("lifecycle", help="run every scenario in sequence (CI entrypoint)")
 
     args = parser.parse_args()
@@ -355,6 +496,18 @@ def main() -> int:
         scid = args.scid or uuid.uuid4().hex[:16]
         report = TestReport("update_notify")
         update_notify(scid, report)
+        return 0 if report.summary() else 1
+
+    if args.command == "terminate-notify":
+        scid = args.scid or uuid.uuid4().hex[:16]
+        report = TestReport("terminate_notify")
+        terminate_notify(scid, report)
+        return 0 if report.summary() else 1
+
+    if args.command == "update-notify-malformed":
+        scid = args.scid or uuid.uuid4().hex[:16]
+        report = TestReport("update_notify_malformed")
+        update_notify_malformed(scid, report)
         return 0 if report.summary() else 1
 
     if args.command == "lifecycle":
