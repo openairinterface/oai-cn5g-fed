@@ -286,21 +286,21 @@ docker-compose-host $: docker ps
 
 ## 7. Testing QoS Enforcement
 
-For testing QoS, we'll use UERANSIM to simulate UEs with different QoS profiles and measure the achieved throughput using iperf3.
+For testing QoS, we'll use the OAI gNB and OAI NR-UE (RF simulator) to simulate UEs with different QoS profiles and measure the achieved throughput using iperf3.
 
-### 7.1. Deploy UERANSIM
+### 7.1. Deploy the OAI gNB and UEs
 
 The configurations are as follows:
-- `ueransim/oai-cn5g-gnb.yaml`: gNB configuration
-- `ueransim/ue-5qi-1.yaml`: UE configuration for the 5QI-1 UE (3 Mbps)
-- `ueransim/ue-5qi-3.yaml`: UE configuration for the 5QI-3 UE (100 Mbps)
+- `ran-qos/gnb.sa.band78.106prb.rfsim.qos.yaml`: gNB configuration, broadcasting the `sst: 222, sd: 0x00007B` slice used by the QoS subscriber profiles configured in Section 3
+- `ran-qos/nrue.uicc.qos-5qi-1.yaml`: UE configuration for the 5QI-1 UE (3 Mbps), IMSI `208950000000035` (static IP `12.1.1.10`)
+- `ran-qos/nrue.uicc.qos-5qi-3.yaml`: UE configuration for the 5QI-3 UE (100 Mbps), IMSI `208950000000034` (static IP `12.1.1.9`)
 
-You can create more UEs by creating a UE configuration file and updating the `docker-compose-ueransim-qos.yaml` to add the UE.
+You can create more UEs by creating a UE configuration file (with an IMSI that has a matching entry in the subscriber database, see Section 3) and updating `docker-compose-oai-rfsim-qos.yaml` to add the UE.
 
-Now deploy UERANSIM:
+Now deploy the OAI gNB and UEs:
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml up -d
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml up -d
 ```
 
 ### 7.2. Test QoS Enforcement
@@ -310,19 +310,19 @@ First, check that the UE is registered and has an IP address:
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: sleep 10
+docker-compose-host $: sleep 30
 ```
 -->
 
 ``` shell
-docker-compose-host $: docker exec ueransim-ue-5qi-1 ping -c 3 -I uesimtun0 192.168.72.135
+docker-compose-host $: docker exec oai-nr-ue-5qi-1 ping -c 3 -I oaitun_ue1 192.168.72.135
 ```
 
 
 Now, start an iperf3 server in the UE to test Downlink QoS enforcement:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10
 ```
 
 Next, run an iperf3 client in the UE to test throughput:
@@ -362,7 +362,7 @@ Notice how the throughput stays close to but below 20 Mbps, which is the configu
 
 ### 7.3. Test Different QoS Profiles
 
-You can repeat the test with different UEs to confirm that the QoS limits are enforced correctly. You'll need to create additional UE configurations and modify the docker-compose file for UERANSIM to include them.
+You can repeat the test with different UEs to confirm that the QoS limits are enforced correctly. You'll need to create additional UE configurations and modify `docker-compose-oai-rfsim-qos.yaml` to include them.
 
 For example, to test the UE with 5QI-3 (100 Mbps limit):
 
@@ -371,7 +371,7 @@ The throughput should be limited to approximately 100 Mbps for this UE.
 Now, start an iperf3 server in the UE to test Downlink QoS enforcement:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-3 iperf3 -s -B 12.1.1.9
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-3 iperf3 -s -B 12.1.1.9
 ```
 
 Next, run an iperf3 client in the UE to test throughput:
@@ -421,7 +421,7 @@ For this test, we have configured three QoS rules for the same UE:
 Start an iperf3 server on the UE listening on port 8080:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8080
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8080
 ```
 
 Start an iperf3 client on the data network to generate traffic to port 8080:
@@ -444,7 +444,7 @@ The throughput should be limited to approximately 20 Mbps, as configured in the 
 Start an iperf3 server on the UE listening on port 8081:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8081
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8081
 ```
 
 Start an iperf3 client on the data network to generate traffic to port 8081:
@@ -497,22 +497,18 @@ First, check that the UE is registered and has an IP address:
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: sleep 10
+docker-compose-host $: sleep 30
 ```
 -->
 
 ``` shell
-docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
+docker-compose-host $: docker exec oai-nr-ue-5qi-1 ip a | grep oaitun_ue1
 ```
 
 Send a QoS profile from the AF based on the UE IPv4 address. The `-i` flag prints the response headers so we can capture the `Location` header, which contains the `appSessionId` the PCF assigned to this app session — every following request addresses that same app session:
 
 ``` shell
-docker-compose-host $: docker exec oai-af curl -i \
-  -H 'Content-Type: application/json' \
-  -X POST \
-  -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' \
- --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
+docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
 docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r')
 docker-compose-host $: echo "app session id: $APP_SESSION_ID"
 ```
@@ -539,7 +535,7 @@ docker exec oai-af curl -i -X PATCH \
 Start an iperf3 server on the UE listening on port 5000 (the port targeted by the original AF flow description):
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
 ```
 
 Next, run an iperf3 client in the UE to test throughput on port 5000:
@@ -582,15 +578,9 @@ Notice how the throughput stays close to but below 5 Mbps, which is the limit re
 To finish the lifecycle, remove the media component added in 8.1 by setting its `fStatus` to `"REMOVED"`, then terminate the whole app session:
 
 ```
-docker exec oai-af curl -i -X PATCH \
-  -H 'Content-Type: application/merge-patch+json' \
-  -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "fStatus": "REMOVED" } } } }' \
-  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "fStatus": "REMOVED" } } } }' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
 
-docker exec oai-af curl -i -X POST \
-  -H 'Content-Type: application/json' \
-  -d '{"events": [{"event": "ACCESS_TYPE_CHANGE"}]}' \
-  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID/delete
+docker exec oai-af curl -i -X POST -H 'Content-Type: application/json' -d '{"events": [{"event": "ACCESS_TYPE_CHANGE"}]}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID/delete
 ```
 
 The `DELETE` request returns `204 No Content` and removes the AF-derived QER/PCC rule from the SMF and UPF — a subsequent `GET` on the same `$APP_SESSION_ID` now returns `404 Not Found`, and traffic on port 5000 falls back to whatever static PCC rule (or the default flow) would otherwise apply.
@@ -610,7 +600,7 @@ This runs create → get → patch (modify/add/remove) → patch (reject) → de
 <!---
 For CI purposes please ignore these lines
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml stop -t 2
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml stop -t 2
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-qos.yaml stop -t 30
 ```
 -->
@@ -634,27 +624,30 @@ docker-compose-host $: docker logs oai-ausf > /tmp/oai/qos-testing/ausf.log 2>&1
 docker-compose-host $: docker logs oai-pcf > /tmp/oai/qos-testing/pcf.log 2>&1
 docker-compose-host $: docker logs oai-af > /tmp/oai/qos-testing/af.log 2>&1
 docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/qos-testing/ext-dn.log 2>&1
-docker-compose-host $: docker logs ueransim-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
-docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
-docker-compose-host $: docker logs ueransim-ue-5qi-3 > /tmp/oai/qos-testing/ue-5qi-3.log 2>&1
+docker-compose-host $: docker logs oai-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-5qi-3 > /tmp/oai/qos-testing/ue-5qi-3.log 2>&1
 ```
 
 ## 10. Undeploy the network functions
 
-### 10.1. Undeploy UERANSIM
+### 10.1. Undeploy the OAI gNB and UEs
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml down
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml down
 ```
 <details>
 <summary>The output will look like this:</summary>
 
 ``` console
-Stopping ueransim-ue-5qi-8 ... done
-Stopping ueransim-gnb     ... done
-Removing ueransim-ue-5qi-8 ... done
-Removing ueransim-gnb     ... done
+Stopping oai-nr-ue-5qi-3 ... done
+Stopping oai-nr-ue-5qi-1 ... done
+Stopping oai-gnb         ... done
+Removing oai-nr-ue-5qi-3 ... done
+Removing oai-nr-ue-5qi-1 ... done
+Removing oai-gnb         ... done
 Network demo-oai-public-net is external, skipping
+Network demo-oai-n3-net is external, skipping
 ```
 </details>
 

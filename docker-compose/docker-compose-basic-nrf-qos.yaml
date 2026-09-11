@@ -176,6 +176,11 @@ services:
         command: [ "sleep", "infinity" ]
         depends_on:
             - oai-pcf
+        healthcheck:
+            test: [ "CMD-SHELL", "exit 0" ]
+            interval: 2s
+            timeout: 1s
+            retries: 3
         networks:
             public_net:
                 ipv4_address: 192.168.70.144
