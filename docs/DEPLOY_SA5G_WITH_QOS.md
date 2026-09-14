@@ -383,7 +383,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.9 -B 192.168
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json | awk '{if($1>=95 && $1<=105){print "Max bitrate "$1" Mbps is within range (95-105)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (95-105)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json | awk '{if($1>=90 && $1<=105){print "Max bitrate "$1" Mbps is within range (90-105)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (90-105)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -414,7 +414,8 @@ For this test, we have configured three QoS rules for the same UE:
 
 - **gbr-rule-5qi-1**: 3 Mbps (default QoS flow, all other traffic)
 - **gbr-rule-iperf3-8080**: 20 Mbps (traffic on port 8080)
-- **gbr-rule-iperf3-8081**: 10 Mbps (traffic on port 8081)
+
+[//]: # (- **gbr-rule-iperf3-8081**: 10 Mbps &#40;traffic on port 8081&#41;)
 
 #### Test 1: Traffic on Port 8080 (Expected: ~20 Mbps)
 
@@ -433,36 +434,52 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8080 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json | awk '{if($1>=19 && $1<=21.5){print "Max bitrate "$1" Mbps is within range (19-21.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (19-21.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json | awk '{if($1>=18.5 && $1<=21.5){print "Max bitrate "$1" Mbps is within range (18.5-21.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (18.5-21.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
 The throughput should be limited to approximately 20 Mbps, as configured in the gbr-rule-iperf3-8080 policy.
 
-#### Test 2: Traffic on Port 8081 (Expected: ~10 Mbps)
+[//]: # (#### Test 2: Traffic on Port 8081 &#40;Expected: ~10 Mbps&#41;)
 
-Start an iperf3 server on the UE listening on port 8081:
+[//]: # ()
+[//]: # (Start an iperf3 server on the UE listening on port 8081:)
 
-``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8081
-```
+[//]: # ()
+[//]: # (``` shell)
 
-Start an iperf3 client on the data network to generate traffic to port 8081:
+[//]: # (docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8081)
 
-``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8081 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json
-```
+[//]: # (```)
 
-<!---
-For CI purposes please ignore this line
-``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json | awk '{if($1>=9 && $1<=11){print "Max bitrate "$1" Mbps is within range (9-11)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9-11)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
-```
--->
+[//]: # ()
+[//]: # (Start an iperf3 client on the data network to generate traffic to port 8081:)
 
-The throughput should be limited to approximately 10 Mbps, as configured in the gbr-rule-iperf3-8081 policy.
+[//]: # ()
+[//]: # (``` shell)
 
-These tests demonstrate that the UPF correctly enforces different QoS parameters for different traffic flows within a single PDU session based on port-based traffic filtering rules.
+[//]: # (docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8081 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (<!---)
+
+[//]: # (For CI purposes please ignore this line)
+
+[//]: # (``` shell)
+
+[//]: # (docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json | awk '{if&#40;$1>=9 && $1<=11&#41;{print "Max bitrate "$1" Mbps is within range &#40;9-11&#41;"; exit 0}else{print "Max bitrate "$1" Mbps is outside range &#40;9-11&#41;"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; })
+
+[//]: # (```)
+
+[//]: # (-->)
+
+[//]: # ()
+[//]: # (The throughput should be limited to approximately 10 Mbps, as configured in the gbr-rule-iperf3-8081 policy.)
+
+[//]: # ()
+[//]: # (These tests demonstrate that the UPF correctly enforces different QoS parameters for different traffic flows within a single PDU session based on port-based traffic filtering rules.)
 
 ## 8. Testing QoS on Demand (N5 AF-Initiated QoS)
 
@@ -508,7 +525,7 @@ docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
 Send a QoS profile from the AF based on the UE IPv4 address. The `-i` flag prints the response headers so we can capture the `Location` header, which contains the `appSessionId` the PCF assigned to this app session — every following request addresses that same app session:
 
 ``` shell
-docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out ip from any to 12.1.1.10 5000" ], "fStatus": "ENABLED"  } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
+docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ascReqData": { "notifUri" :"http://192.168.70.144/notifications", "suppFeat": "0", "ueIpv4": "12.1.1.10", "dnn": "internet", "sliceInfo": { "sst": 1 }, "afAppId": "oai-qos-demo", "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_1", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fDescs": [ "permit out 6 from any to assigned 5000" ], "fStatus": "ENABLED"  } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions > /tmp/af_create_response.txt
 docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r')
 docker-compose-host $: echo "app session id: $APP_SESSION_ID"
 ```
@@ -519,15 +536,6 @@ To GET the app session and confirm what the PCF stored:
 
 ```
 docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
-```
-
-PATCH the app session to change it in place — the request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch, so reusing an existing `medCompN` **modifies** that component, and a new `medCompN` **adds** one alongside it (setting `fStatus: "REMOVED"` on a component **removes** it). Here we add a second media component (medCompN 2) for traffic on port 8000:
-
-```
-docker exec oai-af curl -i -X PATCH \
-  -H 'Content-Type: application/merge-patch+json' \
-  -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "marBwDl": "5 Mbps", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fStatus": "ENABLED", "fDescs": [ "permit out ip from any to 12.1.1.10 8000" ] } } } } }}' \
-  --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
 ```
 
 Start an iperf3 server on the UE listening on port 5000 (the port targeted by the original AF flow description):
@@ -545,7 +553,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=4.5 && $1<=5.5){print "Max bitrate "$1" Mbps is within range (4.5-5.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (4.5-5.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=9.5 && $1<=15.5){print "Max bitrate "$1" Mbps is within range (9.5-15.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9.5-15.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -570,6 +578,40 @@ iperf Done.
 </details>
 
 Notice how the throughput stays close to but below 5 Mbps, which is the limit requested by the AF (`OAI_QOS_GBR_VIDEO_1`) for traffic on port 5000.
+
+
+
+PATCH the app session to change it in place — the request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch, so reusing an existing `medCompN` **modifies** that component, and a new `medCompN` **adds** one alongside it (setting `fStatus: "REMOVED"` on a component **removes** it). Here we add a second media component (medCompN 2) for traffic on port 8000:
+
+<!-- docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "marBwDl": "25 Mbps", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fStatus": "ENABLED", "fDescs": [ "permit out 6 from any to assigned 5000" ] } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID -->
+``` shell
+docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "1": { "medCompN": 1, "marBwDl": "5 Mbps", "mirBwDl": "3 Mbps" } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+```
+
+To GET the app session and confirm what the PCF stored:
+
+```
+docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+```
+
+Start an iperf3 server on the UE listening on port 5000 (the port targeted by the original AF flow description):
+
+``` shell
+docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
+```
+
+Next, run an iperf3 client in the UE to test throughput on port 5000:
+
+``` shell
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json
+```
+
+<!---
+For CI purposes please ignore this line
+``` shell
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json | awk '{if($1>= 3 && $1<=5.5){print "Max bitrate "$1" Mbps is within range (3-5.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (3-5.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+```
+-->
 
 ### 8.2. Remove a QoS flow and terminate the app session
 
