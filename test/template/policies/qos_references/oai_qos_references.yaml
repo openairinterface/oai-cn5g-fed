@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+OAI_QOS_GBR_VIDEO_1:
+  5qi: 2
+  maxbrUl: "15 Mbps"
+  maxbrDl: "15 Mbps"
+  gbrUl: "10 Mbps"
+  gbrDl: "10 Mbps"
+  arp:
+    priorityLevel: 4
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+  averWindow: 2000
+
+OAI_QOS_NON_GBR_DEFAULT:
+  5qi: 9
+  maxbrUl: "25 Mbps"
+  maxbrDl: "50 Mbps"
+  arp:
+    priorityLevel: 8
+    preemptCap: "NOT_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+
+OAI_QOS_GBR_LOWLAT_1:
+  5qi: 130
+  maxbrUl: "20 Mbps"
+  maxbrDl: "20 Mbps"
+  gbrUl: "15 Mbps"
+  gbrDl: "15 Mbps"
+  arp:
+    priorityLevel: 2
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: true
+  priorityLevel: 20
+  packetDelayBudget: 30
+  packetErrorRate: "1E-5"
+  averWindow: 2000

@@ -252,6 +252,97 @@ class CNTestLib:
         logging.info(f"{container} released every UE context")
         return 0
 
+    def get_ue_ipv4_from_smf(self, prefix="12.1.1.", container="oai-smf"):
+        """
+        Returns the IPv4 address the SMF allocated to the UE's PDU session.
+
+        Read from the SMF log rather than gnbsim so it works the moment the session
+        is up, and matched by the DNN pool prefix so pool/network noise is easy to
+        drop. Lines that mention an allocation keyword (paa/address/allocated/ipv4)
+        are preferred; otherwise any host address in the pool is taken. The network
+        (.0) and gateway (.1) addresses are always excluded.
+
+        Wrap in Wait Until Keyword Succeeds: the address only appears once the PDU
+        session establishment has reached the SMF.
+
+        :param prefix: DNN pool prefix, e.g. "12.1.1." for the default 12.1.1.0/26 pool
+        :param container: NF whose log carries the allocation, normally the SMF
+        :return: the UE IPv4 as a string, e.g. "12.1.1.2"
+        """
+        log = self.docker_api.get_log(container)
+        host_re = re.compile(re.escape(prefix) + r"(?P<host>\d{1,3})")
+
+        def hosts(lines):
+            found = []
+            for line in lines:
+                for m in host_re.finditer(line):
+                    host = int(m.group("host"))
+                    if host >= 2:  # skip .0 (network) and .1 (gateway)
+                        found.append(f"{prefix}{host}")
+            return found
+
+        keyword_lines = [ln for ln in log.splitlines()
+                         if re.search(r"paa|address|allocat|ipv4", ln, re.IGNORECASE)]
+        candidates = hosts(keyword_lines) or hosts(log.splitlines())
+        if not candidates:
+            raise Exception(
+                f"No UE IPv4 in the {prefix}0/x pool found in the {container} log yet. "
+                f"Is the PDU session up?")
+        ue_ip = candidates[-1]
+        logging.info(f"UE IPv4 from {container} log: {ue_ip}")
+        return ue_ip
+
+    def get_smf_scid(self, container="oai-smf", require_found=False):
+        """
+        Extract the SMF SM-context reference (scid) from its log.
+
+        The scid is the {scid} path segment the SMF put in the N7 callback URI it
+        gave the PCF (e.g. .../nsmf-callback/v1/1/sm-policy-control-notify), so a
+        matching value lets the N7 test drive a real, live association rather than
+        only the callback plumbing. The exact log wording varies between SMF builds,
+        so several patterns are tried, most authoritative first.
+
+        The URI is only logged once the SMF has created the PCF SM-policy
+        association, which happens shortly after the UE gets its IP -- pass
+        require_found=True together with `Wait Until Keyword Succeeds` to poll for
+        it instead of falling back to a random (CONTEXT_NOT_FOUND) scid.
+
+        :param container: the SMF container
+        :param require_found: raise instead of returning "" when nothing matches
+        :return: the scid string, or "" if it could not be found
+        """
+        log = self.docker_api.get_log(container)
+        patterns = [
+            r"notification URI\s+https?://[^\s]*?/nsmf-callback/v\d+/(\w+)/sm-policy-control-notify",
+            r"nsmf-callback/v\d+/(\w+)/sm-policy-control-notify",
+            r"\bscid[\s:=\"']+([0-9a-fA-F]+)",
+            r"\bSM[ _]?[Cc]ontext[ _]?[Ii]d[\s:=\"']+(\d+)",
+        ]
+        for pattern in patterns:
+            matches = re.findall(pattern, log)
+            if matches:
+                scid = matches[-1]
+                logging.info(f"SMF scid from {container} log: {scid}")
+                return scid
+        message = f"No scid found in the {container} log"
+        if require_found:
+            raise AssertionError(message)
+        logging.warning(f"{message}; the N7 test will use a random one")
+        return ""
+
+    def get_curl_image(self):
+        """
+        Return the image used for the on-net curl sidecar.
+
+        The policy API tests speak cleartext HTTP/2 with prior knowledge, which the
+        core network images (trf-gen, oai-smf, oai-pcf) cannot originate because they
+        ship no curl. A small curlimages/curl container is started sharing the ext-DN
+        network namespace so it sits on the SBI network with a real curl+HTTP/2.
+
+        :return: the curl image reference from image_tags.py
+        """
+        return get_image_tag("curl")
+
     def ext_dn_route_should_exist(self, subnet, container="oai-ext-dn"):
         """
         Fails unless the ext-DN actually has a route to the UE pool.
@@ -264,7 +355,6 @@ class CNTestLib:
         :param subnet: expected UE subnet in CIDR, e.g. 12.1.0.0/16
         :param container: container to check, normally the ext-DN
         """
-        routes = self.docker_api.exec_on_container(container, "/bin/bash -c 'ip route'")
         if subnet not in routes:
             raise Exception(
                 f"{container} has no route to the UE pool {subnet}. Routes are:\n{routes}")

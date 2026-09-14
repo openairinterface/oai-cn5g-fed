@@ -249,3 +249,14 @@ pcf:
     policy_decisions_path: /openair-pcf/policies/policy_decisions
     pcc_rules_path: /openair-pcf/policies/pcc_rules
     traffic_rules_path: /openair-pcf/policies/traffic_rules
+    qos_reference_path: /openair-pcf/policies/qos_references
+  # Operator QoS-authorization limits [TS 29.514 4.1.3.1, TS 29.512 4.2.6.6].
+  # Empty/permissive defaults: no cap, allow any 5QI, fail-open when the SMF sends
+  # no subscribed Session-AMBR. Needed for the N5 policy-authorization tests.
+  qos_authorization:
+    allowed_dynamic_5qi: []
+    max_flow_mbr_ul: ""
+    max_flow_mbr_dl: ""
+    max_session_ambr_ul: ""
+    max_session_ambr_dl: ""
+    reject_on_missing_subscription: no
