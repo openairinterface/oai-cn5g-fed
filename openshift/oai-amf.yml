@@ -20,13 +20,9 @@ spec:
         git:
             uri: "https://github.com/openairinterface/oai-cn5g-amf.git"
             ref: "develop"
-        secrets:
-          - secret:
-              name: etc-pki-entitlement
-            destinationDir: etc-pki-entitlement
     strategy:
         dockerStrategy:
-            dockerfilePath: "docker/Dockerfile.amf.rhel9"
+            dockerfilePath: "docker/Dockerfile.amf.centos"
     output:
         to:
             kind: "ImageStreamTag"
