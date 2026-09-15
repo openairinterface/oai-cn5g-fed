@@ -10,17 +10,16 @@
 
 This page is the starting point for OAI 5G Core deployment tutorials. If this is your first time with the project, follow the quick-start path below before moving to feature-specific guides.
 
-## Supported Hosts
+## Supported Distributions
 
-The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with the following Linux hosts:
+The official OAI CN5G container images are built on Ubuntu 24.04. The source code builds on the following Linux distributions:
 
-| Host family | Supported versions |
-| ----------- | ------------------ |
-| Ubuntu      | 22.04 through 26.04 |
-| Fedora      | 39 through 43 |
-| RHEL        | 8 through 10 |
+| Distribution  | Supported versions |
+| ------------- | ------------------ |
+| Ubuntu        | 24.04              |
+| CentOS Stream | 10                 |
 
-Any Docker or Podman version available for those host releases should be fine. The tutorials use Docker command names in most examples; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where needed.
+Any Docker or Podman version available for those releases should be fine. The tutorials use Docker command names in most examples; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where needed.
 
 ## First Deployment
 

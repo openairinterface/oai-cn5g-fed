@@ -16,9 +16,9 @@
 
 # Retrieve Official Images
 
-The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
+The official OAI CN5G container images are built on Ubuntu 24.04. The source code builds on Ubuntu 24.04 and CentOS Stream 10.
 
-Any Docker or Podman version available for those host releases should be fine. The examples below use Docker; Podman users can replace `docker` with `podman`.
+Any Docker or Podman version available for those releases should be fine. The examples below use Docker; Podman users can replace `docker` with `podman`.
 
 If you want to use a specific branch or commit instead of an official image tag, refer to [Build your own images](./BUILD_IMAGES.md).
 
