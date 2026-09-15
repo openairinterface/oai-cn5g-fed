@@ -106,7 +106,7 @@ And later add the labels to allow creating `privileged` pods.
 
 ## 2. Fetching Network Function Images
 
-Ubuntu base images can be pulled from [docker-hub](https://github.com/openairinterface/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. On a RHEL based worker node you can build your own CentOS Stream 10 images, which need no Red Hat subscription.
+Ubuntu base images can be pulled from [docker-hub](https://hub.docker.com/u/oaisoftwarealliance). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. On a RHEL based worker node you can build your own CentOS Stream 10 images, which need no Red Hat subscription.
 
 1. To learn how to build CentOS Stream 10 images follow this [tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads)
 2. To learn how to build Ubuntu images follow this [tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/BUILD_IMAGES.md?ref_type=heads)
