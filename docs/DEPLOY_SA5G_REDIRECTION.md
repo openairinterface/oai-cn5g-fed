@@ -41,15 +41,15 @@ For this demo, all the images which use the `develop` branch have been retrieved
 
 | NF Name | Branch Name | Tag used at time of writing | Official image base |
 |----------|:------------|-----------------------------|---------------------|
-| NSSF     | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| AMF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| AUSF     | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| NRF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| SMF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| UDR      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| UDM      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| PCF      | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
-| UPF-VPP  | `develop`    | `v2.2.1`                    | Ubuntu 22.04        |
+| NSSF     | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| AMF      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| AUSF     | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| NRF      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| SMF      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| UDR      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| UDM      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| PCF      | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
+| UPF-VPP  | `develop`    | `v3.0.0`                    | Ubuntu 24.04        |
 
 <br/>
 
