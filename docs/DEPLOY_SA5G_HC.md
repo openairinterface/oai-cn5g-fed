@@ -34,9 +34,9 @@ OAI 5G core network have different network functions which can be used individua
 | Goal | Deploy OAI 5G Core and RAN network functions with Helm charts |
 | Main repository | [openairinterface/orchestration](https://github.com/openairinterface/orchestration/tree/main) |
 | Working directory | `charts/` in the orchestration repository |
-| Supported hosts for CN5G images | Ubuntu 22.04-26.04, Fedora 39-43, RHEL 8-10 |
+| Supported distributions for CN5G | Ubuntu 24.04, CentOS Stream 10 |
 
-The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for the supported host releases should be fine.
+The official OAI CN5G images are built on Ubuntu 24.04. Any Docker or Podman version available for the supported releases should be fine.
 
 **TABLE OF CONTENTS**
 
@@ -65,7 +65,7 @@ The helm charts can be used on any production grade kubernetes cluster or even v
 | Openshift Client Version        | 4.16+                                   |
 | Kubernetes Version              | Kubernetes Version: v1.31               |
 | helm                            | v3.17                                   |
-| Base images of Network functions| Ubuntu 22.04 official images            |
+| Base images of Network functions| Ubuntu 24.04 official images            |
 
 Each NF has its independent helm-chart and apart from that there are parent helm-charts for below scenarios:
 

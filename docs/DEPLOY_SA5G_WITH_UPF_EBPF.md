@@ -28,9 +28,9 @@
 | First-time path | Complete [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md), then start at [Pre-requisites](#4-pre-requisites) |
 | Optional background | Sections 1 to 3 explain eBPF, XDP, and the UPF architecture |
 | Working directory | `oai-cn5g-fed/docker-compose` |
-| Supported hosts | Ubuntu 22.04-26.04, Fedora 39-43, RHEL 8-10 |
+| Supported distributions | Ubuntu 24.04, CentOS Stream 10 |
 
-The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for the supported host releases should be fine.
+The official OAI CN5G images are built on Ubuntu 24.04. Any Docker or Podman version available for the supported releases should be fine.
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs, please follow [this tutorial](./DEBUG_5G_CORE.md)
 
@@ -1220,6 +1220,10 @@ If you replicate then your log files and pcap file will be present in `/tmp/oai/
 
 
 #### a. Setup Configuration
+
+The measurements below were captured on the testbed described here, before the
+move to Ubuntu 24.04. It records what was tested at the time and is not a
+statement of the currently supported distributions.
 
 | Host Functions          | OS                                 | Configuration                                                          |
 |-------------------------| -----------------------------------| ---------------------------------------------------------------------- |

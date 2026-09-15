@@ -44,9 +44,9 @@ Use the document outline or your Markdown viewer to navigate between sections.
 
 ## 1. Pre-Requisites
 
-Complete the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md) before starting. The official OAI CN5G container images use Ubuntu 22.04 as the container base image and are compatible with Ubuntu hosts 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10.
+Complete the [deployment pre-requisites](./DEPLOY_PRE_REQUISITES.md) before starting. The official OAI CN5G container images are built on Ubuntu 24.04 and are built from source code that supports Ubuntu 24.04 and CentOS Stream 10.
 
-Any Docker or Podman version available for those host releases should be fine. The commands below use `docker compose`; if your host only has the legacy command, replace `docker compose` with `docker-compose`.
+Any Docker or Podman version available for those releases should be fine. The commands below use `docker compose`; if your host only has the legacy command, replace `docker compose` with `docker-compose`.
 
 Pull or build the required images before deploying:
 
