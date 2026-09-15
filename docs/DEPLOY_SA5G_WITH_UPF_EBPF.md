@@ -149,13 +149,13 @@ You can also retrieve the images from `docker-hub`. See [Retrieving images](./RE
 
 | CNF Name    | Branch Name    | Tag used at time of writing   | Official image base |
 | ----------- |:-------------- | ----------------------------- | ------------------- |
-| AMF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| AUSF        | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| NRF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| SMF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| UDR         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| UDM         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
-| UPF         | `develop`       | `v2.2.1`                      | Ubuntu 22.04        |
+| AMF         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| AUSF        | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| NRF         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| SMF         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| UDR         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| UDM         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
+| UPF         | `develop`       | `v3.0.0`                      | Ubuntu 24.04        |
 
 
 <br/>

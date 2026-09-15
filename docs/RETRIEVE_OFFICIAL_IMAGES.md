@@ -37,7 +37,7 @@ Password:
 
 The OAI CI/CD team has automated more frequent pushes to Docker-Hub on `oaisoftwarealliance` account. Two important things to be noted:
 
-  - We will keep pushing to the `latest` tag for the network functions when a milestone is reached. Currently, the `latest` tag corresponds to `v2.2.1` release.
+  - We will keep pushing to the `latest` tag for the network functions when a milestone is reached. Currently, the `latest` tag corresponds to `v3.0.0` release.
   - We are making pushes on the `develop` tag whenever a contribution has been accepted. These images are **EXPERIMENTAL**.
   - Release tag `vx.x.x` contains the release code
 
@@ -45,17 +45,17 @@ Now pull images according to your requirement,
 
 ```bash
 #!/bin/bash
-docker pull oaisoftwarealliance/oai-amf:v2.2.1
-docker pull oaisoftwarealliance/oai-nrf:v2.2.1
-docker pull oaisoftwarealliance/oai-upf:v2.2.1
-docker pull oaisoftwarealliance/oai-smf:v2.2.1
-docker pull oaisoftwarealliance/oai-udr:v2.2.1
-docker pull oaisoftwarealliance/oai-udm:v2.2.1
-docker pull oaisoftwarealliance/oai-ausf:v2.2.1
-docker pull oaisoftwarealliance/oai-upf-vpp:v2.2.1
-docker pull oaisoftwarealliance/oai-nssf:v2.2.1
-docker pull oaisoftwarealliance/oai-pcf:v2.2.1
-docker pull oaisoftwarealliance/oai-lmf:v2.2.1
+docker pull oaisoftwarealliance/oai-amf:v3.0.0
+docker pull oaisoftwarealliance/oai-nrf:v3.0.0
+docker pull oaisoftwarealliance/oai-upf:v3.0.0
+docker pull oaisoftwarealliance/oai-smf:v3.0.0
+docker pull oaisoftwarealliance/oai-udr:v3.0.0
+docker pull oaisoftwarealliance/oai-udm:v3.0.0
+docker pull oaisoftwarealliance/oai-ausf:v3.0.0
+docker pull oaisoftwarealliance/oai-upf-vpp:v3.0.0
+docker pull oaisoftwarealliance/oai-nssf:v3.0.0
+docker pull oaisoftwarealliance/oai-pcf:v3.0.0
+docker pull oaisoftwarealliance/oai-lmf:v3.0.0
 # Utility image to generate traffic
 docker pull oaisoftwarealliance/trf-gen-cn5g:latest
 ```
@@ -76,43 +76,43 @@ This repository only has tutorials and Continuous Integration scripts.
 
 | CNF Name    | Branch Name | Tag      | Official image base |
 | ----------- | ----------- | -------- | ------------------- |
-| FED REPO    | N/A         | `v2.2.1` | N/A                 |
-| AMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| SMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| NRF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| UPF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| UDR         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| UDM         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| AUSF        | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| UPF-VPP     | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| NSSF        | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| LMF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
-| PCF         | `develop`    | `v2.2.1` | Ubuntu 22.04        |
+| FED REPO    | N/A         | `v3.0.0` | N/A                 |
+| AMF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| SMF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| NRF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| UPF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| UDR         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| UDM         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| AUSF        | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| UPF-VPP     | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| NSSF        | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| LMF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
+| PCF         | `develop`    | `v3.0.0` | Ubuntu 24.04        |
 
 ```bash
 # Clone directly on the latest release tag
-$ git clone --branch v2.2.1 https://github.com/openairinterface/oai-cn5g-fed.git
+$ git clone --branch v3.0.0 https://github.com/openairinterface/oai-cn5g-fed.git
 $ cd oai-cn5g-fed
 # If you forgot to clone directly to the latest release tag
-$ git checkout -f v2.2.1
+$ git checkout -f v3.0.0
 
 # Synchronize all the network functions
 # By default, the script synchronizes on develop branch
-$ ./scripts/syncComponents.sh --branch v2.2.1
+$ ./scripts/syncComponents.sh --branch v3.0.0
 ---------------------------------------------------------
-Common branch (unless overridden) : v2.2.1
+Common branch (unless overridden) : v3.0.0
 Components synchronized into      : component/
-OAI-CN5G-PCF     component branch : v2.2.1
-OAI-CN5G-NRF     component branch : v2.2.1
-OAI-CN5G-SMF     component branch : v2.2.1
-OAI-CN5G-UPF     component branch : v2.2.1
-OAI-CN5G-NSSF    component branch : v2.2.1
-OAI-CN5G-LMF     component branch : v2.2.1
-OAI-CN5G-AMF     component branch : v2.2.1
-OAI-CN5G-NEF     component branch : v2.2.1
-OAI-CN5G-UDM     component branch : v2.2.1
-OAI-CN5G-UDR     component branch : v2.2.1
-OAI-CN5G-AUSF    component branch : v2.2.1
+OAI-CN5G-PCF     component branch : v3.0.0
+OAI-CN5G-NRF     component branch : v3.0.0
+OAI-CN5G-SMF     component branch : v3.0.0
+OAI-CN5G-UPF     component branch : v3.0.0
+OAI-CN5G-NSSF    component branch : v3.0.0
+OAI-CN5G-LMF     component branch : v3.0.0
+OAI-CN5G-AMF     component branch : v3.0.0
+OAI-CN5G-NEF     component branch : v3.0.0
+OAI-CN5G-UDM     component branch : v3.0.0
+OAI-CN5G-UDR     component branch : v3.0.0
+OAI-CN5G-AUSF    component branch : v3.0.0
 ---------------------------------------------------------
 ```
 
