@@ -115,7 +115,7 @@ docker build --target oai-amf --tag oai-amf:latest \
                component/oai-cn5g-amf
 ```
 
-## 3.2 RHEL/UBI Images ##
+## 3.2 CentOS Images ##
 
 Checkout this [tutorial](../openshift/README.md)
 

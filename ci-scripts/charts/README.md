@@ -14,18 +14,18 @@
   </tr>
 </table>
 
-The motive of this testing is to be sure all the merge request on AMF, SMF, UDR, UDM, AUSF and UPF github repositories always works properly with COTSUE. This testing will be performed via oai-jenkins platform, this readme explains how jenkins perform the testing. 
+The motive of this testing is to be sure all the merge request on AMF, SMF, UDR, UDM, AUSF and UPF github repositories always works properly with COTSUE. This testing will be performed via oai-jenkins platform, this readme explains how jenkins perform the testing.
 
 Our correct testing scenario is
 
-1. Deploy Core Network 
-2. Start gNB (USRP B210) 
-3. Perform_In_Loop_Twice(Start UE(Triggers Registration and PDU Session for `oai` and `ims` dnn) --> Stop UE (Triggers PDU session release for `oai` and `ims` dnn in order and then DE-Registration)) 
+1. Deploy Core Network
+2. Start gNB (USRP B210)
+3. Perform_In_Loop_Twice(Start UE(Triggers Registration and PDU Session for `oai` and `ims` dnn) --> Stop UE (Triggers PDU session release for `oai` and `ims` dnn in order and then DE-Registration))
 4. Collect Logs
-5. Stop gNB 
+5. Stop gNB
 6. Remove the Core Network
 
- 
+
 ![Helm Chart Deployment](./images/core-ci.png)
 
 1.  [Deploy the Core Network](#1-deploy-the-core-network)
@@ -49,7 +49,7 @@ You need to have access to below machines (with `oaicicd` account)
 |Nano (UE-Server)            |Quectel RM520                                              |
 
 
-Important configuration related information 
+Important configuration related information
 
 
 |Key       |Values                                                        |
@@ -75,14 +75,14 @@ Of course! clone this repository and go to `ci-scripts/charts` directory.
 
 ## 1. Deploy the Core Network
 
-Login to openshift cluster, you should know the password and from where to login. 
+Login to openshift cluster, you should know the password and from where to login.
 
 *NOTE*: If making a script in jenkins do not forget to reserve the machine
 
 ```shell
 oc login -u oaicicd
 oc project oaicicd-core
-``` 
+```
 
 Now make sure that all the network function image tags you want to use are present when you do `oc get is`. At the time of writing this tutorial these tags are here
 
@@ -99,7 +99,7 @@ support-tools    <openshift-registry-url>/oaicicd-core/support-tools    8.7-8   
 ```
 **NOTE** Never delete `support-tools` image stream it is used to collect pcaps from the network functions. Also r
 
-At the moment we are build the ubi images for all core network functions on `cetautomatix` RHEL server. We can do that on the openshift cluster too but for CI we don't do at the moment. We do that for CD. So all the images which are build on the `cetautomatix` server should be pushed in the openshift `oaicicd-core` project. 
+At the moment we are building the CentOS images for all core network functions on `cetautomatix` server. So all the images which are build on the `cetautomatix` server should be pushed in the openshift `oaicicd-core` project.
 
 For example the images can be pushed using below command
 
@@ -111,7 +111,7 @@ sudo podman push <openshift-registry-url>/oaicicd-core/oai-amf:<TAG-YOU-WANT>
 sudo podman rmi <openshift-registry-url>/oaicicd-core/oai-amf:<TAG-YOU-WANT>
 sudo podman logout https://<openshift-registry-url>
 ```
-**NOTE**: At the time of login or logout if you have error saying weird https then remove https:// from url and then re-try. 
+**NOTE**: At the time of login or logout if you have error saying weird https then remove https:// from url and then re-try.
 
 Once images are push it will be good to verify that they are present in the right project/namespace
 
@@ -128,11 +128,11 @@ oc get istag | grep UDM_TAG_YOU_PUSHED
 
 ### 1.1 Changing the tags
 
-Once the images are present in the openshift cluster `oaicicd-core` project/namespace. We are ready to prepare the helm-charts with images tags pushed to the cluster. 
+Once the images are present in the openshift cluster `oaicicd-core` project/namespace. We are ready to prepare the helm-charts with images tags pushed to the cluster.
 
-For the basic deployment the charts are present in `ci-scripts/charts/oai-5g-basic` and the most important file is `values.yaml` with all the configuration information. 
+For the basic deployment the charts are present in `ci-scripts/charts/oai-5g-basic` and the most important file is `values.yaml` with all the configuration information.
 
-Do not change any other helm-charts unless you don't find the configuration variable you want to change. 
+Do not change any other helm-charts unless you don't find the configuration variable you want to change.
 
 ```shell
 #assuming my current directory is ci-scripts/charts/oai-5g-basic
@@ -158,7 +158,7 @@ Run the below command on openshift jumphost which has access to `helm command`
 helm dependency update
 helm install oai5gcn .
 oc describe pod &> pod-describe-logs.logs
-#Check that deployment is ready 
+#Check that deployment is ready
 export READY_PODS=$(oc get pods -o custom-columns=NAMESPACE:metadata.namespace,POD:metadata.name,PodIP:status.podIP,READY:status.containerStatuses[*].ready | grep -v NAME | wc -l)
 export TOTAL_PODS=$(oc get pods | grep -v NAME | wc -l)
 ## when READY_PODS==TOTAL_PODS the deployment is complete
@@ -168,13 +168,13 @@ By default the time-out for helm spray is 300 seconds or 5 mins, if you want to 
 
 The above commands make sure that the network functions are up and running using the healthcheck script present in `Dockerfile` of each network function. In kubernetes it is known as readiness probe. Every network function helm-chart has a variable `readiness` to turn on and off this functionality.
 
-**NOTE**: You might need to add `sleep` after helm because it can time for PFCP heartbeats. 
+**NOTE**: You might need to add `sleep` after helm because it can time for PFCP heartbeats.
 
 ## 1.4 Check if the Deployment is correct
 
-This is only needed to be sure that SMF and UPF are sharing the PFCP heartbeat, the required network functions have registered to NRF else there is no point going further. 
+This is only needed to be sure that SMF and UPF are sharing the PFCP heartbeat, the required network functions have registered to NRF else there is no point going further.
 
-At the moment only AMF, SMF and UPF are registering to NRF. UDR, UDM and AUSF can do that but in this testbed we have disabled that. 
+At the moment only AMF, SMF and UPF are registering to NRF. UDR, UDM and AUSF can do that but in this testbed we have disabled that.
 
 Make a shell script out of the below lines and run it on openshift jumphost which has access to `helm command`
 
@@ -220,13 +220,13 @@ docker logs sa-b210-gnb | grep 'Received NGAP_REGISTER_GNB_CNF: associated AMF 1
 
 ## 3. Perform the Test
 
-Login to the machine name as nano using `oaicicd` account, 
+Login to the machine name as nano using `oaicicd` account,
 
 
 ```shell
 cd /home/oaicicd/core-ci
 #start the UE
-sudo ./start 
+sudo ./start
 #if echo $? is 0 then testing was Successful Testing
 #Stop the UE
 sudo ./stop
@@ -240,7 +240,7 @@ sudo ./stop
 
 You can re-direct the output to file in case the logs are necessary else they will be printed on `jenkins console`
 
-It is important to check twice to be sure everthing works. 
+It is important to check twice to be sure everthing works.
 
 Stop the gNB before collecting artifacts, login to gnb machine
 
@@ -316,11 +316,11 @@ The default graceperiod for all network functions is `5 seconds` so if you want 
 
 ## 6. Analyze the Artifacts
 
-Once all the artifacts are collected to be sure that everything went perfectly fine, please check in the collected pcaps below messages are there. 
+Once all the artifacts are collected to be sure that everything went perfectly fine, please check in the collected pcaps below messages are there.
 
-Bare-minimum pcap of interest AMF and UPF. 
+Bare-minimum pcap of interest AMF and UPF.
 
-Normally you will see below messages twice because we connected the UE twice and did ping twice. 
+Normally you will see below messages twice because we connected the UE twice and did ping twice.
 
 Below messages are from AMF pcap
 
@@ -331,8 +331,8 @@ Below messages are from AMF pcap
 - UplinkNASTransport, Identity response
 - DownlinkNASTransport, Authentication request
 - UplinkNASTransport, Authentication response
-- DownlinkNASTransport, Security mode command 
-- UplinkNASTransport, Security mode complete, Registration request 
+- DownlinkNASTransport, Security mode command
+- UplinkNASTransport, Security mode complete, Registration request
 - UERadioCapabilityInfoIndication
 - UplinkNASTransport, Registration complete
 - PDU session establishment request
@@ -342,8 +342,8 @@ Below messages are from AMF pcap
 - PDUSessionResourceReleaseCommand, DL NAS transport, PDU session release command (Regular deactivation)
 - PDUSessionResourceReleaseResponse
 - UplinkNASTransport, UL NAS transport, PDU session release complete, UplinkNASTransport, Deregistration request (UE originating)
-- SHUTDOWN 
+- SHUTDOWN
 - SHUTDOWN ACK
-- SHUTDOWN_COMPLETE 
+- SHUTDOWN_COMPLETE
 
 In UPF pcap you should see GTP packets minimum 8 times because the ping was 4 packets

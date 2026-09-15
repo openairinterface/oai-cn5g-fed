@@ -20,13 +20,9 @@ spec:
         git:
             uri: "https://github.com/openairinterface/oai-cn5g-udr.git"
             ref: "develop"
-        secrets:
-          - secret:
-              name: etc-pki-entitlement
-            destinationDir: etc-pki-entitlement
     strategy:
         dockerStrategy:
-            dockerfilePath: "docker/Dockerfile.udr.rhel9"
+            dockerfilePath: "docker/Dockerfile.udr.centos"
     output:
         to:
             kind: "ImageStreamTag"
