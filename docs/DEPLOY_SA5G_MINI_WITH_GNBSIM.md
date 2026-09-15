@@ -22,7 +22,7 @@
 
 **Tutorial replication time: ~ 40mins**
 
-**Supported hosts**: Ubuntu 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10. The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for those host releases should be fine.
+**Supported distributions**: Ubuntu 24.04 and CentOS Stream 10. The official OAI CN5G images are built on Ubuntu 24.04. Any Docker or Podman version available for those releases should be fine.
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 
