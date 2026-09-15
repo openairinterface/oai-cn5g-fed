@@ -275,6 +275,48 @@ git rebase --continue
 git push origin feature-branch --force-with-lease
 ```
 
+### Rebase a Branch with `develop`
+
+Regularly rebase your feature branch onto the latest `origin/develop` to keep the
+branch in sync and reduce conflicts.
+
+> **Note:** Do not merge `develop` into your feature branch.
+Rebase your branch onto the latest `origin/develop` instead to keep the history linear and clean.
+
+
+```bash
+git fetch
+git checkout <feature-branch>
+
+git submodule deinit -f --all
+git submodule sync --recursive
+git submodule update --init --recursive
+
+git status
+git rebase origin/develop
+```
+
+If conflicts occur, resolve them and continue the rebase:
+
+```bash
+git status
+git add <file1> <file2>
+git rebase --continue
+```
+
+Repeat until the rebase completes.
+
+After the rebase is complete, push the updated branch:
+
+```bash
+git status
+# Verify that the branch contains the latest develop
+git log --oneline HEAD..origin/develop
+# Verify submodules
+git submodule status --recursive
+git push origin <feature-branch> --force-with-lease
+```
+
 ## Synchronizing all NFs
 
 You can use `scripts/syncComponents.sh` to synchronize the network functions
