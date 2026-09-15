@@ -383,42 +383,80 @@ git restore path/to/submodule
 
 ## Coding Style
 
-We use `clang-format` to enforce the C/C++ coding style. The CI uses **`clang-format-12`**,
-so please use the same version locally.
+We use [clang-format](https://docs.kernel.org/dev-tools/clang-format.html) to
+enforce the C/C++ coding style. The CI uses **`clang-format-19`**, with the
+major version pinned to `19` in `oai-cn5g-common-ci/docker/Dockerfile.ci.clang-format`.
+
+All paths below are relative to the network-function repository root, where the
+repository is checked out as the `ci-scripts/common` submodule.
+
+### Formatting your code
+
+`oai-cn5g-common-ci/bash/format-code.sh` is the simplest way to match the CI formatting checks.
+It reads the clang-format major version from that Dockerfile, uses a local
+`clang-format` of that version when one is available and otherwise runs it from
+a Docker image, and formats the files the CI checks. It can be run from anywhere
+inside the repository.
+
+```bash
+# Format the whole repository
+ci-scripts/common/bash/format-code.sh
+
+# Format only the file set CI selects for your branch
+ci-scripts/common/bash/format-code.sh --diff -s <feature-branch> -t develop
+
+# Check without modifying files; exits 1 if formatting is required
+ci-scripts/common/bash/format-code.sh --dry-run
+
+# Print the clang-format version that will be used
+ci-scripts/common/bash/format-code.sh --version
+```
+
+`--target-branch` takes a bare branch name (`develop`, not `origin/develop`).
+See `--help` for all options.
+
+### Installing clang-format locally
+
+Installing `clang-format` locally is optional. If you do not have a matching
+local version, format-code.sh automatically falls back to Docker.
+
+Ubuntu 24.04 carry `clang-format-19` in *universe*:
 
 ```bash
 sudo apt-get update
-sudo apt-get install clang-format-12
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-12 20
+sudo apt-get install -y clang-format-19
 ```
 
-### Ubuntu 24.04
-
-Use the following command to download the ClangFormat binary from the GitHub repository's releases page:
-
-```bash
-sudo wget -qO /usr/local/bin/clang-format https://github.com/cpp-linter/clang-tools-static-binaries/releases/latest/download/clang-format-12_linux-amd64
-# set execute permission for the file
-sudo chmod a+x /usr/local/bin/clang-format
-```
-
-Verify the installed version:
+`format-code.sh` looks for `clang-format-19` by name, so that is enough. If you
+also want a bare `clang-format` to be version 19:
 
 ```bash
+sudo update-alternatives --install \
+    /usr/bin/clang-format clang-format \
+    /usr/bin/clang-format-19 20
 clang-format --version
 ```
 
-Run the same formatting check as the CI:
+On older Ubuntu releases where `clang-format-19` is not available through apt,
+let `format-code.sh` use its Docker fallback.
+
+### Running the CI check directly
+
+`oai-cn5g-common-ci/bash/checkCodingFormattingRules.sh` is the
+check the CI runs. It must be started from the repository root and needs `git`,
+`tree` and a matching `clang-format` in `PATH`:
 
 ```bash
+# Whole repository
 ci-scripts/common/bash/checkCodingFormattingRules.sh
+
+# Only the files modified by the branch (plus common-src)
+ci-scripts/common/bash/checkCodingFormattingRules.sh \
+    --src-branch <feature-branch> --target-branch develop
 ```
 
-To automatically format your files:
-
-```bash
-clang-format -i <file1> <file2> ...
-```
+The summary is written to `src/oai_rules_result.txt` and the offending files are
+listed in `src/oai_rules_result_list.txt`.
 
 ## License
 
