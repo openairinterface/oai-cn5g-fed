@@ -21,7 +21,7 @@ ${CONFIG_URL}     ${URL}/nsmf-oai/v1/configuration
 *** Test Cases ***
 
 SMF Config API Get
-#    [Tags]    SMF
+    [Tags]    SMF
     ${response} =   GET  ${CONFIG_URL}
     Status Should Be    200
     Dictionaries Should Be Equal   ${response.json()}     ${smf_config_dict}
