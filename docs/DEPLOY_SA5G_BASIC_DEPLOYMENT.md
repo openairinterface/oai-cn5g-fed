@@ -153,12 +153,10 @@ Check that NRF, AMF, SMF, UPF, UDM, UDR, AUSF, MySQL, and `oai-ext-dn` are up:
 docker-compose-host $: docker ps --format "table {{.Names}}\t{{.Status}}"
 ```
 
-If you want a packet capture, start it after the Docker network exists:
+Start a packet capture. The Docker network, and with it the `demo-oai` host bridge, exists by this point:
 
-```console
-sudo tshark -i demo-oai \
-  -f "not arp and not port 53" \
-  -w /tmp/oai/basic-deployment/basic-core.pcap
+``` shell
+docker-compose-host $: nohup sudo tshark -i demo-oai -f "not arp and not port 53" -w /tmp/oai/basic-deployment/basic-core.pcap > /tmp/oai/basic-deployment/basic-core.log 2>&1 &
 ```
 
 ## 4. Validate With Duranta/OAI gNB And OAI NR-UE
@@ -217,8 +215,9 @@ docker-compose-host $: docker exec oai-nr-ue-basic ping -I oaitun_ue1 -c4 $(dock
 Stop any running `tshark` capture first:
 
 ``` shell
-docker-compose-host $: pkill tshark || true
-docker-compose-host $: chmod 666 /tmp/oai/basic-deployment/*.pcap 2>/dev/null || true
+docker-compose-host $: sudo pkill tshark || true
+docker-compose-host $: sleep 5
+docker-compose-host $: sudo chmod 666 /tmp/oai/basic-deployment/basic-core.*
 ```
 
 Collect core logs:
