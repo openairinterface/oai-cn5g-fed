@@ -20,7 +20,7 @@ log_level:
 register_nf:
   general: yes
 
-http_version: 1
+http_version: 2
 
 ############## SBI Interfaces
 ### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
@@ -129,11 +129,6 @@ amf:
   served_guami_list:
     - mcc: 208
       mnc: 95
-      amf_region_id: 01
-      amf_set_id: 001
-      amf_pointer: 01
-    - mcc: 001
-      mnc: 01
       amf_region_id: 01
       amf_set_id: 001
       amf_pointer: 01
