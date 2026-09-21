@@ -458,6 +458,74 @@ ci-scripts/common/bash/checkCodingFormattingRules.sh \
 The summary is written to `src/oai_rules_result.txt` and the offending files are
 listed in `src/oai_rules_result_list.txt`.
 
+## Building and Testing Images
+
+Before pushing your changes to the remote repository, ensure that the images build and
+that the tests pass locally. The CI runs the same checks, so a failure you catch here
+costs you one commit, instead of a push and a full CI round trip.
+
+1. Synchronize the network functions, so that `component/` holds the sources to build:
+
+```bash
+./scripts/syncComponents.sh
+```
+
+See [Synchronizing all NFs](#synchronizing-all-nfs) for more details.
+
+2. Build the Ubuntu image of every network function you modified:
+
+```bash
+docker build --target oai-amf --tag oai-amf:test \
+               --file component/oai-cn5g-amf/docker/Dockerfile.amf.ubuntu \
+               component/oai-cn5g-amf
+```
+
+### Robot Tests
+
+Run the robot tests if the changes are in `ausf`, `amf`, `smf`, `upf`, `udm`, `udr`,
+`nrf`, `pcf` or in the `test/` folder of this repository.
+
+First, point the tests at the image you have just built by editing its entry in
+[test/image_tags.py](./test/image_tags.py). Keep the entries whitespace-free, because
+the CI rewrites them with `sed`. Without this step the tests pull the published images
+from Docker Hub, and your changes are never exercised.
+
+Then filter on the tag of the network function you modified, the way the CI does:
+
+```bash
+# only the tests tagged for one network function
+.rfvenv/bin/robot -i AMF --outputdir archives test
+
+# the whole suite
+.rfvenv/bin/robot --outputdir archives test
+```
+
+The tags are `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF` and `PCF`. Follow the
+[test suite guide](./test/README.md) for the complete step-by-step instructions.
+
+### Running a Tutorial
+
+The tutorials in [docs](./docs/) are executable: `checkTutorial.py` extracts their
+commands and runs them in order, the way the CI does.
+
+```bash
+# the tutorials the CI checks
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_MINI_WITH_GNBSIM.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_DEPLOYMENT.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_ULCL.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_MONGODB.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_WITH_QOS.md
+ci-scripts/checkTutorial.py --tutorial Ethernet_PDU_Sessions.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_WITH_UPF_EBPF.md
+```
+
+Each of these deploys the core on your machine, so check first that no other
+deployment is running on it. Run the tutorial that covers the network function you
+changed.
+
+Push once the local run is green. From there the [Main Workflow](#main-workflow)
+applies.
+
 ## License
 
 By contributing to OpenAirInterface, you agree that your contributions will be licensed
@@ -472,29 +540,37 @@ Certain files are using different licenses; you can read about them in
 
 ## Main Workflow
 
-1. Push your modified code to a new branch in the [GitHub repository](https://github.com/openairinterface/oai-cn5g-fed).
+1. Create a new branch from the latest `develop`.
    * Please use a short and descriptive branch name.
+   * Keep it rebased on `develop`, see
+     [Rebase a Branch with develop](#rebase-a-branch-with-develop).
 
-2. Create a pull request on [GitHub](https://github.com/openairinterface/oai-cn5g-fed/pulls).
+2. Build the images and run the tests locally, as described in
+   [Building and Testing Images](#building-and-testing-images).
+   * Fixing a failure now saves you a push and a full CI round trip.
+
+3. Push your modified code to your branch in the [GitHub repository](https://github.com/openairinterface/oai-cn5g-fed).
+
+4. Create a pull request on [GitHub](https://github.com/openairinterface/oai-cn5g-fed/pulls).
    * The `target` (`base` in the GitHub interface) branch **must be `develop`**.
    * The `source` (`compare` in the GitHub interface) branch is your development branch.
    * Break large changes into smaller, logical commits and keep pull requests focused.
      Smaller pull requests are easier to review, test, and merge.
 
-3. The Continuous Integration (CI) process will be triggered and will validate your changes.
+5. The Continuous Integration (CI) process will be triggered and will validate your changes.
 
-4. If any CI check fails, push the required fixes to your source branch.
+6. If any CI check fails, push the required fixes to your source branch.
    * Before pushing new commits, group related fixes together and test them locally when possible.
    * Avoid pushing multiple intermediate commits for the same CI failure.
    * CI will automatically run again on the new commit.
    * Please wait for the current CI run to complete before pushing additional changes.
    * This helps ensure fair CI resource usage for all contributors.
 
-5. Once all CI checks pass, a CI administrator will review your changes or assign them to a senior contributor for peer review.
+7. Once all CI checks pass, a CI administrator will review your changes or assign them to a senior contributor for peer review.
    * The reviewer will check the code, commit messages, and CI results.
    * All review discussions must be resolved before approval.
 
-6. After approval, a CI administrator will merge the pull request.
+8. After approval, a CI administrator will merge the pull request.
    * CI will run again on the updated `develop` branch.
    * The source branch will be deleted after the merge.
 
