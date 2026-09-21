@@ -320,7 +320,7 @@ pipeline {
         }
       }
     }
-    stage ('Check Static UE IP Tutorial') {
+    stage ('Check Basic Deployment Tutorial') {
       when { expression {run_static_ue_ip} }
       steps {
         script {
@@ -332,10 +332,10 @@ pipeline {
           }
           try {
             sh 'grep -l "is PASS" archives/basic-deployment.log > /dev/null'
-            echo "Static UE IP Tutorial PASSED"
+            echo "Basic Deployment Tutorial PASSED"
           } catch (Exception e) {
             currentBuild.result = 'FAILURE'
-            echo "Static UE IP Tutorial FAILED"
+            echo "Basic Deployment Tutorial FAILED"
           }
           archivesArtifacts('docker-compose/docker-compose-basic-nrf.yaml', 'basic-deployment')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf.yaml')
