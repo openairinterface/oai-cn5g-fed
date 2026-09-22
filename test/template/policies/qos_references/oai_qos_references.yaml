@@ -13,6 +13,19 @@ OAI_QOS_GBR_VIDEO_1:
   qnc: false
   averWindow: 2000
 
+OAI_QOS_GBR_VIDEO_LOW_1:
+  5qi: 2
+  maxbrUl: "5 Mbps"
+  maxbrDl: "5 Mbps"
+  gbrUl: "3 Mbps"
+  gbrDl: "3 Mbps"
+  arp:
+    priorityLevel: 4
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+  averWindow: 2000
+
 OAI_QOS_NON_GBR_DEFAULT:
   5qi: 9
   maxbrUl: "25 Mbps"
