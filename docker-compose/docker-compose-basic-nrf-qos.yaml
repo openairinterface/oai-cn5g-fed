@@ -98,7 +98,7 @@ services:
                 ipv4_address: 192.168.70.132
     oai-smf:
         container_name: "oai-smf"
-        image: oaisoftwarealliance/oai-smf:qos-mod
+        image: oaisoftwarealliance/oai-smf:develop
         expose:
             - 80/tcp
             - 8080/tcp
