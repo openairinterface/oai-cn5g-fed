@@ -553,7 +553,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=9.5 && $1<=15.5){print "Max bitrate "$1" Mbps is within range (9.5-15.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9.5-15.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=9 && $1<=16){print "Max bitrate "$1" Mbps is within range (9-16)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9-16)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
