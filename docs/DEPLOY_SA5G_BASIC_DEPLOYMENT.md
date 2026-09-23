@@ -156,7 +156,7 @@ docker-compose-host $: docker ps --format "table {{.Names}}\t{{.Status}}"
 Start a packet capture. The Docker network, and with it the `demo-oai` host bridge, exists by this point:
 
 ``` shell
-docker-compose-host $: nohup sudo tshark -i demo-oai -f "not arp and not port 53" -w /tmp/oai/basic-deployment/basic-core.pcap > /tmp/oai/basic-deployment/basic-core.log 2>&1 &
+docker-compose-host $: nohup sudo tshark -i demo-oai -f "sctp or tcp port 80 or tcp port 8080 or udp port 2152 or udp port 8805" -w /tmp/oai/basic-deployment/basic-core.pcap > /tmp/oai/basic-deployment/basic-core.log 2>&1 &
 ```
 
 ## 4. Validate With Duranta/OAI gNB And OAI NR-UE
