@@ -57,8 +57,31 @@ You can find the API specification here:
 ```
 /docker-compose/policies/policy_decision_api_spec.yaml
 ```
+# 4. Viewing the Documentation via Swagger UI
+
+Because this custom Provisioning API references core 3GPP data structures (such as `PccRule` and `QosData` found in TS 29.512), viewing the full specification requires loading the official 3GPP dependency definitions alongside our local definition file.
+
+You can launch a local, interactive Swagger UI instance that handles these dependencies automatically by running the setup script from the root of the repository:
+
+```bash
+# 1. Navigate to the policies directory
+cd docker-compose/policies
+
+# 2. Clone the 3GPP schema repository and switch to the Release 17 branch
+git clone https://forge.3gpp.org/rep/all/5G_APIs.git
+cd 5G_APIs && git checkout REL-17 && cd ..
+
+# 3. Run the Swagger UI container with localized target volume mounts
+docker run -d -p 8080:8080 \
+  -v "$(pwd)/5G_APIs:/usr/share/nginx/html/specs" \
+  -v "$(pwd)/policy_decision_api_spec.yaml:/usr/share/nginx/html/specs/policy_decision_api_spec.yaml" \
+  -e URL=specs/policy_decision_api_spec.yaml \
+  swaggerapi/swagger-ui
+```
 
 # 4. API Endpoints
+
+While the full interactive documentation is accessible via Swagger UI, a quick overview featuring short descriptions and example requests for each endpoint is provided below.
 
 ## 4.1 QoS Data
 
