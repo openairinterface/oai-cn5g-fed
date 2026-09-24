@@ -279,7 +279,7 @@ services:
     # is used to create network
     trace_dummy:
         container_name: trace_dummy
-        image: ubuntu:jammy
+        image: ubuntu:noble
         command: "echo hello"
         networks:
             public_test_net:

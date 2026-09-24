@@ -10,9 +10,12 @@
     <a href="https://github.com/openairinterface/oai-cn5g-fed/tags">
       <img alt="Latest Git tag" src="https://img.shields.io/github/v/tag/openairinterface/oai-cn5g-fed?sort=semver">
     </a>
-    <a href="https://releases.ubuntu.com/20.04/"><img src="https://img.shields.io/badge/OS-Ubuntu20-Green" alt="Supported OS"></a>
-    <a href="https://releases.ubuntu.com/22.04/"><img src="https://img.shields.io/badge/OS-Ubuntu22-Green" alt="Supported OS"></a>
-    <a href="https://www.redhat.com/en/enterprise-linux-9"><img src="https://img.shields.io/badge/OS-RHEL9-Green" alt="Supported OS"></a>
+    <a href="https://releases.ubuntu.com/24.04/">
+      <img src="https://img.shields.io/badge/OS-Ubuntu%2024.04-E95420?logo=ubuntu&logoColor=white" alt="Ubuntu 24.04">
+    </a>
+    <a href="https://www.centos.org/centos10/">
+      <img src="https://img.shields.io/badge/OS-CentOS%20Stream%2010-262577?logo=centos&logoColor=white" alt="CentOS Stream 10">
+    </a>
 </p>
 
 <p align="center">

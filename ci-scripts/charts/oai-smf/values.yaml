@@ -20,7 +20,7 @@ initContainer:
   #pullPolicy: IfNotPresent or Never or Always
   pullPolicy: IfNotPresent
 
-# good to use when pulling images from docker-hub mention for RHEL images it can be commented
+# good to use when pulling images from docker-hub mention for CentOS images it can be commented
 #imagePullSecrets: 
 #  - name: "regcred"
 

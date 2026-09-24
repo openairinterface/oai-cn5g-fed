@@ -34,9 +34,9 @@ OAI 5G core network have different network functions which can be used individua
 | Goal | Deploy OAI 5G Core and RAN network functions with Helm charts |
 | Main repository | [openairinterface/orchestration](https://github.com/openairinterface/orchestration/tree/main) |
 | Working directory | `charts/` in the orchestration repository |
-| Supported hosts for CN5G images | Ubuntu 22.04-26.04, Fedora 39-43, RHEL 8-10 |
+| Supported distributions for CN5G | Ubuntu 24.04, CentOS Stream 10 |
 
-The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for the supported host releases should be fine.
+The official OAI CN5G images are built on Ubuntu 24.04. Any Docker or Podman version available for the supported releases should be fine.
 
 **TABLE OF CONTENTS**
 
@@ -65,7 +65,7 @@ The helm charts can be used on any production grade kubernetes cluster or even v
 | Openshift Client Version        | 4.16+                                   |
 | Kubernetes Version              | Kubernetes Version: v1.31               |
 | helm                            | v3.17                                   |
-| Base images of Network functions| Ubuntu 22.04 official images            |
+| Base images of Network functions| Ubuntu 24.04 official images            |
 
 Each NF has its independent helm-chart and apart from that there are parent helm-charts for below scenarios:
 
@@ -106,9 +106,9 @@ And later add the labels to allow creating `privileged` pods.
 
 ## 2. Fetching Network Function Images
 
-Ubuntu base images can be pulled from [docker-hub](https://github.com/openairinterface/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. In case of RHEL based worker node you can build your own UBI images, to download packages from RHEL repository you need a developer or enterprise account.
+Ubuntu base images can be pulled from [docker-hub](https://hub.docker.com/u/oaisoftwarealliance). In case you want to do some changes in the code then you should build your own images. If you will use Ubuntu images then skip this part and in section `3.1` there is a detailed procedure. On a RHEL based worker node you can build your own CentOS Stream 10 images, which need no Red Hat subscription.
 
-1. To learn how to build UBI 9.X images follow this [tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads)
+1. To learn how to build CentOS Stream 10 images follow this [tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/tree/develop/openshift?ref_type=heads)
 2. To learn how to build Ubuntu images follow this [tutorial](https://github.com/openairinterface/oai-cn5g-fed/-/blob/develop/docs/BUILD_IMAGES.md?ref_type=heads)
 
 ## 3. Configuring Helm Charts

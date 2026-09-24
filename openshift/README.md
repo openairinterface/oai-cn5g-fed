@@ -9,7 +9,7 @@
       </a>
     </td>
     <td style="border-collapse: collapse; border: none; vertical-align: center;">
-      <b><font size = "5">OpenAirInterface: Building UBI Container Images</font></b>
+      <b><font size = "5">OpenAirInterface: Building CentOS Container Images</font></b>
     </td>
   </tr>
 </table>
@@ -17,19 +17,18 @@
 **TABLE OF CONTENTS**
 
 0.  [Pre-requisites](#0-pre-requisites)
-1.  [How to Build UBI Images of Core Network Function](#1-how-to-build-ubi-images-of-core-network-functions)
+1.  [How to Build CentOS Images of Core Network Function](#1-how-to-build-centos-images-of-core-network-functions)
 2.  [How to Build UBI Images of gNB and UE](#2-how-to-build-ubi-images-of-gnb-and-ue)
 
 
 ## 0. Pre-requisites
 
-We assume that there is already a project name `oai-tutorial` in case there is no project like that then create a new project `oc new-project oai-tutorial`. 
+We assume that there is already a project name `oai-tutorial` in case there is no project like that then create a new project `oc new-project oai-tutorial`.
 
-```bash
-oc get secret etc-pki-entitlement -n openshift-config-managed -o json |   jq 'del(.metadata.resourceVersion)' | jq 'del(.metadata.creationTimestamp)' |   jq 'del(.metadata.uid)' | jq 'del(.metadata.namespace)' |   oc create -f -
-```
+The core network build configs below build on CentOS Stream 10, which needs no
+Red Hat subscription, so no entitlement secret has to be copied into the project.
 
-## 1. How to Build UBI Images of Core Network Functions?
+## 1. How to Build CentOS Images of Core Network Functions?
 
 Create the build configs for each core network function, the build config yamls will also create the image streams.
 

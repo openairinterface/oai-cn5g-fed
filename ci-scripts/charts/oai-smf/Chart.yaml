@@ -9,9 +9,9 @@ type: application
 
 icon: http://www.openairinterface.org/wp-content/uploads/2015/06/cropped-oai_final_logo.png
 
-version: v2.2.1
+version: v3.0.0
 
-appVersion: v2.2.1
+appVersion: v3.0.0
 
 keywords:
   - 5G
