@@ -22,13 +22,15 @@ Configuration (environment variables):
     SNSSAI_SST    Slice SST the session runs on            (default: 1)
     SNSSAI_SD     Slice SD (hex, optional)                 (default: unset)
     QOS_REFERENCE Operator qosReference to request         (default: OAI_QOS_GBR_VIDEO_1)
+    QOS_REFERENCE_MODIFIED
+                  qosReference the modify PATCH switches to (default: OAI_QOS_GBR_VIDEO_LOW_1)
     NOTIF_URI     AF notification URI                      (default: http://192.168.70.144/notifications)
 
 Usage:
     ./pa_app_session_tests.py lifecycle
     ./pa_app_session_tests.py create --af-app-id my-test
     ./pa_app_session_tests.py get <app_session_id>
-    ./pa_app_session_tests.py patch <app_session_id> --scenario {modify,add,remove,reject}
+    ./pa_app_session_tests.py patch <app_session_id> --scenario {modify,add,remove,reject,reject-qos-reference}
     ./pa_app_session_tests.py delete <app_session_id>
 
 Every subcommand exits 0 if all its assertions passed, 1 otherwise.
@@ -59,6 +61,7 @@ DNN = os.environ.get("DNN", "internet")
 SNSSAI_SST = int(os.environ.get("SNSSAI_SST", "1"))
 SNSSAI_SD = os.environ.get("SNSSAI_SD", "")
 QOS_REFERENCE = os.environ.get("QOS_REFERENCE", "OAI_QOS_GBR_VIDEO_1")
+QOS_REFERENCE_MODIFIED = os.environ.get("QOS_REFERENCE_MODIFIED", "OAI_QOS_GBR_VIDEO_LOW_1")
 NOTIF_URI = os.environ.get("NOTIF_URI", "http://192.168.70.144/notifications")
 
 
@@ -248,8 +251,10 @@ def guaranteed_video_request_body(
     }
 
 
-def patch_modify_body(ue_ipv4: str | None = None, uplink_filter: bool = True) -> dict:
-    """PATCH modifying component 1 to an explicit GBR flow (10/8 Mbps, 40ms).
+def patch_modify_body() -> dict:
+    """PATCH modifying component 1 by switching it to a different operator
+    qosReference, which is how QoS is changed on a qosReference component
+    [TS 23.503 §6.1.3.22, TS 29.514 §4.2.3.30].
 
     Deliberately reuses medCompN 1 -- the same number guaranteed_video_request_body()
     used to create the session -- rather than a fresh one. This is what makes the PCF
@@ -262,6 +267,35 @@ def patch_modify_body(ue_ipv4: str | None = None, uplink_filter: bool = True) ->
     citation trail (incl. TS 29.514 §4.2.3.13, §4.2.3.41) at the PCF's own id-derivation
     site: src/pcf_app/policy_auth/app_session.cpp, create_qos_data_from_media_component().
     Contrast with patch_add_body() below, which uses an unseen medCompN to add.
+    """
+    return {
+        "ascReqData": {
+            "medComponents": {
+                "1": {"medCompN": 1, "qosReference": QOS_REFERENCE_MODIFIED}
+            }
+        }
+    }
+
+
+def patch_bitrates_on_qos_reference_body() -> dict:
+    """PATCH sending individual bitrates for component 1, which uses a
+    qosReference. The preset would override them [TS 29.513 Table 7.3.3-1],
+    so the PCF rejects it -- 400 INVALID_SERVICE_INFORMATION
+    [TS 29.514 §4.2.2.2, §4.2.3.30]."""
+    return {
+        "ascReqData": {
+            "medComponents": {
+                "1": {"medCompN": 1, "marBwDl": "5 Mbps", "mirBwDl": "3 Mbps"}
+            }
+        }
+    }
+
+
+def individual_gbr_body(
+    med_comp_n: int, ue_ipv4: str | None = None, uplink_filter: bool = True
+) -> dict:
+    """PATCH adding a media component with individual GBR QoS (10/8 Mbps, 40ms)
+    and no qosReference.
 
     `uplink_filter=False` reproduces the rejection case: uplink GBR is
     requested but no uplink SDF filter is present, so per-SDF uplink MBR
@@ -269,14 +303,14 @@ def patch_modify_body(ue_ipv4: str | None = None, uplink_filter: bool = True) ->
     INVALID_SERVICE_INFORMATION [TS 29.512 §4.2.6.6.2].
     """
     ue_ipv4 = ue_ipv4 or UE_IPV4
-    fdescs = [f"permit out ip from any to {ue_ipv4} 5000"]
+    fdescs = [f"permit out ip from any to {ue_ipv4} 7000"]
     if uplink_filter:
-        fdescs.append(f"permit in ip from {ue_ipv4} 5000 to any")
+        fdescs.append(f"permit in ip from {ue_ipv4} 7000 to any")
     return {
         "ascReqData": {
             "medComponents": {
-                "1": {
-                    "medCompN": 1,
+                str(med_comp_n): {
+                    "medCompN": med_comp_n,
                     "marBwUl": "10 Mbps",
                     "marBwDl": "10 Mbps",
                     "mirBwUl": "8 Mbps",
@@ -409,15 +443,18 @@ def _patch(app_session_id: str, body: dict) -> Response:
 
 
 def patch_modify(app_session_id: str, report: TestReport | None = None) -> Response:
-    """Modify component 1 in place (new bandwidth/latency, same qosId/pccRuleId)."""
+    """Modify component 1 in place (new qosReference, same qosId/pccRuleId)."""
     own_report = report or TestReport("patch_modify")
     resp = _patch(app_session_id, patch_modify_body())
 
     own_report.check_eq("PATCH modify returns 200", 200, resp.status)
     data = resp.json() or {}
     comp1 = data.get("ascReqData", {}).get("medComponents", {}).get("1", {})
-    own_report.check_eq("component 1 marBwDl updated to 10 Mbps", "10 Mbps", comp1.get("marBwDl"))
-    own_report.check_eq("component 1 mirBwDl updated to 8 Mbps", "8 Mbps", comp1.get("mirBwDl"))
+    own_report.check_eq(
+        f"component 1 qosReference updated to {QOS_REFERENCE_MODIFIED}",
+        QOS_REFERENCE_MODIFIED,
+        comp1.get("qosReference"),
+    )
 
     if report is None:
         own_report.summary()
@@ -458,17 +495,16 @@ def patch_remove(
     return resp
 
 
-def patch_reject(app_session_id: str, report: TestReport | None = None) -> Response:
-    """A deliberately invalid PATCH: uplink GBR requested with no matching
-    uplink SDF filter -- must be rejected 403 INVALID_SERVICE_INFORMATION
-    and must leave the session's stored context untouched."""
-    own_report = report or TestReport("patch_reject")
-
+def _expect_rejected(
+    app_session_id: str, body: dict, expect_status: int, own_report: TestReport
+) -> Response:
+    """PATCH `body`, expect `expect_status` INVALID_SERVICE_INFORMATION, and
+    check the session's stored context is left untouched."""
     before = get_app_session(app_session_id).json()
 
-    resp = _patch(app_session_id, patch_modify_body(uplink_filter=False))
+    resp = _patch(app_session_id, body)
 
-    own_report.check_eq("invalid PATCH returns 403", 403, resp.status)
+    own_report.check_eq(f"invalid PATCH returns {expect_status}", expect_status, resp.status)
     data = resp.json() or {}
     own_report.check_eq(
         "cause is INVALID_SERVICE_INFORMATION", "INVALID_SERVICE_INFORMATION", data.get("cause")
@@ -476,7 +512,31 @@ def patch_reject(app_session_id: str, report: TestReport | None = None) -> Respo
 
     after = get_app_session(app_session_id).json()
     own_report.check_eq("session is left untouched by the rejected PATCH", before, after)
+    return resp
 
+
+def patch_reject(app_session_id: str, report: TestReport | None = None) -> Response:
+    """A deliberately invalid PATCH: a new component (medCompN 3) with uplink
+    GBR requested but no matching uplink SDF filter -- must be rejected 403
+    INVALID_SERVICE_INFORMATION."""
+    own_report = report or TestReport("patch_reject")
+    resp = _expect_rejected(
+        app_session_id, individual_gbr_body(3, uplink_filter=False), 403, own_report
+    )
+    if report is None:
+        own_report.summary()
+    return resp
+
+
+def patch_reject_qos_reference(
+    app_session_id: str, report: TestReport | None = None
+) -> Response:
+    """Individual bitrates for component 1, which uses a qosReference -- must
+    be rejected 400 INVALID_SERVICE_INFORMATION [TS 29.514 §4.2.2.2]."""
+    own_report = report or TestReport("patch_reject_qos_reference")
+    resp = _expect_rejected(
+        app_session_id, patch_bitrates_on_qos_reference_body(), 400, own_report
+    )
     if report is None:
         own_report.summary()
     return resp
@@ -487,6 +547,7 @@ PATCH_SCENARIOS = {
     "add": patch_add,
     "remove": patch_remove,
     "reject": patch_reject,
+    "reject-qos-reference": patch_reject_qos_reference,
 }
 
 
@@ -514,7 +575,7 @@ def delete_app_session(app_session_id: str, report: TestReport | None = None) ->
 
 
 # ===========================================================================
-# LIFECYCLE -- create -> get -> patch (modify/add/remove) -> reject -> delete
+# LIFECYCLE -- create -> get -> patch (modify/add/remove) -> rejects -> delete
 # ===========================================================================
 
 
@@ -559,12 +620,17 @@ def run_lifecycle() -> bool:
     overall.merge(step)
     step.summary()
 
-    step = TestReport("7. delete")
+    step = TestReport("7. patch reject (bitrates on a qosReference component)")
+    patch_reject_qos_reference(app_session_id, step)
+    overall.merge(step)
+    step.summary()
+
+    step = TestReport("8. delete")
     delete_app_session(app_session_id, step)
     overall.merge(step)
     step.summary()
 
-    step = TestReport("8. get after delete (expect 404)")
+    step = TestReport("9. get after delete (expect 404)")
     get_app_session(app_session_id, step, expect_status=404)
     overall.merge(step)
     step.summary()

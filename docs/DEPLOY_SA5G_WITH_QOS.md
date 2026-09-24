@@ -334,7 +334,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -B 192.16
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json | awk '{if($1>=2.5 && $1<=3.5){print "Max bitrate "$1" Mbps is within range (2.5-3.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (2.5-3.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json | awk '{if($1>=2 && $1<=4){print "Max bitrate "$1" Mbps is within range (2-4)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (2-4)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -383,7 +383,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.9 -B 192.168
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json | awk '{if($1>=90 && $1<=105){print "Max bitrate "$1" Mbps is within range (90-105)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (90-105)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json | awk '{if($1>=90 && $1<=110){print "Max bitrate "$1" Mbps is within range (90-110)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (90-110)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -434,7 +434,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8080 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json | awk '{if($1>=18.5 && $1<=21.5){print "Max bitrate "$1" Mbps is within range (18.5-21.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (18.5-21.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json | awk '{if($1>=18 && $1<=23){print "Max bitrate "$1" Mbps is within range (18-23)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (18-23)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -469,7 +469,7 @@ The throughput should be limited to approximately 20 Mbps, as configured in the 
 
 [//]: # (``` shell)
 
-[//]: # (docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json | awk '{if&#40;$1>=9 && $1<=11&#41;{print "Max bitrate "$1" Mbps is within range &#40;9-11&#41;"; exit 0}else{print "Max bitrate "$1" Mbps is outside range &#40;9-11&#41;"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; })
+[//]: # (docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8081.json | awk '{if&#40;$1>=8 && $1<=12&#41;{print "Max bitrate "$1" Mbps is within range &#40;8-12&#41;"; exit 0}else{print "Max bitrate "$1" Mbps is outside range &#40;8-12&#41;"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; })
 
 [//]: # (```)
 
@@ -530,7 +530,7 @@ docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_resp
 docker-compose-host $: echo "app session id: $APP_SESSION_ID"
 ```
 
-The PCF answers `201 Created`, and the SMF/UPF now enforce a 5 Mbps downlink limit on port 5000 (the `OAI_QOS_GBR_VIDEO_1` operator-preconfigured `qosReference`) for this UE — even though nothing about port 5000 was ever in the static PCC rules from Section 4.
+The PCF answers `201 Created`, and the SMF/UPF now enforce a 15 Mbps downlink limit on port 5000 (the `OAI_QOS_GBR_VIDEO_1` operator-preconfigured `qosReference`) for this UE — even though nothing about port 5000 was ever in the static PCC rules from Section 4.
 
 To GET the app session and confirm what the PCF stored:
 
@@ -553,7 +553,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=9 && $1<=16){print "Max bitrate "$1" Mbps is within range (9-16)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9-16)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json | awk '{if($1>=9 && $1<=18){print "Max bitrate "$1" Mbps is within range (9-18)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (9-18)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -577,16 +577,23 @@ iperf Done.
 ```
 </details>
 
-Notice how the throughput stays close to but below 5 Mbps, which is the limit requested by the AF (`OAI_QOS_GBR_VIDEO_1`) for traffic on port 5000.
+Notice how the throughput stays close to but below 15 Mbps, which is the downlink MBR of the `OAI_QOS_GBR_VIDEO_1` `qosReference` requested by the AF for traffic on port 5000.
 
+PATCH the app session to change it in place. The request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch: reusing an existing `medCompN` **modifies** that component, a new `medCompN` **adds** one alongside it, and setting `fStatus: "REMOVED"` on a component **removes** it. Here we modify media component 1 by moving it to a lower-rate preset, `OAI_QOS_GBR_VIDEO_LOW_1` (5 Mbps MBR, 3 Mbps GBR, defined in [oai_qos_references.yaml](../docker-compose/policies/qos_references/oai_qos_references.yaml)):
 
-
-PATCH the app session to change it in place — the request body is an [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch, so reusing an existing `medCompN` **modifies** that component, and a new `medCompN` **adds** one alongside it (setting `fStatus: "REMOVED"` on a component **removes** it). Here we add a second media component (medCompN 2) for traffic on port 8000:
-
-<!-- docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "2": { "medCompN": 2, "marBwDl": "25 Mbps", "fStatus": "ENABLED", "medSubComps": { "1": { "fNum": 1, "fStatus": "ENABLED", "fDescs": [ "permit out 6 from any to assigned 5000" ] } } } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID -->
 ``` shell
-docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "1": { "medCompN": 1, "marBwDl": "5 Mbps", "mirBwDl": "3 Mbps" } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "1": { "medCompN": 1, "qosReference": "OAI_QOS_GBR_VIDEO_LOW_1" } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
 ```
+
+> **Note: changing the QoS of a component that uses a `qosReference`**
+>
+> Once a media component uses a `qosReference`, its 5QI, MBR, GBR and ARP come from the operator's preset, not from the request (3GPP TS 29.513 Table 7.3.3-1: "as configured by operator"). The AF changes that QoS by sending a **different** `qosReference` (TS 23.503 §6.1.3.22, TS 29.514 §4.2.3.30), as above. Individual bitrates (`marBwUl`, `marBwDl`, `mirBwUl`, `mirBwDl`) cannot change it, because the preset would override them. The PCF therefore rejects such a PATCH with `400 Bad Request` and cause `INVALID_SERVICE_INFORMATION` (TS 29.514 §4.2.2.2), and leaves the installed QoS unchanged. For example, this request is rejected:
+>
+> ```
+> docker exec oai-af curl -i -X PATCH -H 'Content-Type: application/merge-patch+json' -d '{"ascReqData": { "medComponents": { "1": { "medCompN": 1, "marBwDl": "5 Mbps", "mirBwDl": "3 Mbps" } } }}' --http2-prior-knowledge http://192.168.70.139:8080/npcf-policyauthorization/v1/app-sessions/$APP_SESSION_ID
+> ```
+>
+> To control bitrates directly, create the media component without a `qosReference` and send `marBw*`/`mirBw*` instead. Those values can then be modified with PATCH.
 
 To GET the app session and confirm what the PCF stored:
 
@@ -609,7 +616,7 @@ docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json | awk '{if($1>= 3 && $1<=5.5){print "Max bitrate "$1" Mbps is within range (3-5.5)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (3-5.5)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
+docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json > /dev/null 2>&1 && jq -r '.end.sum_sent.bits_per_second / 1000000' /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json | awk '{if($1>=3 && $1<=6){print "Max bitrate "$1" Mbps is within range (3-6)"; exit 0}else{print "Max bitrate "$1" Mbps is outside range (3-6)"; exit 1}}' || { echo "Required fields .end.sum_sent or .end.sum_sent.bits_per_second not found"; exit 1; }
 ```
 -->
 
@@ -633,13 +640,13 @@ The `DELETE` request returns `204 No Content` and removes the AF-derived QER/PCC
 
 ### 8.3. Going further: the full N5 lifecycle test
 
-This tutorial only walks through create → modify/add → remove → delete manually to show the mechanics. The `oai-cn5g-pcf` repository ships an automated test, `ci-scripts/tests/pa_app_session_tests.py`, that exercises the same `Npcf_PolicyAuthorization` app-sessions API end-to-end against this same demo topology, including a scenario this tutorial doesn't cover — a **rejected** PATCH (requesting uplink GBR with no matching uplink packet filter, which the PCF must reject with `403 INVALID_SERVICE_INFORMATION`). Against a running deployment from Section 6:
+This tutorial only walks through create → modify/add → remove → delete manually to show the mechanics. The `oai-cn5g-pcf` repository ships an automated test, `ci-scripts/tests/pa_app_session_tests.py`, that exercises the same `Npcf_PolicyAuthorization` app-sessions API end-to-end against this same demo topology, including two **rejected** PATCHes: individual bitrates sent for a component that uses a `qosReference` (`400 INVALID_SERVICE_INFORMATION`, see the note in 8.1), and uplink GBR requested with no matching uplink packet filter (`403 INVALID_SERVICE_INFORMATION`). Against a running deployment from Section 6:
 
 ```console
 docker-compose-host $: AF_CONTAINER=oai-af ./pa_app_session_tests.py lifecycle
 ```
 
-This runs create → get → patch (modify/add/remove) → patch (reject) → delete → get (expect 404) as one sequence and reports a single pass/fail count. The individual `create`/`get`/`patch --scenario {modify,add,remove,reject}`/`delete` subcommands are also available if you want to drive one step at a time — see the script's `--help` for options.
+This runs create → get → patch (modify/add/remove) → patch (both rejects) → delete → get (expect 404) as one sequence and reports a single pass/fail count. The individual `create`/`get`/`patch --scenario {modify,add,remove,reject,reject-qos-reference}`/`delete` subcommands are also available if you want to drive one step at a time — see the script's `--help` for options.
 
 ## 9. Log Collection
 
@@ -668,7 +675,6 @@ docker-compose-host $: docker logs oai-udr > /tmp/oai/qos-testing/udr.log 2>&1
 docker-compose-host $: docker logs oai-udm > /tmp/oai/qos-testing/udm.log 2>&1
 docker-compose-host $: docker logs oai-ausf > /tmp/oai/qos-testing/ausf.log 2>&1
 docker-compose-host $: docker logs oai-pcf > /tmp/oai/qos-testing/pcf.log 2>&1
-docker-compose-host $: docker logs oai-af > /tmp/oai/qos-testing/af.log 2>&1
 docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/qos-testing/ext-dn.log 2>&1
 docker-compose-host $: docker logs ueransim-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
 docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
