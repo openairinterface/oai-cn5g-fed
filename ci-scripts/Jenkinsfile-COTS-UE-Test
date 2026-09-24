@@ -272,6 +272,11 @@ pipeline {
           sleep 2
           // Deploying now
           dir ('ci-scripts/docker-compose/gnb-ci-testbed') {
+            sh '''
+              wget --tries=3 --timeout=30 --retry-connrefused -O uhd-images_4.8.0.0.tar.xz https://github.com/EttusResearch/uhd/releases/download/v4.8.0.0/uhd-images_4.8.0.0.tar.xz
+              mkdir -p uhd-images_4.8.0.0
+              tar -xJf uhd-images_4.8.0.0.tar.xz --strip-components=1 -C uhd-images_4.8.0.0
+            '''
             // Reset the B210 out of a stale USB state, up to 3 times.
             def uhdResets = 0
             while (sh(script: "sudo uhd_find_devices > /dev/null 2>&1", returnStatus: true) != 0) {

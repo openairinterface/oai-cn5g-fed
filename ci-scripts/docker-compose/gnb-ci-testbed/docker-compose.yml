@@ -8,12 +8,13 @@ services:
         container_name: sa-b210-gnb
         #entrypoint: /bin/bash -c "sleep infinity"
         environment:
-            USE_B2XX: 'yes'
+            UHD_IMAGES_DIR: /tmp/uhd-images_4.8.0.0
             USE_VOLUMED_CONF: True
             USE_ADDITIONAL_OPTIONS: --continuous-tx --log_config.global_log_options level,nocolor,time,line_num,function --opt.type wireshark
         volumes:
             -  /dev/bus/usb/:/dev/bus/usb/
             - ./gnb-n77.conf:/opt/oai-gnb/etc/gnb.conf
+            - ./uhd-images_4.8.0.0:/tmp/uhd-images_4.8.0.0
         healthcheck:
             # pgrep does NOT work
             test: /bin/bash -c "ps aux | grep -v grep | grep -c softmodem"
