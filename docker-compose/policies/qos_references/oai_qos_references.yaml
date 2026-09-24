@@ -43,6 +43,22 @@ OAI_QOS_GBR_VIDEO_1:
   qnc: false
   averWindow: 2000
 
+# Lower-rate tier of the same video service. An AF on OAI_QOS_GBR_VIDEO_1
+# changes to it by PATCHing qosReference (TS 29.514 §4.2.3.30); sending
+# marBw*/mirBw* for a component on a qosReference is rejected instead.
+OAI_QOS_GBR_VIDEO_LOW_1:
+  5qi: 2
+  maxbrUl: "5 Mbps"
+  maxbrDl: "5 Mbps"
+  gbrUl: "3 Mbps"
+  gbrDl: "3 Mbps"
+  arp:
+    priorityLevel: 4
+    preemptCap: "MAY_PREEMPT"
+    preemptVuln: "NOT_PREEMPTABLE"
+  qnc: false
+  averWindow: 2000
+
 # Best-effort non-GBR default. 5QI 9 is standardized (TS 23.501 Table 5.7.4-1).
 OAI_QOS_NON_GBR_DEFAULT:
   5qi: 9

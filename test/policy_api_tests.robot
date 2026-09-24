@@ -70,10 +70,10 @@ SMF N7 SM-Policy Update Notification
     Should Be Equal As Integers    ${result.rc}    0    N7 policy notification test failed
 
 PCF N5 Policy Authorization App-Session Lifecycle
-    [Documentation]    Runs create -> get -> patch (modify/add/remove) -> reject-case
+    [Documentation]    Runs create -> get -> patch (modify/add/remove) -> reject-cases
     ...                -> delete -> get against the PCF's app-sessions API, bound to
     ...                the live UE address and the operator qosReference
-    ...                OAI_QOS_GBR_VIDEO_1.
+    ...                OAI_QOS_GBR_VIDEO_1 (modified to OAI_QOS_GBR_VIDEO_LOW_1).
     [Tags]    PCF
     ${ue_ip} =    Bring Up Ue Session
     ${result} =    Run Process    python3    ${PCF_SCRIPT}    lifecycle
