@@ -12,7 +12,7 @@ live PCF over HTTP/2 prior-knowledge, via `curl` (neither `requests` nor
 - `python3` 3.10+, `curl` built with HTTP/2 support
 - A reachable PCF with a UE that has an established PDU session (the demo
   topology: `docker-compose-basic-nrf-qos.yaml` +
-  `docker-compose-ueransim-qos.yaml` in `oai-cn5g-fed`)
+  `docker-compose-oai-rfsim-qos.yaml` in `oai-cn5g-fed`)
 
 ## Quick start
 

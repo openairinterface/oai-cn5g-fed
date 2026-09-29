@@ -429,6 +429,7 @@ pipeline {
             echo "QoS Tutorial FAILED"
           }
           archivesArtifacts('docker-compose/docker-compose-basic-nrf-qos.yaml', 'qos-testing')
+          sh 'cp docker-compose/docker-compose-oai-rfsim-qos.yaml archives/qos-testing || true'
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-qos.yaml')
         }
       }
@@ -542,7 +543,7 @@ def archivesArtifacts(filename,folder) {
 
 def cleanUpDockerCompose(filename) {
   sh 'git checkout -- ' + filename
-  sh 'git checkout -- docker-compose/docker-compose-gnbsim*.y*ml docker-compose/docker-compose*ransim.y*ml'
+  sh 'git checkout -- docker-compose/docker-compose-gnbsim*.y*ml docker-compose/docker-compose*ransim.y*ml docker-compose/docker-compose-oai-rfsim-qos.yaml'
   sh 'docker network prune --force'
   sh 'docker volume prune --force'
 }

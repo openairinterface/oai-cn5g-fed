@@ -72,11 +72,13 @@ These files include contributions from:
 
 ------------------------------------------------------------------
 
-Credits for UE-RAN sim configuration files:
-
-Files: docker-compose/ran-qos/ue-5qi*
+UERANSIM
 Source: https://github.com/aligungr/UERANSIM
 License: AGPL-3.0 License
+Used by:
+- docker-compose/docker-compose-ueransim-vpp.yaml
+- docker-compose/docker-compose-ueransim-ebpf.yaml
+- docker-compose/docker-compose-slicing-ransim.yaml
 
 ------------------------------------------------------------------
 
