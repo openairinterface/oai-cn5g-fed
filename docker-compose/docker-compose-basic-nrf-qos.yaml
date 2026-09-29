@@ -82,7 +82,7 @@ services:
                 ipv4_address: 192.168.70.130
     oai-amf:
         container_name: "oai-amf"
-        image: oaisoftwarealliance/oai-amf:net-qos
+        image: oaisoftwarealliance/oai-amf:develop
         expose:
             - 80/tcp
             - 8080/tcp
@@ -116,7 +116,7 @@ services:
             - "oai-upf:192.168.70.129"
     oai-pcf:
         container_name: "oai-pcf"
-        image: oaisoftwarealliance/oai-pcf:n5-qos
+        image: oaisoftwarealliance/oai-pcf:develop
         expose:
             - 80/tcp
             - 8080/tcp
