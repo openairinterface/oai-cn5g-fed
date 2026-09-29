@@ -26,7 +26,6 @@ decision_supi5:
   pcc_rules:
     - gbr-rule-5qi-1
     - gbr-rule-iperf3-8080
-    - gbr-rule-iperf3-8081
 
 decision_supi6:
   supi_imsi: "208950000000036"

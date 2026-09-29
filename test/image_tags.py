@@ -15,9 +15,10 @@ image_tags = {
     "oai-pcf": "oaisoftwarealliance/oai-pcf:develop",
     "vpp-upf": "oaisoftwarealliance/oai-upf-vpp:develop",
     "gnbsim": "gnbsim:latest",
-    "omec-gnbsim": "oaisoftwarealliance/omec-gnbsim:v2.3-fixes",
-    "packetrusher": "oaisoftwarealliance/packet-rusher:fix-5gstmsi-amf",
+    "omec-gnbsim": "oaisoftwarealliance/omec-gnbsim:develop",
+    "packetrusher": "oaisoftwarealliance/packet-rusher:develop",
     "oai-gnb": "oaisoftwarealliance/oai-gnb:develop",
     "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:develop",
-    "mobsim": "carot0/mobsim:latest"
+    "mobsim": "carot0/mobsim:latest",
+    "curl": "curlimages/curl:8.10.1"
 }

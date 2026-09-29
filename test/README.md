@@ -15,6 +15,7 @@ Currently the test suite is only supported on Ubuntu (22.04/24.04/26.04) distrib
 | [smf_tests.robot](./smf_tests.robot) | SMF alone, no RAN | SMF configuration REST API (`GET`/`PUT`) |
 | [smf_upf_tests.robot](./smf_upf_tests.robot) | SMF + UPF, with and without NRF | PFCP association, SMF- and UPF-initiated |
 | [qos_tests.robot](./qos_tests.robot) | CN + PCF + 3 ext-DNs, gnbsim | UPF throughput, session-AMBR, QoS-flow enforcement |
+| [policy_api_tests.robot](./policy_api_tests.robot) | NRF CN + PCF + ext-DN + omec-gnbsim | SMF N7 SM-policy update callback and PCF N5 policy-authorization app-sessions, over HTTP/2 |
 | [ebpf_tests.robot](./ebpf_tests.robot) | CN with the eBPF-datapath UPF | Attach, ping, 400 Mbit/s bidirectional iperf3 |
 | [omec_gnbsim_tests.robot](./omec_gnbsim_tests.robot) | CN + omec-gnbsim | UE lifecycle, idle cycle, release and re-establish, address-leak check |
 | [packetrusher_tests.robot](./packetrusher_tests.robot) | CN + PacketRusher | N2/Xn handover, paging, UPF throughput, multi-UE attach |
@@ -43,6 +44,28 @@ Non-mandatory tests are wrapped so an expected failure is logged as an `ERROR` i
 suite. They start passing on their own once the core gains support.
 
 ICMP is reply driven everywhere, so a ping step only passes if the echo replies come back.
+
+### Policy control API tests (`policy_api_tests.robot`)
+
+Exercises the policy-control SBI over cleartext HTTP/2 with prior knowledge, which neither
+`RequestsLibrary` nor `httpx` can produce. The assertions therefore live in two standalone
+curl-based Python scripts under [`scripts/policy/`](./scripts/policy/) (no pip dependencies), and
+the suite runs them against a live core:
+
+| Test | Tag | What it drives |
+| --- | --- | --- |
+| SMF N7 SM-Policy Update Notification | `SMF` | `POST /nsmf-callback/v1/{scid}/sm-policy-control-notify/update` [TS 29.512 §4.2.3.2] |
+| PCF N5 Policy Authorization App-Session Lifecycle | `PCF` | `POST`/`GET`/`PATCH`/`DELETE` `/npcf-policyauthorization/v1/app-sessions` [TS 29.514 §4.2] |
+
+Each test brings up one UE with omec-gnbsim using the `policyhold` profile, which registers,
+establishes a PDU session and then holds it (~40 s) while the HTTP script runs, before
+deregistering cleanly. curl is executed inside `oai-ext-dn` (`docker exec`), so the request
+originates on the SBI network exactly as a real AF/PCF would. The PCF test binds its app-session to
+the UE address the SMF allocated (read from the SMF log) and the operator qosReference
+`OAI_QOS_GBR_VIDEO_1` shipped in `template/policies/qos_references/`.
+
+Because the tags are `SMF` and `PCF`, a component CI run selects only the relevant test
+(`-i SMF` / `-i PCF`) and runs it against that component's PR-built image.
 
 ## Prerequisites
 
