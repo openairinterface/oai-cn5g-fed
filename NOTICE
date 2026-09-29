@@ -77,14 +77,6 @@ These files include contributions from:
 
 ------------------------------------------------------------------
 
-Credits for UE-RAN sim configuration files:
-
-Files: docker-compose/ran-qos/ue-5qi*
-Source: https://github.com/aligungr/UERANSIM
-License: AGPL-3.0 License
-
-------------------------------------------------------------------
-
 The files in the directory
 docker-compose/database/pcf-provisioning/*
 were generated using ODB (an object-relational mapping (ORM)

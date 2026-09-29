@@ -304,43 +304,45 @@ docker-compose-host $: docker ps
 
 ## 7. Testing QoS Enforcement
 
-For testing QoS, we'll use UERANSIM to simulate UEs with different QoS profiles and measure the achieved throughput using iperf3.
+For testing QoS, we'll use the OAI gNB and OAI NR-UE in RF simulator mode to simulate UEs with different QoS profiles and measure the achieved throughput using iperf3.
 
-### 7.1. Deploy UERANSIM
+### 7.1. Deploy OAI gNB and NR-UEs
 
 The configurations are as follows:
-- `ran-qos/oai-cn5g-gnb.yaml`: gNB configuration
-- `ran-qos/ue-5qi-1.yaml`: UE configuration for the 5QI-1 UE (IMSI 208950000000035, 3 Mbps)
-- `ran-qos/ue-5qi-3.yaml`: UE configuration for the 5QI-3 UE (IMSI 208950000000034, 100 Mbps)
+- [ran-qos/gnb.sa.band78.106prb.rfsim.yaml](../docker-compose/ran-qos/gnb.sa.band78.106prb.rfsim.yaml): gNB configuration (slice SST 222 / SD `00007B`)
+- [ran-qos/nrue.uicc.5qi-1.yaml](../docker-compose/ran-qos/nrue.uicc.5qi-1.yaml): UE configuration for the 5QI-1 UE (IMSI 208950000000035, 3 Mbps)
+- [ran-qos/nrue.uicc.5qi-3.yaml](../docker-compose/ran-qos/nrue.uicc.5qi-3.yaml): UE configuration for the 5QI-3 UE (IMSI 208950000000034, 100 Mbps)
 
-You can create more UEs by creating a UE configuration file and updating the `docker-compose-ueransim-qos.yaml` to add the UE.
+You can create more UEs by creating a UE configuration file and adding the UE to [docker-compose-oai-rfsim-qos.yaml](../docker-compose/docker-compose-oai-rfsim-qos.yaml).
 
-Now deploy UERANSIM:
+Start the gNB and wait until it is running:
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml up -d
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml up -d oai-gnb
+docker-compose-host $: timeout 120 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-gnb 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+```
+
+Then start the two UEs. Each UE container reports `healthy` once its PDU session is up and `oaitun_ue1` has the static IP from Section 3:
+
+``` shell
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml up -d oai-nr-ue-5qi-1 oai-nr-ue-5qi-3
+docker-compose-host $: timeout 180 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-nr-ue-5qi-1 2>/dev/null)" = "healthy" ]; do sleep 2; done'
+docker-compose-host $: timeout 180 bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" oai-nr-ue-5qi-3 2>/dev/null)" = "healthy" ]; do sleep 2; done'
 ```
 
 ### 7.2. Test QoS Enforcement
 
-First, check that the UE is registered and has an IP address:
-
-<!---
-For CI purposes please ignore this line
-``` shell
-docker-compose-host $: sleep 10
-```
--->
+First, check that the UE is registered and can reach the data network:
 
 ``` shell
-docker-compose-host $: docker exec ueransim-ue-5qi-1 ping -c 3 -I uesimtun0 192.168.72.135
+docker-compose-host $: docker exec oai-nr-ue-5qi-1 ping -c 3 -I oaitun_ue1 192.168.72.135
 ```
 
 
 The UPF only shapes downlink traffic, so the iperf3 server runs on the UE and the iperf3 client in `oai-ext-dn` sends the data towards it (by default, an iperf3 client sends and the server receives). Now, start an iperf3 server in the UE to test Downlink QoS enforcement:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10
 ```
 
 Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE:
@@ -380,12 +382,12 @@ Notice how the throughput stays close to but below 3 Mbps, which is the configur
 
 ### 7.3. Test Different QoS Profiles
 
-You can repeat the test with different UEs to confirm that the QoS limits are enforced correctly. A second UE, `ueransim-ue-5qi-3` (IMSI 208950000000034, IP 12.1.1.9, `gbr-rule-5qi-3` with a 100 Mbps limit), is already part of `docker-compose-ueransim-qos.yaml`. To test further QoS profiles, create additional UE configurations and add them to that docker-compose file.
+You can repeat the test with different UEs to confirm that the QoS limits are enforced correctly. A second UE, `oai-nr-ue-5qi-3` (IMSI 208950000000034, IP 12.1.1.9, `gbr-rule-5qi-3` with a 100 Mbps limit), is already part of `docker-compose-oai-rfsim-qos.yaml`. To test further QoS profiles, create additional UE configurations and add them to that docker-compose file.
 
 For example, to test the prepared 5QI-3 UE, start an iperf3 server in the UE to test Downlink QoS enforcement:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-3 iperf3 -s -B 12.1.1.9
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-3 iperf3 -s -B 12.1.1.9
 ```
 
 Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE:
@@ -437,7 +439,7 @@ For this test, we have configured two QoS rules for the same UE:
 Start an iperf3 server on the UE listening on port 8080:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8080
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 8080
 ```
 
 Start an iperf3 client on the data network to generate traffic to port 8080:
@@ -493,7 +495,7 @@ docker-compose-host $: sleep 10
 -->
 
 ``` shell
-docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
+docker-compose-host $: docker exec oai-nr-ue-5qi-1 ip -4 addr show oaitun_ue1
 ```
 
 Send a QoS profile from the AF based on the UE IPv4 address. The `dnn` and `sliceInfo` must match the UE's PDU session (DNN `default`, slice SST 222 / SD `00007B`). The `-i` flag prints the response headers so we can capture the `Location` header, which contains the `appSessionId` the PCF assigned to this app session — every following request addresses that same app session:
@@ -515,7 +517,7 @@ docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.139:8080/np
 Start an iperf3 server on the UE listening on port 5000 (the port targeted by the original AF flow description):
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
 ```
 
 Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE on port 5000:
@@ -630,7 +632,7 @@ docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_resp
 
 ### 8.3. Going further: the full N5 lifecycle test
 
-This tutorial only walks through create → modify → remove → delete manually to show the mechanics. This repository ships an automated test, [`test/scripts/policy/pa_app_session_tests.py`](../test/scripts/policy/pa_app_session_tests.py), that exercises the same `Npcf_PolicyAuthorization` app-sessions API end-to-end against this same demo topology, including two **rejected** PATCHes: individual bitrates sent for a component that uses a `qosReference` (`400 INVALID_SERVICE_INFORMATION`, see the note in 8.1), and uplink GBR requested with no matching uplink packet filter (`403 INVALID_SERVICE_INFORMATION`). Against a running deployment from Section 6 (with UERANSIM from Section 7), run it from the `docker-compose` folder. `DNN` and `SNSSAI_*` must match the UE's PDU session, as in 8.1; the script's defaults (`internet`, SST 1) do not:
+This tutorial only walks through create → modify → remove → delete manually to show the mechanics. This repository ships an automated test, [`test/scripts/policy/pa_app_session_tests.py`](../test/scripts/policy/pa_app_session_tests.py), that exercises the same `Npcf_PolicyAuthorization` app-sessions API end-to-end against this same demo topology, including two **rejected** PATCHes: individual bitrates sent for a component that uses a `qosReference` (`400 INVALID_SERVICE_INFORMATION`, see the note in 8.1), and uplink GBR requested with no matching uplink packet filter (`403 INVALID_SERVICE_INFORMATION`). Against a running deployment from Section 6 (with the OAI gNB and NR-UEs from Section 7), run it from the `docker-compose` folder. `DNN` and `SNSSAI_*` must match the UE's PDU session, as in 8.1; the script's defaults (`internet`, SST 1) do not:
 
 ```console
 docker-compose-host $: AF_CONTAINER=oai-af DNN=default SNSSAI_SST=222 SNSSAI_SD=00007B python3 ../test/scripts/policy/pa_app_session_tests.py lifecycle
@@ -643,7 +645,7 @@ This runs create → get → patch (modify/add/remove) → patch (both rejects) 
 <!---
 For CI purposes please ignore these lines
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml stop -t 2
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml stop -t 2
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-qos.yaml stop -t 30
 ```
 -->
@@ -666,17 +668,17 @@ docker-compose-host $: docker logs oai-udm > /tmp/oai/qos-testing/udm.log 2>&1
 docker-compose-host $: docker logs oai-ausf > /tmp/oai/qos-testing/ausf.log 2>&1
 docker-compose-host $: docker logs oai-pcf > /tmp/oai/qos-testing/pcf.log 2>&1
 docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/qos-testing/ext-dn.log 2>&1
-docker-compose-host $: docker logs ueransim-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
-docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
-docker-compose-host $: docker logs ueransim-ue-5qi-3 > /tmp/oai/qos-testing/ue-5qi-3.log 2>&1
+docker-compose-host $: docker logs oai-gnb > /tmp/oai/qos-testing/gnb.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-5qi-1 > /tmp/oai/qos-testing/ue-5qi-1.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-5qi-3 > /tmp/oai/qos-testing/ue-5qi-3.log 2>&1
 ```
 
 ## 10. Undeploy the network functions
 
-### 10.1. Undeploy UERANSIM
+### 10.1. Undeploy the OAI gNB and NR-UEs
 
 ``` shell
-docker-compose-host $: docker-compose -f docker-compose-ueransim-qos.yaml down
+docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-qos.yaml down
 ```
 
 ### 10.2. Undeploy the core network
