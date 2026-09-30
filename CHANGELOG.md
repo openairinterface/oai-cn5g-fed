@@ -2,6 +2,114 @@
 
 # RELEASE NOTES:
 
+## v2.2.2 -- September 2026
+
+* Platform support for AUSF, AMF, SMF, UDM, UDR, PCF, LMF, NSSF, NRF and UPF
+  - Add support for Ubuntu 24.04
+  - Add support for CentOS Stream 10
+  - Drop the RHEL 9 and Rocky 9 support (replaced by CentOS Stream 10)
+* Repository and CI migration to GitHub for AUSF, AMF, SMF, UDM, UDR, PCF, LMF, NSSF, NRF and UPF
+  - Migrate GitLab repository references to openairinterface GitHub
+  - Migrate CI to the openairinterface GitHub PR-based workflow
+  - Add CLA checks, enforce signed commits and prevent merge commits
+  - Use the same version of common-src with a flatter structure;
+    all the models in common-src/model belong to the same namespace
+  - Apply clang-format 19.1.1 to the source files and document `format-code.sh`
+  - Update the contribution guidelines for GitHub and add `SECURITY.md`
+* `FED` changes:
+  - Remove the NF submodules; `syncComponents.sh` now clones/fetches the NFs into
+    `component/` and accepts tags
+  - Migrate the fed and downstream CI pipelines from GitLab to GitHub
+  - Point the tutorials and the Helm charts at the v2.2.2 images
+  - Add OMEC gnbsim and PacketRusher robot tests
+  - Bring back the SMF/UPF PFCP robot test
+  - Remove the NGAP tester robot test
+  - Update the UERANSIM images to the oaisoftwarealliance repository
+  - Remove the unused cn5g-tester files
+  - Upgrade the MySQL image to 9.6.0 in Docker Compose and Helm charts
+  - Remove the oai-5g-mini Helm chart
+  - Fix the rfsimulator configuration across nrUE/gNB
+  - Fix the UPF entrypoint route to the DN
+  - Make the SMF QER configuration deterministic and increase the validation range for QoS targets
+  - Fix the dead links in the tutorial index and improve the tutorial readability
+* `AMF` changes:
+  * Features
+    - Add support for the LTE Positioning Protocol (LPP)
+    - Update the NAS library from Rel 16.14.0 to Rel 17.10.0
+    - Add NGAP Error Indication handling
+  * Fixes
+    - Fix AMF-PCF communication during registration and PDU session establishment
+    - Fix UE failing to reconnect after PDU session release
+    - Fix NAS context retrieval when receiving Authentication Failure
+    - Fix 5GMM wrong sequence state after registration complete
+    - Fix duplicate api_version in AMF callback URIs
+    - Improve AMF stability and robustness (null pointer checks, memory leaks,
+      unique random TMSIs, UL security-protected NAS message handling)
+    - Temporarily allow unprotected UL NAS Transport and bypass the URI check/encode
+  * Refactoring
+    - Simplify the UE/gNB context manager, refactor ITTI dispatch and SBI server handling
+* `SMF` changes:
+  * Features
+    - Update PFCP to Rel 17.10
+    - Send the session AMBR to the UPF as a QER MBR
+  * Fixes
+    - Fix the UE-initiated deregistration procedure
+    - Release the UE IP address on UE-requested PDU session release
+    - Fix PDU session resource release
+    - Fix the PFCP heartbeat timers and response matching
+    - Resolve the UPF node ID when the N4 association is created and match a
+      configured UPF hostname to its discovered address
+    - Fix PFCP volume IE decoding
+    - Fix the AMF Status Notify and nsmf-event-exposure URIs
+* `UPF` changes:
+  * Features
+    - Refactor the UPF core architecture and eBPF datapath
+    - Align with common-src PFCP Rel 17.10 (MAR handling, pair-based rule IDs)
+    - Improve interoperability with 3rd party SMFs (missing PFCP IEs)
+    - Support Ethernet and IP PDU sessions on the same UPF instance
+    - Port Ethernet PDU broadcast/multicast fan-out to the new architecture
+    - Simple switch UPF:
+      - Rework the datapath for multi-core scaling and drop folly
+      - Add QoS shaping (downlink, and optional uplink) and QER MBR metering
+      - Add usage reporting (URR) and session volume counting
+      - Add multi-queue tun and GSO splitting
+      - Keep CP-initiated associations and reach FQDN peers
+  * Fixes
+    - Fix self-deadlock on PFCP Session Modification removing PDR/FAR/QER/URR/BAR
+    - Fix deadlock in BPF session modification with remove PDR/FAR/QER
+    - Install QoS and SDF filters on session establishment
+    - Accept Create PDR referencing an existing FAR
+    - Give PDRs with the same CHOOSE ID one F-TEID (uplink on non-default QFIs was dropped)
+    - Release QER-TC shaping classes on session teardown and modification
+    - Prune BPF rule-map entries on PDR removal and session deletion
+    - Fix the route to the DN using bpf_fib_lookup
+    - Fix ARP resolution and multi-gNB handling
+    - Fix the ims DNN subnet in the default configuration
+    - GTP-U: set S=1 on Error Indication and send the whole optional header
+    - Simple switch: fix GSO checksums, ECN handling and the GTP-U header walk
+  * Licensing
+    - Download the libbpf files at build time instead of shipping them
+    - Add a CI license check
+* `PCF` changes:
+  * Fixes
+    - Start the NF heartbeat task so the PCF no longer goes SUSPENDED at the NRF,
+      and retrigger it in case of failure
+    - Fix the build by pinning libodb/libodb-mysql to 2.5.0
+* `UDR` changes:
+  * Fixes
+    - Fix MySQL queries, the insert_authentication_subscription query and the resource_id value
+    - Fix the sequence number in the Patch message
+    - Fix the CentOS image build failing on the EPEL mongo libraries
+* `AUSF` changes:
+  * Features
+    - Add the AUSF FQDN to the NF Profile
+  * Fixes
+    - Fix the HTTP return code for the NF heartbeat
+* `LMF` changes:
+  * Features
+    - Take the units of the TRP coordinates into account in location determination
+* There are no specific changes in UDM, NRF, NSSF, NEF and NWDAF
+
 ## v2.2.1 -- April 2026
 
 * Build and CI fixes for RHEL 9 based environments
