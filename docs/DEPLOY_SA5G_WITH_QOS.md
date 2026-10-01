@@ -345,10 +345,10 @@ The UPF only shapes downlink traffic, so the iperf3 server runs on the UE and th
 docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10
 ```
 
-Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE:
+Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE. `-O 1` leaves the first second (TCP slow start) out of the results. Otherwise the data that fills the send buffer in that second is counted as sent, and the reported bitrate overshoots the configured limit:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1.json
 ```
 
 <!---
@@ -393,7 +393,7 @@ docker-compose-host $: docker exec -d oai-nr-ue-5qi-3 iperf3 -s -B 12.1.1.9
 Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.9 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.9 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-3.json
 ```
 
 <!---
@@ -445,7 +445,7 @@ docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 
 Start an iperf3 client on the data network to generate traffic to port 8080:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 8080 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 8080 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-8080.json
 ```
 
 <!---
@@ -523,7 +523,7 @@ docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 
 Next, run an iperf3 client in `oai-ext-dn` to send downlink traffic to the UE on port 5000:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-qos.json
 ```
 
 <!---
@@ -580,7 +580,7 @@ docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.139:8080/np
 The iperf3 server on port 5000 started above is still running. Run the iperf3 client in `oai-ext-dn` again to send downlink traffic to the UE on port 5000:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-patch-qos.json
 ```
 
 <!---
@@ -601,7 +601,7 @@ docker-compose-host $: APP_SESSION_ID=$(grep -i '^location:' /tmp/af_create_resp
 The PCF removes the AF-derived PCC rule, and the SMF removes the matching QER/PDR from the UPF. Traffic on port 5000 now falls back to the default flow of this UE (`gbr-rule-5qi-1`, 3 Mbps). The iperf3 server on port 5000 started in 8.1 is still running, so you can check this directly:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-remove-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-testing/iperf_result_ue-5qi-1-af-remove-qos.json
 ```
 
 <!---
