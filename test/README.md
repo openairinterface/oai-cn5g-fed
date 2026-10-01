@@ -19,6 +19,7 @@ Currently the test suite is only supported on Ubuntu (22.04/24.04/26.04) distrib
 | [omec_gnbsim_tests.robot](./omec_gnbsim_tests.robot) | CN + omec-gnbsim | UE lifecycle, idle cycle, release and re-establish, address-leak check |
 | [packetrusher_tests.robot](./packetrusher_tests.robot) | CN + PacketRusher | N2/Xn handover, paging, UPF throughput, multi-UE attach |
 | [Northbound.robot](./Northbound.robot) | CN + VPP-UPF + rfsim gNB/UEs + mobsim + MongoDB | AMF/SMF event-exposure notifications |
+| [lmf_tests.robot](./lmf_tests.robot) | NRF-based CN + LMF, rfsim gNB (51 PRB, 4 RX antennas = 4 TRPs) and one UE | `determine-location` returns a `localLocationEstimate` point; gNB UL-RTOA k values reach the LMF unchanged |
 
 ### Test cases per RAN suite
 
@@ -150,8 +151,8 @@ Run from the **repository root** — artifacts are written relative to your work
 .rfvenv/bin/robot -i UPF --outputdir archives test
 ```
 
-Tags: `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF`, `PCF`. `Northbound.robot` carries no tags,
-so a tag-filtered run never selects it.
+Tags: `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF`, `PCF`, `LMF`. `lmf_tests.robot` carries `LMF` and `AMF`, so a tag-filtered run selects it only with `-i LMF/AMF`. `Northbound.robot` carries only `North`,
+so it runs only with `-i North`.
 
 ## Suite options
 

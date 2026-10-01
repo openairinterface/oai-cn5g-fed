@@ -64,17 +64,20 @@ class RfSimLib:
 
             return key_start_indices
     
-    def prepare_ran(self, num_gnb, num_nr_ue):
+    def prepare_ran(self, num_gnb, num_nr_ue, gnb_config=GNB_CONFIG_TEMPLATE, ue_options=None, use_n3_net=True):
         """
         Prepares the RAN components by generating the Docker Compose file with multiple gNBs and NR-UEs.
         :param num_gnb: Number of gNB instances to create.
         :param num_nr_ue: Number of NR-UE instances to create.
+        :param gnb_config: gNB config file, relative to the test directory.
+        :param ue_options: NR-UE USE_ADDITIONAL_OPTIONS replacing the template ones (REPLACE_IMSI/REPLACE_IP kept).
+        :param use_n3_net: attach gNBs to the N3 network; disable when the CN does not create it (NG-U on public net).
         :return: Path to the generated Docker Compose file.
         """
         gnb_output_path = self.__get_docker_compose_path("ran_gnb")
         ue_output_path = self.__get_docker_compose_path("ran-ue")
         shutil.copy(os.path.join(DIR_PATH, NR_UE_CONFIG_TEMPLATE), get_out_dir())
-        shutil.copy(os.path.join(DIR_PATH, GNB_CONFIG_TEMPLATE), get_out_dir())
+        shutil.copy(os.path.join(DIR_PATH, gnb_config), os.path.join(get_out_dir(), 'gnb.conf'))
         self.nr_ue_config_path = os.path.join(get_out_dir(), 'nr-ue.conf')
         self.gnb_config_path = os.path.join(get_out_dir(), 'gnb.conf')
         with open(os.path.join(DIR_PATH, RAN_TEMPLATE)) as f:
@@ -91,7 +94,11 @@ class RfSimLib:
                 gnb_service = gnb_template.copy()
                 gnb_service["container_name"] = gnb_name
                 gnb_service["networks"]["public_test_net"]["ipv4_address"] = gnb_ip
-                gnb_service["networks"]["n3_test_net"]["ipv4_address"] = gnb_n3_ip
+                if use_n3_net:
+                    gnb_service["networks"]["n3_test_net"]["ipv4_address"] = gnb_n3_ip
+                else:
+                    gnb_service["networks"].pop("n3_test_net", None)
+                    parsed["networks"].pop("n3_test_net", None)
                 parsed["services"][gnb_name] = gnb_service
                 self.gnb.append(gnb_name)
             parsed["services"].pop("oai-gnb", None)
@@ -102,6 +109,8 @@ class RfSimLib:
         with open(os.path.join(DIR_PATH, RAN_TEMPLATE)) as f:
             parsed = yaml.safe_load(f) 
             nr_ue_template = parsed["services"]["oai-nr-ue"]
+            if ue_options:
+                nr_ue_template['environment']['USE_ADDITIONAL_OPTIONS'] = ue_options
             for j in range(num_nr_ue):
                 nr_ue_name = self.__generate_nr_ue_name()
                 nr_ue_ip = self.__generate_ip(NR_UE_FIRST_IP, j)

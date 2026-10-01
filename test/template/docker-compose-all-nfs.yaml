@@ -92,6 +92,17 @@ services:
         networks:
             public_test_net:
                 ipv4_address: 192.168.79.133
+    oai-lmf:
+        container_name: "oai-lmf"
+        image: oaisoftwarealliance/oai-lmf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - REPLACE:/openair-lmf/etc/config.yaml
+        networks:
+            public_test_net:
+                ipv4_address: 192.168.79.145
     oai-pcf:
         container_name: "oai-pcf"
         image: oaisoftwarealliance/oai-pcf:develop
