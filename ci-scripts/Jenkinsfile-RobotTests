@@ -39,10 +39,9 @@ upstreamTagToUse = params.upstreamTagToUse
 
 rfTags = ""
 
-// TODO: once 5gcsdk is public, not required anymore.
 def sdk_credentials = params.Private_Repo_Credentials ?: 'github-jenkins-oai-cn'
 // 5gcsdk branch and repository URL
-def SDK_BRANCH = params.SDK_BRANCH ?: 'oai-jenkins-ci'
+def SDK_BRANCH = params.SDK_BRANCH ?: 'main'
 def SDK_URL = params.SDK_URL ?: 'https://github.com/openairinterface/5gcsdk.git'
 
 //-------------------------------------------------------------------------------
