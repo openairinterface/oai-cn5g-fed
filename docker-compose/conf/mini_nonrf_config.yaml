@@ -126,7 +126,7 @@ amf:
     - "NEA2"
 
 smf:
-  ue_mtu: 1500
+  ue_mtu: 1400
   support_features:
     use_local_subscription_info: yes # Use infos from local_subscription_info or from UDM
     use_local_pcc_rules: yes # Use infos from local_pcc_rules or from PCF
@@ -185,8 +185,16 @@ smf:
 
 upf:
   support_features:
-    enable_bpf_datapath: no    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
+    enable_bpf_datapath: no    # simple switch, see oai-cn5g-upf docs/SIMPLE_SWITCH.md
     enable_snat: yes           # If "on": Source natting is done for UE, DEFAULT= off
+    enable_qos: no             # enforce QER Maximum Bitrate
+    enable_urr: no             # measure volume and send usage reports
+  datapath_configuration:
+    n3_rx_threads: 1           # uplink threads, one N3 socket each; raise with dl_rx_queues
+    dl_rx_queues: 1            # tun0 queues, one downlink thread each
+    qos_burst_ms: 400          # burst forgiven before the policer drops, in ms of rate
+    qos_shape_ms: 0            # 0 polices the downlink; above 0 shapes it, holding a packet at most this long
+    qos_shape_ul_ms: 0         # the same for the uplink
   remote_n6_gw: localhost      # Dummy host since simple-switch does not use N6 GW
   upf_info:
     sNssaiUpfInfoList:
