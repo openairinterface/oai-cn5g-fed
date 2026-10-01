@@ -151,8 +151,8 @@ Run from the **repository root** — artifacts are written relative to your work
 .rfvenv/bin/robot -i UPF --outputdir archives test
 ```
 
-Tags: `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF`, `PCF`, `LMF`. `lmf_tests.robot` carries `LMF` and `AMF`, so a tag-filtered run selects it only with `-i LMF/AMF`. `Northbound.robot` carries no tags,
-so a tag-filtered run never selects it.
+Tags: `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF`, `PCF`, `LMF`. `lmf_tests.robot` carries `LMF` and `AMF`, so a tag-filtered run selects it only with `-i LMF/AMF`. `Northbound.robot` carries only `North`,
+so it runs only with `-i North`.
 
 ## Suite options
 
