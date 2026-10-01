@@ -13,6 +13,7 @@ image_tags = {
     "oai-udr": "oaisoftwarealliance/oai-udr:develop",
     "oai-nssf": "oaisoftwarealliance/oai-nssf:develop",
     "oai-pcf": "oaisoftwarealliance/oai-pcf:develop",
+    "oai-lmf": "oaisoftwarealliance/oai-lmf:develop",
     "vpp-upf": "oaisoftwarealliance/oai-upf-vpp:develop",
     "gnbsim": "gnbsim:latest",
     "omec-gnbsim": "oaisoftwarealliance/omec-gnbsim:v2.3-fixes",
