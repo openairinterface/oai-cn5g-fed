@@ -713,6 +713,14 @@ upf:
   support_features:
     enable_bpf_datapath: <enable_bpf_datapath>
     enable_snat: <enable_snat>
+    enable_qos: <enable_qos>
+    enable_urr: <enable_urr>
+  datapath_configuration:
+    n3_rx_threads: <n3_rx_threads>
+    dl_rx_queues: <dl_rx_queues>
+    qos_burst_ms: <qos_burst_ms>
+    qos_shape_ms: <qos_shape_ms>
+    qos_shape_ul_ms: <qos_shape_ul_ms>
   remote_n6_gw: <remote_n6_gw>
   smfs:
     - <smf_hostname>
@@ -726,8 +734,19 @@ The allowed values of the UPF configuration are as follows:
 |:--------------------|:-------|:-----------------------------------------------------------------------------|:--------------------------------------------|:--------------|:-----------------------------|
 | Enable BPF Datapath | bool   | If set to yes, BPF is used for the datapath, otherwise simple switch is used | `yes`, `no` (and other YAML boolean values) | `no`          | Yes                          |
 | Enable SNAT         | bool   | If set to yes, Source NAT is done for the UE IP address                      | `yes`, `no` (and other YAML boolean values) | `no`          | Yes                          |
+| Enable QoS          | bool   | Enforce the QER Maximum Bitrate                                              | `yes`, `no` (and other YAML boolean values) | `no`          | No                           |
+| Enable URR          | bool   | Measure volume and send usage reports                                        | `yes`, `no` (and other YAML boolean values) | `no`          | No                           |
+| N3 RX Threads       | int    | Simple switch uplink threads, one N3 socket each                             | `1` to `16`                                 | `1`           | No                           |
+| DL RX Queues        | int    | Simple switch `tun0` queues, one downlink thread each                        | `1` to `16`                                 | `1`           | No                           |
+| QoS Burst           | int    | Burst forgiven before the policer drops, in ms of rate                       | Any positive integer                        | `400`         | No                           |
+| QoS Shape           | int    | `0` polices the downlink; above `0` shapes it, holding a packet at most this many ms | Any non-negative integer            | `0`           | No                           |
+| QoS Shape UL        | int    | The same as QoS Shape, for the uplink                                        | Any non-negative integer                    | `0`           | No                           |
 | Remote N6 Gateway   | string | The N6 next-hop where uplink traffic should be sent                          | Any string                                  |               | No                           |
 | SMF Hostname        | string | Host of the SMF to send PFCP association to                                  | Any string                                  |               | Only if `register_nf` is off |
+
+The simple switch settings are described in the
+[UPF simple switch documentation](https://github.com/openairinterface/oai-cn5g-upf/blob/develop/docs/SIMPLE_SWITCH.md#5-configuration).
+Start with one thread per direction and raise `n3_rx_threads` and `dl_rx_queues` together.
 
 The `upf_info` follows `UpfInfo` from 3GPP TS 29.510 and is configured the same as in [SMF](#smf). If you do not configure `upf_info`, the following default
 configuration is used:
