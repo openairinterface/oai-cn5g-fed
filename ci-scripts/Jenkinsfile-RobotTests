@@ -22,15 +22,16 @@ UDR=6
 NSSF=7
 UPF_VPP=8
 PCF=9
-NORTH=10
+LMF=10
+NORTH=11
 
 // Default tags / branches  --> could be passed on by upstream job
-imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-upf-vpp", "oai-pcf"]
-repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-upf-vpp", "oai-cn5g-pcf"]
-branchNames = ["", "", "", "", "", "", "", "", "", ""]
-imageTags = ["", "", "", "", "", "", "", "", "", ""]
-upstreamJobs = [false, false, false, false, false, false, false, false, false, false]
-pulledImages = [false, false, false, false, false, false, false, false, false, false]
+imageNames = ["oai-nrf", "oai-amf", "oai-smf", "oai-upf", "oai-ausf", "oai-udm", "oai-udr", "oai-nssf", "oai-upf-vpp", "oai-pcf", "oai-lmf"]
+repoNames = ["oai-cn5g-nrf", "oai-cn5g-amf", "oai-cn5g-smf", "oai-cn5g-upf", "oai-cn5g-ausf", "oai-cn5g-udm", "oai-cn5g-udr", "oai-cn5g-nssf", "oai-cn5g-upf-vpp", "oai-cn5g-pcf", "oai-cn5g-lmf"]
+branchNames = ["", "", "", "", "", "", "", "", "", "", ""]
+imageTags = ["", "", "", "", "", "", "", "", "", "", ""]
+upstreamJobs = [false, false, false, false, false, false, false, false, false, false, false]
+pulledImages = [false, false, false, false, false, false, false, false, false, false, false]
 
 
 // Which OMEC-GNBSIM TAG to use
@@ -104,6 +105,9 @@ pipeline {
             if (cause.toString().contains('OAI-CN5G-GitHub-PCF')) {
               upstreamJobs[PCF] = true
             }
+            if (cause.toString().contains('OAI-CN5G-GitHub-LMF')) {
+              upstreamJobs[LMF] = true
+            }
             if (cause.toString().contains('OAI-CN5G-FED')) {
               upstreamIsFED = true
             }
@@ -174,6 +178,10 @@ pipeline {
             case PCF:
               upstreamEvent = true
               upstreamJobs[PCF] = true
+              break
+            case LMF:
+              upstreamEvent = true
+              upstreamJobs[LMF] = true
               break
             case NORTH:
               rfTags = rfTags + ' -i North '
@@ -271,6 +279,15 @@ pipeline {
                 rfTags = rfTags + ' -i PCF '
                 echo "Upstream Job passed PCF_TAG to use: ${imageTags[PCF]}"
                 echo "Upstream Job passed PCF_BRANCH to use: ${branchNames[PCF]}"
+              }
+            }
+            if (ii == LMF) {
+              branchNames[LMF] = params.LMF_BRANCH
+              imageTags[LMF] = params.LMF_TAG
+              if (upstreamEvent && upstreamJobs[LMF]) {
+                rfTags = rfTags + ' -i LMF '
+                echo "Upstream Job passed LMF_TAG to use: ${imageTags[LMF]}"
+                echo "Upstream Job passed LMF_BRANCH to use: ${branchNames[LMF]}"
               }
             }
           }
