@@ -1,0 +1,115 @@
+2026-10-03T11:45:34.110389830Z Trying to read .yaml configuration file: /openair-ausf/etc/config.yaml
+2026-10-03T11:45:34.110486820Z LTTNG Tracing disabled at build-time!
+2026-10-03T11:45:34.110501035Z [2026-10-03 13:45:34.108] [ausf_server] [start] Options parsed
+2026-10-03T11:45:34.110508336Z [2026-10-03 13:45:34.108] [ausf_server] [debug] Parsing the configuration file, file type YAML.
+2026-10-03T11:45:34.110514488Z [2026-10-03 13:45:34.109] [config ] [info] Reading NF configuration from /openair-ausf/etc/config.yaml
+2026-10-03T11:45:34.146097437Z [2026-10-03 13:45:34.136] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T11:45:34.146214426Z [2026-10-03 13:45:34.136] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T11:45:34.146882431Z [2026-10-03 13:45:34.136] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T11:45:34.146894532Z [2026-10-03 13:45:34.136] [config ] [debug] Unknown NF udr in configuration. Ignored
+2026-10-03T11:45:34.146898695Z [2026-10-03 13:45:34.136] [config ] [debug] Unknown NF sepp in configuration. Ignored
+2026-10-03T11:45:34.146920044Z [2026-10-03 13:45:34.136] [config ] [debug] Validating configuration of log_level
+2026-10-03T11:45:34.146944943Z [2026-10-03 13:45:34.136] [config ] [debug] Validating configuration of register_nf
+2026-10-03T11:45:34.146969108Z [2026-10-03 13:45:34.136] [config ] [debug] Validating configuration of http_version
+2026-10-03T11:45:34.146994523Z [2026-10-03 13:45:34.136] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T11:45:34.147020118Z [2026-10-03 13:45:34.136] [config ] [debug] Validating configuration of NRF
+2026-10-03T11:45:34.147045960Z [2026-10-03 13:45:34.138] [config ] [debug] Validating configuration of UDM
+2026-10-03T11:45:34.147071007Z [2026-10-03 13:45:34.138] [config ] [debug] Validating configuration of AUSF
+2026-10-03T11:45:34.147097654Z [2026-10-03 13:45:34.139] [config ] [debug] Validating configuration of database
+2026-10-03T11:45:34.147123055Z [2026-10-03 13:45:34.139] [config ] [info] ==== OPENAIRINTERFACE ausf vBranch: HEAD Abrev. Hash: c950a9a Date: Wed Sep 16 21:05:53 2026 +0200 ====
+2026-10-03T11:45:34.147151415Z [2026-10-03 13:45:34.139] [config ] [info] Basic Configuration:
+2026-10-03T11:45:34.147176843Z [2026-10-03 13:45:34.139] [config ] [info]   - log_level..................................: debug
+2026-10-03T11:45:34.147202616Z [2026-10-03 13:45:34.139] [config ] [info]   - register_nf................................: Yes
+2026-10-03T11:45:34.147227772Z [2026-10-03 13:45:34.139] [config ] [info]   - http_version...............................: 2
+2026-10-03T11:45:34.147381259Z [2026-10-03 13:45:34.139] [config ] [info]   TLS:
+2026-10-03T11:45:34.147412053Z [2026-10-03 13:45:34.139] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T11:45:34.147440176Z [2026-10-03 13:45:34.139] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T11:45:34.147467031Z [2026-10-03 13:45:34.139] [config ] [info]     AUSF:
+2026-10-03T11:45:34.147563983Z [2026-10-03 13:45:34.139] [config ] [info]     - host.....................................: ausf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:34.147605952Z [2026-10-03 13:45:34.139] [config ] [info]     - SBI
+2026-10-03T11:45:34.147632037Z [2026-10-03 13:45:34.139] [config ] [info]       + URL....................................: ausf.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:34.147658351Z [2026-10-03 13:45:34.139] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:34.147700519Z [2026-10-03 13:45:34.139] [config ] [info]       + IPv4 Address ..........................: 192.168.71.133
+2026-10-03T11:45:34.147726541Z [2026-10-03 13:45:34.139] [config ] [info]     - Instance ID..............................: 0
+2026-10-03T11:45:34.147752761Z [2026-10-03 13:45:34.139] [config ] [info]     - PID Directory............................: 
+2026-10-03T11:45:34.147778056Z [2026-10-03 13:45:34.139] [config ] [info]     - AUSF Name................................: 
+2026-10-03T11:45:34.147803493Z [2026-10-03 13:45:34.139] [config ] [info] Peer NF Configuration:
+2026-10-03T11:45:34.147828228Z [2026-10-03 13:45:34.139] [config ] [info]   NRF:
+2026-10-03T11:45:34.147852629Z [2026-10-03 13:45:34.139] [config ] [info]     - host.....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:34.147879336Z [2026-10-03 13:45:34.139] [config ] [info]     - SBI
+2026-10-03T11:45:34.147904573Z [2026-10-03 13:45:34.139] [config ] [info]       + URL....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:34.147931558Z [2026-10-03 13:45:34.139] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:34.147959052Z [2026-10-03 13:45:34.139] [ausf_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+2026-10-03T11:45:34.147985094Z [2026-10-03 13:45:34.139] [ausf_app] [start] Starting...
+2026-10-03T11:45:34.148009688Z [2026-10-03 13:45:34.139] [ausf_nrf] [info] Create NRF TASK
+2026-10-03T11:45:34.148034116Z [2026-10-03 13:45:34.139] [ausf_app] [debug] - NF instance info
+2026-10-03T11:45:34.148060156Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Instance ID: 96fad0ec-cdef-44bf-93ed-4cd121f97b6c
+2026-10-03T11:45:34.148086826Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Instance name: OAI-AUSF
+2026-10-03T11:45:34.148111052Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Instance type: AUSF
+2026-10-03T11:45:34.148134864Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Instance fqdn: ausf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:34.148162926Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Status: REGISTERED
+2026-10-03T11:45:34.148201780Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     HeartBeat timer: 50
+2026-10-03T11:45:34.148227589Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Priority: 1
+2026-10-03T11:45:34.148292989Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     Capacity: 100
+2026-10-03T11:45:34.148358484Z [2026-10-03 13:45:34.139] [ausf_app] [debug]     IPv4 Addr:
+2026-10-03T11:45:34.148384508Z [2026-10-03 13:45:34.139] [ausf_app] [debug]         192.168.71.133
+2026-10-03T11:45:34.148409117Z [2026-10-03 13:45:34.139] [ausf_app] [debug] 	AUSF Info
+2026-10-03T11:45:34.148435722Z [2026-10-03 13:45:34.139] [ausf_app] [debug] 		GroupId: oai-ausf-testgroupid
+2026-10-03T11:45:34.148462433Z [2026-10-03 13:45:34.139] [ausf_app] [debug] 		 SupiRanges: Start - q0930j0c80283ncjf, End - , Pattern - 209238210938
+2026-10-03T11:45:34.148487567Z [2026-10-03 13:45:34.139] [ausf_app] [debug] 		 Routing Indicators: 0210
+2026-10-03T11:45:34.148514388Z [2026-10-03 13:45:34.139] [ausf_app] [debug] 		 Routing Indicators: 9876
+2026-10-03T11:45:34.148539274Z [2026-10-03 13:45:34.139] [ausf_nrf] [info] NRF TASK created
+2026-10-03T11:45:34.148562678Z [2026-10-03 13:45:34.140] [ausf_app] [debug] AUSF profile to JSON:
+2026-10-03T11:45:34.148589003Z  {"ausfInfo":{"groupId":"oai-ausf-testgroupid","routingIndicators":["0210","9876"],"supiRanges":[{"end":"","pattern":"209238210938","start":"q0930j0c80283ncjf"}]},"capacity":100,"fqdn":"ausf.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.71.133"],"nfInstanceId":"96fad0ec-cdef-44bf-93ed-4cd121f97b6c","nfInstanceName":"OAI-AUSF","nfStatus":"REGISTERED","nfType":"AUSF","priority":1,"sNssais":[]}
+2026-10-03T11:45:34.148642074Z [2026-10-03 13:45:34.140] [ausf_nrf] [info] Sending NF registration request
+2026-10-03T11:45:34.148667673Z [2026-10-03 13:45:34.140] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:45:34.165218314Z [2026-10-03 13:45:34.164] [ausf_app] [start] Started
+2026-10-03T11:45:34.167567375Z [2026-10-03 13:45:34.167] [ausf_server] [info] HTTP2 server being started
+2026-10-03T11:45:44.517469173Z [2026-10-03 13:45:44.517] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:45:44.517574319Z [2026-10-03 13:45:44.517] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:45:54.690228464Z [2026-10-03 13:45:54.689] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:45:54.690729395Z [2026-10-03 13:45:54.690] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:04.811546813Z [2026-10-03 13:46:04.810] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:04.811609149Z [2026-10-03 13:46:04.810] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:14.894489721Z [2026-10-03 13:46:14.894] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:14.894632767Z [2026-10-03 13:46:14.894] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:24.990360840Z [2026-10-03 13:46:24.988] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:24.990541431Z [2026-10-03 13:46:24.988] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:35.127546811Z [2026-10-03 13:46:35.127] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:35.128058831Z [2026-10-03 13:46:35.127] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:45.305807299Z [2026-10-03 13:46:45.305] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:45.306711462Z [2026-10-03 13:46:45.306] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:55.519951857Z [2026-10-03 13:46:55.518] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:55.523608193Z [2026-10-03 13:46:55.520] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:05.688533240Z [2026-10-03 13:47:05.682] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:05.688571342Z [2026-10-03 13:47:05.684] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:15.817562468Z [2026-10-03 13:47:15.817] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:15.817786194Z [2026-10-03 13:47:15.817] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:26.041618927Z [2026-10-03 13:47:26.040] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:26.041685497Z [2026-10-03 13:47:26.040] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:36.141439030Z [2026-10-03 13:47:36.141] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:36.141567226Z [2026-10-03 13:47:36.141] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:46.233904682Z [2026-10-03 13:47:46.233] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:46.233983495Z [2026-10-03 13:47:46.233] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:56.349137876Z [2026-10-03 13:47:56.348] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:56.349186977Z [2026-10-03 13:47:56.348] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:06.426527150Z [2026-10-03 13:48:06.425] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:06.426590869Z [2026-10-03 13:48:06.425] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:16.494872970Z [2026-10-03 13:48:16.494] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:16.494908319Z [2026-10-03 13:48:16.494] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:26.584545168Z [2026-10-03 13:48:26.584] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:26.584763824Z [2026-10-03 13:48:26.584] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:36.677407491Z [2026-10-03 13:48:36.677] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:36.677513825Z [2026-10-03 13:48:36.677] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:46.757952605Z [2026-10-03 13:48:46.757] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:46.759494412Z [2026-10-03 13:48:46.757] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:56.879453043Z [2026-10-03 13:48:56.879] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:56.879602193Z [2026-10-03 13:48:56.879] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:07.055419055Z [2026-10-03 13:49:07.054] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:07.055771335Z [2026-10-03 13:49:07.054] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:17.126866461Z [2026-10-03 13:49:17.126] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:17.127997318Z [2026-10-03 13:49:17.126] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:27.182448348Z [2026-10-03 13:49:27.182] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:27.182553311Z [2026-10-03 13:49:27.182] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:37.394590307Z [2026-10-03 13:49:37.393] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:37.394627401Z [2026-10-03 13:49:37.393] [ausf_client] [debug] Send a simple HTTP request

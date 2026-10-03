@@ -1,0 +1,316 @@
+2026-10-03T13:00:54.120395237Z Trying to read .yaml configuration file: /openair-udr/etc/config.yaml
+2026-10-03T13:00:54.120435392Z LTTNG Tracing disabled at build-time!
+2026-10-03T13:00:54.120439968Z [2026-10-03 15:00:54.119] [common] [start] Options parsed
+2026-10-03T13:00:54.120443103Z [2026-10-03 15:00:54.119] [common] [debug] Parsing the configuration file, file type YAML.
+2026-10-03T13:00:54.120446180Z [2026-10-03 15:00:54.119] [config ] [info] Reading NF configuration from /openair-udr/etc/config.yaml
+2026-10-03T13:00:54.140517970Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T13:00:54.140544208Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T13:00:54.140549792Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T13:00:54.140553852Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF udm in configuration. Ignored
+2026-10-03T13:00:54.140557414Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF ausf in configuration. Ignored
+2026-10-03T13:00:54.140561053Z [2026-10-03 15:00:54.140] [config ] [debug] Unknown NF sepp in configuration. Ignored
+2026-10-03T13:00:54.140782599Z [2026-10-03 15:00:54.140] [config ] [debug] Validating configuration of log_level
+2026-10-03T13:00:54.140879203Z [2026-10-03 15:00:54.140] [config ] [debug] Validating configuration of register_nf
+2026-10-03T13:00:54.140886557Z [2026-10-03 15:00:54.140] [config ] [debug] Validating configuration of http_version
+2026-10-03T13:00:54.140913143Z [2026-10-03 15:00:54.140] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T13:00:54.140924973Z [2026-10-03 15:00:54.140] [config ] [debug] Validating configuration of NRF
+2026-10-03T13:00:54.143345996Z [2026-10-03 15:00:54.142] [config ] [debug] Validating configuration of UDR
+2026-10-03T13:00:54.148580501Z [2026-10-03 15:00:54.147] [config ] [debug] Validating configuration of database
+2026-10-03T13:00:54.148611239Z [2026-10-03 15:00:54.147] [config ] [info] ==== OPENAIRINTERFACE udr vBranch:  Abrev. Hash:  Date:  ====
+2026-10-03T13:00:54.148618498Z [2026-10-03 15:00:54.147] [config ] [info] Basic Configuration:
+2026-10-03T13:00:54.148623343Z [2026-10-03 15:00:54.147] [config ] [info]   - log_level..................................: debug
+2026-10-03T13:00:54.148627851Z [2026-10-03 15:00:54.147] [config ] [info]   - register_nf................................: Yes
+2026-10-03T13:00:54.148632963Z [2026-10-03 15:00:54.147] [config ] [info]   - http_version...............................: 2
+2026-10-03T13:00:54.148637701Z [2026-10-03 15:00:54.147] [config ] [info]   TLS:
+2026-10-03T13:00:54.148642481Z [2026-10-03 15:00:54.147] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T13:00:54.148646779Z [2026-10-03 15:00:54.147] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T13:00:54.148651238Z [2026-10-03 15:00:54.147] [config ] [info]     UDR:
+2026-10-03T13:00:54.148656027Z [2026-10-03 15:00:54.147] [config ] [info]     - host.....................................: udr.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.148673566Z [2026-10-03 15:00:54.147] [config ] [info]     - sbi
+2026-10-03T13:00:54.148677632Z [2026-10-03 15:00:54.147] [config ] [info]       + URL....................................: udr.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.148680767Z [2026-10-03 15:00:54.147] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.148683652Z [2026-10-03 15:00:54.147] [config ] [info]       + IPv4 Address ..........................: 192.168.73.134
+2026-10-03T13:00:54.148686592Z [2026-10-03 15:00:54.147] [config ] [info]     - UDR Name.................................: oai-udr
+2026-10-03T13:00:54.148689369Z [2026-10-03 15:00:54.147] [config ] [info]   Database:
+2026-10-03T13:00:54.148692204Z [2026-10-03 15:00:54.147] [config ] [info]     - Host.....................................: mysql-B
+2026-10-03T13:00:54.148695198Z [2026-10-03 15:00:54.147] [config ] [info]     - Port.....................................: 3306
+2026-10-03T13:00:54.148698002Z [2026-10-03 15:00:54.147] [config ] [info]     - Database Type............................: mysql
+2026-10-03T13:00:54.148700710Z [2026-10-03 15:00:54.147] [config ] [info]     - User.....................................: test
+2026-10-03T13:00:54.148703519Z [2026-10-03 15:00:54.147] [config ] [info]     - Password.................................: test
+2026-10-03T13:00:54.148708740Z [2026-10-03 15:00:54.147] [config ] [info]     - Database Name............................: oai_db
+2026-10-03T13:00:54.148712535Z [2026-10-03 15:00:54.147] [config ] [info]     - Connection Timeout.......................: 300
+2026-10-03T13:00:54.148716299Z [2026-10-03 15:00:54.147] [config ] [info] Peer NF Configuration:
+2026-10-03T13:00:54.148719884Z [2026-10-03 15:00:54.147] [config ] [info]   NRF:
+2026-10-03T13:00:54.148722978Z [2026-10-03 15:00:54.147] [config ] [info]     - host.....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.148726415Z [2026-10-03 15:00:54.147] [config ] [info]     - sbi
+2026-10-03T13:00:54.148729753Z [2026-10-03 15:00:54.147] [config ] [info]       + URL....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.148733262Z [2026-10-03 15:00:54.147] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.148736795Z [2026-10-03 15:00:54.147] [udr_nrf] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+2026-10-03T13:00:54.148740218Z [2026-10-03 15:00:54.147] [udr_app] [start] Starting...
+2026-10-03T13:00:54.148743657Z [2026-10-03 15:00:54.147] [udr_db] [debug] Initializing MySQL DB ...
+2026-10-03T13:00:54.150745264Z [2026-10-03 15:00:54.150] [udr_db] [debug] Done!
+2026-10-03T13:00:54.150766944Z [2026-10-03 15:00:54.150] [udr_db] [debug] Connecting to MySQL DB
+2026-10-03T13:00:54.151589553Z [2026-10-03 15:00:54.151] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql-B:3306' (111)), retry ...
+2026-10-03T13:00:54.652229981Z [2026-10-03 15:00:54.652] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql-B:3306' (111)), retry ...
+2026-10-03T13:00:55.152782542Z [2026-10-03 15:00:55.152] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql-B:3306' (111)), retry ...
+2026-10-03T13:00:55.653389811Z [2026-10-03 15:00:55.653] [udr_db] [error] An error occurred when connecting to MySQL DB (Can't connect to MySQL server on 'mysql-B:3306' (111)), retry ...
+2026-10-03T13:00:56.201500040Z [2026-10-03 15:00:56.201] [udr_db] [info] Connected to MySQL DB
+2026-10-03T13:00:56.201542057Z [2026-10-03 15:00:56.201] [udr_app] [debug] - NF instance info
+2026-10-03T13:00:56.201548692Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Instance ID: 54ccf4f1-f4a3-4ad4-8160-add6553b8c41
+2026-10-03T13:00:56.201552388Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Instance name: OAI-UDR
+2026-10-03T13:00:56.201555574Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Instance type: UDR
+2026-10-03T13:00:56.201560240Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Instance fqdn: udr.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:56.201565499Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Status: REGISTERED
+2026-10-03T13:00:56.201569379Z [2026-10-03 15:00:56.201] [udr_app] [debug]     HeartBeat timer: 50
+2026-10-03T13:00:56.201573161Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Priority: 1
+2026-10-03T13:00:56.201576835Z [2026-10-03 15:00:56.201] [udr_app] [debug]     Capacity: 100
+2026-10-03T13:00:56.201580366Z [2026-10-03 15:00:56.201] [udr_app] [debug]     IPv4 Addr:
+2026-10-03T13:00:56.201585911Z [2026-10-03 15:00:56.201] [udr_app] [debug]         192.168.73.134
+2026-10-03T13:00:56.201590738Z [2026-10-03 15:00:56.201] [udr_app] [debug] 	UDR Info
+2026-10-03T13:00:56.201595666Z [2026-10-03 15:00:56.201] [udr_app] [debug] 		GroupId: oai-udr-testgroupid
+2026-10-03T13:00:56.201600437Z [2026-10-03 15:00:56.201] [udr_app] [debug] 		 SupiRanges: Start - 208950000000131, End - , Pattern - ^imsi-20895[31-131]{6}$
+2026-10-03T13:00:56.201603267Z [2026-10-03 15:00:56.201] [udr_app] [debug] 		 GpsiRanges: Start - 752740000, End - 752749999, Pattern - ^gpsi-75274[0-9]{4}$
+2026-10-03T13:00:56.201605926Z [2026-10-03 15:00:56.201] [udr_app] [debug] 		 Data Set Id: 0210
+2026-10-03T13:00:56.201608486Z [2026-10-03 15:00:56.201] [udr_app] [debug] 		 Data Set Id: 9876
+2026-10-03T13:00:56.201704150Z [2026-10-03 15:00:56.201] [udr_app] [info] NRF TASK Created 
+2026-10-03T13:00:56.201814706Z [2026-10-03 15:00:56.201] [udr_server] [info] HTTP2 server being started 
+2026-10-03T13:00:56.201855361Z [2026-10-03 15:00:56.201] [udr_app] [debug] udr profile to JSON:
+2026-10-03T13:00:56.201860676Z  {"capacity":100,"fqdn":"udr.5gc.mnc10.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.73.134"],"nfInstanceId":"54ccf4f1-f4a3-4ad4-8160-add6553b8c41","nfInstanceName":"OAI-UDR","nfStatus":"REGISTERED","nfType":"UDR","priority":1,"sNssais":[],"udrInfo":{"DataSetId":["0210","9876"],"externalGroupIdentifiersRanges":[],"gpsiRanges":[{"end":"752749999","pattern":"^gpsi-75274[0-9]{4}$","start":"752740000"}],"groupId":"oai-udr-testgroupid","supiRanges":[{"end":"","pattern":"^imsi-20895[31-131]{6}$","start":"208950000000131"}]}}
+2026-10-03T13:00:56.201875624Z [2026-10-03 15:00:56.201] [udr_nrf] [info] Sending NF Registration request
+2026-10-03T13:00:56.201898000Z [2026-10-03 15:00:56.201] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:06.228804965Z [2026-10-03 15:01:06.228] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:06.229096896Z [2026-10-03 15:01:06.228] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:16.285822668Z [2026-10-03 15:01:16.285] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:16.285900254Z [2026-10-03 15:01:16.285] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:26.308828878Z [2026-10-03 15:01:26.308] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:26.309228100Z [2026-10-03 15:01:26.308] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:36.322756087Z [2026-10-03 15:01:36.322] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:36.323245379Z [2026-10-03 15:01:36.322] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:46.340444553Z [2026-10-03 15:01:46.340] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:46.340623959Z [2026-10-03 15:01:46.340] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.267902091Z [2026-10-03 15:01:51.267] [udr_server] [info] Received response: 
+2026-10-03T13:01:51.267985358Z [2026-10-03 15:01:51.267] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Authentication Subscription data of an UE
+2026-10-03T13:01:51.268003156Z [2026-10-03 15:01:51.267] [udr_db] [info] [UE Id 999100000000031] Query Authentication Subscription
+2026-10-03T13:01:51.268016768Z [2026-10-03 15:01:51.267] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:01:51.298620900Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [0]: ueid 
+2026-10-03T13:01:51.298679113Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [1]: authenticationMethod 
+2026-10-03T13:01:51.298697987Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [2]: encPermanentKey 
+2026-10-03T13:01:51.298715515Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [3]: protectionParameterId 
+2026-10-03T13:01:51.298733099Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [4]: sequenceNumber 
+2026-10-03T13:01:51.298745193Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [5]: authenticationManagementField 
+2026-10-03T13:01:51.298756687Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [6]: algorithmId 
+2026-10-03T13:01:51.298767943Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [7]: encOpcKey 
+2026-10-03T13:01:51.298820225Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [8]: encTopcKey 
+2026-10-03T13:01:51.298833188Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [9]: vectorGenerationInHss 
+2026-10-03T13:01:51.298842118Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [10]: n5gcAuthMethod 
+2026-10-03T13:01:51.298850961Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [11]: rgAuthenticationInd 
+2026-10-03T13:01:51.298859672Z [2026-10-03 15:01:51.298] [udr_db] [debug] [UE Id 999100000000031] Row [12]: supi 
+2026-10-03T13:01:51.298876662Z [2026-10-03 15:01:51.298] [udr_app] [info] [UE Id imsi-999100000000031] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"000000000560","sqnScheme":"NON_TIME_BASED"},"supi":"999100000000031"}
+2026-10-03T13:01:51.298893944Z [2026-10-03 15:01:51.298] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:01:51.298904873Z 
+2026-10-03T13:01:51.304879789Z [2026-10-03 15:01:51.304] [udr_app] [info] [UE Id imsi-999100000000031] Modify the Authentication Subscription data of an UE
+2026-10-03T13:01:51.304936062Z [2026-10-03 15:01:51.304] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * from AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:01:51.304948749Z [2026-10-03 15:01:51.304] [udr_db] [debug] [UE Id 999100000000031] Patch value: "{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"0000000005a0\",\"sqnScheme\":\"NON_TIME_BASED\"}"
+2026-10-03T13:01:51.305999686Z [2026-10-03 15:01:51.305] [udr_db] [info] [UE Id 999100000000031] MySQL Update command UPDATE AuthenticationSubscription SET sequenceNumber='{"lastIndexes":{"ausf":0},"sqn":"0000000005a0","sqnScheme":"NON_TIME_BASED"}' WHERE ueid='999100000000031'
+2026-10-03T13:01:51.311226111Z [2026-10-03 15:01:51.310] [udr_db] [info] [UE Id 999100000000031] AuthenticationSubscription PATCH: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"0000000005a0\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+2026-10-03T13:01:51.311404000Z [2026-10-03 15:01:51.310] [udr_app] [info] [UE Id imsi-999100000000031] Successful modified the Authentication subscription data
+2026-10-03T13:01:51.311415782Z [2026-10-03 15:01:51.310] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+2026-10-03T13:01:51.311423357Z 
+2026-10-03T13:01:51.335805286Z [2026-10-03 15:01:51.335] [udr_server] [info] Received response: 
+2026-10-03T13:01:51.335851198Z [2026-10-03 15:01:51.335] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Authentication Subscription data of an UE
+2026-10-03T13:01:51.335869763Z [2026-10-03 15:01:51.335] [udr_db] [info] [UE Id 999100000000031] Query Authentication Subscription
+2026-10-03T13:01:51.335883849Z [2026-10-03 15:01:51.335] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:01:51.337044378Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [0]: ueid 
+2026-10-03T13:01:51.337088491Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [1]: authenticationMethod 
+2026-10-03T13:01:51.337104543Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [2]: encPermanentKey 
+2026-10-03T13:01:51.337118016Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [3]: protectionParameterId 
+2026-10-03T13:01:51.337130860Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [4]: sequenceNumber 
+2026-10-03T13:01:51.337144320Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [5]: authenticationManagementField 
+2026-10-03T13:01:51.337157001Z [2026-10-03 15:01:51.336] [udr_db] [debug] [UE Id 999100000000031] Row [6]: algorithmId 
+2026-10-03T13:01:51.337170154Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [7]: encOpcKey 
+2026-10-03T13:01:51.337189267Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [8]: encTopcKey 
+2026-10-03T13:01:51.337198630Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [9]: vectorGenerationInHss 
+2026-10-03T13:01:51.337210601Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [10]: n5gcAuthMethod 
+2026-10-03T13:01:51.337223697Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [11]: rgAuthenticationInd 
+2026-10-03T13:01:51.337237778Z [2026-10-03 15:01:51.337] [udr_db] [debug] [UE Id 999100000000031] Row [12]: supi 
+2026-10-03T13:01:51.337423694Z [2026-10-03 15:01:51.337] [udr_app] [info] [UE Id imsi-999100000000031] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"0000000005a0","sqnScheme":"NON_TIME_BASED"},"supi":"999100000000031"}
+2026-10-03T13:01:51.337467341Z [2026-10-03 15:01:51.337] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:01:51.337480305Z 
+2026-10-03T13:01:51.341768530Z [2026-10-03 15:01:51.341] [udr_app] [info] [UE Id imsi-999100000000031] Store the Authentication Status data of an UE
+2026-10-03T13:01:51.341816004Z [2026-10-03 15:01:51.341] [udr_db] [info] [UE Id 999100000000031] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='999100000000031'
+2026-10-03T13:01:51.347394839Z [2026-10-03 15:01:51.347] [udr_db] [info] [UE Id 999100000000031] MySQL query: UPDATE AuthenticationStatus SET nfInstanceId='3964e942-4f6c-4b08-8e84-4698938ad5d7',success=1,timeStamp='2026-10-03T13:01:51Z',authType='5G_AKA',servingNetworkName='5G:mnc020.mcc999.3gppnetwork.org',authRemovalInd=0 WHERE ueid='999100000000031'
+2026-10-03T13:01:51.351853390Z [2026-10-03 15:01:51.351] [udr_db] [info] [UE Id 999100000000031] Authentication Status PUT: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"3964e942-4f6c-4b08-8e84-4698938ad5d7","servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","success":true,"timeStamp":"2026-10-03T13:01:51Z"}
+2026-10-03T13:01:51.351932650Z [2026-10-03 15:01:51.351] [udr_app] [info] [UE Id imsi-999100000000031] Successful stored the Authentication Status data
+2026-10-03T13:01:51.351944436Z [2026-10-03 15:01:51.351] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+2026-10-03T13:01:51.351952167Z 
+2026-10-03T13:01:51.392822972Z [2026-10-03 15:01:51.392] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the access and mobility subscription data of an UE (ID imsi-999100000000031)
+2026-10-03T13:01:51.392872475Z [2026-10-03 15:01:51.392] [udr_db] [debug] [UE Id 999100000000031] Handle Query AM Data
+2026-10-03T13:01:51.392886156Z [2026-10-03 15:01:51.392] [udr_db] [debug] [UE Id 999100000000031] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='999100000000031' AND servingPlmnid='99920'
+2026-10-03T13:01:51.402979507Z [2026-10-03 15:01:51.402] [udr_db] [debug] [UE Id 999100000000031] Access and Mobility Subscription Data GET (JSON): {"nssai":{"defaultSingleNssais":[{"sd":"000001","sst":1},{"sd":"00007b","sst":222}]}}
+2026-10-03T13:01:51.403037056Z [2026-10-03 15:01:51.402] [udr_app] [info] [UE Id imsi-999100000000031] AccessAndMobilitySubscriptionData Data: {"nssai":{"defaultSingleNssais":[{"sd":"000001","sst":1},{"sd":"00007b","sst":222}]}}
+2026-10-03T13:01:51.403057761Z [2026-10-03 15:01:51.402] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:01:51.403067104Z 
+2026-10-03T13:01:51.654663874Z [2026-10-03 15:01:51.654] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the SMF selection subscription data of an UE
+2026-10-03T13:01:51.665147886Z [2026-10-03 15:01:51.664] [udr_db] [debug] [UE Id 999100000000031] SMF Selection Subscription Data GET: {"subscribedSnssaiInfos":{"222-00007B":{"dnnInfos":[{"defaultDnnIndicator":true,"dnn":"oai","lboRoamingAllowed":false}]}}}
+2026-10-03T13:01:51.665215995Z [2026-10-03 15:01:51.664] [udr_app] [info] [UE Id imsi-999100000000031] SmfSelectionSubscriptionData: {"subscribedSnssaiInfos":{"222-00007B":{"dnnInfos":[{"defaultDnnIndicator":true,"dnn":"oai","lboRoamingAllowed":false}]}}}
+2026-10-03T13:01:51.665233817Z [2026-10-03 15:01:51.664] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:01:51.665244242Z 
+2026-10-03T13:01:51.725535193Z [2026-10-03 15:01:51.725] [udr_server] [debug] QueryString: single-nssai={"sst":222,"sd":"00007b"}&dnn=oai
+2026-10-03T13:01:51.726186152Z [2026-10-03 15:01:51.725] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Session Management Subscription Data of an UE
+2026-10-03T13:01:51.726226874Z [2026-10-03 15:01:51.726] [udr_db] [debug] [UE Id 999100000000031] MySQL query: SELECT * FROM SessionManagementSubscriptionData WHERE ueid='999100000000031' AND servingPlmnid='99920'  AND JSON_EXTRACT(singleNssai, "$.sst")=222 AND ( LOWER(JSON_EXTRACT(singleNssai, "$.sd"))=JSON_QUOTE("0x00007b") OR LOWER (JSON_EXTRACT(singleNssai, "$.sd"))=JSON_QUOTE("00007b")) AND JSON_EXTRACT(dnnConfigurations, '$."oai"') IS NOT NULL
+2026-10-03T13:01:51.740851353Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: ueid
+2026-10-03T13:01:51.740938738Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: servingPlmnid
+2026-10-03T13:01:51.740951191Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: singleNssai
+2026-10-03T13:01:51.740959930Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: dnnConfigurations
+2026-10-03T13:01:51.740990377Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] DNN configurations (row 3): {"oai": {"sscModes": {"defaultSscMode": "SSC_MODE_1"}, "sessionAmbr": {"uplink": "100Mbps", "downlink": "100Mbps"}, "5gQosProfile": {"5qi": 6, "arp": {"preemptCap": "NOT_PREEMPT", "preemptVuln": "NOT_PREEMPTABLE", "priorityLevel": 1}, "priorityLevel": 1}, "pduSessionTypes": {"defaultSessionType": "IPV4"}}}
+2026-10-03T13:01:51.741006171Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] DNN configurations: {"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}
+2026-10-03T13:01:51.741020849Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: internalGroupIds
+2026-10-03T13:01:51.741029341Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedVnGroupDataIds
+2026-10-03T13:01:51.741037362Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedDnnConfigurationsId
+2026-10-03T13:01:51.741045364Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: odbPacketServices
+2026-10-03T13:01:51.741055922Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: traceData
+2026-10-03T13:01:51.741064077Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedTraceDataId
+2026-10-03T13:01:51.741072347Z [2026-10-03 15:01:51.740] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: expectedUeBehavioursList
+2026-10-03T13:01:51.741138794Z [2026-10-03 15:01:51.741] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: suggestedPacketNumDlList
+2026-10-03T13:01:51.741193657Z [2026-10-03 15:01:51.741] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: 3gppChargingCharacteristics
+2026-10-03T13:01:51.741369665Z [2026-10-03 15:01:51.741] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data: [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T13:01:51.741574858Z [2026-10-03 15:01:51.741] [udr_app] [info] [UE Id imsi-999100000000031] SessionManagementSubscriptionData: [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T13:01:51.741618056Z [2026-10-03 15:01:51.741] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:01:51.741634785Z 
+2026-10-03T13:01:51.752767172Z [2026-10-03 15:01:51.752] [udr_app] [info] [UE Id imsi-999100000000031] Create an individual SDM subscription
+2026-10-03T13:01:51.766403729Z [2026-10-03 15:01:51.766] [udr_db] [debug] [UE Id 999100000000031] SDM Subscriptions POST: {"callbackReference":"192.168.73.138:8080/nsmf-callback/v1imsi-999100000000031/sdm-notification","dnn":"oai","monitoredResourceUris":["http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data"],"nfInstanceId":"9c43664a-2a40-4707-8fda-105aa4816aa5","plmnId":{"mcc":"999","mnc":"20"},"singleNssai":{"sd":"00007b","sst":222},"subscriptionId":"12"}
+2026-10-03T13:01:51.766477204Z [2026-10-03 15:01:51.766] [udr_app] [info] [UE Id imsi-999100000000031] SdmSubscription: {"callbackReference":"192.168.73.138:8080/nsmf-callback/v1imsi-999100000000031/sdm-notification","dnn":"oai","monitoredResourceUris":["http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data"],"nfInstanceId":"9c43664a-2a40-4707-8fda-105aa4816aa5","plmnId":{"mcc":"999","mnc":"20"},"singleNssai":{"sd":"00007b","sst":222},"subscriptionId":"12"}
+2026-10-03T13:01:51.766505142Z [2026-10-03 15:01:51.766] [udr_server] [debug] HTTP Response code 201 (HTTP Version 2).
+2026-10-03T13:01:51.766520959Z 
+2026-10-03T13:01:56.351893844Z [2026-10-03 15:01:56.350] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:01:56.351976466Z [2026-10-03 15:01:56.351] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:06.372793966Z [2026-10-03 15:02:06.372] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:06.372965701Z [2026-10-03 15:02:06.372] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.274938120Z [2026-10-03 15:02:12.274] [udr_server] [info] Received response: 
+2026-10-03T13:02:12.274982520Z [2026-10-03 15:02:12.274] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Authentication Subscription data of an UE
+2026-10-03T13:02:12.274993528Z [2026-10-03 15:02:12.274] [udr_db] [info] [UE Id 999100000000031] Query Authentication Subscription
+2026-10-03T13:02:12.275002066Z [2026-10-03 15:02:12.274] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:02:12.276230387Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [0]: ueid 
+2026-10-03T13:02:12.276338587Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [1]: authenticationMethod 
+2026-10-03T13:02:12.276361877Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [2]: encPermanentKey 
+2026-10-03T13:02:12.276419559Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [3]: protectionParameterId 
+2026-10-03T13:02:12.276439616Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [4]: sequenceNumber 
+2026-10-03T13:02:12.276450780Z [2026-10-03 15:02:12.275] [udr_db] [debug] [UE Id 999100000000031] Row [5]: authenticationManagementField 
+2026-10-03T13:02:12.276458850Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [6]: algorithmId 
+2026-10-03T13:02:12.276466505Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [7]: encOpcKey 
+2026-10-03T13:02:12.276474145Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [8]: encTopcKey 
+2026-10-03T13:02:12.276481816Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [9]: vectorGenerationInHss 
+2026-10-03T13:02:12.276489623Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [10]: n5gcAuthMethod 
+2026-10-03T13:02:12.276497373Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [11]: rgAuthenticationInd 
+2026-10-03T13:02:12.276505262Z [2026-10-03 15:02:12.276] [udr_db] [debug] [UE Id 999100000000031] Row [12]: supi 
+2026-10-03T13:02:12.276513517Z [2026-10-03 15:02:12.276] [udr_app] [info] [UE Id imsi-999100000000031] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"0000000005a0","sqnScheme":"NON_TIME_BASED"},"supi":"999100000000031"}
+2026-10-03T13:02:12.276528995Z [2026-10-03 15:02:12.276] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:02:12.276536834Z 
+2026-10-03T13:02:12.283086839Z [2026-10-03 15:02:12.282] [udr_app] [info] [UE Id imsi-999100000000031] Modify the Authentication Subscription data of an UE
+2026-10-03T13:02:12.283140545Z [2026-10-03 15:02:12.282] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * from AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:02:12.283151570Z [2026-10-03 15:02:12.282] [udr_db] [debug] [UE Id 999100000000031] Patch value: "{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"0000000005e0\",\"sqnScheme\":\"NON_TIME_BASED\"}"
+2026-10-03T13:02:12.284526039Z [2026-10-03 15:02:12.284] [udr_db] [info] [UE Id 999100000000031] MySQL Update command UPDATE AuthenticationSubscription SET sequenceNumber='{"lastIndexes":{"ausf":0},"sqn":"0000000005e0","sqnScheme":"NON_TIME_BASED"}' WHERE ueid='999100000000031'
+2026-10-03T13:02:12.289477185Z [2026-10-03 15:02:12.289] [udr_db] [info] [UE Id 999100000000031] AuthenticationSubscription PATCH: [{"from":"","op":"replace","path":"","value":"{\"lastIndexes\":{\"ausf\":0},\"sqn\":\"0000000005e0\",\"sqnScheme\":\"NON_TIME_BASED\"}"}]
+2026-10-03T13:02:12.289534842Z [2026-10-03 15:02:12.289] [udr_app] [info] [UE Id imsi-999100000000031] Successful modified the Authentication subscription data
+2026-10-03T13:02:12.289546330Z [2026-10-03 15:02:12.289] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+2026-10-03T13:02:12.289592676Z 
+2026-10-03T13:02:12.314123107Z [2026-10-03 15:02:12.313] [udr_server] [info] Received response: 
+2026-10-03T13:02:12.314180817Z [2026-10-03 15:02:12.313] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Authentication Subscription data of an UE
+2026-10-03T13:02:12.314191507Z [2026-10-03 15:02:12.313] [udr_db] [info] [UE Id 999100000000031] Query Authentication Subscription
+2026-10-03T13:02:12.314199771Z [2026-10-03 15:02:12.313] [udr_db] [info] [UE Id 999100000000031] MySQL Query: SELECT * FROM AuthenticationSubscription WHERE ueid='999100000000031'
+2026-10-03T13:02:12.315633876Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [0]: ueid 
+2026-10-03T13:02:12.315697046Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [1]: authenticationMethod 
+2026-10-03T13:02:12.315716626Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [2]: encPermanentKey 
+2026-10-03T13:02:12.315732835Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [3]: protectionParameterId 
+2026-10-03T13:02:12.315744341Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [4]: sequenceNumber 
+2026-10-03T13:02:12.315757132Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [5]: authenticationManagementField 
+2026-10-03T13:02:12.315769746Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [6]: algorithmId 
+2026-10-03T13:02:12.315789073Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [7]: encOpcKey 
+2026-10-03T13:02:12.315800698Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [8]: encTopcKey 
+2026-10-03T13:02:12.315812025Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [9]: vectorGenerationInHss 
+2026-10-03T13:02:12.315824857Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [10]: n5gcAuthMethod 
+2026-10-03T13:02:12.315836892Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [11]: rgAuthenticationInd 
+2026-10-03T13:02:12.315848639Z [2026-10-03 15:02:12.315] [udr_db] [debug] [UE Id 999100000000031] Row [12]: supi 
+2026-10-03T13:02:12.315876238Z [2026-10-03 15:02:12.315] [udr_app] [info] [UE Id imsi-999100000000031] AuthenticationSubscription: {"algorithmId":"milenage","authenticationManagementField":"8000","authenticationMethod":"5G_AKA","encOpcKey":"63bfa50ee6523365ff14c1f45f88737d","encPermanentKey":"0C0A34601D4F07677303652C0462535B","protectionParameterId":"0C0A34601D4F07677303652C0462535B","sequenceNumber":{"lastIndexes":{"ausf":0},"sqn":"0000000005e0","sqnScheme":"NON_TIME_BASED"},"supi":"999100000000031"}
+2026-10-03T13:02:12.315905630Z [2026-10-03 15:02:12.315] [udr_server] [info] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:02:12.315921858Z 
+2026-10-03T13:02:12.319958501Z [2026-10-03 15:02:12.319] [udr_app] [info] [UE Id imsi-999100000000031] Store the Authentication Status data of an UE
+2026-10-03T13:02:12.320005266Z [2026-10-03 15:02:12.319] [udr_db] [info] [UE Id 999100000000031] MySQL query: SELECT * FROM AuthenticationStatus WHERE ueid='999100000000031'
+2026-10-03T13:02:12.321139815Z [2026-10-03 15:02:12.320] [udr_db] [info] [UE Id 999100000000031] MySQL query: UPDATE AuthenticationStatus SET nfInstanceId='3964e942-4f6c-4b08-8e84-4698938ad5d7',success=1,timeStamp='2026-10-03T13:02:12Z',authType='5G_AKA',servingNetworkName='5G:mnc020.mcc999.3gppnetwork.org',authRemovalInd=0 WHERE ueid='999100000000031'
+2026-10-03T13:02:12.326241089Z [2026-10-03 15:02:12.325] [udr_db] [info] [UE Id 999100000000031] Authentication Status PUT: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"3964e942-4f6c-4b08-8e84-4698938ad5d7","servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","success":true,"timeStamp":"2026-10-03T13:02:12Z"}
+2026-10-03T13:02:12.326385659Z [2026-10-03 15:02:12.325] [udr_app] [info] [UE Id imsi-999100000000031] Successful stored the Authentication Status data
+2026-10-03T13:02:12.326411262Z [2026-10-03 15:02:12.325] [udr_server] [debug] HTTP Response code 204 (HTTP Version 2).
+2026-10-03T13:02:12.326427123Z 
+2026-10-03T13:02:12.371413337Z [2026-10-03 15:02:12.371] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the access and mobility subscription data of an UE (ID imsi-999100000000031)
+2026-10-03T13:02:12.371470959Z [2026-10-03 15:02:12.371] [udr_db] [debug] [UE Id 999100000000031] Handle Query AM Data
+2026-10-03T13:02:12.371483668Z [2026-10-03 15:02:12.371] [udr_db] [debug] [UE Id 999100000000031] SQL Query: SELECT * from AccessAndMobilitySubscriptionData WHERE ueid='999100000000031' AND servingPlmnid='99920'
+2026-10-03T13:02:12.373454250Z [2026-10-03 15:02:12.373] [udr_db] [debug] [UE Id 999100000000031] Access and Mobility Subscription Data GET (JSON): {"nssai":{"defaultSingleNssais":[{"sd":"000001","sst":1},{"sd":"00007b","sst":222}]}}
+2026-10-03T13:02:12.373514420Z [2026-10-03 15:02:12.373] [udr_app] [info] [UE Id imsi-999100000000031] AccessAndMobilitySubscriptionData Data: {"nssai":{"defaultSingleNssais":[{"sd":"000001","sst":1},{"sd":"00007b","sst":222}]}}
+2026-10-03T13:02:12.373527973Z [2026-10-03 15:02:12.373] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:02:12.373536873Z 
+2026-10-03T13:02:12.620705050Z [2026-10-03 15:02:12.620] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the SMF selection subscription data of an UE
+2026-10-03T13:02:12.622019705Z [2026-10-03 15:02:12.621] [udr_db] [debug] [UE Id 999100000000031] SMF Selection Subscription Data GET: {"subscribedSnssaiInfos":{"222-00007B":{"dnnInfos":[{"defaultDnnIndicator":true,"dnn":"oai","lboRoamingAllowed":false}]}}}
+2026-10-03T13:02:12.622067752Z [2026-10-03 15:02:12.621] [udr_app] [info] [UE Id imsi-999100000000031] SmfSelectionSubscriptionData: {"subscribedSnssaiInfos":{"222-00007B":{"dnnInfos":[{"defaultDnnIndicator":true,"dnn":"oai","lboRoamingAllowed":false}]}}}
+2026-10-03T13:02:12.622080804Z [2026-10-03 15:02:12.621] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:02:12.622089584Z 
+2026-10-03T13:02:12.681596794Z [2026-10-03 15:02:12.681] [udr_server] [debug] QueryString: single-nssai={"sst":222,"sd":"00007b"}&dnn=oai
+2026-10-03T13:02:12.682200953Z [2026-10-03 15:02:12.681] [udr_app] [info] [UE Id imsi-999100000000031] Retrieve the Session Management Subscription Data of an UE
+2026-10-03T13:02:12.682331228Z [2026-10-03 15:02:12.681] [udr_db] [debug] [UE Id 999100000000031] MySQL query: SELECT * FROM SessionManagementSubscriptionData WHERE ueid='999100000000031' AND servingPlmnid='99920'  AND JSON_EXTRACT(singleNssai, "$.sst")=222 AND ( LOWER(JSON_EXTRACT(singleNssai, "$.sd"))=JSON_QUOTE("0x00007b") OR LOWER (JSON_EXTRACT(singleNssai, "$.sd"))=JSON_QUOTE("00007b")) AND JSON_EXTRACT(dnnConfigurations, '$."oai"') IS NOT NULL
+2026-10-03T13:02:12.683823314Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: ueid
+2026-10-03T13:02:12.683875566Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: servingPlmnid
+2026-10-03T13:02:12.683889098Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: singleNssai
+2026-10-03T13:02:12.683900302Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: dnnConfigurations
+2026-10-03T13:02:12.684000057Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] DNN configurations (row 3): {"oai": {"sscModes": {"defaultSscMode": "SSC_MODE_1"}, "sessionAmbr": {"uplink": "100Mbps", "downlink": "100Mbps"}, "5gQosProfile": {"5qi": 6, "arp": {"preemptCap": "NOT_PREEMPT", "preemptVuln": "NOT_PREEMPTABLE", "priorityLevel": 1}, "priorityLevel": 1}, "pduSessionTypes": {"defaultSessionType": "IPV4"}}}
+2026-10-03T13:02:12.684037229Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] DNN configurations: {"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}
+2026-10-03T13:02:12.684054128Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: internalGroupIds
+2026-10-03T13:02:12.684062803Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedVnGroupDataIds
+2026-10-03T13:02:12.684071100Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedDnnConfigurationsId
+2026-10-03T13:02:12.684079396Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: odbPacketServices
+2026-10-03T13:02:12.684088240Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: traceData
+2026-10-03T13:02:12.684096532Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: sharedTraceDataId
+2026-10-03T13:02:12.684109731Z [2026-10-03 15:02:12.683] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: expectedUeBehavioursList
+2026-10-03T13:02:12.684118161Z [2026-10-03 15:02:12.684] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: suggestedPacketNumDlList
+2026-10-03T13:02:12.684126215Z [2026-10-03 15:02:12.684] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data, Field name: 3gppChargingCharacteristics
+2026-10-03T13:02:12.684426436Z [2026-10-03 15:02:12.684] [udr_db] [debug] [UE Id 999100000000031] Session Management Subscription Data: [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T13:02:12.684494440Z [2026-10-03 15:02:12.684] [udr_app] [info] [UE Id imsi-999100000000031] SessionManagementSubscriptionData: [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T13:02:12.684554264Z [2026-10-03 15:02:12.684] [udr_server] [debug] HTTP Response code 200 (HTTP Version 2).
+2026-10-03T13:02:12.684571429Z 
+2026-10-03T13:02:12.696000925Z [2026-10-03 15:02:12.695] [udr_app] [info] [UE Id imsi-999100000000031] Create an individual SDM subscription
+2026-10-03T13:02:12.707166116Z [2026-10-03 15:02:12.706] [udr_db] [debug] [UE Id 999100000000031] SDM Subscriptions POST: {"callbackReference":"192.168.73.138:8080/nsmf-callback/v1imsi-999100000000031/sdm-notification","dnn":"oai","monitoredResourceUris":["http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data"],"nfInstanceId":"9c43664a-2a40-4707-8fda-105aa4816aa5","plmnId":{"mcc":"999","mnc":"20"},"singleNssai":{"sd":"00007b","sst":222},"subscriptionId":"13"}
+2026-10-03T13:02:12.707241548Z [2026-10-03 15:02:12.706] [udr_app] [info] [UE Id imsi-999100000000031] SdmSubscription: {"callbackReference":"192.168.73.138:8080/nsmf-callback/v1imsi-999100000000031/sdm-notification","dnn":"oai","monitoredResourceUris":["http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data"],"nfInstanceId":"9c43664a-2a40-4707-8fda-105aa4816aa5","plmnId":{"mcc":"999","mnc":"20"},"singleNssai":{"sd":"00007b","sst":222},"subscriptionId":"13"}
+2026-10-03T13:02:12.707498935Z [2026-10-03 15:02:12.706] [udr_server] [debug] HTTP Response code 201 (HTTP Version 2).
+2026-10-03T13:02:12.707516901Z 
+2026-10-03T13:02:16.387656159Z [2026-10-03 15:02:16.387] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:16.387712538Z [2026-10-03 15:02:16.387] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:26.404645949Z [2026-10-03 15:02:26.404] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:26.405874814Z [2026-10-03 15:02:26.404] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:36.414812570Z [2026-10-03 15:02:36.414] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:36.415668318Z [2026-10-03 15:02:36.415] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:46.431775749Z [2026-10-03 15:02:46.431] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:46.432306022Z [2026-10-03 15:02:46.432] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:02:56.452848176Z [2026-10-03 15:02:56.452] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:02:56.453027029Z [2026-10-03 15:02:56.452] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:06.461519045Z [2026-10-03 15:03:06.461] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:06.461559820Z [2026-10-03 15:03:06.461] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:16.488742292Z [2026-10-03 15:03:16.488] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:16.488955520Z [2026-10-03 15:03:16.488] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:26.508785619Z [2026-10-03 15:03:26.508] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:26.509111905Z [2026-10-03 15:03:26.508] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:36.526550010Z [2026-10-03 15:03:36.526] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:36.526582405Z [2026-10-03 15:03:36.526] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:46.548718169Z [2026-10-03 15:03:46.548] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:46.549077407Z [2026-10-03 15:03:46.548] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:03:56.578782457Z [2026-10-03 15:03:56.578] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:03:56.578808437Z [2026-10-03 15:03:56.578] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:06.592495812Z [2026-10-03 15:04:06.589] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:06.592576454Z [2026-10-03 15:04:06.590] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:16.606708902Z [2026-10-03 15:04:16.606] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:16.607228804Z [2026-10-03 15:04:16.606] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:26.660802611Z [2026-10-03 15:04:26.660] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:26.660974158Z [2026-10-03 15:04:26.660] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:36.685791020Z [2026-10-03 15:04:36.685] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:36.685941697Z [2026-10-03 15:04:36.685] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:46.706733274Z [2026-10-03 15:04:46.706] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:46.707211367Z [2026-10-03 15:04:46.706] [udr_nrf] [debug] Send a simple HTTP request
+2026-10-03T13:04:56.734638568Z [2026-10-03 15:04:56.734] [udr_nrf] [info] Sending NF Heartbeat Request
+2026-10-03T13:04:56.735085276Z [2026-10-03 15:04:56.734] [udr_nrf] [debug] Send a simple HTTP request

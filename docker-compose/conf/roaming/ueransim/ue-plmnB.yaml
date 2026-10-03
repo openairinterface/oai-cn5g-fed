@@ -1,0 +1,51 @@
+supi: imsi-999100000000031
+mcc: '999'
+mnc: '10'
+key: 0C0A34601D4F07677303652C0462535B
+op: 63bfa50ee6523365ff14c1f45f88737d
+opType: OPC
+amf: '8000'
+sqn: '000000000020'
+gnbSearchList:
+- 192.168.71.140
+uacAic:
+  mps: false
+  mcs: false
+uacAcc:
+  normalClass: 0
+  class11: false
+  class12: false
+  class13: false
+  class14: false
+  class15: false
+integrity:
+  IA0: true
+  IA1: true
+  IA2: true
+  IA3: true
+ciphering:
+  EA0: true
+  EA1: true
+  EA2: true
+  EA3: true
+integrityMaxRate:
+  uplink: full
+  downlink: full
+sessions:
+  - type: 'IPv4'
+    apn: 'oai'
+    slice:
+      sst: 222
+      sd: 123
+configured-nssai:
+- sst: 222
+  sd: 123
+default-nssai:
+- sst: 222
+  sd: 123
+protectionScheme: 0
+homeNetworkPublicKeyId: 0
+roaming: true
+preferredPlmns:
+- mcc: '999'
+  mnc: '20'

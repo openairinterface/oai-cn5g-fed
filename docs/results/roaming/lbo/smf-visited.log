@@ -1,0 +1,1502 @@
+2026-10-03T11:45:36.328713698Z Trying to read .yaml configuration file: /openair-smf/etc/config.yaml
+2026-10-03T11:45:36.328846239Z LTTNG Tracing disabled at build-time!
+2026-10-03T11:45:36.328867239Z [2026-10-03 13:45:36.325] [smf_app] [start] Options parsed
+2026-10-03T11:45:36.328879481Z [2026-10-03 13:45:36.326] [config ] [info] Reading NF configuration from /openair-smf/etc/config.yaml
+2026-10-03T11:45:36.373424781Z [2026-10-03 13:45:36.373] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T11:45:36.373563170Z [2026-10-03 13:45:36.373] [config ] [debug] Unknown NF udr in configuration. Ignored
+2026-10-03T11:45:36.373574667Z [2026-10-03 13:45:36.373] [config ] [debug] Unknown NF ausf in configuration. Ignored
+2026-10-03T11:45:36.373579116Z [2026-10-03 13:45:36.373] [config ] [debug] Unknown NF sepp in configuration. Ignored
+2026-10-03T11:45:36.376340513Z [2026-10-03 13:45:36.376] [config ] [warning] UDM NRF discovery not supported. Using the provided values
+2026-10-03T11:45:36.376509907Z [2026-10-03 13:45:36.376] [config ] [debug] Validating configuration of log_level
+2026-10-03T11:45:36.377058974Z [2026-10-03 13:45:36.376] [config ] [debug] Validating configuration of register_nf
+2026-10-03T11:45:36.377944975Z [2026-10-03 13:45:36.377] [config ] [debug] Validating configuration of http_version
+2026-10-03T11:45:36.378526467Z [2026-10-03 13:45:36.378] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T11:45:36.378599420Z [2026-10-03 13:45:36.378] [config ] [debug] Validating configuration of nrf
+2026-10-03T11:45:36.388622709Z [2026-10-03 13:45:36.388] [config ] [debug] Validating configuration of pcf
+2026-10-03T11:45:36.389046397Z [2026-10-03 13:45:36.388] [config ] [debug] Validating configuration of udm
+2026-10-03T11:45:36.396222189Z [2026-10-03 13:45:36.395] [config ] [debug] Validating configuration of amf
+2026-10-03T11:45:36.396712113Z [2026-10-03 13:45:36.396] [config ] [debug] Validating configuration of SMF Config
+2026-10-03T11:45:36.415015253Z [2026-10-03 13:45:36.414] [config ] [debug] Validating configuration of DNN
+2026-10-03T11:45:36.416390729Z [2026-10-03 13:45:36.416] [config ] [debug] Validating configuration of DNN
+2026-10-03T11:45:36.418235705Z [2026-10-03 13:45:36.418] [config ] [debug] Validating configuration of DNN
+2026-10-03T11:45:36.420127827Z [2026-10-03 13:45:36.419] [config ] [debug] Validating configuration of DNN
+2026-10-03T11:45:36.422719428Z [2026-10-03 13:45:36.422] [config ] [warning] The IPv6 prefix / length  is not valid
+2026-10-03T11:45:36.422854435Z [2026-10-03 13:45:36.422] [config ] [debug] Validating configuration of database
+2026-10-03T11:45:36.423039428Z [2026-10-03 13:45:36.422] [config ] [debug] DNN oai: -- First UE IPv4: 12.1.1.130 -- Last UE IPv4: 12.1.1.254
+2026-10-03T11:45:36.423200315Z [2026-10-03 13:45:36.423] [config ] [debug] DNN oai.ipv4: -- First UE IPv4: 12.1.1.66 -- Last UE IPv4: 12.1.1.126
+2026-10-03T11:45:36.423398450Z [2026-10-03 13:45:36.423] [config ] [debug] DNN default: -- First UE IPv4: 12.1.1.2 -- Last UE IPv4: 12.1.1.62
+2026-10-03T11:45:36.423555391Z [2026-10-03 13:45:36.423] [config ] [debug] DNN ims: -- First UE IPv4: 14.1.1.2 -- Last UE IPv4: 14.1.1.254
+2026-10-03T11:45:36.474615993Z [2026-10-03 13:45:36.474] [config ] [info] ==== OPENAIRINTERFACE smf vBranch:  Abrev. Hash:  Date:  ====
+2026-10-03T11:45:36.474999427Z [2026-10-03 13:45:36.474] [config ] [info] Basic Configuration:
+2026-10-03T11:45:36.475081461Z [2026-10-03 13:45:36.474] [config ] [info]   - log_level..................................: debug
+2026-10-03T11:45:36.475203859Z [2026-10-03 13:45:36.475] [config ] [info]   - register_nf................................: Yes
+2026-10-03T11:45:36.475287042Z [2026-10-03 13:45:36.475] [config ] [info]   - http_version...............................: 2
+2026-10-03T11:45:36.475484469Z [2026-10-03 13:45:36.475] [config ] [info]   TLS:
+2026-10-03T11:45:36.475634273Z [2026-10-03 13:45:36.475] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T11:45:36.475756009Z [2026-10-03 13:45:36.475] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T11:45:36.475844586Z [2026-10-03 13:45:36.475] [config ] [info] SMF Config:
+2026-10-03T11:45:36.475995630Z [2026-10-03 13:45:36.475] [config ] [info]   - host.......................................: smf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.476330949Z [2026-10-03 13:45:36.475] [config ] [info]   - sbi
+2026-10-03T11:45:36.476453540Z [2026-10-03 13:45:36.476] [config ] [info]     + URL......................................: smf.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:36.476543704Z [2026-10-03 13:45:36.476] [config ] [info]     + API Version..............................: v1
+2026-10-03T11:45:36.476599991Z [2026-10-03 13:45:36.476] [config ] [info]     + IPv4 Address ............................: 192.168.71.138
+2026-10-03T11:45:36.476735921Z [2026-10-03 13:45:36.476] [config ] [info]   - n4
+2026-10-03T11:45:36.476844584Z [2026-10-03 13:45:36.476] [config ] [info]     + Port.....................................: 8805
+2026-10-03T11:45:36.476907490Z [2026-10-03 13:45:36.476] [config ] [info]     + IPv4 Address ............................: 192.168.71.138
+2026-10-03T11:45:36.477059698Z [2026-10-03 13:45:36.476] [config ] [info]     + MTU......................................: 1500
+2026-10-03T11:45:36.477197964Z [2026-10-03 13:45:36.477] [config ] [info]     + Interface name: .........................: eth0
+2026-10-03T11:45:36.477314415Z [2026-10-03 13:45:36.477] [config ] [info]   supported_features:
+2026-10-03T11:45:36.477431724Z [2026-10-03 13:45:36.477] [config ] [info]     + use_local_subscription_info..............: No
+2026-10-03T11:45:36.477477464Z [2026-10-03 13:45:36.477] [config ] [info]     + use_local_pcc_rules......................: Yes
+2026-10-03T11:45:36.477594578Z [2026-10-03 13:45:36.477] [config ] [info]     + use_external_nssf........................: No
+2026-10-03T11:45:36.477726178Z [2026-10-03 13:45:36.477] [config ] [info]   - ue_mtu.....................................: 1500
+2026-10-03T11:45:36.477740348Z [2026-10-03 13:45:36.477] [config ] [info]   - p-cscf_ipv4................................: 127.0.0.1
+2026-10-03T11:45:36.477813153Z [2026-10-03 13:45:36.477] [config ] [info]   - p-cscf_ipv6................................: fe80::7915:f408:1787:db8b
+2026-10-03T11:45:36.477941576Z [2026-10-03 13:45:36.477] [config ] [info]   - ngap_config
+2026-10-03T11:45:36.478013197Z [2026-10-03 13:45:36.477] [config ] [info]     + send_default_qos_characteristics...........: No
+2026-10-03T11:45:36.478081001Z [2026-10-03 13:45:36.478] [config ] [info]   UPF List:
+2026-10-03T11:45:36.478164277Z [2026-10-03 13:45:36.478] [config ] [info]     + upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.478214768Z [2026-10-03 13:45:36.478] [config ] [info]       + host...................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.478366935Z [2026-10-03 13:45:36.478] [config ] [info]       + port...................................: 8805
+2026-10-03T11:45:36.478461707Z [2026-10-03 13:45:36.478] [config ] [info]       + enable_usage_reporting.................: No
+2026-10-03T11:45:36.478533805Z [2026-10-03 13:45:36.478] [config ] [info]       + enable_qers............................: Yes
+2026-10-03T11:45:36.478656924Z [2026-10-03 13:45:36.478] [config ] [info]       + enable_upf_wo_nf_discovery.............: No
+2026-10-03T11:45:36.478942924Z [2026-10-03 13:45:36.478] [config ] [info]       + enable_dl_pdr_in_session_establishment.: No
+2026-10-03T11:45:36.479153444Z [2026-10-03 13:45:36.479] [config ] [info]   + smf_info:
+2026-10-03T11:45:36.479348485Z [2026-10-03 13:45:36.479] [config ] [info]     - snssai_smf_info_item:
+2026-10-03T11:45:36.479479477Z [2026-10-03 13:45:36.479] [config ] [info]       + snssai:
+2026-10-03T11:45:36.479625957Z [2026-10-03 13:45:36.479] [config ] [info]         - sst..................................: 1
+2026-10-03T11:45:36.479756819Z [2026-10-03 13:45:36.479] [config ] [info]         - sd...................................: ffffff
+2026-10-03T11:45:36.479878765Z [2026-10-03 13:45:36.479] [config ] [info]       + dnns:
+2026-10-03T11:45:36.480034932Z [2026-10-03 13:45:36.479] [config ] [info]         - dnn..................................: oai
+2026-10-03T11:45:36.480173962Z [2026-10-03 13:45:36.480] [config ] [info]     - snssai_smf_info_item:
+2026-10-03T11:45:36.480307232Z [2026-10-03 13:45:36.480] [config ] [info]       + snssai:
+2026-10-03T11:45:36.480467545Z [2026-10-03 13:45:36.480] [config ] [info]         - sst..................................: 1
+2026-10-03T11:45:36.480584288Z [2026-10-03 13:45:36.480] [config ] [info]         - sd...................................: 000001
+2026-10-03T11:45:36.480697832Z [2026-10-03 13:45:36.480] [config ] [info]       + dnns:
+2026-10-03T11:45:36.480875062Z [2026-10-03 13:45:36.480] [config ] [info]         - dnn..................................: oai.ipv4
+2026-10-03T11:45:36.481330264Z [2026-10-03 13:45:36.481] [config ] [info]     - snssai_smf_info_item:
+2026-10-03T11:45:36.481452662Z [2026-10-03 13:45:36.481] [config ] [info]       + snssai:
+2026-10-03T11:45:36.481605496Z [2026-10-03 13:45:36.481] [config ] [info]         - sst..................................: 222
+2026-10-03T11:45:36.481719174Z [2026-10-03 13:45:36.481] [config ] [info]         - sd...................................: 00007b
+2026-10-03T11:45:36.481853758Z [2026-10-03 13:45:36.481] [config ] [info]       + dnns:
+2026-10-03T11:45:36.481991493Z [2026-10-03 13:45:36.481] [config ] [info]         - dnn..................................: oai
+2026-10-03T11:45:36.482114502Z [2026-10-03 13:45:36.482] [config ] [info]         - dnn..................................: default
+2026-10-03T11:45:36.482267608Z [2026-10-03 13:45:36.482] [config ] [info] Peer NF Configuration:
+2026-10-03T11:45:36.482446125Z [2026-10-03 13:45:36.482] [config ] [info]   nrf:
+2026-10-03T11:45:36.482860280Z [2026-10-03 13:45:36.482] [config ] [info]     - host.....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.483557624Z [2026-10-03 13:45:36.483] [config ] [info]     - sbi
+2026-10-03T11:45:36.484166579Z [2026-10-03 13:45:36.483] [config ] [info]       + URL....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:36.484454836Z [2026-10-03 13:45:36.484] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:36.484679048Z [2026-10-03 13:45:36.484] [config ] [info]   udm:
+2026-10-03T11:45:36.485027643Z [2026-10-03 13:45:36.484] [config ] [info]     - host.....................................: udm.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.485164097Z [2026-10-03 13:45:36.485] [config ] [info]     - sbi
+2026-10-03T11:45:36.485319044Z [2026-10-03 13:45:36.485] [config ] [info]       + URL....................................: udm.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:36.485435144Z [2026-10-03 13:45:36.485] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:36.485535955Z [2026-10-03 13:45:36.485] [config ] [info] DNNs:
+2026-10-03T11:45:36.485643515Z [2026-10-03 13:45:36.485] [config ] [info] - DNN:
+2026-10-03T11:45:36.485790175Z [2026-10-03 13:45:36.485] [config ] [info]     + DNN......................................: oai
+2026-10-03T11:45:36.485874564Z [2026-10-03 13:45:36.485] [config ] [info]     + PDU session type.........................: IPV4
+2026-10-03T11:45:36.486016317Z [2026-10-03 13:45:36.485] [config ] [info]     + IPv4 subnet..............................: 12.1.1.128/25
+2026-10-03T11:45:36.486122698Z [2026-10-03 13:45:36.486] [config ] [info]     + DNS Settings:
+2026-10-03T11:45:36.486307994Z [2026-10-03 13:45:36.486] [config ] [info]       - primary_dns_ipv4.......................: 172.21.3.100
+2026-10-03T11:45:36.486679448Z [2026-10-03 13:45:36.486] [config ] [info]       - primary_dns_ipv6.......................: 2001:4860:4860::8888
+2026-10-03T11:45:36.486787015Z [2026-10-03 13:45:36.486] [config ] [info]       - secondary_dns_ipv4.....................: 8.8.8.8
+2026-10-03T11:45:36.487202273Z [2026-10-03 13:45:36.487] [config ] [info]       - secondary_dns_ipv6.....................: 2001:4860:4860::8888
+2026-10-03T11:45:36.487347208Z [2026-10-03 13:45:36.487] [config ] [info] - DNN:
+2026-10-03T11:45:36.487478303Z [2026-10-03 13:45:36.487] [config ] [info]     + DNN......................................: oai.ipv4
+2026-10-03T11:45:36.487603470Z [2026-10-03 13:45:36.487] [config ] [info]     + PDU session type.........................: IPV4
+2026-10-03T11:45:36.487711759Z [2026-10-03 13:45:36.487] [config ] [info]     + IPv4 subnet..............................: 12.1.1.64/26
+2026-10-03T11:45:36.487814921Z [2026-10-03 13:45:36.487] [config ] [info]     + DNS Settings:
+2026-10-03T11:45:36.487927070Z [2026-10-03 13:45:36.487] [config ] [info]       - primary_dns_ipv4.......................: 172.21.3.100
+2026-10-03T11:45:36.488060057Z [2026-10-03 13:45:36.487] [config ] [info]       - primary_dns_ipv6.......................: 2001:4860:4860::8888
+2026-10-03T11:45:36.488186201Z [2026-10-03 13:45:36.488] [config ] [info]       - secondary_dns_ipv4.....................: 8.8.8.8
+2026-10-03T11:45:36.488306796Z [2026-10-03 13:45:36.488] [config ] [info]       - secondary_dns_ipv6.....................: 2001:4860:4860::8888
+2026-10-03T11:45:36.488443909Z [2026-10-03 13:45:36.488] [config ] [info] - DNN:
+2026-10-03T11:45:36.488559689Z [2026-10-03 13:45:36.488] [config ] [info]     + DNN......................................: default
+2026-10-03T11:45:36.488692403Z [2026-10-03 13:45:36.488] [config ] [info]     + PDU session type.........................: IPV4
+2026-10-03T11:45:36.488822538Z [2026-10-03 13:45:36.488] [config ] [info]     + IPv4 subnet..............................: 12.1.1.0/26
+2026-10-03T11:45:36.488836364Z [2026-10-03 13:45:36.488] [config ] [info]     + DNS Settings:
+2026-10-03T11:45:36.488879310Z [2026-10-03 13:45:36.488] [config ] [info]       - primary_dns_ipv4.......................: 172.21.3.100
+2026-10-03T11:45:36.488957212Z [2026-10-03 13:45:36.488] [config ] [info]       - primary_dns_ipv6.......................: 2001:4860:4860::8888
+2026-10-03T11:45:36.489108191Z [2026-10-03 13:45:36.489] [config ] [info]       - secondary_dns_ipv4.....................: 8.8.8.8
+2026-10-03T11:45:36.489213921Z [2026-10-03 13:45:36.489] [config ] [info]       - secondary_dns_ipv6.....................: 2001:4860:4860::8888
+2026-10-03T11:45:36.489335715Z [2026-10-03 13:45:36.489] [config ] [info] - DNN:
+2026-10-03T11:45:36.489462881Z [2026-10-03 13:45:36.489] [config ] [info]     + DNN......................................: ims
+2026-10-03T11:45:36.489542222Z [2026-10-03 13:45:36.489] [config ] [info]     + PDU session type.........................: IPV4V6
+2026-10-03T11:45:36.489684380Z [2026-10-03 13:45:36.489] [config ] [info]     + IPv6 prefix..............................: 
+2026-10-03T11:45:36.489785086Z [2026-10-03 13:45:36.489] [config ] [info]     + IPv4 subnet..............................: 14.1.1.2/24
+2026-10-03T11:45:36.489873371Z [2026-10-03 13:45:36.489] [config ] [info]     + DNS Settings:
+2026-10-03T11:45:36.489986608Z [2026-10-03 13:45:36.489] [config ] [info]       - primary_dns_ipv4.......................: 172.21.3.100
+2026-10-03T11:45:36.490080891Z [2026-10-03 13:45:36.490] [config ] [info]       - primary_dns_ipv6.......................: 2001:4860:4860::8888
+2026-10-03T11:45:36.490208912Z [2026-10-03 13:45:36.490] [config ] [info]       - secondary_dns_ipv4.....................: 8.8.8.8
+2026-10-03T11:45:36.490341786Z [2026-10-03 13:45:36.490] [config ] [info]       - secondary_dns_ipv6.....................: 2001:4860:4860::8888
+2026-10-03T11:45:36.490445464Z [2026-10-03 13:45:36.490] [common] [start] Starting...
+2026-10-03T11:45:36.490727128Z [2026-10-03 13:45:36.490] [common] [start] Started
+2026-10-03T11:45:36.490901000Z [2026-10-03 13:45:36.490] [common] [info] Starting timer_manager_task
+2026-10-03T11:45:36.490915744Z [2026-10-03 13:45:36.490] [smf_sbi] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+2026-10-03T11:45:36.490973076Z [2026-10-03 13:45:36.490] [common] [warning] Could not set schedparam to ITTI task 0, err=1
+2026-10-03T11:45:36.490979613Z [2026-10-03 13:45:36.490] [smf_app] [start] Starting...
+2026-10-03T11:45:36.490983406Z [2026-10-03 13:45:36.490] [smf_app] [info] Apply config...
+2026-10-03T11:45:36.490987176Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config default
+2026-10-03T11:45:36.491054747Z [2026-10-03 13:45:36.490] [smf_app] [info] PAA Ipv4: 12.1.1.2
+2026-10-03T11:45:36.491064251Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config ims
+2026-10-03T11:45:36.491067986Z [2026-10-03 13:45:36.490] [smf_app] [info] PAA Ipv4: 14.1.1.2
+2026-10-03T11:45:36.491071775Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config for IPv6 ims
+2026-10-03T11:45:36.491075638Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config oai
+2026-10-03T11:45:36.491079213Z [2026-10-03 13:45:36.490] [smf_app] [info] PAA Ipv4: 12.1.1.130
+2026-10-03T11:45:36.491083249Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config oai.ipv4
+2026-10-03T11:45:36.491122581Z [2026-10-03 13:45:36.490] [smf_app] [info] PAA Ipv4: 12.1.1.66
+2026-10-03T11:45:36.491130294Z [2026-10-03 13:45:36.490] [smf_app] [info] Applied config
+2026-10-03T11:45:36.492488937Z [2026-10-03 13:45:36.492] [udp    ] [debug] Creating new listen socket on address 192.168.71.138 and port 8805 
+2026-10-03T11:45:36.492512002Z [2026-10-03 13:45:36.492] [udp    ] [debug] udp_server::udp_server(192.168.71.138:8805)
+2026-10-03T11:45:36.492516975Z [2026-10-03 13:45:36.492] [udp    ] [debug] Creating new listen socket on address 192.168.71.138 and port 0 
+2026-10-03T11:45:36.492522723Z [2026-10-03 13:45:36.492] [udp    ] [debug] udp_server::udp_server(192.168.71.138:0)
+2026-10-03T11:45:36.492526703Z [2026-10-03 13:45:36.492] [pfcp   ] [info] pfcp_l4_stack created listening to 192.168.71.138:8805
+2026-10-03T11:45:36.492663159Z [2026-10-03 13:45:36.492] [smf_n4 ] [start] Starting...
+2026-10-03T11:45:36.493501958Z [2026-10-03 13:45:36.492] [udp    ] [warning] Could not set schedparam to ITTI task 17, err=1
+2026-10-03T11:45:36.493534588Z [2026-10-03 13:45:36.492] [udp    ] [warning] Could not set schedparam to ITTI task 17, err=1
+2026-10-03T11:45:36.495447126Z [2026-10-03 13:45:36.494] [smf_n4 ] [start] Started
+2026-10-03T11:45:36.495537804Z [2026-10-03 13:45:36.494] [smf_sbi] [start] Starting...
+2026-10-03T11:45:36.495625744Z [2026-10-03 13:45:36.495] [smf_sbi] [start] Started
+2026-10-03T11:45:36.497747201Z [2026-10-03 13:45:36.496] [smf_app] [debug] NF instance info
+2026-10-03T11:45:36.497763137Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Instance ID: d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:45:36.497767493Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Instance name: OAI-SMF
+2026-10-03T11:45:36.497773679Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Instance type: SMF
+2026-10-03T11:45:36.497777025Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Status: REGISTERED
+2026-10-03T11:45:36.497780135Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	HeartBeat timer: 50
+2026-10-03T11:45:36.497783323Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Priority: 1
+2026-10-03T11:45:36.497786463Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	Capacity: 100
+2026-10-03T11:45:36.497789529Z [2026-10-03 13:45:36.496] [smf_app] [debug] 	SNSSAIs:
+2026-10-03T11:45:36.497792559Z [2026-10-03 13:45:36.496] [smf_app] [debug] 
+2026-10-03T11:45:36.497795351Z - snssai:
+2026-10-03T11:45:36.497798065Z   + sst........................................: 1
+2026-10-03T11:45:36.497800970Z   + sd.........................................: ffffff
+2026-10-03T11:45:36.497820474Z 
+2026-10-03T11:45:36.497824054Z [2026-10-03 13:45:36.496] [smf_app] [debug] 
+2026-10-03T11:45:36.497827174Z - snssai:
+2026-10-03T11:45:36.497830071Z   + sst........................................: 1
+2026-10-03T11:45:36.497833197Z   + sd.........................................: 000001
+2026-10-03T11:45:36.497836226Z 
+2026-10-03T11:45:36.497871478Z [2026-10-03 13:45:36.497] [smf_app] [debug] 
+2026-10-03T11:45:36.497879347Z - snssai:
+2026-10-03T11:45:36.497894272Z   + sst........................................: 222
+2026-10-03T11:45:36.497898308Z   + sd.........................................: 00007b
+2026-10-03T11:45:36.497929605Z 
+2026-10-03T11:45:36.499773224Z [2026-10-03 13:45:36.498] [smf_app] [debug] 	FQDN: smf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.499790399Z [2026-10-03 13:45:36.498] [smf_app] [debug] 	IPv4 Addr:
+2026-10-03T11:45:36.499795888Z [2026-10-03 13:45:36.498] [smf_app] [debug] 		 192.168.71.138
+2026-10-03T11:45:36.499800269Z [2026-10-03 13:45:36.498] [smf_app] [debug] 	NF Service
+2026-10-03T11:45:36.499804101Z [2026-10-03 13:45:36.498] [smf_app] [debug] 		Service Instance ID: d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession, Service name: nsmf-pdusession, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.71.138, TransportProtocol: TCP, Port: 8080
+2026-10-03T11:45:36.499822508Z [2026-10-03 13:45:36.498] [smf_app] [debug] 		Service Instance ID: d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-event-exposure, Service name: nsmf-event-exposure, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.71.138, TransportProtocol: TCP, Port: 8080
+2026-10-03T11:45:36.499827936Z [2026-10-03 13:45:36.498] [smf_app] [debug] 	NF Service List
+2026-10-03T11:45:36.499832296Z [2026-10-03 13:45:36.499] [smf_app] [debug] 		d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession
+2026-10-03T11:45:36.499836074Z [2026-10-03 13:45:36.499] [smf_app] [debug] 			Service Instance ID: d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession, Service name: nsmf-pdusession, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.71.138, TransportProtocol: TCP, Port: 8080
+2026-10-03T11:45:36.499843509Z [2026-10-03 13:45:36.499] [smf_app] [debug] 	SMF Info:
+2026-10-03T11:45:36.499847447Z [2026-10-03 13:45:36.499] [smf_app] [debug] 		Parameters supported by the SMF:
+2026-10-03T11:45:36.499850984Z [2026-10-03 13:45:36.499] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.499854780Z     - snssai:
+2026-10-03T11:45:36.499857929Z       + sst....................................: 1
+2026-10-03T11:45:36.499863225Z       + sd.....................................: ffffff
+2026-10-03T11:45:36.499866756Z     - dnns:
+2026-10-03T11:45:36.499870091Z       + dnn....................................: oai
+2026-10-03T11:45:36.499873250Z 
+2026-10-03T11:45:36.501057358Z [2026-10-03 13:45:36.500] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.501120534Z     - snssai:
+2026-10-03T11:45:36.501151032Z       + sst....................................: 1
+2026-10-03T11:45:36.501180683Z       + sd.....................................: 000001
+2026-10-03T11:45:36.501207639Z     - dnns:
+2026-10-03T11:45:36.501236350Z       + dnn....................................: oai.ipv4
+2026-10-03T11:45:36.501345643Z 
+2026-10-03T11:45:36.503616804Z [2026-10-03 13:45:36.501] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.503725434Z     - snssai:
+2026-10-03T11:45:36.503742760Z       + sst....................................: 222
+2026-10-03T11:45:36.503763404Z       + sd.....................................: 00007b
+2026-10-03T11:45:36.503776633Z     - dnns:
+2026-10-03T11:45:36.503788344Z       + dnn....................................: oai
+2026-10-03T11:45:36.503800541Z       + dnn....................................: default
+2026-10-03T11:45:36.503811851Z 
+2026-10-03T11:45:36.503822404Z [2026-10-03 13:45:36.501] [smf_app] [start] Started
+2026-10-03T11:45:36.503834588Z [2026-10-03 13:45:36.501] [smf_app] [debug] Register SMF with NRF
+2026-10-03T11:45:36.504451252Z [2026-10-03 13:45:36.501] [smf_app] [debug] Send ITTI msg to N11 task to trigger the registration request to NRF
+2026-10-03T11:45:36.504494578Z [2026-10-03 13:45:36.501] [smf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 2)
+2026-10-03T11:45:36.504563324Z [2026-10-03 13:45:36.502] [smf_app] [debug] SMF profile to json:
+2026-10-03T11:45:36.504584332Z  {"allowedNfTypes":["AMF"],"capacity":100,"custom_info":null,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.71.138"],"nfInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032","nfInstanceName":"OAI-SMF","nfServiceList":{"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession":{"allowedNfTypes":["AMF"],"capacity":100,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","load":0,"nfServiceStatus":"REGISTERED","priority":0,"scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}},"nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-event-exposure","serviceName":"nsmf-event-exposure","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SMF","plmnList":[{"mcc":"999","mnc":"20"}],"priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222}],"smfInfo":{"sNssaiSmfInfoList":[{"dnnSmfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"ffffff","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}}]}}
+2026-10-03T11:45:36.505491930Z [2026-10-03 13:45:36.503] [smf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:45:36.505553849Z [2026-10-03 13:45:36.503] [smf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+2026-10-03T11:45:36.505584625Z  {"allowedNfTypes":["AMF"],"capacity":100,"custom_info":null,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.71.138"],"nfInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032","nfInstanceName":"OAI-SMF","nfServiceList":{"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession":{"allowedNfTypes":["AMF"],"capacity":100,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","load":0,"nfServiceStatus":"REGISTERED","priority":0,"scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}},"nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-event-exposure","serviceName":"nsmf-event-exposure","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SMF","plmnList":[{"mcc":"999","mnc":"20"}],"priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222}],"smfInfo":{"sNssaiSmfInfoList":[{"dnnSmfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"ffffff","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}}]}} (bytes 1700)
+2026-10-03T11:45:36.505692542Z [2026-10-03 13:45:36.504] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:45:36.517450311Z [2026-10-03 13:45:36.516] [smf_sbi] [debug] Response data {"capacity":100,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":10,"ipv4Addresses":["192.168.71.138"],"json_data":null,"nfInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032","nfInstanceName":"OAI-SMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-event-exposure","serviceName":"nsmf-event-exposure","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SMF","plmnList":[{"mcc":"999","mnc":"20"}],"priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222}],"smfInfo":{"sNssaiSmfInfoList":[{"dnnSmfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"ffffff","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}}]}}
+2026-10-03T11:45:36.517532238Z [2026-10-03 13:45:36.516] [smf_sbi] [debug] NF Instance Registration, response from NRF, HTTP Code: 201
+2026-10-03T11:45:36.517546275Z [2026-10-03 13:45:36.516] [smf_app] [debug] Registered SMF profile (from NRF)
+2026-10-03T11:45:36.517557374Z [2026-10-03 13:45:36.516] [smf_sbi] [debug] NF Instance Registration, response from NRF, json data: 
+2026-10-03T11:45:36.517570639Z  {"capacity":100,"fqdn":"smf.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":10,"ipv4Addresses":["192.168.71.138"],"json_data":null,"nfInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032","nfInstanceName":"OAI-SMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-pdusession","serviceName":"nsmf-pdusession","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.138","port":8080,"transport":""}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032-nsmf-event-exposure","serviceName":"nsmf-event-exposure","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SMF","plmnList":[{"mcc":"999","mnc":"20"}],"priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222}],"smfInfo":{"sNssaiSmfInfoList":[{"dnnSmfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"ffffff","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnSmfInfoList":[{"dnn":"oai"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}}]}}
+2026-10-03T11:45:36.517637669Z [2026-10-03 13:45:36.517] [smf_app] [debug] NF instance info
+2026-10-03T11:45:36.517650371Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Instance ID: d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:45:36.517690385Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Instance name: OAI-SMF
+2026-10-03T11:45:36.517703541Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Instance type: SMF
+2026-10-03T11:45:36.517713497Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Status: REGISTERED
+2026-10-03T11:45:36.517848462Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	HeartBeat timer: 10
+2026-10-03T11:45:36.517866807Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Priority: 1
+2026-10-03T11:45:36.517973839Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	Capacity: 100
+2026-10-03T11:45:36.518020640Z [2026-10-03 13:45:36.517] [smf_app] [debug] 	SNSSAIs:
+2026-10-03T11:45:36.518137808Z [2026-10-03 13:45:36.518] [smf_app] [debug] 
+2026-10-03T11:45:36.518155254Z - snssai:
+2026-10-03T11:45:36.518166299Z   + sst........................................: 1
+2026-10-03T11:45:36.518183349Z   + sd.........................................: ffffff
+2026-10-03T11:45:36.518194362Z 
+2026-10-03T11:45:36.518223110Z [2026-10-03 13:45:36.518] [smf_app] [debug] 
+2026-10-03T11:45:36.518235796Z - snssai:
+2026-10-03T11:45:36.518245258Z   + sst........................................: 1
+2026-10-03T11:45:36.518282390Z   + sd.........................................: 000001
+2026-10-03T11:45:36.518291064Z 
+2026-10-03T11:45:36.518404267Z [2026-10-03 13:45:36.518] [smf_app] [debug] 
+2026-10-03T11:45:36.518427695Z - snssai:
+2026-10-03T11:45:36.518509458Z   + sst........................................: 222
+2026-10-03T11:45:36.518525553Z   + sd.........................................: 00007b
+2026-10-03T11:45:36.518535829Z 
+2026-10-03T11:45:36.518549501Z [2026-10-03 13:45:36.518] [smf_app] [debug] 	FQDN: smf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:36.518602235Z [2026-10-03 13:45:36.518] [smf_app] [debug] 	IPv4 Addr:
+2026-10-03T11:45:36.518618822Z [2026-10-03 13:45:36.518] [smf_app] [debug] 		 192.168.71.138
+2026-10-03T11:45:36.518735610Z [2026-10-03 13:45:36.518] [smf_app] [debug] 	SMF Info:
+2026-10-03T11:45:36.518783002Z [2026-10-03 13:45:36.518] [smf_app] [debug] 		Parameters supported by the SMF:
+2026-10-03T11:45:36.518932947Z [2026-10-03 13:45:36.518] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.518949680Z     - snssai:
+2026-10-03T11:45:36.518959701Z       + sst....................................: 1
+2026-10-03T11:45:36.519037399Z       + sd.....................................: ffffff
+2026-10-03T11:45:36.519060104Z     - dnns:
+2026-10-03T11:45:36.519113301Z       + dnn....................................: oai
+2026-10-03T11:45:36.519129691Z 
+2026-10-03T11:45:36.519143385Z [2026-10-03 13:45:36.518] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.519154653Z     - snssai:
+2026-10-03T11:45:36.519163480Z       + sst....................................: 1
+2026-10-03T11:45:36.519173049Z       + sd.....................................: 000001
+2026-10-03T11:45:36.519183247Z     - dnns:
+2026-10-03T11:45:36.519192515Z       + dnn....................................: oai.ipv4
+2026-10-03T11:45:36.519203274Z 
+2026-10-03T11:45:36.519211905Z [2026-10-03 13:45:36.518] [smf_app] [debug]   + snssai_smf_info_item:
+2026-10-03T11:45:36.519222313Z     - snssai:
+2026-10-03T11:45:36.519232078Z       + sst....................................: 222
+2026-10-03T11:45:36.519241622Z       + sd.....................................: 00007b
+2026-10-03T11:45:36.519272995Z     - dnns:
+2026-10-03T11:45:36.519283442Z       + dnn....................................: oai
+2026-10-03T11:45:36.519292830Z       + dnn....................................: default
+2026-10-03T11:45:36.519301837Z 
+2026-10-03T11:45:36.519574575Z [2026-10-03 13:45:36.519] [smf_app] [debug] Handle NF Instance Registration response
+2026-10-03T11:45:36.519603897Z [2026-10-03 13:45:36.519] [smf_app] [debug] Set value of NRF Heartbeat timer to 10
+2026-10-03T11:45:36.531565233Z [2026-10-03 13:45:36.530] [smf_api] [info] HTTP2 server being started
+2026-10-03T11:45:37.506049831Z [2026-10-03 13:45:37.505] [smf_app] [debug] Send ITTI msg to N11 task to trigger UPF discovery from NRF
+2026-10-03T11:45:37.506742783Z [2026-10-03 13:45:37.506] [smf_app] [debug] Default DNN: default
+2026-10-03T11:45:37.506765115Z [2026-10-03 13:45:37.506] [smf_app] [debug] Send ITTI msg to N11 task to subscribe to UPF status notification from NRF
+2026-10-03T11:45:37.506774351Z [2026-10-03 13:45:37.506] [smf_sbi] [debug] Discover UPF with the PCF
+2026-10-03T11:45:37.506784013Z [2026-10-03 13:45:37.506] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:45:37.512738869Z [2026-10-03 13:45:37.512] [smf_sbi] [debug] Discover UPF with NRF, response from NRF
+2026-10-03T11:45:37.512915824Z [2026-10-03 13:45:37.512] [smf_sbi] [debug] Response data {"nfInstances":[{"capacity":100,"heartBeatTimer":10,"ipv4Addresses":["192.168.71.139"],"json_data":null,"nfInstanceId":"5156637a-e794-4b98-9a5d-23b75a543a2a","nfInstanceName":"OAI-UPF","nfServices":[],"nfStatus":"REGISTERED","nfType":"UPF","priority":1,"sNssais":[{"sd":"FFFFFF","sst":1},{"sd":"000001","sst":1},{"sd":"00007b","sst":222}],"upfInfo":{"sNssaiUpfInfoList":[{"dnnUpfInfoList":[{"dnn":"oai"}],"sNssai":{"sd":"ffffff","sst":1}},{"dnnUpfInfoList":[{"dnn":"oai.ipv4"}],"sNssai":{"sd":"000001","sst":1}},{"dnnUpfInfoList":[{"dnn":"oai"},{"dnn":"default"}],"sNssai":{"sd":"00007b","sst":222}}]}}],"searchId":"1","validityPeriod":100000}
+2026-10-03T11:45:37.512956452Z [2026-10-03 13:45:37.512] [smf_sbi] [debug] HTTP Response Code: 200
+2026-10-03T11:45:37.513330582Z [2026-10-03 13:45:37.513] [smf_app] [debug] Process UPF Discovery response
+2026-10-03T11:45:37.513944891Z [2026-10-03 13:45:37.513] [smf_sbi] [debug] Send NFSubscribeNotify to NRF to be notified when a new UPF becomes available (HTTP version 2)
+2026-10-03T11:45:37.513961784Z [2026-10-03 13:45:37.513] [smf_sbi] [debug] NRF's URL: http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/subscriptions
+2026-10-03T11:45:37.513968105Z [2026-10-03 13:45:37.513] [smf_sbi] [debug] Message body: {"nfStatusNotificationUri":"http://192.168.71.138:8080/nsmf-nfstatus-notify/v1/subscriptions","reqNotifEvents":["NF_REGISTERED","NF_DEREGISTERED"],"subscrCond":{"nfType":"UPF"},"validityTime":"20390531T235959"}
+2026-10-03T11:45:37.513975817Z [2026-10-03 13:45:37.513] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:45:37.513980283Z [2026-10-03 13:45:37.513] [smf_app] [debug] Process UPF Profile
+2026-10-03T11:45:37.515511405Z [2026-10-03 13:45:37.514] [common] [debug] Resolving a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org)
+2026-10-03T11:45:37.515537303Z [2026-10-03 13:45:37.514] [common] [debug] Resolving DNS Try #0
+2026-10-03T11:45:37.518173604Z [2026-10-03 13:45:37.517] [common] [debug] Resolved a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org, protocol http): Ip Addr 192.168.71.139, port 80
+2026-10-03T11:45:37.518192385Z [2026-10-03 13:45:37.517] [smf_app] [debug] Found UPF 192.168.71.139 in configuration (configured as upf.5gc.mnc20.mcc999.3gppnetwork.org), take config from there
+2026-10-03T11:45:37.518198863Z [2026-10-03 13:45:37.517] [smf_app] [debug] Start a PFCP Association procedure with an UPF
+2026-10-03T11:45:37.518204489Z [2026-10-03 13:45:37.517] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:37.518210495Z [2026-10-03 13:45:37.517] [common] [debug] FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:37.518214933Z [2026-10-03 13:45:37.517] [common] [debug] Resolving a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org)
+2026-10-03T11:45:37.518220395Z [2026-10-03 13:45:37.517] [common] [debug] Resolving DNS Try #0
+2026-10-03T11:45:37.518225968Z [2026-10-03 13:45:37.517] [smf_api] [info] NFStatusNotifyApiImpl, received a NF status notification...
+2026-10-03T11:45:37.518232071Z [2026-10-03 13:45:37.518] [smf_app] [info] Handle a NF status notification from NRF (HTTP version 2)
+2026-10-03T11:45:37.518369591Z [2026-10-03 13:45:37.518] [smf_app] [debug] Process UPF Profile
+2026-10-03T11:45:37.518385187Z [2026-10-03 13:45:37.518] [common] [debug] Resolving a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org)
+2026-10-03T11:45:37.518609050Z [2026-10-03 13:45:37.518] [common] [debug] Resolving DNS Try #0
+2026-10-03T11:45:37.521494040Z [2026-10-03 13:45:37.519] [common] [debug] Resolved a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org, protocol http): Ip Addr 192.168.71.139, port 80
+2026-10-03T11:45:37.521524904Z [2026-10-03 13:45:37.519] [common] [debug] Resolve FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org, IP Addr 192.168.71.139
+2026-10-03T11:45:37.521530011Z [2026-10-03 13:45:37.519] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:37.521534079Z [2026-10-03 13:45:37.519] [common] [debug] Resolved a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org, protocol http): Ip Addr 192.168.71.139, port 80
+2026-10-03T11:45:37.521538607Z [2026-10-03 13:45:37.519] [smf_app] [debug] Found UPF 192.168.71.139 in configuration (configured as upf.5gc.mnc20.mcc999.3gppnetwork.org), take config from there
+2026-10-03T11:45:37.521543333Z [2026-10-03 13:45:37.521] [smf_sbi] [debug] Response data {"nfStatusNotificationUri":"http://192.168.71.138:8080/nsmf-nfstatus-notify/v1/subscriptions","reqNotifEvents":["NF_REGISTERED","NF_DEREGISTERED"],"subscrCond":{"nfType":"UPF"},"subscriptionId":"1","validityTime":"20390531T235959"}
+2026-10-03T11:45:37.521549529Z [2026-10-03 13:45:37.521] [smf_sbi] [debug] NFSubscribeNotify, response from NRF, HTTP Code: 201
+2026-10-03T11:45:37.521553686Z [2026-10-03 13:45:37.521] [smf_sbi] [debug] NFSubscribeNotify, got successful response from NRF
+2026-10-03T11:45:37.522056920Z [2026-10-03 13:45:37.521] [smf_n4 ] [info] handle_receive(42 bytes)
+2026-10-03T11:45:37.522073364Z [2026-10-03 13:45:37.521] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 6 length 38
+2026-10-03T11:45:37.522077858Z [2026-10-03 13:45:37.521] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE from an UPF
+2026-10-03T11:45:37.522081693Z [2026-10-03 13:45:37.522] [smf_n4 ] [warning] Received N4 ASSOCIATION SETUP RESPONSE with message content: 
+2026-10-03T11:45:37.522085819Z :   
+2026-10-03T11:45:37.522155014Z 20060026590E1500003C000500C0A8478B001300010100600004EE6A80F1002B00081000000000000000
+2026-10-03T11:45:37.522162413Z [2026-10-03 13:45:37.522] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE
+2026-10-03T11:45:37.522166796Z [2026-10-03 13:45:37.522] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE with UP function features, FTUP supported
+2026-10-03T11:45:37.522171027Z [2026-10-03 13:45:37.522] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:37.522175205Z [2026-10-03 13:45:37.522] [common] [debug] Resolving an IP address (name 192.168.71.139)
+2026-10-03T11:45:37.522179316Z [2026-10-03 13:45:37.522] [common] [debug] Reverse Resolving Try #0
+2026-10-03T11:45:37.523320832Z [2026-10-03 13:45:37.522] [common] [debug] Resolve IP Addr 192.168.71.139, FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org.oai-public-netA
+2026-10-03T11:45:37.523346747Z [2026-10-03 13:45:37.522] [smf_app] [debug] Found UPF config for pending PFCP association 192.168.71.139
+2026-10-03T11:45:37.523352467Z [2026-10-03 13:45:37.522] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:37.523357276Z [2026-10-03 13:45:37.522] [smf_app] [debug] UPF Interface list is empty: Assume that the UPF has an N3 interface.
+2026-10-03T11:45:37.524600371Z [2026-10-03 13:45:37.523] [smf_app] [debug] UPF Interface list is empty: Assume that the UPF has an N6 interface.
+2026-10-03T11:45:37.524609411Z [2026-10-03 13:45:37.524] [smf_app] [info] Successfully added UPF node: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:37.524614056Z [2026-10-03 13:45:37.524] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:45:37.524618431Z   + Interface Type.............................: N3
+2026-10-03T11:45:37.524622454Z   + NWI........................................: 
+2026-10-03T11:45:37.524626432Z   + Uplink.....................................: No
+2026-10-03T11:45:37.524630801Z 
+2026-10-03T11:45:37.524634963Z [2026-10-03 13:45:37.524] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:45:37.524639376Z   + Interface Type.............................: N6
+2026-10-03T11:45:37.524643431Z   + NWI........................................: 
+2026-10-03T11:45:37.524647470Z   + Uplink.....................................: No
+2026-10-03T11:45:37.524651515Z 
+2026-10-03T11:45:37.524655264Z [2026-10-03 13:45:37.524] [smf_app] [debug] UPF graph
+2026-10-03T11:45:37.524659554Z [2026-10-03 13:45:37.524] [smf_app] [debug] 
+2026-10-03T11:45:37.524663401Z  - Node.........................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:37.524667189Z   + Edges
+2026-10-03T11:45:37.524670718Z     - UPF Graph Edge
+2026-10-03T11:45:37.524674423Z       + Interface Type.........................: N3
+2026-10-03T11:45:37.524677984Z       + NWI....................................: 
+2026-10-03T11:45:37.524681742Z       + Uplink.................................: No
+2026-10-03T11:45:37.524686416Z     - UPF Graph Edge
+2026-10-03T11:45:37.524690130Z       + Interface Type.........................: N6
+2026-10-03T11:45:37.524694399Z       + NWI....................................: 
+2026-10-03T11:45:37.524698542Z       + Uplink.................................: No
+2026-10-03T11:45:37.524703393Z 
+2026-10-03T11:45:37.524724400Z [2026-10-03 13:45:37.524] [smf_app] [debug] Added PFCP association with UPF config: 
+2026-10-03T11:45:37.524729074Z  + upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:37.524733301Z       + host...................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:37.524737552Z       + port...................................: 8805
+2026-10-03T11:45:37.524741714Z       + enable_usage_reporting.................: No
+2026-10-03T11:45:37.524746038Z       + enable_qers............................: Yes
+2026-10-03T11:45:37.524750359Z       + enable_upf_wo_nf_discovery.............: No
+2026-10-03T11:45:37.524759389Z       + enable_dl_pdr_in_session_establishment.: No
+2026-10-03T11:45:37.524763677Z       + upf_info:
+2026-10-03T11:45:37.524767552Z         - snssai_upf_info_item:
+2026-10-03T11:45:37.524771549Z           + snssai:
+2026-10-03T11:45:37.524775442Z             - sst..............................: 1
+2026-10-03T11:45:37.524779507Z             - sd...............................: ffffff
+2026-10-03T11:45:37.524783612Z           + dnns:
+2026-10-03T11:45:37.524787746Z             - dnn..............................: oai
+2026-10-03T11:45:37.524791836Z         - snssai_upf_info_item:
+2026-10-03T11:45:37.524795505Z           + snssai:
+2026-10-03T11:45:37.524799076Z             - sst..............................: 1
+2026-10-03T11:45:37.524802552Z             - sd...............................: 000001
+2026-10-03T11:45:37.524806415Z           + dnns:
+2026-10-03T11:45:37.524810117Z             - dnn..............................: oai.ipv4
+2026-10-03T11:45:37.524813881Z         - snssai_upf_info_item:
+2026-10-03T11:45:37.524817436Z           + snssai:
+2026-10-03T11:45:37.524821035Z             - sst..............................: 222
+2026-10-03T11:45:37.524824773Z             - sd...............................: 00007b
+2026-10-03T11:45:37.524828489Z           + dnns:
+2026-10-03T11:45:37.524832175Z             - dnn..............................: oai
+2026-10-03T11:45:37.524835974Z             - dnn..............................: default
+2026-10-03T11:45:37.524839927Z 
+2026-10-03T11:45:39.521613919Z [2026-10-03 13:45:39.521] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:39.521687919Z [2026-10-03 13:45:39.521] [smf_app] [debug] Start a PFCP Association procedure with an UPF
+2026-10-03T11:45:39.521703903Z [2026-10-03 13:45:39.521] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:39.521713596Z [2026-10-03 13:45:39.521] [common] [debug] FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.521718701Z [2026-10-03 13:45:39.521] [common] [debug] Resolving a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org)
+2026-10-03T11:45:39.521723235Z [2026-10-03 13:45:39.521] [common] [debug] Resolving DNS Try #0
+2026-10-03T11:45:39.523687511Z [2026-10-03 13:45:39.523] [common] [debug] Resolved a DNS (name upf.5gc.mnc20.mcc999.3gppnetwork.org, protocol http): Ip Addr 192.168.71.139, port 80
+2026-10-03T11:45:39.523706430Z [2026-10-03 13:45:39.523] [common] [debug] Resolve FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org, IP Addr 192.168.71.139
+2026-10-03T11:45:39.523712608Z [2026-10-03 13:45:39.523] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org already exists on pending associations.
+2026-10-03T11:45:39.529990431Z [2026-10-03 13:45:39.528] [smf_n4 ] [info] handle_receive(42 bytes)
+2026-10-03T11:45:39.530078229Z [2026-10-03 13:45:39.529] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 6 length 38
+2026-10-03T11:45:39.530096439Z [2026-10-03 13:45:39.529] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE from an UPF
+2026-10-03T11:45:39.530110734Z [2026-10-03 13:45:39.529] [smf_n4 ] [warning] Received N4 ASSOCIATION SETUP RESPONSE with message content: 
+2026-10-03T11:45:39.530124594Z :   
+2026-10-03T11:45:39.530137976Z 20060026590E1600003C000500C0A8478B001300010100600004EE6A80F1002B00081000000000000000
+2026-10-03T11:45:39.530149727Z [2026-10-03 13:45:39.529] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE
+2026-10-03T11:45:39.530162083Z [2026-10-03 13:45:39.529] [smf_n4 ] [info] Received N4 ASSOCIATION SETUP RESPONSE with UP function features, FTUP supported
+2026-10-03T11:45:39.530176092Z [2026-10-03 13:45:39.529] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:39.530188251Z [2026-10-03 13:45:39.529] [common] [debug] Resolving an IP address (name 192.168.71.139)
+2026-10-03T11:45:39.530202531Z [2026-10-03 13:45:39.529] [common] [debug] Reverse Resolving Try #0
+2026-10-03T11:45:39.530997950Z [2026-10-03 13:45:39.530] [common] [debug] Resolve IP Addr 192.168.71.139, FQDN upf.5gc.mnc20.mcc999.3gppnetwork.org.oai-public-netA
+2026-10-03T11:45:39.531133293Z [2026-10-03 13:45:39.530] [smf_app] [debug] Found UPF config for pending PFCP association 192.168.71.139
+2026-10-03T11:45:39.531149670Z [2026-10-03 13:45:39.530] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:39.531162494Z [2026-10-03 13:45:39.530] [smf_app] [debug] UPF Interface list is empty: Assume that the UPF has an N3 interface.
+2026-10-03T11:45:39.531175111Z [2026-10-03 13:45:39.530] [smf_app] [debug] UPF Interface list is empty: Assume that the UPF has an N6 interface.
+2026-10-03T11:45:39.531187062Z [2026-10-03 13:45:39.530] [smf_app] [info] Successfully added UPF node: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.531201412Z [2026-10-03 13:45:39.530] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:45:39.531215942Z   + Interface Type.............................: N3
+2026-10-03T11:45:39.531228633Z   + NWI........................................: 
+2026-10-03T11:45:39.531240849Z   + Uplink.....................................: No
+2026-10-03T11:45:39.531426594Z 
+2026-10-03T11:45:39.531449100Z [2026-10-03 13:45:39.530] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:45:39.531463807Z   + Interface Type.............................: N6
+2026-10-03T11:45:39.531476292Z   + NWI........................................: 
+2026-10-03T11:45:39.531489559Z   + Uplink.....................................: No
+2026-10-03T11:45:39.531502456Z 
+2026-10-03T11:45:39.531529439Z [2026-10-03 13:45:39.531] [smf_app] [debug] UPF graph
+2026-10-03T11:45:39.531766391Z [2026-10-03 13:45:39.531] [smf_app] [debug] 
+2026-10-03T11:45:39.531822586Z  - Node.........................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.531839239Z   + Edges
+2026-10-03T11:45:39.531849822Z     - UPF Graph Edge
+2026-10-03T11:45:39.531861767Z       + Interface Type.........................: N3
+2026-10-03T11:45:39.531874420Z       + NWI....................................: 
+2026-10-03T11:45:39.531886387Z       + Uplink.................................: No
+2026-10-03T11:45:39.531898752Z     - UPF Graph Edge
+2026-10-03T11:45:39.531908109Z       + Interface Type.........................: N6
+2026-10-03T11:45:39.531919503Z       + NWI....................................: 
+2026-10-03T11:45:39.531931453Z       + Uplink.................................: No
+2026-10-03T11:45:39.531942436Z - Node.........................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.531954831Z   + Edges
+2026-10-03T11:45:39.531967014Z     - UPF Graph Edge
+2026-10-03T11:45:39.531977646Z       + Interface Type.........................: N3
+2026-10-03T11:45:39.531989846Z       + NWI....................................: 
+2026-10-03T11:45:39.532001091Z       + Uplink.................................: No
+2026-10-03T11:45:39.532012370Z     - UPF Graph Edge
+2026-10-03T11:45:39.532023238Z       + Interface Type.........................: N6
+2026-10-03T11:45:39.532035138Z       + NWI....................................: 
+2026-10-03T11:45:39.532046343Z       + Uplink.................................: No
+2026-10-03T11:45:39.532058793Z 
+2026-10-03T11:45:39.532109375Z [2026-10-03 13:45:39.531] [smf_app] [debug] Added PFCP association with UPF config: 
+2026-10-03T11:45:39.532126038Z  + upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.532138453Z       + host...................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:39.532150633Z       + port...................................: 8805
+2026-10-03T11:45:39.532163129Z       + enable_usage_reporting.................: No
+2026-10-03T11:45:39.532175430Z       + enable_qers............................: Yes
+2026-10-03T11:45:39.532187044Z       + enable_upf_wo_nf_discovery.............: No
+2026-10-03T11:45:39.532200164Z       + enable_dl_pdr_in_session_establishment.: No
+2026-10-03T11:45:39.532212732Z       + upf_info:
+2026-10-03T11:45:39.532224913Z         - snssai_upf_info_item:
+2026-10-03T11:45:39.532237332Z           + snssai:
+2026-10-03T11:45:39.532441516Z             - sst..............................: 1
+2026-10-03T11:45:39.532475984Z             - sd...............................: ffffff
+2026-10-03T11:45:39.532490448Z           + dnns:
+2026-10-03T11:45:39.532502447Z             - dnn..............................: oai
+2026-10-03T11:45:39.532538786Z         - snssai_upf_info_item:
+2026-10-03T11:45:39.532553390Z           + snssai:
+2026-10-03T11:45:39.532564480Z             - sst..............................: 1
+2026-10-03T11:45:39.532576700Z             - sd...............................: 000001
+2026-10-03T11:45:39.532618170Z           + dnns:
+2026-10-03T11:45:39.532631551Z             - dnn..............................: oai.ipv4
+2026-10-03T11:45:39.532645140Z         - snssai_upf_info_item:
+2026-10-03T11:45:39.532657793Z           + snssai:
+2026-10-03T11:45:39.532669292Z             - sst..............................: 222
+2026-10-03T11:45:39.532681980Z             - sd...............................: 00007b
+2026-10-03T11:45:39.532694373Z           + dnns:
+2026-10-03T11:45:39.532705935Z             - dnn..............................: oai
+2026-10-03T11:45:39.532718599Z             - dnn..............................: default
+2026-10-03T11:45:39.532731254Z 
+2026-10-03T11:45:41.528677382Z [2026-10-03 13:45:41.528] [common] [debug] Resolving an FQDN/IP Addr for an UPF node
+2026-10-03T11:45:41.528730931Z [2026-10-03 13:45:41.528] [smf_app] [debug] NFSubscribeNotify response
+2026-10-03T11:45:42.521432547Z [2026-10-03 13:45:42.521] [smf_n4 ] [info] TIME-OUT event timer id 3
+2026-10-03T11:45:44.529135702Z [2026-10-03 13:45:44.528] [smf_n4 ] [info] TIME-OUT event timer id 6
+2026-10-03T11:45:46.519714980Z [2026-10-03 13:45:46.519] [smf_app] [info] TIME-OUT event timer id 1
+2026-10-03T11:45:46.519966448Z [2026-10-03 13:45:46.519] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:45:46.520036768Z [2026-10-03 13:45:46.519] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:45:46.520044463Z [2026-10-03 13:45:46.519] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:45:46.520051101Z [2026-10-03 13:45:46.519] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:45:46.520056665Z [2026-10-03 13:45:46.519] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:45:46.572705426Z [2026-10-03 13:45:46.572] [smf_sbi] [debug] Response data 
+2026-10-03T11:45:46.572737241Z [2026-10-03 13:45:46.572] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:45:46.572745772Z [2026-10-03 13:45:46.572] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:45:46.572752677Z  
+2026-10-03T11:45:46.572758434Z [2026-10-03 13:45:46.572] [smf_app] [debug] NF Update NF response
+2026-10-03T11:45:46.572763785Z [2026-10-03 13:45:46.572] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:45:46.572770620Z [2026-10-03 13:45:46.572] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:45:47.527103075Z [2026-10-03 13:45:47.525] [smf_n4 ] [info] TIME-OUT event timer id 4
+2026-10-03T11:45:47.527114899Z [2026-10-03 13:45:47.525] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:45:47.527951405Z [2026-10-03 13:45:47.527] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:45:47.527973158Z [2026-10-03 13:45:47.527] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:45:52.527114976Z [2026-10-03 13:45:52.526] [smf_n4 ] [info] TIME-OUT event timer id 11
+2026-10-03T11:45:56.572858056Z [2026-10-03 13:45:56.572] [smf_app] [info] TIME-OUT event timer id 8
+2026-10-03T11:45:56.572892187Z [2026-10-03 13:45:56.572] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:45:56.572899324Z [2026-10-03 13:45:56.572] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:45:56.572904771Z [2026-10-03 13:45:56.572] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:45:56.573027421Z [2026-10-03 13:45:56.572] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:45:56.573048298Z [2026-10-03 13:45:56.573] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:45:56.575703124Z [2026-10-03 13:45:56.575] [smf_sbi] [debug] Response data 
+2026-10-03T11:45:56.575745422Z [2026-10-03 13:45:56.575] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:45:56.575766019Z [2026-10-03 13:45:56.575] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:45:56.575780206Z  
+2026-10-03T11:45:56.575946136Z [2026-10-03 13:45:56.575] [smf_app] [debug] NF Update NF response
+2026-10-03T11:45:56.575957466Z [2026-10-03 13:45:56.575] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:45:56.575963261Z [2026-10-03 13:45:56.575] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:45:57.529347005Z [2026-10-03 13:45:57.527] [smf_n4 ] [info] TIME-OUT event timer id 12
+2026-10-03T11:45:57.529412625Z [2026-10-03 13:45:57.528] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:45:57.530653285Z [2026-10-03 13:45:57.529] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:45:57.530861786Z [2026-10-03 13:45:57.529] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:02.571766022Z [2026-10-03 13:46:02.571] [smf_n4 ] [info] TIME-OUT event timer id 16
+2026-10-03T11:46:06.576696311Z [2026-10-03 13:46:06.576] [smf_app] [info] TIME-OUT event timer id 13
+2026-10-03T11:46:06.576748356Z [2026-10-03 13:46:06.576] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:06.576760006Z [2026-10-03 13:46:06.576] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:06.576778787Z [2026-10-03 13:46:06.576] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:06.577617334Z [2026-10-03 13:46:06.577] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:06.577657111Z [2026-10-03 13:46:06.577] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:06.580754185Z [2026-10-03 13:46:06.580] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:06.580950783Z [2026-10-03 13:46:06.580] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:06.580999653Z [2026-10-03 13:46:06.580] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:06.581022866Z  
+2026-10-03T11:46:06.581033059Z [2026-10-03 13:46:06.580] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:06.581040118Z [2026-10-03 13:46:06.580] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:06.581116582Z [2026-10-03 13:46:06.581] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:07.529765171Z [2026-10-03 13:46:07.529] [smf_n4 ] [info] TIME-OUT event timer id 17
+2026-10-03T11:46:07.529865725Z [2026-10-03 13:46:07.529] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:07.533586947Z [2026-10-03 13:46:07.532] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:07.533614032Z [2026-10-03 13:46:07.532] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:12.531383492Z [2026-10-03 13:46:12.531] [smf_n4 ] [info] TIME-OUT event timer id 21
+2026-10-03T11:46:16.581591554Z [2026-10-03 13:46:16.581] [smf_app] [info] TIME-OUT event timer id 18
+2026-10-03T11:46:16.581656206Z [2026-10-03 13:46:16.581] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:16.581676071Z [2026-10-03 13:46:16.581] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:16.581689798Z [2026-10-03 13:46:16.581] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:16.582433571Z [2026-10-03 13:46:16.582] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:16.582482061Z [2026-10-03 13:46:16.582] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:16.587402212Z [2026-10-03 13:46:16.587] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:16.587428892Z [2026-10-03 13:46:16.587] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:16.587438270Z [2026-10-03 13:46:16.587] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:16.587446337Z  
+2026-10-03T11:46:16.587453358Z [2026-10-03 13:46:16.587] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:16.587461260Z [2026-10-03 13:46:16.587] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:16.587490169Z [2026-10-03 13:46:16.587] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:17.533851206Z [2026-10-03 13:46:17.533] [smf_n4 ] [info] TIME-OUT event timer id 22
+2026-10-03T11:46:17.533956158Z [2026-10-03 13:46:17.533] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:17.533988020Z [2026-10-03 13:46:17.533] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:17.534014117Z [2026-10-03 13:46:17.533] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:22.533807488Z [2026-10-03 13:46:22.533] [smf_n4 ] [info] TIME-OUT event timer id 26
+2026-10-03T11:46:26.587536407Z [2026-10-03 13:46:26.587] [smf_app] [info] TIME-OUT event timer id 23
+2026-10-03T11:46:26.587576802Z [2026-10-03 13:46:26.587] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:26.587586304Z [2026-10-03 13:46:26.587] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:26.587593065Z [2026-10-03 13:46:26.587] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:26.587819714Z [2026-10-03 13:46:26.587] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:26.587840060Z [2026-10-03 13:46:26.587] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:26.590494389Z [2026-10-03 13:46:26.590] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:26.590525114Z [2026-10-03 13:46:26.590] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:26.590535229Z [2026-10-03 13:46:26.590] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:26.590541961Z  
+2026-10-03T11:46:26.590645374Z [2026-10-03 13:46:26.590] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:26.590663125Z [2026-10-03 13:46:26.590] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:26.590671138Z [2026-10-03 13:46:26.590] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:27.534225759Z [2026-10-03 13:46:27.533] [smf_n4 ] [info] TIME-OUT event timer id 27
+2026-10-03T11:46:27.534482049Z [2026-10-03 13:46:27.533] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:27.534672925Z [2026-10-03 13:46:27.534] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:27.534687634Z [2026-10-03 13:46:27.534] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:32.534093638Z [2026-10-03 13:46:32.533] [smf_n4 ] [info] TIME-OUT event timer id 31
+2026-10-03T11:46:33.168674043Z [2026-10-03 13:46:33.168] [smf_api] [debug] 
+2026-10-03T11:46:33.168791190Z [2026-10-03 13:46:33.168] [smf_api] [info] Received a SM context create request from AMF.
+2026-10-03T11:46:33.168799898Z [2026-10-03 13:46:33.168] [smf_api] [debug] Message content 
+2026-10-03T11:46:33.168814307Z  ------Boundary
+2026-10-03T11:46:33.168818478Z Content-Type: application/json
+2026-10-03T11:46:33.168822105Z 
+2026-10-03T11:46:33.168825705Z {"anType":"3GPP_ACCESS","dnn":"oai","epsInterworkingInd":"NONE","guami":{"amfId":"010041","plmnId":{"mcc":"999","mnc":"20"}},"n1SmMsg":{"contentId":"n1SmMsg"},"pduSessionId":1,"ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"00007B","sst":222},"selMode":"VERIFIED","servingNetwork":{"mcc":"999","mnc":"20"},"servingNfId":"0bf0a3d5-228e-4ea2-8ca1-d91e1940ff90","smContextStatusUri":"http://192.168.71.137:8080/namf-status-notify/v1/pdu-session-release/callback/imsi-999100000000031/1","supi":"imsi-999100000000031","ueLocation":{"nrLocation":{"ncgi":{"nrCellId":"000000010","plmnId":{"mcc":"999","mnc":"20"}},"tai":{"plmnId":{"mcc":"999","mnc":"20"},"tac":"40960"}}}}
+2026-10-03T11:46:33.168835574Z ------Boundary
+2026-10-03T11:46:33.168838988Z Content-Type: application/vnd.3gpp.5gnas
+2026-10-03T11:46:33.168842528Z Content-Id: n1SmMsg
+2026-10-03T11:46:33.168846089Z 
+2026-10-03T11:46:33.168849194Z .�����(
+2026-10-03T11:46:33.168979994Z [2026-10-03 13:46:33.168] [common] [debug] Parsing the message with the Simple Parser
+2026-10-03T11:46:33.169064077Z [2026-10-03 13:46:33.169] [common] [debug] Boundary: ----Boundary
+2026-10-03T11:46:33.169408498Z [2026-10-03 13:46:33.169] [common] [debug] Content Type: application/json
+2026-10-03T11:46:33.169425623Z [2026-10-03 13:46:33.169] [common] [debug] Content Id: root
+2026-10-03T11:46:33.169430192Z [2026-10-03 13:46:33.169] [common] [debug] Body: {"anType":"3GPP_ACCESS","dnn":"oai","epsInterworkingInd":"NONE","guami":{"amfId":"010041","plmnId":{"mcc":"999","mnc":"20"}},"n1SmMsg":{"contentId":"n1SmMsg"},"pduSessionId":1,"ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"00007B","sst":222},"selMode":"VERIFIED","servingNetwork":{"mcc":"999","mnc":"20"},"servingNfId":"0bf0a3d5-228e-4ea2-8ca1-d91e1940ff90","smContextStatusUri":"http://192.168.71.137:8080/namf-status-notify/v1/pdu-session-release/callback/imsi-999100000000031/1","supi":"imsi-999100000000031","ueLocation":{"nrLocation":{"ncgi":{"nrCellId":"000000010","plmnId":{"mcc":"999","mnc":"20"}},"tai":{"plmnId":{"mcc":"999","mnc":"20"},"tac":"40960"}}}}
+2026-10-03T11:46:33.169440653Z [2026-10-03 13:46:33.169] [common] [debug] Content Type: application/vnd.3gpp.5gnas
+2026-10-03T11:46:33.169444248Z [2026-10-03 13:46:33.169] [common] [debug] Content Id: n1SmMsg
+2026-10-03T11:46:33.169447686Z [2026-10-03 13:46:33.169] [common] [debug] Body: .�����(
+2026-10-03T11:46:33.169451826Z [2026-10-03 13:46:33.169] [smf_api] [debug] Number of MIME parts 2
+2026-10-03T11:46:33.169455038Z [2026-10-03 13:46:33.169] [smf_api] [debug] N1 SM message is set
+2026-10-03T11:46:33.169458257Z [2026-10-03 13:46:33.169] [smf_api] [info] Handle PDU Session Create SM Context Request.
+2026-10-03T11:46:33.169461511Z [2026-10-03 13:46:33.169] [smf_api] [debug] N1 SM message: .�����(
+2026-10-03T11:46:33.169476212Z [2026-10-03 13:46:33.169] [smf_api] [debug] Create a pdu_session_create_sm_context_request message and store the necessary information
+2026-10-03T11:46:33.169489823Z [2026-10-03 13:46:33.169] [smf_app] [debug] Convert SmContextMessage (OpenAPI) to PDUSession_CreateSMContext
+2026-10-03T11:46:33.170644242Z [2026-10-03 13:46:33.169] [smf_app] [debug] N1 SM message: .�����(
+2026-10-03T11:46:33.170668710Z [2026-10-03 13:46:33.169] [smf_app] [debug] SUPI imsi-999100000000031
+2026-10-03T11:46:33.170673437Z [2026-10-03 13:46:33.169] [smf_app] [debug] DNN oai
+2026-10-03T11:46:33.170677007Z [2026-10-03 13:46:33.169] [smf_app] [debug] S-NSSAI SST 222, SD 00007b
+2026-10-03T11:46:33.170680374Z [2026-10-03 13:46:33.169] [smf_app] [debug] PDU Session ID 1
+2026-10-03T11:46:33.170684255Z [2026-10-03 13:46:33.169] [smf_app] [debug] ServingNfId 0bf0a3d5-228e-4ea2-8ca1-d91e1940ff90
+2026-10-03T11:46:33.170688124Z [2026-10-03 13:46:33.169] [smf_app] [debug] RequestType INITIAL_REQUEST
+2026-10-03T11:46:33.170691737Z [2026-10-03 13:46:33.169] [smf_app] [debug] SMContextStatusUri http://192.168.71.137:8080/namf-status-notify/v1/pdu-session-release/callback/imsi-999100000000031/1
+2026-10-03T11:46:33.170695086Z [2026-10-03 13:46:33.169] [smf_app] [debug] SelMode VERIFIED
+2026-10-03T11:46:33.170698682Z [2026-10-03 13:46:33.169] [smf_app] [debug] Serving Network (MCC 999, MNC 20)
+2026-10-03T11:46:33.170702040Z [2026-10-03 13:46:33.169] [smf_app] [debug] AN Type 3GPP_ACCESS
+2026-10-03T11:46:33.170705514Z [2026-10-03 13:46:33.169] [smf_api] [debug] Promise ID generated 8
+2026-10-03T11:46:33.170708939Z [2026-10-03 13:46:33.169] [smf_app] [info] Handle a PDU Session Create SM Context Request from an AMF (HTTP version 2)
+2026-10-03T11:46:33.170712671Z [2026-10-03 13:46:33.169] [smf_n1 ] [info] Decode NAS message from N1 SM Container.
+2026-10-03T11:46:33.170891065Z Content:  2e  01  01  c1  ff  ff  91  a1  28  01  00  7b  00  07  80  00  0a  00  00  0d  00 
+2026-10-03T11:46:33.170903263Z [2026-10-03 13:46:33.170] [nas] [debug] Decoding Nas5gsmMessage
+2026-10-03T11:46:33.170938311Z [2026-10-03 13:46:33.170] [nas] [debug] Decoding Nas5gsmHeader
+2026-10-03T11:46:33.174621695Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding PDU Session Identity
+2026-10-03T11:46:33.174728172Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded value 0x1
+2026-10-03T11:46:33.174759894Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded PDU Session Identity, len (1)
+2026-10-03T11:46:33.174786632Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding Procedure Transaction Identity
+2026-10-03T11:46:33.174811999Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded value 0x1
+2026-10-03T11:46:33.174837247Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Procedure Transaction Identity, len (1)
+2026-10-03T11:46:33.174863154Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Nas5gsmHeader len (4 octets)
+2026-10-03T11:46:33.174888937Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Nas5gsmMessage len (4 octets)
+2026-10-03T11:46:33.174970064Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding PduSessionEstablishmentRequest message
+2026-10-03T11:46:33.174999312Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding Nas5gsmMessage
+2026-10-03T11:46:33.175024557Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding Nas5gsmHeader
+2026-10-03T11:46:33.175049374Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding PDU Session Identity
+2026-10-03T11:46:33.175074474Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded value 0x1
+2026-10-03T11:46:33.175098733Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded PDU Session Identity, len (1)
+2026-10-03T11:46:33.175124356Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding Procedure Transaction Identity
+2026-10-03T11:46:33.175149837Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded value 0x1
+2026-10-03T11:46:33.175175551Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Procedure Transaction Identity, len (1)
+2026-10-03T11:46:33.175201508Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Nas5gsmHeader len (4 octets)
+2026-10-03T11:46:33.175227197Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Nas5gsmMessage len (4 octets)
+2026-10-03T11:46:33.175297096Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding Integrity Protection Maximum Data Rate
+2026-10-03T11:46:33.175339911Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Maximum data rate per UE for user-plane integrity protection for uplink 0xff
+2026-10-03T11:46:33.175367164Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Maximum data rate per UE for user-plane integrity protection for downlink 0xff
+2026-10-03T11:46:33.175394287Z [2026-10-03 13:46:33.171] [nas] [debug] Decoded Integrity Protection Maximum Data Rate, len (2)
+2026-10-03T11:46:33.175419171Z [2026-10-03 13:46:33.171] [nas] [debug] First option IEI (0x91)
+2026-10-03T11:46:33.175443534Z [2026-10-03 13:46:33.171] [nas] [debug] Decoding IEI 0x9
+2026-10-03T11:46:33.175470881Z [2026-10-03 13:46:33.172] [nas] [debug] Next IEI (0xa1)
+2026-10-03T11:46:33.175501947Z [2026-10-03 13:46:33.172] [nas] [debug] Decoding IEI 0xa
+2026-10-03T11:46:33.175527540Z [2026-10-03 13:46:33.173] [nas] [debug] Next IEI (0x28)
+2026-10-03T11:46:33.175553621Z [2026-10-03 13:46:33.173] [nas] [debug] Decoding IEI 0x28
+2026-10-03T11:46:33.175578688Z [2026-10-03 13:46:33.173] [nas] [debug] Decoding 5GSM Capability
+2026-10-03T11:46:33.175954237Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded 5GSM Capability, Octet3 value (0x0)
+2026-10-03T11:46:33.175965819Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded 5GSM Capability, len (3)
+2026-10-03T11:46:33.175969784Z [2026-10-03 13:46:33.175] [nas] [debug] Next IEI (0x7b)
+2026-10-03T11:46:33.175972994Z [2026-10-03 13:46:33.175] [nas] [debug] Decoding IEI 0x7b
+2026-10-03T11:46:33.175976267Z [2026-10-03 13:46:33.175] [nas] [debug] Decoding Extended Protocol Configuration Options
+2026-10-03T11:46:33.175979625Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded PCO ID 0xa
+2026-10-03T11:46:33.175992488Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded PCO ID 0xd
+2026-10-03T11:46:33.175996035Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded Extended Protocol Configuration Options, len (10)
+2026-10-03T11:46:33.175999192Z [2026-10-03 13:46:33.175] [nas] [debug] Next IEI (0x0)
+2026-10-03T11:46:33.176002356Z [2026-10-03 13:46:33.175] [nas] [debug] Decoded PduSessionEstablishmentRequest message len (21)
+2026-10-03T11:46:33.176005549Z [2026-10-03 13:46:33.175] [smf_app] [debug] PDU Session Type 1
+2026-10-03T11:46:33.176798053Z [2026-10-03 13:46:33.175] [smf_app] [info] Handle a PDU Session Create SM Context Request message from AMF, SUPI imsi-999100000000031, SNSSAI - snssai:
+2026-10-03T11:46:33.177056908Z   + sst........................................: 222
+2026-10-03T11:46:33.177170037Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.177201033Z 
+2026-10-03T11:46:33.177931510Z [2026-10-03 13:46:33.175] [smf_app] [debug] Requested DNN: oai
+2026-10-03T11:46:33.177957808Z [2026-10-03 13:46:33.175] [smf_app] [debug] DNN label: , dnn: default
+2026-10-03T11:46:33.177962459Z [2026-10-03 13:46:33.175] [smf_app] [debug] DNN label: , dnn: ims
+2026-10-03T11:46:33.177965403Z [2026-10-03 13:46:33.175] [smf_app] [debug] DNN label: , dnn: oai
+2026-10-03T11:46:33.177968451Z [2026-10-03 13:46:33.175] [smf_app] [debug] DNN matched!
+2026-10-03T11:46:33.177971578Z [2026-10-03 13:46:33.175] [smf_app] [debug] PDU Session Type 1, PDN Type 1
+2026-10-03T11:46:33.177974588Z [2026-10-03 13:46:33.175] [smf_app] [debug] Create a new SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.177977867Z [2026-10-03 13:46:33.175] [smf_app] [debug] The Session Management Subscription data is not available
+2026-10-03T11:46:33.177984198Z [2026-10-03 13:46:33.175] [smf_app] [debug] Retrieve Session Management Subscription data from the UDM
+2026-10-03T11:46:33.177987551Z [2026-10-03 13:46:33.175] [smf_app] [debug] Promise ID generated 9
+2026-10-03T11:46:33.178048441Z [2026-10-03 13:46:33.177] [smf_sbi] [debug] UDM's URL: http://udm.5gc.mnc20.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data?single-nssai={"sst":222,"sd":"00007b"}&dnn=oai&plmn-id={"mcc":"999","mnc":"20"} 
+2026-10-03T11:46:33.180214133Z [2026-10-03 13:46:33.178] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.197410736Z [2026-10-03 13:46:33.196] [smf_sbi] [info] Selected home UDM http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080 via local NRF/SEPP; serving PLMN 99920
+2026-10-03T11:46:33.197443220Z [2026-10-03 13:46:33.196] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.230047175Z [2026-10-03 13:46:33.229] [smf_sbi] [debug] Response data [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T11:46:33.230314979Z [2026-10-03 13:46:33.229] [smf_sbi] [debug] Session Management Subscription Data Retrieval, response from UDM, HTTP Code: 200
+2026-10-03T11:46:33.230334830Z [2026-10-03 13:46:33.229] [smf_sbi] [debug] Got successful response from UDM, URL: http://udm.5gc.mnc20.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data?single-nssai={"sst":222,"sd":"00007b"}&dnn=oai&plmn-id={"mcc":"999","mnc":"20"} 
+2026-10-03T11:46:33.230863341Z [2026-10-03 13:46:33.230] [smf_sbi] [debug] Response from UDM [{"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}]
+2026-10-03T11:46:33.230888166Z [2026-10-03 13:46:33.230] [smf_app] [debug] Trigger the response from SMF: Set promise with ID 9 to ready
+2026-10-03T11:46:33.230896384Z [2026-10-03 13:46:33.230] [smf_app] [debug] Got result for promise ID 9
+2026-10-03T11:46:33.230902515Z [2026-10-03 13:46:33.230] [smf_app] [debug] Response from UDM {"dnnConfigurations":{"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}},"singleNssai":{"sd":"00007b","sst":222}}
+2026-10-03T11:46:33.231019363Z [2026-10-03 13:46:33.230] [smf_app] [debug] DNN Configurations {"oai":{"5gQosProfile":{"5qi":6,"arp":{"preemptCap":"NOT_PREEMPT","preemptVuln":"NOT_PREEMPTABLE","priorityLevel":1},"priorityLevel":1},"pduSessionTypes":{"defaultSessionType":"IPV4"},"sessionAmbr":{"downlink":"100Mbps","uplink":"100Mbps"},"sscModes":{"defaultSscMode":"SSC_MODE_1"}}}
+2026-10-03T11:46:33.231044002Z [2026-10-03 13:46:33.230] [smf_app] [debug] DNN oai
+2026-10-03T11:46:33.231052094Z [2026-10-03 13:46:33.230] [smf_app] [debug] Default session type IPV4
+2026-10-03T11:46:33.231058480Z [2026-10-03 13:46:33.230] [smf_app] [debug] Default SSC Mode SSC_MODE_1
+2026-10-03T11:46:33.231064612Z [2026-10-03 13:46:33.230] [smf_app] [debug] Session AMBR Uplink 100Mbps, Downlink 100Mbps
+2026-10-03T11:46:33.231566553Z [2026-10-03 13:46:33.231] [smf_app] [info] Inserted DNN Subscription, key: 31710 dnn oai 
+2026-10-03T11:46:33.231601208Z  - snssai:
+2026-10-03T11:46:33.231608246Z   + sst........................................: 222
+2026-10-03T11:46:33.231614200Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.231620529Z 
+2026-10-03T11:46:33.234186888Z [2026-10-03 13:46:33.234] [smf_sbi] [debug] Subscribe SDM Subscriptions with the UDM
+2026-10-03T11:46:33.234725461Z [2026-10-03 13:46:33.234] [smf_app] [debug] Generated a SMF Context ID 0x1 
+2026-10-03T11:46:33.234962461Z [2026-10-03 13:46:33.234] [smf_app] [info] Handle a PDU Session Create SM Context Request message from AMF (HTTP version 2)
+2026-10-03T11:46:33.234973530Z [2026-10-03 13:46:33.234] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.235019580Z [2026-10-03 13:46:33.234] [smf_app] [debug] Create a new PDU session
+2026-10-03T11:46:33.235026853Z [2026-10-03 13:46:33.234] [smf_sbi] [debug] UDM's URI: http://udm.5gc.mnc20.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sdm-subscriptions 
+2026-10-03T11:46:33.235034534Z [2026-10-03 13:46:33.234] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.235482436Z [2026-10-03 13:46:33.235] [smf_app] [info] Add PDU Session with Id 1
+2026-10-03T11:46:33.235951102Z [2026-10-03 13:46:33.235] [smf_app] [debug] PDU Session Id (1) has been added successfully
+2026-10-03T11:46:33.235976682Z [2026-10-03 13:46:33.235] [smf_app] [debug] PCO: Allocation via NAS signaling requested
+2026-10-03T11:46:33.235982986Z [2026-10-03 13:46:33.235] [smf_app] [debug] PCO: Protocol identifier IPCP option DNS Server Request
+2026-10-03T11:46:33.235988142Z [2026-10-03 13:46:33.235] [smf_app] [debug] PCO: Protocol identifier IPCP option Link MTU Request
+2026-10-03T11:46:33.235992796Z [2026-10-03 13:46:33.235] [smf_app] [debug] UE Address Allocation
+2026-10-03T11:46:33.235998174Z [2026-10-03 13:46:33.235] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.236003224Z  - snssai:
+2026-10-03T11:46:33.236008103Z   + sst........................................: 222
+2026-10-03T11:46:33.236015887Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.236021093Z 
+2026-10-03T11:46:33.236025452Z [2026-10-03 13:46:33.235] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.236030274Z [2026-10-03 13:46:33.235] [smf_app] [debug] PDU Session Type IPv4
+2026-10-03T11:46:33.236034984Z [2026-10-03 13:46:33.235] [smf_app] [info] PAA, Ipv4 Address: 12.1.1.130
+2026-10-03T11:46:33.236039690Z [2026-10-03 13:46:33.235] [common] [debug] Resolving a DNS (name 192.168.71.137)
+2026-10-03T11:46:33.236044342Z [2026-10-03 13:46:33.235] [common] [debug] Resolving DNS Try #0
+2026-10-03T11:46:33.236239950Z [2026-10-03 13:46:33.236] [common] [debug] Resolved a DNS (name 192.168.71.137, protocol http): Ip Addr 192.168.71.137, port 80
+2026-10-03T11:46:33.237360728Z [2026-10-03 13:46:33.236] [smf_api] [debug] AMF IP Addr http://192.168.71.137:8080
+2026-10-03T11:46:33.237416233Z [2026-10-03 13:46:33.236] [smf_app] [info] Get default QoS for a PDU Session, key 222
+2026-10-03T11:46:33.237423230Z [2026-10-03 13:46:33.236] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.237429443Z  - snssai:
+2026-10-03T11:46:33.237434894Z   + sst........................................: 222
+2026-10-03T11:46:33.237440063Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.237445256Z 
+2026-10-03T11:46:33.237449632Z [2026-10-03 13:46:33.236] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.237454306Z [2026-10-03 13:46:33.236] [smf_app] [debug] Get AMBR info from the subscription information (DNN oai)
+2026-10-03T11:46:33.237474404Z [2026-10-03 13:46:33.236] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.237479992Z  - snssai:
+2026-10-03T11:46:33.237484383Z   + sst........................................: 222
+2026-10-03T11:46:33.237489651Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.237494408Z 
+2026-10-03T11:46:33.237499066Z [2026-10-03 13:46:33.236] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.237504472Z [2026-10-03 13:46:33.237] [smf_app] [debug] Set the notification URI http://smf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nsmf-callback/v1/1/sm-policy-control-notify for the PCF to use to notify the SMF of 
+2026-10-03T11:46:33.237510502Z [2026-10-03 13:46:33.237] [smf_n7 ] [warning] Local PCC rules are not supported yet
+2026-10-03T11:46:33.237516059Z [2026-10-03 13:46:33.237] [smf_n7 ] [info] PCF SM Policy Association Creation was not successful. Continue using default rules
+2026-10-03T11:46:33.238453499Z [2026-10-03 13:46:33.238] [smf_app] [debug] Send ITTI msg to SMF APP to trigger the response of Server
+2026-10-03T11:46:33.238795353Z [2026-10-03 13:46:33.238] [smf_app] [debug] Trigger PDU Session Create SM Context Response: Set promise with ID 8 to ready
+2026-10-03T11:46:33.240066582Z [2026-10-03 13:46:33.239] [smf_app] [debug] Trigger the response from SMF: Set promise with ID 8 to ready
+2026-10-03T11:46:33.240099803Z [2026-10-03 13:46:33.239] [smf_app] [info] Create a procedure to process this message.
+2026-10-03T11:46:33.240106354Z [2026-10-03 13:46:33.239] [smf_app] [info] Perform a procedure - Create SM Context Request
+2026-10-03T11:46:33.240111639Z [2026-10-03 13:46:33.239] [smf_app] [info] Get default QoS for a PDU Session, key 222
+2026-10-03T11:46:33.240116271Z [2026-10-03 13:46:33.239] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.240121395Z  - snssai:
+2026-10-03T11:46:33.240126521Z   + sst........................................: 222
+2026-10-03T11:46:33.240132016Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.240137040Z 
+2026-10-03T11:46:33.240141853Z [2026-10-03 13:46:33.239] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.240147023Z [2026-10-03 13:46:33.239] [smf_app] [debug] Get AMBR info from the subscription information (DNN oai)
+2026-10-03T11:46:33.240151990Z [2026-10-03 13:46:33.239] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.240157013Z  - snssai:
+2026-10-03T11:46:33.240161147Z   + sst........................................: 222
+2026-10-03T11:46:33.240165819Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.240170375Z 
+2026-10-03T11:46:33.240174581Z [2026-10-03 13:46:33.239] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.240179324Z [2026-10-03 13:46:33.239] [smf_app] [debug] Session AMBR for the QER: ul=100Mbps dl=100Mbps
+2026-10-03T11:46:33.240200622Z [2026-10-03 13:46:33.239] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.241160586Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF selection DFS: Handle UPF upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:46:33.241177616Z [2026-10-03 13:46:33.241] [smf_app] [info] Verifying if UPF edge serves network
+2026-10-03T11:46:33.241183614Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF Edge: - UPF Graph Edge
+2026-10-03T11:46:33.241188749Z   + Interface Type.............................: N3
+2026-10-03T11:46:33.241193430Z   + NWI........................................: 
+2026-10-03T11:46:33.241198024Z   + Uplink.....................................: No
+2026-10-03T11:46:33.241202474Z 
+2026-10-03T11:46:33.241206880Z [2026-10-03 13:46:33.241] [smf_app] [debug] Selection Criteria: - UPF Selection Criteria
+2026-10-03T11:46:33.241212022Z   + snssai:
+2026-10-03T11:46:33.241216362Z     - sst......................................: 222
+2026-10-03T11:46:33.241220737Z     - sd.......................................: 00007b
+2026-10-03T11:46:33.241225117Z   + DNN........................................: oai
+2026-10-03T11:46:33.241229684Z 
+2026-10-03T11:46:33.241234230Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org does NOT serve SNSSAI
+2026-10-03T11:46:33.241239275Z  - snssai:
+2026-10-03T11:46:33.241243825Z   + sst........................................: 222
+2026-10-03T11:46:33.241265542Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241271779Z 
+2026-10-03T11:46:33.241278174Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org does NOT serve SNSSAI
+2026-10-03T11:46:33.241282381Z  - snssai:
+2026-10-03T11:46:33.241286652Z   + sst........................................: 222
+2026-10-03T11:46:33.241291535Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241296461Z 
+2026-10-03T11:46:33.241301598Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org serves SNSSAI
+2026-10-03T11:46:33.241307016Z  - snssai:
+2026-10-03T11:46:33.241311535Z   + sst........................................: 222
+2026-10-03T11:46:33.241316989Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241322714Z 
+2026-10-03T11:46:33.241327886Z [2026-10-03 13:46:33.241] [smf_app] [info] Successfully added UPF node: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:46:33.241333588Z [2026-10-03 13:46:33.241] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:46:33.241338922Z   + Interface Type.............................: N3
+2026-10-03T11:46:33.241344531Z   + NWI........................................: 
+2026-10-03T11:46:33.241366177Z   + Uplink.....................................: No
+2026-10-03T11:46:33.241373290Z 
+2026-10-03T11:46:33.241396292Z [2026-10-03 13:46:33.241] [smf_app] [info] Verifying if UPF edge serves network
+2026-10-03T11:46:33.241799268Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF Edge: - UPF Graph Edge
+2026-10-03T11:46:33.241814133Z   + Interface Type.............................: N6
+2026-10-03T11:46:33.241819697Z   + NWI........................................: 
+2026-10-03T11:46:33.241824628Z   + Uplink.....................................: No
+2026-10-03T11:46:33.241829890Z 
+2026-10-03T11:46:33.241834367Z [2026-10-03 13:46:33.241] [smf_app] [debug] Selection Criteria: - UPF Selection Criteria
+2026-10-03T11:46:33.241839068Z   + snssai:
+2026-10-03T11:46:33.241843305Z     - sst......................................: 222
+2026-10-03T11:46:33.241847571Z     - sd.......................................: 00007b
+2026-10-03T11:46:33.241851988Z   + DNN........................................: oai
+2026-10-03T11:46:33.241856572Z 
+2026-10-03T11:46:33.241860673Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org does NOT serve SNSSAI
+2026-10-03T11:46:33.241865614Z  - snssai:
+2026-10-03T11:46:33.241869980Z   + sst........................................: 222
+2026-10-03T11:46:33.241874921Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241879287Z 
+2026-10-03T11:46:33.241883604Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org does NOT serve SNSSAI
+2026-10-03T11:46:33.241888286Z  - snssai:
+2026-10-03T11:46:33.241892751Z   + sst........................................: 222
+2026-10-03T11:46:33.241896827Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241901247Z 
+2026-10-03T11:46:33.241906252Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF upf.5gc.mnc20.mcc999.3gppnetwork.org serves SNSSAI
+2026-10-03T11:46:33.241910686Z  - snssai:
+2026-10-03T11:46:33.241915131Z   + sst........................................: 222
+2026-10-03T11:46:33.241926598Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.241931591Z 
+2026-10-03T11:46:33.241936194Z [2026-10-03 13:46:33.241] [smf_app] [debug] Successfully added UPF graph edge for upf.5gc.mnc20.mcc999.3gppnetwork.org: - UPF Graph Edge
+2026-10-03T11:46:33.241941142Z   + Interface Type.............................: N6
+2026-10-03T11:46:33.241945276Z   + NWI........................................: 
+2026-10-03T11:46:33.241950044Z   + Uplink.....................................: Yes
+2026-10-03T11:46:33.241954189Z 
+2026-10-03T11:46:33.241958306Z [2026-10-03 13:46:33.241] [smf_app] [info] UPF selection was successful.
+2026-10-03T11:46:33.241975996Z [2026-10-03 13:46:33.241] [smf_app] [debug] UPF graph
+2026-10-03T11:46:33.241997546Z [2026-10-03 13:46:33.241] [smf_app] [debug] 
+2026-10-03T11:46:33.242003518Z  - Node.........................................: upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:46:33.242008297Z   + Edges
+2026-10-03T11:46:33.242012511Z     - UPF Graph Edge
+2026-10-03T11:46:33.242017356Z       + Interface Type.........................: N3
+2026-10-03T11:46:33.242021935Z       + NWI....................................: 
+2026-10-03T11:46:33.242026125Z       + Uplink.................................: No
+2026-10-03T11:46:33.242030738Z     - UPF Graph Edge
+2026-10-03T11:46:33.242034837Z       + Interface Type.........................: N6
+2026-10-03T11:46:33.242039116Z       + NWI....................................: 
+2026-10-03T11:46:33.242043761Z       + Uplink.................................: Yes
+2026-10-03T11:46:33.242048578Z 
+2026-10-03T11:46:33.242052942Z [2026-10-03 13:46:33.241] [smf_app] [debug] DFS Asynch: Handle UPF upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:46:33.244177170Z [2026-10-03 13:46:33.243] [smf_app] [info] Create PDR for FlowInfo:
+2026-10-03T11:46:33.244218527Z  {"flowDescription":"permit out ip from any to assigned","flowDirection":"BIDIRECTIONAL","packetFilterUsage":true}
+2026-10-03T11:46:33.244230870Z [2026-10-03 13:46:33.244] [smf_app] [debug] Created PDR ID, rule ID 1
+2026-10-03T11:46:33.244558684Z [2026-10-03 13:46:33.244] [smf_app] [info] Sending ITTI message 37itti_n4_session_establishment_request to task TASK_SMF_N4
+2026-10-03T11:46:33.244871918Z [2026-10-03 13:46:33.244] [smf_api] [debug] Got result for promise ID 8
+2026-10-03T11:46:33.245500803Z [2026-10-03 13:46:33.245] [smf_api] [debug] Add location header http://smf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/sm-contexts/1
+2026-10-03T11:46:33.247083474Z [2026-10-03 13:46:33.246] [smf_n4 ] [info] handle_receive(70 bytes)
+2026-10-03T11:46:33.247101481Z [2026-10-03 13:46:33.247] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 51 length 66
+2026-10-03T11:46:33.247883394Z [2026-10-03 13:46:33.247] [smf_app] [debug] Received N4 Session Establishment Response sender teid 0x1  pfcp_tx_id A
+2026-10-03T11:46:33.248646818Z [2026-10-03 13:46:33.247] [smf_app] [debug] Handle N4 Session Establishment Response (PDU Session Id 1)
+2026-10-03T11:46:33.248686986Z [2026-10-03 13:46:33.247] [smf_app] [debug] Successfully associate PDR 1 with F-TEID ID 0x1 - IP: 192.168.71.139 (QFI: 1)
+2026-10-03T11:46:33.248694027Z [2026-10-03 13:46:33.247] [smf_app] [debug] UPF graph in SMF finished
+2026-10-03T11:46:33.248703207Z [2026-10-03 13:46:33.247] [smf_n1 ] [debug] Created new QoS rule with ID 1 and 1 packet filters
+2026-10-03T11:46:33.248707718Z [2026-10-03 13:46:33.247] [smf_app] [debug] Prepare a PDU Session Establishment Accept message and send to UE
+2026-10-03T11:46:33.248724084Z [2026-10-03 13:46:33.247] [smf_n1 ] [info] Create N1 SM Container, PDU Session Establishment Accept
+2026-10-03T11:46:33.248728886Z [2026-10-03 13:46:33.247] [smf_n1 ] [debug] PDU Session Establishment Accept, PDU Session Identity 0x1, Procedure Transaction Identity 0x1
+2026-10-03T11:46:33.248733492Z [2026-10-03 13:46:33.247] [smf_n1 ] [info] PDU_SESSION_ESTABLISHMENT_ACCEPT, encode starting...
+2026-10-03T11:46:33.248737608Z [2026-10-03 13:46:33.247] [smf_n1 ] [debug] PDU Session Type: 1
+2026-10-03T11:46:33.248741683Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] Get default values for Session-AMBR
+2026-10-03T11:46:33.248745568Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] Get SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.248749547Z [2026-10-03 13:46:33.248] [smf_app] [debug] Get AMBR info from the subscription information (DNN oai)
+2026-10-03T11:46:33.248753586Z [2026-10-03 13:46:33.248] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.248757457Z  - snssai:
+2026-10-03T11:46:33.248761004Z   + sst........................................: 222
+2026-10-03T11:46:33.248764826Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.250789999Z 
+2026-10-03T11:46:33.250846629Z [2026-10-03 13:46:33.248] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.250864396Z [2026-10-03 13:46:33.248] [smf_app] [error] AMBR info from the subscription information, Downlink 0x64, Uplink 0x6
+2026-10-03T11:46:33.250870525Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] sm_context: PDU Session Type IPV4
+2026-10-03T11:46:33.250874636Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] Pdu_session_type: PDU Session Type 1
+2026-10-03T11:46:33.250878815Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] UE IPv4 Address 12.1.1.130
+2026-10-03T11:46:33.250882505Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] SNSSAI SST 222, SD 123 (0x7b)
+2026-10-03T11:46:33.250886627Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] Get SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.251112023Z [2026-10-03 13:46:33.248] [smf_n1 ] [debug] Full DNN oai.mnc20.mcc999.gprs, dotted DNN oaimnc20mcc999gprs
+2026-10-03T11:46:33.251119877Z [2026-10-03 13:46:33.249] [smf_n1 ] [debug] Size of PDU Session Establishment Accept message: 86 (octets)
+2026-10-03T11:46:33.251124041Z [2026-10-03 13:46:33.249] [nas] [debug] Encoding PduSessionEstablishmentAccept message
+2026-10-03T11:46:33.251127747Z [2026-10-03 13:46:33.249] [nas] [debug] Encoding Nas5gsmMessage
+2026-10-03T11:46:33.251153455Z [2026-10-03 13:46:33.249] [nas] [debug] Encoding Nas5gsmHeader
+2026-10-03T11:46:33.251174509Z [2026-10-03 13:46:33.249] [nas] [debug] Encoding PDU Session Identity
+2026-10-03T11:46:33.251179480Z [2026-10-03 13:46:33.249] [nas] [debug] Encoded PDU Session Identity, len (1)
+2026-10-03T11:46:33.251183387Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding Procedure Transaction Identity
+2026-10-03T11:46:33.251187145Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Procedure Transaction Identity, len (1)
+2026-10-03T11:46:33.251204549Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Nas5gsmHeader (len 4 octets)
+2026-10-03T11:46:33.251209127Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Nas5gsmMessage (len 4 octets)
+2026-10-03T11:46:33.251213090Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Type1NasIeFormatTv len 0
+2026-10-03T11:46:33.251217146Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding QoS Rules
+2026-10-03T11:46:33.251220768Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding QosRule
+2026-10-03T11:46:33.251224884Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded QosRule, len (9)
+2026-10-03T11:46:33.251228606Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded QoS Rules, len (11)
+2026-10-03T11:46:33.251232483Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding Session-AMBR
+2026-10-03T11:46:33.251236396Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Session-AMBR, len (7)
+2026-10-03T11:46:33.251240162Z [2026-10-03 13:46:33.250] [nas] [debug] IE 5GSM Cause is not available
+2026-10-03T11:46:33.251244333Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding PDU Address
+2026-10-03T11:46:33.251289279Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded PDU Address, len (7)
+2026-10-03T11:46:33.251294147Z [2026-10-03 13:46:33.250] [nas] [debug] IE GPRS Timer is not available
+2026-10-03T11:46:33.251298039Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding S-NSSAI
+2026-10-03T11:46:33.251301503Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded header S-NSSAI, len (2)
+2026-10-03T11:46:33.251305405Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded S-NSSAI, len (6)
+2026-10-03T11:46:33.251309065Z [2026-10-03 13:46:33.250] [smf_sbi] [info] Selected home UDM http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080 via local NRF/SEPP; serving PLMN 99920
+2026-10-03T11:46:33.251313444Z [2026-10-03 13:46:33.250] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.251323301Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Type1NasIeFormatTv, len (1)
+2026-10-03T11:46:33.251327517Z [2026-10-03 13:46:33.250] [nas] [debug] IE EAP Message is not available
+2026-10-03T11:46:33.251331434Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding QoS Flow Descriptions
+2026-10-03T11:46:33.251335368Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding QosFlowDescription
+2026-10-03T11:46:33.251339324Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding QosFlowDescriptionParameter
+2026-10-03T11:46:33.251343297Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded QosFlowDescriptionParameter, len (3)
+2026-10-03T11:46:33.251347398Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded QosFlowDescription, len (6)
+2026-10-03T11:46:33.251351383Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded QoS Flow Descriptions, len (9)
+2026-10-03T11:46:33.251355530Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding Extended Protocol Configuration Options
+2026-10-03T11:46:33.251359679Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded Extended Protocol Configuration Options, len (16)
+2026-10-03T11:46:33.251371598Z [2026-10-03 13:46:33.250] [nas] [debug] Encoding DNN
+2026-10-03T11:46:33.251376215Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded DNN, len (24)
+2026-10-03T11:46:33.251379772Z [2026-10-03 13:46:33.250] [nas] [debug] Encoded PduSessionEstablishmentAccept message len (86)
+2026-10-03T11:46:33.251383726Z [2026-10-03 13:46:33.250] [common] [debug] Buffer Data:
+2026-10-03T11:46:33.251387802Z 2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 ff 01 06 06 00 64 06 00 64 29 05 01 0c 01 01 82 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 06 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 16 03 6f 61 69 05 6d 6e 63 32 30 06 6d 63 63 39 39 39 04 67 70 72 73 
+2026-10-03T11:46:33.251392382Z [2026-10-03 13:46:33.250] [common] [debug] Data input
+2026-10-03T11:46:33.251396340Z 2e 01 01 c2 11 00 09 01 00 06 31 21 01 01 ff 01 06 06 00 64 06 00 64 29 05 01 0c 01 01 82 22 04 de 00 00 7b 81 79 00 06 01 20 41 01 01 06 7b 00 0d 80 00 0d 04 ac 15 03 64 00 10 02 05 dc 25 16 03 6f 61 69 05 6d 6e 63 32 30 06 6d 63 63 39 39 39 04 67 70 72 73 
+2026-10-03T11:46:33.251401283Z [2026-10-03 13:46:33.251] [smf_n2 ] [info] Create N2 SM Information, PDU Session Resource Setup Request Transfer
+2026-10-03T11:46:33.251698572Z [2026-10-03 13:46:33.251] [smf_n2 ] [info] Create N2 SM Information, PDU Session Resource Setup Request Transfer
+2026-10-03T11:46:33.252086313Z [2026-10-03 13:46:33.251] [smf_n2 ] [debug] UL F-TEID, TEID 0x1, IP Address 192.168.71.139
+2026-10-03T11:46:33.252099854Z [2026-10-03 13:46:33.251] [smf_n2 ] [info] QoS parameters: QFI 1, 5QI: 6, Priority level 1, ARP priority level 1
+2026-10-03T11:46:33.252497863Z [2026-10-03 13:46:33.252] [smf_n2 ] [debug] Get SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.253376658Z [2026-10-03 13:46:33.253] [smf_app] [debug] Get AMBR info from the subscription information (DNN oai)
+2026-10-03T11:46:33.253437706Z [2026-10-03 13:46:33.253] [smf_app] [info] Find a DNN Subscription with key: 31710, map size 1 and 
+2026-10-03T11:46:33.253444601Z  - snssai:
+2026-10-03T11:46:33.253448027Z   + sst........................................: 222
+2026-10-03T11:46:33.253450955Z   + sd.........................................: 00007b
+2026-10-03T11:46:33.253454167Z 
+2026-10-03T11:46:33.253464817Z [2026-10-03 13:46:33.253] [smf_app] [info] Find DNN configuration with DNN oai
+2026-10-03T11:46:33.254070294Z [2026-10-03 13:46:33.253] [smf_app] [error] AMBR info from the subscription information, Downlink 0x64, Uplink 0x6
+2026-10-03T11:46:33.256460575Z [2026-10-03 13:46:33.256] [smf_n2 ] [debug] PDU Session Type: 1 
+2026-10-03T11:46:33.257129539Z [2026-10-03 13:46:33.257] [smf_n2 ] [info] QoS parameters: QFI 1, ARP priority level 1, qos_flow.qos_profile.arp.preempt_cap NOT_PREEMPT, qos_flow.qos_profile.arp.preempt_vuln NOT_PREEMPTABLE
+2026-10-03T11:46:33.258454803Z PDUSessionResourceSetupRequestTransfer ::= {
+2026-10-03T11:46:33.258471550Z     protocolIEs: ProtocolIE-Container ::= {
+2026-10-03T11:46:33.258476106Z         PDUSessionResourceSetupRequestTransferIEs ::= {
+2026-10-03T11:46:33.258489017Z             id: 130
+2026-10-03T11:46:33.258492837Z             criticality: 0 (reject)
+2026-10-03T11:46:33.258496226Z             value: PDUSessionAggregateMaximumBitRate ::= {
+2026-10-03T11:46:33.258499468Z                 pDUSessionAggregateMaximumBitRateDL: 104857600
+2026-10-03T11:46:33.258502955Z                 pDUSessionAggregateMaximumBitRateUL: 104857600
+2026-10-03T11:46:33.258506439Z             }
+2026-10-03T11:46:33.258509880Z         }
+2026-10-03T11:46:33.258515373Z         PDUSessionResourceSetupRequestTransferIEs ::= {
+2026-10-03T11:46:33.258518845Z             id: 139
+2026-10-03T11:46:33.258521796Z             criticality: 0 (reject)
+2026-10-03T11:46:33.258524994Z             value: GTPTunnel ::= {
+2026-10-03T11:46:33.258528154Z                 transportLayerAddress: C0 A8 47 8B
+2026-10-03T11:46:33.258531683Z                 gTP-TEID: 00 00 00 01
+2026-10-03T11:46:33.258534857Z             }
+2026-10-03T11:46:33.258538476Z         }
+2026-10-03T11:46:33.258541753Z         PDUSessionResourceSetupRequestTransferIEs ::= {
+2026-10-03T11:46:33.258545171Z             id: 134
+2026-10-03T11:46:33.258548457Z             criticality: 0 (reject)
+2026-10-03T11:46:33.258551873Z             value: 0 (ipv4)
+2026-10-03T11:46:33.258555126Z         }
+2026-10-03T11:46:33.258558512Z         PDUSessionResourceSetupRequestTransferIEs ::= {
+2026-10-03T11:46:33.258562051Z             id: 136
+2026-10-03T11:46:33.258565424Z             criticality: 0 (reject)
+2026-10-03T11:46:33.258568837Z             value: QosFlowSetupRequestList ::= {
+2026-10-03T11:46:33.258572390Z                 QosFlowSetupRequestItem ::= {
+2026-10-03T11:46:33.258575754Z                     qosFlowIdentifier: 1
+2026-10-03T11:46:33.258579107Z                     qosFlowLevelQosParameters: QosFlowLevelQosParameters ::= {
+2026-10-03T11:46:33.258582847Z                         qosCharacteristics: NonDynamic5QIDescriptor ::= {
+2026-10-03T11:46:33.258586486Z                             fiveQI: 6
+2026-10-03T11:46:33.258589451Z                             priorityLevelQos: 1
+2026-10-03T11:46:33.258592845Z                         }
+2026-10-03T11:46:33.258596290Z                         allocationAndRetentionPriority: AllocationAndRetentionPriority ::= {
+2026-10-03T11:46:33.258599689Z                             priorityLevelARP: 1
+2026-10-03T11:46:33.258602964Z                             pre-emptionCapability: 0 (shall-not-trigger-pre-emption)
+2026-10-03T11:46:33.258606348Z                             pre-emptionVulnerability: 0 (not-pre-emptable)
+2026-10-03T11:46:33.258609672Z                         }
+2026-10-03T11:46:33.258612803Z                     }
+2026-10-03T11:46:33.258620752Z                 }
+2026-10-03T11:46:33.258624375Z             }
+2026-10-03T11:46:33.258627643Z         }
+2026-10-03T11:46:33.258630676Z     }
+2026-10-03T11:46:33.258633764Z }
+2026-10-03T11:46:33.258637144Z [2026-10-03 13:46:33.257] [ngap] [debug] Decoded ASN.1 message PDUSessionResourceSetupRequestTransfer
+2026-10-03T11:46:33.262330481Z [2026-10-03 13:46:33.259] [ngap] [debug] Encoded message size ( 48 )
+2026-10-03T11:46:33.262399444Z [2026-10-03 13:46:33.261] [common] [debug] N2 SM Buffer Data:
+2026-10-03T11:46:33.262407474Z 00 00 04 00 82 00 0a 0c 06 40 00 00 30 06 40 00 00 00 8b 00 0a 01 f0 c0 a8 47 8b 00 00 00 01 00 86 00 01 00 00 88 00 08 00 01 00 80 06 00 00 00 
+2026-10-03T11:46:33.262412112Z [2026-10-03 13:46:33.261] [common] [debug] Data input
+2026-10-03T11:46:33.262415453Z 00 00 04 00 82 00 0a 0c 06 40 00 00 30 06 40 00 00 00 8b 00 0a 01 f0 c0 a8 47 8b 00 00 00 01 00 86 00 01 00 00 88 00 08 00 01 00 80 06 00 00 00 
+2026-10-03T11:46:33.262419499Z [2026-10-03 13:46:33.262] [smf_app] [debug] N1N2MessageTransfer will be sent to AMF with URL: http://192.168.71.137:8080/namf-comm/v1/ue-contexts/imsi-999100000000031/n1-n2-messages
+2026-10-03T11:46:33.262423332Z [2026-10-03 13:46:33.262] [smf_app] [info] Sending ITTI message N11_SESSION_CREATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP
+2026-10-03T11:46:33.267966510Z [2026-10-03 13:46:33.267] [smf_sbi] [debug] Subscribe SDM Subscriptions with UDM, response from UDM
+2026-10-03T11:46:33.267985881Z [2026-10-03 13:46:33.267] [smf_sbi] [debug] Response data {"callbackReference":"192.168.71.138:8080/nsmf-callback/v1imsi-999100000000031/sdm-notification","dnn":"oai","monitoredResourceUris":["http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/sm-data"],"nfInstanceId":"d9f3d281-e941-4f04-8ac7-88ad68c7f032","plmnId":{"mcc":"999","mnc":"20"},"singleNssai":{"sd":"00007b","sst":222}}
+2026-10-03T11:46:33.267994227Z [2026-10-03 13:46:33.267] [smf_sbi] [debug] HTTP Response Code: 201
+2026-10-03T11:46:33.267997598Z [2026-10-03 13:46:33.267] [smf_app] [debug] Process SDM Subscription response
+2026-10-03T11:46:33.268001140Z [2026-10-03 13:46:33.267] [smf_sbi] [debug] Send Communication_N1N2MessageTransfer to AMF (HTTP version 2)
+2026-10-03T11:46:33.268040940Z [2026-10-03 13:46:33.267] [common] [debug] Input string (172 bytes): 2e0101c211000901000631210101ff01060600640600642905010c0101822204de00007b817900060120410101067b000d80000d04ac15036400100205dc2516036f6169056d6e633230066d63633939390467707273 
+2026-10-03T11:46:33.268051026Z [2026-10-03 13:46:33.268] [common] [debug] Data (formatted):
+2026-10-03T11:46:33.268100489Z  2e  01  01  c2  11  00  09  01  00  06  31  21  01  01  ff  01  06  06  00  64  06  00  64  29  05  01  0c  01  01  82  22  04  de  00 [2026-10-03 13:46:33.267] [smf_app] [debug] Key for DNN, SNSSAI: oai22200007b
+2026-10-03T11:46:33.268112341Z  00  7b  81  79  00  06 [2026-10-03 13:46:33.268] [smf_app] [info] Add SDM Subscription with key oai22200007b
+2026-10-03T11:46:33.268116835Z [2026-10-03 13:46:33.268] [smf_app] [debug] SDM Subscription with key oai22200007b has been added successfully
+2026-10-03T11:46:33.268181054Z  01  20  41  01  01  06  7b  00  0d  80  00  0d  04  ac  15  03  64  00  10  02  05  dc  25  16  03  6f  61  69  05  6d  6e  63  32  30  06  6d  63  63  39  39  39  04  67  70  72  73 
+2026-10-03T11:46:33.268188783Z [2026-10-03 13:46:33.268] [common] [debug] Input string (96 bytes): 0000040082000a0c064000003006400000008b000a01f0c0a8478b000000010086000100008800080001008006000000 
+2026-10-03T11:46:33.268192631Z [2026-10-03 13:46:33.268] [common] [debug] Data (formatted):
+2026-10-03T11:46:33.268195886Z  00  00  04  00  82  00  0a  0c  06  40  00  00  30  06  40  00  00  00  8b  00  0a  01  f0  c0  a8  47  8b  00  00  00  01  00  86  00  01  00  00  88  00  08  00  01  00  80  06  00  00  00 
+2026-10-03T11:46:33.268199823Z [2026-10-03 13:46:33.268] [smf_sbi] [debug] Send Communication_N1N2MessageTransfer to AMF, body ------Boundary
+2026-10-03T11:46:33.268203652Z Content-Type: application/json
+2026-10-03T11:46:33.268207004Z 
+2026-10-03T11:46:33.268210054Z {"n1MessageContainer":{"n1MessageClass":"SM","n1MessageContent":{"contentId":"n1SmMsg"}},"n1n2FailureTxfNotifURI":"http://smf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/callback/N1N2MsgTxfrFailureNotification/imsi-999100000000031","n2InfoContainer":{"n2InformationClass":"SM","smInfo":{"n2InfoContent":{"ngapData":{"contentId":"n2msg"},"ngapIeType":"PDU_RES_SETUP_REQ"},"pduSessionId":1,"sNssai":{"sd":"00007b","sst":222}}},"pduSessionId":1}
+2026-10-03T11:46:33.268217170Z ------Boundary
+2026-10-03T11:46:33.268220046Z Content-Type: application/vnd.3gpp.5gnas
+2026-10-03T11:46:33.268223325Z Content-Id: n1SmMsg
+2026-10-03T11:46:33.268226678Z 
+2026-10-03T11:46:33.268229612Z .�
+2026-10-03T11:46:33.268233383Z [2026-10-03 13:46:33.268] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.271191074Z [2026-10-03 13:46:33.271] [smf_sbi] [debug] Response data {"cause":"N1_N2_TRANSFER_INITIATED"}
+2026-10-03T11:46:33.271209814Z [2026-10-03 13:46:33.271] [smf_sbi] [debug] Response from AMF, Http Code: 200, cause "N1_N2_TRANSFER_INITIATED"
+2026-10-03T11:46:33.271338974Z [2026-10-03 13:46:33.271] [smf_app] [info] Process N1N2MessageTransfer Response
+2026-10-03T11:46:33.271350929Z [2026-10-03 13:46:33.271] [smf_app] [info] PDU_SESSION_ESTABLISHMENT_UE_REQUESTED
+2026-10-03T11:46:33.271354971Z [2026-10-03 13:46:33.271] [smf_app] [info] Update PDU Session Status
+2026-10-03T11:46:33.271358613Z [2026-10-03 13:46:33.271] [smf_app] [debug] Retrieve SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.271362068Z [2026-10-03 13:46:33.271] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.271365505Z [2026-10-03 13:46:33.271] [smf_app] [info] Set PDU Session Status to PDU Session Status Establishment Pending
+2026-10-03T11:46:33.271369216Z [2026-10-03 13:46:33.271] [smf_app] [info] Set PDU Session Status to PDU Session Status Establishment Pending
+2026-10-03T11:46:33.271373035Z [2026-10-03 13:46:33.271] [smf_app] [info] Update UpCnx_State
+2026-10-03T11:46:33.271376617Z [2026-10-03 13:46:33.271] [smf_app] [debug] Retrieve SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.271386561Z [2026-10-03 13:46:33.271] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.271390314Z [2026-10-03 13:46:33.271] [smf_app] [info] Set upCnxState to UPCNX_STATE_DEACTIVATED
+2026-10-03T11:46:33.271394068Z [2026-10-03 13:46:33.271] [smf_app] [info] Set PDU Session UpCnxState to UPCNX_STATE_DEACTIVATED
+2026-10-03T11:46:33.271397705Z [2026-10-03 13:46:33.271] [smf_app] [debug] Got successful response from AMF (response code 200), set session status to PDU Session Status Establishment Pending
+2026-10-03T11:46:33.286371643Z [2026-10-03 13:46:33.285] [smf_api] [debug] 
+2026-10-03T11:46:33.286438181Z [2026-10-03 13:46:33.285] [smf_api] [info] Received a SM context update request from AMF.
+2026-10-03T11:46:33.286455123Z [2026-10-03 13:46:33.285] [smf_api] [debug] Message content 
+2026-10-03T11:46:33.286468182Z  ------Boundary
+2026-10-03T11:46:33.286479799Z Content-Type: application/json
+2026-10-03T11:46:33.286491628Z 
+2026-10-03T11:46:33.286502991Z {"n2SmInfo":{"contentId":"n2msg"},"n2SmInfoType":"PDU_RES_SETUP_RSP"}
+2026-10-03T11:46:33.286518472Z ------Boundary
+2026-10-03T11:46:33.286531019Z Content-Type: application/vnd.3gpp.ngap
+2026-10-03T11:46:33.286542416Z Content-Id: n2msg
+2026-10-03T11:46:33.286554648Z 
+2026-10-03T11:46:33.286575397Z 
+2026-10-03T11:46:33.286588539Z [2026-10-03 13:46:33.285] [smf_api] [info] smf_ref 1, method modify
+2026-10-03T11:46:33.286600776Z [2026-10-03 13:46:33.285] [smf_api] [info] Handle Update SM Context Request from AMF
+2026-10-03T11:46:33.286613627Z [2026-10-03 13:46:33.285] [common] [debug] Parsing the message with the Simple Parser
+2026-10-03T11:46:33.286626483Z [2026-10-03 13:46:33.285] [common] [debug] Boundary: ----Boundary
+2026-10-03T11:46:33.286638463Z [2026-10-03 13:46:33.285] [common] [debug] Content Type: application/json
+2026-10-03T11:46:33.286651103Z [2026-10-03 13:46:33.285] [common] [debug] Content Id: root
+2026-10-03T11:46:33.286662662Z [2026-10-03 13:46:33.285] [common] [debug] Body: {"n2SmInfo":{"contentId":"n2msg"},"n2SmInfoType":"PDU_RES_SETUP_RSP"}
+2026-10-03T11:46:33.286677142Z [2026-10-03 13:46:33.285] [common] [debug] Content Type: application/vnd.3gpp.ngap
+2026-10-03T11:46:33.286689798Z [2026-10-03 13:46:33.285] [common] [debug] Content Id: n2msg
+2026-10-03T11:46:33.286702032Z [2026-10-03 13:46:33.285] [common] [debug] Body: 
+2026-10-03T11:46:33.287432479Z [2026-10-03 13:46:33.285] [smf_api] [debug] Number of MIME parts 2
+2026-10-03T11:46:33.287943008Z [2026-10-03 13:46:33.286] [smf_api] [debug] N2 SM information is set
+2026-10-03T11:46:33.287970973Z [2026-10-03 13:46:33.286] [smf_api] [info] Handle PDU Session Update SM Context Request.
+2026-10-03T11:46:33.288001300Z [2026-10-03 13:46:33.286] [smf_api] [info] Received a PDUSession_UpdateSMContext Request from AMF.
+2026-10-03T11:46:33.288050134Z [2026-10-03 13:46:33.286] [smf_app] [debug] Convert SmContextUpdateMessage (OpenAPI) to PDUSession_UpdateSMContext
+2026-10-03T11:46:33.288066139Z [2026-10-03 13:46:33.286] [smf_app] [debug] N2 SM Information 
+2026-10-03T11:46:33.288078598Z [2026-10-03 13:46:33.286] [smf_api] [debug] Promise ID generated 11
+2026-10-03T11:46:33.288091358Z [2026-10-03 13:46:33.286] [smf_app] [info] Handle a PDU Session Update SM Context Request (HTTP version 2)
+2026-10-03T11:46:33.288103516Z [2026-10-03 13:46:33.286] [smf_app] [debug] Retrieve SMF context with SUPI imsi-999100000000031
+2026-10-03T11:46:33.288115909Z [2026-10-03 13:46:33.286] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.288128951Z [2026-10-03 13:46:33.286] [smf_app] [info] Handle a PDU Session Update SM Context Request message from an AMF (HTTP version 2)
+2026-10-03T11:46:33.288142277Z [2026-10-03 13:46:33.286] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.288154658Z [2026-10-03 13:46:33.286] [smf_app] [info] PDU Session Resource Setup Response Transfer
+2026-10-03T11:46:33.288449098Z [2026-10-03 13:46:33.287] [smf_n2 ] [info] Decode NGAP message (PDUSessionResourceSetupResponseTransfer) from N2 SM Information
+2026-10-03T11:46:33.289266481Z [2026-10-03 13:46:33.287] [common] [debug] Content:
+2026-10-03T11:46:33.289303932Z 00 03 e0 c0 a8 47 8c 00 00 00 01 00 01 
+2026-10-03T11:46:33.289315148Z [2026-10-03 13:46:33.287] [ngap] [debug] Decoded successfully
+2026-10-03T11:46:33.289323587Z [2026-10-03 13:46:33.287] [ngap] [debug] rc.consumed to decode 13
+2026-10-03T11:46:33.289332432Z [2026-10-03 13:46:33.287] [smf_app] [debug] DL GTP F-TEID (AN F-TEID) 0x1 
+2026-10-03T11:46:33.289340615Z [2026-10-03 13:46:33.287] [smf_app] [debug] uPTransportLayerInformation (AN IP Addr) 192.168.71.140
+2026-10-03T11:46:33.289349249Z [2026-10-03 13:46:33.287] [smf_app] [debug] QoSFlowPerTNLInformation, AssociatedQosFlowList, QFI 1
+2026-10-03T11:46:33.289357469Z [2026-10-03 13:46:33.287] [smf_app] [info] PDU Session Establishment Request, processing N2 SM Information
+2026-10-03T11:46:33.289366120Z [2026-10-03 13:46:33.287] [smf_app] [info] Perform a procedure - Update SM Context Request
+2026-10-03T11:46:33.289374551Z [2026-10-03 13:46:33.287] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.289382944Z [2026-10-03 13:46:33.287] [smf_app] [debug] DFS Asynch: Handle UPF upf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:46:33.289425633Z [2026-10-03 13:46:33.288] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.289434829Z [2026-10-03 13:46:33.288] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.289443343Z [2026-10-03 13:46:33.288] [smf_app] [debug] Session procedure type: PDU_SESSION_ESTABLISHMENT_UE_REQUESTED
+2026-10-03T11:46:33.289451874Z [2026-10-03 13:46:33.288] [smf_app] [debug] Send N4 Session Modification Request
+2026-10-03T11:46:33.289459758Z [2026-10-03 13:46:33.288] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.289467782Z [2026-10-03 13:46:33.288] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.289500287Z [2026-10-03 13:46:33.288] [smf_app] [debug] Created PDR ID, rule ID 2
+2026-10-03T11:46:33.289509241Z [2026-10-03 13:46:33.288] [smf_app] [info] Sending ITTI message 36itti_n4_session_modification_request to task TASK_SMF_N4
+2026-10-03T11:46:33.289758622Z [2026-10-03 13:46:33.289] [smf_n4 ] [info] handle_receive(31 bytes)
+2026-10-03T11:46:33.289777663Z [2026-10-03 13:46:33.289] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 53 length 27
+2026-10-03T11:46:33.290476349Z [2026-10-03 13:46:33.290] [smf_app] [debug] Received N4 Session Modification Response sender teid 0x1  pfcp_tx_id C 
+2026-10-03T11:46:33.290512135Z [2026-10-03 13:46:33.290] [smf_app] [info] Handle N4 Session Modification Response (PDU Session Id 1)
+2026-10-03T11:46:33.290525008Z [2026-10-03 13:46:33.290] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.290533591Z [2026-10-03 13:46:33.290] [smf_app] [debug] Checking if QFI 1 is served in edges
+2026-10-03T11:46:33.290541837Z [2026-10-03 13:46:33.290] [smf_app] [debug] Session procedure type: PDU_SESSION_ESTABLISHMENT_UE_REQUESTED
+2026-10-03T11:46:33.290550976Z [2026-10-03 13:46:33.290] [smf_app] [debug] UPF graph in SMF finished
+2026-10-03T11:46:33.291137436Z [2026-10-03 13:46:33.290] [smf_n1 ] [debug] Created new QoS rule with ID 1 and 1 packet filters
+2026-10-03T11:46:33.291163024Z [2026-10-03 13:46:33.290] [smf_sbi] [debug] Register with the UDM for this PDU Session (ID 1)
+2026-10-03T11:46:33.291174206Z [2026-10-03 13:46:33.291] [smf_app] [debug] Promise ID generated 13
+2026-10-03T11:46:33.291466461Z [2026-10-03 13:46:33.291] [smf_sbi] [debug] Register with the UDM for this PDU Session (ID 1)
+2026-10-03T11:46:33.291842662Z [2026-10-03 13:46:33.291] [smf_sbi] [debug] UDM's URI: http://udm.5gc.mnc20.mcc999.3gppnetwork.org:8080/nudm-uecm/v1/imsi-999100000000031/registrations/smf-registrations/1 
+2026-10-03T11:46:33.292152886Z [2026-10-03 13:46:33.291] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.307642545Z [2026-10-03 13:46:33.307] [smf_sbi] [info] Selected home UDM http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080 via local NRF/SEPP; serving PLMN 99920
+2026-10-03T11:46:33.307678690Z [2026-10-03 13:46:33.307] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:33.314130272Z [2026-10-03 13:46:33.313] [smf_sbi] [debug] Register with UDM for this PDU Session, response from UDM
+2026-10-03T11:46:33.314165210Z [2026-10-03 13:46:33.313] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:33.314172688Z [2026-10-03 13:46:33.313] [smf_sbi] [debug] HTTP Response Code: 400
+2026-10-03T11:46:33.314178003Z [2026-10-03 13:46:33.313] [smf_sbi] [warning] Could not get response from UDM, URI http://udm.5gc.mnc20.mcc999.3gppnetwork.org:8080/nudm-uecm/v1/imsi-999100000000031/registrations/smf-registrations/1
+2026-10-03T11:46:33.314183488Z [2026-10-03 13:46:33.313] [smf_app] [debug] Trigger the response from SMF: Set promise with ID 13 to ready
+2026-10-03T11:46:33.314188695Z [2026-10-03 13:46:33.313] [smf_app] [debug] Got result for promise ID 13
+2026-10-03T11:46:33.314210816Z [2026-10-03 13:46:33.313] [smf_app] [error] Home UDM registration failed for established PDU session
+2026-10-03T11:46:33.314216850Z [2026-10-03 13:46:33.313] [smf_app] [info] PDU Session Establishment Request (UE-Initiated)
+2026-10-03T11:46:33.314221657Z [2026-10-03 13:46:33.313] [smf_app] [info] Set PDU Session Status to PDU Session Status Active
+2026-10-03T11:46:33.314226695Z [2026-10-03 13:46:33.313] [smf_app] [info] Set upCnxState to UPCNX_STATE_ACTIVATED
+2026-10-03T11:46:33.314231402Z [2026-10-03 13:46:33.313] [smf_app] [info] SMF context: 
+2026-10-03T11:46:33.314235993Z  
+2026-10-03T11:46:33.314240083Z SMF CONTEXT:
+2026-10-03T11:46:33.314244120Z SUPI:				imsi-999100000000031
+2026-10-03T11:46:33.314270288Z PDU SESSION:				
+2026-10-03T11:46:33.314275489Z 	PDU Session ID:			1
+2026-10-03T11:46:33.314280143Z 	DNN:			oai
+2026-10-03T11:46:33.314284830Z 	S-NSSAI:			sst, sd: 222, 00007b
+2026-10-03T11:46:33.314289621Z 	PDN type:		IPV4
+2026-10-03T11:46:33.314294378Z 	PAA IPv4:		12.1.1.130
+2026-10-03T11:46:33.314299061Z 	Default QFI:		No QFI available
+2026-10-03T11:46:33.314303579Z 	SEID:			1
+2026-10-03T11:46:33.314308289Z 	N3:
+2026-10-03T11:46:33.314313138Z - UPF Graph Edge
+2026-10-03T11:46:33.314317498Z   + Interface Type.............................: N3
+2026-10-03T11:46:33.314321910Z   + NWI........................................: 
+2026-10-03T11:46:33.314326542Z   + Uplink.....................................: No
+2026-10-03T11:46:33.314331355Z   + PDR ID.....................................: 1
+2026-10-03T11:46:33.314335760Z   + FAR ID.....................................: 2
+2026-10-03T11:46:33.314340556Z 
+2026-10-03T11:46:33.314344901Z 
+2026-10-03T11:46:33.314349181Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN, SMF Context ID 0x1 
+2026-10-03T11:46:33.314354199Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314358894Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314363755Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314368293Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314376396Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN (Event Exposure), SUPI imsi-999100000000031 , PDU Session ID 1, HTTP version 1
+2026-10-03T11:46:33.314382132Z [2026-10-03 13:46:33.313] [smf_app] [debug] No subscription available for this event
+2026-10-03T11:46:33.314387132Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN, SMF Context ID 0x1 
+2026-10-03T11:46:33.314400477Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314405932Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314410694Z [2026-10-03 13:46:33.313] [smf_app] [debug] No subscription available for this event
+2026-10-03T11:46:33.314415185Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN, SMF Context ID 0x1 
+2026-10-03T11:46:33.314420448Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314428490Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314433226Z [2026-10-03 13:46:33.313] [smf_app] [debug] No subscription available for this event
+2026-10-03T11:46:33.314438162Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger pdusesest, SMF Context ID 0x1 
+2026-10-03T11:46:33.314443306Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314448350Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314453638Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314458806Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314464133Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger PDU_SES_EST (Event Exposure), SUPI imsi-999100000000031, PDU Session ID 1, HTTP version 1
+2026-10-03T11:46:33.314469574Z [2026-10-03 13:46:33.313] [smf_app] [debug] No subscription available for this event
+2026-10-03T11:46:33.314474083Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN, SMF Context ID 0x1 
+2026-10-03T11:46:33.314478465Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314483581Z [2026-10-03 13:46:33.313] [smf_app] [debug] Get PDU Session information related to SMF Context ID 0x1 
+2026-10-03T11:46:33.314488657Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314493650Z [2026-10-03 13:46:33.313] [smf_app] [info] Find PDU Session with ID 1
+2026-10-03T11:46:33.314499599Z [2026-10-03 13:46:33.313] [smf_app] [debug] Send request to N11 to triger FlexCN (Event Exposure), SUPI imsi-999100000000031, PDU Session ID 1, HTTP version  1
+2026-10-03T11:46:33.314506443Z [2026-10-03 13:46:33.313] [smf_app] [debug] No subscription available for this event
+2026-10-03T11:46:33.314512065Z [2026-10-03 13:46:33.313] [smf_app] [info] Sending ITTI message N11_SESSION_UPDATE_SM_CONTEXT_RESPONSE to task TASK_SMF_APP
+2026-10-03T11:46:33.314517384Z [2026-10-03 13:46:33.313] [smf_app] [info] Handle N4 Session Modification Response
+2026-10-03T11:46:33.314522641Z [2026-10-03 13:46:33.313] [smf_app] [debug] PDU Session Update SM Context: Set promise with ID 11 to ready
+2026-10-03T11:46:33.314536010Z [2026-10-03 13:46:33.313] [smf_app] [debug] Trigger the response from SMF: Set promise with ID 11 to ready
+2026-10-03T11:46:33.314541527Z [2026-10-03 13:46:33.313] [smf_api] [debug] Got result for promise ID 11
+2026-10-03T11:46:33.314546384Z [2026-10-03 13:46:33.313] [smf_api] [debug] Json data {"cause":255}
+2026-10-03T11:46:36.590652135Z [2026-10-03 13:46:36.590] [smf_app] [info] TIME-OUT event timer id 28
+2026-10-03T11:46:36.590683295Z [2026-10-03 13:46:36.590] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:36.590688688Z [2026-10-03 13:46:36.590] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:36.590692490Z [2026-10-03 13:46:36.590] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:36.590739646Z [2026-10-03 13:46:36.590] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:36.590792024Z [2026-10-03 13:46:36.590] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:36.592598095Z [2026-10-03 13:46:36.592] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:36.592619398Z [2026-10-03 13:46:36.592] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:36.592624197Z [2026-10-03 13:46:36.592] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:36.592627292Z  
+2026-10-03T11:46:36.592630332Z [2026-10-03 13:46:36.592] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:36.592633568Z [2026-10-03 13:46:36.592] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:36.592636784Z [2026-10-03 13:46:36.592] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:37.535575425Z [2026-10-03 13:46:37.535] [smf_n4 ] [info] TIME-OUT event timer id 32
+2026-10-03T11:46:37.535593293Z [2026-10-03 13:46:37.535] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:37.536087012Z [2026-10-03 13:46:37.535] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:37.536100221Z [2026-10-03 13:46:37.535] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:38.245756928Z [2026-10-03 13:46:38.245] [smf_n4 ] [info] TIME-OUT event timer id 34
+2026-10-03T11:46:38.289771327Z [2026-10-03 13:46:38.289] [smf_n4 ] [info] TIME-OUT event timer id 36
+2026-10-03T11:46:42.535513235Z [2026-10-03 13:46:42.535] [smf_n4 ] [info] TIME-OUT event timer id 40
+2026-10-03T11:46:46.597047960Z [2026-10-03 13:46:46.595] [smf_app] [info] TIME-OUT event timer id 37
+2026-10-03T11:46:46.597164982Z [2026-10-03 13:46:46.595] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:46.597186554Z [2026-10-03 13:46:46.595] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:46.597200502Z [2026-10-03 13:46:46.595] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:46.597357892Z [2026-10-03 13:46:46.596] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:46.597435135Z [2026-10-03 13:46:46.596] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:46.612789940Z [2026-10-03 13:46:46.612] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:46.613009602Z [2026-10-03 13:46:46.612] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:46.613028874Z [2026-10-03 13:46:46.612] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:46.613036564Z  
+2026-10-03T11:46:46.613043489Z [2026-10-03 13:46:46.612] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:46.613129066Z [2026-10-03 13:46:46.613] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:46.613288529Z [2026-10-03 13:46:46.613] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:47.535985399Z [2026-10-03 13:46:47.535] [smf_n4 ] [info] TIME-OUT event timer id 41
+2026-10-03T11:46:47.536041374Z [2026-10-03 13:46:47.535] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:47.537190393Z [2026-10-03 13:46:47.536] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:47.537218487Z [2026-10-03 13:46:47.536] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:46:52.536713619Z [2026-10-03 13:46:52.536] [smf_n4 ] [info] TIME-OUT event timer id 45
+2026-10-03T11:46:56.616397305Z [2026-10-03 13:46:56.613] [smf_app] [info] TIME-OUT event timer id 42
+2026-10-03T11:46:56.616427162Z [2026-10-03 13:46:56.613] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:46:56.616434258Z [2026-10-03 13:46:56.613] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:46:56.616440430Z [2026-10-03 13:46:56.613] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:46:56.616448143Z [2026-10-03 13:46:56.613] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:46:56.616455440Z [2026-10-03 13:46:56.614] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:46:56.618099319Z [2026-10-03 13:46:56.618] [smf_sbi] [debug] Response data 
+2026-10-03T11:46:56.618190227Z [2026-10-03 13:46:56.618] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:46:56.618207261Z [2026-10-03 13:46:56.618] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:46:56.618214638Z  
+2026-10-03T11:46:56.618289492Z [2026-10-03 13:46:56.618] [smf_app] [debug] NF Update NF response
+2026-10-03T11:46:56.618302889Z [2026-10-03 13:46:56.618] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:46:56.618308488Z [2026-10-03 13:46:56.618] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:46:57.537308514Z [2026-10-03 13:46:57.537] [smf_n4 ] [info] TIME-OUT event timer id 46
+2026-10-03T11:46:57.537328554Z [2026-10-03 13:46:57.537] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:46:57.537439424Z [2026-10-03 13:46:57.537] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:46:57.537484986Z [2026-10-03 13:46:57.537] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:02.537338071Z [2026-10-03 13:47:02.537] [smf_n4 ] [info] TIME-OUT event timer id 50
+2026-10-03T11:47:06.619592004Z [2026-10-03 13:47:06.618] [smf_app] [info] TIME-OUT event timer id 47
+2026-10-03T11:47:06.619638321Z [2026-10-03 13:47:06.618] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:06.619645131Z [2026-10-03 13:47:06.618] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:06.619649752Z [2026-10-03 13:47:06.618] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:06.619682752Z [2026-10-03 13:47:06.618] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:06.619696202Z [2026-10-03 13:47:06.618] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:06.622381936Z [2026-10-03 13:47:06.622] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:06.622793499Z [2026-10-03 13:47:06.622] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:06.622894437Z [2026-10-03 13:47:06.622] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:06.622902778Z  
+2026-10-03T11:47:06.623400368Z [2026-10-03 13:47:06.623] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:06.623425329Z [2026-10-03 13:47:06.623] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:06.623430377Z [2026-10-03 13:47:06.623] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:07.537765343Z [2026-10-03 13:47:07.537] [smf_n4 ] [info] TIME-OUT event timer id 51
+2026-10-03T11:47:07.537831957Z [2026-10-03 13:47:07.537] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:07.539499013Z [2026-10-03 13:47:07.538] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:07.539520477Z [2026-10-03 13:47:07.538] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:12.539187897Z [2026-10-03 13:47:12.538] [smf_n4 ] [info] TIME-OUT event timer id 55
+2026-10-03T11:47:16.623427966Z [2026-10-03 13:47:16.623] [smf_app] [info] TIME-OUT event timer id 52
+2026-10-03T11:47:16.623459565Z [2026-10-03 13:47:16.623] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:16.623465144Z [2026-10-03 13:47:16.623] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:16.623485926Z [2026-10-03 13:47:16.623] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:16.623642364Z [2026-10-03 13:47:16.623] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:16.623651918Z [2026-10-03 13:47:16.623] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:16.625177513Z [2026-10-03 13:47:16.625] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:16.625193592Z [2026-10-03 13:47:16.625] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:16.625198298Z [2026-10-03 13:47:16.625] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:16.625202360Z  
+2026-10-03T11:47:16.625205996Z [2026-10-03 13:47:16.625] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:16.625209768Z [2026-10-03 13:47:16.625] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:16.625213565Z [2026-10-03 13:47:16.625] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:17.539169366Z [2026-10-03 13:47:17.538] [smf_n4 ] [info] TIME-OUT event timer id 56
+2026-10-03T11:47:17.540196115Z [2026-10-03 13:47:17.538] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:17.540495349Z [2026-10-03 13:47:17.539] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:17.540547788Z [2026-10-03 13:47:17.539] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:22.541134151Z [2026-10-03 13:47:22.540] [smf_n4 ] [info] TIME-OUT event timer id 60
+2026-10-03T11:47:26.625554317Z [2026-10-03 13:47:26.625] [smf_app] [info] TIME-OUT event timer id 57
+2026-10-03T11:47:26.625613204Z [2026-10-03 13:47:26.625] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:26.625639211Z [2026-10-03 13:47:26.625] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:26.625654100Z [2026-10-03 13:47:26.625] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:26.625966960Z [2026-10-03 13:47:26.625] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:26.625993763Z [2026-10-03 13:47:26.625] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:26.629636312Z [2026-10-03 13:47:26.629] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:26.629668331Z [2026-10-03 13:47:26.629] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:26.629680684Z [2026-10-03 13:47:26.629] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:26.629689753Z  
+2026-10-03T11:47:26.629698071Z [2026-10-03 13:47:26.629] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:26.629706449Z [2026-10-03 13:47:26.629] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:26.629736792Z [2026-10-03 13:47:26.629] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:27.540223245Z [2026-10-03 13:47:27.540] [smf_n4 ] [info] TIME-OUT event timer id 61
+2026-10-03T11:47:27.540233092Z [2026-10-03 13:47:27.540] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:27.540808584Z [2026-10-03 13:47:27.540] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:27.540987618Z [2026-10-03 13:47:27.540] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:32.540629948Z [2026-10-03 13:47:32.540] [smf_n4 ] [info] TIME-OUT event timer id 65
+2026-10-03T11:47:36.629870543Z [2026-10-03 13:47:36.629] [smf_app] [info] TIME-OUT event timer id 62
+2026-10-03T11:47:36.629920124Z [2026-10-03 13:47:36.629] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:36.629933308Z [2026-10-03 13:47:36.629] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:36.629965262Z [2026-10-03 13:47:36.629] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:36.630355344Z [2026-10-03 13:47:36.630] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:36.630388863Z [2026-10-03 13:47:36.630] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:36.634234031Z [2026-10-03 13:47:36.634] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:36.634361151Z [2026-10-03 13:47:36.634] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:36.634374737Z [2026-10-03 13:47:36.634] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:36.634383254Z  
+2026-10-03T11:47:36.634452785Z [2026-10-03 13:47:36.634] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:36.634478555Z [2026-10-03 13:47:36.634] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:36.634488651Z [2026-10-03 13:47:36.634] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:37.541550559Z [2026-10-03 13:47:37.541] [smf_n4 ] [info] TIME-OUT event timer id 66
+2026-10-03T11:47:37.541574179Z [2026-10-03 13:47:37.541] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:37.541840195Z [2026-10-03 13:47:37.541] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:37.541853987Z [2026-10-03 13:47:37.541] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:42.541428090Z [2026-10-03 13:47:42.541] [smf_n4 ] [info] TIME-OUT event timer id 70
+2026-10-03T11:47:46.635988905Z [2026-10-03 13:47:46.634] [smf_app] [info] TIME-OUT event timer id 67
+2026-10-03T11:47:46.636012806Z [2026-10-03 13:47:46.634] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:46.636421255Z [2026-10-03 13:47:46.634] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:46.636466497Z [2026-10-03 13:47:46.634] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:46.636481807Z [2026-10-03 13:47:46.634] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:46.636489455Z [2026-10-03 13:47:46.634] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:46.643268692Z [2026-10-03 13:47:46.643] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:46.643623096Z [2026-10-03 13:47:46.643] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:46.643825047Z [2026-10-03 13:47:46.643] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:46.643837853Z  
+2026-10-03T11:47:46.644017365Z [2026-10-03 13:47:46.643] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:46.644163437Z [2026-10-03 13:47:46.644] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:46.644433153Z [2026-10-03 13:47:46.644] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:47.542028875Z [2026-10-03 13:47:47.541] [smf_n4 ] [info] TIME-OUT event timer id 71
+2026-10-03T11:47:47.542059116Z [2026-10-03 13:47:47.541] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:47.542517555Z [2026-10-03 13:47:47.542] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:47.542546159Z [2026-10-03 13:47:47.542] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:47:52.542945690Z [2026-10-03 13:47:52.542] [smf_n4 ] [info] TIME-OUT event timer id 75
+2026-10-03T11:47:56.645475691Z [2026-10-03 13:47:56.644] [smf_app] [info] TIME-OUT event timer id 72
+2026-10-03T11:47:56.645550200Z [2026-10-03 13:47:56.644] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:47:56.645575685Z [2026-10-03 13:47:56.645] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:47:56.645798032Z [2026-10-03 13:47:56.645] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:47:56.647450368Z [2026-10-03 13:47:56.646] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:47:56.647513409Z [2026-10-03 13:47:56.646] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:47:56.654222462Z [2026-10-03 13:47:56.653] [smf_sbi] [debug] Response data 
+2026-10-03T11:47:56.654525039Z [2026-10-03 13:47:56.653] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:47:56.654547751Z [2026-10-03 13:47:56.653] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:47:56.654560480Z  
+2026-10-03T11:47:56.655095771Z [2026-10-03 13:47:56.654] [smf_app] [debug] NF Update NF response
+2026-10-03T11:47:56.655154455Z [2026-10-03 13:47:56.654] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:47:56.655165854Z [2026-10-03 13:47:56.654] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:47:57.542784209Z [2026-10-03 13:47:57.542] [smf_n4 ] [info] TIME-OUT event timer id 76
+2026-10-03T11:47:57.542808004Z [2026-10-03 13:47:57.542] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:47:57.543467777Z [2026-10-03 13:47:57.543] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:47:57.543504532Z [2026-10-03 13:47:57.543] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:02.543049547Z [2026-10-03 13:48:02.542] [smf_n4 ] [info] TIME-OUT event timer id 80
+2026-10-03T11:48:06.655128679Z [2026-10-03 13:48:06.655] [smf_app] [info] TIME-OUT event timer id 77
+2026-10-03T11:48:06.655155480Z [2026-10-03 13:48:06.655] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:06.655161121Z [2026-10-03 13:48:06.655] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:06.655165003Z [2026-10-03 13:48:06.655] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:06.655335418Z [2026-10-03 13:48:06.655] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:06.655349805Z [2026-10-03 13:48:06.655] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:06.656810461Z [2026-10-03 13:48:06.656] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:06.656834813Z [2026-10-03 13:48:06.656] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:06.656842225Z [2026-10-03 13:48:06.656] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:06.656846365Z  
+2026-10-03T11:48:06.656929296Z [2026-10-03 13:48:06.656] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:06.656939999Z [2026-10-03 13:48:06.656] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:06.656943857Z [2026-10-03 13:48:06.656] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:07.544111383Z [2026-10-03 13:48:07.543] [smf_n4 ] [info] TIME-OUT event timer id 81
+2026-10-03T11:48:07.544181796Z [2026-10-03 13:48:07.543] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:07.544832090Z [2026-10-03 13:48:07.544] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:07.544926285Z [2026-10-03 13:48:07.544] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:12.545548668Z [2026-10-03 13:48:12.544] [smf_n4 ] [info] TIME-OUT event timer id 85
+2026-10-03T11:48:16.657914504Z [2026-10-03 13:48:16.657] [smf_app] [info] TIME-OUT event timer id 82
+2026-10-03T11:48:16.657944763Z [2026-10-03 13:48:16.657] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:16.658015811Z [2026-10-03 13:48:16.657] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:16.658028387Z [2026-10-03 13:48:16.657] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:16.658188446Z [2026-10-03 13:48:16.658] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:16.658196366Z [2026-10-03 13:48:16.658] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:16.660155088Z [2026-10-03 13:48:16.660] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:16.660182269Z [2026-10-03 13:48:16.660] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:16.660187900Z [2026-10-03 13:48:16.660] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:16.660192024Z  
+2026-10-03T11:48:16.660195706Z [2026-10-03 13:48:16.660] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:16.660199395Z [2026-10-03 13:48:16.660] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:16.660203529Z [2026-10-03 13:48:16.660] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:17.545953985Z [2026-10-03 13:48:17.545] [smf_n4 ] [info] TIME-OUT event timer id 86
+2026-10-03T11:48:17.546012301Z [2026-10-03 13:48:17.545] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:17.546101564Z [2026-10-03 13:48:17.545] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:17.546147059Z [2026-10-03 13:48:17.545] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:22.545668384Z [2026-10-03 13:48:22.545] [smf_n4 ] [info] TIME-OUT event timer id 90
+2026-10-03T11:48:26.660429780Z [2026-10-03 13:48:26.660] [smf_app] [info] TIME-OUT event timer id 87
+2026-10-03T11:48:26.660463705Z [2026-10-03 13:48:26.660] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:26.660473122Z [2026-10-03 13:48:26.660] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:26.660481554Z [2026-10-03 13:48:26.660] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:26.660622583Z [2026-10-03 13:48:26.660] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:26.660645561Z [2026-10-03 13:48:26.660] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:26.663011216Z [2026-10-03 13:48:26.662] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:26.663039955Z [2026-10-03 13:48:26.662] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:26.663048346Z [2026-10-03 13:48:26.662] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:26.663055158Z  
+2026-10-03T11:48:26.663080179Z [2026-10-03 13:48:26.662] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:26.663085639Z [2026-10-03 13:48:26.662] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:26.663091322Z [2026-10-03 13:48:26.662] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:27.546314790Z [2026-10-03 13:48:27.546] [smf_n4 ] [info] TIME-OUT event timer id 91
+2026-10-03T11:48:27.546344165Z [2026-10-03 13:48:27.546] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:27.546583634Z [2026-10-03 13:48:27.546] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:27.546712580Z [2026-10-03 13:48:27.546] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:32.546332059Z [2026-10-03 13:48:32.546] [smf_n4 ] [info] TIME-OUT event timer id 95
+2026-10-03T11:48:36.663190044Z [2026-10-03 13:48:36.663] [smf_app] [info] TIME-OUT event timer id 92
+2026-10-03T11:48:36.663222087Z [2026-10-03 13:48:36.663] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:36.663229201Z [2026-10-03 13:48:36.663] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:36.663234130Z [2026-10-03 13:48:36.663] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:36.663455376Z [2026-10-03 13:48:36.663] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:36.663477049Z [2026-10-03 13:48:36.663] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:36.665492901Z [2026-10-03 13:48:36.665] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:36.665515576Z [2026-10-03 13:48:36.665] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:36.665521218Z [2026-10-03 13:48:36.665] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:36.665525633Z  
+2026-10-03T11:48:36.665529375Z [2026-10-03 13:48:36.665] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:36.665533925Z [2026-10-03 13:48:36.665] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:36.665538315Z [2026-10-03 13:48:36.665] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:37.547361631Z [2026-10-03 13:48:37.546] [smf_n4 ] [info] TIME-OUT event timer id 96
+2026-10-03T11:48:37.547433961Z [2026-10-03 13:48:37.547] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:37.549108195Z [2026-10-03 13:48:37.548] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:37.549144653Z [2026-10-03 13:48:37.548] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:42.547989287Z [2026-10-03 13:48:42.547] [smf_n4 ] [info] TIME-OUT event timer id 100
+2026-10-03T11:48:46.665661771Z [2026-10-03 13:48:46.665] [smf_app] [info] TIME-OUT event timer id 97
+2026-10-03T11:48:46.665699928Z [2026-10-03 13:48:46.665] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:46.665706392Z [2026-10-03 13:48:46.665] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:46.665710895Z [2026-10-03 13:48:46.665] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:46.665863055Z [2026-10-03 13:48:46.665] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:46.665875113Z [2026-10-03 13:48:46.665] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:46.669345327Z [2026-10-03 13:48:46.669] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:46.669362501Z [2026-10-03 13:48:46.669] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:46.669367294Z [2026-10-03 13:48:46.669] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:46.669371495Z  
+2026-10-03T11:48:46.669375383Z [2026-10-03 13:48:46.669] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:46.669379476Z [2026-10-03 13:48:46.669] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:46.669383331Z [2026-10-03 13:48:46.669] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:47.551929658Z [2026-10-03 13:48:47.549] [smf_n4 ] [info] TIME-OUT event timer id 101
+2026-10-03T11:48:47.551961891Z [2026-10-03 13:48:47.549] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:47.557233547Z [2026-10-03 13:48:47.551] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:47.557354867Z [2026-10-03 13:48:47.552] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:48:52.551512695Z [2026-10-03 13:48:52.550] [smf_n4 ] [info] TIME-OUT event timer id 105
+2026-10-03T11:48:56.669642600Z [2026-10-03 13:48:56.669] [smf_app] [info] TIME-OUT event timer id 102
+2026-10-03T11:48:56.669668132Z [2026-10-03 13:48:56.669] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:48:56.669675965Z [2026-10-03 13:48:56.669] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:48:56.669682548Z [2026-10-03 13:48:56.669] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:48:56.669789119Z [2026-10-03 13:48:56.669] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:48:56.669802810Z [2026-10-03 13:48:56.669] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:48:56.671852864Z [2026-10-03 13:48:56.671] [smf_sbi] [debug] Response data 
+2026-10-03T11:48:56.671879687Z [2026-10-03 13:48:56.671] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:48:56.671887673Z [2026-10-03 13:48:56.671] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:48:56.671910287Z  
+2026-10-03T11:48:56.671915777Z [2026-10-03 13:48:56.671] [smf_app] [debug] NF Update NF response
+2026-10-03T11:48:56.671921586Z [2026-10-03 13:48:56.671] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:48:56.671926365Z [2026-10-03 13:48:56.671] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:48:57.552466926Z [2026-10-03 13:48:57.552] [smf_n4 ] [info] TIME-OUT event timer id 106
+2026-10-03T11:48:57.552500560Z [2026-10-03 13:48:57.552] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:48:57.552576690Z [2026-10-03 13:48:57.552] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:48:57.552584810Z [2026-10-03 13:48:57.552] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:49:02.552504260Z [2026-10-03 13:49:02.552] [smf_n4 ] [info] TIME-OUT event timer id 110
+2026-10-03T11:49:06.672401052Z [2026-10-03 13:49:06.671] [smf_app] [info] TIME-OUT event timer id 107
+2026-10-03T11:49:06.672418621Z [2026-10-03 13:49:06.671] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:49:06.673401312Z [2026-10-03 13:49:06.672] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:49:06.673433613Z [2026-10-03 13:49:06.672] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:49:06.673444251Z [2026-10-03 13:49:06.672] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:49:06.673451448Z [2026-10-03 13:49:06.672] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:49:06.677389240Z [2026-10-03 13:49:06.677] [smf_sbi] [debug] Response data 
+2026-10-03T11:49:06.677421527Z [2026-10-03 13:49:06.677] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:49:06.677429537Z [2026-10-03 13:49:06.677] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:49:06.677435096Z  
+2026-10-03T11:49:06.677439797Z [2026-10-03 13:49:06.677] [smf_app] [debug] NF Update NF response
+2026-10-03T11:49:06.677529087Z [2026-10-03 13:49:06.677] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:49:06.677608624Z [2026-10-03 13:49:06.677] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:49:07.553792090Z [2026-10-03 13:49:07.553] [smf_n4 ] [info] TIME-OUT event timer id 111
+2026-10-03T11:49:07.553804408Z [2026-10-03 13:49:07.553] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:49:07.553884799Z [2026-10-03 13:49:07.553] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:49:07.553892163Z [2026-10-03 13:49:07.553] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:49:12.553689551Z [2026-10-03 13:49:12.553] [smf_n4 ] [info] TIME-OUT event timer id 115
+2026-10-03T11:49:16.678388983Z [2026-10-03 13:49:16.677] [smf_app] [info] TIME-OUT event timer id 112
+2026-10-03T11:49:16.678477424Z [2026-10-03 13:49:16.678] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:49:16.678485292Z [2026-10-03 13:49:16.678] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:49:16.678489475Z [2026-10-03 13:49:16.678] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:49:16.678493764Z [2026-10-03 13:49:16.678] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:49:16.678500491Z [2026-10-03 13:49:16.678] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:49:16.681598538Z [2026-10-03 13:49:16.681] [smf_sbi] [debug] Response data 
+2026-10-03T11:49:16.681740056Z [2026-10-03 13:49:16.681] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:49:16.682007354Z [2026-10-03 13:49:16.681] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:49:16.682015594Z  
+2026-10-03T11:49:16.682185847Z [2026-10-03 13:49:16.682] [smf_app] [debug] NF Update NF response
+2026-10-03T11:49:16.682315037Z [2026-10-03 13:49:16.682] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:49:16.682628734Z [2026-10-03 13:49:16.682] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:49:17.554163980Z [2026-10-03 13:49:17.553] [smf_n4 ] [info] TIME-OUT event timer id 116
+2026-10-03T11:49:17.554197119Z [2026-10-03 13:49:17.553] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:49:17.554300313Z [2026-10-03 13:49:17.554] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:49:17.554313087Z [2026-10-03 13:49:17.554] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:49:22.554139036Z [2026-10-03 13:49:22.554] [smf_n4 ] [info] TIME-OUT event timer id 120
+2026-10-03T11:49:26.683140994Z [2026-10-03 13:49:26.683] [smf_app] [info] TIME-OUT event timer id 117
+2026-10-03T11:49:26.683163844Z [2026-10-03 13:49:26.683] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:49:26.683170396Z [2026-10-03 13:49:26.683] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:49:26.683756531Z [2026-10-03 13:49:26.683] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:49:26.683786203Z [2026-10-03 13:49:26.683] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:49:26.683793906Z [2026-10-03 13:49:26.683] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:49:26.685452949Z [2026-10-03 13:49:26.685] [smf_sbi] [debug] Response data 
+2026-10-03T11:49:26.685477453Z [2026-10-03 13:49:26.685] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:49:26.685499732Z [2026-10-03 13:49:26.685] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:49:26.685504931Z  
+2026-10-03T11:49:26.685508588Z [2026-10-03 13:49:26.685] [smf_app] [debug] NF Update NF response
+2026-10-03T11:49:26.685512307Z [2026-10-03 13:49:26.685] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:49:26.685516445Z [2026-10-03 13:49:26.685] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:49:27.554752612Z [2026-10-03 13:49:27.554] [smf_n4 ] [info] TIME-OUT event timer id 121
+2026-10-03T11:49:27.554792134Z [2026-10-03 13:49:27.554] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:49:27.554801558Z [2026-10-03 13:49:27.554] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:49:27.554807533Z [2026-10-03 13:49:27.554] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:49:32.556591117Z [2026-10-03 13:49:32.554] [smf_n4 ] [info] TIME-OUT event timer id 125
+2026-10-03T11:49:36.688353754Z [2026-10-03 13:49:36.687] [smf_app] [info] TIME-OUT event timer id 122
+2026-10-03T11:49:36.688419036Z [2026-10-03 13:49:36.687] [smf_app] [debug] Send ITTI msg to N11 task to trigger NRF Heartbeat
+2026-10-03T11:49:36.688547779Z [2026-10-03 13:49:36.687] [smf_sbi] [debug] Send NF Update to NRF (HTTP version 2)
+2026-10-03T11:49:36.688558012Z [2026-10-03 13:49:36.688] [smf_sbi] [debug] Send NF Update to NRF, Msg body [{"op":"replace","path":"/nfStatus","value":"REGISTERED"}]
+2026-10-03T11:49:36.688694154Z [2026-10-03 13:49:36.688] [smf_sbi] [debug] Send NF Update to NRF, NRF URL http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d9f3d281-e941-4f04-8ac7-88ad68c7f032
+2026-10-03T11:49:36.688704667Z [2026-10-03 13:49:36.688] [smf_sbi] [debug] Send a simple HTTP request
+2026-10-03T11:49:36.692358316Z [2026-10-03 13:49:36.692] [smf_sbi] [debug] Response data 
+2026-10-03T11:49:36.692414581Z [2026-10-03 13:49:36.692] [smf_sbi] [debug] NF Instance Update, response from NRF, HTTP Code: 204
+2026-10-03T11:49:36.692422879Z [2026-10-03 13:49:36.692] [smf_sbi] [debug] NF Update, response from NRF: 
+2026-10-03T11:49:36.692427788Z  
+2026-10-03T11:49:36.692431832Z [2026-10-03 13:49:36.692] [smf_app] [debug] NF Update NF response
+2026-10-03T11:49:36.692436184Z [2026-10-03 13:49:36.692] [smf_app] [debug] SMF has successfully registered to NRF.
+2026-10-03T11:49:36.692440289Z [2026-10-03 13:49:36.692] [smf_app] [debug] Set NRF Heartbeat timer (10)
+2026-10-03T11:49:37.556753570Z [2026-10-03 13:49:37.555] [smf_n4 ] [info] TIME-OUT event timer id 126
+2026-10-03T11:49:37.557635320Z [2026-10-03 13:49:37.555] [smf_n4 ] [info] PFCP HEARTBEAT PROCEDURE hash 9398732145197715671 starting
+2026-10-03T11:49:37.557663934Z [2026-10-03 13:49:37.556] [smf_n4 ] [info] handle_receive(16 bytes)
+2026-10-03T11:49:37.557677176Z [2026-10-03 13:49:37.556] [smf_n4 ] [debug] handle_receive_pfcp_msg msg type 2 length 12
+2026-10-03T11:49:42.556126850Z [2026-10-03 13:49:42.555] [smf_n4 ] [info] TIME-OUT event timer id 130

@@ -1,0 +1,244 @@
+2026-10-03T13:00:54.211136295Z [+] Detecting network interfaces...
+2026-10-03T13:00:54.217811899Z [+] Target NBI Interface: eth1
+2026-10-03T13:00:54.217829495Z [+] Target SBI Interface: eth0
+2026-10-03T13:00:54.229345187Z [+] Configuration updated successfully: /openair-sepp/etc/config.runtime.yaml
+2026-10-03T13:00:54.242432521Z [2026-10-03 15:00:54.242] [sepp_app] [debug] Reading SEPP configuration from file: /openair-sepp/etc/config.runtime.yaml
+2026-10-03T13:00:54.273329632Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T13:00:54.273351629Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T13:00:54.273356607Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T13:00:54.273360744Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF udm in configuration. Ignored
+2026-10-03T13:00:54.273364909Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF udr in configuration. Ignored
+2026-10-03T13:00:54.273368998Z [2026-10-03 15:00:54.272] [config ] [debug] Unknown NF ausf in configuration. Ignored
+2026-10-03T13:00:54.295220613Z [2026-10-03 15:00:54.295] [config ] [info] Reading NF configuration from /openair-sepp/etc/config.runtime.yaml
+2026-10-03T13:00:54.321643878Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T13:00:54.321674143Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T13:00:54.325305439Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T13:00:54.325330929Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF udm in configuration. Ignored
+2026-10-03T13:00:54.325335439Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF udr in configuration. Ignored
+2026-10-03T13:00:54.325338935Z [2026-10-03 15:00:54.321] [config ] [debug] Unknown NF ausf in configuration. Ignored
+2026-10-03T13:00:54.325342974Z [2026-10-03 15:00:54.322] [config ] [debug] Validating configuration of log_level
+2026-10-03T13:00:54.325346561Z [2026-10-03 15:00:54.322] [config ] [debug] Validating configuration of register_nf
+2026-10-03T13:00:54.325349920Z [2026-10-03 15:00:54.322] [config ] [debug] Validating configuration of http_version
+2026-10-03T13:00:54.325353492Z [2026-10-03 15:00:54.322] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T13:00:54.325356996Z [2026-10-03 15:00:54.322] [config ] [debug] Validating configuration of nrf
+2026-10-03T13:00:54.325360514Z [2026-10-03 15:00:54.324] [config ] [debug] Validating configuration of sepp
+2026-10-03T13:00:54.329081701Z [2026-10-03 15:00:54.327] [config ] [debug] Validating configuration of database
+2026-10-03T13:00:54.329103548Z [2026-10-03 15:00:54.327] [config ] [debug] Validating configuration of enable_roaming
+2026-10-03T13:00:54.329108978Z [2026-10-03 15:00:54.327] [config ] [info] ==== OPENAIRINTERFACE sepp vBranch: master Abrev. Hash: c1c4d11 Date: Sat Oct 3 12:25:06 2026 +0200 ====
+2026-10-03T13:00:54.329124631Z [2026-10-03 15:00:54.327] [config ] [info] Basic Configuration:
+2026-10-03T13:00:54.329128656Z [2026-10-03 15:00:54.327] [config ] [info]   - log_level..................................: debug
+2026-10-03T13:00:54.329132298Z [2026-10-03 15:00:54.327] [config ] [info]   - register_nf................................: Yes
+2026-10-03T13:00:54.329135341Z [2026-10-03 15:00:54.327] [config ] [info]   - http_version...............................: 2
+2026-10-03T13:00:54.329138170Z [2026-10-03 15:00:54.327] [config ] [info]   TLS:
+2026-10-03T13:00:54.329141042Z [2026-10-03 15:00:54.327] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T13:00:54.329144065Z [2026-10-03 15:00:54.327] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T13:00:54.329147135Z [2026-10-03 15:00:54.327] [config ] [info]   Roaming:
+2026-10-03T13:00:54.329150024Z [2026-10-03 15:00:54.327] [config ] [info]     - Enable Roaming.............................: Yes
+2026-10-03T13:00:54.329153375Z [2026-10-03 15:00:54.327] [config ] [info]     - Roaming Partners:
+2026-10-03T13:00:54.329156639Z [2026-10-03 15:00:54.327] [config ] [info]       MCC: 999, MNC: 20
+2026-10-03T13:00:54.329160117Z [2026-10-03 15:00:54.327] [config ] [info]       MCC: 228, MNC: 06
+2026-10-03T13:00:54.329162865Z [2026-10-03 15:00:54.327] [config ] [info]   sepp:
+2026-10-03T13:00:54.329165996Z [2026-10-03 15:00:54.327] [config ] [info]     - host.....................................: sepp.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.329169259Z [2026-10-03 15:00:54.327] [config ] [info]     - SBI
+2026-10-03T13:00:54.329172497Z [2026-10-03 15:00:54.327] [config ] [info]       + URL....................................: sepp.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.329175885Z [2026-10-03 15:00:54.327] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.329178910Z [2026-10-03 15:00:54.327] [config ] [info]       + IPv4 Address ..........................: 192.168.73.136
+2026-10-03T13:00:54.329182067Z [2026-10-03 15:00:54.327] [config ] [info]     - NBI
+2026-10-03T13:00:54.329184867Z [2026-10-03 15:00:54.327] [config ] [info]       + URL....................................: sepp.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.329189772Z [2026-10-03 15:00:54.327] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.329193462Z [2026-10-03 15:00:54.327] [config ] [info]       + IPv4 Address ..........................: 192.168.72.222
+2026-10-03T13:00:54.329196669Z [2026-10-03 15:00:54.327] [config ] [info] Peer NF Configuration:
+2026-10-03T13:00:54.329199495Z [2026-10-03 15:00:54.327] [config ] [info]   nrf:
+2026-10-03T13:00:54.329202538Z [2026-10-03 15:00:54.327] [config ] [info]     - host.....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.329206125Z [2026-10-03 15:00:54.327] [config ] [info]     - SBI
+2026-10-03T13:00:54.329209192Z [2026-10-03 15:00:54.327] [config ] [info]       + URL....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.329216537Z [2026-10-03 15:00:54.327] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.329219995Z [2026-10-03 15:00:54.327] [config ] [info]       + IPv4 Address ..........................: 192.168.73.136
+2026-10-03T13:00:54.329223244Z [2026-10-03 15:00:54.327] [sepp_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 1000 ms, HTTP version 2
+2026-10-03T13:00:54.329226526Z [2026-10-03 15:00:54.327] [sepp_client] [info] HTTP Client successfully initiated on interface eth1 with timeout 1000 ms, HTTP version 2
+2026-10-03T13:00:54.329229931Z [2026-10-03 15:00:54.327] [sepp_app] [start] Starting SEPP Application...
+2026-10-03T13:00:54.329233158Z [2026-10-03 15:00:54.327] [sepp_app] [debug] - NF instance info
+2026-10-03T13:00:54.329236297Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Instance ID: 2716c2ca-cc1b-40ea-b899-6e31fe68c06f
+2026-10-03T13:00:54.329239367Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Instance name: OAI-SEPP
+2026-10-03T13:00:54.329242839Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Instance type: SEPP
+2026-10-03T13:00:54.329397624Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Instance fqdn: sepp.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.330133322Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Status: REGISTERED
+2026-10-03T13:00:54.330145452Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     HeartBeat timer: 50
+2026-10-03T13:00:54.330149732Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Priority: 1
+2026-10-03T13:00:54.330153908Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     Capacity: 100
+2026-10-03T13:00:54.330157993Z [2026-10-03 15:00:54.327] [sepp_app] [debug]     IPv4 Addr:
+2026-10-03T13:00:54.330161976Z [2026-10-03 15:00:54.327] [sepp_app] [debug]         192.168.73.136
+2026-10-03T13:00:54.330165901Z [2026-10-03 15:00:54.327] [sepp_app] [debug] 	SEPP Info
+2026-10-03T13:00:54.330174279Z [2026-10-03 15:00:54.327] [sepp_app] [debug] 		 SeppPrefix: oai-sepp-prefix
+2026-10-03T13:00:54.330178416Z [2026-10-03 15:00:54.327] [sepp_app] [debug] 		 SeppPorts:
+2026-10-03T13:00:54.330182683Z [2026-10-03 15:00:54.327] [sepp_app] [debug] 			 Interface: http - Port: 8080
+2026-10-03T13:00:54.330186103Z [2026-10-03 15:00:54.327] [sepp_app] [debug] 		 SeppPorts:
+2026-10-03T13:00:54.330189305Z [2026-10-03 15:00:54.327] [sepp_app] [debug] sepp profile to json:
+2026-10-03T13:00:54.330198162Z  {"capacity":100,"custom_info":null,"fqdn":"sepp.5gc.mnc10.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.73.136"],"nfInstanceId":"2716c2ca-cc1b-40ea-b899-6e31fe68c06f","nfInstanceName":"OAI-SEPP","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.73.136","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nsepp-telescopic","serviceName":"nsepp-telescopic","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"SEPP","priority":1,"sNssais":[],"seppInfo":{"n32Purposes":["ROAMING"],"remotePlmnList":[{"mcc":"999","mnc":"20"},{"mcc":"228","mnc":"06"}],"seppPorts":{"http":8080},"seppPrefix":"oai-sepp-prefix"}}
+2026-10-03T13:00:54.330218262Z [2026-10-03 15:00:54.328] [sepp_sbi] [info] Sending NF registration request to NRF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/2716c2ca-cc1b-40ea-b899-6e31fe68c06f
+2026-10-03T13:00:54.330222887Z [2026-10-03 15:00:54.328] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:00:54.333324156Z [2026-10-03 15:00:54.331] [sepp_sbi] [debug] NF registration successful
+2026-10-03T13:00:54.333344120Z [2026-10-03 15:00:54.331] [sepp_app] [info] NRF Task Created
+2026-10-03T13:00:54.333346849Z [2026-10-03 15:00:54.331] [sepp_nbi] [info] NBI TLS disabled (disable_tls: yes). Starting plain NBI HTTP2 server on 192.168.72.222:8080...
+2026-10-03T13:00:54.333940691Z [2026-10-03 15:00:54.333] [sepp_sbi] [info] +++++++ SBI HTTP2 TLS server being started +++++++
+2026-10-03T13:00:54.942502627Z [2026-10-03 15:00:54.942] [sepp_app] [info] Processing N32-c capability exchange request
+2026-10-03T13:00:54.943052318Z [2026-10-03 15:00:54.942] [sepp_app] [info] Peer indicated 3GppSbiTargetApiRootSupported: true
+2026-10-03T13:00:54.943071246Z [2026-10-03 15:00:54.942] [sepp_app] [info] Received capability exchange request from peer SEPP: sepp.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.943075488Z [2026-10-03 15:00:54.942] [sepp_app] [info] Successfully processed N32-c capability exchange (Selected Security: PRINS, Purpose: ROAMING, TargetApiRoot: true)
+2026-10-03T13:00:54.944111000Z [2026-10-03 15:00:54.944] [sepp_app] [info] Handling N32-c parameter exchange request using model
+2026-10-03T13:00:54.944130693Z [2026-10-03 15:00:54.944] [sepp_app] [info] Processed N32-c parameter exchange. N32F Context ID: 579dc3e3-a1ed-4e90-bd50-6f91880ed871, JWE: A128GCM, JWS: ES256
+2026-10-03T13:01:04.369650947Z [2026-10-03 15:01:04.369] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:04.369688280Z [2026-10-03 15:01:04.369] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:04.422495463Z [2026-10-03 15:01:04.422] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:01:14.426777414Z [2026-10-03 15:01:14.426] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:14.426804849Z [2026-10-03 15:01:14.426] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:14.428230658Z [2026-10-03 15:01:14.428] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:01:24.453375437Z [2026-10-03 15:01:24.453] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:24.453412155Z [2026-10-03 15:01:24.453] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:24.454974970Z [2026-10-03 15:01:24.454] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:01:34.464631030Z [2026-10-03 15:01:34.464] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:34.464711427Z [2026-10-03 15:01:34.464] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:34.469755900Z [2026-10-03 15:01:34.469] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:01:44.477619846Z [2026-10-03 15:01:44.477] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:44.477674225Z [2026-10-03 15:01:44.477] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:44.480216933Z [2026-10-03 15:01:44.479] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:01:51.239568750Z [2026-10-03 15:01:51.239] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=AUSF&requester-nf-type=AMF&service-names=nausf-auth&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.239633053Z [2026-10-03 15:01:51.239] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=AUSF&requester-nf-type=AMF&service-names=nausf-auth&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.239651157Z [2026-10-03 15:01:51.239] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.245442816Z [2026-10-03 15:01:51.245] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.255536457Z [2026-10-03 15:01:51.255] [sepp_app] [info] Decrypted JOSE incoming payload: {"servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","supiOrSuci":"imsi-999100000000031"}
+2026-10-03T13:01:51.255593361Z [2026-10-03 15:01:51.255] [sepp_app] [info] Sending local HTTP request to target NF: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications
+2026-10-03T13:01:51.255607510Z [2026-10-03 15:01:51.255] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications
+2026-10-03T13:01:51.255620299Z [2026-10-03 15:01:51.255] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.315438339Z [2026-10-03 15:01:51.315] [sepp_app] [info] Received local NF HTTP response with status code: 201
+2026-10-03T13:01:51.327738161Z [2026-10-03 15:01:51.327] [sepp_app] [info] Decrypted JOSE incoming payload: {"resStar":"D9887E288884A747617EA63ECC38002E"}
+2026-10-03T13:01:51.327783159Z [2026-10-03 15:01:51.327] [sepp_app] [info] Sending local HTTP request to target NF: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications/5b2a8246ec3680001223e59c2d71d932/5g-aka-confirmation
+2026-10-03T13:01:51.327796100Z [2026-10-03 15:01:51.327] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications/5b2a8246ec3680001223e59c2d71d932/5g-aka-confirmation
+2026-10-03T13:01:51.327807013Z [2026-10-03 15:01:51.327] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.354501673Z [2026-10-03 15:01:51.354] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.372648874Z [2026-10-03 15:01:51.372] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.372726799Z [2026-10-03 15:01:51.372] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.372740837Z [2026-10-03 15:01:51.372] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.377575135Z [2026-10-03 15:01:51.377] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.387216823Z [2026-10-03 15:01:51.386] [sepp_app] [info] Sending local HTTP request to target NF: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/nssai?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:01:51.387329147Z [2026-10-03 15:01:51.386] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/nssai?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:01:51.387358802Z [2026-10-03 15:01:51.386] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.404529721Z [2026-10-03 15:01:51.404] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.631913869Z [2026-10-03 15:01:51.631] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.631966918Z [2026-10-03 15:01:51.631] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.631981681Z [2026-10-03 15:01:51.631] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.637872691Z [2026-10-03 15:01:51.637] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.648234808Z [2026-10-03 15:01:51.647] [sepp_app] [info] Sending local HTTP request to target NF: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/smf-select-data?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:01:51.648358800Z [2026-10-03 15:01:51.647] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/smf-select-data?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:01:51.648381323Z [2026-10-03 15:01:51.647] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.666922711Z [2026-10-03 15:01:51.666] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.678330851Z [2026-10-03 15:01:51.677] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF&service-names=nsmf-pdusession&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.678439491Z [2026-10-03 15:01:51.677] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF&service-names=nsmf-pdusession&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:01:51.678472044Z [2026-10-03 15:01:51.677] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.684195516Z [2026-10-03 15:01:51.683] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:01:51.715429091Z [2026-10-03 15:01:51.715] [sepp_app] [info] Decrypted JOSE incoming payload: {"anType":"3GPP_ACCESS","dnn":"oai","pduSessionId":1,"ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"00007b","sst":222},"servingNetwork":{"mcc":"999","mnc":"20"},"supi":"imsi-999100000000031","vcnTunnelInfo":{"gtpTeid":"00000002","ipv4Addr":"192.168.71.139"},"vsmfId":"3248f41a-e68d-4603-81b1-4473107442bc","vsmfPduSessionUri":"http://smf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/vsmf-pdu-sessions/1"}
+2026-10-03T13:01:51.715494938Z [2026-10-03 15:01:51.715] [sepp_app] [info] Sending local HTTP request to target NF: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions
+2026-10-03T13:01:51.715506254Z [2026-10-03 15:01:51.715] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions
+2026-10-03T13:01:51.715515058Z [2026-10-03 15:01:51.715] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.757584446Z [2026-10-03 15:01:51.757] [sepp_app] [info] Received local NF HTTP response with status code: 201
+2026-10-03T13:01:54.491765938Z [2026-10-03 15:01:54.491] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:01:54.491838847Z [2026-10-03 15:01:54.491] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:54.496658696Z [2026-10-03 15:01:54.496] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:02.004125787Z [2026-10-03 15:02:02.004] [sepp_app] [info] Decrypted JOSE incoming payload: {}
+2026-10-03T13:02:02.004139994Z [2026-10-03 15:02:02.004] [sepp_app] [info] Sending local HTTP request to target NF: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions/1/release
+2026-10-03T13:02:02.004143168Z [2026-10-03 15:02:02.004] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions/1/release
+2026-10-03T13:02:02.004145930Z [2026-10-03 15:02:02.004] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:02.005653977Z [2026-10-03 15:02:02.005] [sepp_app] [info] Received local NF HTTP response with status code: 204
+2026-10-03T13:02:04.507767582Z [2026-10-03 15:02:04.507] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:04.507848064Z [2026-10-03 15:02:04.507] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:04.512231158Z [2026-10-03 15:02:04.511] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:12.249963755Z [2026-10-03 15:02:12.249] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=AUSF&requester-nf-type=AMF&service-names=nausf-auth&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.250022464Z [2026-10-03 15:02:12.249] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=AUSF&requester-nf-type=AMF&service-names=nausf-auth&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.250037598Z [2026-10-03 15:02:12.249] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.255215783Z [2026-10-03 15:02:12.254] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.264182156Z [2026-10-03 15:02:12.263] [sepp_app] [info] Decrypted JOSE incoming payload: {"servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","supiOrSuci":"imsi-999100000000031"}
+2026-10-03T13:02:12.264323654Z [2026-10-03 15:02:12.263] [sepp_app] [info] Sending local HTTP request to target NF: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications
+2026-10-03T13:02:12.264362104Z [2026-10-03 15:02:12.263] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications
+2026-10-03T13:02:12.264378534Z [2026-10-03 15:02:12.263] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.292593932Z [2026-10-03 15:02:12.292] [sepp_app] [info] Received local NF HTTP response with status code: 201
+2026-10-03T13:02:12.305359007Z [2026-10-03 15:02:12.305] [sepp_app] [info] Decrypted JOSE incoming payload: {"resStar":"4D5C53214BCDF97090E38C3D4B380177"}
+2026-10-03T13:02:12.305450057Z [2026-10-03 15:02:12.305] [sepp_app] [info] Sending local HTTP request to target NF: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications/c4ddc08853368000c13852d2ae01009a/5g-aka-confirmation
+2026-10-03T13:02:12.305472262Z [2026-10-03 15:02:12.305] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nausf-auth/v1/ue-authentications/c4ddc08853368000c13852d2ae01009a/5g-aka-confirmation
+2026-10-03T13:02:12.305487888Z [2026-10-03 15:02:12.305] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.329029980Z [2026-10-03 15:02:12.328] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.347939225Z [2026-10-03 15:02:12.347] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.347996811Z [2026-10-03 15:02:12.347] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.348058181Z [2026-10-03 15:02:12.347] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.353463475Z [2026-10-03 15:02:12.353] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.365074967Z [2026-10-03 15:02:12.364] [sepp_app] [info] Sending local HTTP request to target NF: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/nssai?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:02:12.365122574Z [2026-10-03 15:02:12.364] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/nssai?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:02:12.365134588Z [2026-10-03 15:02:12.364] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.375012630Z [2026-10-03 15:02:12.374] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.598938272Z [2026-10-03 15:02:12.598] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.599008740Z [2026-10-03 15:02:12.598] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=AMF&service-names=nudm-sdm&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.599024236Z [2026-10-03 15:02:12.598] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.604814695Z [2026-10-03 15:02:12.604] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.614520292Z [2026-10-03 15:02:12.614] [sepp_app] [info] Sending local HTTP request to target NF: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/smf-select-data?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:02:12.614571051Z [2026-10-03 15:02:12.614] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-sdm/v1/imsi-999100000000031/smf-select-data?plmn-id={"mcc":"999","mnc":"20"}
+2026-10-03T13:02:12.614584231Z [2026-10-03 15:02:12.614] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.623558621Z [2026-10-03 15:02:12.623] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.635024487Z [2026-10-03 15:02:12.634] [sepp_app] [info] Sending local HTTP request to target NF: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF&service-names=nsmf-pdusession&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.635086463Z [2026-10-03 15:02:12.634] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=AMF&service-names=nsmf-pdusession&target-plmn-list=[{"mcc":"999","mnc":"10"}]&requester-plmn-list=[{"mcc":"999","mnc":"20"}]
+2026-10-03T13:02:12.635135625Z [2026-10-03 15:02:12.634] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.641111084Z [2026-10-03 15:02:12.640] [sepp_app] [info] Received local NF HTTP response with status code: 200
+2026-10-03T13:02:12.671948716Z [2026-10-03 15:02:12.671] [sepp_app] [info] Decrypted JOSE incoming payload: {"anType":"3GPP_ACCESS","dnn":"oai","pduSessionId":1,"ratType":"NR","requestType":"INITIAL_REQUEST","sNssai":{"sd":"00007b","sst":222},"servingNetwork":{"mcc":"999","mnc":"20"},"supi":"imsi-999100000000031","vcnTunnelInfo":{"gtpTeid":"00000004","ipv4Addr":"192.168.71.139"},"vsmfId":"3248f41a-e68d-4603-81b1-4473107442bc","vsmfPduSessionUri":"http://smf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/vsmf-pdu-sessions/2"}
+2026-10-03T13:02:12.672006937Z [2026-10-03 15:02:12.671] [sepp_app] [info] Sending local HTTP request to target NF: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions
+2026-10-03T13:02:12.672019344Z [2026-10-03 15:02:12.671] [sepp_app] [info] Prepared local NF HTTP request: HTTP Request to URI: http://smf.5gc.mnc10.mcc999.3gppnetwork.org:8080/nsmf-pdusession/v1/pdu-sessions
+2026-10-03T13:02:12.672028987Z [2026-10-03 15:02:12.671] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.699020342Z [2026-10-03 15:02:12.698] [sepp_app] [info] Received local NF HTTP response with status code: 201
+2026-10-03T13:02:14.528814646Z [2026-10-03 15:02:14.528] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:14.528887513Z [2026-10-03 15:02:14.528] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:14.532852829Z [2026-10-03 15:02:14.532] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:24.547399904Z [2026-10-03 15:02:24.546] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:24.547519380Z [2026-10-03 15:02:24.546] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:24.550475476Z [2026-10-03 15:02:24.550] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:34.570691983Z [2026-10-03 15:02:34.570] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:34.570762171Z [2026-10-03 15:02:34.570] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:34.574436360Z [2026-10-03 15:02:34.574] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:44.582777177Z [2026-10-03 15:02:44.582] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:44.582846882Z [2026-10-03 15:02:44.582] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:44.586807234Z [2026-10-03 15:02:44.586] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:02:54.601838608Z [2026-10-03 15:02:54.601] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:02:54.601908043Z [2026-10-03 15:02:54.601] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:54.611701898Z [2026-10-03 15:02:54.611] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:04.620851618Z [2026-10-03 15:03:04.620] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:04.620965844Z [2026-10-03 15:03:04.620] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:04.624868484Z [2026-10-03 15:03:04.624] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:14.647794103Z [2026-10-03 15:03:14.647] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:14.647861721Z [2026-10-03 15:03:14.647] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:14.651840017Z [2026-10-03 15:03:14.651] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:24.663747034Z [2026-10-03 15:03:24.663] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:24.663809583Z [2026-10-03 15:03:24.663] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:24.667813033Z [2026-10-03 15:03:24.667] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:34.688753512Z [2026-10-03 15:03:34.688] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:34.688827075Z [2026-10-03 15:03:34.688] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:34.693061856Z [2026-10-03 15:03:34.692] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:44.710823431Z [2026-10-03 15:03:44.710] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:44.710888054Z [2026-10-03 15:03:44.710] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:44.714580746Z [2026-10-03 15:03:44.714] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:03:54.759786833Z [2026-10-03 15:03:54.759] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:03:54.759868054Z [2026-10-03 15:03:54.759] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:54.763963395Z [2026-10-03 15:03:54.763] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:04.784756229Z [2026-10-03 15:04:04.784] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:04.784844253Z [2026-10-03 15:04:04.784] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:04.789092169Z [2026-10-03 15:04:04.788] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:14.807843985Z [2026-10-03 15:04:14.807] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:14.807912934Z [2026-10-03 15:04:14.807] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:14.811841685Z [2026-10-03 15:04:14.811] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:24.875584125Z [2026-10-03 15:04:24.875] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:24.875656236Z [2026-10-03 15:04:24.875] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:24.877445257Z [2026-10-03 15:04:24.877] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:34.898667907Z [2026-10-03 15:04:34.898] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:34.898726117Z [2026-10-03 15:04:34.898] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:34.902618516Z [2026-10-03 15:04:34.902] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:44.918693567Z [2026-10-03 15:04:44.918] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:44.918736418Z [2026-10-03 15:04:44.918] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:44.922600061Z [2026-10-03 15:04:44.922] [sepp_sbi] [debug] NF heartbeat request successful
+2026-10-03T13:04:54.949688448Z [2026-10-03 15:04:54.949] [sepp_sbi] [info] Sending NF heartbeat request
+2026-10-03T13:04:54.949744523Z [2026-10-03 15:04:54.949] [sepp_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:54.953916209Z [2026-10-03 15:04:54.953] [sepp_sbi] [debug] NF heartbeat request successful

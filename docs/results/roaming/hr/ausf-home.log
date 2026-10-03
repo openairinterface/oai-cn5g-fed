@@ -1,0 +1,211 @@
+2026-10-03T13:00:54.795324457Z Trying to read .yaml configuration file: /openair-ausf/etc/config.yaml
+2026-10-03T13:00:54.795368142Z LTTNG Tracing disabled at build-time!
+2026-10-03T13:00:54.795374568Z [2026-10-03 15:00:54.794] [ausf_server] [start] Options parsed
+2026-10-03T13:00:54.795390837Z [2026-10-03 15:00:54.795] [ausf_server] [debug] Parsing the configuration file, file type YAML.
+2026-10-03T13:00:54.795433964Z [2026-10-03 15:00:54.795] [config ] [info] Reading NF configuration from /openair-ausf/etc/config.yaml
+2026-10-03T13:00:54.817085516Z [2026-10-03 15:00:54.816] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T13:00:54.817114908Z [2026-10-03 15:00:54.816] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T13:00:54.817124161Z [2026-10-03 15:00:54.816] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T13:00:54.817128081Z [2026-10-03 15:00:54.816] [config ] [debug] Unknown NF udr in configuration. Ignored
+2026-10-03T13:00:54.817131872Z [2026-10-03 15:00:54.816] [config ] [debug] Unknown NF sepp in configuration. Ignored
+2026-10-03T13:00:54.817138361Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of log_level
+2026-10-03T13:00:54.817213281Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of register_nf
+2026-10-03T13:00:54.817226231Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of http_version
+2026-10-03T13:00:54.817231951Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T13:00:54.817236709Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of NRF
+2026-10-03T13:00:54.817981650Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of UDM
+2026-10-03T13:00:54.817994081Z [2026-10-03 15:00:54.817] [config ] [debug] Validating configuration of AUSF
+2026-10-03T13:00:54.819647504Z [2026-10-03 15:00:54.819] [config ] [debug] Validating configuration of database
+2026-10-03T13:00:54.819670861Z [2026-10-03 15:00:54.819] [config ] [info] ==== OPENAIRINTERFACE ausf vBranch: HEAD Abrev. Hash: c950a9a Date: Wed Sep 16 21:05:53 2026 +0200 ====
+2026-10-03T13:00:54.819677163Z [2026-10-03 15:00:54.819] [config ] [info] Basic Configuration:
+2026-10-03T13:00:54.819681615Z [2026-10-03 15:00:54.819] [config ] [info]   - log_level..................................: debug
+2026-10-03T13:00:54.819685902Z [2026-10-03 15:00:54.819] [config ] [info]   - register_nf................................: Yes
+2026-10-03T13:00:54.819690547Z [2026-10-03 15:00:54.819] [config ] [info]   - http_version...............................: 2
+2026-10-03T13:00:54.819695189Z [2026-10-03 15:00:54.819] [config ] [info]   TLS:
+2026-10-03T13:00:54.819699643Z [2026-10-03 15:00:54.819] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T13:00:54.819703364Z [2026-10-03 15:00:54.819] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T13:00:54.819707282Z [2026-10-03 15:00:54.819] [config ] [info]     AUSF:
+2026-10-03T13:00:54.819721568Z [2026-10-03 15:00:54.819] [config ] [info]     - host.....................................: ausf.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.819725072Z [2026-10-03 15:00:54.819] [config ] [info]     - SBI
+2026-10-03T13:00:54.819728078Z [2026-10-03 15:00:54.819] [config ] [info]       + URL....................................: ausf.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.819731197Z [2026-10-03 15:00:54.819] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.819734280Z [2026-10-03 15:00:54.819] [config ] [info]       + IPv4 Address ..........................: 192.168.73.133
+2026-10-03T13:00:54.819737386Z [2026-10-03 15:00:54.819] [config ] [info]     - Instance ID..............................: 0
+2026-10-03T13:00:54.819740494Z [2026-10-03 15:00:54.819] [config ] [info]     - PID Directory............................: 
+2026-10-03T13:00:54.819743666Z [2026-10-03 15:00:54.819] [config ] [info]     - AUSF Name................................: 
+2026-10-03T13:00:54.819746740Z [2026-10-03 15:00:54.819] [config ] [info] Peer NF Configuration:
+2026-10-03T13:00:54.819749791Z [2026-10-03 15:00:54.819] [config ] [info]   NRF:
+2026-10-03T13:00:54.819796829Z [2026-10-03 15:00:54.819] [config ] [info]     - host.....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.819801941Z [2026-10-03 15:00:54.819] [config ] [info]     - SBI
+2026-10-03T13:00:54.819806956Z [2026-10-03 15:00:54.819] [config ] [info]       + URL....................................: nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080
+2026-10-03T13:00:54.819811162Z [2026-10-03 15:00:54.819] [config ] [info]       + API Version............................: v1
+2026-10-03T13:00:54.819815137Z [2026-10-03 15:00:54.819] [ausf_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+2026-10-03T13:00:54.819819247Z [2026-10-03 15:00:54.819] [ausf_app] [start] Starting...
+2026-10-03T13:00:54.819823064Z [2026-10-03 15:00:54.819] [ausf_nrf] [info] Create NRF TASK
+2026-10-03T13:00:54.819826700Z [2026-10-03 15:00:54.819] [ausf_app] [debug] - NF instance info
+2026-10-03T13:00:54.819830310Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Instance ID: 3964e942-4f6c-4b08-8e84-4698938ad5d7
+2026-10-03T13:00:54.819834004Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Instance name: OAI-AUSF
+2026-10-03T13:00:54.819837449Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Instance type: AUSF
+2026-10-03T13:00:54.819841198Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Instance fqdn: ausf.5gc.mnc10.mcc999.3gppnetwork.org
+2026-10-03T13:00:54.819845271Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Status: REGISTERED
+2026-10-03T13:00:54.819849069Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     HeartBeat timer: 50
+2026-10-03T13:00:54.819852824Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Priority: 1
+2026-10-03T13:00:54.819856501Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     Capacity: 100
+2026-10-03T13:00:54.819872775Z [2026-10-03 15:00:54.819] [ausf_app] [debug]     IPv4 Addr:
+2026-10-03T13:00:54.819876091Z [2026-10-03 15:00:54.819] [ausf_app] [debug]         192.168.73.133
+2026-10-03T13:00:54.819878708Z [2026-10-03 15:00:54.819] [ausf_app] [debug] 	AUSF Info
+2026-10-03T13:00:54.819881616Z [2026-10-03 15:00:54.819] [ausf_app] [debug] 		GroupId: oai-ausf-testgroupid
+2026-10-03T13:00:54.819884647Z [2026-10-03 15:00:54.819] [ausf_app] [debug] 		 SupiRanges: Start - q0930j0c80283ncjf, End - , Pattern - 209238210938
+2026-10-03T13:00:54.819888082Z [2026-10-03 15:00:54.819] [ausf_app] [debug] 		 Routing Indicators: 0210
+2026-10-03T13:00:54.819891704Z [2026-10-03 15:00:54.819] [ausf_app] [debug] 		 Routing Indicators: 9876
+2026-10-03T13:00:54.819894753Z [2026-10-03 15:00:54.819] [ausf_nrf] [info] NRF TASK created
+2026-10-03T13:00:54.820458745Z [2026-10-03 15:00:54.819] [ausf_app] [debug] AUSF profile to JSON:
+2026-10-03T13:00:54.820479879Z  {"ausfInfo":{"groupId":"oai-ausf-testgroupid","routingIndicators":["0210","9876"],"supiRanges":[{"end":"","pattern":"209238210938","start":"q0930j0c80283ncjf"}]},"capacity":100,"fqdn":"ausf.5gc.mnc10.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.73.133"],"nfInstanceId":"3964e942-4f6c-4b08-8e84-4698938ad5d7","nfInstanceName":"OAI-AUSF","nfStatus":"REGISTERED","nfType":"AUSF","priority":1,"sNssais":[]}
+2026-10-03T13:00:54.820488770Z [2026-10-03 15:00:54.819] [ausf_nrf] [info] Sending NF registration request
+2026-10-03T13:00:54.820492236Z [2026-10-03 15:00:54.819] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:00:54.823196454Z [2026-10-03 15:00:54.823] [ausf_app] [start] Started
+2026-10-03T13:00:54.823747685Z [2026-10-03 15:00:54.823] [ausf_server] [info] HTTP2 server being started
+2026-10-03T13:01:04.859725571Z [2026-10-03 15:01:04.859] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:04.860128861Z [2026-10-03 15:01:04.859] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:14.916744529Z [2026-10-03 15:01:14.916] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:14.917137062Z [2026-10-03 15:01:14.916] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:24.947657795Z [2026-10-03 15:01:24.947] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:24.947963770Z [2026-10-03 15:01:24.947] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:34.964694343Z [2026-10-03 15:01:34.964] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:34.965207397Z [2026-10-03 15:01:34.964] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:44.974769807Z [2026-10-03 15:01:44.974] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:44.974941935Z [2026-10-03 15:01:44.974] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.259021092Z [2026-10-03 15:01:51.258] [ausf_server] [info] Received ue_authentications_post Request
+2026-10-03T13:01:51.259080569Z [2026-10-03 15:01:51.258] [ausf_app] [info] Handle UE Authentication Request
+2026-10-03T13:01:51.259121321Z [2026-10-03 15:01:51.258] [ausf_app] [info] ServingNetworkName 5G:mnc020.mcc999.3gppnetwork.org
+2026-10-03T13:01:51.259131634Z [2026-10-03 15:01:51.258] [ausf_app] [info] supiOrSuci imsi-999100000000031
+2026-10-03T13:01:51.259221083Z [2026-10-03 15:01:51.259] [ausf_app] [debug] UDM's URI http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-ueau/v1/imsi-999100000000031/security-information/generate-auth-data
+2026-10-03T13:01:51.259309912Z [2026-10-03 15:01:51.259] [ausf_app] [info] Received authInfo from AMF without ResynchronizationInfo IE
+2026-10-03T13:01:51.259332289Z [2026-10-03 15:01:51.259] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.312913764Z [2026-10-03 15:01:51.312] [ausf_app] [info] Response from UDM: {"authType":"5G_AKA","authenticationVector":{"autn":"5b2a8246ec3680001223e59c2d71d932","avType":"5G_HE_AKA","kausf":"9675dcc2d855756c697ab0b2d0523479deda08f8d0ad0509b390e74eec8f7742","rand":"ee1b762e8d935f9643016c37c3814043","xresStar":"d9887e288884a747617ea63ecc38002e"},"supi":"imsi-999100000000031"}
+2026-10-03T13:01:51.312975966Z [2026-10-03 15:01:51.312] [ausf_app] [debug] authType 5G_AKA
+2026-10-03T13:01:51.312994837Z [2026-10-03 15:01:51.312] [ausf_app] [debug] autn_udm 5b2a8246ec3680001223e59c2d71d932
+2026-10-03T13:01:51.313008654Z [2026-10-03 15:01:51.312] [ausf_app] [debug] av_type_udm 5G_HE_AKA
+2026-10-03T13:01:51.313023949Z [2026-10-03 15:01:51.312] [ausf_app] [debug] kausf_udm 9675dcc2d855756c697ab0b2d0523479deda08f8d0ad0509b390e74eec8f7742
+2026-10-03T13:01:51.313033414Z [2026-10-03 15:01:51.312] [ausf_app] [debug] rand_udm ee1b762e8d935f9643016c37c3814043
+2026-10-03T13:01:51.313042307Z [2026-10-03 15:01:51.312] [ausf_app] [debug] xres*_udm d9887e288884a747617ea63ecc38002e
+2026-10-03T13:01:51.313051045Z [2026-10-03 15:01:51.312] [ausf_app] [debug] Generating 5G AV
+2026-10-03T13:01:51.313067187Z [2026-10-03 15:01:51.312] [ausf_app] [debug] HXresStar calculated:
+2026-10-03T13:01:51.313076012Z  07cb8761bd446563eb385f1718c3fb98
+2026-10-03T13:01:51.313084373Z [2026-10-03 15:01:51.312] [ausf_app] [debug] Derive_kseaf ...
+2026-10-03T13:01:51.313092867Z [2026-10-03 15:01:51.312] [ausf_app] [debug] SNN: 5G:mnc020.mcc999.3gppnetwork.org
+2026-10-03T13:01:51.313101582Z [2026-10-03 15:01:51.312] [common] [debug] [ausf_app]derive_kseaf Kausf
+2026-10-03T13:01:51.314243719Z 96 75 dc c2 d8 55 75 6c 69 7a b0 b2 d0 52 34 79 de da 08 f8 d0 ad 05 09 b3 90 e7 4e ec 8f 77 42 
+2026-10-03T13:01:51.314366191Z [2026-10-03 15:01:51.314] [common] [debug] [ausf_app]derive_kseaf Kseaf
+2026-10-03T13:01:51.314387797Z d8 33 af 27 97 13 04 28 b8 43 74 ab 27 c4 c4 c2 90 e6 7c c1 5b 96 c9 4c e6 c7 3a 4c c6 58 34 c3 
+2026-10-03T13:01:51.314400828Z [2026-10-03 15:01:51.314] [ausf_app] [debug] Kseaf calculated:
+2026-10-03T13:01:51.314412355Z  d833af2797130428b84374ab27c4c4c290e67cc15b96c94ce6c73a4cc65834c3
+2026-10-03T13:01:51.314423277Z [2026-10-03 15:01:51.314] [ausf_app] [debug] Create a new security context with SUPI imsi-999100000000031
+2026-10-03T13:01:51.314476970Z [2026-10-03 15:01:51.314] [ausf_app] [debug] Auth Response:
+2026-10-03T13:01:51.314490170Z  {"5gAuthData":{"autn":"5b2a8246ec3680001223e59c2d71d932","hxresStar":"07cb8761bd446563eb385f1718c3fb98","rand":"ee1b762e8d935f9643016c37c3814043"},"_links":{"5g-aka":{"href":"http://192.168.73.133:8080/nausf-auth/v1/ue-authentications/5b2a8246ec3680001223e59c2d71d932/5g-aka-confirmation"}},"authType":"5G_AKA"}
+2026-10-03T13:01:51.314502962Z [2026-10-03 15:01:51.314] [ausf_server] [debug] Auth response:
+2026-10-03T13:01:51.314509923Z  {"5gAuthData":{"autn":"5b2a8246ec3680001223e59c2d71d932","hxresStar":"07cb8761bd446563eb385f1718c3fb98","rand":"ee1b762e8d935f9643016c37c3814043"},"_links":{"5g-aka":{"href":"http://192.168.73.133:8080/nausf-auth/v1/ue-authentications/5b2a8246ec3680001223e59c2d71d932/5g-aka-confirmation"}},"authType":"5G_AKA"}
+2026-10-03T13:01:51.314520005Z [2026-10-03 15:01:51.314] [ausf_server] [info] Send Auth response to SEAF (Code 201)
+2026-10-03T13:01:51.330009751Z [2026-10-03 15:01:51.329] [ausf_server] [info] Received 5g_aka_confirmation Request
+2026-10-03T13:01:51.330049738Z [2026-10-03 15:01:51.329] [ausf_server] [info] 5gaka confirmation received with authctxID 5b2a8246ec3680001223e59c2d71d932
+2026-10-03T13:01:51.330059354Z [2026-10-03 15:01:51.329] [ausf_app] [debug] Handling 5g-aka-confirmation
+2026-10-03T13:01:51.330066405Z [2026-10-03 15:01:51.329] [ausf_app] [debug] Retrieve security context with authCtxId: 5b2a8246ec3680001223e59c2d71d932
+2026-10-03T13:01:51.330073984Z [2026-10-03 15:01:51.329] [ausf_app] [info] Received authCtxId 5b2a8246ec3680001223e59c2d71d932
+2026-10-03T13:01:51.330080836Z [2026-10-03 15:01:51.329] [ausf_app] [info] Received res* D9887E288884A747617EA63ECC38002E
+2026-10-03T13:01:51.330087753Z [2026-10-03 15:01:51.329] [ausf_app] [debug] authCtxId in AUSF: 5b2a8246ec3680001223e59c2d71d932
+2026-10-03T13:01:51.330094667Z [2026-10-03 15:01:51.329] [ausf_app] [info] AV is up to date, handling received res*...
+2026-10-03T13:01:51.330101468Z [2026-10-03 15:01:51.329] [ausf_app] [debug] xres* in AUSF: d9887e288884a747617ea63ecc38002e
+2026-10-03T13:01:51.330108308Z [2026-10-03 15:01:51.329] [ausf_app] [debug] xres in AMF: d9887e288884a747617ea63ecc38002e
+2026-10-03T13:01:51.330115142Z [2026-10-03 15:01:51.329] [ausf_app] [info] Authentication successful by home network!
+2026-10-03T13:01:51.330576005Z [2026-10-03 15:01:51.330] [ausf_app] [debug] UDM's URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-ueau/v1/imsi-999100000000031/auth-events
+2026-10-03T13:01:51.330619352Z [2026-10-03 15:01:51.330] [ausf_app] [debug] confirmResultInfo: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"3964e942-4f6c-4b08-8e84-4698938ad5d7","servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","success":true,"timeStamp":"2026-10-03T13:01:51Z"}
+2026-10-03T13:01:51.330634027Z [2026-10-03 15:01:51.330] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:01:51.353544738Z [2026-10-03 15:01:51.353] [ausf_server] [debug] 5g-aka-confirmation response:
+2026-10-03T13:01:51.353603948Z  {"authResult":"AUTHENTICATION_SUCCESS","kseaf":"d833af2797130428b84374ab27c4c4c290e67cc15b96c94ce6c73a4cc65834c3","supi":"imsi-999100000000031"}
+2026-10-03T13:01:51.353654826Z [2026-10-03 15:01:51.353] [ausf_server] [info] Send 5g-aka-confirmation response to SEAF (Code 200)
+2026-10-03T13:01:54.992478568Z [2026-10-03 15:01:54.992] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:01:54.992504513Z [2026-10-03 15:01:54.992] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:05.001643161Z [2026-10-03 15:02:04.999] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:05.001733840Z [2026-10-03 15:02:05.000] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.267057330Z [2026-10-03 15:02:12.266] [ausf_server] [info] Received ue_authentications_post Request
+2026-10-03T13:02:12.267110301Z [2026-10-03 15:02:12.266] [ausf_app] [info] Handle UE Authentication Request
+2026-10-03T13:02:12.267121475Z [2026-10-03 15:02:12.266] [ausf_app] [info] ServingNetworkName 5G:mnc020.mcc999.3gppnetwork.org
+2026-10-03T13:02:12.267129663Z [2026-10-03 15:02:12.266] [ausf_app] [info] supiOrSuci imsi-999100000000031
+2026-10-03T13:02:12.267766712Z [2026-10-03 15:02:12.267] [ausf_app] [debug] UDM's URI http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-ueau/v1/imsi-999100000000031/security-information/generate-auth-data
+2026-10-03T13:02:12.267826882Z [2026-10-03 15:02:12.267] [ausf_app] [info] Received authInfo from AMF without ResynchronizationInfo IE
+2026-10-03T13:02:12.267838231Z [2026-10-03 15:02:12.267] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.291237972Z [2026-10-03 15:02:12.290] [ausf_app] [info] Response from UDM: {"authType":"5G_AKA","authenticationVector":{"autn":"c4ddc08853368000c13852d2ae01009a","avType":"5G_HE_AKA","kausf":"fdc65d8776c36a19181ee5a222bfcc4e2b8a1e65deb909af19544c839b5e71c5","rand":"dbd4a3d58594d9755c69748bf4ae6d00","xresStar":"4d5c53214bcdf97090e38c3d4b380177"},"supi":"imsi-999100000000031"}
+2026-10-03T13:02:12.291464018Z [2026-10-03 15:02:12.291] [ausf_app] [debug] authType 5G_AKA
+2026-10-03T13:02:12.291483186Z [2026-10-03 15:02:12.291] [ausf_app] [debug] autn_udm c4ddc08853368000c13852d2ae01009a
+2026-10-03T13:02:12.291496520Z [2026-10-03 15:02:12.291] [ausf_app] [debug] av_type_udm 5G_HE_AKA
+2026-10-03T13:02:12.291510955Z [2026-10-03 15:02:12.291] [ausf_app] [debug] kausf_udm fdc65d8776c36a19181ee5a222bfcc4e2b8a1e65deb909af19544c839b5e71c5
+2026-10-03T13:02:12.291523582Z [2026-10-03 15:02:12.291] [ausf_app] [debug] rand_udm dbd4a3d58594d9755c69748bf4ae6d00
+2026-10-03T13:02:12.291536022Z [2026-10-03 15:02:12.291] [ausf_app] [debug] xres*_udm 4d5c53214bcdf97090e38c3d4b380177
+2026-10-03T13:02:12.291547112Z [2026-10-03 15:02:12.291] [ausf_app] [debug] Generating 5G AV
+2026-10-03T13:02:12.291559613Z [2026-10-03 15:02:12.291] [ausf_app] [debug] HXresStar calculated:
+2026-10-03T13:02:12.291572724Z  2503481328b376c389854a9745c8c294
+2026-10-03T13:02:12.291586036Z [2026-10-03 15:02:12.291] [ausf_app] [debug] Derive_kseaf ...
+2026-10-03T13:02:12.291598245Z [2026-10-03 15:02:12.291] [ausf_app] [debug] SNN: 5G:mnc020.mcc999.3gppnetwork.org
+2026-10-03T13:02:12.291608392Z [2026-10-03 15:02:12.291] [common] [debug] [ausf_app]derive_kseaf Kausf
+2026-10-03T13:02:12.291674557Z fd c6 5d 87 76 c3 6a 19 18 1e e5 a2 22 bf cc 4e 2b 8a 1e 65 de b9 09 af 19 54 4c 83 9b 5e 71 c5 
+2026-10-03T13:02:12.291691915Z [2026-10-03 15:02:12.291] [common] [debug] [ausf_app]derive_kseaf Kseaf
+2026-10-03T13:02:12.291703063Z e0 67 8a 43 03 07 6f 41 7c d1 d7 9f 8c 78 97 28 ff cd c2 aa b9 b5 b3 cb b9 8f 56 79 de e2 8a b6 
+2026-10-03T13:02:12.291716116Z [2026-10-03 15:02:12.291] [ausf_app] [debug] Kseaf calculated:
+2026-10-03T13:02:12.291730033Z  e0678a4303076f417cd1d79f8c789728ffcdc2aab9b5b3cbb98f5679dee28ab6
+2026-10-03T13:02:12.291742913Z [2026-10-03 15:02:12.291] [ausf_app] [debug] Update security context with SUPI: imsi-999100000000031
+2026-10-03T13:02:12.291757274Z [2026-10-03 15:02:12.291] [ausf_app] [debug] Auth Response:
+2026-10-03T13:02:12.291771331Z  {"5gAuthData":{"autn":"c4ddc08853368000c13852d2ae01009a","hxresStar":"2503481328b376c389854a9745c8c294","rand":"dbd4a3d58594d9755c69748bf4ae6d00"},"_links":{"5g-aka":{"href":"http://192.168.73.133:8080/nausf-auth/v1/ue-authentications/c4ddc08853368000c13852d2ae01009a/5g-aka-confirmation"}},"authType":"5G_AKA"}
+2026-10-03T13:02:12.291793802Z [2026-10-03 15:02:12.291] [ausf_server] [debug] Auth response:
+2026-10-03T13:02:12.291808616Z  {"5gAuthData":{"autn":"c4ddc08853368000c13852d2ae01009a","hxresStar":"2503481328b376c389854a9745c8c294","rand":"dbd4a3d58594d9755c69748bf4ae6d00"},"_links":{"5g-aka":{"href":"http://192.168.73.133:8080/nausf-auth/v1/ue-authentications/c4ddc08853368000c13852d2ae01009a/5g-aka-confirmation"}},"authType":"5G_AKA"}
+2026-10-03T13:02:12.291831410Z [2026-10-03 15:02:12.291] [ausf_server] [info] Send Auth response to SEAF (Code 201)
+2026-10-03T13:02:12.308158408Z [2026-10-03 15:02:12.307] [ausf_server] [info] Received 5g_aka_confirmation Request
+2026-10-03T13:02:12.308209285Z [2026-10-03 15:02:12.307] [ausf_server] [info] 5gaka confirmation received with authctxID c4ddc08853368000c13852d2ae01009a
+2026-10-03T13:02:12.308220119Z [2026-10-03 15:02:12.307] [ausf_app] [debug] Handling 5g-aka-confirmation
+2026-10-03T13:02:12.308228083Z [2026-10-03 15:02:12.307] [ausf_app] [debug] Retrieve security context with authCtxId: c4ddc08853368000c13852d2ae01009a
+2026-10-03T13:02:12.308236207Z [2026-10-03 15:02:12.307] [ausf_app] [info] Received authCtxId c4ddc08853368000c13852d2ae01009a
+2026-10-03T13:02:12.308244085Z [2026-10-03 15:02:12.307] [ausf_app] [info] Received res* 4D5C53214BCDF97090E38C3D4B380177
+2026-10-03T13:02:12.308321832Z [2026-10-03 15:02:12.307] [ausf_app] [debug] authCtxId in AUSF: c4ddc08853368000c13852d2ae01009a
+2026-10-03T13:02:12.308338886Z [2026-10-03 15:02:12.307] [ausf_app] [info] AV is up to date, handling received res*...
+2026-10-03T13:02:12.308355683Z [2026-10-03 15:02:12.307] [ausf_app] [debug] xres* in AUSF: 4d5c53214bcdf97090e38c3d4b380177
+2026-10-03T13:02:12.308370278Z [2026-10-03 15:02:12.307] [ausf_app] [debug] xres in AMF: 4d5c53214bcdf97090e38c3d4b380177
+2026-10-03T13:02:12.308385244Z [2026-10-03 15:02:12.307] [ausf_app] [info] Authentication successful by home network!
+2026-10-03T13:02:12.308480741Z [2026-10-03 15:02:12.308] [ausf_app] [debug] UDM's URI: http://udm.5gc.mnc10.mcc999.3gppnetwork.org:8080/nudm-ueau/v1/imsi-999100000000031/auth-events
+2026-10-03T13:02:12.308557836Z [2026-10-03 15:02:12.308] [ausf_app] [debug] confirmResultInfo: {"authRemovalInd":false,"authType":"5G_AKA","nfInstanceId":"3964e942-4f6c-4b08-8e84-4698938ad5d7","servingNetworkName":"5G:mnc020.mcc999.3gppnetwork.org","success":true,"timeStamp":"2026-10-03T13:02:12Z"}
+2026-10-03T13:02:12.308581248Z [2026-10-03 15:02:12.308] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:12.328357685Z [2026-10-03 15:02:12.327] [ausf_server] [debug] 5g-aka-confirmation response:
+2026-10-03T13:02:12.328425661Z  {"authResult":"AUTHENTICATION_SUCCESS","kseaf":"e0678a4303076f417cd1d79f8c789728ffcdc2aab9b5b3cbb98f5679dee28ab6","supi":"imsi-999100000000031"}
+2026-10-03T13:02:12.328443522Z [2026-10-03 15:02:12.327] [ausf_server] [info] Send 5g-aka-confirmation response to SEAF (Code 200)
+2026-10-03T13:02:15.017653513Z [2026-10-03 15:02:15.017] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:15.018227053Z [2026-10-03 15:02:15.017] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:25.036664784Z [2026-10-03 15:02:25.036] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:25.037457807Z [2026-10-03 15:02:25.037] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:35.055800757Z [2026-10-03 15:02:35.055] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:35.056111969Z [2026-10-03 15:02:35.055] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:45.070753416Z [2026-10-03 15:02:45.070] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:45.071233486Z [2026-10-03 15:02:45.070] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:02:55.087744804Z [2026-10-03 15:02:55.087] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:02:55.088024111Z [2026-10-03 15:02:55.087] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:05.108769955Z [2026-10-03 15:03:05.108] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:05.109104185Z [2026-10-03 15:03:05.108] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:15.138713609Z [2026-10-03 15:03:15.138] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:15.139034812Z [2026-10-03 15:03:15.138] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:25.163848552Z [2026-10-03 15:03:25.163] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:25.164008921Z [2026-10-03 15:03:25.163] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:35.187789453Z [2026-10-03 15:03:35.187] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:35.188177366Z [2026-10-03 15:03:35.187] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:45.207824641Z [2026-10-03 15:03:45.207] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:45.207966758Z [2026-10-03 15:03:45.207] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:03:55.238798301Z [2026-10-03 15:03:55.238] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:03:55.239093787Z [2026-10-03 15:03:55.238] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:05.257849932Z [2026-10-03 15:04:05.257] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:05.258031541Z [2026-10-03 15:04:05.257] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:15.273718583Z [2026-10-03 15:04:15.273] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:15.274088673Z [2026-10-03 15:04:15.273] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:25.335871780Z [2026-10-03 15:04:25.335] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:25.336027643Z [2026-10-03 15:04:25.335] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:35.377556415Z [2026-10-03 15:04:35.376] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:35.377625941Z [2026-10-03 15:04:35.376] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:45.397848774Z [2026-10-03 15:04:45.397] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:45.397949438Z [2026-10-03 15:04:45.397] [ausf_client] [debug] Send a simple HTTP request
+2026-10-03T13:04:55.434775832Z [2026-10-03 15:04:55.434] [ausf_nrf] [info] Sending NF heartbeat request
+2026-10-03T13:04:55.435197986Z [2026-10-03 15:04:55.434] [ausf_client] [debug] Send a simple HTTP request

@@ -1,0 +1,68 @@
+### docker-compose ps
+                Name                               Command                  State                                      Ports                                
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+amf.5gc.mnc10.mcc999.3gppnetwork.org    /openair-amf/bin/oai_amf - ...   Up (healthy)   38412/sctp, 5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 9090/tcp
+amf.5gc.mnc20.mcc999.3gppnetwork.org    /openair-amf/bin/oai_amf - ...   Up (healthy)   38412/sctp, 5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 9090/tcp
+ausf.5gc.mnc10.mcc999.3gppnetwork.org   /openair-ausf/bin/oai_ausf ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+ausf.5gc.mnc20.mcc999.3gppnetwork.org   /openair-ausf/bin/oai_ausf ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+mysql-A                                 docker-entrypoint.sh mysqld      Up             3306/tcp, 33060/tcp                                                 
+mysql-B                                 docker-entrypoint.sh mysqld      Up             3306/tcp, 33060/tcp                                                 
+nrf.5gc.mnc10.mcc999.3gppnetwork.org    /openair-nrf/bin/oai_nrf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+nrf.5gc.mnc20.mcc999.3gppnetwork.org    /openair-nrf/bin/oai_nrf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+sepp.5gc.mnc10.mcc999.3gppnetwork.org   /openair-sepp/etc/entrypoi ...   Up (healthy)   443/tcp, 80/tcp, 8080/tcp                                           
+sepp.5gc.mnc20.mcc999.3gppnetwork.org   /openair-sepp/etc/entrypoi ...   Up (healthy)   443/tcp, 80/tcp, 8080/tcp                                           
+smf.5gc.mnc10.mcc999.3gppnetwork.org    /openair-smf/bin/oai_smf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 8805/udp, 9090/tcp  
+smf.5gc.mnc20.mcc999.3gppnetwork.org    /openair-smf/bin/oai_smf - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 8805/udp, 9090/tcp  
+udm.5gc.mnc10.mcc999.3gppnetwork.org    /openair-udm/bin/oai_udm - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+udm.5gc.mnc20.mcc999.3gppnetwork.org    /openair-udm/bin/oai_udm - ...   Up (healthy)   5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp                      
+udr.5gc.mnc10.mcc999.3gppnetwork.org    /openair-udr/bin/oai_udr - ...   Up (healthy)   80/tcp, 8080/tcp                                                    
+udr.5gc.mnc20.mcc999.3gppnetwork.org    /openair-udr/bin/oai_udr - ...   Up (healthy)   80/tcp, 8080/tcp                                                    
+ue-plmnB-roaming-A                      /bin/bash -c echo "Waiting ...   Up                                                                                 
+upf.5gc.mnc10.mcc999.3gppnetwork.org    sh /openair-upf/bin/entryp ...   Up (healthy)   2152/udp, 5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 8805/udp  
+upf.5gc.mnc20.mcc999.3gppnetwork.org    sh /openair-upf/bin/entryp ...   Up (healthy)   2152/udp, 5342/tcp, 5343/tcp, 5344/tcp, 80/tcp, 8080/tcp, 8805/udp
+
+### nr-cli status
+cm-state: CM-CONNECTED
+rm-state: RM-REGISTERED
+mm-state: MM-REGISTERED/NORMAL-SERVICE
+5u-state: 5U1-UPDATED
+sim-inserted: true
+selected-plmn: 999/20
+hplmn: 999/10
+roaming: true
+current-cell: 1
+current-plmn: 999/20
+current-tac: 40960
+last-tai: PLMN[999/20] TAC[40960]
+stored-suci: no-identity
+stored-guti: 
+ plmn: 999/20
+ amf-region-id: 0x01
+ amf-set-id: 1
+ amf-pointer: 1
+ tmsi: 0x52c1f8a4
+has-emergency: false
+
+### nr-cli ps-list
+PDU Session1: 
+ state: PS-ACTIVE
+ session-type: IPv4
+ apn: oai
+ s-nssai: 
+  sst: 0xde
+  sd: 0x00007b
+ emergency: false
+ address: 12.1.1.130
+ ambr: up[100Mb/s] down[100Mb/s]
+ data-pending: false
+
+### ping -c 3 -I uesimtun0 google.com
+PING google.com (108.177.119.138) from 12.1.1.130 uesimtun0: 56(84) bytes of data.
+64 bytes from ei-in-f138.1e100.net (108.177.119.138): icmp_seq=1 ttl=104 time=24.7 ms
+64 bytes from ei-in-f138.1e100.net (108.177.119.138): icmp_seq=2 ttl=104 time=22.8 ms
+64 bytes from ei-in-f138.1e100.net (108.177.119.138): icmp_seq=3 ttl=104 time=21.1 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 21.139/22.880/24.744/1.474 ms
+

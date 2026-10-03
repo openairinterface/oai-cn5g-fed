@@ -1,0 +1,116 @@
+2026-10-03T11:45:33.204378145Z Trying to read .yaml configuration file: /openair-udm/etc/config.yaml
+2026-10-03T11:45:33.204422868Z LTTNG Tracing disabled at build-time!
+2026-10-03T11:45:33.204428875Z [2026-10-03 13:45:33.203] [system ] [start] Options parsed
+2026-10-03T11:45:33.204432774Z [2026-10-03 13:45:33.204] [system ] [debug] Parsing the configuration file (YAML).
+2026-10-03T11:45:33.204436582Z [2026-10-03 13:45:33.204] [config ] [info] Reading NF configuration from /openair-udm/etc/config.yaml
+2026-10-03T11:45:33.248762007Z [2026-10-03 13:45:33.247] [config ] [debug] Unknown NF amf in configuration. Ignored
+2026-10-03T11:45:33.248795049Z [2026-10-03 13:45:33.247] [config ] [debug] Unknown NF smf in configuration. Ignored
+2026-10-03T11:45:33.248801952Z [2026-10-03 13:45:33.247] [config ] [debug] Unknown NF upf in configuration. Ignored
+2026-10-03T11:45:33.248807030Z [2026-10-03 13:45:33.247] [config ] [debug] Unknown NF ausf in configuration. Ignored
+2026-10-03T11:45:33.248812217Z [2026-10-03 13:45:33.247] [config ] [debug] Unknown NF sepp in configuration. Ignored
+2026-10-03T11:45:33.248817226Z [2026-10-03 13:45:33.248] [config ] [debug] Validating configuration of log_level
+2026-10-03T11:45:33.248822159Z [2026-10-03 13:45:33.248] [config ] [debug] Validating configuration of register_nf
+2026-10-03T11:45:33.248827088Z [2026-10-03 13:45:33.248] [config ] [debug] Validating configuration of http_version
+2026-10-03T11:45:33.248832165Z [2026-10-03 13:45:33.248] [config ] [debug] Validating configuration of http_request_timeout
+2026-10-03T11:45:33.248837354Z [2026-10-03 13:45:33.248] [config ] [debug] Validating configuration of NRF
+2026-10-03T11:45:33.251351286Z [2026-10-03 13:45:33.250] [config ] [debug] Validating configuration of UDR
+2026-10-03T11:45:33.251469064Z [2026-10-03 13:45:33.250] [config ] [debug] Validating configuration of UDM
+2026-10-03T11:45:33.256366724Z [2026-10-03 13:45:33.253] [config ] [debug] Validating configuration of database
+2026-10-03T11:45:33.256390123Z [2026-10-03 13:45:33.253] [config ] [info] ==== OPENAIRINTERFACE udm vBranch:  Abrev. Hash:  Date:  ====
+2026-10-03T11:45:33.256396682Z [2026-10-03 13:45:33.254] [config ] [info] Basic Configuration:
+2026-10-03T11:45:33.256402148Z [2026-10-03 13:45:33.254] [config ] [info]   - log_level..................................: debug
+2026-10-03T11:45:33.256406413Z [2026-10-03 13:45:33.254] [config ] [info]   - register_nf................................: Yes
+2026-10-03T11:45:33.256411191Z [2026-10-03 13:45:33.254] [config ] [info]   - http_version...............................: 2
+2026-10-03T11:45:33.256415892Z [2026-10-03 13:45:33.254] [config ] [info]   TLS:
+2026-10-03T11:45:33.256420349Z [2026-10-03 13:45:33.254] [config ] [info]     - Enable TLS.................................: No
+2026-10-03T11:45:33.256425327Z [2026-10-03 13:45:33.254] [config ] [info]   - HTTP Request Timeout.......................: 3000 (ms)
+2026-10-03T11:45:33.256432299Z [2026-10-03 13:45:33.254] [config ] [info]     UDM:
+2026-10-03T11:45:33.256437816Z [2026-10-03 13:45:33.254] [config ] [info]     - host.....................................: udm.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:33.256468908Z [2026-10-03 13:45:33.254] [config ] [info]     - SBI
+2026-10-03T11:45:33.256477715Z [2026-10-03 13:45:33.254] [config ] [info]       + URL....................................: udm.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:33.256483139Z [2026-10-03 13:45:33.254] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:33.256487654Z [2026-10-03 13:45:33.254] [config ] [info]       + IPv4 Address ..........................: 192.168.71.135
+2026-10-03T11:45:33.256492195Z [2026-10-03 13:45:33.254] [config ] [info]     - Instance ID..............................: 0
+2026-10-03T11:45:33.256496214Z [2026-10-03 13:45:33.254] [config ] [info]     - PID Directory............................: 
+2026-10-03T11:45:33.256500743Z [2026-10-03 13:45:33.254] [config ] [info]     - UDM Name.................................: 
+2026-10-03T11:45:33.256505459Z [2026-10-03 13:45:33.254] [config ] [info] Peer NF Configuration:
+2026-10-03T11:45:33.256509525Z [2026-10-03 13:45:33.254] [config ] [info]   NRF:
+2026-10-03T11:45:33.256513565Z [2026-10-03 13:45:33.254] [config ] [info]     - host.....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:33.256517822Z [2026-10-03 13:45:33.254] [config ] [info]     - SBI
+2026-10-03T11:45:33.256524175Z [2026-10-03 13:45:33.254] [config ] [info]       + URL....................................: nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:33.256529149Z [2026-10-03 13:45:33.254] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:33.256533598Z [2026-10-03 13:45:33.254] [config ] [info]   UDR:
+2026-10-03T11:45:33.256537592Z [2026-10-03 13:45:33.254] [config ] [info]     - host.....................................: udr.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:33.256541538Z [2026-10-03 13:45:33.254] [config ] [info]     - SBI
+2026-10-03T11:45:33.256545336Z [2026-10-03 13:45:33.254] [config ] [info]       + URL....................................: udr.5gc.mnc20.mcc999.3gppnetwork.org:8080
+2026-10-03T11:45:33.256549387Z [2026-10-03 13:45:33.254] [config ] [info]       + API Version............................: v1
+2026-10-03T11:45:33.256553578Z [2026-10-03 13:45:33.254] [udm_client] [info] HTTP Client successfully initiated on interface eth0 with timeout 3000 ms, HTTP version 2
+2026-10-03T11:45:33.256557500Z [2026-10-03 13:45:33.254] [udm_app] [start] Starting...
+2026-10-03T11:45:33.256560921Z [2026-10-03 13:45:33.254] [udm_app] [debug] - NF instance info
+2026-10-03T11:45:33.256564561Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Instance ID: d90c5f1a-dd3b-4f38-b1fd-01f21e144700
+2026-10-03T11:45:33.256568422Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Instance name: OAI-UDM
+2026-10-03T11:45:33.256572185Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Instance type: UDM
+2026-10-03T11:45:33.256575931Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Instance fqdn: udm.5gc.mnc20.mcc999.3gppnetwork.org
+2026-10-03T11:45:33.256586622Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Status: REGISTERED
+2026-10-03T11:45:33.256590930Z [2026-10-03 13:45:33.254] [udm_app] [debug]     HeartBeat timer: 50
+2026-10-03T11:45:33.256594967Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Priority: 1
+2026-10-03T11:45:33.256598906Z [2026-10-03 13:45:33.254] [udm_app] [debug]     Capacity: 100
+2026-10-03T11:45:33.256602999Z [2026-10-03 13:45:33.254] [udm_app] [debug]     IPv4 Addr:
+2026-10-03T11:45:33.256606444Z [2026-10-03 13:45:33.254] [udm_app] [debug]         192.168.71.135
+2026-10-03T11:45:33.256610349Z [2026-10-03 13:45:33.254] [udm_app] [debug] 	UDM Info
+2026-10-03T11:45:33.256614774Z [2026-10-03 13:45:33.254] [udm_app] [debug] 		GroupId: 
+2026-10-03T11:45:33.256618953Z [2026-10-03 13:45:33.254] [udm_app] [debug] udm profile to JSON:
+2026-10-03T11:45:33.256624126Z  {"capacity":100,"fqdn":"udm.5gc.mnc20.mcc999.3gppnetwork.org","heartBeatTimer":50,"ipv4Addresses":["192.168.71.135"],"nfInstanceId":"d90c5f1a-dd3b-4f38-b1fd-01f21e144700","nfInstanceName":"OAI-UDM","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.71.135","port":8080}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nudm-sdm-1","serviceName":"nudm-sdm","versions":[{"apiFullVersion":"1.2.3","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.135","port":8080}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nudm-uecm-1","serviceName":"nudm-uecm","versions":[{"apiFullVersion":"1.2.3","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.135","port":8080}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nudm-ueau-1","serviceName":"nudm-ueau","versions":[{"apiFullVersion":"1.2.3","apiVersionInUri":"v1"}]},{"ipEndPoints":[{"ipv4Address":"192.168.71.135","port":8080}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"nudm-ee-1","serviceName":"nudm-ee","versions":[{"apiFullVersion":"1.2.3","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"UDM","priority":1,"sNssais":[],"udmInfo":{"externalGroupIdentifiersRanges":[],"gpsiRanges":[],"groupId":"","internalGroupIdentifiersRanges":[],"routingIndicators":[],"supiRanges":[]}}
+2026-10-03T11:45:33.256642095Z [2026-10-03 13:45:33.254] [udm_nrf] [info] Sending NF registration request to NRF, NRF's URI: http://nrf.5gc.mnc20.mcc999.3gppnetwork.org:8080/nnrf-nfm/v1/nf-instances/d90c5f1a-dd3b-4f38-b1fd-01f21e144700
+2026-10-03T11:45:33.256646852Z [2026-10-03 13:45:33.254] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:45:33.268970616Z [2026-10-03 13:45:33.268] [udm_app] [info] NRF TASK Created 
+2026-10-03T11:45:33.269533599Z [2026-10-03 13:45:33.269] [udm_app] [start] Started
+2026-10-03T11:45:33.270440366Z [2026-10-03 13:45:33.270] [udm_server] [info] HTTP2 server being started
+2026-10-03T11:45:43.705660028Z [2026-10-03 13:45:43.705] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:45:43.705790646Z [2026-10-03 13:45:43.705] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:45:53.858666016Z [2026-10-03 13:45:53.858] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:45:53.859596652Z [2026-10-03 13:45:53.859] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:03.967578923Z [2026-10-03 13:46:03.967] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:03.967878921Z [2026-10-03 13:46:03.967] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:14.030472867Z [2026-10-03 13:46:14.030] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:14.030515746Z [2026-10-03 13:46:14.030] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:24.110574430Z [2026-10-03 13:46:24.106] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:24.110660068Z [2026-10-03 13:46:24.107] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:34.208375183Z [2026-10-03 13:46:34.207] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:34.208463580Z [2026-10-03 13:46:34.207] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:44.378152167Z [2026-10-03 13:46:44.377] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:44.378185332Z [2026-10-03 13:46:44.377] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:46:54.591886436Z [2026-10-03 13:46:54.590] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:46:54.591958262Z [2026-10-03 13:46:54.590] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:04.718569721Z [2026-10-03 13:47:04.718] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:04.718826786Z [2026-10-03 13:47:04.718] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:14.861523036Z [2026-10-03 13:47:14.861] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:14.861750945Z [2026-10-03 13:47:14.861] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:25.001791705Z [2026-10-03 13:47:25.001] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:25.002192819Z [2026-10-03 13:47:25.001] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:35.108483252Z [2026-10-03 13:47:35.108] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:35.108595392Z [2026-10-03 13:47:35.108] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:45.186456541Z [2026-10-03 13:47:45.186] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:45.186578101Z [2026-10-03 13:47:45.186] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:47:55.331094650Z [2026-10-03 13:47:55.330] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:47:55.331211318Z [2026-10-03 13:47:55.331] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:05.464476233Z [2026-10-03 13:48:05.462] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:05.464639779Z [2026-10-03 13:48:05.463] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:15.526528129Z [2026-10-03 13:48:15.526] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:15.526822053Z [2026-10-03 13:48:15.526] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:25.618459493Z [2026-10-03 13:48:25.618] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:25.618567221Z [2026-10-03 13:48:25.618] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:35.701443353Z [2026-10-03 13:48:35.701] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:35.701523301Z [2026-10-03 13:48:35.701] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:45.816523759Z [2026-10-03 13:48:45.814] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:45.816568745Z [2026-10-03 13:48:45.814] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:48:55.975483653Z [2026-10-03 13:48:55.974] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:48:55.975531473Z [2026-10-03 13:48:55.974] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:06.118636061Z [2026-10-03 13:49:06.117] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:06.118708386Z [2026-10-03 13:49:06.117] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:16.192701280Z [2026-10-03 13:49:16.192] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:16.192913767Z [2026-10-03 13:49:16.192] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:26.263972759Z [2026-10-03 13:49:26.263] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:26.264064081Z [2026-10-03 13:49:26.264] [udm_client] [debug] Send a simple HTTP request
+2026-10-03T11:49:36.433514044Z [2026-10-03 13:49:36.433] [udm_nrf] [info] Sending NF heartbeat request
+2026-10-03T11:49:36.433590671Z [2026-10-03 13:49:36.433] [udm_client] [debug] Send a simple HTTP request

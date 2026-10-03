@@ -1,0 +1,414 @@
+# SPDX-License-Identifier: MIT
+#
+# Home-routed (HR) roaming: the UE of PLMN B (999/10) registers in PLMN A
+# (999/20). The V-SMF/V-UPF of PLMN A relay the PDU session over N16 (via the
+# SEPPs) and N9 (inter-PLMN network) to the H-SMF/H-UPF of PLMN B, which
+# allocates the UE address and provides the N6 breakout.
+
+services:
+######################################################################################
+#                             Roaming Partner A (MCC: 999, MNC: 20)                 #
+######################################################################################
+    mysql-A:
+        container_name: "mysql-A"
+        image: mysql:9.6.0
+        volumes:
+            - ./database/roaming/oai_roaming_db_A.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./healthscripts/mysql-healthcheck2.sh:/tmp/mysql-healthcheck.sh
+            - mysql_a_data:/var/lib/mysql
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.131
+
+    oai-nrf-A:
+        container_name: "nrf.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-nrf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-nrf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.136
+
+    oai-udr-A:
+        container_name: "udr.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-udr:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-udr/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - mysql-A
+            - oai-nrf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.134
+
+    oai-udm-A:
+        container_name: "udm.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-udm:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-udm/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-A
+            - oai-udr-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.135
+
+    oai-ausf-A:
+        container_name: "ausf.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oaisoftwarealliance/oai-ausf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-ausf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-A
+            - oai-udm-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.133
+
+    oai-amf-A:
+        container_name: "amf.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-amf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 38412/sctp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-amf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+            - INT_ALGO_LIST=["NIA2" , "NIA1"]
+            - CIPH_ALGO_LIST=["NEA0" , "NEA2", "NEA1"]
+        depends_on:
+            - oai-nrf-A
+            - oai-ausf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.137
+
+    oai-smf-A:
+        container_name: "smf.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-smf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 8805/udp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-smf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-A
+            - oai-amf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.138
+
+    oai-upf-A:
+        container_name: "upf.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-upf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 2152/udp
+            - 8805/udp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-upf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        labels:
+            # V-UPF address on the inter-PLMN network, N9 towards the H-UPF
+            - "org.openairinterface.n9.ipv4=192.168.72.139"
+        depends_on:
+            - oai-nrf-A
+            - oai-smf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.139
+
+    oai-sepp-A:
+        container_name: "sepp.5gc.mnc20.mcc999.3gppnetwork.org"
+        image: oai-sepp:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 443/tcp
+            - 80/tcp
+            - 8080/tcp
+        environment:
+            - SSLKEYLOGFILE=/openair-sepp/certs/sslkeylog.log
+        volumes:
+            - ./conf/roaming/roaming_config_partnerA.yaml:/openair-sepp/etc/config.yaml:ro
+            - ./conf/roaming/certs:/openair-sepp/certs/
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        depends_on:
+            - oai-nrf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.132
+            public_net_roaming:
+                ipv4_address: 192.168.72.111
+
+    ueransim-vplmnA:
+        image: ueransim:roaming-lbo
+        container_name: "ue-plmnB-roaming-A"
+        privileged: true
+        volumes:
+            - ./conf/roaming/ueransim:/ueransim/config
+        entrypoint: /bin/bash
+        command:
+            - -c
+            - |
+                echo "Waiting 50s for OAI AMF-A..."
+                sleep 50
+                echo "Starting gNB (PLMN A 999/20)..."
+                nr-gnb -c /ueransim/config/gnb-plmnA.yaml &
+                sleep 5
+                echo "Starting UE (PLMN B 999/10 Roaming into PLMN A, home-routed)..."
+                exec nr-ue-ping -c /ueransim/config/ue-plmnB.yaml
+        depends_on:
+            - oai-amf-A
+            - oai-upf-A
+        networks:
+            public_netA:
+                ipv4_address: 192.168.71.140
+
+######################################################################################
+#                             Roaming Partner B (MCC: 999, MNC: 10)                 #
+######################################################################################
+    mysql-B:
+        container_name: "mysql-B"
+        image: mysql:9.6.0
+        volumes:
+            - ./database/roaming/oai_roaming_db_B.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./database/roaming/hr_roaming_subscription_B.sql:/docker-entrypoint-initdb.d/zz_hr_roaming.sql
+            - ./healthscripts/mysql-healthcheck2.sh:/tmp/mysql-healthcheck.sh
+            - mysql_b_data:/var/lib/mysql
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.131
+
+    oai-nrf-B:
+        container_name: "nrf.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-nrf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-nrf/etc/config.yaml
+            - ./conf/roaming/certs:/openair-sepp/certs/
+        environment:
+            - TZ=Europe/Paris
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.132
+
+    oai-udr-B:
+        container_name: "udr.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-udr:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-udr/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - mysql-B
+            - oai-nrf-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.134
+
+    oai-udm-B:
+        container_name: "udm.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-udm:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-udm/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-B
+            - oai-udr-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.135
+
+    oai-ausf-B:
+        container_name: "ausf.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oaisoftwarealliance/oai-ausf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-ausf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-B
+            - oai-udm-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.133
+
+    oai-amf-B:
+        container_name: "amf.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-amf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 38412/sctp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-amf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-B
+            - oai-ausf-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.137
+
+    oai-smf-B:
+        container_name: "smf.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-smf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 8805/udp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-smf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf-B
+            - oai-amf-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.138
+
+    oai-upf-B:
+        container_name: "upf.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-upf:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 2152/udp
+            - 8805/udp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-upf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        labels:
+            # H-UPF address on the inter-PLMN network, N9 towards the V-UPF
+            - "org.openairinterface.n9.ipv4=192.168.72.239"
+        depends_on:
+            - oai-nrf-B
+            - oai-smf-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.139
+
+    oai-sepp-B:
+        container_name: "sepp.5gc.mnc10.mcc999.3gppnetwork.org"
+        image: oai-sepp:${HR_IMAGE_TAG:-roaming-hr}
+        expose:
+            - 443/tcp
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/roaming/roaming_config_partnerB.yaml:/openair-sepp/etc/config.yaml:ro
+            - ./conf/roaming/certs:/openair-sepp/certs/
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        depends_on:
+            - oai-nrf-B
+        networks:
+            public_netB:
+                ipv4_address: 192.168.73.136
+            public_net_roaming:
+                ipv4_address: 192.168.72.222
+
+
+networks:
+    public_netA:
+        driver: bridge
+        name: oai-public-netA
+        ipam:
+            config:
+                - subnet: 192.168.71.0/24
+        driver_opts:
+            com.docker.network.bridge.name: "cn5g-partnerA"
+    public_net_roaming:
+        name: oai-public-roam
+        ipam:
+            config:
+                - subnet: 192.168.72.0/24
+        driver_opts:
+            com.docker.network.bridge.name: "cn5g-roam"
+    public_netB:
+        driver: bridge
+        name: oai-public-netB
+        ipam:
+            config:
+                - subnet: 192.168.73.0/24
+        driver_opts:
+            com.docker.network.bridge.name: "cn5g-partnerB"
+volumes:
+    mysql_a_data:
+        name: "${HR_MYSQL_A_VOLUME:-oai-hr-mysql-a}"
+    mysql_b_data:
+        name: "${HR_MYSQL_B_VOLUME:-oai-hr-mysql-b}"

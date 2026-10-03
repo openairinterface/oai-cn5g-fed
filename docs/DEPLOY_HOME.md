@@ -44,6 +44,8 @@ Any Docker or Podman version available for those host releases should be fine. T
 | Configure traffic redirection | [Traffic redirection tutorial](./DEPLOY_SA5G_REDIRECTION.md) |
 | Configure traffic steering | [Traffic steering tutorial](./DEPLOY_SA5G_STEERING.md) |
 | Configure UL CL | [UL CL tutorial](./DEPLOY_SA5G_ULCL.md) |
+| Run local breakout roaming across two PLMNs | [Local breakout roaming](./DEPLOY_SA5G_LBO_ROAMING.md) |
+| Run home routed roaming across two PLMNs | [Home routed roaming](./DEPLOY_SA5G_HR_ROAMING.md) |
 | Deploy with Helm charts | [OpenAirInterface orchestration repository](https://github.com/openairinterface/orchestration/tree/main) |
 
 ## Reference Guides

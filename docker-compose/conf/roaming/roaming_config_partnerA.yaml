@@ -1,0 +1,220 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+log_level:
+  general: debug
+
+register_nf:
+  general: yes
+
+http_version: 2
+
+enable_roaming:
+  general: yes
+  roaming_partners:
+    - mcc: 999
+      mnc: 10
+      nrf_api_root: "http://nrf.5gc.mnc10.mcc999.3gppnetwork.org:8080"
+    - mcc: 228
+      mnc: 06
+
+nfs:
+  amf:
+    host: amf.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n2:
+      interface_name: eth0
+      port: 38412
+  smf:
+    host: smf.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n4:
+      interface_name: eth0
+      port: 8805
+  upf:
+    host: upf.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n3:
+      interface_name: eth0
+      port: 2152
+    n4:
+      interface_name: eth0
+      port: 8805
+    n6:
+      interface_name: eth0
+    n9:
+      interface_name: eth0
+      port: 2152
+  udm:
+    host: udm.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  udr:
+    host: udr.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  ausf:
+    host: ausf.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  nrf:
+    host: nrf.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  sepp:
+    host: sepp.5gc.mnc20.mcc999.3gppnetwork.org
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    nbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth1
+
+database:
+  host: mysql-A
+  user: test
+  type: mysql
+  password: test
+  database_name: oai_db
+  generate_random: true
+  connection_timeout: 300
+
+snssais:
+  - &embb_slice1
+    sst: 1
+  - &embb_slice2
+    sst: 1
+    sd: 000001
+  - &custom_slice
+    sst: 222
+    sd: 00007B
+
+sepp:
+  role: c-sepp
+  security: PRINS
+  disable_tls: yes
+  tls:
+    server:
+      private_key: "/openair-sepp/certs/sepp.key"
+      cert: "/openair-sepp/certs/sepp.crt"
+    client:
+      cacert: "/openair-sepp/certs/ca.crt"
+
+amf:
+  amf_name: "OAI-AMF"
+  support_features_options:
+    enable_simple_scenario: no
+    enable_nssf: no
+    enable_smf_selection: yes
+  relative_capacity: 30
+  statistics_timer_interval: 20
+  emergency_support: false
+  served_guami_list:
+    - mcc: 999
+      mnc: 20
+      amf_region_id: 01
+      amf_set_id: 001
+      amf_pointer: 01
+  plmn_support_list:
+    - mcc: 999
+      mnc: 20
+      tac: 0xa000
+      nssai:
+        - *embb_slice1
+        - *embb_slice2
+        - *custom_slice
+  supported_integrity_algorithms:
+    # - "NIA0"
+    - "NIA1"
+    - "NIA2"
+  supported_encryption_algorithms:
+    # - "NEA0"
+    - "NEA1"
+    - "NEA2"
+
+smf:
+  ue_mtu: 1500
+  support_features:
+    use_local_subscription_info: no
+    use_local_pcc_rules: yes
+  upfs:
+    - host: upf.5gc.mnc20.mcc999.3gppnetwork.org
+      config:
+        enable_usage_reporting: no
+  ue_dns:
+    primary_ipv4: "172.21.3.100"
+    primary_ipv6: "2001:4860:4860::8888"
+    secondary_ipv4: "8.8.8.8"
+    secondary_ipv6: "2001:4860:4860::8888"
+  ims:
+    pcscf_ipv4: "127.0.0.1"
+    pcscf_ipv6: "fe80::7915:f408:1787:db8b"
+  smf_info:
+    sNssaiSmfInfoList:
+      - sNssai: *embb_slice1
+        dnnSmfInfoList:
+          - dnn: "oai"
+      - sNssai: *embb_slice2
+        dnnSmfInfoList:
+          - dnn: "oai.ipv4"
+      - sNssai: *custom_slice
+        dnnSmfInfoList:
+          - dnn: "oai"
+          - dnn: "default"
+
+upf:
+  support_features:
+    enable_bpf_datapath: no
+    enable_snat: yes
+  remote_n6_gw: localhost
+  smfs:
+    - host: smf.5gc.mnc20.mcc999.3gppnetwork.org
+  upf_info:
+    sNssaiUpfInfoList:
+      - sNssai: *embb_slice1
+        dnnUpfInfoList:
+          - dnn: "oai"
+      - sNssai: *embb_slice2
+        dnnUpfInfoList:
+          - dnn: "oai.ipv4"
+      - sNssai: *custom_slice
+        dnnUpfInfoList:
+          - dnn: "oai"
+          - dnn: "default"
+
+dnns:
+  - dnn: "oai"
+    pdu_session_type: "IPV4"
+    ipv4_subnet: "12.1.1.128/25"
+  - dnn: "oai.ipv4"
+    pdu_session_type: "IPV4"
+    ipv4_subnet: "12.1.1.64/26"
+  - dnn: "default"
+    pdu_session_type: "IPV4"
+    ipv4_subnet: "12.1.1.0/26"
+  - dnn: "ims"
+    pdu_session_type: "IPV4V6"
+    ipv4_subnet: "14.1.1.2/24"
+
+nrf:
+  plmn_list:
+    - mcc: "999"
+      mnc: "20"
