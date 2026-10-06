@@ -8,7 +8,7 @@ import re
 import sys
 import common.python.cls_cmd as cls_cmd
 
-from common.python.generate_html import (
+from common.python.html_builder import (
     generate_header,
     generate_footer,
     generate_chapter,
