@@ -175,7 +175,7 @@ First, check that the UE is registered and has Ethernet tap interface:
 <!---
 For CI purposes please ignore this line
 ``` shell
-docker-compose-host $: sleep 20
+docker-compose-host $: timeout 120 bash -c 'until docker exec oai-nr-ue3 ip a | grep -q oaitap_ue1; do sleep 2; done'
 ```
 -->
 
