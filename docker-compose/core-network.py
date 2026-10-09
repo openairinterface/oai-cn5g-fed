@@ -22,6 +22,7 @@ BASIC_VPP_W_NRF_REDIRECT = 'docker-compose-basic-vpp-pcf-redirection.yaml'
 BASIC_VPP_W_NRF_STEERING = 'docker-compose-basic-vpp-pcf-steering.yaml'
 BASIC_EBPF_W_NRF = 'docker-compose-basic-nrf-ebpf.yaml'
 BASIC_EBPF_W_QOS = 'docker-compose-basic-nrf-qos.yaml'
+BASIC_EBPF_W_QOS_NEF = 'docker-compose-basic-nrf-qos-nef.yaml'
 
 COMPOSE_CONF_MAP = {
     'docker-compose-mini-nrf.yaml': 'conf/mini_nrf_config.yaml',
@@ -31,7 +32,8 @@ COMPOSE_CONF_MAP = {
     'docker-compose-basic-nrf-ebpf.yaml' : 'conf/basic_nrf_config_ebpf.yaml',
     'docker-compose-basic-vpp-pcf-redirection.yaml' : 'conf/redirection_steering_config.yaml',
     'docker-compose-basic-vpp-pcf-steering.yaml' : 'conf/redirection_steering_config.yaml',
-    'docker-compose-basic-nrf-qos.yaml' : 'conf/basic_nrf_config_qos.yaml'
+    'docker-compose-basic-nrf-qos.yaml' : 'conf/basic_nrf_config_qos.yaml',
+    'docker-compose-basic-nrf-qos-nef.yaml' : 'conf/basic_nrf_config_qos.yaml'
 }
 
 def _parse_args() -> argparse.Namespace:
@@ -60,8 +62,8 @@ def _parse_args() -> argparse.Namespace:
         '--type', '-t',
         action='store',
         required=True,
-        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf', 'start-basic-qos', 'start-vpp-redirection', 'start-vpp-steering',\
-                 'stop-vpp-redirection', 'stop-vpp-steering','stop-mini', 'stop-basic', 'stop-basic-vpp', 'stop-basic-ebpf', 'stop-basic-qos'],
+        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf', 'start-basic-qos', 'start-basic-qos-nef', 'start-vpp-redirection', 'start-vpp-steering',\
+                 'stop-vpp-redirection', 'stop-vpp-steering','stop-mini', 'stop-basic', 'stop-basic-vpp', 'stop-basic-ebpf', 'stop-basic-qos', 'stop-basic-qos-nef'],
         help='Functional type of 5g core network',
     )
     # Deployment scenario with NRF/ without NRF
@@ -451,6 +453,13 @@ if __name__ == '__main__':
         elif args.scenario == '2':
             logging.error('Basic deployments without NRF are no longer supported')
             sys.exit(-1)
+    elif args.type == 'start-basic-qos-nef':
+        # Basic function with NRF, UPF-eBPF and NEF for QoS on Demand
+        if args.scenario == '1':
+            deploy(BASIC_EBPF_W_QOS_NEF, True)
+        elif args.scenario == '2':
+            logging.error('Basic deployments without NRF are no longer supported')
+            sys.exit(-1)
     elif args.type == 'start-vpp-redirection':
         # Basic function with NRF and VPP-UPF
         if args.scenario == '1':
@@ -488,3 +497,6 @@ if __name__ == '__main__':
     elif args.type == 'stop-basic-qos':
         if args.scenario == '1':
             undeploy(BASIC_EBPF_W_QOS)
+    elif args.type == 'stop-basic-qos-nef':
+        if args.scenario == '1':
+            undeploy(BASIC_EBPF_W_QOS_NEF)
