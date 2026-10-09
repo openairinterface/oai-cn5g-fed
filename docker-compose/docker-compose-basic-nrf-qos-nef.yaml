@@ -1,4 +1,8 @@
 # SPDX-License-Identifier: MIT
+#
+# QoS on Demand through the NEF (docs/DEPLOY_SA5G_WITH_QOS_NEF.md).
+# Identical to docker-compose-basic-nrf-qos.yaml, plus an oai-nef container:
+# the AF asks NEF over T8/N33 instead of calling the PCF's N5 directly.
 
 services:
     mysql:
@@ -116,6 +120,9 @@ services:
             - "oai-upf:192.168.70.129"
     oai-pcf:
         container_name: "oai-pcf"
+        # Locally built PCF carrying the TS 29.514 AfEvent model fix. The
+        # develop image rejects every NEF-created app-session, because
+        # evSubsc.events[] is parsed with the TS 29.517 AfEvent enum.
         image: oaisoftwarealliance/oai-pcf:develop
         expose:
             - 80/tcp
@@ -131,6 +138,24 @@ services:
         networks:
             public_net:
                 ipv4_address: 192.168.70.139
+    oai-nef:
+        container_name: "oai-nef"
+        # Built locally from the oai-cn5g-nef pre_develop branch; there is no
+        # published image yet. See the tutorial for the build command.
+        image: oai-nef:pre_develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/nef_config_qos.yaml:/openair-nef/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+            - oai-pcf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.140
     oai-upf:
         container_name: "oai-upf"
         image: oaisoftwarealliance/oai-upf:fix-pfcp-mod
@@ -175,7 +200,7 @@ services:
             - 8080/tcp
         command: [ "sleep", "infinity" ]
         depends_on:
-            - oai-pcf
+            - oai-nef
         healthcheck:
             test: [ "CMD", "true" ]
             interval: 5s
