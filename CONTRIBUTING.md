@@ -275,6 +275,48 @@ git rebase --continue
 git push origin feature-branch --force-with-lease
 ```
 
+### Rebase a Branch with `develop`
+
+Regularly rebase your feature branch onto the latest `origin/develop` to keep the
+branch in sync and reduce conflicts.
+
+> **Note:** Do not merge `develop` into your feature branch.
+Rebase your branch onto the latest `origin/develop` instead to keep the history linear and clean.
+
+
+```bash
+git fetch
+git checkout <feature-branch>
+
+git submodule deinit -f --all
+git submodule sync --recursive
+git submodule update --init --recursive
+
+git status
+git rebase origin/develop
+```
+
+If conflicts occur, resolve them and continue the rebase:
+
+```bash
+git status
+git add <file1> <file2>
+git rebase --continue
+```
+
+Repeat until the rebase completes.
+
+After the rebase is complete, push the updated branch:
+
+```bash
+git status
+# Verify that the branch contains the latest develop
+git log --oneline HEAD..origin/develop
+# Verify submodules
+git submodule status --recursive
+git push origin <feature-branch> --force-with-lease
+```
+
 ## Synchronizing all NFs
 
 You can use `scripts/syncComponents.sh` to synchronize the network functions
@@ -341,42 +383,148 @@ git restore path/to/submodule
 
 ## Coding Style
 
-We use `clang-format` to enforce the C/C++ coding style. The CI uses **`clang-format-12`**,
-so please use the same version locally.
+We use [clang-format](https://docs.kernel.org/dev-tools/clang-format.html) to
+enforce the C/C++ coding style. The CI uses **`clang-format-19`**, with the
+major version pinned to `19` in `oai-cn5g-common-ci/docker/Dockerfile.ci.clang-format`.
+
+All paths below are relative to the network-function repository root, where the
+repository is checked out as the `ci-scripts/common` submodule.
+
+### Formatting your code
+
+`oai-cn5g-common-ci/bash/format-code.sh` is the simplest way to match the CI formatting checks.
+It reads the clang-format major version from that Dockerfile, uses a local
+`clang-format` of that version when one is available and otherwise runs it from
+a Docker image, and formats the files the CI checks. It can be run from anywhere
+inside the repository.
+
+```bash
+# Format the whole repository
+ci-scripts/common/bash/format-code.sh
+
+# Format only the file set CI selects for your branch
+ci-scripts/common/bash/format-code.sh --diff -s <feature-branch> -t develop
+
+# Check without modifying files; exits 1 if formatting is required
+ci-scripts/common/bash/format-code.sh --dry-run
+
+# Print the clang-format version that will be used
+ci-scripts/common/bash/format-code.sh --version
+```
+
+`--target-branch` takes a bare branch name (`develop`, not `origin/develop`).
+See `--help` for all options.
+
+### Installing clang-format locally
+
+Installing `clang-format` locally is optional. If you do not have a matching
+local version, format-code.sh automatically falls back to Docker.
+
+Ubuntu 24.04 carry `clang-format-19` in *universe*:
 
 ```bash
 sudo apt-get update
-sudo apt-get install clang-format-12
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-12 20
+sudo apt-get install -y clang-format-19
 ```
 
-### Ubuntu 24.04
-
-Use the following command to download the ClangFormat binary from the GitHub repository's releases page:
-
-```bash
-sudo wget -qO /usr/local/bin/clang-format https://github.com/cpp-linter/clang-tools-static-binaries/releases/latest/download/clang-format-12_linux-amd64
-# set execute permission for the file
-sudo chmod a+x /usr/local/bin/clang-format
-```
-
-Verify the installed version:
+`format-code.sh` looks for `clang-format-19` by name, so that is enough. If you
+also want a bare `clang-format` to be version 19:
 
 ```bash
+sudo update-alternatives --install \
+    /usr/bin/clang-format clang-format \
+    /usr/bin/clang-format-19 20
 clang-format --version
 ```
 
-Run the same formatting check as the CI:
+On older Ubuntu releases where `clang-format-19` is not available through apt,
+let `format-code.sh` use its Docker fallback.
+
+### Running the CI check directly
+
+`oai-cn5g-common-ci/bash/checkCodingFormattingRules.sh` is the
+check the CI runs. It must be started from the repository root and needs `git`,
+`tree` and a matching `clang-format` in `PATH`:
 
 ```bash
+# Whole repository
 ci-scripts/common/bash/checkCodingFormattingRules.sh
+
+# Only the files modified by the branch (plus common-src)
+ci-scripts/common/bash/checkCodingFormattingRules.sh \
+    --src-branch <feature-branch> --target-branch develop
 ```
 
-To automatically format your files:
+The summary is written to `src/oai_rules_result.txt` and the offending files are
+listed in `src/oai_rules_result_list.txt`.
+
+## Building and Testing Images
+
+Before pushing your changes to the remote repository, ensure that the images build and
+that the tests pass locally. The CI runs the same checks, so a failure you catch here
+costs you one commit, instead of a push and a full CI round trip.
+
+1. Synchronize the network functions, so that `component/` holds the sources to build:
 
 ```bash
-clang-format -i <file1> <file2> ...
+./scripts/syncComponents.sh
 ```
+
+See [Synchronizing all NFs](#synchronizing-all-nfs) for more details.
+
+2. Build the Ubuntu image of every network function you modified:
+
+```bash
+docker build --target oai-amf --tag oai-amf:test \
+               --file component/oai-cn5g-amf/docker/Dockerfile.amf.ubuntu \
+               component/oai-cn5g-amf
+```
+
+### Robot Tests
+
+Run the robot tests if the changes are in `ausf`, `amf`, `smf`, `upf`, `udm`, `udr`,
+`nrf`, `pcf` or in the `test/` folder of this repository.
+
+First, point the tests at the image you have just built by editing its entry in
+[test/image_tags.py](./test/image_tags.py). Keep the entries whitespace-free, because
+the CI rewrites them with `sed`. Without this step the tests pull the published images
+from Docker Hub, and your changes are never exercised.
+
+Then filter on the tag of the network function you modified, the way the CI does:
+
+```bash
+# only the tests tagged for one network function
+.rfvenv/bin/robot -i AMF --outputdir archives test
+
+# the whole suite
+.rfvenv/bin/robot --outputdir archives test
+```
+
+The tags are `AMF`, `SMF`, `UPF`, `NRF`, `UDM`, `UDR`, `AUSF` and `PCF`. Follow the
+[test suite guide](./test/README.md) for the complete step-by-step instructions.
+
+### Running a Tutorial
+
+The tutorials in [docs](./docs/) are executable: `checkTutorial.py` extracts their
+commands and runs them in order, the way the CI does.
+
+```bash
+# the tutorials the CI checks
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_MINI_WITH_GNBSIM.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_DEPLOYMENT.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_ULCL.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_BASIC_MONGODB.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_WITH_QOS.md
+ci-scripts/checkTutorial.py --tutorial Ethernet_PDU_Sessions.md
+ci-scripts/checkTutorial.py --tutorial DEPLOY_SA5G_WITH_UPF_EBPF.md
+```
+
+Each of these deploys the core on your machine, so check first that no other
+deployment is running on it. Run the tutorial that covers the network function you
+changed.
+
+Push once the local run is green. From there the [Main Workflow](#main-workflow)
+applies.
 
 ## License
 
@@ -392,29 +540,37 @@ Certain files are using different licenses; you can read about them in
 
 ## Main Workflow
 
-1. Push your modified code to a new branch in the [GitHub repository](https://github.com/openairinterface/oai-cn5g-fed).
+1. Create a new branch from the latest `develop`.
    * Please use a short and descriptive branch name.
+   * Keep it rebased on `develop`, see
+     [Rebase a Branch with develop](#rebase-a-branch-with-develop).
 
-2. Create a pull request on [GitHub](https://github.com/openairinterface/oai-cn5g-fed/pulls).
+2. Build the images and run the tests locally, as described in
+   [Building and Testing Images](#building-and-testing-images).
+   * Fixing a failure now saves you a push and a full CI round trip.
+
+3. Push your modified code to your branch in the [GitHub repository](https://github.com/openairinterface/oai-cn5g-fed).
+
+4. Create a pull request on [GitHub](https://github.com/openairinterface/oai-cn5g-fed/pulls).
    * The `target` (`base` in the GitHub interface) branch **must be `develop`**.
    * The `source` (`compare` in the GitHub interface) branch is your development branch.
    * Break large changes into smaller, logical commits and keep pull requests focused.
      Smaller pull requests are easier to review, test, and merge.
 
-3. The Continuous Integration (CI) process will be triggered and will validate your changes.
+5. The Continuous Integration (CI) process will be triggered and will validate your changes.
 
-4. If any CI check fails, push the required fixes to your source branch.
+6. If any CI check fails, push the required fixes to your source branch.
    * Before pushing new commits, group related fixes together and test them locally when possible.
    * Avoid pushing multiple intermediate commits for the same CI failure.
    * CI will automatically run again on the new commit.
    * Please wait for the current CI run to complete before pushing additional changes.
    * This helps ensure fair CI resource usage for all contributors.
 
-5. Once all CI checks pass, a CI administrator will review your changes or assign them to a senior contributor for peer review.
+7. Once all CI checks pass, a CI administrator will review your changes or assign them to a senior contributor for peer review.
    * The reviewer will check the code, commit messages, and CI results.
    * All review discussions must be resolved before approval.
 
-6. After approval, a CI administrator will merge the pull request.
+8. After approval, a CI administrator will merge the pull request.
    * CI will run again on the updated `develop` branch.
    * The source branch will be deleted after the merge.
 
