@@ -35,6 +35,7 @@ Any Docker or Podman version available for those host releases should be fine. T
 | Run a compact end-to-end core plus RAN test | [Mini deployment with gnbsim](./DEPLOY_SA5G_MINI_WITH_GNBSIM.md) |
 | Test with UERANSIM | [Deployment with UERANSIM](./DEPLOY_SA5G_WITH_UERANSIM.md) |
 | Test with OMEC Gnbsim | [Deployment with OMEC gnbsim](./DEPLOY_SA5G_WITH_OMEC_GNBSIM.md) |
+| Test paging of an idle UE with PacketRusher | [Paging with PacketRusher](./DEPLOY_SA5G_PAGING_WITH_PACKETRUSHER.md) |
 | Use the eBPF UPF | [Deployment with UPF eBPF](./DEPLOY_SA5G_WITH_UPF_EBPF.md) |
 | Use the legacy VPP UPF | [Deployment with UPF-VPP](./DEPLOY_SA5G_WITH_VPP_UPF.md) |
 | Use MongoDB instead of MySQL | [MongoDB deployment](./DEPLOY_SA5G_BASIC_MONGODB.md) |
