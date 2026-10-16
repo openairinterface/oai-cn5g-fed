@@ -48,6 +48,21 @@ Launch NRF CN For QoS
     Start CN
     Check Core Network Health Status
 
+Launch NRF CN With PCF For Policy Tests
+    # Full NRF-based CN plus PCF and one ext-DN. The ext-DN is only used as an
+    # on-net host to run curl from (the AF/curl exec target for the HTTP policy
+    # scripts); the tests drive the SMF/PCF SBI directly on the public network.
+    @{list} =    Create List  oai-amf   oai-smf   oai-udm   oai-nrf  oai-udr  oai-ausf  mysql  oai-ext-dn  oai-upf  oai-pcf
+    Prepare Scenario    ${list}   nrf-cn-pcf-policy
+    # PCF must drive policy: only then does the SMF open an SM policy association
+    # with the PCF, giving the N5 app-session an anchor keyed on the UE address and
+    # the N7 callback a real scid to target.
+    @{replace_list} =  Create List  smf  support_features  use_local_pcc_rules
+    Replace In Config    ${replace_list}  no
+    Start Trace    core_network
+    Start CN
+    Check Core Network Health Status
+
 Launch NRF CN
     @{list} =    Create List  oai-amf   oai-smf   oai-udm   oai-nrf  oai-udr  oai-ausf  mysql  oai-ext-dn  oai-upf
     Prepare Scenario    ${list}   nrf-cn
