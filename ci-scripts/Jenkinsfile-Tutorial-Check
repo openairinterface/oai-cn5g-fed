@@ -40,6 +40,7 @@ run_ulcl_pcf = true
 run_mongo_db = true
 run_qos = true
 run_ethernet_pdu = true
+run_framed_routing = true
 
 //-------------------------------------------------------------------------------
 // Pipeline start
@@ -141,6 +142,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = false
               }
             }
             if (ii == AMF) {
@@ -156,6 +158,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = false
               }
             }
             if (ii == SMF) {
@@ -171,6 +174,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = true
+                run_framed_routing = true
               }
             }
             if (ii == UPF) {
@@ -186,6 +190,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = true
+                run_framed_routing = true
               }
             }
             if (ii == AUSF) {
@@ -201,6 +206,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = false
               }
             }
             if (ii == UDM) {
@@ -216,6 +222,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = true
               }
             }
             if (ii == UDR) {
@@ -231,6 +238,7 @@ pipeline {
                 run_mongo_db = true
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = true
               }
             }
             if (ii == NSSF) {
@@ -246,6 +254,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = false
                 run_ethernet_pdu = false
+                run_framed_routing = false
               }
             }
             if (ii == PCF) {
@@ -261,6 +270,7 @@ pipeline {
                 run_mongo_db = false
                 run_qos = true
                 run_ethernet_pdu = false
+                run_framed_routing = false
               }
             }
           }
@@ -450,6 +460,36 @@ pipeline {
           archivesArtifacts('docker-compose/docker-compose-basic-nrf-ebpf.yaml', 'ethernet-pdu-testing')
           archivesArtifacts('docker-compose/docker-compose-oai-rfsim-ebpf.yaml', 'ethernet-pdu-testing')
           cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml')
+        }
+      }
+    }
+      stage ('Check Framed Routing Tutorial') {
+      when { expression {run_framed_routing} }
+      steps {
+        script {
+          updateDockerCompose('docker-compose/docker-compose-basic-nrf.yaml', ranTag)
+          updateDockerCompose('docker-compose/docker-compose-basic-nrf-ebpf.yaml', ranTag)
+          dir ('ci-scripts') {
+            // Tee will make the command always pass
+            // Please use the same log name as the folder used in the tutorial
+            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_FRAMED_ROUTING.md | tee ../archives/framed-routing.log'
+          }
+          try {
+            sh 'grep -l "is PASS" archives/framed-routing.log > /dev/null'
+            echo "Framed Routing Tutorial PASSED"
+          } catch (Exception e) {
+            currentBuild.result = 'FAILURE'
+            echo "Framed Routing Tutorial FAILED"
+          }
+          archivesArtifacts('docker-compose/docker-compose-basic-nrf.yaml', 'framed-routing')
+          archivesArtifacts('docker-compose/docker-compose-basic-nrf-ebpf.yaml', 'framed-routing')
+          // Archive the NF configurations before they are restored below: the tutorial turns
+          // use_local_subscription_info off and enable_fr on in them with sed.
+          archivesArtifacts('docker-compose/conf/basic_nrf_config.yaml', 'framed-routing')
+          archivesArtifacts('docker-compose/conf/basic_nrf_config_ebpf.yaml', 'framed-routing')
+          // The tutorial edits the NF and gNB configurations in place. Restore them here as
+          // well, because its own restore section never runs if an earlier command aborts.
+          cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf.yaml docker-compose/docker-compose-basic-nrf-ebpf.yaml docker-compose/conf/basic_nrf_config.yaml docker-compose/conf/basic_nrf_config_ebpf.yaml docker-compose/ran-conf/gnb.conf')
         }
       }
     }
