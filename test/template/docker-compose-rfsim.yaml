@@ -2,7 +2,7 @@
 
 services:
     oai-gnb:
-        image: oaisoftwarealliance/oai-gnb:develop
+        image: oai-gnb:nrppa-r17-duranta-3ff026dcbdd6fe6bc10a601ea4c786f9fb53c542
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
@@ -24,7 +24,7 @@ services:
             retries: 5
 
     oai-nr-ue:
-        image: oaisoftwarealliance/oai-nr-ue:develop
+        image: oai-nr-ue:nrppa-r17-duranta-3ff026dcbdd6fe6bc10a601ea4c786f9fb53c542
         container_name: REPLACE_NAME
         cap_drop:
             - ALL
