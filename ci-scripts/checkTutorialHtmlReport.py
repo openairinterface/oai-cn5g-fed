@@ -31,7 +31,7 @@ class HtmlReport():
 		with open(os.path.join(cwd, REPORT_NAME), 'w') as wfile:
 			wfile.write(generate_header(args))
 
-			tutorials = ['mini-gnbsim', 'basic-deployment', 'slicing-with-nssf', 'ulcl-scenario', 'mongodb-test', 'upf-ebpf-gnbsim', 'qos-testing', 'qos-nef-testing', 'ethernet-pdu-testing']
+			tutorials = ['mini-gnbsim', 'basic-deployment', 'slicing-with-nssf', 'ulcl-scenario', 'mongodb-test', 'upf-ebpf-gnbsim', 'qos-testing', 'qos-nef-testing', 'ethernet-pdu-testing', 'framed-routing']
 			for tutorial in tutorials:
 				if not os.path.isfile(cwd + '/archives/' + tutorial + '.log'):
 					continue
@@ -87,6 +87,9 @@ class HtmlReport():
 			   re.search('ueransim', log_file) is not None:
 				continue
 			rootName = re.sub('.log.*$', '', log_file)
+			# A tutorial that deploys the core twice (e.g. Framed Routing with the
+			# simple-switch and the eBPF UPF) suffixes its logs with -sw / -ebpf
+			rootName = re.sub('-(sw|ebpf)$', '', rootName)
 			containerName = 'oai-' + rootName
 			if re.search('vpp-upf', rootName) is not None:
 				imageRootName = 'oai-upf-vpp:'
