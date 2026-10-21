@@ -313,14 +313,14 @@ docker-compose-host $: docker exec oai-nr-ue-basic ping -c 3 -I 192.168.128.1 8.
 ### 4.7 Collect The Logs
 
 ``` shell
-docker-compose-host $: docker logs oai-amf > /tmp/oai/framed-routing/sw-amf.log 2>&1
-docker-compose-host $: docker logs oai-smf > /tmp/oai/framed-routing/sw-smf.log 2>&1
-docker-compose-host $: docker logs oai-upf > /tmp/oai/framed-routing/sw-upf.log 2>&1
-docker-compose-host $: docker logs oai-udm > /tmp/oai/framed-routing/sw-udm.log 2>&1
-docker-compose-host $: docker logs oai-udr > /tmp/oai/framed-routing/sw-udr.log 2>&1
-docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/framed-routing/sw-ext-dn.log 2>&1
-docker-compose-host $: docker logs oai-gnb-basic > /tmp/oai/framed-routing/sw-gnb.log 2>&1
-docker-compose-host $: docker logs oai-nr-ue-basic > /tmp/oai/framed-routing/sw-nr-ue.log 2>&1
+docker-compose-host $: docker logs oai-amf > /tmp/oai/framed-routing/amf-sw.log 2>&1
+docker-compose-host $: docker logs oai-smf > /tmp/oai/framed-routing/smf-sw.log 2>&1
+docker-compose-host $: docker logs oai-upf > /tmp/oai/framed-routing/upf-sw.log 2>&1
+docker-compose-host $: docker logs oai-udm > /tmp/oai/framed-routing/udm-sw.log 2>&1
+docker-compose-host $: docker logs oai-udr > /tmp/oai/framed-routing/udr-sw.log 2>&1
+docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/framed-routing/ext-dn-sw.log 2>&1
+docker-compose-host $: docker logs oai-gnb-basic > /tmp/oai/framed-routing/gnb-sw.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-basic > /tmp/oai/framed-routing/nr-ue-sw.log 2>&1
 ```
 
 ### 4.8 Undeploy
@@ -471,11 +471,14 @@ docker-compose-host $: sudo ip rule del from 192.168.128.0/24 lookup 200
 ### 5.8 Collect The Logs And Undeploy
 
 ``` shell
-docker-compose-host $: docker logs oai-smf > /tmp/oai/framed-routing/ebpf-smf.log 2>&1
-docker-compose-host $: docker logs oai-upf > /tmp/oai/framed-routing/ebpf-upf.log 2>&1
-docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/framed-routing/ebpf-ext-dn.log 2>&1
-docker-compose-host $: docker logs oai-gnb > /tmp/oai/framed-routing/ebpf-gnb.log 2>&1
-docker-compose-host $: docker logs oai-nr-ue1 > /tmp/oai/framed-routing/ebpf-nr-ue.log 2>&1
+docker-compose-host $: docker logs oai-amf > /tmp/oai/framed-routing/amf-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-smf > /tmp/oai/framed-routing/smf-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-upf > /tmp/oai/framed-routing/upf-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-udm > /tmp/oai/framed-routing/udm-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-udr > /tmp/oai/framed-routing/udr-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-ext-dn > /tmp/oai/framed-routing/ext-dn-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-gnb > /tmp/oai/framed-routing/gnb-ebpf.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue1 > /tmp/oai/framed-routing/nr-ue-ebpf.log 2>&1
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml down -t 2
 docker-compose-host $: docker-compose -f docker-compose-basic-nrf-ebpf.yaml down -t 2
 ```
