@@ -25,7 +25,7 @@ ${UE_OPTIONS}        -E --rfsim -r 51 --numerology 1 --band 78 -C 3609120000 --s
 Determine Location UL-TDOA
     [Tags]  LMF  AMF
     [Documentation]    Request the UE location from the LMF, which runs NRPPa UL-TDOA via the AMF towards
-    ...    the rfsim gNB (4 TRPs, one per RX antenna). rfsim has an ideal channel, so only the
+    ...    the rfsim gNB (8 TRPs, one per RX antenna). rfsim has an ideal channel, so only the
     ...    exchange is checked, not the accuracy of the estimate.
     [Setup]    Start Trace    determine_location_ul_tdoa
     [Teardown]    Stop Trace    determine_location_ul_tdoa
@@ -48,7 +48,7 @@ Determine Location UL-TDOA
     ${lmf_log} =    Run    docker logs oai-lmf 2>&1
     ${gnb_k} =    Evaluate    sorted(set(re.findall(r'(?<!: )TRP (\\d+), ToA .*?k value (\\d+)', $gnb_log)))    re
     ${lmf_k} =    Evaluate    sorted(set(re.findall(r'trpId: (\\d+) insert key k1 = (\\d+)', $lmf_log)))    re
-    Length Should Be    ${gnb_k}    4
+    Length Should Be    ${gnb_k}    8
     Lists Should Be Equal    ${gnb_k}    ${lmf_k}
 
 *** Keywords ***
