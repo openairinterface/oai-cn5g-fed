@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: MIT
+#
+# OAI-CN5G-NEF configuration for the QoS on Demand tutorial
+# (docs/DEPLOY_SA5G_WITH_QOS_NEF.md).
+#
+# NEF does not read environment variables: this file is mounted over
+# /openair-nef/etc/config.yaml and is the only configuration the NF uses.
+
+log_level:
+  general: debug
+
+# NRF registration is disabled on purpose. NEF builds its NF profile with
+# hardcoded service names (nnef-trafficinfluence, nnef-bdt, nnef-qosmonitoring,
+# nnef-analyticsexposure) that are not in the TS 29.510 ServiceName enum, so the
+# NRF rejects the whole profile with 400 and logs
+#   Unexpected value nnef-trafficinfluence in json cannot be converted to enum
+#   of type ServiceName_anyOf::eServiceName_anyOf
+# Nothing here needs NRF discovery: NEF reaches the PCF through nfs.pcf below.
+register_nf:
+  general: no
+
+############## SBI Interfaces
+nfs:
+  nrf:
+    host: oai-nrf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  amf:
+    host: oai-amf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  smf:
+    host: oai-smf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  # The N5 peer: NEF turns the AF's T8 AsSessionWithQoS subscription into an
+  # Npcf_PolicyAuthorization app-session against this PCF.
+  pcf:
+    host: oai-pcf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  udr:
+    host: oai-udr
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+  # NEF's own identity. The host must match the container name, because it is
+  # what NEF registers with the NRF and what it gives the PCF as the callback
+  # address for N5 event notifications.
+  nef:
+    host: oai-nef
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+
+############## NEF-specific configuration
+nef:
+  support_features: >
+    nnef-eventexposure,
+    nnef-pfdmanagement,
+    nnef-trafficinfluence,
+    nnef-bdtpolicycontrol,
+    nnef-qosmonitoring,
+    nnef-analyticsexposure
+  # No AF is restricted in this demo; see security.insecure_dev_mode below.
+  af_whitelist: []
+  security:
+    # Empty: JWT is not used. Note that NEF then *rejects* any request that
+    # carries an Authorization header, so the AF calls in the tutorial send
+    # none. Set a strong secret here to enable bearer-token authentication.
+    jwt_secret: ""
+    # Demo only: allow unauthenticated AFs because neither a JWT secret nor a
+    # whitelist is configured. Without this, every request is denied.
+    # NEVER enable this outside a lab.
+    insecure_dev_mode: true

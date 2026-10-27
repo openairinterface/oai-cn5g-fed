@@ -1,0 +1,261 @@
+# SPDX-License-Identifier: MIT
+#
+# QoS on Demand through the NEF (docs/DEPLOY_SA5G_WITH_QOS_NEF.md).
+# Identical to docker-compose-basic-nrf-qos.yaml, plus an oai-nef container:
+# the AF asks NEF over T8/N33 instead of calling the PCF's N5 directly.
+
+services:
+    mysql:
+        container_name: "mysql"
+        image: mysql:9.6.0
+        volumes:
+            - ./database/oai_db2.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./healthscripts/mysql-healthcheck2.sh:/tmp/mysql-healthcheck.sh
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        healthcheck:
+            test: /bin/bash -c "/tmp/mysql-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 30
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.131
+    oai-udr:
+        container_name: "oai-udr"
+        image: oaisoftwarealliance/oai-udr:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-udr/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - mysql
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.136
+    oai-udm:
+        container_name: "oai-udm"
+        image: oaisoftwarealliance/oai-udm:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-udm/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.137
+    oai-ausf:
+        container_name: "oai-ausf"
+        image: oaisoftwarealliance/oai-ausf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-ausf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.138
+    oai-nrf:
+        container_name: "oai-nrf"
+        image: oaisoftwarealliance/oai-nrf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-nrf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.130
+    oai-amf:
+        container_name: "oai-amf"
+        image: oaisoftwarealliance/oai-amf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 38412/sctp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-amf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.132
+    oai-smf:
+        container_name: "oai-smf"
+        image: oaisoftwarealliance/oai-smf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+            - 8805/udp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-smf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.133
+        extra_hosts:
+            - "oai-upf:192.168.70.129"
+    oai-pcf:
+        container_name: "oai-pcf"
+        # Locally built PCF carrying the TS 29.514 AfEvent model fix. The
+        # develop image rejects every NEF-created app-session, because
+        # evSubsc.events[] is parsed with the TS 29.517 AfEvent enum.
+        image: oaisoftwarealliance/oai-pcf:develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./policies/qos:/openair-pcf/policies
+            - ./conf/basic_nrf_config_qos.yaml:/openair-pcf/etc/config.yaml
+            - ./policies/qos_references:/openair-pcf/policies/qos_references/
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.139
+    oai-nef:
+        container_name: "oai-nef"
+        # Built locally from the oai-cn5g-nef pre_develop branch; there is no
+        # published image yet. See the tutorial for the build command.
+        image: oai-nef:pre_develop
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/nef_config_qos.yaml:/openair-nef/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+            - oai-pcf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.140
+    oai-upf:
+        container_name: "oai-upf"
+        image: oaisoftwarealliance/oai-upf:fix-pfcp-mod
+        expose:
+            - 2152/udp
+            - 8805/udp
+            - 8080/tcp
+        volumes:
+            - ./conf/basic_nrf_config_qos.yaml:/openair-upf/etc/config.yaml
+            - /sys/fs/bpf:/sys/fs/bpf
+            - /sys/kernel/debug:/sys/kernel/debug:rw
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-nrf
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        network_mode: host
+        entrypoint:
+            - /bin/bash
+            - -c
+            - |
+              # UE-pool egress -> N6 gateway (oai-ext-dn). UPF is host-netns, so this
+              # lands in the host FIB that the eBPF bpf_fib_lookup() reads.
+              for i in $$(seq 1 30); do ip link show demo-n6 >/dev/null 2>&1 && break; sleep 1; done
+              while ip rule del from 12.1.1.0/24 lookup 200 2>/dev/null; do :; done
+              ip rule add from 12.1.1.0/24 lookup 200
+              ip route replace default via 192.168.72.135 dev demo-n6 table 200
+              exec sh /openair-upf/bin/entrypoint.sh /openair-upf/bin/oai_upf -c /openair-upf/etc/config.yaml -o
+        extra_hosts:
+            - "oai-ext-dn:192.168.72.135"
+            - "oai-nrf:192.168.70.130"
+    oai-af:
+        container_name: "oai-af"
+        image: curlimages/curl
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        command: [ "sleep", "infinity" ]
+        depends_on:
+            - oai-nef
+        healthcheck:
+            test: [ "CMD", "true" ]
+            interval: 5s
+            timeout: 3s
+            retries: 3
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.144
+    oai-ext-dn:
+        privileged: true
+        init: true
+        container_name: oai-ext-dn
+        image: oaisoftwarealliance/trf-gen-cn5g:latest
+        environment:
+            - EBPF_GW_SETUP=yes
+            - EBPF_GW_N6_IP_ADDR=192.168.72.135
+            - GW_SGI_IP_ADDR=192.168.70.135
+            - GW_N3_IP_ADDR=192.168.71.135
+            - UE_IP_ADDRESS_POOL=12.1.1.0/24
+            - N6_UPF_IP_ADDR=192.168.72.129
+            - SGI_DEMO_OAI_ADDR=192.168.70.129
+        healthcheck:
+            test: /bin/bash -c "ip r | grep 12.1.1"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.135
+            n3_net:
+                ipv4_address: 192.168.71.135
+            n6_net:
+                ipv4_address: 192.168.72.135
+networks:
+    public_net:
+        driver: bridge
+        name: demo-oai-public-net
+        ipam:
+            config:
+                - subnet: 192.168.70.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-oai"
+    n3_net:
+        driver: bridge
+        name: demo-oai-n3-net
+        ipam:
+            config:
+                - subnet: 192.168.71.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-n3"
+    n6_net:
+        driver: bridge
+        name: demo-oai-n6-net
+        ipam:
+            config:
+                - subnet: 192.168.72.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-n6"

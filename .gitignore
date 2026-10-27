@@ -11,7 +11,7 @@ charts/oai-5g-core/oai-5g-basic/Chart.lock
 charts/oai-5g-core/oai-5g-basic/charts/
 charts/oai-5g-core/oai-5g-advance/Chart.lock
 charts/oai-5g-core/oai-5g-advance/charts/
-test/__pycache__/
+__pycache__/
 charts/e2e_scenarios/case1/Chart.lock
 charts/e2e_scenarios/case1/charts/
 charts/e2e_scenarios/case2/Chart.lock
