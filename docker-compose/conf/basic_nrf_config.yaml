@@ -173,6 +173,8 @@ smf:
       - sNssai: *embb_slice1
         dnnSmfInfoList:
           - dnn: "oai"
+          - dnn: "oai.v4v6"
+          - dnn: "oai.dual"
       - sNssai: *embb_slice2
         dnnSmfInfoList:
           - dnn: "oai.ipv4"
@@ -182,6 +184,18 @@ smf:
   local_subscription_infos:
     - single_nssai: *embb_slice1
       dnn: "oai"
+      qos_profile:
+        5qi: 9
+        session_ambr_ul: "200Mbps"
+        session_ambr_dl: "400Mbps"
+    - single_nssai: *embb_slice1
+      dnn: "oai.v4v6"
+      qos_profile:
+        5qi: 9
+        session_ambr_ul: "200Mbps"
+        session_ambr_dl: "400Mbps"
+    - single_nssai: *embb_slice1
+      dnn: "oai.dual"
       qos_profile:
         5qi: 9
         session_ambr_ul: "200Mbps"
@@ -219,6 +233,8 @@ upf:
       - sNssai: *embb_slice1
         dnnUpfInfoList:
           - dnn: "oai"
+          - dnn: "oai.v4v6"
+          - dnn: "oai.dual"
       - sNssai: *embb_slice2
         dnnUpfInfoList:
           - dnn: "oai.ipv4"
@@ -230,7 +246,16 @@ upf:
 dnns:
   - dnn: "oai"
     pdu_session_type: "IPV4"
-    ipv4_subnet: "12.1.1.128/25"
+    ipv4_subnet: "12.1.1.128/26"
+  # IPv4v6 DNNs without and with an IPv6 prefix, for the PDU session type
+  # checks of DEPLOY_SA5G_BASIC_DEPLOYMENT.md
+  - dnn: "oai.v4v6"
+    pdu_session_type: "IPV4V6"
+    ipv4_subnet: "12.1.1.192/27"
+  - dnn: "oai.dual"
+    pdu_session_type: "IPV4V6"
+    ipv4_subnet: "12.1.1.224/27"
+    ipv6_prefix: "2001:1:2::/64"
   - dnn: "oai.ipv4"
     pdu_session_type: "IPV4"
     ipv4_subnet: "12.1.1.64/26"
