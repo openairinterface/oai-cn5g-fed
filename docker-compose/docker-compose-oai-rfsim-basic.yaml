@@ -49,6 +49,88 @@ services:
             timeout: 5s
             retries: 5
 
+    # nrUEs of the PDU session type checks, started one at a time by the tutorial
+    oai-nr-ue-static:
+        image: oaisoftwarealliance/oai-nr-ue:develop
+        container_name: oai-nr-ue-static
+        cap_drop:
+            - ALL
+        cap_add:
+            - NET_ADMIN  # for interface bringup
+            - NET_RAW    # for ping
+            - SYS_NICE
+        environment:
+            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 -C 3619200000 --rfsimulator.[0].serveraddr 192.168.70.153 --log_config.global_log_options level,nocolor,time
+            ASAN_OPTIONS: detect_leaks=0
+        depends_on:
+            - oai-gnb-basic
+        devices:
+             - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./ran-conf/nr-ue-static.conf:/opt/oai-nr-ue/etc/nr-ue.conf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.155
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    oai-nr-ue-dynamic:
+        image: oaisoftwarealliance/oai-nr-ue:develop
+        container_name: oai-nr-ue-dynamic
+        cap_drop:
+            - ALL
+        cap_add:
+            - NET_ADMIN  # for interface bringup
+            - NET_RAW    # for ping
+            - SYS_NICE
+        environment:
+            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 -C 3619200000 --rfsimulator.[0].serveraddr 192.168.70.153 --log_config.global_log_options level,nocolor,time
+            ASAN_OPTIONS: detect_leaks=0
+        depends_on:
+            - oai-gnb-basic
+        devices:
+             - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./ran-conf/nr-ue-dynamic.conf:/opt/oai-nr-ue/etc/nr-ue.conf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.156
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    oai-nr-ue-ipv4-only:
+        image: oaisoftwarealliance/oai-nr-ue:develop
+        container_name: oai-nr-ue-ipv4-only
+        cap_drop:
+            - ALL
+        cap_add:
+            - NET_ADMIN  # for interface bringup
+            - NET_RAW    # for ping
+            - SYS_NICE
+        environment:
+            USE_ADDITIONAL_OPTIONS: -E --rfsim -r 106 --numerology 1 -C 3619200000 --rfsimulator.[0].serveraddr 192.168.70.153 --log_config.global_log_options level,nocolor,time
+            ASAN_OPTIONS: detect_leaks=0
+        depends_on:
+            - oai-gnb-basic
+        devices:
+             - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./ran-conf/nr-ue-ipv4-only.conf:/opt/oai-nr-ue/etc/nr-ue.conf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.157
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
 networks:
     public_net:
         name: demo-oai-public-net

@@ -63,4 +63,4 @@ Any Docker or Podman version available for those host releases should be fine. T
 
 ## Support
 
-- [Report an issue or bug for Core Network Functions](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md#8-report-an-issue)
+- [Report an issue or bug for Core Network Functions](./DEPLOY_SA5G_BASIC_DEPLOYMENT.md#9-report-an-issue)
