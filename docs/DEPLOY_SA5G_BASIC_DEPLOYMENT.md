@@ -104,14 +104,14 @@ docker-compose-host $: sed -i 's/use_local_subscription_info: yes/use_local_subs
 
 The OAI NR-UE configuration in [ran-conf/nr-ue.conf](../docker-compose/ran-conf/nr-ue.conf) uses IMSI `208950000000036`, DNN `oai`, SST `1`, and the default SD `FFFFFF`. The `oai` DNN subnet in [conf/basic_nrf_config.yaml](../docker-compose/conf/basic_nrf_config.yaml) is `12.1.1.128/26`, so the static address must be inside that subnet.
 
-The default database already has a dynamic session entry for this nrUE. For a persistent static-IP setup, replace the existing `208950000000036` `SessionManagementSubscriptionData` row in [database/oai_db2.sql](../docker-compose/database/oai_db2.sql) before starting the core:
+The default database already gives this nrUE the static address `12.1.1.130`: its `208950000000036` `SessionManagementSubscriptionData` row in [database/oai_db2.sql](../docker-compose/database/oai_db2.sql) is the one below. The command sequence in [section 3](#3-deploy-the-basic-core) also sets that address after MySQL starts, so this tutorial does not depend on the row:
 
 ```sql
 INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
 ('208950000000036', '20895', '{\"sst\": 1, \"sd\": \"FFFFFF\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"},\"staticIpAddress\":[{\"ipv4Addr\": \"12.1.1.130\"}]}}');
 ```
 
-To return the same nrUE to dynamic IP allocation, restore that row without the `staticIpAddress` field:
+To give the same nrUE a dynamic IP address, replace that row before starting the core with one without the `staticIpAddress` field, and skip the database update of section 3:
 
 ```sql
 INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES
