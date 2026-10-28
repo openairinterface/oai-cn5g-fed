@@ -95,9 +95,17 @@ oai-cn5g-fed/docker-compose$ docker ps -a
 ecde9367e35f        oai-smf:latest             "/openair-smf/bin/oa…"   About a minute ago   Up About a minute (healthy)   80/tcp, 8080/tcp, 8805/udp     oai-smf
 68b72a425b31        trf-gen-cn5g:latest        "/bin/bash -c ' ip r…"   About a minute ago   Up About a minute (healthy)                                  oai-ext-dn
 57f65999d804        oai-amf:latest             "/openair-amf/bin/oa…"   About a minute ago   Up About a minute (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
-a44ea43b7962        mysql:8.0                  "docker-entrypoint.s…"   About a minute ago   Up About a minute (healthy)   3306/tcp, 33060/tcp            mysql
+a44ea43b7962        mysql:9.6.0                "docker-entrypoint.s…"   About a minute ago   Up About a minute (healthy)   3306/tcp, 33060/tcp            mysql
 oai-cn5g-fed/docker-compose$
 ```
+
+**Subscriber database:** there is no AUSF, UDM or UDR in this mini deployment. The AMF runs 5G-AKA itself (`enable_simple_scenario: yes`) and reads the subscribers directly from MySQL, which is loaded from [oai_db2.sql](../docker-compose/database/oai_db2.sql), the same database as the basic deployment.
+
+* For each registration, the AMF reads `encPermanentKey`, `encOpcKey`, `sequenceNumber` and `authenticationManagementField` from the `AuthenticationSubscription` table, then writes the next SQN back to `sequenceNumber`.
+* The database provisions IMSIs `208950000000031` to `208950000000131`.
+* The `mysql` health check ([mysql-healthcheck2.sh](../docker-compose/healthscripts/mysql-healthcheck2.sh)) succeeds once `AuthenticationSubscription` is populated.
+
+To add a subscriber, add its `AuthenticationSubscription` row as described in [MySQL database configuration](./CONFIGURATION.md#3-mysql-database-configuration). The SMF uses its local subscription info here, so no `SessionManagementSubscriptionData` row is needed. The `users` table of `oai_db1.sql`, used by older releases of this deployment, is no longer read by the AMF.
 
 We can also use basic deployment of 5GCN (with AUSF, UDM, UDR) as below -
 
@@ -163,7 +171,7 @@ CONTAINER ID   IMAGE                           COMMAND                  CREATED 
 ecde9367e35f   oai-smf:latest                  "/openair-smf/bin/oa…"   4 minutes ago        Up 4 minutes (healthy)        80/tcp, 8080/tcp, 8805/udp     oai-smf
 68b72a425b31   trf-gen-cn5g:latest             "/bin/bash -c ' ip r…"   4 minutes ago        Up 4 minutes (healthy)                                       oai-ext-dn
 57f65999d804   oai-amf:latest                  "/openair-amf/bin/oa…"   4 minutes ago        Up 4 minutes (healthy)        80/tcp, 9090/tcp, 38412/sctp   oai-amf
-a44ea43b7962   mysql:8.0                       "docker-entrypoint.s…"   4 minutes ago        Up 4 minutes (healthy)        3306/tcp, 33060/tcp            mysql
+a44ea43b7962   mysql:9.6.0                     "docker-entrypoint.s…"   4 minutes ago        Up 4 minutes (healthy)        3306/tcp, 33060/tcp            mysql
 ```
 Now we are ready to perform some traffic test.
 
@@ -285,9 +293,32 @@ docker-compose-host $: docker logs gnbsim > /tmp/oai/mini-gnbsim/gnbsim.log 2>&1
 | [5gcn-deployment-gnbsim.pcap](./results/gnbSIM/pcap/5gcn-deployment-gnbsim.pcap)                  |
 | Reference AMF and SMF logs are generated locally under `/tmp/oai/mini-gnbsim/`                      |
 
+### 8.1. Check the sequence number stored by the AMF
+
+Each registration advances the subscriber's SQN in the database. All subscribers start at `000000000020`. The AMF builds the authentication vector with the stored SQN + 32 and stores SQN + 64, so after the first registration of `208950000000031` the stored value is `000000000060`:
+
+``` console
+docker-compose-host $: docker exec mysql mysql -utest -ptest -D oai_db -e "SELECT ueid, sequenceNumber FROM AuthenticationSubscription WHERE ueid='208950000000031';"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++-----------------+------------------------------------------------------------------------------------+
+| ueid            | sequenceNumber                                                                     |
++-----------------+------------------------------------------------------------------------------------+
+| 208950000000031 | {"sqn": "000000000060", "sqnScheme": "NON_TIME_BASED", "lastIndexes": {"ausf": 0}} |
++-----------------+------------------------------------------------------------------------------------+
+```
+
+If a subscriber has no `AuthenticationSubscription` row, or its row is malformed (for example a key that is not 32 hex characters or a `NULL` `sequenceNumber`), the AMF logs the reason and refuses the registration with 5GMM cause `Illegal UE`. For a malformed key, the log shows:
+
+``` console
+[amf_authentication] [error] encPermanentKey is not 32 hex characters
+[amf_authentication] [error] Rejecting AuthenticationSubscription row for ueid 208950000000039
+[amf_authentication] [error] Failed to fetch user data from MySQL
+[amf_n1] [error] Request Authentication Vectors failure
+```
+
 ## 9. Trying Some Advanced Stuff
 
-Here we try some scaling testing with gnbsim. There are additional IMSIs added into the database (208950000000031-208950000000040). Now we create a few more gnbsim instances (4 more for now). We use the same script to generate additional instances as follow -
+Here we try some scaling testing with gnbsim. The database provisions more subscribers than the first UE (IMSIs 208950000000031 to 208950000000131), and `gnbsim2` to `gnbsim5` use IMSIs 208950000000032 to 208950000000035. Now we create a few more gnbsim instances (4 more for now). We use the same script to generate additional instances as follow -
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-gnbsim.yaml up -d gnbsim2
 Creating gnbsim2 ... done
@@ -341,7 +372,7 @@ docker-compose-host $: docker logs gnbsim4 2>&1 | grep "UE address:"
 docker-compose-host $: docker logs gnbsim5 2>&1 | grep "UE address:"
 [gnbsim]2022/09/14 16:45:44.584271 example.go:329: UE address: 12.1.1.6
 ```
-So here basically, the minimum configuration parameters that we need to change are gnbid, imsi and container ip address in docker-compose-gnbsim.yaml.
+So here basically, the minimum configuration parameters that we need to change are gnbid, imsi and container ip address in docker-compose-gnbsim.yaml. The IMSI must have an `AuthenticationSubscription` row in the database (see [section 5](#5-deploying-oai-5g-core-network)).
 Please make sure the status of the instance is healthy before creating one more instance. Now here we have deployed all 5 gnbsim intances -
 ``` shell
 $ docker ps -a
@@ -355,33 +386,32 @@ ed440f95fb19   gnbsim:latest                   "/gnbsim/bin/entrypo…"   4 minu
 ecde9367e35f   oai-smf:latest                  "/openair-smf/bin/oa…"   16 minutes ago   Up 16 minutes (healthy)   80/tcp, 8080/tcp, 8805/udp     oai-smf
 68b72a425b31   trf-gen-cn5g:latest             "/bin/bash -c ' ip r…"   16 minutes ago   Up 16 minutes (healthy)                                  oai-ext-dn
 57f65999d804   oai-amf:latest                  "/openair-amf/bin/oa…"   16 minutes ago   Up 16 minutes (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
-a44ea43b7962   mysql:8.0                       "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes (healthy)   3306/tcp, 33060/tcp            mysql
+a44ea43b7962   mysql:9.6.0                     "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes (healthy)   3306/tcp, 33060/tcp            mysql
 ```
 * Let's verify all gnb and ue are registered at our 5G core -
 ``` console
 $ docker logs oai-amf
 truncated output
-[2021-05-17T12:17:28.539943] [AMF] [amf_app] [info ]
-[2021-05-17T12:17:28.539998] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-[2021-05-17T12:17:28.540009] [AMF] [amf_app] [info ] |----------------------------------------------------gNBs' information-------------------------------------------|
-[2021-05-17T12:17:28.540031] [AMF] [amf_app] [info ] |    Index    |      Status      |       Global ID    |    gNB Name     |               PLMN             |
-[2021-05-17T12:17:28.540046] [AMF] [amf_app] [info ] |      1      |    Connected     |         0x400      |                 |            208, 95             |
-[2021-05-17T12:17:28.540056] [AMF] [amf_app] [info ] |      2      |    Connected     |         0x800      |                 |            208, 95             |
-[2021-05-17T12:17:28.540065] [AMF] [amf_app] [info ] |      3      |    Connected     |         0xc00      |                 |            208, 95             |
-[2021-05-17T12:17:28.540077] [AMF] [amf_app] [info ] |      4      |    Connected     |         0x1000     |                 |            208, 95             |
-[2021-05-17T12:17:28.540086] [AMF] [amf_app] [info ] |      5      |    Connected     |         0x1400     |                 |            208, 95             |
-[2021-05-17T12:17:28.540094] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-[2021-05-17T12:17:28.540102] [AMF] [amf_app] [info ]
-[2021-05-17T12:17:28.540108] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-[2021-05-17T12:17:28.540118] [AMF] [amf_app] [info ] |----------------------------------------------------UEs' information--------------------------------------------|
-[2021-05-17T12:17:28.540131] [AMF] [amf_app] [info ] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |Cell ID|
-[2021-05-17T12:17:28.540146] [AMF] [amf_app] [info ] |      1|       5GMM-REGISTERED|   208950000000031|               |               0|          1| 208, 95 | 262160|
-[2021-05-17T12:17:28.540169] [AMF] [amf_app] [info ] |      2|       5GMM-REGISTERED|   208950000000032|               |               0|          2| 208, 95 | 524304|
-[2021-05-17T12:17:28.540185] [AMF] [amf_app] [info ] |      3|       5GMM-REGISTERED|   208950000000033|               |               0|          3| 208, 95 | 786448|
-[2021-05-17T12:17:28.540197] [AMF] [amf_app] [info ] |      4|       5GMM-REGISTERED|   208950000000034|               |               0|          4| 208, 95 |1048592|
-[2021-05-17T12:17:28.540211] [AMF] [amf_app] [info ] |      5|       5GMM-REGISTERED|   208950000000035|               |               0|          5| 208, 95 |1310736|
-[2021-05-17T12:17:28.540219] [AMF] [amf_app] [info ] |----------------------------------------------------------------------------------------------------------------|
-[2021-05-17T12:17:28.540227] [AMF] [amf_app] [info ]
+[2026-10-14 02:45:21.515] [amf_app] [info]
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |----------------------------------------------------------------------gNBs' Information---------------------------------------------------------------------|
+   |  Index |               Status               |              Global Id             |              gNB Name              |                PLMN                |
+   |    1   |              Connected             |               0x0100               |                                    |               208,95               |
+   |    2   |              Connected             |               0x0200               |                                    |               208,95               |
+   |    3   |              Connected             |               0x0300               |                                    |               208,95               |
+   |    4   |              Connected             |               0x0400               |                                    |               208,95               |
+   |    5   |              Connected             |               0x0500               |                                    |               208,95               |
+   |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |---------------------------------------------------------------------UEs' Information----------------------------------------------------------------------|
+   |  Index |     5GMM State     |                IMSI/SUPI               |        GUTI        |   RAN UE NGAP ID   |   AMF UE NGAP ID   |        PLMN        |       Cell Id      |
+   |    1   |   5GMM-REGISTERED  |             208950000000031            |20895010041263720106|        0x00        |        0x01        |       208,95       |      000004001     |
+   |    2   |   5GMM-REGISTERED  |             208950000000032            |20895010041133021748|        0x00        |        0x02        |       208,95       |      000008001     |
+   |    3   |   5GMM-REGISTERED  |             208950000000033            |20895010041262543624|        0x00        |        0x03        |       208,95       |      00000c001     |
+   |    4   |   5GMM-REGISTERED  |             208950000000034            |20895010041436869113|        0x00        |        0x04        |       208,95       |      000010001     |
+   |    5   |   5GMM-REGISTERED  |             208950000000035            |20895010041336503726|        0x00        |        0x05        |       208,95       |      000014001     |
+   |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 ```
 * Finally lets ping UE from external DN node -
