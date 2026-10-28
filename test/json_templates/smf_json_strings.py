@@ -81,6 +81,10 @@ smf_config_json = """
     }
   ],
   "log_level": "debug",
+  "paging_config": {
+    "enable": false,
+    "paging_policy_indicator": 1
+  },
   "register_nf": true,
   "sbi": {
     "api_version": "v1",
