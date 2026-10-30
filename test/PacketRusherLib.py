@@ -59,7 +59,7 @@ class PacketRusherLib:
         self.test_name = ""
         prepare_folders()
 
-    def prepare_packet_rusher(self, test_name, command):
+    def prepare_packet_rusher(self, test_name, command, no_pcap=False):
         """
         Generates the compose file and config for one PacketRusher run.
 
@@ -67,6 +67,7 @@ class PacketRusherLib:
         :param command: everything after the binary, e.g.
                         "multi-ue -n 500 --tr 0 --timeBeforeDeregistration 5000"
                         The --pcap argument is appended automatically.
+        :param no_pcap: skip the capture. Off by default, so every run keeps one.
         :return: container name
         """
         self.test_name = test_name
@@ -74,15 +75,18 @@ class PacketRusherLib:
         self.name = f"packetrusher-{slug}"
         self.docker_compose_path = os.path.join(get_out_dir(), f"docker-compose-{self.name}.yaml")
         self.conf_path = os.path.join(get_out_dir(), f"packetrusher-{slug}.yaml")
-        self.pcap_dir = os.path.join(get_out_dir(), f"pcap-{slug}")
-        os.makedirs(self.pcap_dir, exist_ok=True)
 
         shutil.copy(os.path.join(DIR_PATH, TEMPLATE_CONFIG), self.conf_path)
 
         # PacketRusher writes the capture itself, which avoids needing capture
         # privileges on the host: the suite's tshark based Start Trace cannot run
         # without membership of the wireshark group.
-        full_command = f"{command} --pcap /pcap/{slug}.pcap"
+        if no_pcap:
+            full_command = f"{command}"
+        else:
+            full_command = f"{command} --pcap /pcap/{slug}.pcap"
+            self.pcap_dir = os.path.join(get_out_dir(), f"pcap-{slug}")
+            os.makedirs(self.pcap_dir, exist_ok=True)
 
         with open(os.path.join(DIR_PATH, TEMPLATE_DOCKER_COMPOSE)) as f:
             compose = yaml.safe_load(f)
@@ -93,6 +97,9 @@ class PacketRusherLib:
             svc["volumes"] = [
                 v.replace("REPLACE_CONFIG", self.conf_path).replace("REPLACE_PCAP_DIR", self.pcap_dir)
                 for v in svc["volumes"]
+                # Without a capture there is no host directory to bind, and an
+                # empty replacement would leave an invalid ":/pcap" mount.
+                if self.pcap_dir or "REPLACE_PCAP_DIR" not in v
             ]
             svc["entrypoint"] = [
                 part.replace("REPLACE_COMMAND", full_command).replace("REPLACE_IP_2", PR_IP_2)
