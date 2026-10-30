@@ -4,17 +4,16 @@
 
 Complete these host-level steps before running any Docker Compose or Podman-based OAI 5G Core tutorial.
 
-## Supported Hosts And Runtimes
+## Supported Distributions And Runtimes
 
-The official OAI CN5G container images use Ubuntu 22.04 as the container base image. They are compatible with the following Linux hosts:
+The official OAI CN5G container images are built on Ubuntu 24.04. The source code builds on the following Linux distributions:
 
-| Host family | Supported versions |
-| ----------- | ------------------ |
-| Ubuntu      | 22.04 through 26.04 |
-| Fedora      | 39 through 43 |
-| RHEL        | 8 through 10 |
+| Distribution  | Supported versions |
+| ------------- | ------------------ |
+| Ubuntu        | 24.04              |
+| CentOS Stream | 10                 |
 
-Any Docker or Podman version available for those host releases should be fine. The tutorials mostly show Docker commands; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where a tutorial uses `docker compose` or `docker-compose`.
+Any Docker or Podman version available for those releases should be fine. The tutorials mostly show Docker commands; when using Podman, replace `docker` with `podman` and use your distribution's Compose-compatible command where a tutorial uses `docker compose` or `docker-compose`.
 
 ## Required Tools
 
