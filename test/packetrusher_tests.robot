@@ -188,7 +188,7 @@ UPF Throughput Single UE
     ...                that has fallen over or collapsed to a fraction of its rate,
     ...                without failing on normal run to run variation.
     [Tags]    UPF  SMF  AMF  NRF
-    Prepare Packet Rusher    UPF Throughput    multi-ue -n 1 --dedicatedGnb --tunnel
+    Prepare Packet Rusher    UPF Throughput    multi-ue -n 1 --dedicatedGnb --tunnel    ${True}
     Start Packet Rusher
     Wait Until Keyword Succeeds    60s  2s    Packet Rusher Log Should Contain    has successfully been configured
 
