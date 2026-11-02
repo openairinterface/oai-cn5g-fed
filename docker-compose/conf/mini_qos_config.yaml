@@ -1,0 +1,198 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+# OAI CN Configuration File -- "mini QoS with an AF" scenario
+#
+# A minimal core for testing AF-initiated QoS (N5 Npcf_PolicyAuthorization):
+# AMF + SMF + PCF + UPF only. There is no NRF, UDR, UDM or AUSF container:
+# the AMF uses its internal AUSF/UDM (enable_simple_scenario), and the SMF
+# reaches the PCF through the static "nfs" section below, because the SMF
+# never discovers the PCF through the NRF anyway (smf_config.cpp sets
+# discover_pcf = false unconditionally).
+#
+# The UPF runs the simple-switch datapath with QoS enforcement, which is what
+# this scenario exists to exercise.
+
+############# Common configuration
+
+log_level:
+  general: debug
+
+# No NRF in this scenario, so every NF takes its peers from "nfs" below.
+register_nf:
+  general: no
+
+# HTTP/2 everywhere. The AF (phine.af) talks to the PCF with an nghttp2
+# client over h2c, so the PCF has to serve HTTP/2 on 8080.
+http_version: 2
+
+############## SBI Interfaces
+nfs:
+  amf:
+    host: oai-amf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n2:
+      interface_name: eth0
+      port: 38412
+  smf:
+    host: oai-smf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n4:
+      interface_name: eth0
+      port: 8805
+  upf:
+    host: oai-upf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+    n3:
+      interface_name: eth0
+      port: 2152
+    n4:
+      interface_name: eth0
+      port: 8805
+    n6:
+      interface_name: eth0
+    n9:
+      interface_name: eth0
+      port: 2152
+  pcf:
+    host: oai-pcf
+    sbi:
+      port: 8080
+      api_version: v1
+      interface_name: eth0
+
+#### Used by the AMF's internal UDM to fetch the subscriber keys
+database:
+  host: mysql
+  user: test
+  type: mysql
+  password: test
+  database_name: oai_db
+  generate_random: true
+  connection_timeout: 300 # seconds
+
+## A single slice is enough for this scenario
+snssais:
+  - &embb_slice1
+    sst: 1
+
+############## NF-specific configuration
+amf:
+  amf_name: "OAI-AMF"
+  support_features_options:
+    # Internal AUSF/UDM, so no AUSF/UDM/UDR containers are needed
+    enable_simple_scenario: yes
+    enable_nssf: no
+    enable_smf_selection: no
+  relative_capacity: 30
+  statistics_timer_interval: 20  # in seconds
+  emergency_support: false
+  served_guami_list:
+    - mcc: 208
+      mnc: 95
+      amf_region_id: 01
+      amf_set_id: 001
+      amf_pointer: 01
+  plmn_support_list:
+    - mcc: 208
+      mnc: 95
+      tac: 0xa000
+      nssai:
+        - *embb_slice1
+  supported_integrity_algorithms:
+    - "NIA0"
+    - "NIA1"
+    - "NIA2"
+  supported_encryption_algorithms:
+    - "NEA0"
+    - "NEA1"
+    - "NEA2"
+
+smf:
+  ue_mtu: 1500
+  support_features:
+    # Subscription data comes from local_subscription_infos (no UDM here) ...
+    use_local_subscription_info: yes
+    # ... but the PCC rules come from the PCF, which is the whole point of
+    # this scenario: the AF changes them at runtime over N5.
+    use_local_pcc_rules: no
+  upfs:
+    - host: oai-upf
+      port: 8805
+      config:
+        enable_usage_reporting: no
+        # Without QERs the UPF has nothing to enforce QoS with
+        enable_qers: yes
+      upf_info:
+        interfaceUpfInfoList:
+          - interfaceType: "N3"
+            networkInstance: "access.oai.org"
+          - interfaceType: "N6"
+            networkInstance: "core.oai.org"
+  ue_dns:
+    primary_ipv4: "172.21.3.100"
+    primary_ipv6: "2001:4860:4860::8888"
+    secondary_ipv4: "8.8.8.8"
+    secondary_ipv6: "2001:4860:4860::8888"
+  ims:
+    pcscf_ipv4: "127.0.0.1"
+    pcscf_ipv6: "fe80::7915:f408:1787:db8b"
+  smf_info:
+    sNssaiSmfInfoList:
+      - sNssai: *embb_slice1
+        dnnSmfInfoList:
+          - dnn: "oai"
+  local_subscription_infos:
+    - single_nssai: *embb_slice1
+      dnn: "oai"
+      qos_profile:
+        5qi: 9
+        session_ambr_ul: "50Mbps"
+        session_ambr_dl: "100Mbps"
+
+pcf:
+  local_policy:
+    policy_decisions_path: /openair-pcf/policies/policy_decisions
+    pcc_rules_path: /openair-pcf/policies/pcc_rules
+    traffic_rules_path: /openair-pcf/policies/traffic_rules
+    qos_data_path: /openair-pcf/policies/qos_data
+    # Operator-preconfigured QoS reference sets, looked up by the value an AF
+    # sends in MediaComponent.qosReference. phine.af sends the bare 5QI there
+    # ("7" for its "premium" profile), which does not resolve against the OAI
+    # preset names, so the PCF falls back to deriving the QoS from the
+    # bitrates in the request -- see the tutorial for why that is wanted here.
+    qos_reference_path: /openair-pcf/policies/qos_references
+
+upf:
+  support_features:
+    # The scenario under test: simple-switch datapath, not eBPF/XDP
+    enable_bpf_datapath: no
+    enable_qos: yes
+  remote_n6_gw: oai-ext-dn
+  upf_info:
+    sNssaiUpfInfoList:
+      - sNssai: *embb_slice1
+        dnnUpfInfoList:
+          - dnn: "oai"
+  datapath_configuration:
+    # Shape the downlink instead of policing it (the default, qos_shape_ms: 0,
+    # is a policer that forgives a qos_burst_ms burst). A shaper queues the
+    # excess rather than dropping it, so a TCP iperf3 run settles close to the
+    # configured MBR instead of sawtoothing around it.
+    qos_shape_ms: 50
+
+## DNN configuration
+# Named "oai" to match ran-conf/nr-ue.conf, the NR-UE config this scenario
+# reuses. The PCF binds the app-session by UE IPv4 and ignores the DNN today.
+dnns:
+  - dnn: "oai"
+    pdu_session_type: "IPV4"
+    ipv4_subnet: "12.1.1.0/24"
