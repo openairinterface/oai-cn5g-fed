@@ -103,3 +103,21 @@ Source: https://openapi-generator.tech/
 NOTE: Files were also edited manually to fix auto-generated errors
 
 ------------------------------------------------------------------
+
+CAMARA QualityOnDemand API
+Source: https://github.com/camaraproject/QualityOnDemand
+Version: r3.2
+Author: The CAMARA Project Authors
+License: Apache License 2.0
+Files: docker-compose/api/quality-on-demand.yaml
+NOTE: Modified: adapted the security schemes and updated the test examples
+
+------------------------------------------------------------------
+
+phine.af configuration
+Source: https://github.com/phinetech/phine.af
+License: Apache License 2.0
+Files: docker-compose/conf/mini_qos_phine_af_config.yaml
+NOTE: Modified: adapted the configuration for the OAI PCF
+
+------------------------------------------------------------------
