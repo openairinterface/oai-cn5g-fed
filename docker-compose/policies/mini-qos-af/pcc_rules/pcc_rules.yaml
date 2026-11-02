@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+# Catch-all rule for the default QoS flow.
+#
+# In PFCP/PCC a LOWER precedence value wins [TS 29.244 clause 8.2.11], and the
+# PCF derives Policy-Authorization rules in the 1000-1999 band
+# (PA_QOS_PRECEDENCE_BASE). This rule therefore has to sit above that band, or
+# it would outrank the rules the AF installs at runtime and the UPF would keep
+# matching AF-targeted traffic against the default flow.
+non-gbr-rule-5qi-9:
+  flowInfos:
+    - flowDescription: permit out ip from any to assigned
+      packetFilterUsage: true
+  precedence: 10000
+  refQosData:
+    - non-gbr-qos-5qi-9

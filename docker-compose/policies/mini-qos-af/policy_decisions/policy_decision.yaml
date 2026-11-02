@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: LicenseRef-CSSL-1.0
+
+# One UE, no per-SUPI special casing: every PDU session starts on the default
+# non-GBR flow and is upgraded by the AF later.
+decision_default:
+  default: true
+  pcc_rules:
+    - non-gbr-rule-5qi-9
