@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# phine.af configuration for the "mini QoS with an AF" scenario.
+#
+# Schema and defaults follow the config baked into phinetech/phine.af:latest
+# (/etc/phine.af/af.yaml). Only two things are changed: the PCF the southbound
+# handler dials, and nothing else -- the bundled `af` binary runs AF Core and
+# the PCF handler in one process, so the handler talks to the core in-process
+# ("direct") and only the northbound CAMARA API is exposed.
+
+# AF Core: serves the CAMARA Quality-on-Demand REST API.
+# Note this is HTTP/2 cleartext (h2c) with no upgrade dance, so clients must
+# use prior knowledge (curl --http2-prior-knowledge).
+af_core:
+  logging:
+    level: "debug"
+    console_output: true
+    file_output: false
+    file_path: "/app/logs/af_core.log"
+
+  communication:
+    kind: "http"
+    listen:
+      host: "0.0.0.0"
+      port: 8080
+    timeout_ms: 5000
+
+  qod:
+    max_session_duration: 86400
+    min_session_duration: 60
+    session_cleanup_interval: 60
+    unavailable_session_ttl: 360
+    enable_notifications: true
+    api_base_url: "http://192.168.70.141:8080/quality-on-demand/v1"
+
+# Southbound PCF handler: N5 Npcf_PolicyAuthorization towards the OAI PCF.
+# Port 8080 because the core runs with http_version: 2 (see
+# mini_qos_config.yaml); on http_version: 1 this would be port 80.
+pcf_handler:
+  enabled: true
+
+  pcf:
+    base_url: "http://192.168.70.139:8080/npcf-policyauthorization/v1"
+    use_tls: false
+    api_version: "v1"
+
+  logging:
+    level: "debug"
+    console_output: true
+    file_output: false
+    file_path: "/app/logs/pcf_handler.log"
+
+  communication:
+    kind: "direct"
+    listen:
+      host: "0.0.0.0"
+      port: 8085
+    remote:
+      host: "af_core"
+      port: 8080
+    timeout_ms: 5000
+
+nef_handler:
+  enabled: false
+
+udr_handler:
+  enabled: false
+
+logging:
+  level: "debug"
+  file: "/var/log/phine.af/af.log"
+  console: true
+  max_size_mb: 10
+  max_files: 5
+
+metrics:
+  enabled: true
+  port: 9090
+  path: "/metrics"
