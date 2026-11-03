@@ -188,7 +188,7 @@ UPF Throughput Single UE
     ...                that has fallen over or collapsed to a fraction of its rate,
     ...                without failing on normal run to run variation.
     [Tags]    UPF  SMF  AMF  NRF
-    Prepare Packet Rusher    UPF Throughput    multi-ue -n 1 --dedicatedGnb --tunnel
+    Prepare Packet Rusher    UPF Throughput    multi-ue -n 1 --dedicatedGnb --tunnel    ${True}
     Start Packet Rusher
     Wait Until Keyword Succeeds    60s  2s    Packet Rusher Log Should Contain    has successfully been configured
 
@@ -232,6 +232,8 @@ Launch CN For Packet Rusher
     ${dnns} =    Evaluate    [{"dnn":"oai","pdu_session_type":"IPV4","ipv4_subnet":"12.2.1.0/24"}, {"dnn":"oai.ipv4","pdu_session_type":"IPV4","ipv4_subnet":"12.3.1.0/24"}, {"dnn":"default","pdu_session_type":"IPV4","ipv4_subnet":"${UE_SUBNET}"}, {"dnn":"ims","pdu_session_type":"IPV4V6","ipv4_subnet":"14.1.1.2/24"}]
     @{replace_list} =    Create List    dnns
     Replace In Config    ${replace_list}    ${dnns}
+    @{replace_list} =    Create List    log_level    general
+    Replace In Config    ${replace_list}    info
     Set Ext Dn Ue Subnet    ${UE_SUBNET}
 
     Start CN
