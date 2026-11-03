@@ -48,17 +48,17 @@ nfs:
     sbi:
       port: 8080
       api_version: v1
-      interface_name: eth0
+      interface_name: demo-oai
     n3:
-      interface_name: eth0
+      interface_name: demo-n3
       port: 2152
     n4:
-      interface_name: eth0
+      interface_name: demo-oai
       port: 8805
     n6:
-      interface_name: eth0
+      interface_name: demo-n6
     n9:
-      interface_name: eth0
+      interface_name: demo-n9
       port: 2152
   udm:
     host: oai-udm
@@ -78,14 +78,14 @@ nfs:
       port: 8080
       api_version: v1
       interface_name: eth0
-  pcf:
-    host: oai-pcf
+  nrf:
+    host: oai-nrf
     sbi:
       port: 8080
       api_version: v1
       interface_name: eth0
-  nrf:
-    host: oai-nrf
+  pcf:
+    host: oai-pcf
     sbi:
       port: 8080
       api_version: v1
@@ -119,8 +119,8 @@ amf:
   # This really depends on if we want to keep the "mini" version or not
   support_features_options:
     enable_simple_scenario: no # "no" by default with the normal deployment scenarios with AMF/SMF/UPF/AUSF/UDM/UDR/NRF.
-      # set it to "yes" to use with the minimalist deployment scenario (including only AMF/SMF/UPF) by using the internal AUSF/UDM implemented inside AMF.
-    # There's no NRF in this scenario, SMF info is taken from "nfs" section.
+                               # set it to "yes" to use with the minimalist deployment scenario (including only AMF/SMF/UPF) by using the internal AUSF/UDM implemented inside AMF.
+                               # There's no NRF in this scenario, SMF info is taken from "nfs" section.
     enable_nssf: no
     enable_smf_selection: yes
   relative_capacity: 30
@@ -146,8 +146,8 @@ amf:
         - *embb_slice2
         - *custom_slice
   supported_integrity_algorithms:
-    - "NIA0"
     - "NIA1"
+    - "NIA0"
     - "NIA2"
   supported_encryption_algorithms:
     - "NEA0"
@@ -157,13 +157,14 @@ amf:
 smf:
   ue_mtu: 1500
   support_features:
-    use_local_subscription_info: yes # Use infos from local_subscription_info or from UDM
+    use_local_subscription_info: no # Use infos from local_subscription_info or from UDM
     use_local_pcc_rules: no # Use infos from local_pcc_rules or from PCF
   # we resolve from NRF, this is just to configure usage_reporting
   upfs:
-    - host: oai-upf
+    - host: 192.168.70.129
       config:
         enable_usage_reporting: no
+        enable_qers: yes
   ue_dns:
     primary_ipv4: "172.21.3.100"
     primary_ipv6: "2001:4860:4860::8888"
@@ -207,11 +208,10 @@ smf:
 
 upf:
   support_features:
-    enable_bpf_datapath: no    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
-    enable_snat: yes           # If "on": Source natting is done for UE, DEFAULT= off
-  remote_n6_gw: localhost      # Dummy host since simple-switch does not use N6 GW
-  smfs:
-    - host: oai-smf            # To be used for PFCP association in case of no-NRF
+    enable_bpf_datapath: yes    # If "on": BPF is used as datapath else simpleswitch is used, DEFAULT= off
+    enable_qos: yes
+    ignore_qfi_for_uplink: yes
+  remote_n6_gw: oai-ext-dn
   upf_info:
     sNssaiUpfInfoList:
       - sNssai: *embb_slice1
@@ -223,9 +223,6 @@ upf:
       - sNssai: *custom_slice
         dnnUpfInfoList:
           - dnn: "default"
-
-pcf:
-  enable_policy_provisioning_api: yes # Use db instead of yaml, enables dynamic pcc rule creation via API
 
 ## DNN configuration
 dnns:
@@ -241,3 +238,6 @@ dnns:
   - dnn: "ims"
     pdu_session_type: "IPV4V6"
     ipv4_subnet: "14.1.1.2/24"
+
+pcf:
+    enable_policy_provisioning_api: yes # Use db instead of yaml, enables dynamic pcc rule creation via API
