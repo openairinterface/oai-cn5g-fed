@@ -67,6 +67,16 @@ Use `scripts/syncComponents.sh` to synchronize the network functions into `compo
 It also updates the submodules inside each of them. See
 [synchronizing all NFs](./CONTRIBUTING.md#synchronizing-all-nfs).
 
+When a change adds, removes or changes a feature of an NF cloned into `component/`,
+update `docs/FEATURE_SET.md` in that NF repository, in the same commit as the change.
+Then mirror it in the NF section of [FEATURE_SET.md](./FEATURE_SET.md) in this
+repository, as a separate commit, and tell the user both files need to land together.
+For every feature or fix, also add a one-line entry to a `## Pre-release` section at
+the top of `CHANGELOG.md`, creating it if it is missing, in both the NF repository and
+this one, in the same commits. In this repository, put it under that NF's
+`` * `<NF>` changes: `` bullet (for example `` * `SMF` changes: ``), in its `Features`
+or `Fixes` group, as the release sections do. The release commit renames that section to the version and date.
+
 The `ci-scripts/common` submodule of this repository is separate: `syncComponents.sh`
 does not touch it. Initialize it with `git submodule update --init --recursive`.
 
