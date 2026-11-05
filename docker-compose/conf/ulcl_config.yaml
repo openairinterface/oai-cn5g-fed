@@ -115,11 +115,6 @@ amf:
       amf_region_id: 01
       amf_set_id: 001
       amf_pointer: 01
-    - mcc: 001
-      mnc: 01
-      amf_region_id: 01
-      amf_set_id: 001
-      amf_pointer: 01
   plmn_support_list:
     - mcc: 208
       mnc: 95
