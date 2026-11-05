@@ -22,11 +22,6 @@ Source: https://github.com/google/googletest
 Author: Google
 License: BSD 3-Clause License
 
-Folly
-Source: https://github.com/facebook/folly
-Author: Facebook
-License: Apache License 2.0
-
 fmt
 Source: https://github.com/fmtlib/fmt
 Author: Hello World Foundation

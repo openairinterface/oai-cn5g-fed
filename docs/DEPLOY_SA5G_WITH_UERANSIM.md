@@ -22,7 +22,7 @@
 
 **Tutorial replication time: ~ 1h30mins**
 
-**Supported hosts**: Ubuntu 22.04 through 26.04, Fedora 39 through 43, and RHEL 8 through 10. The official OAI CN5G images use Ubuntu 22.04 as the container base image. Any Docker or Podman version available for those host releases should be fine.
+**Supported distributions**: Ubuntu 24.04 and CentOS Stream 10. The official OAI CN5G images are built on Ubuntu 24.04. Any Docker or Podman version available for those releases should be fine.
 
 Note: In case readers are interested in deploying debuggers/developers core network environment with more logs please follow [this tutorial](./DEBUG_5G_CORE.md)
 
@@ -96,7 +96,7 @@ CONTAINER ID   IMAGE                COMMAND                  CREATED          ST
 4349e8808902   oai-smf:latest       "/bin/bash /openair-…"   49 seconds ago   Up 48 seconds (healthy)   80/tcp, 9090/tcp, 8805/udp     oai-smf
 62e774768482   oai-amf:latest       "/bin/bash /openair-…"   49 seconds ago   Up 48 seconds (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
 0302e6a3d2b3   oai-ausf:latest      "/bin/bash /openair-…"   50 seconds ago   Up 49 seconds (healthy)   80/tcp                         oai-ausf
-fb3249a5ade7   ubuntu:jammy         "/bin/bash -c ' apt …"   51 seconds ago   Up 49 seconds                                            oai-ext-dn
+fb3249a5ade7   ubuntu:noble         "/bin/bash -c ' apt …"   51 seconds ago   Up 49 seconds                                            oai-ext-dn
 4f114039c218   oai-udm:latest       "/bin/bash /openair-…"   51 seconds ago   Up 49 seconds (healthy)   80/tcp                         oai-udm
 c0838aff8796   oai-udr:latest       "/bin/bash /openair-…"   51 seconds ago   Up 50 seconds (healthy)   80/tcp                         oai-udr
 99ab1b23862c   oai-upf-vpp:latest   "/openair-upf/bin/en…"   51 seconds ago   Up 50 seconds (healthy)   2152/udp, 8085/udp             vpp-upf
@@ -141,7 +141,7 @@ cb206b9b0a25   ueransim:latest      "/ueransim/bin/entry…"   14 seconds ago   
 4349e8808902   oai-smf:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp, 9090/tcp, 8805/udp     oai-smf
 62e774768482   oai-amf:develop      "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp, 9090/tcp, 38412/sctp   oai-amf
 0302e6a3d2b3   oai-ausf:latest      "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-ausf
-fb3249a5ade7   ubuntu:jammy         "/bin/bash -c ' apt …"   About a minute ago   Up About a minute                                            oai-ext-dn
+fb3249a5ade7   ubuntu:noble         "/bin/bash -c ' apt …"   About a minute ago   Up About a minute                                            oai-ext-dn
 4f114039c218   oai-udm:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-udm
 c0838aff8796   oai-udr:latest       "/bin/bash /openair-…"   About a minute ago   Up About a minute (healthy)   80/tcp                         oai-udr
 99ab1b23862c   oai-upf-vpp:latest   "/openair-upf/bin/en…"   About a minute ago   Up About a minute (healthy)   2152/udp, 8085/udp             vpp-upf

@@ -72,7 +72,7 @@ The example below is only for AMF you need to repeat it for all network function
 
 ``` bash
 git clone -b <prefered_branch or develop> https://github.com/openairinterface/oai-cn5g-amf.git /openair-amf
-docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf ubuntu:jammy sleep infinity
+docker run --privileged -d --name oai-amf-development --volume openair-amf:/openair-amf ubuntu:noble sleep infinity
 docker exec -it oai-amf-development bash
 # below command is same for all network functions
 sudo apt update && apt install psmisc software-properties-common git vim nano vi gnupg

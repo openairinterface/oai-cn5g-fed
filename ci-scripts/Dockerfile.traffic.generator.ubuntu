@@ -4,15 +4,14 @@
 #---------------------------------------------------------------------
 #
 # Dockerfile for the Open-Air-Interface 5G Traffic Generator
-#   Valid for Ubuntu-20.04 (focal)
-#             Ubuntu-22.04 (jammy)
+#   Valid for Ubuntu 24.04 (noble)
 #
 #---------------------------------------------------------------------
 
 #---------------------------------------------------------------------
 # TARGET IMAGE
 #---------------------------------------------------------------------
-ARG BASE_IMAGE=ubuntu:jammy
+ARG BASE_IMAGE=ubuntu:noble
 FROM $BASE_IMAGE as trf-gen-cn5g
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Paris
