@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: MIT
+#
+# PacketRusher (one gNB and one UE) against the basic deployment
+# (docker-compose-basic-nrf.yaml), used by docs/DEPLOY_SA5G_PAGING_WITH_PACKETRUSHER.md.
+#
+# The default command is the paging scenario of test/packetrusher_tests.robot: the UE
+# registers, establishes a PDU session, goes to CM-IDLE after 15 s and stays idle for
+# 300 s, so only the network can bring it back. No --tunnel: the run needs no gtp5g
+# kernel module, and the user plane is checked from the core side.
+services:
+    packetrusher:
+        container_name: packetrusher
+        image: oaisoftwarealliance/packet-rusher:fix-5gstmsi-amf
+        privileged: true
+        volumes:
+            - ./ran-conf/packetrusher.yaml:/packetrusher/config/config.yml
+        entrypoint:
+            - /usr/local/bin/packetrusher
+            - --config
+            - /packetrusher/config/config.yml
+        command: ["multi-ue", "-n", "1", "--dedicatedGnb",
+                  "--timeBeforeIdle", "15000", "--timeBeforeReconnecting", "300000"]
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.156
+networks:
+    public_net:
+        name: demo-oai-public-net
+        external: true
