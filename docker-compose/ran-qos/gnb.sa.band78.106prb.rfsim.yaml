@@ -14,8 +14,8 @@ gNBs:
         mnc: 95
         mnc_length: 2
         snssaiList:
-          - sst: 222
-            sd: 0x00007B
+          - sst: 3
+            sd: 0xFFFFFF
     nr_cellid: 12345678
     ##### Physical parameters:
     min_rxtxtime: 6
