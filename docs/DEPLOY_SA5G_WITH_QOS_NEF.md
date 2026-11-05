@@ -27,7 +27,7 @@
 3.  [Building the NEF Image](#3-building-the-nef-image)
 4.  [Core Network Configuration](#4-core-network-configuration)
 5.  [Network Function Deployment](#5-network-function-deployment)
-6.  [Deploy UERANSIM](#6-deploy-ueransim)
+6.  [Deploy the RAN](#6-deploy-the-ran)
 7.  [Testing QoS on Demand through the NEF](#7-testing-qos-on-demand-through-the-nef)
 8.  [Log Collection](#8-log-collection)
 9.  [Undeploy the network functions](#9-undeploy-the-network-functions)
@@ -134,8 +134,6 @@ docker-compose-host $: docker build -f docker/Dockerfile.nef.ubuntu --target oai
 > **Note**
 >
 > `git submodule sync` is required and not optional: the submodule URLs move from `gitlab.eurecom.fr` to `github.com` on this branch, so a working tree that previously tracked `develop` keeps fetching the old remotes without it.
->
-> At the time of writing, `docker/Dockerfile.nef.ubuntu` on `pre_develop` does not build as committed — it still refers to the AMF build script and binary, and its dependency installer does not install `cpr`. The deviations needed are listed in `BUILD_FINDINGS.md` in that repository. Once the packaging fixes land upstream, the command above works unmodified.
 
 Check that the image is present before deploying:
 
@@ -229,12 +227,12 @@ docker-compose-host $: docker logs oai-nef 2>&1 | grep -iE "HTTP2 server listeni
 >
 > Nothing in this tutorial needs NRF discovery, because NEF reaches the PCF through the statically configured `nfs.pcf` endpoint. Leaving registration enabled is harmless — NEF carries on serving after the failure — but it fills the log with an error that has nothing to do with QoS.
 
-## 6. Deploy UERANSIM
+## 6. Deploy the RAN
 
-The RAN side is unchanged from the QoS tutorial. Deploy the gNB and the two UEs:
+The RAN side is unchanged from the QoS tutorial. Deploy the gNB and the UE:
 
 ``` shell
-docker-compose-host $: docker compose -f docker-compose-ueransim-qos.yaml up -d
+docker-compose-host $: docker compose -f docker-compose-oai-rfsim-qos.yaml up -d
 ```
 
 <!---
@@ -244,10 +242,10 @@ docker-compose-host $: sleep 20
 ```
 -->
 
-Check that the 5QI-1 UE is registered and has its static IP address `12.1.1.10`:
+Check that the UE is registered and has an address from the `default` DNN pool (`12.1.1.2` on the run this tutorial was written from):
 
 ``` shell
-docker-compose-host $: docker exec ueransim-ue-5qi-1 ip a | grep uesimtun0
+docker-compose-host $: docker exec oai-nr-ue-5qi-1 ip -4 addr show oaitun_ue1
 ```
 
 ## 7. Testing QoS on Demand through the NEF
@@ -272,13 +270,13 @@ The UE's PDU session starts with the statically provisioned policy from the QoS 
 Start an iperf3 server on the UE, listening on port 5000. It stays up for the whole section:
 
 ``` shell
-docker-compose-host $: docker exec -d ueransim-ue-5qi-1 iperf3 -s -B 12.1.1.10 -p 5000
+docker-compose-host $: docker exec -d oai-nr-ue-5qi-1 iperf3 -s -B 12.1.1.2 -p 5000
 ```
 
 ### 7.1. Baseline: before any AF request
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_baseline.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.2 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_baseline.json
 ```
 
 <!---
@@ -295,7 +293,7 @@ The throughput sits at about 3 Mbps — the default GBR rule for this UE.
 The AF now asks the NEF for 15 Mbps on port 5000, by creating an **AS Session with QoS** subscription. The SCS/AS identity is the `{scsAsId}` path segment, `scs-as-1` here; `-i` prints the response headers so we can capture the `Location` header, whose last segment is the subscription id used by every later request:
 
 ``` shell
-docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ueIpv4Addr": "12.1.1.10", "notificationDestination": "http://oai-af/notifications", "qosReference": "OAI_QOS_GBR_VIDEO_1", "exterAppId": "oai-qos-demo", "dnn": "default", "snssai": { "sst": 222, "sd": "00007B" }, "flowInfo": [ { "flowId": 1, "flowDescriptions": [ "permit out 6 from any to assigned 5000" ] } ] }' --http2-prior-knowledge http://192.168.70.140:8080/3gpp-as-session-with-qos/v1/scs-as-1/subscriptions > /tmp/nef_create_response.txt
+docker-compose-host $: docker exec oai-af curl -i -H 'Content-Type: application/json' -X POST -d '{"ueIpv4Addr": "12.1.1.2", "notificationDestination": "http://oai-af/notifications", "qosReference": "OAI_QOS_GBR_VIDEO_1", "exterAppId": "oai-qos-demo", "dnn": "default", "snssai": { "sst": 3, "sd": "FFFFFF" }, "flowInfo": [ { "flowId": 1, "flowDescriptions": [ "permit out 6 from any to assigned 5000" ] } ] }' --http2-prior-knowledge http://192.168.70.140:8080/3gpp-as-session-with-qos/v1/scs-as-1/subscriptions > /tmp/nef_create_response.txt
 docker-compose-host $: SUB_ID=$(grep -i '^location:' /tmp/nef_create_response.txt | awk -F/ '{print $NF}' | tr -d '\r'); echo "subscription id: $SUB_ID"
 ```
 
@@ -320,7 +318,7 @@ docker exec oai-af curl -i --http2-prior-knowledge http://192.168.70.140:8080/3g
 Now measure again, with the same iperf3 server still listening on port 5000:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.2 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-qos.json
 ```
 
 <!---
@@ -334,8 +332,8 @@ docker-compose-host $: jq -e '.end.sum_sent and .end.sum_sent.bits_per_second' /
 <summary>The output will look like this:</summary>
 
 ```
-Connecting to host 12.1.1.10, port 5000
-[  5] local 192.168.72.135 port 50551 connected to 12.1.1.10 port 5000
+Connecting to host 12.1.1.2, port 5000
+[  5] local 192.168.72.135 port 50551 connected to 12.1.1.2 port 5000
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
 [  5]   0.00-1.00   sec  1.80 MBytes  15.1 Mbits/sec    0   46.1 KBytes
 [  5]   1.00-2.00   sec  1.67 MBytes  14.0 Mbits/sec    0   46.1 KBytes
@@ -367,7 +365,7 @@ docker-compose-host $: SUB_ID=$(grep -i '^location:' /tmp/nef_create_response.tx
 Because `qosReference` is a top-level field in T8, changing the QoS of every flow in the subscription is a one-field patch — compare the equivalent N5 request in the [QoS tutorial](./DEPLOY_SA5G_WITH_QOS.md#81-test-new-qos-profile-from-af), which has to address the media component by its `medCompN`.
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-patch-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.2 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-patch-qos.json
 ```
 
 <!---
@@ -390,7 +388,7 @@ docker-compose-host $: SUB_ID=$(grep -i '^location:' /tmp/nef_create_response.tx
 NEF answers `204 No Content`. The PCF removes the AF-derived PCC rule and the SMF removes the matching QER/PDR from the UPF, so traffic on port 5000 falls back to this UE's default flow, `gbr-rule-5qi-1` at 3 Mbps:
 
 ``` shell
-docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.10 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-delete-qos.json
+docker-compose-host $: docker exec oai-ext-dn iperf3 -t 4 -O 1 -c 12.1.1.2 -p 5000 -B 192.168.72.135 -J > /tmp/oai/qos-nef-testing/iperf_result_nef-delete-qos.json
 ```
 
 <!---
@@ -425,16 +423,16 @@ docker-compose-host $: docker logs oai-pcf > /tmp/oai/qos-nef-testing/pcf.log 2>
 docker-compose-host $: docker logs oai-smf > /tmp/oai/qos-nef-testing/smf.log 2>&1
 docker-compose-host $: docker logs oai-upf > /tmp/oai/qos-nef-testing/upf.log 2>&1
 docker-compose-host $: docker logs oai-amf > /tmp/oai/qos-nef-testing/amf.log 2>&1
-docker-compose-host $: docker logs ueransim-gnb > /tmp/oai/qos-nef-testing/gnb.log 2>&1
-docker-compose-host $: docker logs ueransim-ue-5qi-1 > /tmp/oai/qos-nef-testing/ue-5qi-1.log 2>&1
+docker-compose-host $: docker logs oai-gnb > /tmp/oai/qos-nef-testing/gnb.log 2>&1
+docker-compose-host $: docker logs oai-nr-ue-5qi-1 > /tmp/oai/qos-nef-testing/ue-5qi-1.log 2>&1
 ```
 
 ## 9. Undeploy the network functions
 
-### 9.1. Undeploy UERANSIM
+### 9.1. Undeploy the OAI RAN
 
 ``` shell
-docker-compose-host $: docker compose -f docker-compose-ueransim-qos.yaml down -t 0
+docker-compose-host $: docker compose -f docker-compose-oai-rfsim-qos.yaml down -t 0
 ```
 
 ### 9.2. Undeploy the core network
