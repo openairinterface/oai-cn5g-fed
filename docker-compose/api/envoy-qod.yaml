@@ -1,0 +1,59 @@
+# Bridges the browser to the AF Core for the Swagger UI step of
+# DEPLOY_SA5G_MINI_QOS_WITH_AF.md.
+#
+# The AF Core serves HTTP/2 cleartext (h2c) with prior knowledge and sends no
+# CORS headers. A browser speaks HTTP/1.1 and enforces CORS, so it cannot call
+# the AF directly. This listener accepts HTTP/1.1, answers the preflight, and
+# forwards upstream over h2c.
+static_resources:
+  listeners:
+    - name: qod_listener
+      address:
+        socket_address: { address: 0.0.0.0, port_value: 8080 }
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: qod
+                route_config:
+                  name: qod_routes
+                  virtual_hosts:
+                    - name: qod
+                      domains: ["*"]
+                      typed_per_filter_config:
+                        envoy.filters.http.cors:
+                          "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.CorsPolicy
+                          allow_origin_string_match:
+                            - safe_regex: { regex: ".*" }
+                          allow_methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+                          allow_headers: "content-type, authorization, x-correlator, accept"
+                          expose_headers: "location, x-correlator"
+                          max_age: "86400"
+                      routes:
+                        - match: { prefix: "/" }
+                          route: { cluster: af_core }
+                http_filters:
+                  - name: envoy.filters.http.cors
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.Cors
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+  clusters:
+    - name: af_core
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      # h2c upstream: the AF speaks HTTP/2 without TLS.
+      typed_extension_protocol_options:
+        envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
+          "@type": type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions
+          explicit_http_config:
+            http2_protocol_options: {}
+      load_assignment:
+        cluster_name: af_core
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address: { address: phine-af, port_value: 8080 }

@@ -110,8 +110,8 @@ snssais:
     sst: 1
     sd: 000001 # in hex
   - &custom_slice
-    sst: 222
-    sd: 00007B # in hex
+    sst: 3
+    sd: FFFFFF # in hex
 
 ############## NF-specific configuration
 amf:
