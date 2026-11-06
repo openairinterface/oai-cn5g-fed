@@ -35,7 +35,7 @@ services:
             public_net:
                 ipv4_address: 192.168.70.154
         healthcheck:
-            test: /bin/bash -c "ip -4 addr show oaitun_ue1 | grep -q 'inet 12.1.1.10/'"
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
             interval: 10s
             timeout: 5s
             retries: 10
