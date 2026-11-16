@@ -22,24 +22,22 @@ args=(
 STATUS=0
 if command -v mysqladmin &> /dev/null; then
 	if mysqladmin "${args[@]}" ping > /dev/null; then
-		database_check=$(mysql -u$user -D oai_db --silent -e "SELECT * FROM AuthenticationSubscription;")
-		if [[ -z $database_check ]]; then
+		database_check=$(mysql -u"$user" -D oai_db --silent --skip-column-names -e "SELECT 1 FROM AuthenticationSubscription LIMIT 1;")
+		if [[ $database_check != "1" ]]; then
 			echo "Healthcheck error: oai_db not populated"
 			STATUS=1
 		fi
-		STATUS=0
 	else
 		echo "Healthcheck error: Mysql port inactive"
 		STATUS=1
 	fi
 else
 	if select="$(echo 'SELECT 1' | mysql "${args[@]}")" && [ "$select" = '1' ]; then
-		database_check=$(mysql -u$user -D oai_db --silent -e "SELECT * FROM AuthenticationSubscription;")
-		if [[ -z $database_check ]]; then
+		database_check=$(mysql -u"$user" -D oai_db --silent --skip-column-names -e "SELECT 1 FROM AuthenticationSubscription LIMIT 1;")
+		if [[ $database_check != "1" ]]; then
 			echo "Healthcheck error: oai_db not populated"
 			STATUS=1
 		fi
-		STATUS=0
 	else
 		echo "Healthcheck error: Mysql port inactive"
 		STATUS=1
