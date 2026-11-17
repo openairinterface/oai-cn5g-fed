@@ -434,6 +434,29 @@ pipeline {
         }
       }
     }
+      stage ('Check QoS with NEF Tutorial') {
+      when { expression {run_qos} }
+      steps {
+        script {
+          updateDockerCompose('docker-compose/docker-compose-basic-nrf-qos-nef.yaml', ranTag)
+          dir ('ci-scripts') {
+            // Tee will make the command always pass
+            // Please use the same log name as the folder used in the tutorial
+            sh './checkTutorial.py --tutorial DEPLOY_SA5G_WITH_QOS_NEF.md | tee ../archives/qos-nef-testing.log'
+          }
+          try {
+            sh 'grep -l "is PASS" archives/qos-nef-testing.log > /dev/null'
+            echo "QoS with NEF Tutorial PASSED"
+          } catch (Exception e) {
+            currentBuild.result = 'FAILURE'
+            echo "QoS with NEF Tutorial FAILED"
+          }
+          archivesArtifacts('docker-compose/docker-compose-basic-nrf-qos-nef.yaml', 'qos-nef-testing')
+          sh 'cp docker-compose/docker-compose-oai-rfsim-qos.yaml archives/qos-nef-testing || true'
+          cleanUpDockerCompose('docker-compose/docker-compose-basic-nrf-qos-nef.yaml')
+        }
+      }
+    }
       stage ('Check Ethernet PDU Sessions Tutorial') {
       when { expression {run_ethernet_pdu} }
       steps {
