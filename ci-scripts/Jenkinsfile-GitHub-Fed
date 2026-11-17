@@ -13,6 +13,8 @@ import groovy.transform.Field
 
 @Field def ubuntuBuildNode                       // node that runs the orchestration (git ops only)
 @Field def ubuntuBuildResource                   // lockable resource
+@Field def claHost                               // host holding the CLA signatory list
+@Field def claFile                               // CLA signatory list, path on claHost
 @Field def githubCredentialsId = 'github-jenkins-oai-cn'  // GitHub checkout / API creds
 
 @Field def isPullRequest      = false  // true if triggered by a PR
@@ -53,6 +55,8 @@ pipeline {
           isPullRequest       = !!env.GITHUB_PR_NUMBER?.trim()
           ubuntuBuildNode     = params.UbuntuBuildNode
           ubuntuBuildResource = params.UbuntuBuildResource
+          claHost             = params.claHost
+          claFile             = params.claFile
 
           if (!ubuntuBuildNode) {
             echo 'No Node is specified!'
@@ -140,7 +144,7 @@ pipeline {
       }
     }
 
-    // PR-only: verify Signed-off-by lines / merge guidelines via the common checker.
+    // PR-only: verify the CLA, signatures, Signed-off-by lines and merge guidelines.
     stage('Verify Guidelines') {
       when {
         expression { return isPullRequest }
@@ -154,13 +158,21 @@ pipeline {
               sh "git -c credential.helper='!f() { echo \"username=\$GITHUB_USERNAME\"; echo \"password=\$GITHUB_TOKEN\"; }; f' fetch --no-tags ${env.GIT_URL} +refs/heads/${targetBranch}:refs/remotes/origin/${targetBranch}"
             }
 
-            def mrValidationLog = "signedCommit_${env.BUILD_NUMBER}.log"
+            // The list is kept on claHost: read it over SSH for the
+            // check instead of storing a copy on the build node. Retry
+            // to handle transient network failures.
+            retry(3) {
+              sh "ssh -o BatchMode=yes ${claHost} 'cat ${claFile}' > cla.csv"
+            }
+            // An empty list is a misconfiguration, not a reason to skip the CLA check.
+            sh "test -s cla.csv"
+
+            def mrValidationLog = "archives/signedCommit_${env.BUILD_NUMBER}.log"
             def mrValidationExitCode = sh(
-              script: "bash ./ci-scripts/common/bash/pre-ci-check.sh -s ${env.GITHUB_PR_HEAD_SHA} -t origin/${targetBranch} > ${mrValidationLog} 2>&1",
+              script: "bash ./ci-scripts/common/bash/pre-ci-check.sh -s ${env.GITHUB_PR_HEAD_SHA} -t origin/${targetBranch} -r ${params.gitAccount}/${params.gitRepo} -p ${env.GITHUB_PR_NUMBER} -c cla.csv > ${mrValidationLog} 2>&1",
               returnStatus: true
             )
             def mrValidationMessage = readFile(mrValidationLog).trim()
-            sh "rm -f ${mrValidationLog}"
 
             if (mrValidationExitCode >= 1) {
               mrValidationWarning = mrValidationMessage
@@ -172,6 +184,11 @@ pipeline {
         }
       }
       post {
+        cleanup {
+          script {
+            sh "rm -f cla.csv"
+          }
+        }
         failure {
           script {
             if (mrValidationWarning) {
