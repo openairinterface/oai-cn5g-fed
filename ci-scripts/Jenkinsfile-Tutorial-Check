@@ -29,7 +29,7 @@ pulledImages = [false, false, false, false, false, false, false, false, false]
 
 // Which RAN TAG to use
 ranTag = params.ranTag
-upstreamTagToUse = params.upstreamTagToUse
+upstreamTagToUse = params.upstreamTagToUse?.trim() ?: 'develop'
 upstreamIsFED = false
 
 // means to shorten the pipeline
@@ -103,9 +103,10 @@ pipeline {
           sh "git clean -x -d -f > /dev/null 2>&1"
           sh "git submodule foreach --recursive 'git clean -x -d -ff' > /dev/null 2>&1"
           sh "git submodule deinit --force --all > /dev/null 2>&1"
-          // For any upstream job (PR or post-merge), let run on certified tag.
-          if (upstreamEvent && !upstreamIsFED) {
-            sh 'git checkout -f ' + upstreamTagToUse
+          if (!upstreamIsFED) {
+            // Manual or NF-triggered build: test the requested fed branch or tag.
+            sh "git fetch --no-tags origin ${upstreamTagToUse}"
+            sh "git checkout -f FETCH_HEAD"
           }
           if (upstreamIsFED && params.GIT_MERGE_REF) {
             // Fed PR: test the PR-merged-into-target state (GitHub's precomputed merge ref).
@@ -115,6 +116,8 @@ pipeline {
             // Fed push: fetch first; the sha may be abbreviated.
             sh "git fetch --no-tags --force origin '+refs/heads/*:refs/remotes/origin/*'"
             sh "git checkout -f ${params.GIT_COMMIT_SHA}"
+          } else if (upstreamIsFED) {
+            error "FED-triggered build is missing GIT_MERGE_REF and GIT_COMMIT_SHA"
           }
           sh "echo Current commit after checkout is \$(git rev-parse HEAD)"
           // Authenticate the submodule clone: -c scopes the credential helper to just this command.
