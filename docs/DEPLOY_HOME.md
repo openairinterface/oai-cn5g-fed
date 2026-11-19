@@ -39,6 +39,7 @@ Any Docker or Podman version available for those releases should be fine. The tu
 | Use MongoDB instead of MySQL | [MongoDB deployment](./DEPLOY_SA5G_BASIC_MONGODB.md) |
 | Configure QoS policies | [QoS tutorial](./DEPLOY_SA5G_WITH_QOS.md) |
 | Configure Ethernet PDU sessions | [Ethernet PDU sessions](./Ethernet_PDU_Sessions.md) |
+| Configure Framed Routing (a subnet behind the UE) | [Framed Routing tutorial](./DEPLOY_SA5G_WITH_FRAMED_ROUTING.md) |
 | Configure slicing | [Network slicing tutorial](./DEPLOY_SA5G_SLICING.md) |
 | Configure traffic redirection | [Traffic redirection tutorial](./DEPLOY_SA5G_REDIRECTION.md) |
 | Configure traffic steering | [Traffic steering tutorial](./DEPLOY_SA5G_STEERING.md) |
