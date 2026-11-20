@@ -1,0 +1,176 @@
+# SPDX-License-Identifier: MIT
+#
+# "Mini QoS with an AF" scenario: AMF + SMF + PCF + UPF (simple-switch
+# datapath), one OAI gNB and one OAI NR-UE in RF simulator mode, and phine.af
+# asking for QoS over N5.
+#
+# The core and the RAN are in this one file but are started separately, so
+# that the gNB only comes up once the AMF is listening:
+#
+#   docker compose -f docker-compose-mini-qos-af.yaml up -d mysql oai-amf oai-smf oai-upf oai-pcf oai-ext-dn phine-af
+#   docker compose -f docker-compose-mini-qos-af.yaml up -d oai-gnb
+#   docker compose -f docker-compose-mini-qos-af.yaml up -d oai-nr-ue
+
+services:
+    mysql:
+        container_name: "mysql"
+        image: mysql:9.6.0
+        volumes:
+            # Legacy "users" table: all the AMF's internal UDM needs
+            - ./database/oai_db1.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./healthscripts/mysql-healthcheck1.sh:/tmp/mysql-healthcheck.sh
+        environment:
+            - TZ=Europe/Paris
+            - MYSQL_DATABASE=oai_db
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=test
+            - MYSQL_ROOT_PASSWORD=linux
+        healthcheck:
+            test: /bin/bash -c "/tmp/mysql-healthcheck.sh"
+            interval: 10s
+            timeout: 5s
+            retries: 30
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.131
+    oai-amf:
+        container_name: "oai-amf"
+        image: oaisoftwarealliance/oai-amf:develop
+        volumes:
+            - ./conf/mini_qos_config.yaml:/openair-amf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            mysql:
+                condition: service_healthy
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.138
+    oai-smf:
+        container_name: "oai-smf"
+        image: oai-smf:pdr-filter-fix
+        volumes:
+            - ./conf/mini_qos_config.yaml:/openair-smf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-amf
+            - oai-pcf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.133
+        # The SMF resolves the UPF on start, before the UPF container exists
+        extra_hosts:
+            - "oai-upf:192.168.70.134"
+    oai-upf:
+        container_name: "oai-upf"
+        image: oaisoftwarealliance/oai-upf:develop
+        volumes:
+            - ./conf/mini_qos_config.yaml:/openair-upf/etc/config.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-smf
+        cap_add:
+            - NET_ADMIN
+            - SYS_ADMIN
+        cap_drop:
+            - ALL
+        privileged: true
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.134
+    oai-pcf:
+        container_name: "oai-pcf"
+        image: oai-pcf:n5-n7-fix
+        expose:
+            - 80/tcp
+            - 8080/tcp
+        volumes:
+            - ./conf/mini_qos_config.yaml:/openair-pcf/etc/config.yaml
+            - ./policies/mini-qos-af/policy_decisions:/openair-pcf/policies/policy_decisions
+            - ./policies/mini-qos-af/pcc_rules:/openair-pcf/policies/pcc_rules
+            - ./policies/qos/qos_data:/openair-pcf/policies/qos_data
+            - ./policies/ulcl/traffic_rules:/openair-pcf/policies/traffic_rules
+            # Operator QoS presets. Shared with the eBPF QoS tutorial; none of
+            # them is named after a bare 5QI, which is what phine.af sends.
+            - ./policies/qos_references:/openair-pcf/policies/qos_references
+        environment:
+            - TZ=Europe/Paris
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.139
+    phine-af:
+        container_name: "phine-af"
+        image: phinetech/phine.af:uplink-fix
+        expose:
+            - 8080/tcp
+        volumes:
+            - ./conf/mini_qos_phine_af_config.yaml:/etc/phine.af/af.yaml
+        environment:
+            - TZ=Europe/Paris
+        depends_on:
+            - oai-pcf
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.141
+                aliases:
+                    # The notifUri phine.af puts in its N5 requests is
+                    # hardcoded to this name, so let the PCF resolve it
+                    - phine.af-core
+    # Browser-facing API explorer for section 7. Optional: the tutorial works
+    # with curl alone, these two only make "Try it out" usable.
+    qod-swagger-ui:
+        container_name: "qod-swagger-ui"
+        image: swaggerapi/swagger-ui:v5.17.14
+        environment:
+            - SWAGGER_JSON=/spec/quality-on-demand.yaml
+            - PORT=8080
+        volumes:
+            - ./api/quality-on-demand.yaml:/spec/quality-on-demand.yaml:ro
+        depends_on:
+            - qod-api-bridge
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.143
+
+    # The AF Core serves h2c with prior knowledge and sends no CORS headers,
+    # neither of which a browser can work with. This accepts HTTP/1.1, answers
+    # the CORS preflight, and forwards to the AF over h2c.
+    qod-api-bridge:
+        container_name: "qod-api-bridge"
+        image: envoyproxy/envoy:v1.31-latest
+        command: ["-c", "/etc/envoy/envoy.yaml", "--log-level", "warn"]
+        volumes:
+            - ./api/envoy-qod.yaml:/etc/envoy/envoy.yaml:ro
+        depends_on:
+            - phine-af
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.142
+
+    oai-ext-dn:
+        privileged: true
+        init: true
+        container_name: "oai-ext-dn"
+        image: oaisoftwarealliance/trf-gen-cn5g:latest
+        entrypoint: /bin/bash -c \
+              "ip route add 12.1.1.0/24 via 192.168.70.134 dev eth0; ip route; sleep infinity"
+        command: ["/bin/bash", "-c", "trap : SIGTERM SIGINT; sleep infinity & wait"]
+        healthcheck:
+            test: /bin/bash -c "ip r | grep 12.1.1"
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            public_net:
+                ipv4_address: 192.168.70.135
+networks:
+    public_net:
+        driver: bridge
+        name: demo-oai-public-net
+        ipam:
+            config:
+                - subnet: 192.168.70.128/26
+        driver_opts:
+            com.docker.network.bridge.name: "demo-oai"
