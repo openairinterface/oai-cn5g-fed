@@ -20,6 +20,7 @@ image_tags = {
     "packetrusher": "oaisoftwarealliance/packet-rusher:fix-5gstmsi-amf",
     "oai-gnb": "oaisoftwarealliance/oai-gnb:develop",
     "oai-nr-ue": "oaisoftwarealliance/oai-nr-ue:develop",
+    "ocudu-gnb": "ghcr.io/bpodrygajlo/ocudu/ocudu-avx2:7cecca5",
     "mobsim": "carot0/mobsim:latest",
     "curl": "curlimages/curl:8.10.1"
 }
