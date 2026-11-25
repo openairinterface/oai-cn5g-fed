@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: MIT
+
+services:
+    ocudu-gnb:
+        image: ghcr.io/bpodrygajlo/ocudu/ocudu-avx2:7cecca5
+        container_name: ocudu-gnb
+        cap_drop:
+            - ALL
+        cap_add:
+            - SYS_NICE
+        networks:
+            public_test_net:
+                ipv4_address: 192.168.79.140
+        volumes:
+            - ./ocudu.yml:/ocudu.yml
+        healthcheck:
+            test: /bin/bash -c "pgrep gnb_split_8"
+            start_period: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        command: ./usr/local/bin/gnb_split_8 -c /ocudu.yml
+
+    oai-nr-ue:
+        image: oaisoftwarealliance/oai-nr-ue:develop
+        container_name: ocudu-oai-nr-ue
+        cap_drop:
+            - ALL
+        cap_add:
+            - NET_ADMIN
+            - NET_RAW
+            - SYS_NICE
+        environment:
+            USE_ADDITIONAL_OPTIONS: >-
+                -r 51 --numerology 1 --band 78 -C 3489420000 --ssb 0 -E
+                --uicc0.imsi 208950000000031
+                --uecap_file /opt/oai-nr-ue/etc/uecap.xml
+                --log_config.global_log_options level,nocolor,time
+                --device.name oai_zmqdevif
+                --zmq.[0].tx_channels tcp://0.0.0.0:4556
+                --zmq.[0].rx_channels tcp://192.168.79.140:4558
+        networks:
+            public_test_net:
+                ipv4_address: 192.168.79.150
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./nr-ue.conf:/opt/oai-nr-ue/etc/nr-ue.conf
+            - ./uecap_ports1.xml:/opt/oai-nr-ue/etc/uecap.xml
+        healthcheck:
+            test: /bin/bash -c "pgrep nr-uesoftmodem"
+            start_period: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+networks:
+    public_test_net:
+        external: true
+        name: test-oai-public-net

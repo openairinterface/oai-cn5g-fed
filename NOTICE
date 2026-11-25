@@ -121,3 +121,18 @@ Files: docker-compose/conf/mini_qos_phine_af_config.yaml
 NOTE: Modified: adapted the configuration for the OAI PCF
 
 ------------------------------------------------------------------
+
+O-CU/DU (OCUDU) gNB configuration
+Source: https://gitlab.com/ocudu/ocudu
+Author: Software Radio Systems Limited
+License: BSD-3-Clause-Open-MPI
+Files: test/template/ocudu.yml
+
+------------------------------------------------------------------
+
+O-CU/DU Robot test Docker Compose configuration
+Source: https://github.com/duranta-project/openairinterface5g
+License: MIT
+Files: test/template/docker-compose-ocudu.yaml
+
+------------------------------------------------------------------

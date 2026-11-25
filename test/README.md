@@ -19,6 +19,7 @@ Currently the test suite is only supported on Ubuntu (22.04/24.04/26.04) distrib
 | [ebpf_tests.robot](./ebpf_tests.robot) | CN with the eBPF-datapath UPF | Attach, ping, 400 Mbit/s bidirectional iperf3 |
 | [omec_gnbsim_tests.robot](./omec_gnbsim_tests.robot) | CN + omec-gnbsim | UE lifecycle, idle cycle, release and re-establish, address-leak check |
 | [packetrusher_tests.robot](./packetrusher_tests.robot) | CN + PacketRusher | N2/Xn handover, paging, UPF throughput, multi-UE attach |
+| [ocudu_tests.robot](./ocudu_tests.robot) | OAI CN + O-CU/DU gNB + OAI NR UE | UE attach and ping to the ext-DN over ZMQ |
 | [Northbound.robot](./Northbound.robot) | CN + VPP-UPF + rfsim gNB/UEs + mobsim + MongoDB | AMF/SMF event-exposure notifications |
 | [lmf_tests.robot](./lmf_tests.robot) | NRF-based CN + LMF, rfsim gNB (51 PRB, 4 RX antennas = 4 TRPs) and one UE | `determine-location` returns a `localLocationEstimate` point; gNB UL-RTOA k values reach the LMF unchanged |
 
@@ -82,8 +83,8 @@ python3 -m venv .rfvenv
 
 - The daemon must be usable **without `sudo`** (the tests talk to `/var/run/docker.sock` directly).
 - The subnets `192.168.79.128/25`, `192.168.80.128/25` and `192.168.81.128/25` must be free.
-- No existing containers named `oai-*`, `mysql`, `gnbsim-*`, `omec-gnbsim-*`, `packetrusher-*` or
-  `trace_dummy`.
+- No existing containers named `oai-*`, `ocudu-*`, `mysql`, `gnbsim-*`, `omec-gnbsim-*`,
+  `packetrusher-*` or `trace_dummy`.
 - `Northbound.robot` also needs host port `27017` free (it starts its own MongoDB).
 
 ### 3. Images
@@ -91,7 +92,10 @@ python3 -m venv .rfvenv
 Tags live in [image_tags.py](./image_tags.py) — edit that file to test a specific build. 
 CI rewrites it with `sed`, so keep the entries whitespace-free.
 
-All images are pulled from Docker Hub.
+All images are pulled from Docker Hub, except the O-CU/DU gNB, which comes from `ghcr.io` and needs
+an AVX2 CPU. [ocudu_tests.robot](./ocudu_tests.robot) also downloads the UE capability file from
+the [OAI RAN configuration directory](https://github.com/duranta-project/openairinterface5g/tree/develop/targets/PROJECTS/GENERIC-NR-5GC/CONF)
+on `develop`, so GitHub must be reachable.
 
 ### 4. tshark, for packet captures
 
