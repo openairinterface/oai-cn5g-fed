@@ -207,7 +207,7 @@ the cell before starting the UE.
 ``` shell
 docker-compose-host $: sed -i "s/amf_ip_address      = ( { ipv4       = \".*\";});/amf_ip_address      = ( { ipv4       = \"$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' oai-amf)\";});/" ran-conf/gnb.conf
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-basic.yaml up -d oai-gnb-basic
-docker-compose-host $: timeout 180 bash -c 'until docker logs oai-gnb-basic 2>&1 | grep -q "RU 0 RF started"; do sleep 3; done'
+docker-compose-host $: timeout 180 bash -c 'until docker logs oai-gnb-basic 2>&1 | grep -qE "RU 0 (RF started|rf device ready)"; do sleep 3; done'
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-basic.yaml up -d oai-nr-ue-basic
 docker-compose-host $: timeout 300 bash -c 'until docker exec oai-nr-ue-basic ip -4 a show oaitun_ue1 2>/dev/null | grep -q "inet "; do sleep 3; done'
 docker-compose-host $: docker exec oai-nr-ue-basic ip -4 a show oaitun_ue1
@@ -394,7 +394,7 @@ already points to, so no gNB configuration change is needed here.
 
 ``` shell
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml up -d oai-gnb
-docker-compose-host $: timeout 180 bash -c 'until docker logs oai-gnb 2>&1 | grep -q "RU 0 RF started"; do sleep 3; done'
+docker-compose-host $: timeout 180 bash -c 'until docker logs oai-gnb 2>&1 | grep -qE "RU 0 (RF started|rf device ready)"; do sleep 3; done'
 docker-compose-host $: docker-compose -f docker-compose-oai-rfsim-ebpf.yaml up -d oai-nr-ue1
 docker-compose-host $: timeout 300 bash -c 'until docker exec oai-nr-ue1 ip -4 a show oaitun_ue1 2>/dev/null | grep -q "inet "; do sleep 3; done'
 docker-compose-host $: docker exec oai-nr-ue1 ip -4 a show oaitun_ue1
